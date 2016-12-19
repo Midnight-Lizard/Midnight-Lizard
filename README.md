@@ -3,7 +3,9 @@
     Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
     You can set up different color schemes for each favorite web site and one default theme for all other sites.
     Choose from the predefined schemes or create your own. Number of custom settings is unlimited.
+
 ━━━━ ADVANTAGES ━━━━
+
   ✔ Intelligent dark themes
   ✔ Increased contrast
   ✔ Inverted lightness instead of inverted colors
