@@ -1,0 +1,97 @@
+{
+  "manifest_version": 2,
+  "name": "Midnight Lizard",
+  "short_name": "Mid.Lizard",
+  "description": "This extension changes page colors, brightness and contrast to increase readability",
+  "version": "7.1.1",
+  "author": "Pavel Agarkov",
+  "icons":
+    {
+      "128": "icons/ml-icon-128+.png",
+      "48": "icons/ml-icon-48++.png",
+      "32": "icons/ml-icon-32.png",
+      "16": "icons/ml-icon-16.png"
+    },
+  "permissions": [ "storage" ],
+  "offline_enabled": true,
+  "browser_action":
+    {
+      "default_title": "Midnight Lizard",
+      "default_icon": { "38": "icons/ml-toolbar-icon-38.png" },
+      "default_popup": "ui/popup.html"
+    },
+  "background":
+  {
+      "scripts": [
+        "scripts/color-schemes.js",
+        "scripts/cookie.js",
+        "scripts/settings.js",
+        "scripts/global-event-handler.js"
+      ],
+      "persistent": true
+  },
+  "content_scripts":
+  [
+    {
+        "run_at": "document_start",
+        "match_about_blank": true,
+        "matches": [ "<all_urls>" ],
+        "js": [
+          "scripts/chrome-promise.js",
+          "scripts/chrome-storage.js",
+          "scripts/string-functions.js",
+          "scripts/color-schemes.js",
+          "scripts/promise-functions.js",
+          "scripts/content.js",
+          "scripts/cookie.js",
+          "scripts/settings.js",
+          "scripts/content-document-start.js"
+        ]
+    },
+    {
+        "run_at": "document_idle",
+        "match_about_blank": true,
+        "matches": [ "https://*/*/chrome/newtab*" ],
+        "js": [ "scripts/custom/chrome-new-tab.js" ]
+    },
+    {
+        "run_at": "document_end",
+        "match_about_blank": true,
+        "matches": [ "<all_urls>" ],
+        "js": [ "scripts/content-document-end.js" ]
+    },
+    {
+        "run_at": "document_end",
+        "matches": [ "https://docs.google.com/document/*/edit" ],
+        "js": [ "scripts/custom/google-docs.js" ]
+    },
+    {
+        "run_at": "document_idle",
+        "all_frames": true,
+        "match_about_blank": true,
+        "matches": [ "<all_urls>" ],
+        "css": [ "styles/content-idle.css" ]
+    },
+    {
+        "run_at": "document_start",
+        "matches": [ "https://www.youtube.com/*" ],
+        "css": [ "styles/custom/youtube.css" ]
+    },
+    {
+        "run_at": "document_start",
+        "matches": [ "https://mail.google.com/*" ],
+        "css": [ "styles/custom/gmail.css" ]
+    },
+    {
+        "run_at": "document_start",
+        "matches": [ "https://*.wikipedia.org/*" ],
+        "css": [ "styles/custom/wikipedia.css" ]
+    },
+    {
+        "run_at": "document_start",
+        "matches": [ "https://twitter.com/*" ],
+        "css": [ "styles/custom/twitter.css" ],
+        "js": [ "scripts/custom/twitter.js" ]
+    }
+  ]
+}

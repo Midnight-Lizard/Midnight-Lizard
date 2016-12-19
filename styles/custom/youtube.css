@@ -1,0 +1,25 @@
+#yt-masthead #logo-container .logo::before, #footer-logo .footer-logo-icon::before {
+    content: '';
+    display: inline-block;
+    background: no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vflh5pqYQ.webp) -348px -266px;
+    background-size: auto;
+    width: 30px;
+    height: 30px;
+}
+
+#yt-masthead #logo-container.doodle::before
+{
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: -1px;
+    background: no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vflh5pqYQ.webp) -348px -266px;
+    background-size: auto;
+    width: 30px;
+    height: 30px;
+}
+
+.ytp-swatch-background-color, .ytp-swatch-background-color-secondary {
+    border: 1px solid rgb(241, 43, 36);
+    margin-bottom: -1px;
+}

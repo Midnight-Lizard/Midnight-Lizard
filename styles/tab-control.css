@@ -1,0 +1,113 @@
+/* Style the list */
+.cb-tab
+{
+    display: table-cell;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px!important;
+    overflow: hidden;
+    background-color: var(--main-background-color);
+    width: 169px;
+}
+
+.cb-tab-item-icon
+{
+    margin: -10px 5px -6px -3px;
+    fill: var(--main-color);
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.cb-tab-item:hover .cb-tab-item-icon, .active .cb-tab-item-icon
+{
+    fill: var(--main-color);
+}
+
+.cb-tab-item
+{
+    padding: 13px 12px 13px 12px;
+    margin-left: 10px;
+    text-align: left;
+    display: block;
+    /* padding: 14px 16px; */
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px 0px 0px 5px;
+    /*transition: 0.3s;*/
+    font-size: 16px;
+    white-space: nowrap;
+    /* border: solid 1px rgba(0, 0, 0, 0); */
+    border-right: solid 1px var(--thin-border-color);
+    user-select: none;
+}
+
+.cb-tab-item-separator
+{
+    padding: 14px;
+    margin-left: 10px;
+    /* display: block; */
+    /* font-size: 10px; */
+    /* line-height: 8px; */
+    border-right: solid 1px var(--thin-border-color);
+}
+
+.cb-tab-item:hover
+{
+    background-color: var(--alt-background-color);
+}
+
+.active
+{
+    background-color: var(--content-background-color) !important;
+    /* box-shadow: black 0 0 3px; */
+    border: solid 1px var(--thin-border-color);
+    border-right: solid 1px rgba(0, 0, 0, 0);
+    margin-left: 9px;
+    padding: 12px;
+    /* font-weight: bold; */
+    cursor: default!important;
+}
+
+.cb-tab-content
+{
+    display: none;
+    width: 340px;
+    animation: fadeEffect 0.4s ease-in-out;
+    background-color: var(--content-background-color);
+}
+
+.cb-tab-content div:first-of-type
+{
+    margin-top: -10px;
+}
+
+#default-tab-content.cb-tab-content
+{
+    display: table-cell;
+    font-size: 14px;
+    text-align: justify;
+    text-indent: 15px;
+}
+
+#default-tab-content.cb-tab-content p
+{
+    margin: 10px 20px 0px 20px;
+}
+
+#default-tab-content.cb-tab-content p b, #default-tab-content.cb-tab-content p span, #default-tab-content.cb-tab-content p i
+{
+    color: var(--logo-text-color);
+}
+
+#default-tab-content.cb-tab-content h3
+{
+    text-align: center;
+    margin: 10px;
+}
+
+@keyframes fadeEffect
+{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

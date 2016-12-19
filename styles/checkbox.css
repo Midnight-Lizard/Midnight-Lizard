@@ -1,0 +1,25 @@
+.cb-checkbox
+{
+    -webkit-appearance: none;
+    border: 1px solid var(--main-border-color);
+    width: 1.2em;
+    height: 1.2em;
+    background-color: var(--main-background-color);
+    border-radius: 0.2em;
+    box-shadow: 1px 1px 1px 0 var(--main-input-shadow-color) inset;
+    position: relative;
+    text-align: center;
+    line-height: 1.2em;
+    margin-right: 1em;
+    padding-left: 0.1em;
+}
+
+.cb-checkbox:checked:before
+{
+    content: "\2714";
+}
+
+.cb-checkbox:before
+{
+    content: "\2002";
+}

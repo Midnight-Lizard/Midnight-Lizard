@@ -1,0 +1,20 @@
+/*.gb_fa .gb_Ub .gb_Wb, .gb_Za .gb_Xb,*/ 
+a[href="#inbox"][title="Gmail"] > span[class] {
+    background-image: none !important;
+}
+
+/*.gb_fa .gb_Ub .gb_Wb::before, .gb_Za .gb_Xb::before,*/ 
+a[href="#inbox"][title="Gmail"] > span[class]::before {
+    content: 'Google';
+    display: inline-block;
+    font-size: 28px;
+    line-height: 28px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    vertical-align: top;
+    color: black;
+}
+
+/*.gb_fa .gb_Ub .gb_Wb {
+    filter: drop-shadow(0 0 1px rgba(255,255,255,.8))
+}*/
