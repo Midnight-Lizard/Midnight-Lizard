@@ -84,6 +84,11 @@
     },
     {
         "run_at": "document_start",
+        "matches": [ "https://plus.google.com/*" ],
+        "css": [ "styles/custom/google-plus.css" ]
+    },
+    {
+        "run_at": "document_start",
         "matches": [ "https://*.wikipedia.org/*" ],
         "css": [ "styles/custom/wikipedia.css" ]
     },

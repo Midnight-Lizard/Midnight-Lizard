@@ -618,7 +618,6 @@ function tagIsSmall(tag)
 {
 	let maxSize = 40, maxAxis = 16,
 		check = (w,h) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
-	tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
 	let width = parseInt(tag.computedStyle.width), height = parseInt(tag.computedStyle.height);
 	if(!isNaN(width) && !isNaN(height))
 	{
@@ -760,7 +759,7 @@ function procElement(tag)
 				roomRules.attributes.push( { name: "transition", value: "filter" });
 			}
 
-			let doNotInvertRegExp = /user|account|photo|importan|light-grey/gi;
+			let doNotInvertRegExp = /user|account|photo|importan|light-grey|flag/gi;
 			let bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > curSet.textContrast;
 
 			if(tag.isPseudo && tag.computedStyle.content.substr(0,3) == "url")
@@ -1518,41 +1517,40 @@ function getParentBackground(tag, probeRect) {
 	var result = { color: "rgb(0,0,0)", light: 1, reason: "not found" };
 	if (tag.parentElement)
 	{
-		var childNodes, bgColor;
+		var children, bgColor;
 		var doc = tag.ownerDocument;
 		var isSvg = tag instanceof SVGElement && tag.parentElement instanceof SVGElement;
 		tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag, "");
 
 		if ((tag.computedStyle.position == "absolute" || tag.computedStyle.position == "relative" || isSvg) && !tag.isPseudo)
 		{
-			probeRect = probeRect ? probeRect : (tag.rect = tag.rect || tag.getBoundingClientRect());
-			if (probeRect.width !== 0)
-			{
-				tag.zIndex = isSvg ? getElementIndex(tag) : tag.computedStyle.zIndex;
-				childNodes = Array.prototype.slice.call(tag.parentElement.childNodes).filter(
-					function (otherTag, index) {
-						if (otherTag != tag && (otherTag.is && otherTag.is.checked || checkElement(otherTag))) {
+			tag.zIndex = isSvg ? getElementIndex(tag) : tag.computedStyle.zIndex;
+			children = Array.prototype.slice.call(tag.parentElement.children).filter(
+				function (otherTag, index) {
+					if (otherTag != tag && (otherTag.is && otherTag.is.checked || checkElement(otherTag)))
+					{
+						otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
+							(otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle : doc.defaultView.getComputedStyle(otherTag, "")).zIndex;
+						otherTag.zIndex = otherTag.zIndex == "auto" ? -999 : otherTag.zIndex;
+						if (otherTag.cbBgColor && otherTag.cbBgColor.color && otherTag.zIndex < tag.zIndex)
+						{
+							probeRect = probeRect ? probeRect : (tag.rect = tag.rect || tag.getBoundingClientRect());
 							otherTag.rect = otherTag.rect || otherTag.getBoundingClientRect();
-							otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
-								(otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle : doc.defaultView.getComputedStyle(otherTag, "")).zIndex;
-							otherTag.zIndex = otherTag.zIndex == "auto" ? -999 : otherTag.zIndex;
-							if (otherTag.cbBgColor && otherTag.cbBgColor.color &&
-								otherTag.zIndex < tag.zIndex &&
-								otherTag.rect.left <= probeRect.left &&
-								otherTag.rect.top <= probeRect.top &&
-								otherTag.rect.right >= probeRect.right &&
-								otherTag.rect.bottom >= probeRect.bottom)
+							if(otherTag.rect.left <= probeRect.left && otherTag.rect.top <= probeRect.top &&
+								otherTag.rect.right >= probeRect.right && otherTag.rect.bottom >= probeRect.bottom)
+							{
 								return true;
+							}
 						}
-						return false;
+					}
+					return false;
+				});
+			if (children.length > 0) {
+				children = children.sort(
+					function (e1, e2) {
+						return e2.zIndex - e1.zIndex;
 					});
-				if (childNodes.length > 0) {
-					childNodes = childNodes.sort(
-						function (e1, e2) {
-							return e2.zIndex - e1.zIndex;
-						});
-					bgColor = childNodes[0].cbBgColor;
-				}
+				bgColor = children[0].cbBgColor;
 			}
 		}
 		bgColor = bgColor ? bgColor : (tag.parentElement.cbBgColor || tag.parentElement.cbParentBgColor);
