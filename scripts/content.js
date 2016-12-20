@@ -277,8 +277,8 @@ function initSelectors(doc)
 		{
 			doc.selectorsQuality = 0;
 			let trimmer = x =>
-				 /active|hover|disabled|checked|visited|selected|focus|enabled|child|nth|last|first/gi.test(x.selectorText) && 
-				!/scrollbar/gi.test(x.selectorText);
+				 /:active|:hover|:disabled|:checked|:visited|:focus|:enabled|child|nth|last|first/gi.test(x.selectorText) && 
+				!/::scrollbar/gi.test(x.selectorText);
 			let trimmedStyleRules = styleRules.filter(trimmer);
 			if(trimmedStyleRules.length > stylesLimit)
 			{
@@ -327,7 +327,7 @@ function getElementMatchedSelectors(tag)
 			catch (ex)
 			{
 				wrongSelectors.push(selector);
-				// console.log(ex);
+				debug && console.log(ex);
 				return false;
 			}
 		});
@@ -336,19 +336,34 @@ function getElementMatchedSelectors(tag)
 	}
 }
 
-function observeElementHover(tag)
+function observeUserActions(tag)
 {
 	let className = tag.className.baseVal || tag.className;
 	var key = tag.tagName + "#" + tag.id + "." + className;
 	var preFilteredSelectors = tag.ownerDocument.preFilteredSelectors[key];
-	if (preFilteredSelectors && preFilteredSelectors.some(s => s.indexOf(":hover") != -1 && tag.matches(s.replace(/:hover/gi, ""))))
+	if (preFilteredSelectors)
 	{
-		tag.addEventListener("mouseenter", onMouseEnterOrLeave);
-		tag.addEventListener("mouseleave", onMouseEnterOrLeave);
+		if(preFilteredSelectors.some(s => /:hover\b/gi.test(s) && tag.matches(s.replace(/:hover\b/gi, ""))))
+		{
+			tag.addEventListener("mouseenter", onUserAction);
+			tag.addEventListener("mouseleave", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /:focus\b|:active\b/gi.test(s) && tag.matches(s.replace(/:focus\b|:active\b/gi, ""))))
+		{
+			tag.addEventListener("focus", onUserAction);
+			tag.addEventListener("blur", onUserAction);
+			tag.addEventListener("mousedown", onUserAction);
+			tag.addEventListener("mouseup", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /:checked\b/gi.test(s) && tag.matches(s.replace(/:checked\b/gi, ""))))
+		{
+			tag.addEventListener("input", onUserAction);
+			tag.addEventListener("change", onUserAction);
+		}
 	}
 }
 
-function onMouseEnterOrLeave()
+function onUserAction(eventArgs)
 {
 	if(curSet.runOnThisSite && curSet.isEnabled && this.selectors != getElementMatchedSelectors(this).join(";"))
 	{
@@ -554,7 +569,7 @@ function startObservation(forObservation) {
 			{
 				if (!tags[x].observed)
 				{
-					observeElementHover(tags[x]);
+					observeUserActions(tags[x]);
 					tags[x].observed = true;
 				}
 			}
