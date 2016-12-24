@@ -3,29 +3,44 @@ var colors, frontColors, imagePromises, images, lights;
 var currentSettings = {}, curSet = {};
 var chromePromise = new ChromePromise();
 var classObserverConfig = { attributes: true, subtree: true, attributeFilter: ["class"] };
-var classObserver = new MutationObserver(
-	function (mutations) {
-		mutations.forEach(
-			function (mutation) {
-				if (mutation.target.is && mutation.target.is.checked && mutation.target.cbBgColor) {
-					if (mutation.target.firstElementChild) {
-						reCalcRootElement(mutation.target, false);
-					}
-					else {
-						restoreElementColors(mutation.target);
-						procElement(mutation.target);
-					}
-				}
-			});
+var classObserver = new MutationObserver(mutations =>
+{
+	mutations.forEach(mutation =>
+	{
+		if (mutation.target.is && mutation.target.is.checked && mutation.target.cbBgColor)
+		{
+			if (mutation.target.firstElementChild)
+			{
+				reCalcRootElement(mutation.target, false);
+			}
+			else
+			{
+				restoreElementColors(mutation.target);
+				procElement(mutation.target);
+			}
+		}
 	});
+});
 
 var childObserverConfig = { childList: true, subtree: true };
-var childObserver = new MutationObserver(
-	function (mutations) {
-		var allNewTags = [];
-		mutations.forEach(m => Array.prototype.push.apply(allNewTags, m.addedNodes));
-		procAllElementsWithChildren(allNewTags);
-	});
+var childObserver = new MutationObserver(mutations =>
+{
+	let allNewTags = [];
+	mutations.forEach(m => Array.prototype.push.apply(allNewTags, m.addedNodes));
+	procAllElementsWithChildren(allNewTags);
+});
+
+var styleObserverConfig = { childList: true};
+var styleObserver = new MutationObserver(mutations =>
+{
+	let mutation = mutations.find(m => Array.prototype.slice.call(m.addedNodes).find(x => x.tagName === "STYLE"));
+	if(mutation)
+	{
+		mutation.target.ownerDocument.selectors = null;
+		initSelectors(mutation.target.ownerDocument);
+	}
+});
+
 var nameResources =
 	{
 		htm:
@@ -193,6 +208,11 @@ function procDocument(doc) {
 	{
 		let procEvent = new CustomEvent("processing", { detail: doc });
 		document.dispatchEvent(procEvent);
+		if (!doc.head.styleObserved)
+		{
+			styleObserver.observe(doc.head, styleObserverConfig);
+			doc.head.styleObserved = true;
+		}
 		var allTags;
 		doc.isfb = /facebook/gi.test(doc.defaultView.location.hostname);
 		resetPrevColors();
@@ -277,8 +297,8 @@ function initSelectors(doc)
 		{
 			doc.selectorsQuality = 0;
 			let trimmer = x =>
-				 /active|hover|disabled|checked|visited|selected|focus|enabled|child|nth|last|first/gi.test(x.selectorText) && 
-				!/scrollbar/gi.test(x.selectorText);
+				 /active|hover|disable|check|visit|focus|select|enable|child|nth|last|first/gi.test(x.selectorText) && 
+				!/::scrollbar/gi.test(x.selectorText);
 			let trimmedStyleRules = styleRules.filter(trimmer);
 			if(trimmedStyleRules.length > stylesLimit)
 			{
@@ -327,7 +347,7 @@ function getElementMatchedSelectors(tag)
 			catch (ex)
 			{
 				wrongSelectors.push(selector);
-				// console.log(ex);
+				debug && console.log(ex);
 				return false;
 			}
 		});
@@ -336,19 +356,37 @@ function getElementMatchedSelectors(tag)
 	}
 }
 
-function observeElementHover(tag)
+function observeUserActions(tag)
 {
 	let className = tag.className.baseVal || tag.className;
 	var key = tag.tagName + "#" + tag.id + "." + className;
 	var preFilteredSelectors = tag.ownerDocument.preFilteredSelectors[key];
-	if (preFilteredSelectors && preFilteredSelectors.some(s => s.indexOf(":hover") != -1 && tag.matches(s.replace(/:hover/gi, ""))))
+	if (preFilteredSelectors)
 	{
-		tag.addEventListener("mouseenter", onMouseEnterOrLeave);
-		tag.addEventListener("mouseleave", onMouseEnterOrLeave);
+		if(preFilteredSelectors.some(s => /\S:hover\b/gi.test(s) && tag.matches(s.replace(/(?=\S):hover\b/gi, ""))))
+		{
+			tag.addEventListener("mouseenter", onUserAction);
+			tag.addEventListener("mouseleave", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /\S:focus\b/gi.test(s) && tag.matches(s.replace(/(?=\S):focus\b/gi, ""))))
+		{
+			tag.addEventListener("focus", onUserAction);
+			tag.addEventListener("blur", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /\S:active\b/gi.test(s) && tag.matches(s.replace(/(?=\S):active\b/gi, ""))))
+		{
+			tag.addEventListener("mousedown", onUserAction);
+			tag.addEventListener("mouseup", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /\S:checked\b/gi.test(s) && tag.matches(s.replace(/(?=\S):checked\b/gi, ""))))
+		{
+			tag.addEventListener("input", onUserAction);
+			tag.addEventListener("change", onUserAction);
+		}
 	}
 }
 
-function onMouseEnterOrLeave()
+function onUserAction(eventArgs)
 {
 	if(curSet.runOnThisSite && curSet.isEnabled && this.selectors != getElementMatchedSelectors(this).join(";"))
 	{
@@ -554,7 +592,7 @@ function startObservation(forObservation) {
 			{
 				if (!tags[x].observed)
 				{
-					observeElementHover(tags[x]);
+					observeUserActions(tags[x]);
 					tags[x].observed = true;
 				}
 			}
@@ -745,7 +783,7 @@ function procElement(tag)
 				roomRules.attributes.push( { name: "transition", value: "filter" });
 			}
 
-			let doNotInvertRegExp = /user|account|photo|importan|light-grey/gi;
+			let doNotInvertRegExp = /user|account|photo|importan|light-grey|flag/gi;
 			let bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > curSet.textContrast;
 
 			if(tag.isPseudo && tag.computedStyle.content.substr(0,3) == "url")
@@ -813,7 +851,6 @@ function procElement(tag)
 							}
 							else
 							{
-								
 								let url = trim(tag.computedStyle.backgroundImage.substr(3), "()'\"");
 								let dataPromise = 
 									fetch(url /*, { cache: "force-cache" }*/)
@@ -958,14 +995,22 @@ function procElement(tag)
 
 function applyBackgroundImage(tag, img)
 {
-	if(tag.originalFilter != undefined) tag.style.filter = tag.originalFilter;
+	removeTemporaryFilter(tag);
 	tag.style.setProperty("background-image", img.url, "important")
-	!tag.isPseudo && tag.removeAttribute("transition");
 	if(img.size)
 	{
 		tag.style.setProperty("background-size", img.size, "important")
 	}
 	return tag;
+}
+
+function removeTemporaryFilter(tag)
+{
+	if(tag.originalFilter != undefined)
+	{
+		tag.style.filter = tag.originalFilter;
+	}
+	!tag.isPseudo && tag.removeAttribute("transition");
 }
 
 function applyRoomRules(tag, roomRules, nr, isVirtual)
@@ -1007,6 +1052,9 @@ function applyRoomRules(tag, roomRules, nr, isVirtual)
 				!images[x[2].backgroundImageKey] && (images[x[2].backgroundImageKey] = x[1]);
 				return applyBackgroundImage(x[0], x[1]);
 			});
+		Promise
+			.all([tag, applyPromise.catch(ex => debug && console.log("Exception in backgroundImagePromise: " + ex))])
+			.then(x => removeTemporaryFilter(x[0]));
 	}
 	
 	if(roomRules.textShadow && roomRules.textShadow.value)
@@ -1231,6 +1279,7 @@ function checkElement(tag) {
 
 function calcFrontColor(rgbStr, sDiff, lDiff, bgLight, lMax, sMax, tag, gHue, frontType)
 {
+	rgbStr = rgbStr || "rgb(4, 4, 4)";
 	let set = [sDiff, lDiff, bgLight, lMax].join("-");
 	let prevColor = frontColors[rgbStr];
 	let inheritedColor;
@@ -1273,7 +1322,9 @@ function calcFrontColor(rgbStr, sDiff, lDiff, bgLight, lMax, sMax, tag, gHue, fr
 	}
 }
 
-function calcColor(rgbStr, sDiff, tag, lMax, sMax, gHue, bgCtr, isGradientStop) {
+function calcColor(rgbStr, sDiff, tag, lMax, sMax, gHue, bgCtr, isGradientStop)
+{
+	rgbStr = rgbStr || "rgb(255, 255, 255)";
 	var set = [lMax].join("-");
 	var prevColor = colors[rgbStr], rgbColor;
 	if (!isGradientStop && prevColor && prevColor[set])
@@ -1503,41 +1554,40 @@ function getParentBackground(tag, probeRect) {
 	var result = { color: "rgb(0,0,0)", light: 1, reason: "not found" };
 	if (tag.parentElement)
 	{
-		var childNodes, bgColor;
+		var children, bgColor;
 		var doc = tag.ownerDocument;
 		var isSvg = tag instanceof SVGElement && tag.parentElement instanceof SVGElement;
 		tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag, "");
 
 		if ((tag.computedStyle.position == "absolute" || tag.computedStyle.position == "relative" || isSvg) && !tag.isPseudo)
 		{
-			probeRect = probeRect ? probeRect : (tag.rect = tag.rect || tag.getBoundingClientRect());
-			if (probeRect.width !== 0)
-			{
-				tag.zIndex = isSvg ? getElementIndex(tag) : tag.computedStyle.zIndex;
-				childNodes = Array.prototype.slice.call(tag.parentElement.childNodes).filter(
-					function (otherTag, index) {
-						if (otherTag != tag && (otherTag.is && otherTag.is.checked || checkElement(otherTag))) {
+			tag.zIndex = isSvg ? getElementIndex(tag) : tag.computedStyle.zIndex;
+			children = Array.prototype.slice.call(tag.parentElement.children).filter(
+				function (otherTag, index) {
+					if (otherTag != tag && (otherTag.is && otherTag.is.checked || checkElement(otherTag)))
+					{
+						otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
+							(otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle : doc.defaultView.getComputedStyle(otherTag, "")).zIndex;
+						otherTag.zIndex = otherTag.zIndex == "auto" ? -999 : otherTag.zIndex;
+						if (otherTag.cbBgColor && otherTag.cbBgColor.color && otherTag.zIndex < tag.zIndex)
+						{
+							probeRect = probeRect ? probeRect : (tag.rect = tag.rect || tag.getBoundingClientRect());
 							otherTag.rect = otherTag.rect || otherTag.getBoundingClientRect();
-							otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
-								(otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle : doc.defaultView.getComputedStyle(otherTag, "")).zIndex;
-							otherTag.zIndex = otherTag.zIndex == "auto" ? -999 : otherTag.zIndex;
-							if (otherTag.cbBgColor && otherTag.cbBgColor.color &&
-								otherTag.zIndex < tag.zIndex &&
-								otherTag.rect.left <= probeRect.left &&
-								otherTag.rect.top <= probeRect.top &&
-								otherTag.rect.right >= probeRect.right &&
-								otherTag.rect.bottom >= probeRect.bottom)
+							if(otherTag.rect.left <= probeRect.left && otherTag.rect.top <= probeRect.top &&
+								otherTag.rect.right >= probeRect.right && otherTag.rect.bottom >= probeRect.bottom)
+							{
 								return true;
+							}
 						}
-						return false;
+					}
+					return false;
+				});
+			if (children.length > 0) {
+				children = children.sort(
+					function (e1, e2) {
+						return e2.zIndex - e1.zIndex;
 					});
-				if (childNodes.length > 0) {
-					childNodes = childNodes.sort(
-						function (e1, e2) {
-							return e2.zIndex - e1.zIndex;
-						});
-					bgColor = childNodes[0].cbBgColor;
-				}
+				bgColor = children[0].cbBgColor;
 			}
 		}
 		bgColor = bgColor ? bgColor : (tag.parentElement.cbBgColor || tag.parentElement.cbParentBgColor);
@@ -1716,6 +1766,7 @@ function createPseudoStyles(doc)
 	{
 		doc.cbPseudoStyles = doc.createElement('style');
 		doc.cbPseudoStyles.id = "cbPseudoStyles";
+		doc.cbPseudoStyles.cbIgnore = true;
 		doc.head.appendChild(doc.cbPseudoStyles);
 	}
 }
@@ -1740,6 +1791,7 @@ function createLoadingShadow(parentElement)
 function createScrollbarStyle(doc) {
 	var sheet = /*doc.getElementById("cbScrollbarStyle") ||*/ doc.createElement('style');
 	sheet.id = "cbScrollbarStyle";
+	sheet.cbIgnore = true;
 	sheet.innerHTML = "";
 
 	var thumbHoverColor = calcScrollbarThumbColor(curSet.scrollbarLightnessLimit);
@@ -1809,6 +1861,7 @@ function removeLoadingStyles(doc)
 function createLoadingStyles(doc) {
 	var noTrans = doc.createElement('style');
 	noTrans.id = "cbNoTransStyle";
+	noTrans.cbIgnore = true;
 	noTrans.innerHTML = ":not([transition]) { transition: background-color 0s,color 0s,border-color 0s,opacity 0s !important; }";
 
 	var style = doc.createElement('style');

@@ -2,6 +2,7 @@ if(curSet && curSet.runOnThisSite && curSet.isEnabled)
 {
 	var sheet = document.createElement('style');
 	sheet.id = "cbNewTabStyle";
+	sheet.cbIgnore = true;
 	sheet.innerHTML = "";
 
 	sheet.innerHTML += "#mv-single {" +
