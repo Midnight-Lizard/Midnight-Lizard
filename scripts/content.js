@@ -3,29 +3,44 @@ var colors, frontColors, imagePromises, images, lights;
 var currentSettings = {}, curSet = {};
 var chromePromise = new ChromePromise();
 var classObserverConfig = { attributes: true, subtree: true, attributeFilter: ["class"] };
-var classObserver = new MutationObserver(
-	function (mutations) {
-		mutations.forEach(
-			function (mutation) {
-				if (mutation.target.is && mutation.target.is.checked && mutation.target.cbBgColor) {
-					if (mutation.target.firstElementChild) {
-						reCalcRootElement(mutation.target, false);
-					}
-					else {
-						restoreElementColors(mutation.target);
-						procElement(mutation.target);
-					}
-				}
-			});
+var classObserver = new MutationObserver(mutations =>
+{
+	mutations.forEach(mutation =>
+	{
+		if (mutation.target.is && mutation.target.is.checked && mutation.target.cbBgColor)
+		{
+			if (mutation.target.firstElementChild)
+			{
+				reCalcRootElement(mutation.target, false);
+			}
+			else
+			{
+				restoreElementColors(mutation.target);
+				procElement(mutation.target);
+			}
+		}
 	});
+});
 
 var childObserverConfig = { childList: true, subtree: true };
-var childObserver = new MutationObserver(
-	function (mutations) {
-		var allNewTags = [];
-		mutations.forEach(m => Array.prototype.push.apply(allNewTags, m.addedNodes));
-		procAllElementsWithChildren(allNewTags);
-	});
+var childObserver = new MutationObserver(mutations =>
+{
+	let allNewTags = [];
+	mutations.forEach(m => Array.prototype.push.apply(allNewTags, m.addedNodes));
+	procAllElementsWithChildren(allNewTags);
+});
+
+var styleObserverConfig = { childList: true};
+var styleObserver = new MutationObserver(mutations =>
+{
+	let mutation = mutations.find(m => Array.prototype.slice.call(m.addedNodes).find(x => x.tagName === "STYLE"));
+	if(mutation)
+	{
+		mutation.target.ownerDocument.selectors = null;
+		initSelectors(mutation.target.ownerDocument);
+	}
+});
+
 var nameResources =
 	{
 		htm:
@@ -193,6 +208,11 @@ function procDocument(doc) {
 	{
 		let procEvent = new CustomEvent("processing", { detail: doc });
 		document.dispatchEvent(procEvent);
+		if (!doc.head.styleObserved)
+		{
+			styleObserver.observe(doc.head, styleObserverConfig);
+			doc.head.styleObserved = true;
+		}
 		var allTags;
 		doc.isfb = /facebook/gi.test(doc.defaultView.location.hostname);
 		resetPrevColors();
@@ -277,7 +297,7 @@ function initSelectors(doc)
 		{
 			doc.selectorsQuality = 0;
 			let trimmer = x =>
-				 /:active|:hover|:disabled|:checked|:visited|:focus|:enabled|child|nth|last|first/gi.test(x.selectorText) && 
+				 /active|hover|disable|check|visit|focus|select|enable|child|nth|last|first/gi.test(x.selectorText) && 
 				!/::scrollbar/gi.test(x.selectorText);
 			let trimmedStyleRules = styleRules.filter(trimmer);
 			if(trimmedStyleRules.length > stylesLimit)
@@ -343,19 +363,22 @@ function observeUserActions(tag)
 	var preFilteredSelectors = tag.ownerDocument.preFilteredSelectors[key];
 	if (preFilteredSelectors)
 	{
-		if(preFilteredSelectors.some(s => /:hover\b/gi.test(s) && tag.matches(s.replace(/:hover\b/gi, ""))))
+		if(preFilteredSelectors.some(s => /\S:hover\b/gi.test(s) && tag.matches(s.replace(/(?=\S):hover\b/gi, ""))))
 		{
 			tag.addEventListener("mouseenter", onUserAction);
 			tag.addEventListener("mouseleave", onUserAction);
 		}
-		if(preFilteredSelectors.some(s => /:focus\b|:active\b/gi.test(s) && tag.matches(s.replace(/:focus\b|:active\b/gi, ""))))
+		if(preFilteredSelectors.some(s => /\S:focus\b/gi.test(s) && tag.matches(s.replace(/(?=\S):focus\b/gi, ""))))
 		{
 			tag.addEventListener("focus", onUserAction);
 			tag.addEventListener("blur", onUserAction);
+		}
+		if(preFilteredSelectors.some(s => /\S:active\b/gi.test(s) && tag.matches(s.replace(/(?=\S):active\b/gi, ""))))
+		{
 			tag.addEventListener("mousedown", onUserAction);
 			tag.addEventListener("mouseup", onUserAction);
 		}
-		if(preFilteredSelectors.some(s => /:checked\b/gi.test(s) && tag.matches(s.replace(/:checked\b/gi, ""))))
+		if(preFilteredSelectors.some(s => /\S:checked\b/gi.test(s) && tag.matches(s.replace(/(?=\S):checked\b/gi, ""))))
 		{
 			tag.addEventListener("input", onUserAction);
 			tag.addEventListener("change", onUserAction);
@@ -618,6 +641,7 @@ function tagIsSmall(tag)
 {
 	let maxSize = 40, maxAxis = 16,
 		check = (w,h) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
+	tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
 	let width = parseInt(tag.computedStyle.width), height = parseInt(tag.computedStyle.height);
 	if(!isNaN(width) && !isNaN(height))
 	{
@@ -827,7 +851,6 @@ function procElement(tag)
 							}
 							else
 							{
-								
 								let url = trim(tag.computedStyle.backgroundImage.substr(3), "()'\"");
 								let dataPromise = 
 									fetch(url /*, { cache: "force-cache" }*/)
@@ -972,14 +995,22 @@ function procElement(tag)
 
 function applyBackgroundImage(tag, img)
 {
-	if(tag.originalFilter != undefined) tag.style.filter = tag.originalFilter;
+	removeTemporaryFilter(tag);
 	tag.style.setProperty("background-image", img.url, "important")
-	!tag.isPseudo && tag.removeAttribute("transition");
 	if(img.size)
 	{
 		tag.style.setProperty("background-size", img.size, "important")
 	}
 	return tag;
+}
+
+function removeTemporaryFilter(tag)
+{
+	if(tag.originalFilter != undefined)
+	{
+		tag.style.filter = tag.originalFilter;
+	}
+	!tag.isPseudo && tag.removeAttribute("transition");
 }
 
 function applyRoomRules(tag, roomRules, nr, isVirtual)
@@ -1021,6 +1052,9 @@ function applyRoomRules(tag, roomRules, nr, isVirtual)
 				!images[x[2].backgroundImageKey] && (images[x[2].backgroundImageKey] = x[1]);
 				return applyBackgroundImage(x[0], x[1]);
 			});
+		Promise
+			.all([tag, applyPromise.catch(ex => debug && console.log("Exception in backgroundImagePromise: " + ex))])
+			.then(x => removeTemporaryFilter(x[0]));
 	}
 	
 	if(roomRules.textShadow && roomRules.textShadow.value)
@@ -1245,6 +1279,7 @@ function checkElement(tag) {
 
 function calcFrontColor(rgbStr, sDiff, lDiff, bgLight, lMax, sMax, tag, gHue, frontType)
 {
+	rgbStr = rgbStr || "rgb(4, 4, 4)";
 	let set = [sDiff, lDiff, bgLight, lMax].join("-");
 	let prevColor = frontColors[rgbStr];
 	let inheritedColor;
@@ -1287,7 +1322,9 @@ function calcFrontColor(rgbStr, sDiff, lDiff, bgLight, lMax, sMax, tag, gHue, fr
 	}
 }
 
-function calcColor(rgbStr, sDiff, tag, lMax, sMax, gHue, bgCtr, isGradientStop) {
+function calcColor(rgbStr, sDiff, tag, lMax, sMax, gHue, bgCtr, isGradientStop)
+{
+	rgbStr = rgbStr || "rgb(255, 255, 255)";
 	var set = [lMax].join("-");
 	var prevColor = colors[rgbStr], rgbColor;
 	if (!isGradientStop && prevColor && prevColor[set])
@@ -1729,6 +1766,7 @@ function createPseudoStyles(doc)
 	{
 		doc.cbPseudoStyles = doc.createElement('style');
 		doc.cbPseudoStyles.id = "cbPseudoStyles";
+		doc.cbPseudoStyles.cbIgnore = true;
 		doc.head.appendChild(doc.cbPseudoStyles);
 	}
 }
@@ -1753,6 +1791,7 @@ function createLoadingShadow(parentElement)
 function createScrollbarStyle(doc) {
 	var sheet = /*doc.getElementById("cbScrollbarStyle") ||*/ doc.createElement('style');
 	sheet.id = "cbScrollbarStyle";
+	sheet.cbIgnore = true;
 	sheet.innerHTML = "";
 
 	var thumbHoverColor = calcScrollbarThumbColor(curSet.scrollbarLightnessLimit);
@@ -1822,6 +1861,7 @@ function removeLoadingStyles(doc)
 function createLoadingStyles(doc) {
 	var noTrans = doc.createElement('style');
 	noTrans.id = "cbNoTransStyle";
+	noTrans.cbIgnore = true;
 	noTrans.innerHTML = ":not([transition]) { transition: background-color 0s,color 0s,border-color 0s,opacity 0s !important; }";
 
 	var style = doc.createElement('style');

@@ -145,26 +145,6 @@ html, body {
     border-color: var(--pseudo-border-color);
 }
 
-#version
-{
-    font-size: 12px;
-    padding: 0px 10px 0px 6px;
-}
-
-#new-version
-{
-    font-size: 22px;
-    text-decoration: none;
-    cursor: default;
-    text-shadow: none;
-    color: inherit;
-}
-
-#new-version:visited
-{
-    color: var(--fotter-background-color);
-}
-
 #help {
     cursor: pointer;
     position: absolute;
@@ -253,8 +233,16 @@ html, body {
 {
     display: table-cell;
     vertical-align: middle;
-    padding-left: 17px;
     /* cursor: pointer; */
+}
+
+.cb-fotter-icon-container.left
+{
+    padding-left: 17px;
+}
+.cb-fotter-icon-container.right
+{
+    padding-right: 19px;
 }
 
 .cb-fotter-icon
@@ -311,4 +299,21 @@ html, body {
 .facebook-icon:hover
 {
     fill: rgb(59, 89, 152);
+}
+
+.bug-report-icon{width: 20px;}
+.bug-report-icon:hover{
+    fill: #B71C1C;
+}
+.rate-icon{width: 24px;}
+.rate-icon:hover{
+    fill: #F57F17;
+}
+.email-icon{width: 18px;}
+.email-icon:hover{
+    fill: #1A237E;
+}
+.change-log-icon{width: 18px;}
+.change-log-icon:hover{
+    fill: #1B5E20;
 }
