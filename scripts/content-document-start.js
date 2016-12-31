@@ -1,3 +1,2 @@
 initSettings();
-//delOldSettings();
 initChromeMessagePassing();

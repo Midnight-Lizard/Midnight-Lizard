@@ -85,7 +85,7 @@ var colorSchemes =
         "textSaturationLimit": 80,
         "textContrast": 55,
         "textLightnessLimit": 90,
-        "textGraySaturation": 20,
+        "textGraySaturation": 30,
         "textGrayHue": 66,
 
         "borderSaturationLimit": 80,
