@@ -1,5 +1,6 @@
 var debug = chrome.runtime.id != "pbnndmlekkboofhnbonilimejonapojg";
 var colors, frontColors, imagePromises, images, lights;
+var doNotInvertRegExp = /user|account|photo|importan|light|grey|flag/gi;
 var currentSettings = {}, curSet = {};
 var chromePromise = new ChromePromise();
 var classObserverConfig = { attributes: true, subtree: true, attributeFilter: ["class"] };
@@ -782,8 +783,6 @@ function procElement(tag)
 				roomRules.attributes = roomRules.attributes || [];
 				roomRules.attributes.push( { name: "transition", value: "filter" });
 			}
-
-			let doNotInvertRegExp = /user|account|photo|importan|light-grey|flag/gi;
 			let bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > curSet.textContrast;
 
 			if(tag.isPseudo && tag.computedStyle.content.substr(0,3) == "url")
@@ -807,12 +806,21 @@ function procElement(tag)
 
 			if(tag.computedStyle.backgroundImage != "none")
 			{
-				if(tag.computedStyle.backgroundImage.substr(0,3) == "url")
+				let backgroundImage = tag.computedStyle.backgroundImage;
+				let gradientColors = backgroundImage.match(/rgba?\([^)]+\)/gi)
+				if(gradientColors)
 				{
-					let doInvert = !isTable && bgInverted && !doNotInvertRegExp.test(tag.computedStyle.backgroundImage) &&
-						(tagIsSmall(tag) || tag.parentElement && tag.parentElement.parentElement && tagIsSmall(tag.parentElement.parentElement) && tag.parentElement.parentElement.computedStyle.overflow == "hidden");
-					let isPseudoContent = tag.isPseudo && tag.computedStyle.content === "''" && tag.computedStyle.content !== '""'
-					let bgImgLight = 1;
+					gradientColors = gradientColors.map(c => { return { color: c, id: guid().replace('-','') }; });
+					gradientColors.forEach(c => backgroundImage = backgroundImage.replace(c.color, c.id));
+				}
+				let backgroundSizes = tag.computedStyle.backgroundSize.match(/\b[^,]+/gi);
+				let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi);
+				let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
+					haveToProcBgGrad = /gradient/gi.test(backgroundImage);
+				if(/\burl\(/gi.test(backgroundImage))
+				{
+					doInvert = !isTable && bgInverted && !doNotInvertRegExp.test(backgroundImage) && (tagIsSmall(tag) || tag.parentElement && tag.parentElement.parentElement &&
+						tagIsSmall(tag.parentElement.parentElement) && tag.parentElement.parentElement.computedStyle.overflow == "hidden");
 					if(curSet.backgroundImageLightnessLimit < 1 && !doInvert)
 					{
 						calcTagArea(tag);
@@ -821,7 +829,8 @@ function procElement(tag)
 							txtLim = curSet.textLightnessLimit;
 						bgImgLight = Math.min(Math.pow(Math.pow(Math.pow(lim, 1/2) - lim, 1/3) * area, 3) + lim, Math.max(lim, txtLim));
 					}
-					let bgFilter = [
+					isPseudoContent = tag.isPseudo && tag.computedStyle.content === "''" && tag.computedStyle.content !== '""'
+					bgFilter = [
 						bgImgLight < 1 ? "brightness(" + bgImgLight + ")" : "",
 						curSet.backgroundImageSaturationLimit < 1 ? "saturate(" + curSet.backgroundImageSaturationLimit + ")" : "",
 						doInvert ? "brightness(" + (1 - curSet.backgroundLightnessLimit) + ")" : "",
@@ -830,99 +839,28 @@ function procElement(tag)
 					if(curSet.backgroundImageLightnessLimit < 1 || curSet.backgroundImageSaturationLimit < 1 || doInvert)
 					{
 						if(tag.tagName != "INPUT") roomRules.filter = { value: bgFilter };
-						if(tag.firstChild || isPseudoContent || roomRules.backgroundColor.color)
-						{
-							if(!tag.isPseudo)
-							{
-								roomRules.attributes = roomRules.attributes || [];
-								roomRules.attributes.push( { name: "transition", value: "filter" });
-							}
-							let imageKey = [tag.computedStyle.backgroundImage, tag.computedStyle.backgroundSize, doInvert].join("-");
-							roomRules.backgroundImageKey = imageKey;
-							let prevImage = images[imageKey];
-							let prevPromise = imagePromises[imageKey];
-							if(prevImage)
-							{
-								roomRules.backgroundImage = prevImage;
-							}
-							else if(prevPromise)
-							{
-								roomRules.backgroundImagePromise = prevPromise;
-							}
-							else
-							{
-								let url = trim(tag.computedStyle.backgroundImage.substr(3), "()'\"");
-								let dataPromise = 
-									fetch(url /*, { cache: "force-cache" }*/)
-									.then(resp => resp.blob())
-									.then(blob => new Promise((resolve, reject) =>
-									{
-										let rdr = new FileReader();
-										rdr.mimeType = blob.type;
-										rdr.onload = (e) => resolve({ dataUrl: e.target.result, mimeType: e.target.mimeType });
-										rdr.readAsDataURL(blob);
-									}))
-									.then(imgData => new Promise((resolve, reject) =>
-									{
-										let img = new Image();
-										img.mimeType = imgData.mimeType;
-										img.onload = (e) => resolve({ data: e.target.src, width: e.target.naturalWidth, height: e.target.naturalHeight, mimeType: e.target.mimeType });
-										img.src = imgData.dataUrl;
-									}));
-
-									imagePromises[imageKey] = roomRules.backgroundImagePromise = Promise
-										.all([dataPromise, tag.computedStyle.backgroundSize, bgFilter])
-										.then(x =>
-										{
-											let img = x[0], bgSize = x[1], fltr = x[2];
-											let isSvgImg = img.mimeType == "image/svg+xml";
-											let imgWidth = img.width + "px", imgHeight = img.height + "px";
-											return {
-												size: /^(auto,?\s?){1,2}$/i.test(bgSize) ? imgWidth + " " + imgHeight : null,
-												url: "url(data:image/svg+xml," + encodeURIComponent
-												(
-													'<svg xmlns="http://www.w3.org/2000/svg"' +
-															' viewBox="0 0 ' + img.width + ' ' + img.height + '"' +
-															' filter="' + fltr + '">' +
-														'<image width="' + imgWidth + '" height="' + imgHeight + '" href="' + img.data + '"/>' +
-													'</svg>'
-												).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")"
-											};
-										});
-							}
-						}
+						haveToProcBgImg = tag.firstChild || isPseudoContent || roomRules.backgroundColor.color || haveToProcBgGrad;
 					}
 				}
-				else if(/gradient/gi.test(tag.computedStyle.backgroundImage) && !/url/gi.test(tag.computedStyle.backgroundImage))
+				if(haveToProcBgImg || haveToProcBgGrad)
 				{
-					let mainColor, lightSum = 0;
-					let newGradient = tag.computedStyle.backgroundImage;
-					let uniqColors = [], colors = newGradient
-								.replace(/(webkit|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|\d+%|\d+deg|\d+px)/gi,'')
-								.match(/(rgba?\([^\)]+\)|#[a-z\d]+|[a-z]+)/gi)
-					colors && colors.forEach(c => c !== "" && uniqColors.indexOf(c) === -1 && uniqColors.push(c));
-					if(uniqColors.length > 0)
+					roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
 					{
-						uniqColors.forEach(c =>
+						let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
+						if(haveToProcBgImg && bgImg.substr(0,3) == "url")
 						{
-							let prevColor = /rgb/gi.test(c) ? c : convertToRgbaString(doc, c);
-							let newColor = calcColor(prevColor, curSet.backgroundGraySaturation, tag, curSet.backgroundLightnessLimit, curSet.backgroundSaturationLimit, curSet.backgroundGrayHue, curSet.backgroundContrast, true);
-							lightSum += newColor.light;
-							if(newColor.color)
-							{
-								newGradient = newGradient.replace(new RegExp(escapeRegex(c), "gi"), newColor.color);
-							}
-							if(!mainColor && newColor.alpha > 0.5)
-							{
-								mainColor = roomRules.backgroundColor = Object.assign({}, newColor);
-							}
-						});
-						mainColor && (mainColor.light = lightSum / uniqColors.length);
-						if(tag.computedStyle.backgroundImage != newGradient)
-						{
-							roomRules.backgroundImage = { url: newGradient };
+							return procBackgroundImage(tag, index, bgImg, size, roomRules, doInvert, bgImgLight, isPseudoContent, bgFilter);
 						}
-					}
+						else if (/gradient/gi.test(bgImg))
+						{
+							gradientColors && gradientColors.forEach(c => bgImg = bgImg.replace(c.id, c.color));
+							return procBackgroundGradient(tag, index, bgImg, size, roomRules);
+						}
+						else
+						{
+							return { image: bgImg, size: size};
+						}
+					});
 				}
 			}
 			
@@ -965,11 +903,21 @@ function procElement(tag)
 			if(isSvg || tag.computedStyle.borderStyle != "none")
 			{
 				brdColor = tag.computedStyle[nr.dom.brdColor];
-				if (brdColor.indexOf(" r") == -1) {
-					result = calcFrontColor(brdColor, curSet.borderGraySaturation, curSet.borderContrast, roomRules.bgLight, curSet.borderLightnessLimit, curSet.borderSaturationLimit, tag, curSet.borderGrayHue);
-					roomRules[nr.dom.brdColor] = result.color ? result : null;
+				if (brdColor.indexOf(" r") == -1)
+				{
+					if(brdColor == tag.computedStyle[nr.dom.bgrColor])
+					{
+						result = Object.assign({}, roomRules.backgroundColor);
+						Object.assign(result, { reason: "equal to backgroundColor", owner: debug?null:tag });
+					}
+					else
+					{
+						result = calcFrontColor(brdColor, curSet.borderGraySaturation, curSet.borderContrast, roomRules.bgLight, curSet.borderLightnessLimit, curSet.borderSaturationLimit, tag, curSet.borderGrayHue);
+					}
+					roomRules.borderColor = result.color ? result : null;
 				}
-				else if (!isSvg) {
+				else if (!isSvg)
+				{
 					result = calcFrontColor(tag.computedStyle.borderTopColor, curSet.borderGraySaturation, curSet.borderContrast, roomRules.bgLight, curSet.borderLightnessLimit, curSet.borderSaturationLimit, tag, curSet.borderGrayHue);
 					roomRules.borderTopColor = result.color ? result : null;
 					result = calcFrontColor(tag.computedStyle.borderRightColor, curSet.borderGraySaturation, curSet.borderContrast, roomRules.bgLight, curSet.borderLightnessLimit, curSet.borderSaturationLimit, tag, curSet.borderGrayHue);
@@ -993,14 +941,96 @@ function procElement(tag)
 	}
 }
 
-function applyBackgroundImage(tag, img)
+function procBackgroundGradient(tag, index, gradient, size, roomRules)
+{
+	let mainColor, lightSum = 0;
+	let uniqColors = [], colors = gradient
+				.replace(/webkit|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|\d+%|\d+[a-z]{2,3}/gi,'')
+				.match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi)
+	colors && colors.forEach(c => c !== "" && uniqColors.indexOf(c) === -1 && uniqColors.push(c));
+	if(uniqColors.length > 0)
+	{
+		uniqColors.forEach(c =>
+		{
+			let prevColor = /rgb/gi.test(c) ? c : convertToRgbaString(tag.ownerDocument, c);
+			let newColor = calcColor(prevColor, curSet.backgroundGraySaturation, tag, curSet.backgroundLightnessLimit, curSet.backgroundSaturationLimit, curSet.backgroundGrayHue, curSet.backgroundContrast, true);
+			lightSum += newColor.light;
+			if(newColor.color)
+			{
+				gradient = gradient.replace(new RegExp(escapeRegex(c), "gi"), newColor.color);
+			}
+			if(!mainColor && newColor.alpha > 0.5 && !roomRules.backgroundColor.isGradientStop)
+			{
+				mainColor = roomRules.backgroundColor = Object.assign({ isGradientStop: true }, newColor);
+			}
+		});
+		mainColor && (mainColor.light = lightSum / uniqColors.length);
+		return { url: gradient, size: size };
+	}
+}
+
+function procBackgroundImage(tag, index, url, size, roomRules, doInvert, bgImgLight, isPseudoContent, bgFilter)
+{
+	
+	let imageKey = [url, size, doInvert].join("-");
+	roomRules.backgroundImageKeys = roomRules.backgroundImageKeys || {};
+	roomRules.backgroundImageKeys[index] = imageKey;
+	let prevImage = images[imageKey];
+	let prevPromise = imagePromises[imageKey];
+	if(prevImage)
+	{
+		return prevImage;
+	}
+	else if(prevPromise)
+	{
+		return prevPromise;
+	}
+	else
+	{
+		url = trim(url.substr(3), "()'\"");
+		let dataPromise = 
+			fetch(url /*, { cache: "force-cache" }*/)
+			.then(resp => resp.blob())
+			.then(blob => new Promise((resolve, reject) =>
+			{
+				let rdr = new FileReader();
+				rdr.mimeType = blob.type;
+				rdr.onload = (e) => resolve(e.target.result);
+				rdr.readAsDataURL(blob);
+			}))
+			.then(dataUrl => new Promise((resolve, reject) =>
+			{
+				let img = new Image();
+				img.onload = (e) => resolve({ data: e.target.src, width: e.target.naturalWidth, height: e.target.naturalHeight});
+				img.src = dataUrl;
+			}));
+
+			imagePromises[imageKey] = Promise
+				.all([dataPromise, size, bgFilter])
+				.then(x =>
+				{
+					let img = x[0], bgSize = x[1], fltr = x[2];
+					let imgWidth = img.width + "px", imgHeight = img.height + "px";
+					return {
+						size: /^(auto\s?){1,2}$/i.test(bgSize) ? imgWidth + " " + imgHeight : bgSize,
+						url: "url(data:image/svg+xml," + encodeURIComponent
+						(
+							'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + img.width + ' ' + img.height + '" filter="' + fltr + '">' +
+								'<image width="' + imgWidth + '" height="' + imgHeight + '" href="' + img.data + '"/>' +
+							'</svg>'
+						).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")"
+					};
+				});
+			imagePromises[imageKey].isPromise = true;
+			return imagePromises[imageKey];
+	}
+}
+
+function applyBackgroundImages(tag, imgs)
 {
 	removeTemporaryFilter(tag);
-	tag.style.setProperty("background-image", img.url, "important")
-	if(img.size)
-	{
-		tag.style.setProperty("background-size", img.size, "important")
-	}
+	tag.style.setProperty("background-image", imgs.map(x => x.url).join(","), "important")
+	tag.style.setProperty("background-size", imgs.map(x => x.size).join(","), "important")
 	return tag;
 }
 
@@ -1015,7 +1045,7 @@ function removeTemporaryFilter(tag)
 
 function applyRoomRules(tag, roomRules, nr, isVirtual)
 {
-	var applyPromise;
+	var applyBgPromise;
 	if(!isVirtual)
 	{
 		tag.cbBgColor = roomRules.backgroundColor;
@@ -1034,27 +1064,32 @@ function applyRoomRules(tag, roomRules, nr, isVirtual)
 		roomRules.attributes.forEach(attr => tag.setAttribute(attr.name, attr.value));
 	}
 
-	if(roomRules.backgroundImage)
+	if(roomRules.backgroundImages)
 	{
 		tag.originalBackgroundImage = tag.style.backgroundImage;
 		tag.originalBackgroundSize = tag.style.backgroundSize;
-		applyBackgroundImage(tag, roomRules.backgroundImage);
-	}
-	else if(roomRules.backgroundImagePromise)
-	{
-		tag.originalBackgroundImage = tag.style.backgroundImage;
-		tag.originalBackgroundSize = tag.style.backgroundSize;
-		applyPromise = Promise
-			.all([tag, roomRules.backgroundImagePromise, roomRules])
-			.then(x =>
-			{
-				x[2].backgroundImage = x[1];
-				!images[x[2].backgroundImageKey] && (images[x[2].backgroundImageKey] = x[1]);
-				return applyBackgroundImage(x[0], x[1]);
-			});
-		Promise
-			.all([tag, applyPromise.catch(ex => debug && console.log("Exception in backgroundImagePromise: " + ex))])
-			.then(x => removeTemporaryFilter(x[0]));
+		if(roomRules.backgroundImages.find(x => x.isPromise))
+		{
+			applyBgPromise = Promise
+				.all([tag, roomRules, ...roomRules.backgroundImages])
+				.then(x =>
+				{
+					let t = x.shift(), rr = x.shift();
+					rr.backgroundImages = x;
+					x.forEach((img, i)=>
+					{
+						images[rr.backgroundImageKeys[i]] = img;
+					});
+					return applyBackgroundImages(t, x);
+				});
+			Promise
+				.all([tag, applyBgPromise.catch(ex => debug && console.log("Exception in backgroundImagePromise: " + ex))])
+				.then(x => removeTemporaryFilter(x[0]));
+		}
+		else
+		{
+			applyBackgroundImages(tag, roomRules.backgroundImages);
+		}
 	}
 	
 	if(roomRules.textShadow && roomRules.textShadow.value)
@@ -1111,10 +1146,10 @@ function applyRoomRules(tag, roomRules, nr, isVirtual)
 
 	if(tag.isPseudo)
 	{
-		if(applyPromise)
+		if(applyBgPromise)
 		{
-			applyPromise.then(x => x.applyStyle(x));
-			Promise.all([tag, applyPromise.catch(ex => ex)]).then(x => x[0].applyStyle(x[0]));
+			applyBgPromise.then(x => x.applyStyle(x));
+			Promise.all([tag, applyBgPromise.catch(ex => ex)]).then(x => x[0].applyStyle(x[0]));
 		}
 		else
 		{
