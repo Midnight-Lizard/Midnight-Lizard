@@ -22,7 +22,8 @@
     },
   "background":
   {
-      "scripts": [
+      "scripts":
+      [
         "scripts/color-schemes.js",
         "scripts/cookie.js",
         "scripts/settings.js",
@@ -36,7 +37,8 @@
         "run_at": "document_start",
         "match_about_blank": true,
         "matches": [ "<all_urls>" ],
-        "js": [
+        "js":
+        [
           "scripts/chrome-promise.js",
           "scripts/chrome-storage.js",
           "scripts/string-functions.js",
