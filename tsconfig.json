@@ -1,0 +1,18 @@
+{
+    "compileOnSave": true,
+    "include": [
+        "./ts/**/*"
+    ],
+    "compilerOptions": {
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es6",
+        "sourceMap": true,
+        "allowJs": true,
+        "outDir": "./js",
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "noImplicitThis": true
+    }
+}
