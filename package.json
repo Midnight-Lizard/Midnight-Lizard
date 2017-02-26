@@ -1,0 +1,17 @@
+{
+  "name": "midnight-lizard",
+  "author": {
+    "name": "Pavel Agarkov",
+    "email": "midnight.lizard.extension@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "version": "8.0.0",
+  "dependencies": {
+    "@types/chrome": "0.0.37",
+    "reflect-metadata": "^0.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pavel-agarkov/Midnight-Lizard.git"
+  }
+}

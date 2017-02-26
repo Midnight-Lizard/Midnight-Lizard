@@ -6,11 +6,14 @@
 namespace MidnightLizard.ContentScript
 {
 
-    let x = Util.RegExpBuilder;
+    type CssPromise = Promise<Util.HandledPromiseResult<void>>;
+    const x = Util.RegExpBuilder;
 
     enum Var
     {
+        id,
         tagName,
+        className,
         notThisTagId,
         notThisClassNames
     }
@@ -19,15 +22,18 @@ namespace MidnightLizard.ContentScript
     {
         abstract processDocumentStyleSheets(document: Document): void;
         abstract getElementMatchedSelectors(tag: Element | PseudoElement): string;
-        abstract canHavePseudoClass(tag: Element, pseudoClass: PseudoClass): boolean;
+        abstract getPreFilteredSelectors(tag: Element): string[];
+        abstract canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean;
         abstract getSelectorsCount(doc: Document): number;
         abstract getSelectorsQuality(doc: Document): number | undefined;
+        abstract getCssPromises(doc: Document): IterableIterator<CssPromise>;
     }
 
     @DI.injectable(IStyleSheetProcessor)
-    class StyleSheetProcessor
+    class StyleSheetProcessor implements IStyleSheetProcessor
     {
-        protected readonly _stylesLimit = 300;
+        protected readonly _stylesLimit = 500;
+        protected readonly _trimmedStylesLimit = 500;
         protected readonly _styleProps =
         [
             { prop: "background-color", priority: 1 },
@@ -40,6 +46,14 @@ namespace MidnightLizard.ContentScript
             { prop: "background-size", priority: 4 },
             { prop: "text-shadow", priority: 4 }
         ];
+
+        protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
+        getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
+        {
+            let promises = this._externalCssPromises.get(doc);
+            return promises ? promises.values() : [] as any;
+        }
+
         protected readonly _selectors = new WeakMap<Document, string[]>();
         public getSelectorsCount(doc: Document) { return (this._selectors.get(doc) || []).length }
 
@@ -49,60 +63,80 @@ namespace MidnightLizard.ContentScript
         protected readonly _preFilteredSelectors = new WeakMap<Document, Map<string, string[]>>();
 
         protected readonly _excludeStylesRegExp: string;
+        protected readonly _includeStylesRegExp: string;
 
         /** StyleSheetProcessor constructor
          * @param _app - application settings
          */
         constructor(protected readonly _app: Settings.IApplicationSettings)
         {
-            this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
+            //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
+            this._includeStylesRegExp = this.compileIncludeStylesRegExp();
         }
 
         protected compileExcludeStylesRegExp(): string
         {
-            return x.completely(x.forget(
-                // global pseudo elements
-                x.exactly(2, x.Colon), x.some(x.Whatever),
-                x.OR,
+            x.resetCapturingGroups();
+            return x.completely(x.sometime(x.forget(
                 x.sometime(x.forget(
-                    x.sometime(x.forget(
-                        // beginning of the current selector
-                        x.forget(
-                            x.any(x.outOfSet(x.Comma)), x.WhiteSpace,
-                            x.OR, x.BeginningOfLine
-                        ),
-                        x.forget(
-                            x.forget(
-                                // another tagName followed by any id
-                                x.notFollowedBy(x.$var(Var[Var.tagName]), x.WordBoundary),
-                                x.some(x.Word),
-                                x.neverOrOnce(x.forget(x.Hash, x.some(x.Literal))),
-                                x.OR,
-                                // any tagName followed by another id
-                                x.any(x.Word), x.Hash, x.$var(Var[Var.notThisTagId]), x.some(x.Literal)
-                            ),
-                            // any classes
-                            x.anytime(x.forget(x.Dot, x.some(x.Literal))),
-                            x.OR,
-                            // any tagName or id
-                            x.noneOrOne(x.Hash), x.any(x.Literal),
-                            // followed by another className
-                            x.sometime(x.forget(
-                                x.$var(Var[Var.notThisClassNames]),
-                                x.forget(x.Dot, x.some(x.Literal)),
-                                x.$var(Var[Var.notThisClassNames])
-                            )),
-                        ),
-                        // pseudo classes or pseudo elements or attribute filters
-                        x.anytime(x.forget(
-                            x.SomethingInBrackets, x.Or,
-                            x.strictly(1, 2, x.Colon), x.some(x.Literal),
-                            x.neverOrOnce(x.forget(x.SomethingInParentheses))
-                        ))
-                    )),
-                    x.forget(x.Comma, x.Or, x.EndOfLine)
+                    // beginning of the current selector
+                    x.succeededBy(x.Next(),
+                        x.BeginningOfLine, x.any(x.outOfSet(x.Comma)), x.WhiteSpace,
+                        x.OR,
+                        x.Comma, x.any(x.outOfSet(x.Comma)), x.WhiteSpace,
+                        x.OR,
+                        x.BeginningOfLine
+                    ),
+                    x.succeededBy(x.Next(),
+                        // anything before a dot
+                        x.neverOrOnce(x.succeededBy(x.Next(), x.any(x.outOfSet(x.Dot, x.Comma, x.EndOfLine)))), x.Dot,
+                        // followed by another className
+                        x.$var(Var[Var.notThisClassNames]), x.some(x.Literal),
+                        x.Or,
+                        // another tagName
+                        x.notFollowedBy(x.$var(Var[Var.tagName]), x.WordBoundary), x.some(x.Word),
+                        x.Or,
+                        // any tagName followed by another id
+                        x.any(x.Word), x.Hash, x.$var(Var[Var.notThisTagId]), x.some(x.Literal), x.WordBoundary, x.notFollowedBy(x.Minus),
+                        x.Or,
+                        // any pseudo element
+                        x.neverOrOnce(x.succeededBy(x.Next(), x.any(x.outOfSet(x.Colon, x.Comma, x.EndOfLine)))), x.exactly(2, x.Colon)
+                    ),
+                    // end of the current selector
+                    x.any(x.outOfSet(x.Comma, x.WhiteSpace, x.EndOfLine)),
+                    x.followedBy(x.Comma, x.Or, x.EndOfLine)
                 ))
-            ));
+            )));
+        }
+
+        protected compileIncludeStylesRegExp()
+        {
+            return x.forget(
+                x.forget(x.BeginningOfLine, x.Or, x.WhiteSpace),
+                x.neverOrOnce(x.forget( // tagName
+                    x.$var(Var[Var.tagName])
+                )),
+                x.neverOrOnce(x.forget( // #id
+                    x.Hash, x.$var(Var[Var.id]),
+                )),
+                x.anytime(x.forget( // .className1.className2
+                    x.Dot, x.forget(x.$var(Var[Var.className])),
+                )),
+                x.WordBoundary, x.notFollowedBy( // end of literal
+                    x.Minus
+                ),
+                x.notFollowedBy( // exclude another tag names, ids and classes
+                    x.some(x.Word)
+                ),
+                x.notFollowedBy( // exclude pseudo elements
+                    x.exactly(2, x.Colon)
+                ),
+                x.any( // any attribute filters or pseudo classes
+                    x.outOfSet(x.Comma, x.Dot, x.Hash, x.WhiteSpace, x.EndOfLine)
+                ),
+                // end of current selector or line
+                x.followedBy(x.Comma, x.Or, x.EndOfLine)
+            );
         }
 
         protected checkPropertyIsValuable(style: CSSStyleDeclaration, propName: string)
@@ -111,32 +145,58 @@ namespace MidnightLizard.ContentScript
             return propVal !== "" && propVal != "initial" && propVal != "inherited";
         }
 
-        public processDocumentStyleSheets(document: Document): void
+        public processDocumentStyleSheets(doc: Document): void
         {
-            this._preFilteredSelectors.delete(document);
-            let styleRules = new Array<CSSStyleRule>();
-            let styles = Array.prototype.slice.call(document.styleSheets) as CSSStyleSheet[];
-            for (let sheet = 0; sheet < styles.length; sheet++)
+            let externalCssPromises = this._externalCssPromises.get(doc);
+            if (externalCssPromises === undefined)
             {
-                if (styles[sheet].cssRules && styles[sheet].cssRules.length > 0 &&
-                    (!styles[sheet].ownerNode || (styles[sheet].ownerNode as Element).id != "mlScrollbarStyle"))
+                this._externalCssPromises.set(doc, externalCssPromises = new Map<string, CssPromise>());
+            }
+            this._preFilteredSelectors.delete(doc);
+            let styleRules = new Array<CSSStyleRule>();
+            let styleSheets = Array.from(doc.styleSheets) as CSSStyleSheet[];
+            for (let sheet of styleSheets)
+            {
+                if (sheet.cssRules)
                 {
-                    let rules = Array.prototype.slice.call(styles[sheet].cssRules) as CSSRule[];
-                    rules.forEach(rule =>
+                    if (sheet.cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                     {
-                        if (rule instanceof document.defaultView.CSSStyleRule)
+                        for (let rule of Array.from(sheet.cssRules) as CSSRule[])
                         {
-                            let style = rule.style;
-                            if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                            if (rule instanceof doc.defaultView.CSSStyleRule)
                             {
-                                styleRules.push(rule);
+                                let style = rule.style;
+                                if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                {
+                                    styleRules.push(rule);
+                                }
+                            }
+                            else if (rule instanceof doc.defaultView.CSSImportRule)
+                            {
+                                styleSheets.push(rule.styleSheet);
                             }
                         }
-                        else if (rule instanceof document.defaultView.CSSImportRule)
-                        {
-                            styles.push(rule.styleSheet);
-                        }
-                    });
+                    }
+                }
+                else if (sheet.href) // external css
+                {
+                    if (!externalCssPromises!.has(sheet.href))
+                    {
+                        let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
+                        cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${sheet.href}\nDetails: ${ex.message || ex}`));
+                        externalCssPromises.set(
+                            sheet.href,
+                            Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
+                                .then(([d, css, extCss, href]) => 
+                                {
+                                    let style = d.createElement('style');
+                                    style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
+                                    style.innerText = css;
+                                    style.disabled = true;
+                                    d.head.appendChild(style);
+                                    style.sheet.disabled = true;
+                                })));
+                    }
                 }
             }
 
@@ -159,7 +219,7 @@ namespace MidnightLizard.ContentScript
                     /active|hover|disable|check|visit|link|focus|select|enable/gi.test(x.selectorText) &&
                     !/::scrollbar/gi.test(x.selectorText);
                 let trimmedStyleRules = styleRules.filter(trimmer);
-                if (trimmedStyleRules.length > this._stylesLimit)
+                if (trimmedStyleRules.length > this._trimmedStylesLimit)
                 {
                     filteredStyleRules = filteredStyleRules.filter(trimmer);
                 }
@@ -169,8 +229,8 @@ namespace MidnightLizard.ContentScript
                 }
             }
 
-            this._selectorsQuality.set(document, selectorsQuality);
-            this._selectors.set(document, filteredStyleRules.map(sr => sr.selectorText));
+            this._selectorsQuality.set(doc, selectorsQuality);
+            this._selectors.set(doc, filteredStyleRules.map(sr => sr.selectorText));
         }
 
         public getElementMatchedSelectors(tag: Element | PseudoElement): string
@@ -181,51 +241,7 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                let className: string = tag instanceof tag.ownerDocument.defaultView.SVGElement ? tag.className.baseVal : tag.className;
-                let key = `${tag.tagName}#${tag.id}.${className}`;
-                let map = this._preFilteredSelectors.get(tag.ownerDocument);
-                if (map === undefined)
-                {
-                    map = new Map<string, string[]>();
-                    this._preFilteredSelectors.set(tag.ownerDocument, map);
-                }
-                let preFilteredSelectors = map.get(key);
-                if (preFilteredSelectors === undefined)
-                {
-                    let notThisClassNames = "";
-                    if (className)
-                    {
-                        let classNameRegExp: string = "";
-                        let spaces = className.match(/\s+/g);
-                        if (spaces)
-                        {
-                            if (spaces.length > 3)
-                            {
-                                classNameRegExp = x.Dot + x.Literal; // skip real class name and assume any class
-                            }
-                            else
-                            {
-                                classNameRegExp = x.Dot + x.escape(className)
-                                    .replace(/\s+/g, x.WordBoundary + x.outOfSet(x.Minus) + x.Or + x.Dot) + x.WordBoundary + x.outOfSet(x.Minus);
-                            }
-                        }
-                        else
-                        {
-                            classNameRegExp = x.Dot + x.escape(className) + x.WordBoundary + x.outOfSet(x.Minus);
-                        }
-                        notThisClassNames = x.notFollowedBy(classNameRegExp);
-                    }
-                    let vars = new Map<string, string>();
-                    vars.set(Var[Var.tagName], tag.tagName);
-                    vars.set(Var[Var.notThisTagId], tag.id ? x.notFollowedBy(tag.id + x.WordBoundary) : "");
-                    vars.set(Var[Var.notThisClassNames], notThisClassNames);
-
-                    let excludeRegExpText = x.applyVars(this._excludeStylesRegExp, vars);
-
-                    let excludeRegExp = new RegExp(excludeRegExpText, "i");
-                    preFilteredSelectors = this._selectors.get(tag.ownerDocument) !.filter(selector => !excludeRegExp.test(selector));
-                    map.set(key, preFilteredSelectors);
-                }
+                let preFilteredSelectors = this.getPreFilteredSelectors(tag);
                 let wrongSelectors = new Array<string>();
                 let result = preFilteredSelectors.filter((selector) =>
                 {
@@ -245,23 +261,58 @@ namespace MidnightLizard.ContentScript
             }
         }
 
+        public getPreFilteredSelectors(tag: Element): string[]
+        {
+            let key = `${tag.tagName}#${tag.id}.${tag.classList.toString()}`;
+            let map = this._preFilteredSelectors.get(tag.ownerDocument);
+            if (map === undefined)
+            {
+                map = new Map<string, string[]>();
+                this._preFilteredSelectors.set(tag.ownerDocument, map);
+            }
+            let preFilteredSelectors = map.get(key);
+            if (preFilteredSelectors === undefined)
+            {
+                let notThisClassNames = "", className = "";
+                if (tag.classList && tag.classList.length > 0)
+                {
+                    // let classNameRegExp = (Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(
+                    //     x.WordBoundary + x.notFollowedBy(x.Minus) + x.Or) +
+                    //     x.WordBoundary + x.notFollowedBy(x.Minus);
+                    // notThisClassNames = x.notFollowedBy(classNameRegExp);
+                    className = (Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or)
+                }
+                let vars = new Map<string, string>();
+                vars.set(Var[Var.id], tag.id);
+                vars.set(Var[Var.tagName], tag.tagName);
+                vars.set(Var[Var.className], className);
+                //vars.set(Var[Var.notThisTagId], tag.id ? x.notFollowedBy(tag.id + x.WordBoundary) : "");
+                //vars.set(Var[Var.notThisClassNames], notThisClassNames);
+
+                //let excludeRegExpText = x.applyVars(this._excludeStylesRegExp, vars);
+                let includeRegExpText = x.applyVars(this._includeStylesRegExp, vars);
+
+                //let excludeRegExp = new RegExp(excludeRegExpText, "i");
+                let includeRegExp = new RegExp(includeRegExpText, "gi");
+                //preFilteredSelectors = this._selectors.get(tag.ownerDocument)!.filter(selector => !excludeRegExp.test(selector));
+                preFilteredSelectors = this._selectors.get(tag.ownerDocument)!.filter(selector => selector.search(includeRegExp) !== -1);
+                map.set(key, preFilteredSelectors);
+            }
+            return preFilteredSelectors;
+        }
+
         /**
          * Checks whether there are some rulles in the style sheets with the specified {pseudoClass}
          * which might be valid for the specified {tag} at some time.
          **/
-        public canHavePseudoClass(tag: Element, pseudoClass: PseudoClass): boolean
+        public canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean
         {
-            let className = tag instanceof tag.ownerDocument.defaultView.SVGElement ? tag.className.baseVal : tag.className;
-            let key = `${tag.tagName}#${tag.id}.${className}`;
-            let preFilteredSelectors = this._preFilteredSelectors.get(tag.ownerDocument) !.get(key);
-            if (preFilteredSelectors)
-            {
-                let pseudoClassName = PseudoClass[pseudoClass],
-                    filter = new RegExp(x.NotWhiteSpace + x.Colon + pseudoClassName + x.WordBoundary, "gi"),
-                    cutter = new RegExp(x.followedBy(x.NotWhiteSpace) + x.Colon + pseudoClassName + x.WordBoundary, "gi");
-                return preFilteredSelectors.some(s => filter.test(s) && tag.matches(s.replace(cutter, "")));
-            }
-            else return false;
+            let pseudoClassName = PseudoClass[pseudoClass],
+                pseudoRegExp = new RegExp(
+                    x.remember(x.outOfSet(x.LeftParenthesis, x.WhiteSpace)) +
+                    x.Colon + pseudoClassName + x.WordBoundary,
+                    "gi");
+            return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 && tag.matches(s.replace(pseudoRegExp, "$1")));
         }
     }
 }

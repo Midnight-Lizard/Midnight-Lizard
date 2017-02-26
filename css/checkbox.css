@@ -1,4 +1,4 @@
-.cb-checkbox
+.ml-checkbox
 {
     -webkit-appearance: none;
     border: 1px solid var(--main-border-color);
@@ -14,12 +14,12 @@
     padding-left: 0.1em;
 }
 
-.cb-checkbox:checked:before
+.ml-checkbox:checked:before
 {
     content: "\2714";
 }
 
-.cb-checkbox:before
+.ml-checkbox:before
 {
     content: "\2002";
 }

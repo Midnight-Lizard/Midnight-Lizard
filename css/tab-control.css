@@ -1,5 +1,5 @@
 /* Style the list */
-.cb-tab
+.ml-tab
 {
     display: table-cell;
     list-style-type: none;
@@ -10,7 +10,7 @@
     width: 169px;
 }
 
-.cb-tab-item-icon
+.ml-tab-item-icon
 {
     margin: -10px 5px -6px -3px;
     fill: var(--main-color);
@@ -19,12 +19,12 @@
     vertical-align: middle;
 }
 
-.cb-tab-item:hover .cb-tab-item-icon, .active .cb-tab-item-icon
+.ml-tab-item:hover .ml-tab-item-icon, .active .ml-tab-item-icon
 {
     fill: var(--main-color);
 }
 
-.cb-tab-item
+.ml-tab-item
 {
     padding: 13px 12px 13px 12px;
     margin-left: 10px;
@@ -42,7 +42,7 @@
     user-select: none;
 }
 
-.cb-tab-item-separator
+.ml-tab-item-separator
 {
     padding: 14px;
     margin-left: 10px;
@@ -52,7 +52,7 @@
     border-right: solid 1px var(--thin-border-color);
 }
 
-.cb-tab-item:hover
+.ml-tab-item:hover
 {
     background-color: var(--alt-background-color);
 }
@@ -69,7 +69,7 @@
     cursor: default!important;
 }
 
-.cb-tab-content
+.ml-tab-content
 {
     display: none;
     width: 340px;
@@ -77,12 +77,12 @@
     background-color: var(--content-background-color);
 }
 
-.cb-tab-content div:first-of-type
+.ml-tab-content div:first-of-type
 {
     margin-top: -10px;
 }
 
-#default-tab-content.cb-tab-content
+#default-tab-content.ml-tab-content
 {
     display: table-cell;
     font-size: 14px;
@@ -90,17 +90,17 @@
     text-indent: 15px;
 }
 
-#default-tab-content.cb-tab-content p
+#default-tab-content.ml-tab-content p
 {
     margin: 10px 20px 0px 20px;
 }
 
-#default-tab-content.cb-tab-content p b, #default-tab-content.cb-tab-content p span, #default-tab-content.cb-tab-content p i
+#default-tab-content.ml-tab-content p b, #default-tab-content.ml-tab-content p span, #default-tab-content.ml-tab-content p i
 {
     color: var(--logo-text-color);
 }
 
-#default-tab-content.cb-tab-content h3
+#default-tab-content.ml-tab-content h3
 {
     text-align: center;
     margin: 10px;

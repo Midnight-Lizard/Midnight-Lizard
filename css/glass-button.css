@@ -1,4 +1,4 @@
-.cb-glass-button {
+.ml-glass-button {
     cursor: pointer;
     width: 120px;
     border-radius: 13px;
@@ -9,7 +9,7 @@
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.cb-glass-button::before {
+.ml-glass-button::before {
     content: "";
     border-radius: 5px;
     border: none;
@@ -23,25 +23,25 @@
     background: linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.05));
 }
 
-.cb-glass-button:active {
+.ml-glass-button:active {
    filter: none !important;
    transition: none !important;
    box-shadow: none !important;
 }
 
-.cb-glass-button:active::before {
+.ml-glass-button:active::before {
     display: none;
 }
 
-.cb-glass-button:active::after {
+.ml-glass-button:active::after {
     display: none;
 }
 
-.cb-glass-button:hover {
+.ml-glass-button:hover {
     filter: brightness(1.15) saturate(1.1);
 }
 
-.cb-glass-button::after {
+.ml-glass-button::after {
     content: "";
     border-radius: 30px;
     border: none;
@@ -55,7 +55,7 @@
     background: radial-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0));
 }
 
-.cb-glass-button-text {
+.ml-glass-button-text {
     z-index: 1;
     position: fixed;
     margin-left: -50px;
@@ -67,23 +67,23 @@
     color: rgb(255, 255, 255) !important;
 }
 
-.cb-glass-button.red {
+.ml-glass-button.red {
     background: #B71C1C linear-gradient(#B71C1C,#F44336);
 }
-.cb-glass-button.red:hover {
+.ml-glass-button.red:hover {
     box-shadow: 0px 0px 1px rgb(213, 0, 0);
 }
 
-.cb-glass-button.green {
+.ml-glass-button.green {
     background: #1B5E20 linear-gradient(#1B5E20,#4CAF50);
 }
-.cb-glass-button.green:hover {
+.ml-glass-button.green:hover {
     box-shadow: 0px 0px 1px #004D40;
 }
 
-.cb-glass-button.blue {
+.ml-glass-button.blue {
     background: #0D47A1 linear-gradient(#0D47A1,#2196F3);
 }
-.cb-glass-button.blue:hover {
+.ml-glass-button.blue:hover {
     box-shadow: 0px 0px 1px #1A237E;
 }

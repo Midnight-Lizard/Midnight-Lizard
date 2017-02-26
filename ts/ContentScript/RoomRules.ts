@@ -1,0 +1,26 @@
+/// <reference path="../Colors/-Colors.ts" />
+/// <reference path="BackgroundImage.ts" />
+
+
+namespace MidnightLizard.ContentScript
+{
+    export class RoomRules
+    {
+        owner: any;
+        backgroundColor: Colors.ColorEntry | null | undefined;
+        color: Colors.ColorEntry | null | undefined;
+        borderColor: Colors.ColorEntry | null | undefined;
+        borderTopColor: Colors.ColorEntry | null | undefined;
+        borderRightColor: Colors.ColorEntry | null | undefined;
+        borderBottomColor: Colors.ColorEntry | null | undefined;
+        borderLeftColor: Colors.ColorEntry | null | undefined;
+        textShadow: { value: string, color: Colors.ColorEntry | null } | null | undefined;
+        filter: { value: string } | null | undefined;
+        transitionDuration: { value: string } | null | undefined;
+        display: string | null | undefined;
+        attributes: Map<string, string>;
+        backgroundImageKeys: Array<string>;
+        backgroundImages: Array<Promise<BackgroundImage> | BackgroundImage>;
+        hasBackgroundImagePromises: boolean = false;
+    }
+}

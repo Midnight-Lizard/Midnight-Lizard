@@ -1,4 +1,4 @@
-input[type='range'].cb-input-range, input[type='range'].cb-input-range::-webkit-slider-runnable-track, input[type='range'].cb-input-range::-webkit-slider-thumb
+input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-slider-runnable-track, input[type='range'].ml-input-range::-webkit-slider-thumb
 {
   -webkit-appearance: none;
 }
@@ -11,7 +11,7 @@ input[type='range'].cb-input-range, input[type='range'].cb-input-range::-webkit-
   --input-relative-percent: 50%;
 }
 
-input[type=range].cb-input-range {
+input[type=range].ml-input-range {
   width: 267PX;
   cursor: text;
   background-color: var(--main-background-color);
@@ -22,7 +22,7 @@ input[type=range].cb-input-range {
   margin: 8px calc((100% - 267px)/2) 18px calc((100% - 267px)/2);
 }
 
-.cb-input-range-icon
+.ml-input-range-icon
 {
   fill: var(--main-color);
   width: 18px;
@@ -33,23 +33,23 @@ input[type=range].cb-input-range {
   cursor: pointer;
 }
 
-.cb-input-range-icon.low
+.ml-input-range-icon.low
 {
   left: calc(((100% - 267px)/2 - 15px)/2);
 }
 
-.cb-input-range-icon.high
+.ml-input-range-icon.high
 {
   right: calc(((100% - 267px)/2 - 16px)/2);
 }
 
-input[type=range].cb-input-range:focus
+input[type=range].ml-input-range:focus
 {
   outline: none;
   box-shadow: 0px 0px 3px 0px rgb(0, 122, 204);
 }
 
-input[type=range].cb-input-range::-webkit-slider-runnable-track {
+input[type=range].ml-input-range::-webkit-slider-runnable-track {
   position: relative;
   color: inherit;
   height: 8px;
@@ -197,7 +197,7 @@ input[type=range].cb-input-range::-webkit-slider-runnable-track {
     repeat-x,
     no-repeat;
 }
-input[type=range].cb-input-range::-webkit-slider-thumb
+input[type=range].ml-input-range::-webkit-slider-thumb
 {
   position: relative;
   cursor: default;

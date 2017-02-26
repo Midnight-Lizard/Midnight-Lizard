@@ -14,6 +14,10 @@
     transition: filter 200ms ease-out 100ms !important;
 }
 
-div[style*="color"] > div[style="user-select: none;"]:not(important) {
+div[style*="color"] > div[style="user-select: none;"]:not(impt) {
     color: inherit !important;
+}
+
+#hc_extension_bkgnd:not(impt) {
+    display: none !important;
 }

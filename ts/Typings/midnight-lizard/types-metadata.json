@@ -1,0 +1,21 @@
+{
+    "authors": "Pavel Agarkov",
+    "libraryDependencies": [],
+    "moduleDependencies": [],
+    "libraryMajorVersion": 0,
+    "libraryMinorVersion": 0,
+    "typeScriptVersion": "2.0",
+    "libraryName": "MidnightLizard",
+    "typingsPackageName": "midnight-lizard",
+    "projectName": "MidnightLizard",
+    "sourceRepoURL": "https://github.com/pavel-agarkov/Midnight-Lizard.git",
+    "sourceBranch": "master",
+    "globals": [
+        "MidnightLizard"
+    ],
+    "declaredModules": [],
+    "files": [
+        "MidnightLizard.d.ts"
+    ],
+    "hasPackageJson": false
+}

@@ -5,53 +5,53 @@ html, body {
     /* background: #212121; */
 }
 
-.cb-dialog-root {
+.ml-dialog-root {
     font: normal 14px/1 Arial, Helvetica, sans-serif;
     color: var(--main-color);
     text-shadow: 0 0 1px var(--main-text-shadow-color);
 }
 
-.cb-dialog-logo {
+.ml-dialog-logo {
     height: 32px;
     margin: 5px;
     filter: drop-shadow(0px 0px 0px rgba(10,100,50,1));
 }
 
-.cb-dialog-title-text {
+.ml-dialog-title-text {
     display: inline-block;
     vertical-align: top;
     margin-top: 12px;
 }
 
-.cb-dialog-title {
+.ml-dialog-title {
     font: normal 18px Arial, Helvetica, sans-serif;
     text-align: center;
     border-bottom: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
 }
 
-.cb-dialog-fotter
+.ml-dialog-fotter
 {
     font: normal 18px Arial, Helvetica, sans-serif;
     border-top: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
-    height: 36px;
+    height: 40px;
     display: table;
     width: 100%;
     text-align: center;
 }
 
-.cb-dialog-title span {
+.ml-dialog-title span {
     color: var(--logo-text-color);
     text-shadow: 0 0 1px hsla(94,100%,70%,0.8);
 }
 
-.cb-dialog-title a {
+.ml-dialog-title a {
     color: hsl(282, 100%, 50%);
     text-shadow: rgba(255, 229, 255, 0.8) 0px 0px 1px ;
 }
 
-.cb-dialog-commands {
+.ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
     display: table-cell;
     vertical-align: middle;
@@ -59,69 +59,69 @@ html, body {
     width: 170px;
 }
 
-.cb-dialog-settings {
+.ml-dialog-settings {
     display: table;
     width: 100%;
 }
 
-.cb-dialog-settings-left {
+.ml-dialog-settings-left {
     display: table-cell;
     padding: 10px;
     vertical-align: bottom;
 }
 
-.cb-dialog-settings-right {
+.ml-dialog-settings-right {
     display: table-cell;
     padding: 10px;
     vertical-align: bottom;
 }
 
-.cb-dialog-commands > .cb-dialog-input-text {
+.ml-dialog-commands > .ml-dialog-input-text {
     width: 120px;
     margin: 5px 20px 20px 20px;
     background-color: var(--alt-background-color);
 }
 
-.cb-dialog-commands > .cb-dialog-label {
+.ml-dialog-commands > .ml-dialog-label {
     margin: 15px;
 }
 
-.cb-dialog-commands > button, .cb-dialog-commands > .cb-tool-box
+.ml-dialog-commands > button, .ml-dialog-commands > .ml-tool-box
 {
     margin: 15px 20px;
     width: 130px;
 }
 
-.cb-dialog-input {
+.ml-dialog-input {
     margin: 8px calc((100% - 267px)/2) 18px calc((100% - 267px)/2);
 }
 
-.cb-dialog-input[type='checkbox'] {
+.ml-dialog-input[type='checkbox'] {
     /* vertical-align: sub; */
 }
 
-.cb-dialog-input[type='checkbox'] + .cb-dialog-label {
+.ml-dialog-input[type='checkbox'] + .ml-dialog-label {
     margin: 5px;
 }
 
-.cb-dialog-label {
+.ml-dialog-label {
     margin-left: calc((100% - 267px)/2);
 }
 
-.cb-dialog-label:after
+.ml-dialog-label:after
 {
     content: ": " var(--input-string) "%";
     font-weight: bold;
 }
 
-.cb-input-container
+.ml-input-container
 {
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
 }
 
-.cb-dialog-input-text {
+.ml-dialog-input-text {
     display: inline-block;
     box-sizing: content-box;
     padding: 3px 3px;
@@ -136,11 +136,11 @@ html, body {
     box-shadow: 1px 1px 1px 0 var(--main-input-shadow-color) inset;
 }
 
-.cb-dialog-input-text option {
+.ml-dialog-input-text option {
     font-size: 16px;
 }
 
-.cb-dialog-hue-select {
+.ml-dialog-hue-select {
     box-shadow: none;
     border-color: var(--pseudo-border-color);
 }
@@ -150,9 +150,9 @@ html, body {
     position: absolute;
     top: 0px;
     left: 0px;
-    margin: 13px;
-    padding: 2px 5px 1px 5px;
-    font-size: 12px;
+    margin: 11px 12px;
+    padding: 3px 6px 1px 6px;
+    font-size: 16px;
     font-weight: bold;
     background: rgb(48, 63, 161);
     color: white;
@@ -172,7 +172,7 @@ html, body {
     z-index: 1000;
 }
 
-.cb-dialog-error {
+.ml-dialog-error {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -180,21 +180,30 @@ html, body {
     bottom: 0px;
     z-index: 999;
     /* pointer-events: none; */
-    background-color: rgba(19, 19, 19, 0.9);
+    background-color: rgba(19, 19, 19, 0.95);
     color: rgb(255, 223, 0);
     text-align: center;
-    font-size: 23pt;
+    font-size: 20pt;
     text-shadow: 0 0 3px rgb(0, 0, 0);
     padding-top: 38px;
 }
 
-.cb-tool-box
+.ml-dialog-error span{
+    font-size: 18pt;
+}
+
+.ml-dialog-error ul{
+    font-size: 14pt;
+    line-height: 22pt;
+}
+
+.ml-tool-box
 {
     display: table;
     width: 120px;
 }
 
-.cb-tool-box > button
+.ml-tool-box > button
 {
     --button-border-radius: 0px;
     display: table-cell;
@@ -204,17 +213,17 @@ html, body {
     /* text-align: right; */
 }
 
-.cb-tool-box > button:first-child
+.ml-tool-box > button:first-child
 {
     --button-border-radius: 3px 1px 1px 3px;
 }
 
-.cb-tool-box > button:last-child
+.ml-tool-box > button:last-child
 {
     --button-border-radius: 1px 3px 3px 1px;
 }
 
-.cb-button-icon
+.ml-button-icon
 {
     width: 18px;
     fill: rgb(255, 255, 255);
@@ -223,39 +232,39 @@ html, body {
     margin-right: 5px;
 }
 
-.cb-tool-box-separator
+.ml-tool-box-separator
 {
     display: table-cell;
     width: 2px;
 }
 
-.cb-fotter-icon-container
+.ml-fotter-icon-container
 {
     display: table-cell;
     vertical-align: middle;
     /* cursor: pointer; */
 }
 
-.cb-fotter-icon-container.left
+.ml-fotter-icon-container.left
 {
-    padding-left: 17px;
+    padding-left: 16px;
 }
-.cb-fotter-icon-container.right
+.ml-fotter-icon-container.right
 {
-    padding-right: 19px;
-}
-
-.cb-fotter-icon
-{
+    padding-right: 16px;
 }
 
-.cb-fotter-separator
+.ml-fotter-icon
+{
+}
+
+.ml-fotter-separator
 {
     display: table-cell;
     width: 100%;
 }
 
-.cb-fotter-version-container
+.ml-fotter-version-container
 {
     display: table-cell;
     vertical-align: middle;
@@ -263,22 +272,22 @@ html, body {
 
 .instagram-icon
 {
-    width: 24px;
+    width: 26px;
 }
 
 .twitter-icon
 {
-    width: 17px;
+    width: 19px;
 }
 
 .google-plus-icon
 {
-    width: 28px;
+    width: 32px;
 }
 
 .facebook-icon
 {
-    width: 16px;
+    width: 18px;
 }
 
 .instagram-icon:hover
@@ -301,19 +310,19 @@ html, body {
     fill: rgb(59, 89, 152);
 }
 
-.bug-report-icon{width: 20px;}
+.bug-report-icon{width: 24px;}
 .bug-report-icon:hover{
     fill: #B71C1C;
 }
-.rate-icon{width: 24px;}
+.rate-icon{width: 28px;}
 .rate-icon:hover{
     fill: #F57F17;
 }
-.email-icon{width: 18px;}
+.email-icon{width: 24px;}
 .email-icon:hover{
     fill: #1A237E;
 }
-.change-log-icon{width: 18px;}
+.change-log-icon{width: 24px;}
 .change-log-icon:hover{
     fill: #1B5E20;
 }

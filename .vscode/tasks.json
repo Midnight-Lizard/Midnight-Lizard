@@ -1,0 +1,41 @@
+{
+    "version": "0.1.0",
+    "_runner": "terminal",
+    "tasks": [
+        {
+            "taskName": "TSC Release Content Script",
+            "command": "tsc",
+            "isBuildCommand": true,
+            "isShellCommand": true,
+            "isBackground": true,
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$tsc",
+            "args": [
+                "-p ./config/chrome/content-script-release.json"
+            ]
+        },
+        {
+            "taskName": "TSC Build Content Script",
+            "command": "tsc",
+            "isTestCommand": true,
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "args": [
+                "-w -p ./config/chrome/content-script-debug.json"
+            ]
+        },
+        {
+            "taskName": "TSC Build Popupt",
+            "command": "tsc",
+            "isTestCommand": true,
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "args": [
+                "-w -p ./config/chrome/popup-debug.json"
+            ]
+        }
+    ]
+}
