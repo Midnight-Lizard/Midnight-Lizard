@@ -22,7 +22,8 @@ namespace MidnightLizard.Colors
     @DI.injectable(IBackgroundColorProcessor)
     class BackgroundColorProcessor extends BaseColorProcessor implements IBackgroundColorProcessor
     {
-        protected _lights = new Map<number, number>();
+        protected readonly _lights = new Map<number, number>();
+        protected readonly _lightAreas = new Map<number, number>();
 
         /** BackgroundColorProcessor constructor */
         constructor(
@@ -36,12 +37,40 @@ namespace MidnightLizard.Colors
         protected onSettingsChanged(response: SchemeResponse, newSettings: ComponentShift): void
         {
             super.onSettingsChanged(response, newSettings);
-            this._lights = new Map<number, number>();
+            this._lights.clear();
+            this._lightAreas.clear();
         }
 
-        protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean): void
+        protected tryGetTagArea(tag: Element)
         {
-            let shift = this._colorShift;
+            if (tag.area === undefined)
+            {
+                tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+                let width = parseInt(tag.computedStyle.width!), height = parseInt(tag.computedStyle.height!);
+                if (!isNaN(width) && !isNaN(height))
+                {
+                    tag.area = width * height;
+                }
+            }
+            return tag.area;
+        }
+
+        protected getTagArea(tag: Element)
+        {
+            if (tag.area === undefined)
+            {
+                if (this.tryGetTagArea(tag) === undefined)
+                {
+                    tag.rect = tag.rect || tag.getBoundingClientRect();
+                    tag.area = tag.rect.width * tag.rect.height;
+                }
+            }
+            return tag.area!;
+        }
+
+        protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean, tag: Element): void
+        {
+            const shift = this._colorShift;
             if (hsla.saturation === 0 && shift.grayHue !== 0)
             {
                 hsla.hue = shift.grayHue;
@@ -51,47 +80,72 @@ namespace MidnightLizard.Colors
             {
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
-            const minLightDiff = shift.contrast * Math.atan(-shift.lightnessLimit * Math.PI / 2) + shift.contrast / 0.9;
             let light = hsla.lightness;
             if (increaseContrast)
             {
-                let oldLight = this._lights.get(light);
+                let oldLight = this._lights.get(hsla.lightness);
                 if (oldLight !== undefined)
                 {
                     light = oldLight;
+                    let area = this.tryGetTagArea(tag);
+                    if (area !== undefined)
+                    {
+                        let oldArea = this._lightAreas.get(hsla.lightness);
+                        if (oldArea && oldArea < area || !oldArea)
+                        {
+                            this._lightAreas.set(hsla.lightness, area);
+                        }
+                    }
                 }
                 else
                 {
+                    const minLightDiff = shift.contrast * Math.atan(-shift.lightnessLimit * Math.PI / 2) + shift.contrast / 0.9;
+                    let thisTagArea = this.getTagArea(tag);
                     if (this._lights.size > 0 && minLightDiff > 0)
                     {
-                        let prevLight = -1, nextLight = +2;
+                        let prevLight = -1, nextLight = +2, prevOrigin = 0, nextOrigin = 1;
                         for (let [originalLight, otherLight] of this._lights)
                         {
                             if (otherLight < light && otherLight > prevLight)
                             {
                                 prevLight = otherLight;
+                                prevOrigin = originalLight;
                             }
                             if (otherLight > light && otherLight < nextLight)
                             {
                                 nextLight = otherLight;
+                                nextOrigin = originalLight;
                             }
                         }
-                        if (nextLight - prevLight < minLightDiff * 2) light = (prevLight + nextLight) / 2;
+                        let prevArea = this._lightAreas.get(prevOrigin),
+                            nextArea = this._lightAreas.get(nextOrigin);
+                        let deflect = 0;
+                        if (prevArea !== undefined && nextArea !== undefined && prevArea !== nextArea)
+                        {
+                            deflect = (nextLight - prevLight) *
+                                (
+                                    prevArea > nextArea
+                                        ? 0.5 - nextArea / prevArea
+                                        : prevArea / nextArea - 0.5
+                                );
+                        }
+                        if (nextLight - prevLight < minLightDiff * 2) light = (prevLight + nextLight) / 2 + deflect;
                         else if (light - prevLight < minLightDiff) light = prevLight + minLightDiff;
                         else if (nextLight - light < minLightDiff) light = nextLight - minLightDiff;
                         light = Math.max(Math.min(light, 1), 0);
                     }
-                    this._lights && this._lights.set(hsla.lightness, light);
+                    this._lights.set(hsla.lightness, light);
+                    this._lightAreas.set(hsla.lightness, thisTagArea);
                 }
             }
             hsla.lightness = this.scaleValue(light, shift.lightnessLimit);
         }
 
-        public changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry
+        public changeColor(rgbaString: string | null, increaseContrast: boolean, tag: Element, getParentBackground?: (tag: any) => ColorEntry): ColorEntry
         {
             rgbaString = rgbaString || "rgb(255, 255, 255)";
-            let prevColor = this._colors.get(rgbaString);
-            if (increaseContrast && prevColor)
+            let prevColor = increaseContrast ? this._colors.get(rgbaString) : null;
+            if (prevColor)
             {
                 let newColor = Object.assign({}, prevColor);
                 return Object.assign(newColor, {
@@ -127,7 +181,7 @@ namespace MidnightLizard.Colors
                 {
                     let hsla = RgbaColor.toHslaColor(rgba);
                     let originalLight = hsla.lightness;
-                    this.changeHslaColor(hsla, increaseContrast);
+                    this.changeHslaColor(hsla, increaseContrast, tag);
                     let newRgbColor = HslaColor.toRgbaColor(hsla);
                     let result = {
                         color: newRgbColor.toString(),
@@ -138,7 +192,7 @@ namespace MidnightLizard.Colors
                         reason: ColorReason.Ok,
                         owner: this._app.isDebug ? tag : null
                     };
-                    this._colors.set(rgbaString!, result);
+                    increaseContrast && this._colors.set(rgbaString!, result);
                     return result;
                 }
             }
