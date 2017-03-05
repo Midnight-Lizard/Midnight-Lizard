@@ -119,7 +119,7 @@ namespace MidnightLizard.ContentScript
                 switch (mutation.type)
                 {
                     case "attributes":
-                        if (mutation.target.isChecked && mutation.target.mlBgColor)
+                        if (mutation.target.isChecked)
                         {
                             switch (mutation.attributeName)
                             {

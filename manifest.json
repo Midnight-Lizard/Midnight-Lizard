@@ -87,6 +87,15 @@
         {
             "run_at": "document_start",
             "matches": [
+                "https://docs.google.com/forms/*"
+            ],
+            "css": [
+                "css/custom/google-forms.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
                 "https://*.wikipedia.org/*"
             ],
             "css": [

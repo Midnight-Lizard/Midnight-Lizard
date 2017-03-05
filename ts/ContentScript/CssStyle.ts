@@ -55,6 +55,7 @@ namespace MidnightLizard.ContentScript
         none = "none";
         important = "important";
         zeroSec = "0s";
+        _200ms = "200ms";
         "px" = "px";
         "fixed" = "fixed";
         "absolute" = "absolute";

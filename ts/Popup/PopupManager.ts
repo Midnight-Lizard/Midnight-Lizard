@@ -339,7 +339,7 @@ namespace MidnightLizard.Popup
                 };
 
             let shadowColor = this._textShadowColorProcessor.changeColor(
-                Colors.RgbaColor.Gray, roomRules.color!.light, null, tag,
+                Colors.RgbaColor.Gray, roomRules.color!.light, tag,
                 Math.abs(roomRules.color!.light - roomRules.backgroundColor!.light) / 1.4);
             let newRules = Object.assign(new ContentScript.RoomRules(),
                 {

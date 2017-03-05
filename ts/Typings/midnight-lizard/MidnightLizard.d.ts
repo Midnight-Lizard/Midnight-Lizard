@@ -36,7 +36,7 @@ interface Node
     /** cache of getComputedStyle call results */
     computedStyle: CSSStyleDeclaration | undefined | null;
     /** area of the element */
-    area: number | undefined | null;
+    area: number | undefined;
     /** Element path in the DOM tree */
     path: string | undefined | null;
     /** Legacy background attribute */
@@ -46,6 +46,7 @@ interface Node
     ////////////////////////////////////////////////////////////////
     //////////////////// original values ///////////////////////////
     ////////////////////////////////////////////////////////////////
+    currentFilter: string | null | undefined;
     originalFilter: string | null | undefined;
     originalTransitionDuration: string | null | undefined;
     originalBackgroundColor: string | null | undefined;
