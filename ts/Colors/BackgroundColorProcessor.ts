@@ -68,6 +68,19 @@ namespace MidnightLizard.Colors
             return tag.area!;
         }
 
+        protected tryUpdateLightArea(tag: Element, lightness: number)
+        {
+            let area = this.tryGetTagArea(tag);
+            if (area !== undefined)
+            {
+                let oldArea = this._lightAreas.get(lightness);
+                if (oldArea && oldArea < area || !oldArea)
+                {
+                    this._lightAreas.set(lightness, area);
+                }
+            }
+        }
+
         protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean, tag: Element): void
         {
             const shift = this._colorShift;
@@ -87,15 +100,7 @@ namespace MidnightLizard.Colors
                 if (oldLight !== undefined)
                 {
                     light = oldLight;
-                    let area = this.tryGetTagArea(tag);
-                    if (area !== undefined)
-                    {
-                        let oldArea = this._lightAreas.get(hsla.lightness);
-                        if (oldArea && oldArea < area || !oldArea)
-                        {
-                            this._lightAreas.set(hsla.lightness, area);
-                        }
-                    }
+                    this.tryUpdateLightArea(tag, hsla.lightness);
                 }
                 else
                 {
@@ -147,6 +152,7 @@ namespace MidnightLizard.Colors
             let prevColor = increaseContrast ? this._colors.get(rgbaString) : null;
             if (prevColor)
             {
+                this.tryUpdateLightArea(tag, prevColor.originalLight);
                 let newColor = Object.assign({}, prevColor);
                 return Object.assign(newColor, {
                     reason: ColorReason.Previous,
@@ -168,6 +174,7 @@ namespace MidnightLizard.Colors
                 if (rgba.alpha === 0 && getParentBackground)
                 {
                     let parentBgColor = getParentBackground(tag);
+                    this.tryUpdateLightArea(tag, parentBgColor.originalLight);
                     let newColor = Object.assign({}, parentBgColor);
                     return Object.assign(newColor, {
                         color: null,
@@ -190,6 +197,7 @@ namespace MidnightLizard.Colors
                         originalColor: rgbaString,
                         alpha: rgba.alpha,
                         reason: ColorReason.Ok,
+                        isUpToDate: true,
                         owner: this._app.isDebug ? tag : null
                     };
                     increaseContrast && this._colors.set(rgbaString!, result);

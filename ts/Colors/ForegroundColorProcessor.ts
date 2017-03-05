@@ -139,6 +139,7 @@ namespace MidnightLizard.Colors
                         originalLight: 0,
                         originalColor: rgbaString,
                         alpha: 0,
+                        isUpToDate: true,
                         reason: ColorReason.Transparent,
                         owner: this._app.isDebug ? tag : null,
                     };
@@ -158,6 +159,7 @@ namespace MidnightLizard.Colors
                         originalLight: originalLight,
                         originalColor: rgbaString,
                         alpha: rgba.alpha,
+                        isUpToDate: true,
                         reason: ColorReason.Ok,
                         owner: this._app.isDebug ? tag : null,
                     };

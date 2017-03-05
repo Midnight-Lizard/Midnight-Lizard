@@ -22,6 +22,7 @@ namespace MidnightLizard.Colors
             originalColor: RgbaColor.White,
             alpha: 1,
             reason: ColorReason.NotFound,
+            isUpToDate: true,
             owner: null
         }
 
@@ -34,6 +35,7 @@ namespace MidnightLizard.Colors
         reason: ColorReason;
         owner: any;
         base?: ColorEntry;
+        isUpToDate: boolean;
         constructor() { }
     }
 }

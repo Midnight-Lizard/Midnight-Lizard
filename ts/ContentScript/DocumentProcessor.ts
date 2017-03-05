@@ -250,7 +250,7 @@ namespace MidnightLizard.ContentScript
                             tag.mlParentBgColor = null;
                             if (tag.mlBgColor && (tag.mlBgColor.color === null))
                             {
-                                tag.mlBgColor = null;
+                                tag.mlBgColor.isUpToDate = false;
                             }
                         });
                     }
@@ -692,7 +692,9 @@ namespace MidnightLizard.ContentScript
                         });
                     }
                 }
-                bgColor = bgColor || tag.parentElement!.mlBgColor || tag.parentElement!.mlParentBgColor;
+                bgColor = bgColor ||
+                    (tag.parentElement!.mlBgColor && tag.parentElement!.mlBgColor!.isUpToDate ? tag.parentElement!.mlBgColor : null) ||
+                    tag.parentElement!.mlParentBgColor;
                 if (bgColor)
                 {
                     result = bgColor;
@@ -703,7 +705,10 @@ namespace MidnightLizard.ContentScript
                     result = this.getParentBackground(tag.parentElement!, probeRect);
                 }
             }
-            isRealElement(tag) && (tag.mlParentBgColor = result);
+            if (isRealElement(tag))
+            {
+                tag.mlParentBgColor = result;
+            }
             return result;
         }
 
