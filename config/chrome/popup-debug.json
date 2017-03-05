@@ -1,0 +1,20 @@
+{
+    "include": [
+        "../../ts/Chrome/ChromePopupStarter.ts"
+    ],
+    "compilerOptions":
+    {
+        "outFile": "../../js/popup.js",
+        "removeComments": false,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "target": "es6",
+        "inlineSourceMap": true,
+        "allowJs": false,
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "noImplicitThis": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}

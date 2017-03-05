@@ -1,0 +1,32 @@
+#hc_extension_bkgnd:not(impt)
+{
+    display: none !important;
+}
+
+[transition="filter"]:hover
+{
+    animation-name: transition-filter-none;
+    animation-timing-function: ease-out;
+    animation-duration: 200ms;
+    animation-delay: 100ms;
+    animation-fill-mode: forwards;
+}
+
+[transition="filter"]
+{
+    animation-name: transition-filter-original;
+    animation-timing-function: ease-out;
+    animation-duration: 300ms;
+    animation-delay: 100ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes transition-filter-none
+{
+    to { filter: none; }
+}
+
+@keyframes transition-filter-original
+{
+    from { filter: none; }
+}

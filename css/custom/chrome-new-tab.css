@@ -1,0 +1,4 @@
+#mv-single
+{
+    filter: brightness(var(--image-lightness-limit)) saturate(var(--image-saturation-limit))
+}

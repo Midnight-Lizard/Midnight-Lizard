@@ -1,0 +1,20 @@
+{
+    "include": [
+        "./ts/**/*"
+    ],
+    "compilerOptions":
+    {
+        "outDir": "./js",
+        "removeComments": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "target": "es6",
+        "sourceMap": true,
+        "allowJs": true,
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "noImplicitThis": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}

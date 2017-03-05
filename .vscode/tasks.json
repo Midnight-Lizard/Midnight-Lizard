@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "_runner": "terminal",
+    "tasks": [
+        {
+            "taskName": "TSC Release Content Script",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$tsc",
+            "args": [
+                "-p ./config/chrome/content-script-release.json"
+            ]
+        },
+        {
+            "taskName": "TSC Release Popup",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$tsc",
+            "args": [
+                "-p ./config/chrome/popup-release.json"
+            ]
+        },
+        {
+            "taskName": "TSC Build Content Script",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "args": [
+                "-w -p ./config/chrome/content-script-debug.json"
+            ]
+        },
+        {
+            "taskName": "TSC Build Popup",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "args": [
+                "-w -p ./config/chrome/popup-debug.json"
+            ]
+        },
+        {
+            "taskName": "Build",
+            "isTestCommand": true,
+            "dependsOn": [
+                "TSC Build Content Script",
+                "TSC Build Popup"
+            ]
+        },
+        {
+            "taskName": "Release",
+            "isBuildCommand": true,
+            "dependsOn": [
+                "TSC Release Content Script",
+                "TSC Release Popup"
+            ]
+        }
+    ]
+}

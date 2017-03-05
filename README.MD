@@ -19,5 +19,5 @@
   ✔ Also useful during the daytime with light and contrast themes
   ✔ Completely customizable
   ✔ Works almost everywhere
-  ✔ Easy to enable/disable by using a global switch
+  ✔ Easy to enable/disable by using a global toggle
   ✔ Free forever
