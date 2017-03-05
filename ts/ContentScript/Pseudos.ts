@@ -1,5 +1,11 @@
 namespace MidnightLizard.ContentScript
 {
+    export enum PseudoStyleStandard
+    {
+        BackgroundImage,
+        InvertedBackgroundImage
+    }
+
     export enum PseudoClass
     {
         Hover,
@@ -73,15 +79,16 @@ namespace MidnightLizard.ContentScript
             this.area = this.rect.width * this.rect.height;
             return this.rect;
         }
-        applyStyleChanges()
+        applyStyleChanges(standardCssText?: string)
         {
-            let css = this.style.cssText === ""
+            const cssText = standardCssText === undefined ? this.style.cssText : standardCssText;
+            let css = cssText === ""
                 ? ""
-                : "[" + this.tagName + "-style=\"" + this.id + "\"]:not(important)" + this.className + "{ " + this.style.cssText + " }";
-            `[${this.tagName}-style="${this.id}"]:not(important)${this.className}{${this.style.cssText}}`;
+                : `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}{${cssText}}`;
             this.resolveCss(css);
         }
-        constructor(type: PseudoType, parent: Element, id: string, computedStyle: CSSStyleDeclaration)
+
+        constructor(type: PseudoType, parent: Element, id: string, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
         {
             let typeName = PseudoType[type].toLowerCase();
             this.id = id;
@@ -94,7 +101,7 @@ namespace MidnightLizard.ContentScript
             this.ownerDocument = parent.ownerDocument;
             this.stylePromise = new Promise((resolve, reject) => this.resolveCss = resolve);
         }
-
+        currentFilter: string | null | undefined;
         originalFilter = null;
         originalTransitionDuration: string | null | undefined;
         originalBackgroundColor: string | null | undefined;
