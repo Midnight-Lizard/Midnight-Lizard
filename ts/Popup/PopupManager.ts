@@ -4,6 +4,7 @@
 /// <reference path="../ContentScript/-ContentScript.ts" />
 /// <reference path="../Controls/-Controls.ts" />
 /// <reference path="../Events/-Events.ts" />
+/// <reference path="ICommandManager.ts" />
 
 namespace MidnightLizard.Popup
 {
@@ -26,6 +27,7 @@ namespace MidnightLizard.Popup
         constructor(
             protected readonly _popup: Document,
             protected readonly _settingsManager: MidnightLizard.Popup.IPopupSettingsManager,
+            protected readonly _commandManager: MidnightLizard.Popup.ICommandManager,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _documentProcessor: MidnightLizard.ContentScript.IDocumentProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor)
@@ -59,6 +61,17 @@ namespace MidnightLizard.Popup
             this._isEnabledToggle = doc.getElementById("isEnabled") as HTMLInputElement;
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
+
+            this._commandManager.getCommands()
+                .then(commands =>
+                {
+                    let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
+                    if (globalToggleCommand && globalToggleCommand.shortcut)
+                    {
+                        (doc.getElementById("isEnabledSwitch") as HTMLLabelElement).title += `\n${globalToggleCommand.shortcut}`;
+                    }
+                })
+                .catch(ex => alert("Commands acquiring failed.\n" + (ex.message || ex)));
 
             PopupManager.ignoreSelect(this._colorSchemeSelect);
             this._colorSchemeSelect.mlIgnore = false;
