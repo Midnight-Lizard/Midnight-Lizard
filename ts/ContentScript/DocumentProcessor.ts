@@ -258,29 +258,29 @@ namespace MidnightLizard.ContentScript
                     if (filteredTags.length < 10 || full)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag));
+                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
                         DocumentProcessor.processAllElements(filteredTags, null, this, smallReCalculationDelays);
                     }
                     else if (filteredTags.length < 100)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
+                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this.applyLoadingShadow(rootElem);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
                         DocumentProcessor.processAllElements(filteredTags, rootElem, this, bigReCalculationDelays);
                     }
                     else
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        this.restoreElementColors(rootElem);
+                        this.restoreElementColors(rootElem, true);
                         DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
                     }
                 }
                 else
                 {
                     this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                    this.restoreElementColors(rootElem);
+                    this.restoreElementColors(rootElem, true);
                     DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
                 }
             }
@@ -738,11 +738,12 @@ namespace MidnightLizard.ContentScript
                 let filter = [
                     this.shift.Background.lightnessLimit < 1 ? "brightness(" + this.shift.Background.lightnessLimit + ")" : "",
                     tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
-                ].join(" ");
+                ].filter(f => f).join(" ").trim();
                 if (!tag.originalFilter)
                 {
                     tag.originalFilter = tag.style.filter;
                 }
+                tag.currentFilter = filter;
                 tag.style.setProperty(this._css.filter, filter);
             }
             return tag;
@@ -754,7 +755,7 @@ namespace MidnightLizard.ContentScript
             tag.setAttribute(docProc._css.transition, docProc._css.filter);
             tag.style.filter = tag.originalFilter!;
             tag.originalFilter = undefined;
-            setTimeout(() => tag.removeAttribute(docProc._css.transition), 1);
+            setTimeout(() => tag.removeAttribute(docProc._css.transition), 200);
             docProc._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
         }
 
@@ -769,7 +770,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected restoreElementColors(tag: HTMLElement)
+        protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean)
         {
             if (tag.mlBgColor)
             {
@@ -835,7 +836,7 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.filter = tag.originalFilter;
                 }
-                if (tag.originalTransitionDuration !== undefined)
+                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration)
                 {
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
