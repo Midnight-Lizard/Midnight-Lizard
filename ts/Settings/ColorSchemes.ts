@@ -128,6 +128,45 @@ namespace MidnightLizard.Settings
             scrollbarGrayHue: 174
         }
 
+        static appleMint: ColorScheme =
+        {
+            runOnThisSite: true,
+            restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
+            backgroundSaturationLimit: 80,
+            backgroundContrast: 50,
+            backgroundLightnessLimit: 15,
+            backgroundGraySaturation: 80,
+            backgroundGrayHue: 174,
+
+            textSaturationLimit: 80,
+            textContrast: 60,
+            textLightnessLimit: 90,
+            textGraySaturation: 20,
+            textGrayHue: 88,
+
+            borderSaturationLimit: 80,
+            borderContrast: 30,
+            borderLightnessLimit: 50,
+            borderGraySaturation: 10,
+            borderGrayHue: 122,
+
+            imageLightnessLimit: 80,
+            imageSaturationLimit: 100,
+
+            backgroundImageLightnessLimit: 40,
+            backgroundImageSaturationLimit: 100,
+
+            scrollbarSaturationLimit: 12,
+            scrollbarContrast: 5,
+            scrollbarLightnessLimit: 50,
+            scrollbarGrayHue: 122
+        }
+
         static kappaDream: ColorScheme =
         {
             runOnThisSite: true,

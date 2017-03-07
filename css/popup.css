@@ -175,6 +175,7 @@ html, body {
     color: white;
     border: solid 1px rgb(140, 140, 140);
     border-radius: 50%;
+    text-decoration: none;
 }
 
 #isEnabledSwitch {
