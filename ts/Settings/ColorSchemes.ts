@@ -16,6 +16,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: false,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 100,
             backgroundContrast: 0,
             backgroundLightnessLimit: 100,
@@ -50,6 +54,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: false,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 100,
             backgroundContrast: 0,
@@ -86,6 +94,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,
             backgroundLightnessLimit: 20,
@@ -120,6 +132,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,
@@ -156,6 +172,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,
             backgroundLightnessLimit: 20,
@@ -190,6 +210,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 100,
             backgroundContrast: 50,
@@ -226,6 +250,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 30,
             backgroundContrast: 50,
             backgroundLightnessLimit: 93,
@@ -260,6 +288,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 100,
             backgroundContrast: 50,
@@ -296,6 +328,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 10,
             backgroundContrast: 50,
             backgroundLightnessLimit: 100,
@@ -330,6 +366,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,
@@ -366,6 +406,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 10,
             backgroundContrast: 50,
             backgroundLightnessLimit: 10,
@@ -401,6 +445,10 @@ namespace MidnightLizard.Settings
             runOnThisSite: true,
             restoreColorsOnCopy: false,
 
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
+
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,
             backgroundLightnessLimit: 10,
@@ -435,6 +483,10 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+
+            useDefaultSchedule: true,
+            scheduleStartHour: 0,
+            scheduleFinishHour: 24,
 
             backgroundSaturationLimit: 80,
             backgroundContrast: 50,

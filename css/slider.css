@@ -206,25 +206,25 @@ input[type=range].ml-input-range::-webkit-slider-thumb
   border-radius: 50% 50% 0;
   background-color: currentColor;
   background-image:
-    linear-gradient(45deg, 
+    linear-gradient(-45deg, 
       currentColor 30%, 
       rgba(0,0,0,0) 35%, 
       rgba(0,0,0,0) 65%,
       currentColor 70%
     ), 
-    linear-gradient(-45deg,
-      rgba(  0,  0,  0, 0  ) 20%,
-      var(--pseudo-background-color) 20%,
+    linear-gradient(45deg,
+      rgba(  0,  0,  0, 0  ) 25%,
+      var(--pseudo-background-color) 25%,
       var(--pseudo-background-color) 30%,
       rgba(  0,  0,  0, 0  ) 30%,
       rgba(  0,  0,  0, 0  ) 45%,
       var(--pseudo-background-color) 45%,
-      var(--pseudo-background-color) 50%,
-      rgba(  0,  0,  0, 0  ) 50%,
-      rgba(  0,  0,  0, 0  ) 65%,
-      var(--pseudo-background-color) 65%,
+      var(--pseudo-background-color) 55%,
+      rgba(  0,  0,  0, 0  ) 55%,
+      rgba(  0,  0,  0, 0  ) 70%,
       var(--pseudo-background-color) 70%,
-      rgba(  0,  0,  0, 0  ) 70%
+      var(--pseudo-background-color) 75%,
+      rgba(  0,  0,  0, 0  ) 75%
     );
   background-size: 12px 12px, 10px 10px;
   background-position: 2px 2px, 3px 3px;

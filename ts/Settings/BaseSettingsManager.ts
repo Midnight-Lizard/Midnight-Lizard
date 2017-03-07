@@ -33,6 +33,16 @@ namespace MidnightLizard.Settings
      */
     export abstract class BaseSettingsManager implements IBaseSettingsManager
     {
+        protected _scheduleStartHour = 0;
+        protected _scheduleFinishHour = 24;
+        protected get isScheduled(): boolean
+        {
+            let curHour = new Date().getHours();
+            return this._scheduleStartHour <= this._scheduleFinishHour
+                ? this._scheduleStartHour <= curHour && curHour < this._scheduleFinishHour
+                : this._scheduleStartHour <= curHour || curHour < this._scheduleFinishHour;
+        }
+
         /** Current settings for communication */
         protected _currentSettings: ColorScheme;
         /** Current settings for communication */
@@ -44,7 +54,7 @@ namespace MidnightLizard.Settings
         public get shift() { return this._shift }
 
         /** MidnightLizard should be running on this page */
-        public get isActive() { return this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite }
+        public get isActive() { return this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
 
         /** SettingsManager constructor
          * @param _cookiesManager - abstract cookies manager
@@ -157,6 +167,20 @@ namespace MidnightLizard.Settings
                         grayHue: 0
                     }
                 };
+        }
+
+        protected updateSchedule(defaultSettings: ColorScheme)
+        {
+            if (this._currentSettings.useDefaultSchedule && defaultSettings.settingsVersion !== undefined)
+            {
+                this._scheduleStartHour = defaultSettings.scheduleStartHour !== undefined ? defaultSettings.scheduleStartHour : 0;
+                this._scheduleFinishHour = defaultSettings.scheduleFinishHour !== undefined ? defaultSettings.scheduleFinishHour : 24;
+            }
+            else
+            {
+                this._scheduleStartHour = this._currentSettings.scheduleStartHour;
+                this._scheduleFinishHour = this._currentSettings.scheduleFinishHour;
+            }
         }
 
         protected _onSettingsInitialized = new ArgEventDispatcher<Colors.ComponentShift>();

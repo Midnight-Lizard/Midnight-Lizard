@@ -35,6 +35,7 @@ namespace MidnightLizard.Popup
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
+        protected _defaultSettings: Settings.ColorScheme;
 
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
@@ -46,20 +47,25 @@ namespace MidnightLizard.Popup
 
         protected initCurrentSettings()
         {
-            this._settingsBus.getCurrentSettings()
-                .then((currentSettings: Settings.ColorScheme) =>
-                {
-                    this._currentSettings = currentSettings;
-                    this.initCurSet();
-                    this._onSettingsInitialized.raise(this._shift);
-                })
-                .catch(ex =>
-                {
-                    this._app.isDebug && console.error(ex);
-                    // setTimeout(() => 
-                    this._onSettingsInitializationFailed.raise(ex);
-                    //, 1);
-                });
+            this.getDefaultSettings().then(defaultSettings =>
+            {
+                this._defaultSettings = defaultSettings;
+                this._settingsBus.getCurrentSettings()
+                    .then((currentSettings: Settings.ColorScheme) =>
+                    {
+                        this._currentSettings = currentSettings;
+                        this.updateSchedule(this._defaultSettings);
+                        this.initCurSet();
+                        this._onSettingsInitialized.raise(this._shift);
+                    })
+                    .catch(ex =>
+                    {
+                        this._app.isDebug && console.error(ex);
+                        // setTimeout(() => 
+                        this._onSettingsInitializationFailed.raise(ex);
+                        //, 1);
+                    });
+            });
         }
 
         public getDefaultSettings()
@@ -86,6 +92,7 @@ namespace MidnightLizard.Popup
 
         public setAsDefaultSettings()
         {
+            this._defaultSettings = this._currentSettings;
             return this._storageManager.set(this._currentSettings);
         }
 
@@ -107,6 +114,7 @@ namespace MidnightLizard.Popup
         public changeSettings(newSettings: Settings.ColorScheme)
         {
             this._currentSettings = newSettings;
+            this.updateSchedule(this._defaultSettings);
             this.initCurSet();
             this._onSettingsChanged.raise(x => { }, this._shift);
         }

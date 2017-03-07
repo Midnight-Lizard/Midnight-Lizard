@@ -69,6 +69,7 @@ namespace MidnightLizard.ContentScript
                         this._currentSettings.settingsVersion = Util.guid("");
                         this._storageManager.set(this._currentSettings);
                     }
+                    this.updateSchedule(defaultSettings);
                     this.initCurSet();
                     this._currentSettings.hostName = this._rootDocument.location.hostname;
                     this._onSettingsInitialized.raise(this._shift);

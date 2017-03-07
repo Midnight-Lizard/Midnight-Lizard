@@ -21,6 +21,7 @@ namespace MidnightLizard.Popup
         protected _setAsDefaultButton: HTMLButtonElement;
         protected _hostName: HTMLAnchorElement;
         protected _isEnabledToggle: HTMLInputElement;
+        protected _useDefaultScheduleCheckBox: HTMLInputElement;
         protected _forgetAllSitesButton: HTMLButtonElement;
         protected _forgetThisSiteButton: HTMLButtonElement;
 
@@ -61,6 +62,7 @@ namespace MidnightLizard.Popup
             this._isEnabledToggle = doc.getElementById("isEnabled") as HTMLInputElement;
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
+            this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
 
             this._commandManager.getCommands()
                 .then(commands =>
@@ -68,7 +70,7 @@ namespace MidnightLizard.Popup
                     let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {
-                        (doc.getElementById("isEnabledSwitch") as HTMLLabelElement).title += `\n${globalToggleCommand.shortcut}`;
+                        (doc.getElementById("isEnabledSwitch") as HTMLLabelElement).title += `\nShortcut: ${globalToggleCommand.shortcut}`;
                     }
                 })
                 .catch(ex => alert("Commands acquiring failed.\n" + (ex.message || ex)));
@@ -85,6 +87,7 @@ namespace MidnightLizard.Popup
             this._hostName.onclick = this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
             this._applyButton.onclick = this.applySettingsOnPage.bind(this);
             this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
+            this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
             this._forgetAllSitesButton.onclick = this.forgetAllSitesSettings.bind(this);
             this._forgetThisSiteButton.onclick = this.forgetCurrentSiteSettings.bind(this);
             this._setAsDefaultButton.onclick = this.setAsDefaultSettings.bind(this);
@@ -97,6 +100,7 @@ namespace MidnightLizard.Popup
             this.setUpInputFields(this._currentSiteSettings);
             this.setUpColorSchemeSelectValue(this._currentSiteSettings);
             this.updateButtonStates();
+            this.toggleSchedule();
         }
 
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
@@ -158,6 +162,20 @@ namespace MidnightLizard.Popup
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
                 .catch(ex => alert("Extension toggle switching failed.\n" + (ex.message || ex)));
+        }
+
+        protected toggleSchedule()
+        {
+            if (this._useDefaultScheduleCheckBox.checked)
+            {
+                this._popup.getElementById("scheduleStartHourContainer")!.classList.add("disabled");
+                this._popup.getElementById("scheduleFinishHourContainer")!.classList.add("disabled");
+            }
+            else
+            {
+                this._popup.getElementById("scheduleStartHourContainer")!.classList.remove("disabled");
+                this._popup.getElementById("scheduleFinishHourContainer")!.classList.remove("disabled");
+            }
         }
 
         protected forgetAllSitesSettings()
