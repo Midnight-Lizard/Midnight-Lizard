@@ -48,6 +48,7 @@ namespace MidnightLizard.ContentScript
             this._storageManager.get<Settings.ColorScheme>(null)
                 .then(defaultSettings =>
                 {
+                    this._defaultSettings = defaultSettings;
                     this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
                     if (defaultSettings.settingsVersion !== undefined)
                     {
@@ -69,7 +70,7 @@ namespace MidnightLizard.ContentScript
                         this._currentSettings.settingsVersion = Util.guid("");
                         this._storageManager.set(this._currentSettings);
                     }
-                    this.updateSchedule(defaultSettings);
+                    this.updateSchedule();
                     this.initCurSet();
                     this._currentSettings.hostName = this._rootDocument.location.hostname;
                     this._onSettingsInitialized.raise(this._shift);
@@ -93,6 +94,7 @@ namespace MidnightLizard.ContentScript
         protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings: Settings.ColorScheme): void
         {
             this._currentSettings = newSettings;
+            this.updateSchedule();
             this.saveCurrentSettings();
             this.initCurSet();
             this._onSettingsChanged.raise(response, this._shift);

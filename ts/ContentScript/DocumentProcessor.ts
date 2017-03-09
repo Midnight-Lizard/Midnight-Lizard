@@ -897,9 +897,7 @@ namespace MidnightLizard.ContentScript
 
                 this.calcElementPath(tag);
                 tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
-                room = [
-                    tag.path, tag.selectors, tag.style.cssText,
-                    !(tag instanceof PseudoElement) ? Array.from(tag.attributes).map(x => `${x.name}=${x.value}`).join(";") : ""].join("\n");
+                room = tag.path + tag.selectors;
                 roomRules = this._dorm.get(doc)!.get(room);
 
                 if (!roomRules)

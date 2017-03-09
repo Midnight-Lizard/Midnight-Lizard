@@ -110,7 +110,7 @@ html, body {
     font-weight: bold;
 }
 
-.ml-dialog-label.hour:after
+.ml-dialog-label.time:after
 {
     content: ": " var(--input-string) ":00";
     font-weight: bold;

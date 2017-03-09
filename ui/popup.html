@@ -112,7 +112,7 @@
 			<div id="common" class="ml-tab-content"><br>
 				<div class="ml-input-container">
 					<label class="ml-dialog-label" title="Run [Midnight Lizard] on this website" for="runOnThisSite">
-						<input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this site
+						<input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
 					</label>
 				</div>
 				<div class="ml-input-container">
@@ -123,12 +123,12 @@
 				<div class="ml-input-container">
 					<label class="ml-dialog-label" title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
 					 for="useDefaultSchedule">
-						<input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use schedule from default settings
+						<input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
 					</label>
 				</div><br>
-				<div id="scheduleStartHourContainer" class="ml-input-container">
-					<label class="ml-dialog-label hour" for="scheduleStartHour" title="Extension will be active on the current website only starting from this hour&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Activation hour</label>
-					<input class="ml-input-range setting" id="scheduleStartHour" type="range" min="0" max="24" step="1" list="from-0-to-100-percent">
+				<div id="scheduleStartHourContainer" class="ml-input-container time">
+					<label class="ml-dialog-label time" for="scheduleStartHour" title="Extension will be active on the current website only starting from this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Activation time</label>
+					<input class="ml-input-range setting time reverse" id="scheduleStartHour" type="range" min="0" max="24" step="1" list="time">
 					<svg for="scheduleStartHour" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
@@ -140,9 +140,9 @@
 						/>
 					</svg>
 				</div>
-				<div id="scheduleFinishHourContainer" class="ml-input-container">
-					<label class="ml-dialog-label hour" for="scheduleFinishHour" title="Extension will be active on the current website only until this hour&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Deactivation hour</label>
-					<input class="ml-input-range setting" id="scheduleFinishHour" type="range" min="0" max="24" step="1" list="from-0-to-100-percent">
+				<div id="scheduleFinishHourContainer" class="ml-input-container time">
+					<label class="ml-dialog-label time" for="scheduleFinishHour" title="Extension will be active on the current website only until this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Deactivation time</label>
+					<input class="ml-input-range setting time direct" id="scheduleFinishHour" type="range" min="0" max="24" step="1" list="time">
 					<svg for="scheduleFinishHour" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
@@ -157,9 +157,9 @@
 				<input type="hidden" class="setting" id="settingsVersion">
 			</div>
 			<div id="background" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundSaturationLimit" title="Background saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting" id="backgroundSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -172,9 +172,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundContrast" title="Minimal difference between similar backgrounds">Contrast</label>
-					<input class="ml-input-range setting" id="backgroundContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -189,9 +189,9 @@
 						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundLightnessLimit" title="Background brightness limit">Brightness limit</label>
-					<input class="ml-input-range setting" id="backgroundLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -203,9 +203,9 @@
 						/>
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundGraySaturation" title="Saturation of the gray backgrounds">Gray background saturation</label>
-					<input class="ml-input-range setting" id="backgroundGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
@@ -245,9 +245,9 @@
 
 			</div>
 			<div id="text" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="textSaturationLimit" title="Text saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting" id="textSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="textSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="textSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -260,9 +260,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="textContrast" title="Minimal difference between text and background brightness">Contrast</label>
-					<input class="ml-input-range setting" id="textContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="textContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="textContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -278,9 +278,9 @@
 						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="textLightnessLimit" title="Limit of maximum text brightness">Brightness limit</label>
-					<input class="ml-input-range setting" id="textLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="textLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="textLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -292,9 +292,9 @@
 						/>
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="textGraySaturation" title="Saturation of the gray text">Gray text saturation</label>
-					<input class="ml-input-range setting" id="textGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="textGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="textGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
@@ -333,9 +333,9 @@
 				</div>
 			</div>
 			<div id="borders" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="borderSaturationLimit" title="Border saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting" id="borderSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="borderSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="borderSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -348,9 +348,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="borderContrast" title="Minimal difference between border and background brightness">Contrast</label>
-					<input class="ml-input-range setting" id="borderContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="borderContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="borderContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -365,9 +365,9 @@
 						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="borderLightnessLimit" title="Limit of maximum border brightness">Brightness limit</label>
-					<input class="ml-input-range setting" id="borderLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="borderLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="borderLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -379,9 +379,9 @@
 						/>
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="borderGraySaturation" title="Saturation of the gray borders">Gray borders saturation</label>
-					<input class="ml-input-range setting" id="borderGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="borderGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="borderGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
@@ -420,9 +420,9 @@
 				</div>
 			</div>
 			<div id="images" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="imageSaturationLimit" title="Set saturation of images to this value">Saturation</label>
-					<input class="ml-input-range setting" id="imageSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="imageSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="imageSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -435,9 +435,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="imageLightnessLimit" title="Limit of image brightness">Brightness</label>
-					<input class="ml-input-range setting" id="imageLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="imageLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="imageLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -451,9 +451,9 @@
 				</div>
 			</div>
 			<div id="fond-images" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundImageSaturationLimit" title="Saturation of background images">Saturation</label>
-					<input class="ml-input-range setting" id="backgroundImageSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundImageSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundImageSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -466,9 +466,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="backgroundImageLightnessLimit" title="Limit of background image lightness">Brightness</label>
-					<input class="ml-input-range setting" id="backgroundImageLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="backgroundImageLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="backgroundImageLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -482,9 +482,9 @@
 				</div>
 			</div>
 			<div id="scrollbars" class="ml-tab-content"><br>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="scrollbarSaturationLimit" title="Scrollbar thumb saturation">Saturation</label>
-					<input class="ml-input-range setting" id="scrollbarSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="scrollbarSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="scrollbarSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
@@ -497,9 +497,9 @@
 						<ellipse rx="3" ry="3" cy="12" cx="12" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="scrollbarContrast" title="Minimal difference between scrollbar thumb and background brightness">Contrast</label>
-					<input class="ml-input-range setting" id="scrollbarContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="scrollbarContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="scrollbarContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -514,9 +514,9 @@
 						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
 					</svg>
 				</div>
-				<div class="ml-input-container">
+				<div class="ml-input-container percent">
 					<label class="ml-dialog-label" for="scrollbarLightnessLimit" title="Scrollbar thumb brightness">Brightness</label>
-					<input class="ml-input-range setting" id="scrollbarLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+					<input class="ml-input-range setting percent" id="scrollbarLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
 					<svg for="scrollbarLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
@@ -701,6 +701,18 @@
 		<option>80</option>
 		<option>90</option>
 		<option>100</option>
+	</datalist>
+
+	<datalist id="time">
+		<option>0</option>
+		<option>3</option>
+		<option>6</option>
+		<option>9</option>
+		<option>12</option>
+		<option>15</option>
+		<option>18</option>
+		<option>21</option>
+		<option>24</option>
 	</datalist>
 </body>
 

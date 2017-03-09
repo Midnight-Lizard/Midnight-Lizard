@@ -43,6 +43,7 @@ namespace MidnightLizard.Settings
                 : this._scheduleStartHour <= curHour || curHour < this._scheduleFinishHour;
         }
 
+        protected _defaultSettings: Settings.ColorScheme;
         /** Current settings for communication */
         protected _currentSettings: ColorScheme;
         /** Current settings for communication */
@@ -169,12 +170,12 @@ namespace MidnightLizard.Settings
                 };
         }
 
-        protected updateSchedule(defaultSettings: ColorScheme)
+        protected updateSchedule()
         {
-            if (this._currentSettings.useDefaultSchedule && defaultSettings.settingsVersion !== undefined)
+            if (this._currentSettings.useDefaultSchedule && this._defaultSettings.settingsVersion !== undefined)
             {
-                this._scheduleStartHour = defaultSettings.scheduleStartHour !== undefined ? defaultSettings.scheduleStartHour : 0;
-                this._scheduleFinishHour = defaultSettings.scheduleFinishHour !== undefined ? defaultSettings.scheduleFinishHour : 24;
+                this._scheduleStartHour = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
+                this._scheduleFinishHour = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
             }
             else
             {

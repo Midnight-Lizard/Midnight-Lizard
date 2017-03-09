@@ -35,8 +35,6 @@ namespace MidnightLizard.Popup
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
-        protected _defaultSettings: Settings.ColorScheme;
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
@@ -54,7 +52,7 @@ namespace MidnightLizard.Popup
                     .then((currentSettings: Settings.ColorScheme) =>
                     {
                         this._currentSettings = currentSettings;
-                        this.updateSchedule(this._defaultSettings);
+                        this.updateSchedule();
                         this.initCurSet();
                         this._onSettingsInitialized.raise(this._shift);
                     })
@@ -114,7 +112,7 @@ namespace MidnightLizard.Popup
         public changeSettings(newSettings: Settings.ColorScheme)
         {
             this._currentSettings = newSettings;
-            this.updateSchedule(this._defaultSettings);
+            this.updateSchedule();
             this.initCurSet();
             this._onSettingsChanged.raise(x => { }, this._shift);
         }
