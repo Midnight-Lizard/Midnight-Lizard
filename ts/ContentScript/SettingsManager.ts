@@ -72,7 +72,6 @@ namespace MidnightLizard.ContentScript
                     }
                     this.updateSchedule();
                     this.initCurSet();
-                    this._currentSettings.hostName = this._rootDocument.location.hostname;
                     this._onSettingsInitialized.raise(this._shift);
                 })
                 .catch(ex => this._app.isDebug && console.error(ex));
@@ -108,6 +107,7 @@ namespace MidnightLizard.ContentScript
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
         {
+            this._currentSettings.hostName = this._rootDocument.location.hostname;
             response(this._currentSettings);
         }
 
