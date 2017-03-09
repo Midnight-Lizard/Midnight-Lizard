@@ -24,6 +24,7 @@ namespace MidnightLizard.Colors
     {
         protected readonly _lights = new Map<number, number>();
         protected readonly _lightAreas = new Map<number, number>();
+        protected readonly _lightCounts = new Map<number, number>();
 
         /** BackgroundColorProcessor constructor */
         constructor(
@@ -70,13 +71,18 @@ namespace MidnightLizard.Colors
 
         protected tryUpdateLightArea(tag: Element, lightness: number)
         {
-            let area = this.tryGetTagArea(tag);
-            if (area !== undefined)
+            let lightCount = this._lightCounts.get(lightness) || 0;
+            this._lightCounts.set(lightness, ++lightCount);
+            if (lightCount < 10)
             {
-                let oldArea = this._lightAreas.get(lightness);
-                if (oldArea && oldArea < area || !oldArea)
+                let area = this.tryGetTagArea(tag);
+                if (area !== undefined)
                 {
-                    this._lightAreas.set(lightness, area);
+                    let oldArea = this._lightAreas.get(lightness);
+                    if (oldArea && oldArea < area || !oldArea)
+                    {
+                        this._lightAreas.set(lightness, area);
+                    }
                 }
             }
         }
@@ -141,6 +147,7 @@ namespace MidnightLizard.Colors
                     }
                     this._lights.set(hsla.lightness, light);
                     this._lightAreas.set(hsla.lightness, thisTagArea);
+                    this._lightCounts.set(hsla.lightness, 1);
                 }
             }
             hsla.lightness = this.scaleValue(light, shift.lightnessLimit);

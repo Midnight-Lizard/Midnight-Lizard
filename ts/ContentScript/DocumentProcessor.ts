@@ -925,7 +925,23 @@ namespace MidnightLizard.ContentScript
                             roomRules.attributes.set("after-style", roomId);
                         }
                     }
-                    this.processTransitions(tag, roomRules);
+                    if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css.zeroSec)
+                    {
+                        let hasForbiddenTransition = false;
+                        let durations = tag.computedStyle.transitionDuration!.split(", ");
+                        tag.computedStyle.transitionProperty!.split(", ").forEach((prop, index) =>
+                        {
+                            if (this._transitionForbiddenProperties.has(prop))
+                            {
+                                durations[index] = this._css.zeroSec;
+                                hasForbiddenTransition = true;
+                            }
+                        });
+                        if (hasForbiddenTransition)
+                        {
+                            roomRules.transitionDuration = { value: durations.join(", ") };
+                        }
+                    }
                     if (!isSvgText)
                     {
                         if (isSvg)
@@ -1186,27 +1202,6 @@ namespace MidnightLizard.ContentScript
                 room && this._dorm.get(doc)!.set(room, roomRules);
 
                 return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
-            }
-        }
-
-        protected processTransitions(tag: HTMLElement | PseudoElement, roomRules: RoomRules)
-        {
-            if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css.zeroSec)
-            {
-                let hasForbiddenTransition = false;
-                let durations = tag.computedStyle.transitionDuration!.split(", ");
-                tag.computedStyle.transitionProperty!.split(", ").forEach((prop, index) =>
-                {
-                    if (this._transitionForbiddenProperties.has(prop))
-                    {
-                        durations[index] = this._css.zeroSec;
-                        hasForbiddenTransition = true;
-                    }
-                });
-                if (hasForbiddenTransition)
-                {
-                    roomRules.transitionDuration = { value: durations.join(", ") };
-                }
             }
         }
 
