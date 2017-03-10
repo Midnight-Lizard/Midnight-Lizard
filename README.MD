@@ -17,7 +17,8 @@
   ✔ Reduces eye strain and disruption of sleep patterns
   ✔ Essential at night time or in low light environment
   ✔ Also useful during the daytime with light and contrast themes
+  ✔ Has options to schedule extension activation and deactivation
   ✔ Completely customizable
   ✔ Works almost everywhere
-  ✔ Easy to enable/disable by using a global toggle
+  ✔ Easy to enable/disable by using a global toggle and a keyboard shortcut
   ✔ Free forever
