@@ -61,6 +61,7 @@ namespace MidnightLizard.ContentScript
                         }
                         else
                         {
+                            defaultSettings.isDefault = true;
                             Object.assign(this._currentSettings, defaultSettings);
                         }
                     }
