@@ -107,6 +107,7 @@ namespace MidnightLizard.Popup
         {
             this._popup.documentElement.style.cssText = "";
             this.updateButtonStates();
+            this.toggleSchedule();
         }
 
         protected onInputFieldChanged()
