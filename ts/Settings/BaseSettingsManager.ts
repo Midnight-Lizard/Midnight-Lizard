@@ -179,8 +179,8 @@ namespace MidnightLizard.Settings
             }
             else
             {
-                this._scheduleStartHour = this._currentSettings.scheduleStartHour;
-                this._scheduleFinishHour = this._currentSettings.scheduleFinishHour;
+                this._scheduleStartHour = this._currentSettings.scheduleStartHour !== undefined ? this._currentSettings.scheduleStartHour : 0;
+                this._scheduleFinishHour = this._currentSettings.scheduleFinishHour !== undefined ? this._currentSettings.scheduleFinishHour : 24;
             }
         }
 

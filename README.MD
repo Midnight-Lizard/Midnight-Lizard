@@ -20,5 +20,5 @@
   ✔ Has options to schedule extension activation and deactivation
   ✔ Completely customizable
   ✔ Works almost everywhere
-  ✔ Easy to enable/disable by using a global toggle and a keyboard shortcut
+  ✔ Easy to enable/disable by a global toggle and a keyboard shortcut
   ✔ Free forever

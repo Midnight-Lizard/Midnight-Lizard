@@ -90,8 +90,8 @@ namespace MidnightLizard.Popup
 
         public setAsDefaultSettings()
         {
-            this._defaultSettings = this._currentSettings;
-            return this._storageManager.set(this._currentSettings);
+            this._defaultSettings = Object.assign({ isDefault: true }, this._currentSettings);
+            return this._storageManager.set(this._defaultSettings);
         }
 
         public deleteAllSettings()
