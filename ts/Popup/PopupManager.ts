@@ -4,6 +4,7 @@
 /// <reference path="../ContentScript/-ContentScript.ts" />
 /// <reference path="../Controls/-Controls.ts" />
 /// <reference path="../Events/-Events.ts" />
+/// <reference path="ICommandManager.ts" />
 
 namespace MidnightLizard.Popup
 {
@@ -20,12 +21,14 @@ namespace MidnightLizard.Popup
         protected _setAsDefaultButton: HTMLButtonElement;
         protected _hostName: HTMLAnchorElement;
         protected _isEnabledToggle: HTMLInputElement;
+        protected _useDefaultScheduleCheckBox: HTMLInputElement;
         protected _forgetAllSitesButton: HTMLButtonElement;
         protected _forgetThisSiteButton: HTMLButtonElement;
 
         constructor(
             protected readonly _popup: Document,
             protected readonly _settingsManager: MidnightLizard.Popup.IPopupSettingsManager,
+            protected readonly _commandManager: MidnightLizard.Popup.ICommandManager,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _documentProcessor: MidnightLizard.ContentScript.IDocumentProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor)
@@ -59,6 +62,18 @@ namespace MidnightLizard.Popup
             this._isEnabledToggle = doc.getElementById("isEnabled") as HTMLInputElement;
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
+            this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
+
+            this._commandManager.getCommands()
+                .then(commands =>
+                {
+                    let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
+                    if (globalToggleCommand && globalToggleCommand.shortcut)
+                    {
+                        (doc.getElementById("isEnabledSwitch") as HTMLLabelElement).title += `\nShortcut: ${globalToggleCommand.shortcut}`;
+                    }
+                })
+                .catch(ex => alert("Commands acquiring failed.\n" + (ex.message || ex)));
 
             PopupManager.ignoreSelect(this._colorSchemeSelect);
             this._colorSchemeSelect.mlIgnore = false;
@@ -72,6 +87,7 @@ namespace MidnightLizard.Popup
             this._hostName.onclick = this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
             this._applyButton.onclick = this.applySettingsOnPage.bind(this);
             this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
+            this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
             this._forgetAllSitesButton.onclick = this.forgetAllSitesSettings.bind(this);
             this._forgetThisSiteButton.onclick = this.forgetCurrentSiteSettings.bind(this);
             this._setAsDefaultButton.onclick = this.setAsDefaultSettings.bind(this);
@@ -84,12 +100,14 @@ namespace MidnightLizard.Popup
             this.setUpInputFields(this._currentSiteSettings);
             this.setUpColorSchemeSelectValue(this._currentSiteSettings);
             this.updateButtonStates();
+            this.toggleSchedule();
         }
 
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
         {
             this._popup.documentElement.style.cssText = "";
             this.updateButtonStates();
+            this.toggleSchedule();
         }
 
         protected onInputFieldChanged()
@@ -145,6 +163,20 @@ namespace MidnightLizard.Popup
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
                 .catch(ex => alert("Extension toggle switching failed.\n" + (ex.message || ex)));
+        }
+
+        protected toggleSchedule()
+        {
+            if (this._useDefaultScheduleCheckBox.checked)
+            {
+                this._popup.getElementById("scheduleStartHourContainer")!.classList.add("disabled");
+                this._popup.getElementById("scheduleFinishHourContainer")!.classList.add("disabled");
+            }
+            else
+            {
+                this._popup.getElementById("scheduleStartHourContainer")!.classList.remove("disabled");
+                this._popup.getElementById("scheduleFinishHourContainer")!.classList.remove("disabled");
+            }
         }
 
         protected forgetAllSitesSettings()

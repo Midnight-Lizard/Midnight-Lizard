@@ -96,10 +96,6 @@ html, body {
     margin: 8px calc((100% - 267px)/2) 18px calc((100% - 267px)/2);
 }
 
-.ml-dialog-input[type='checkbox'] {
-    /* vertical-align: sub; */
-}
-
 .ml-dialog-input[type='checkbox'] + .ml-dialog-label {
     margin: 5px;
 }
@@ -114,11 +110,32 @@ html, body {
     font-weight: bold;
 }
 
+.ml-dialog-label.time:after
+{
+    content: ": " var(--input-string) ":00";
+    font-weight: bold;
+}
+
 .ml-input-container
 {
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+
+.disabled
+{
+    filter: opacity(50%) grayscale(70%);
+}
+
+.disabled:after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .ml-dialog-input-text {
@@ -158,6 +175,7 @@ html, body {
     color: white;
     border: solid 1px rgb(140, 140, 140);
     border-radius: 50%;
+    text-decoration: none;
 }
 
 #isEnabledSwitch {
@@ -252,10 +270,6 @@ html, body {
 .ml-fotter-icon-container.right
 {
     padding-right: 16px;
-}
-
-.ml-fotter-icon
-{
 }
 
 .ml-fotter-separator

@@ -8,5 +8,3 @@ namespace MidnightLizard.ContentScript
     DI.Container.resolve(ISettingsManager);
     DI.Container.resolve(IDocumentProcessor);
 }
-
-

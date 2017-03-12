@@ -9,53 +9,119 @@ input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-
   --input-percent: 50%;
   --input-relative-value: 50;
   --input-relative-percent: 50%;
+
+  --range-track-shift: 7px;
+  --range-border: 1px;
 }
 
-input[type=range].ml-input-range {
-  width: 267PX;
-  cursor: text;
-  background-color: var(--main-background-color);
-  color: var(--main-color);
-  border: solid 1px var(--main-border-color);
-  border-radius: 4px;
-  height: 10px;
-  margin: 8px calc((100% - 267px)/2) 18px calc((100% - 267px)/2);
-}
-
-.ml-input-range-icon
+.direct
 {
-  fill: var(--main-color);
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  top: 18px;
-  user-select: none;
-  cursor: pointer;
+  --range-track-left-color: var(--pseudo-text-shadow-color);
+  --range-track-right-color: var(--pseudo-background-color);
 }
 
-.ml-input-range-icon.low
+.reverse
 {
-  left: calc(((100% - 267px)/2 - 15px)/2);
+  --range-track-left-color: var(--pseudo-background-color);
+  --range-track-right-color: var(--pseudo-text-shadow-color);
 }
 
-.ml-input-range-icon.high
+.time
 {
-  right: calc(((100% - 267px)/2 - 16px)/2);
+  --range-segment-width: 60px;
+  --range-track-width: 241px;
+  --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
+  --range-track-background:
+    linear-gradient(180deg,
+      var(--range-track-right-color) 10%,
+      rgba(255,255,255,0) 30%,
+      rgba(255,255,255,0) 70%,
+      var(--range-track-right-color) 90%
+    ), 
+    linear-gradient(180deg,
+      var(--range-track-left-color) 10%,
+      rgba(255,255,255,0) 30%,
+      rgba(255,255,255,0) 70%,
+      var(--range-track-left-color) 90%
+    ), 
+    linear-gradient(90deg, 
+      currentColor 0, 
+      currentColor 2%, 
+      rgba(255,255,255,0) 2%
+    ), 
+    linear-gradient(180deg,
+      var(--range-track-right-color) 20%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      var(--range-track-right-color) 80%
+    ), 
+    linear-gradient(180deg,
+      var(--range-track-left-color) 20%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      var(--range-track-left-color) 80%
+    ), 
+    linear-gradient(90deg, 
+      rgba(255,255,255,0) 50%, 
+      currentColor 50%, 
+      currentColor 52%, 
+      rgba(255,255,255,0) 52%
+    ), 
+    linear-gradient(180deg, 
+      var(--range-track-right-color) 30%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      var(--range-track-right-color) 70% 
+    ), 
+    linear-gradient(180deg, 
+      var(--range-track-left-color) 30%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      var(--range-track-left-color) 70% 
+    ), 
+    linear-gradient(90deg, 
+      var(--pseudo-text-shadow-color) 3%,
+      rgba(255,255,255,0) 3%,
+      rgba(255,255,255,0) 97%,
+      var(--pseudo-text-shadow-color) 97%
+    ),
+    linear-gradient(90deg, 
+      rgba(255,255,255,0) 16%,
+      currentColor 16%, 
+      currentColor 18%, 
+      rgba(255,255,255,0) 18%, 
+      
+      rgba(255,255,255,0) 32%,
+      currentColor 32%, 
+      currentColor 34%, 
+      rgba(255,255,255,0) 34%, 
+      
+      rgba(255,255,255,0) 66%, 
+      currentColor 66%, 
+      currentColor 68%, 
+      rgba(255,255,255,0) 68%,
+      
+      rgba(255,255,255,0) 82%, 
+      currentColor 82%, 
+      currentColor 84%, 
+      rgba(255,255,255,0) 84%
+    ),
+    linear-gradient(90deg, 
+      var(--range-track-left-color) var(--input-relative-percent),
+      rgba(255,255,255,0) var(--input-relative-percent)
+    ),
+    linear-gradient(90deg, 
+      rgba(255,255,255,0) var(--input-relative-percent),
+      var(--range-track-right-color) var(--input-relative-percent)
+    );
 }
 
-input[type=range].ml-input-range:focus
+.percent
 {
-  outline: none;
-  box-shadow: 0px 0px 3px 0px rgb(0, 122, 204);
-}
-
-input[type=range].ml-input-range::-webkit-slider-runnable-track {
-  position: relative;
-  color: inherit;
-  height: 8px;
-  border-radius: 4px;
-  background-color: var(--pseudo-background-color);
-  background-image: 
+  --range-segment-width: 50px;
+  --range-track-width: 251px;
+  --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
+  --range-track-background:
     linear-gradient(180deg,
       var(--pseudo-background-color) 10%,
       rgba(255,255,255,0) 30%,
@@ -156,6 +222,54 @@ input[type=range].ml-input-range::-webkit-slider-runnable-track {
       var(--pseudo-text-shadow-color) var(--input-relative-percent),
       rgba(255,255,255,0) var(--input-relative-percent)
     );
+}
+
+.ml-input-range {
+  width: var(--range-width);
+  cursor: text;
+  background-color: var(--main-background-color);
+  color: var(--main-color);
+  border: solid 1px var(--main-border-color);
+  border-radius: 4px;
+  height: 10px;
+  margin: 8px calc((100% - var(--range-width))/2) 18px calc((100% - var(--range-width))/2);
+}
+
+.ml-input-range-icon
+{
+  fill: var(--main-color);
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 18px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.ml-input-range-icon.low
+{
+  left: calc(((100% - var(--range-width))/2 - 15px)/2);
+}
+
+.ml-input-range-icon.high
+{
+  right: calc(((100% - var(--range-width))/2 - 16px)/2);
+}
+
+input[type=range].ml-input-range:focus
+{
+  outline: none;
+  box-shadow: 0px 0px 3px 0px rgb(0, 122, 204);
+}
+
+.ml-input-range::-webkit-slider-runnable-track
+{
+  position: relative;
+  color: inherit;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--pseudo-background-color);
+  background-image: var(--range-track-background);
 
   --x: 7px;
   --h: 7.5px;
@@ -165,15 +279,15 @@ input[type=range].ml-input-range::-webkit-slider-runnable-track {
   background-size:
     calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
     calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    50px 8px,
+    var(--range-segment-width) 8px,
     calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
     calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    50px 8px,
+    var(--range-segment-width) 8px,
     calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
     calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
     100% 100%,
-    50px 8px,
-    calc(100% - var(--f)) 100%;
+    var(--range-segment-width) 8px,
+    calc(100% - var(--f)) 100%, calc(100% - var(--f)) 100%;
 
   background-position:
     calc(100% - var(--h)) 0px,
@@ -186,7 +300,7 @@ input[type=range].ml-input-range::-webkit-slider-runnable-track {
     var(--x) 0px,
     0px 0px,
     var(--x) 0px,
-    var(--x) 0px;
+    var(--x) 0px, var(--x) 0px;
 
   background-repeat:
     no-repeat, no-repeat,
@@ -195,9 +309,10 @@ input[type=range].ml-input-range::-webkit-slider-runnable-track {
     repeat-x,
     no-repeat, no-repeat, no-repeat,
     repeat-x,
-    no-repeat;
+    no-repeat, no-repeat;
 }
-input[type=range].ml-input-range::-webkit-slider-thumb
+
+.ml-input-range::-webkit-slider-thumb
 {
   position: relative;
   cursor: default;
@@ -206,25 +321,25 @@ input[type=range].ml-input-range::-webkit-slider-thumb
   border-radius: 50% 50% 0;
   background-color: currentColor;
   background-image:
-    linear-gradient(45deg, 
+    linear-gradient(-45deg, 
       currentColor 30%, 
       rgba(0,0,0,0) 35%, 
       rgba(0,0,0,0) 65%,
       currentColor 70%
     ), 
-    linear-gradient(-45deg,
-      rgba(  0,  0,  0, 0  ) 20%,
-      var(--pseudo-background-color) 20%,
+    linear-gradient(45deg,
+      rgba(  0,  0,  0, 0  ) 25%,
+      var(--pseudo-background-color) 25%,
       var(--pseudo-background-color) 30%,
       rgba(  0,  0,  0, 0  ) 30%,
       rgba(  0,  0,  0, 0  ) 45%,
       var(--pseudo-background-color) 45%,
-      var(--pseudo-background-color) 50%,
-      rgba(  0,  0,  0, 0  ) 50%,
-      rgba(  0,  0,  0, 0  ) 65%,
-      var(--pseudo-background-color) 65%,
+      var(--pseudo-background-color) 55%,
+      rgba(  0,  0,  0, 0  ) 55%,
+      rgba(  0,  0,  0, 0  ) 70%,
       var(--pseudo-background-color) 70%,
-      rgba(  0,  0,  0, 0  ) 70%
+      var(--pseudo-background-color) 75%,
+      rgba(  0,  0,  0, 0  ) 75%
     );
   background-size: 12px 12px, 10px 10px;
   background-position: 2px 2px, 3px 3px;

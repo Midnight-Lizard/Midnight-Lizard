@@ -258,29 +258,29 @@ namespace MidnightLizard.ContentScript
                     if (filteredTags.length < 10 || full)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag));
+                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
                         DocumentProcessor.processAllElements(filteredTags, null, this, smallReCalculationDelays);
                     }
                     else if (filteredTags.length < 100)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
+                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this.applyLoadingShadow(rootElem);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
                         DocumentProcessor.processAllElements(filteredTags, rootElem, this, bigReCalculationDelays);
                     }
                     else
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        this.restoreElementColors(rootElem);
+                        this.restoreElementColors(rootElem, true);
                         DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
                     }
                 }
                 else
                 {
                     this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                    this.restoreElementColors(rootElem);
+                    this.restoreElementColors(rootElem, true);
                     DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
                 }
             }
@@ -738,11 +738,12 @@ namespace MidnightLizard.ContentScript
                 let filter = [
                     this.shift.Background.lightnessLimit < 1 ? "brightness(" + this.shift.Background.lightnessLimit + ")" : "",
                     tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
-                ].join(" ");
+                ].filter(f => f).join(" ").trim();
                 if (!tag.originalFilter)
                 {
                     tag.originalFilter = tag.style.filter;
                 }
+                tag.currentFilter = filter;
                 tag.style.setProperty(this._css.filter, filter);
             }
             return tag;
@@ -754,7 +755,7 @@ namespace MidnightLizard.ContentScript
             tag.setAttribute(docProc._css.transition, docProc._css.filter);
             tag.style.filter = tag.originalFilter!;
             tag.originalFilter = undefined;
-            setTimeout(() => tag.removeAttribute(docProc._css.transition), 1);
+            setTimeout(() => tag.removeAttribute(docProc._css.transition), 200);
             docProc._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
         }
 
@@ -769,7 +770,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected restoreElementColors(tag: HTMLElement)
+        protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean)
         {
             if (tag.mlBgColor)
             {
@@ -835,7 +836,7 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.filter = tag.originalFilter;
                 }
-                if (tag.originalTransitionDuration !== undefined)
+                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration)
                 {
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
@@ -896,9 +897,7 @@ namespace MidnightLizard.ContentScript
 
                 this.calcElementPath(tag);
                 tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
-                room = [
-                    tag.path, tag.selectors, tag.style.cssText,
-                    !(tag instanceof PseudoElement) ? Array.from(tag.attributes).map(x => `${x.name}=${x.value}`).join(";") : ""].join("\n");
+                room = tag.path + tag.selectors;
                 roomRules = this._dorm.get(doc)!.get(room);
 
                 if (!roomRules)
@@ -926,7 +925,23 @@ namespace MidnightLizard.ContentScript
                             roomRules.attributes.set("after-style", roomId);
                         }
                     }
-                    this.processTransitions(tag, roomRules);
+                    if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css.zeroSec)
+                    {
+                        let hasForbiddenTransition = false;
+                        let durations = tag.computedStyle.transitionDuration!.split(", ");
+                        tag.computedStyle.transitionProperty!.split(", ").forEach((prop, index) =>
+                        {
+                            if (this._transitionForbiddenProperties.has(prop))
+                            {
+                                durations[index] = this._css.zeroSec;
+                                hasForbiddenTransition = true;
+                            }
+                        });
+                        if (hasForbiddenTransition)
+                        {
+                            roomRules.transitionDuration = { value: durations.join(", ") };
+                        }
+                    }
                     if (!isSvgText)
                     {
                         if (isSvg)
@@ -1187,27 +1202,6 @@ namespace MidnightLizard.ContentScript
                 room && this._dorm.get(doc)!.set(room, roomRules);
 
                 return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
-            }
-        }
-
-        protected processTransitions(tag: HTMLElement | PseudoElement, roomRules: RoomRules)
-        {
-            if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css.zeroSec)
-            {
-                let hasForbiddenTransition = false;
-                let durations = tag.computedStyle.transitionDuration!.split(", ");
-                tag.computedStyle.transitionProperty!.split(", ").forEach((prop, index) =>
-                {
-                    if (this._transitionForbiddenProperties.has(prop))
-                    {
-                        durations[index] = this._css.zeroSec;
-                        hasForbiddenTransition = true;
-                    }
-                });
-                if (hasForbiddenTransition)
-                {
-                    roomRules.transitionDuration = { value: durations.join(", ") };
-                }
             }
         }
 

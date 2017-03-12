@@ -46,13 +46,14 @@ namespace MidnightLizard.ContentScript
         protected initCurrentSettings()
         {
             this._storageManager.get<Settings.ColorScheme>(null)
-                .then(dss =>
+                .then(defaultSettings =>
                 {
-                    this._currentSettings.isEnabled = dss.isEnabled === undefined || dss.isEnabled;
-                    if (dss.settingsVersion !== undefined)
+                    this._defaultSettings = defaultSettings;
+                    this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
+                    if (defaultSettings.settingsVersion !== undefined)
                     {
-                        this._currentSettings.settingsVersion = dss.settingsVersion;
-                        let settings = this.getSettings(dss.settingsVersion);
+                        this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
+                        let settings = this.getSettings(defaultSettings.settingsVersion);
                         if (settings.exist)
                         {
                             Object.assign(this._currentSettings, settings);
@@ -60,7 +61,8 @@ namespace MidnightLizard.ContentScript
                         }
                         else
                         {
-                            Object.assign(this._currentSettings, dss);
+                            defaultSettings.isDefault = true;
+                            Object.assign(this._currentSettings, defaultSettings);
                         }
                     }
                     else
@@ -69,8 +71,8 @@ namespace MidnightLizard.ContentScript
                         this._currentSettings.settingsVersion = Util.guid("");
                         this._storageManager.set(this._currentSettings);
                     }
+                    this.updateSchedule();
                     this.initCurSet();
-                    this._currentSettings.hostName = this._rootDocument.location.hostname;
                     this._onSettingsInitialized.raise(this._shift);
                 })
                 .catch(ex => this._app.isDebug && console.error(ex));
@@ -92,6 +94,7 @@ namespace MidnightLizard.ContentScript
         protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings: Settings.ColorScheme): void
         {
             this._currentSettings = newSettings;
+            this.updateSchedule();
             this.saveCurrentSettings();
             this.initCurSet();
             this._onSettingsChanged.raise(response, this._shift);
@@ -105,6 +108,7 @@ namespace MidnightLizard.ContentScript
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
         {
+            this._currentSettings.hostName = this._rootDocument.location.hostname;
             response(this._currentSettings);
         }
 

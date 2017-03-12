@@ -12,6 +12,10 @@ namespace MidnightLizard.Settings
         isDefault?: boolean;
         settingsVersion?: string;
 
+        useDefaultSchedule: boolean;
+        scheduleStartHour: number;
+        scheduleFinishHour: number
+
         runOnThisSite: boolean;
         restoreColorsOnCopy: boolean;
 

@@ -3,7 +3,7 @@
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
     "description": "This extension changes page colors, brightness and contrast to increase readability",
-    "version": "8.0.0",
+    "version": "8.1.1",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
@@ -15,12 +15,25 @@
         "storage"
     ],
     "offline_enabled": true,
+    "commands": {
+        "global-toggle": {
+            "description": "Global extension toggle",
+            "suggested_key": {
+                "default": "Alt+Shift+M"
+            }
+        }
+    },
     "browser_action": {
         "default_title": "Midnight Lizard",
         "default_icon": {
             "38": "img/ml-toolbar-icon-38.png"
         },
         "default_popup": "ui/popup.html"
+    },
+    "background": {
+        "scripts": [
+            "js/background-page.js"
+        ]
     },
     "content_scripts": [
         {
