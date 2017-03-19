@@ -1,0 +1,19 @@
+.jfk-palette-colorswatch, .hsv-hs-image, .hsv-v-image, .hsv-swatch
+{
+    --ml-ignore:1;
+}
+
+#t-text-color .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:Text;
+}
+
+#t-cell-color .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:Background;
+}
+
+#waffle-rich-text-editor:not(impt)
+{
+    background-color: rgb(253,253,253);
+}

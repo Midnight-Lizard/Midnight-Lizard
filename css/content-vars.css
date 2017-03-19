@@ -1,5 +1,20 @@
 :root
 {
+    --ml-ignore:0;
+
+    --ml-text-color:Text;
+    --ml-text-fill:Text;
+    --ml-background-background-color:Background;
+    --ml-background-fill:Background;
+    --ml-svgbackground-background-color:SvgBackground;
+    --ml-svgbackground-fill:SvgBackground;
+    --ml-border-border-color:Border;
+    --ml-border-border-bottom-color:Border;
+    --ml-border-border-left-color:Border;
+    --ml-border-border-right-color:Border;
+    --ml-border-border-top-color:Border;
+    --ml-border-stroke:Border;
+
     --background-saturation-limit:1;
     --background-contrast:0;
     --background-lightness-limit:1;

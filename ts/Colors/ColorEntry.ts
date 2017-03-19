@@ -1,3 +1,5 @@
+/// <reference path="RgbaColor.ts" />
+
 namespace MidnightLizard.Colors
 {
     export enum ColorReason

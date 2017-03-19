@@ -222,7 +222,7 @@ namespace MidnightLizard.Colors
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
             super(app, settingsManager);
-            this._component = Component.SvgElement;
+            this._component = Component.SvgBackground;
         }
     }
 }

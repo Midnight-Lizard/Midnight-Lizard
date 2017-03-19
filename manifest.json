@@ -3,7 +3,7 @@
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
     "description": "This extension changes page colors, brightness and contrast to increase readability",
-    "version": "8.1.1",
+    "version": "8.2.0",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
@@ -35,6 +35,9 @@
             "js/background-page.js"
         ]
     },
+    "web_accessible_resources": [
+        "js/page-script.js"
+    ],
     "content_scripts": [
         {
             "run_at": "document_start",
@@ -109,10 +112,28 @@
         {
             "run_at": "document_start",
             "matches": [
-                "https://*.wikipedia.org/*"
+                "https://docs.google.com/document/*"
             ],
             "css": [
-                "css/custom/wikipedia.css"
+                "css/custom/google-docs.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://docs.google.com/spreadsheets/*"
+            ],
+            "css": [
+                "css/custom/google-spreadsheets.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.facebook.com/*"
+            ],
+            "css": [
+                "css/custom/facebook.css"
             ]
         }
     ]

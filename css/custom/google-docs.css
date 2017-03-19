@@ -1,0 +1,24 @@
+.docs-textcolormenubutton .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:Text;
+}
+
+.jfk-palette-colorswatch, .hsv-hs-image, .hsv-v-image, .hsv-swatch
+{
+    --ml-ignore:1;
+}
+
+#docs-toolbar-wrapper
+{
+    box-shadow: none!important;
+}
+
+.kix-paginateddocumentplugin-compact-mode, .kix-page-paginated
+{
+    box-shadow: 0 0 1pt 0pt #ccc!important;
+}
+
+#docs-omnibox-toolbar.goog-toolbar
+{
+    background-color: white;
+}

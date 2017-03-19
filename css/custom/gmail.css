@@ -18,3 +18,8 @@ a[href="#inbox"][title="Gmail"] > span[class]::before {
 /*.gb_fa .gb_Ub .gb_Wb {
     filter: drop-shadow(0 0 1px rgba(255,255,255,.8))
 }*/
+
+div[role="tab"] > div:nth-child(2)
+{
+    --ml-background-background-color:Border;
+}
