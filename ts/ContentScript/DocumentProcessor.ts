@@ -296,7 +296,7 @@ namespace MidnightLizard.ContentScript
             changedElements.forEach(tag =>
             {
                 let needReCalculation = false, value: string | null | undefined;
-                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 value = tag.style.getPropertyValue(ns.css.bgrColor);
                 if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
@@ -435,7 +435,7 @@ namespace MidnightLizard.ContentScript
                     wm = allTags[0].ownerDocument.defaultView.innerWidth;
                 for (let tag of allTags)
                 {
-                    isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
+                    isSvg = tag instanceof SVGElement || tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
                     isVisible = tag.tagName == "BODY" || !isSvg && tag.offsetParent !== null || tag.computedStyle.position == docProc._css.fixed || isSvg;
@@ -654,7 +654,8 @@ namespace MidnightLizard.ContentScript
             {
                 let bgColor;
                 let doc = tag.ownerDocument;
-                let isSvg = tag instanceof doc.defaultView.SVGElement && tag.parentElement instanceof doc.defaultView.SVGElement;
+                let isSvg = (tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement) &&
+                 (tag.parentElement instanceof SVGElement || tag.parentElement instanceof doc.defaultView.SVGElement);
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
                 if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
@@ -779,7 +780,7 @@ namespace MidnightLizard.ContentScript
         {
             if (tag.mlBgColor)
             {
-                let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                let ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 tag.mlBgColor = null;
                 tag.mlColor = null;
@@ -859,7 +860,7 @@ namespace MidnightLizard.ContentScript
                     tag.removeAttribute("after-style")
                 }
 
-                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
+                if (tag instanceof HTMLIFrameElement || tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
                 {
                     try
                     {
@@ -883,20 +884,20 @@ namespace MidnightLizard.ContentScript
         protected processElement(tag: HTMLElement | PseudoElement): Promise<string>[] | void
         {
             if (tag && tag.ownerDocument.defaultView && !(tag as HTMLElement).mlBgColor
-                && (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== "1"))
+                && (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 let doc = tag.ownerDocument;
                 let isSmall, bgInverted;
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
-                let isSvg = tag instanceof doc.defaultView.SVGElement,
-                    isSvgText = tag instanceof doc.defaultView.SVGTextContentElement,
+                let isSvg = tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement,
+                    isSvgText = tag instanceof SVGTextContentElement || tag instanceof doc.defaultView.SVGTextContentElement,
                     isTable =
-                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
-                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
+                        tag instanceof HTMLTableElement || tag instanceof doc.defaultView.HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
+                        tag instanceof HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof HTMLTableSectionElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
                 let ns = isSvg ? USP.svg : USP.htm;
                 let beforePseudoElement: PseudoElement | undefined, afterPseudoElement: PseudoElement | undefined;
 
-                if (tag instanceof doc.defaultView.HTMLIFrameElement)
+                if (tag instanceof HTMLIFrameElement || tag instanceof doc.defaultView.HTMLIFrameElement)
                 {
                     setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
                 }
@@ -953,7 +954,7 @@ namespace MidnightLizard.ContentScript
                     {
                         if (isSvg)
                         {
-                            if (this.tagIsSmall(tag))
+                            if (this.tagIsSmall(tag) && tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                             {
                                 isSvgText = true;
                                 roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
@@ -981,11 +982,12 @@ namespace MidnightLizard.ContentScript
                         roomRules.backgroundColor.color = null;
                     }
 
-                    if ((tag.tagName == ns.img || tag instanceof doc.defaultView.HTMLInputElement &&
+                    if ((tag.tagName == ns.img || tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement &&
                         (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
                         (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1))
                     {
-                        let imgSet = this.shift.Image;
+                        const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
+                        let imgSet = this.shift[customImageRole] || this.shift.Image;
                         roomRules.filter =
                             {
                                 value: [
@@ -999,29 +1001,29 @@ namespace MidnightLizard.ContentScript
                     }
                     let bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > this.shift.Text.contrast;
 
-                    if (tag instanceof doc.defaultView.HTMLCanvasElement)
+                    if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
                     {
-                        let filterValue = new Array<string>();
+                        let filterValue: Array<string>;
                         let bgrSet = this.shift.Background,
                             txtSet = this.shift.Text;
 
                         if (bgInverted)
                         {
-                            filterValue.push(
+                            filterValue = [
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 `brightness(${1 - bgrSet.lightnessLimit})`,
                                 `invert(1)`,
                                 `brightness(${txtSet.lightnessLimit})`,
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
-                            );
+                            ];
                         }
                         else
                         {
-                            filterValue.push(
+                            filterValue = [
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : "",
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
-                            );
+                            ];
                         }
                         roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
                     }
@@ -1061,14 +1063,14 @@ namespace MidnightLizard.ContentScript
                             gradientColors.forEach((id, color) => backgroundImage =
                                 backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
                         }
-                        //-webkit-gradient(linear,left top,left bottom,color-stop(.05,rgb(1,1,1)),color-stop(1,#fff))
                         let backgroundSizes = tag.computedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
                         let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
                         let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                             haveToProcBgGrad = /gradient/gi.test(backgroundImage), isInput = false;
                         if (/\burl\(/gi.test(backgroundImage))
                         {
-                            let bgImgSet = this.shift.BackgroundImage;
+                            const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
+                            let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
                             doInvert = (!isTable) && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
                                 //tag.computedStyle!.getPropertyValue("--ml-no-invert") !== "1" &&
@@ -1173,7 +1175,7 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (isSvg || tag.computedStyle!.borderStyle != this._css.none)
+                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
                         if (brdColor.indexOf(" r") == -1)
@@ -1427,7 +1429,7 @@ namespace MidnightLizard.ContentScript
             {
                 for (property in this.shift[component])
                 {
-                    globalVars += `\n-${
+                    globalVars += `\n--ml${
                         component.replace("$", "").replace(/([A-Z])/g, "-$1")
                         }-${
                         property.replace(/([A-Z])/g, "-$1")
@@ -1531,11 +1533,18 @@ namespace MidnightLizard.ContentScript
 
         protected createPageScript(doc: Document)
         {
-            let pageScript = doc.createElement("script");
-            pageScript.id = "midnight-lizard-page-script";
-            pageScript.type = "text/javascript";
-            pageScript.src = "chrome-extension://kpnbpljpolhkjhjfahmcmbdjbjgbnejh/js/page-script.js";
-            doc.head.appendChild(pageScript);
+            try
+            {
+                let pageScript = doc.createElement("script");
+                pageScript.id = "midnight-lizard-page-script";
+                pageScript.type = "text/javascript";
+                pageScript.src = this._app.getFullPath("/js/page-script.js");
+                doc.head.appendChild(pageScript);
+            }
+            catch (ex)
+            {
+                this._app.isDebug && console.error(ex);
+            }
         }
 
         protected removePageScript(doc: Document)
@@ -1623,9 +1632,9 @@ namespace MidnightLizard.ContentScript
             if (roomRules.color && roomRules.color.color)
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                if (tag.originalColor && isRealElement(tag) && (tag.parentElement &&
-                    tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
-                    tag.parentElement.contentEditable === true.toString() || tag.contentEditable === true.toString()))
+                if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
+                    tag.parentElement instanceof HTMLElement || tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                    tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty("--original-color", tag.originalColor!);
                 }

@@ -41,15 +41,23 @@
     "content_scripts": [
         {
             "run_at": "document_start",
+            "all_frames": true,
+            "match_about_blank": true,
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "css/content-vars.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
             "match_about_blank": true,
             "matches": [
                 "<all_urls>"
             ],
             "js": [
                 "js/content-script.js"
-            ],
-            "css": [
-                "css/content-vars.css"
             ]
         },
         {
@@ -102,6 +110,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://docs.google.com/forms/*"
             ],
@@ -111,8 +120,9 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
-                "https://docs.google.com/document/*"
+                "https://docs.google.com/*"
             ],
             "css": [
                 "css/custom/google-docs.css"
@@ -120,11 +130,34 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://docs.google.com/document/*"
+            ],
+            "css": [
+                "css/custom/google-documents.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://docs.google.com/spreadsheets/*"
             ],
             "css": [
                 "css/custom/google-spreadsheets.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://docs.google.com/document/*",
+                "https://docs.google.com/presentation/*",
+                "https://docs.google.com/drawings/*"
+            ],
+            "css": [
+                "css/custom/google-slides.css"
             ]
         },
         {

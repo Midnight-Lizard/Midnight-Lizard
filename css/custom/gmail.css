@@ -23,3 +23,10 @@ div[role="tab"] > div:nth-child(2)
 {
     --ml-background-background-color:Border;
 }
+
+button[aria-label="Search Gmail"]
+{
+    background-color: #4285f4!important;
+    color: white;
+    --ml-backgroundimage:Text;
+}

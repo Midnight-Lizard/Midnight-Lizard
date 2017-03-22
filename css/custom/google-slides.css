@@ -1,0 +1,25 @@
+#docs-editor svg, .punch-viewer-container svg
+{
+    --ml-small-svg-is-text:false;
+    --ml-svgbackground-fill:Background;
+}
+
+#workspace > svg
+{
+    --ml-svgbackground-fill:Border;
+}
+
+.canvas
+{
+    --ml-backgroundimage:Background;
+}
+
+.docs-textcolormenubutton .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:Text;
+}
+
+#lineColorMenuButton .sketchy-color-menu-button-indicator
+{
+    --ml-background-background-color:Border;
+}

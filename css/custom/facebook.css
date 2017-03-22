@@ -16,5 +16,6 @@ a[role="tab"] > span[class]
 
 .roundedBox .uiTypeahead .searchIcon
 {
-    background-position: 0 -728px!important;
+    /*background-position: 0 -728px!important;*/
+    --ml-backgroundimage:Text;
 }

@@ -27,5 +27,10 @@ namespace Chrome
 
             this._preserveDisplay = /facebook/gi.test(_rootDocument.defaultView.location.hostname);
         }
+
+        public getFullPath(relativePath: string)
+        {
+            return chrome.runtime.getURL(relativePath);
+        }
     }
 }

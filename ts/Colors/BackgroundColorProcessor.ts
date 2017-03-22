@@ -155,7 +155,8 @@ namespace MidnightLizard.Colors
 
         public changeColor(rgbaString: string | null, increaseContrast: boolean, tag: Element, getParentBackground?: (tag: any) => ColorEntry): ColorEntry
         {
-            rgbaString = rgbaString || "rgb(255, 255, 255)";
+            rgbaString = !rgbaString || rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
+
             let prevColor = increaseContrast ? this._colors.get(rgbaString) : null;
             if (prevColor)
             {

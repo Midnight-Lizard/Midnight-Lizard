@@ -25,7 +25,7 @@ namespace MidnightLizard.ContentScript
     class DocumentObserver implements IDocumentObserver
     {
         protected readonly _bodyObserverConfig: MutationObserverInit =
-        { attributes: true, subtree: true, childList: true, /*attributeOldValue: true,*/ attributeFilter: ["class", "style"] };
+        { attributes: true, subtree: true, childList: true, /*attributeOldValue: true,*/ attributeFilter: ["class", "style", "fill", "stroke"] };
         protected readonly _headObserverConfig: MutationObserverInit = { childList: true };
         protected readonly _bodyObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _headObservers = new WeakMap<Document, MutationObserver>();
@@ -128,6 +128,8 @@ namespace MidnightLizard.ContentScript
                                     break;
 
                                 case "style":
+                                case "fill":
+                                case "stroke":
                                     styleChanges.add(mutation.target as Element);
                                     break;
 
