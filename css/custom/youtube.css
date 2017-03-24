@@ -48,3 +48,10 @@
     --ml-svgbackground-fill:Text;
     --ml-background-fill:Text;
 }
+
+.ytp-settings-button.ytp-hd-quality-badge:after
+{
+    color: white;
+    background-size: 13px 9px;
+    --ml-backgroundimage:Text;
+}
