@@ -20,6 +20,8 @@ namespace MidnightLizard.Colors
         public static readonly Black = new RgbaColor(0, 0, 0, 1).toString();
         /** Gray color rgb string */
         public static readonly Gray = new RgbaColor(127, 127, 127, 1).toString();
+        /** Transparent color rgba string */
+        public static readonly Transparent = new RgbaColor(0, 0, 0, 0).toString();
         static parse(str: string): RgbaColor
         {
             let hasAlfa = str[3] == "a";

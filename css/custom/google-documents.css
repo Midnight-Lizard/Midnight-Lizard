@@ -1,0 +1,9 @@
+.docs-textcolormenubutton .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:Text;
+}
+
+.kix-paginateddocumentplugin-compact-mode, .kix-page-paginated
+{
+    box-shadow: 0 0 1pt 0pt #ccc!important;
+}

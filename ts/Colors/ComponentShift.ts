@@ -11,7 +11,7 @@ namespace MidnightLizard.Colors
         Scrollbar$Normal,
         Scrollbar$Active,
         Image,
-        SvgElement,
+        SvgBackground,
         BackgroundImage
     }
 
@@ -28,7 +28,7 @@ namespace MidnightLizard.Colors
         Scrollbar$Normal: ColorShift;
         Scrollbar$Active: ColorShift;
         Image: ColorShift;
-        SvgElement: ColorShift;
+        SvgBackground: ColorShift;
         BackgroundImage: ColorShift;
         constructor() { }
     }

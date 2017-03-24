@@ -151,7 +151,7 @@ namespace MidnightLizard.Settings
                         graySaturation: 0,
                         grayHue: 0
                     },
-                    SvgElement:
+                    SvgBackground:
                     {
                         saturationLimit: set.backgroundSaturationLimit,
                         contrast: set.backgroundContrast,

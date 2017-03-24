@@ -1,0 +1,21 @@
+ul[role="menu"] [role="menuitem"], ul[role="menu"] li > span
+{
+    --ml-border-border-color:Background;
+}
+
+a[role="tab"] > span[class]
+{
+    --ml-background-background-color:Border;
+}
+
+::-webkit-input-placeholder
+{
+    color: currentColor!important;
+    opacity: 0.5;
+}
+
+.roundedBox .uiTypeahead .searchIcon
+{
+    /*background-position: 0 -728px!important;*/
+    --ml-backgroundimage:Text;
+}

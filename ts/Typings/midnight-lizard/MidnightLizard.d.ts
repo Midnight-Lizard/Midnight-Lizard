@@ -4,8 +4,9 @@
 
 interface Document
 {
-    mlPseudoStyles: HTMLStyleElement | undefined;
-    viewArea: number | undefined;
+    mlPseudoStyles?: HTMLStyleElement;
+    viewArea?: number;
+    originalQueryCommandValue?: (cmd: string) => string;
 }
 
 interface Node
@@ -82,6 +83,7 @@ interface Window
 
     HTMLStyleElement: typeof HTMLStyleElement;
     CSSStyleRule: typeof CSSStyleRule;
+    CSSStyleDeclaration: typeof CSSStyleDeclaration;
     CSSImportRule: typeof CSSImportRule;
 
     HTMLTableElement: typeof HTMLTableElement;

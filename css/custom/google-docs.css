@@ -1,0 +1,14 @@
+.jfk-palette-colorswatch, .hsv-hs-image, .hsv-v-image, .hsv-swatch
+{
+    --ml-ignore:true;
+}
+
+#docs-toolbar-wrapper
+{
+    box-shadow: none!important;
+}
+
+#docs-omnibox-toolbar.goog-toolbar
+{
+    background-color: white;
+}

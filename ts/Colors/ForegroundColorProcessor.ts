@@ -98,7 +98,8 @@ namespace MidnightLizard.Colors
 
         public changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, customContrast?: number): ColorEntry
         {
-            rgbaString = rgbaString || "rgb(4, 4, 4)";
+            rgbaString = rgbaString || RgbaColor.Black;
+            rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
             let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
             const inheritedColor = this.getInheritedColor(tag, rgbaString);
             if (inheritedColor && inheritedColor.backgroundLight == backgroundLightness)

@@ -1,0 +1,19 @@
+{
+    "include": [
+        "../../ts/PageScript/PageScriptStarter.ts"
+    ],
+    "compilerOptions": {
+        "outFile": "../../js/page-script.js",
+        "removeComments": false,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "target": "es6",
+        "inlineSourceMap": true,
+        "allowJs": false,
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "noImplicitThis": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
