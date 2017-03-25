@@ -7,6 +7,11 @@
     height: 30px;
 }
 
+.logo
+{
+    --ml-backgroundimage:Text;
+}
+
 #yt-masthead #logo-container.doodle::before
 {
     content: '';

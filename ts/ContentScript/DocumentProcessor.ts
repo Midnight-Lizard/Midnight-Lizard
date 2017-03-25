@@ -655,7 +655,7 @@ namespace MidnightLizard.ContentScript
                 let bgColor;
                 let doc = tag.ownerDocument;
                 let isSvg = (tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement) &&
-                 (tag.parentElement instanceof SVGElement || tag.parentElement instanceof doc.defaultView.SVGElement);
+                    (tag.parentElement instanceof SVGElement || tag.parentElement instanceof doc.defaultView.SVGElement);
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
                 if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
@@ -1004,7 +1004,8 @@ namespace MidnightLizard.ContentScript
                     if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
                     {
                         let filterValue: Array<string>;
-                        let bgrSet = this.shift.Background,
+                        const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
+                        let bgrSet = this.shift[customCanvasRole] || this.shift.Background,
                             txtSet = this.shift.Text;
 
                         if (bgInverted)
