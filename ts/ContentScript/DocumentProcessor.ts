@@ -982,7 +982,7 @@ namespace MidnightLizard.ContentScript
                         roomRules.backgroundColor.color = null;
                     }
 
-                    if ((tag.tagName == ns.img || tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement &&
+                    if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
                         (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
                         (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1))
                     {

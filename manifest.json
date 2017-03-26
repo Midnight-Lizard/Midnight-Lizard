@@ -3,7 +3,7 @@
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
     "description": "This extension changes page colors, brightness and contrast to increase readability",
-    "version": "8.2.1",
+    "version": "8.2.2",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
