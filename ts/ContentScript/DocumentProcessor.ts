@@ -1634,7 +1634,7 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                 if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    tag.parentElement instanceof HTMLElement || tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                    (tag.parentElement instanceof HTMLElement || tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement) &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty("--original-color", tag.originalColor!);
