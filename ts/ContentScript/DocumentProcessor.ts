@@ -1604,7 +1604,13 @@ namespace MidnightLizard.ContentScript
                         });
                     Promise
                         .all([tag, applyBgPromise.catch(ex => this._app.isDebug && console.error("Exception in backgroundImagePromise: " + ex))])
-                        .then(([tag]) => this.removeTemporaryFilter(tag));
+                        .then(([tag]) => 
+                        {
+
+                            let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
+                            this.removeTemporaryFilter(tag);
+                            this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+                        });
                 }
                 else
                 {
