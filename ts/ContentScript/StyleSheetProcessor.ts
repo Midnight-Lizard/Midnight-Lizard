@@ -157,45 +157,48 @@ namespace MidnightLizard.ContentScript
             let styleSheets = Array.from(doc.styleSheets) as CSSStyleSheet[];
             for (let sheet of styleSheets)
             {
-                if (sheet.cssRules)
+                if (sheet)
                 {
-                    if (sheet.cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
+                    if (sheet.cssRules)
                     {
-                        for (let rule of Array.from(sheet.cssRules) as CSSRule[])
+                        if (sheet.cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
-                            if (rule instanceof doc.defaultView.CSSStyleRule)
+                            for (let rule of Array.from(sheet.cssRules) as CSSRule[])
                             {
-                                let style = rule.style;
-                                if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                if (rule instanceof doc.defaultView.CSSStyleRule)
                                 {
-                                    styleRules.push(rule);
+                                    let style = rule.style;
+                                    if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                    {
+                                        styleRules.push(rule);
+                                    }
                                 }
-                            }
-                            else if (rule instanceof doc.defaultView.CSSImportRule)
-                            {
-                                styleSheets.push(rule.styleSheet);
+                                else if (rule instanceof doc.defaultView.CSSImportRule)
+                                {
+                                    styleSheets.push(rule.styleSheet);
+                                }
                             }
                         }
                     }
-                }
-                else if (sheet.href) // external css
-                {
-                    if (!externalCssPromises!.has(sheet.href))
+                    else if (sheet.href) // external css
                     {
-                        let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
-                        cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${sheet.href}\nDetails: ${ex.message || ex}`));
-                        externalCssPromises.set(
-                            sheet.href,
-                            Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
-                                .then(([d, css, extCss, href]) => 
-                                {
-                                    let style = d.createElement('style');
-                                    style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
-                                    style.innerText = css;
-                                    style.disabled = true;
-                                    d.head.appendChild(style);
-                                    style.sheet.disabled = true;
-                                })));
+                        if (!externalCssPromises!.has(sheet.href))
+                        {
+                            let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
+                            cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${sheet.href}\nDetails: ${ex.message || ex}`));
+                            externalCssPromises.set(
+                                sheet.href,
+                                Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
+                                    .then(([d, css, extCss, href]) => 
+                                    {
+                                        let style = d.createElement('style');
+                                        style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
+                                        style.innerText = css;
+                                        style.disabled = true;
+                                        d.head.appendChild(style);
+                                        style.sheet.disabled = true;
+                                    })));
+                        }
                     }
                 }
             }
