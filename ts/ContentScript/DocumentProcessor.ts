@@ -1056,7 +1056,7 @@ namespace MidnightLizard.ContentScript
                     if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none)
                     {
                         let backgroundImage = tag.computedStyle!.backgroundImage!;
-                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|color-stop\([.\d]+,\s?(rgba?\([^)]+\)|[^)]+)\)/gi);
+                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|color-stop\([.\d]+%?,\s?(rgba?\([^)]+\)|[^)]+)\)/gi);
                         let gradientColors = new Map<string, string>();
                         if (gradientColorMatches)
                         {
