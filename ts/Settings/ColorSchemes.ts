@@ -32,6 +32,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 0,
             textGrayHue: 0,
 
+            linkSaturationLimit: 100,
+            linkContrast: 0,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 0,
+            linkDefaultHue: 0,
+
             borderSaturationLimit: 100,
             borderContrast: 0,
             borderLightnessLimit: 100,
@@ -70,6 +76,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 100,
             textGraySaturation: 0,
             textGrayHue: 0,
+
+            linkSaturationLimit: 100,
+            linkContrast: 0,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 0,
+            linkDefaultHue: 0,
 
             borderSaturationLimit: 100,
             borderContrast: 0,
@@ -110,6 +122,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 24,
             textGrayHue: 16,
 
+            linkSaturationLimit: 80,
+            linkContrast: 54,
+            linkLightnessLimit: 70,
+            linkDefaultSaturation: 70,
+            linkDefaultHue: 207,
+
             borderSaturationLimit: 80,
             borderContrast: 30,
             borderLightnessLimit: 50,
@@ -148,6 +166,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 90,
             textGraySaturation: 20,
             textGrayHue: 88,
+
+            linkSaturationLimit: 80,
+            linkContrast: 60,
+            linkLightnessLimit: 80,
+            linkDefaultSaturation: 50,
+            linkDefaultHue: 122,
 
             borderSaturationLimit: 80,
             borderContrast: 30,
@@ -188,6 +212,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 30,
             textGrayHue: 66,
 
+            linkSaturationLimit: 80,
+            linkContrast: 55,
+            linkLightnessLimit: 80,
+            linkDefaultSaturation: 70,
+            linkDefaultHue: 66,
+
             borderSaturationLimit: 80,
             borderContrast: 30,
             borderLightnessLimit: 50,
@@ -226,6 +256,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 90,
             textGraySaturation: 20,
             textGrayHue: 45,
+
+            linkSaturationLimit: 80,
+            linkContrast: 55,
+            linkLightnessLimit: 80,
+            linkDefaultSaturation: 70,
+            linkDefaultHue: 45,
 
             borderSaturationLimit: 80,
             borderContrast: 30,
@@ -266,6 +302,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 20,
             textGrayHue: 199,
 
+            linkSaturationLimit: 100,
+            linkContrast: 60,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 100,
+            linkDefaultHue: 231,
+
             borderSaturationLimit: 100,
             borderContrast: 40,
             borderLightnessLimit: 95,
@@ -304,6 +346,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 100,
             textGraySaturation: 40,
             textGrayHue: 16,
+
+            linkSaturationLimit: 80,
+            linkContrast: 80,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 100,
+            linkDefaultHue: 14,
 
             borderSaturationLimit: 80,
             borderContrast: 60,
@@ -344,6 +392,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 40,
             textGrayHue: 16,
 
+            linkSaturationLimit: 100,
+            linkContrast: 60,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 100,
+            linkDefaultHue: 231,
+
             borderSaturationLimit: 100,
             borderContrast: 55,
             borderLightnessLimit: 100,
@@ -382,6 +436,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 100,
             textGraySaturation: 0,
             textGrayHue: 0,
+
+            linkSaturationLimit: 10,
+            linkContrast: 60,
+            linkLightnessLimit: 100,
+            linkDefaultSaturation: 20,
+            linkDefaultHue: 231,
 
             borderSaturationLimit: 10,
             borderContrast: 40,
@@ -422,6 +482,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 0,
             textGrayHue: 0,
 
+            linkSaturationLimit: 80,
+            linkContrast: 50,
+            linkLightnessLimit: 70,
+            linkDefaultSaturation: 40,
+            linkDefaultHue: 231,
+
             borderSaturationLimit: 80,
             borderContrast: 30,
             borderLightnessLimit: 70,
@@ -460,6 +526,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 80,
             textGraySaturation: 0,
             textGrayHue: 0,
+
+            linkSaturationLimit: 10,
+            linkContrast: 50,
+            linkLightnessLimit: 80,
+            linkDefaultSaturation: 10,
+            linkDefaultHue: 231,
 
             borderSaturationLimit: 10,
             borderContrast: 30,
@@ -500,6 +572,12 @@ namespace MidnightLizard.Settings
             textGraySaturation: 60,
             textGrayHue: 54,
 
+            linkSaturationLimit: 80,
+            linkContrast: 50,
+            linkLightnessLimit: 70,
+            linkDefaultSaturation: 90,
+            linkDefaultHue: 54,
+
             borderSaturationLimit: 80,
             borderContrast: 40,
             borderLightnessLimit: 70,
@@ -538,6 +616,12 @@ namespace MidnightLizard.Settings
             textLightnessLimit: 80,
             textGraySaturation: 60,
             textGrayHue: 122,
+
+            linkSaturationLimit: 80,
+            linkContrast: 50,
+            linkLightnessLimit: 70,
+            linkDefaultSaturation: 90,
+            linkDefaultHue: 122,
 
             borderSaturationLimit: 80,
             borderContrast: 40,

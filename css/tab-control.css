@@ -1,4 +1,3 @@
-/* Style the list */
 .ml-tab
 {
     display: table-cell;
@@ -8,6 +7,7 @@
     overflow: hidden;
     background-color: var(--main-background-color);
     width: 169px;
+    vertical-align: middle;
 }
 
 .ml-tab-item-icon
@@ -30,26 +30,13 @@
     margin-left: 10px;
     text-align: left;
     display: block;
-    /* padding: 14px 16px; */
     cursor: pointer;
     text-decoration: none;
     border-radius: 5px 0px 0px 5px;
-    /*transition: 0.3s;*/
     font-size: 16px;
     white-space: nowrap;
-    /* border: solid 1px rgba(0, 0, 0, 0); */
     border-right: solid 1px var(--thin-border-color);
     user-select: none;
-}
-
-.ml-tab-item-separator
-{
-    padding: 14px;
-    margin-left: 10px;
-    /* display: block; */
-    /* font-size: 10px; */
-    /* line-height: 8px; */
-    border-right: solid 1px var(--thin-border-color);
 }
 
 .ml-tab-item:hover
@@ -57,15 +44,20 @@
     background-color: var(--alt-background-color);
 }
 
+.ml-tab-item-separator
+{
+    margin-left: 10px;
+    border-right: solid 1px var(--thin-border-color);
+    height: 22px;
+}
+
 .active
 {
     background-color: var(--content-background-color) !important;
-    /* box-shadow: black 0 0 3px; */
     border: solid 1px var(--thin-border-color);
     border-right: solid 1px rgba(0, 0, 0, 0);
     margin-left: 9px;
     padding: 12px;
-    /* font-weight: bold; */
     cursor: default!important;
 }
 
@@ -75,11 +67,6 @@
     width: 340px;
     animation: fadeEffect 0.4s ease-in-out;
     background-color: var(--content-background-color);
-}
-
-.ml-tab-content div:first-of-type
-{
-    margin-top: -10px;
 }
 
 #default-tab-content.ml-tab-content

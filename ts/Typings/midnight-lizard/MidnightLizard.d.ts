@@ -74,6 +74,7 @@ interface Window
 {
     Element: typeof Element;
     HTMLElement: typeof HTMLElement;
+    HTMLAnchorElement: typeof HTMLAnchorElement;
     HTMLInputElement: typeof HTMLInputElement;
     HTMLIFrameElement: typeof HTMLIFrameElement;
     HTMLCanvasElement: typeof HTMLCanvasElement;

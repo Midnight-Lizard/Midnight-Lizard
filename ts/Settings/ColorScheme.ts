@@ -31,6 +31,12 @@ namespace MidnightLizard.Settings
         textGraySaturation: number;
         textGrayHue: number;
 
+        linkSaturationLimit: number;
+        linkContrast: number;
+        linkLightnessLimit: number;
+        linkDefaultSaturation: number;
+        linkDefaultHue: number;
+
         borderSaturationLimit: number;
         borderContrast: number;
         borderLightnessLimit: number;

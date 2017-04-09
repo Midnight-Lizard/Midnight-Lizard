@@ -47,8 +47,8 @@ html, body {
 }
 
 .ml-dialog-title a {
-    color: hsl(282, 100%, 50%);
-    text-shadow: rgba(255, 229, 255, 0.8) 0px 0px 1px ;
+    /* color: hsl(282, 100%, 50%); */
+    text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 1px;
 }
 
 .ml-dialog-commands {
@@ -62,6 +62,7 @@ html, body {
 .ml-dialog-settings {
     display: table;
     width: 100%;
+    min-height: 380px;
 }
 
 .ml-dialog-settings-left {

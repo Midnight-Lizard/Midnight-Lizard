@@ -69,6 +69,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _scrollbarNormalColorProcessor: MidnightLizard.Colors.IScrollbarNormalColorProcessor,
             protected readonly _scrollbarActiveColorProcessor: MidnightLizard.Colors.IScrollbarActiveColorProcessor,
             protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor,
+            protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter)
@@ -175,6 +176,8 @@ namespace MidnightLizard.ContentScript
                 this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
+                this._linkColorProcessor.getDefaultColor(doc);
+                this._textColorProcessor.getDefaultColor(doc);
                 doc.body.isChecked = true;
                 this.processElement(doc.body);
                 this._documentObserver.startDocumentObservation(doc);
@@ -1136,7 +1139,10 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        const textRole = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement
+                            ? cc.Link
+                            : cc.Text;
+                        roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                         if (roomRules.color)
                         {
                             let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
@@ -1242,7 +1248,11 @@ namespace MidnightLizard.ContentScript
 
                         case cc.Text:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag)
+                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.Link:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Border:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;

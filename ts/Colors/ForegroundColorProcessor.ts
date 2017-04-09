@@ -9,44 +9,41 @@ namespace MidnightLizard.Colors
 {
     export abstract class ITextColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
+        abstract getDefaultColor(doc: Document): string;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+    }
+    export abstract class ILinkColorProcessor extends ITextColorProcessor
+    {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
     export abstract class ITextShadowColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, customContrast?: number): ColorEntry;
         abstract getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null;
     }
 
     export abstract class IBorderColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
 
     export abstract class IScrollbarHoverColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
     }
 
     export abstract class IScrollbarNormalColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
     }
 
     export abstract class IScrollbarActiveColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
     }
 
-    /** BackgroundColorProcessor */
     abstract class ForegroundColorProcessor extends BaseColorProcessor
     {
-        /** BackgroundColorProcessor constructor */
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
@@ -54,12 +51,15 @@ namespace MidnightLizard.Colors
             super(app, settingsManager);
         }
 
-        abstract getInheritedColor(tag: Element, rgbStr: string): Colors.ColorEntry | null;
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        {
+            return null;
+        }
 
-        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, customContrast?: number)
+        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, customContrast?: number)
         {
             let shift = this._colorShift, shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
-            if (hsla.saturation === 0 && shift.grayHue !== 0)
+            if (isGray)
             {
                 hsla.hue = shift.grayHue;
                 hsla.saturation = shift.graySaturation;
@@ -151,7 +151,7 @@ namespace MidnightLizard.Colors
                 {
                     let hsla = RgbaColor.toHslaColor(rgba);
                     let originalLight = hsla.lightness;
-                    this.changeHslaColor(hsla, backgroundLightness, customContrast);
+                    this.changeHslaColor(hsla, backgroundLightness, this.isGray(tag, rgbaString, hsla), customContrast);
                     let newRgbColor = HslaColor.toRgbaColor(hsla);
                     result = {
                         color: newRgbColor.toString(),
@@ -169,12 +169,17 @@ namespace MidnightLizard.Colors
                 }
             }
         }
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return hsla.saturation === 0 && this._colorShift.grayHue !== 0;
+        }
     }
 
     @DI.injectable(ITextShadowColorProcessor)
     class TextShadowColorProcessor extends ForegroundColorProcessor implements ITextShadowColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        public getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
         {
             if (tag.parentElement)
             {
@@ -205,7 +210,28 @@ namespace MidnightLizard.Colors
     @DI.injectable(ITextColorProcessor)
     class TextColorProcessor extends ForegroundColorProcessor implements ITextColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        protected readonly _tagName: "p" | "a" = "p";
+        protected readonly _defaultColors = new WeakMap<Document, string>();
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return (hsla.saturation === 0 || rgbaString === this._defaultColors.get(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
+        }
+
+        public getDefaultColor(doc: Document)
+        {
+            const element = doc.createElement(this._tagName);
+            element.mlIgnore = true;
+            (element as any).href = "#";
+            element.style.display = "none";
+            doc.body.appendChild(element);
+            const elementColor = doc.defaultView.getComputedStyle(element, "").color!;
+            element.remove();
+            this._defaultColors.set(doc, elementColor);
+            return elementColor;
+        }
+
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
         {
             if (tag.parentElement)
             {
@@ -233,14 +259,23 @@ namespace MidnightLizard.Colors
         }
     }
 
+    @DI.injectable(ILinkColorProcessor)
+    class LinkColorProcessor extends TextColorProcessor implements ILinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.Link;
+        }
+    }
+
     @DI.injectable(IBorderColorProcessor)
     class BorderColorProcessor extends ForegroundColorProcessor implements IBorderColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
-        {
-            return null;
-        }
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
@@ -253,11 +288,6 @@ namespace MidnightLizard.Colors
     @DI.injectable(IScrollbarHoverColorProcessor)
     class ScrollbarHoverColorProcessor extends ForegroundColorProcessor implements IScrollbarHoverColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
-        {
-            return null;
-        }
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
@@ -270,11 +300,6 @@ namespace MidnightLizard.Colors
     @DI.injectable(IScrollbarNormalColorProcessor)
     class ScrollbarNormalColorProcessor extends ForegroundColorProcessor implements IScrollbarNormalColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
-        {
-            return null;
-        }
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
@@ -287,11 +312,6 @@ namespace MidnightLizard.Colors
     @DI.injectable(IScrollbarActiveColorProcessor)
     class ScrollbarActiveColorProcessor extends ForegroundColorProcessor implements IScrollbarActiveColorProcessor
     {
-        getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
-        {
-            return null;
-        }
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
