@@ -3,7 +3,12 @@
     display: none !important;
 }
 
-[transition="filter"]:hover
+[transition="filter"][style*="#ml-blue-filter"]:hover
+{
+    filter: none!important;
+}
+
+[transition="filter"]:not([style*="#ml-blue-filter"]):hover
 {
     animation-name: transition-filter-none;
     animation-timing-function: ease-out;
@@ -12,7 +17,7 @@
     animation-fill-mode: forwards;
 }
 
-[transition="filter"]
+[transition="filter"]:not([style*="#ml-blue-filter"])
 {
     animation-name: transition-filter-original;
     animation-timing-function: ease-out;

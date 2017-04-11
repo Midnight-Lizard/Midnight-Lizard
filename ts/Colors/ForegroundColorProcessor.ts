@@ -152,7 +152,7 @@ namespace MidnightLizard.Colors
                     let hsla = RgbaColor.toHslaColor(rgba);
                     let originalLight = hsla.lightness;
                     this.changeHslaColor(hsla, backgroundLightness, this.isGray(tag, rgbaString, hsla), customContrast);
-                    let newRgbColor = HslaColor.toRgbaColor(hsla);
+                    let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     result = {
                         color: newRgbColor.toString(),
                         light: hsla.lightness,
@@ -172,7 +172,7 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return hsla.saturation === 0 && this._colorShift.grayHue !== 0;
+            return hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
         }
     }
 
@@ -215,7 +215,7 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return (hsla.saturation === 0 || rgbaString === this._defaultColors.get(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
+            return (hsla.saturation < 0.1 || rgbaString === this._defaultColors.get(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
         }
 
         public getDefaultColor(doc: Document)

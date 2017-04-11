@@ -37,5 +37,18 @@ namespace MidnightLizard.Colors
         {
             return Math.min(Math.min(currentValue, scaleLimit * Math.atan(currentValue * Math.PI / 2)), scaleLimit);
         }
+
+        protected applyBlueFilter(rgba: Colors.RgbaColor)
+        {
+            if (this._settingsManager.currentSettings.blueFilter !== 0)
+            {
+                const newBlue = rgba.blue * (1 - this._settingsManager.currentSettings.blueFilter / 100);
+                return new RgbaColor(Math.min(rgba.red + rgba.blue - newBlue, 255), rgba.green, newBlue, rgba.alpha);
+            }
+            else
+            {
+                return rgba;
+            }
+        }
     }
 }

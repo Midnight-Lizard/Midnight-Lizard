@@ -10,6 +10,7 @@ namespace MidnightLizard.Settings
         hostName?: string;
         isEnabled?: boolean;
         isDefault?: boolean;
+        blueFilter: number;
         settingsVersion?: string;
 
         useDefaultSchedule: boolean;

@@ -15,6 +15,7 @@ namespace MidnightLizard.Settings
             settingsVersion: "",
             runOnThisSite: false,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -60,6 +61,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: false,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -105,6 +107,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -150,6 +153,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -195,6 +199,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -240,6 +245,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 50,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -285,6 +291,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -330,6 +337,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 20,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -375,6 +383,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -420,6 +429,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -465,6 +475,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -510,6 +521,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -555,6 +567,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -600,6 +613,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
+            blueFilter: 0,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,

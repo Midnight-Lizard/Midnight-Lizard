@@ -80,7 +80,7 @@ html, body {
 .ml-dialog-commands > .ml-dialog-input-text {
     width: 120px;
     margin: 5px 20px 20px 20px;
-    background-color: var(--alt-background-color);
+    background-color: var(--content-background-color);
 }
 
 .ml-dialog-commands > .ml-dialog-label {
@@ -340,4 +340,9 @@ html, body {
 .change-log-icon{width: 24px;}
 .change-log-icon:hover{
     fill: #1B5E20;
+}
+
+#linkHue, #textHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue
+{
+    --ml-ignore:true;
 }
