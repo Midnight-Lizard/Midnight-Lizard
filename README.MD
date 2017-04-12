@@ -1,6 +1,6 @@
 # Midnight-Lizard is a Google Chrome Extension that changes page colors, brightness and contrast to increase readability.
 
-    Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
+    Midnight Lizard will help you to customise an appearance of the entire internet in order to make it easier to use.
     You can set up different color schemes for each favorite web site and one default theme for all other sites.
     Choose from the predefined schemes or create your own. Number of custom settings is unlimited.
 
@@ -14,6 +14,7 @@
   ✔ Returns images to the original state on mouse hover
   ✔ Significantly improves readability
   ✔ Enhanced syntax highlighting (for programmers)
+  ✔ Has blue filter to replace blue light with red light
   ✔ Reduces eye strain and disruption of sleep patterns
   ✔ Essential at night time or in low light environment
   ✔ Also useful during the daytime with light and contrast themes

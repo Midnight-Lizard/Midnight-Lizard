@@ -5,6 +5,7 @@ namespace MidnightLizard.Colors
     {
         Background,
         Text,
+        Link,
         TextShadow,
         Border,
         Scrollbar$Hover,
@@ -22,6 +23,7 @@ namespace MidnightLizard.Colors
     {
         Background: ColorShift;
         Text: ColorShift;
+        Link: ColorShift;
         TextShadow: ColorShift;
         Border: ColorShift;
         Scrollbar$Hover: ColorShift;

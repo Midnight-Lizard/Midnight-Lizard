@@ -90,7 +90,7 @@ namespace MidnightLizard.Colors
         protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean, tag: Element): void
         {
             const shift = this._colorShift;
-            if (hsla.saturation === 0 && shift.grayHue !== 0)
+            if (hsla.saturation < 0.1 && shift.grayHue !== 0)
             {
                 hsla.hue = shift.grayHue;
                 hsla.saturation = shift.graySaturation;
@@ -197,7 +197,7 @@ namespace MidnightLizard.Colors
                     let hsla = RgbaColor.toHslaColor(rgba);
                     let originalLight = hsla.lightness;
                     this.changeHslaColor(hsla, increaseContrast, tag);
-                    let newRgbColor = HslaColor.toRgbaColor(hsla);
+                    let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     let result = {
                         color: newRgbColor.toString(),
                         light: hsla.lightness,

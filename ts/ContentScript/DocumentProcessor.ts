@@ -69,6 +69,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _scrollbarNormalColorProcessor: MidnightLizard.Colors.IScrollbarNormalColorProcessor,
             protected readonly _scrollbarActiveColorProcessor: MidnightLizard.Colors.IScrollbarActiveColorProcessor,
             protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor,
+            protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter)
@@ -175,6 +176,9 @@ namespace MidnightLizard.ContentScript
                 this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
+                this.createSvgFilters(doc);
+                this._linkColorProcessor.getDefaultColor(doc);
+                this._textColorProcessor.getDefaultColor(doc);
                 doc.body.isChecked = true;
                 this.processElement(doc.body);
                 this._documentObserver.startDocumentObservation(doc);
@@ -435,7 +439,7 @@ namespace MidnightLizard.ContentScript
                     wm = allTags[0].ownerDocument.defaultView.innerWidth;
                 for (let tag of allTags)
                 {
-                    isSvg = tag instanceof SVGElement || tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
+                    isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
                     isVisible = tag.tagName == "BODY" || !isSvg && tag.offsetParent !== null || tag.computedStyle.position == docProc._css.fixed || isSvg;
@@ -448,8 +452,8 @@ namespace MidnightLizard.ContentScript
                         tag.rect = tag.rect || tag.getBoundingClientRect();
                         isVisible = tag.rect.width !== 0 && tag.rect.height !== 0;
                         inView = isVisible &&
-                            (tag.rect.bottom > 0 && tag.rect.bottom < hm || tag.rect.top > 0 && tag.rect.top < hm) &&
-                            (tag.rect.right > 0 && tag.rect.right < wm || tag.rect.left > 0 && tag.rect.left < wm);
+                            (tag.rect.bottom >= 0 && tag.rect.bottom <= hm || tag.rect.top >= 0 && tag.rect.top <= hm) &&
+                            (tag.rect.right >= 0 && tag.rect.right <= wm || tag.rect.left >= 0 && tag.rect.left <= wm);
                         if (!isVisible)
                         {
                             tag.rect = null;
@@ -742,6 +746,7 @@ namespace MidnightLizard.ContentScript
                 tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
                 let filter = [
                     this.shift.Background.lightnessLimit < 1 ? "brightness(" + this.shift.Background.lightnessLimit + ")" : "",
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : "",
                     tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
                 ].filter(f => f).join(" ").trim();
                 if (!tag.originalFilter)
@@ -992,10 +997,12 @@ namespace MidnightLizard.ContentScript
                             {
                                 value: [
                                     imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
+                                    this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : "",
                                     imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : "",
                                     tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : ""
                                 ].filter(f => f).join(" ").trim()
                             };
+                        roomRules.keepFilter = true;
                         roomRules.attributes = roomRules.attributes || new Map<string, string>();
                         roomRules.attributes.set(this._css.transition, this._css.filter);
                     }
@@ -1014,6 +1021,7 @@ namespace MidnightLizard.ContentScript
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 `brightness(${1 - bgrSet.lightnessLimit})`,
                                 `invert(1)`,
+                                this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : "",
                                 `brightness(${txtSet.lightnessLimit})`,
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
                             ];
@@ -1022,6 +1030,7 @@ namespace MidnightLizard.ContentScript
                         {
                             filterValue = [
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                                this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : "",
                                 bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : "",
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
                             ];
@@ -1047,6 +1056,7 @@ namespace MidnightLizard.ContentScript
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                         doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
                                         doInvert ? "invert(1)" : "",
+                                        this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : "",
                                         tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
@@ -1098,7 +1108,8 @@ namespace MidnightLizard.ContentScript
                                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
                                     bgImgLight < 1 ? `brightness(${bgImgLight})` : "",
                                     doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
-                                    doInvert ? "invert(1)" : ""
+                                    doInvert ? "invert(1)" : "",
+                                    this._settingsManager.currentSettings.blueFilter !== 0 ? "url(#ml-blue-filter)" : ""
                                 ].filter(f => f).join(" ").trim();
 
                                 if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA")
@@ -1136,7 +1147,10 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        const textRole = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement
+                            ? cc.Link
+                            : cc.Text;
+                        roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                         if (roomRules.color)
                         {
                             let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
@@ -1242,7 +1256,11 @@ namespace MidnightLizard.ContentScript
 
                         case cc.Text:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag)
+                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.Link:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Border:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
@@ -1258,11 +1276,14 @@ namespace MidnightLizard.ContentScript
 
         protected removeTemporaryFilter(tag: HTMLElement | PseudoElement)
         {
-            if (tag.originalFilter !== undefined)
+            if (!tag.keepFilter)
             {
-                tag.style.setProperty(this._css.filter, tag.originalFilter)
+                if (tag.originalFilter !== undefined)
+                {
+                    tag.style.setProperty(this._css.filter, tag.originalFilter)
+                }
+                isRealElement(tag) && tag.removeAttribute(this._css.transition);
             }
-            isRealElement(tag) && tag.removeAttribute(this._css.transition);
         }
 
         protected processBackgroundGradient(tag: HTMLElement | PseudoElement, index: number, gradient: string, size: string, roomRules: RoomRules)
@@ -1331,8 +1352,8 @@ namespace MidnightLizard.ContentScript
                     img.src = dataUrl;
                 }));
 
-            let result = Promise.all([dataPromise, size, bgFilter]).then(
-                ([img, bgSize, fltr]) =>
+            let result = Promise.all([dataPromise, size, bgFilter, this._settingsManager.currentSettings.blueFilter / 100]).then(
+                ([img, bgSize, fltr, blueFltr]) =>
                 {
                     let imgWidth = img.width + this._css.px, imgHeight = img.height + this._css.px;
                     return new BackgroundImage(
@@ -1340,6 +1361,8 @@ namespace MidnightLizard.ContentScript
                         "url(data:image/svg+xml," + encodeURIComponent
                             (
                             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${img.width} ${img.height}" filter="${fltr}">` +
+                            `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="` +
+                            `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0"/></filter>` +
                             `<image width="${imgWidth}" height="${imgHeight}" href="${img.data}"/></svg>`
                             ).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")",
                         BackgroundImageType.Image
@@ -1409,8 +1432,10 @@ namespace MidnightLizard.ContentScript
 
         protected removeDynamicStyle(doc: Document)
         {
-            let dynamicStyle = doc.getElementById("midnight-lizard-dynamic-style");
+            const dynamicStyle = doc.getElementById("midnight-lizard-dynamic-style");
             dynamicStyle && dynamicStyle.remove();
+            const svgFilters = doc.getElementById("midnight-lizard-filters");
+            svgFilters && svgFilters.remove();
         }
 
         protected createDynamicStyle(doc: Document)
@@ -1450,7 +1475,19 @@ namespace MidnightLizard.ContentScript
                 scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 6px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`.replace(/\s{16}(?=\S)/g, ":not(impt)::-webkit-");
-            doc.head.appendChild(sheet);
+            (doc.head || doc.documentElement).appendChild(sheet);
+        }
+
+        protected createSvgFilters(doc: Document)
+        {
+            const svgFilter = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
+                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+            svgFilter.id = "midnight-lizard-filters"
+            svgFilter.mlIgnore = true;
+            svgFilter.style.display = this._css.none;
+            svgFilter.innerHTML = `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="${redShiftMatrix}"/></filter>`;
+            doc.body.appendChild(svgFilter);
         }
 
         protected createPseudoStyles(doc: Document)
@@ -1461,7 +1498,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
                 doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
-                doc.head.appendChild(doc.mlPseudoStyles);
+                (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
             }
         }
 
@@ -1498,7 +1535,7 @@ namespace MidnightLizard.ContentScript
             noTrans.id = "midnight-lizard-no-trans-style";
             noTrans.mlIgnore = true;
             noTrans.innerHTML = ":not([transition]) { transition: all 0s ease 0s !important; }";
-            doc.head.appendChild(noTrans);
+            (doc.head || doc.documentElement).appendChild(noTrans);
 
             let bgrLight = this.shift.Background.lightnessLimit,
                 imgLight = this.shift.Image.lightnessLimit,
@@ -1518,7 +1555,7 @@ namespace MidnightLizard.ContentScript
                 ` color:${txtColor}!important;` +
                 ` border-color:${brdColor}!important` +
                 `}`;
-            doc.head.appendChild(style);
+            (doc.head || doc.documentElement).appendChild(style);
         }
 
         protected removeLoadingStyles(doc: Document)
@@ -1540,7 +1577,7 @@ namespace MidnightLizard.ContentScript
                 pageScript.id = "midnight-lizard-page-script";
                 pageScript.type = "text/javascript";
                 pageScript.src = this._app.getFullPath("/js/page-script.js");
-                doc.head.appendChild(pageScript);
+                (doc.head || doc.documentElement).appendChild(pageScript);
             }
             catch (ex)
             {
@@ -1572,6 +1609,7 @@ namespace MidnightLizard.ContentScript
             }
             if (roomRules.filter && roomRules.filter.value)
             {
+                tag.keepFilter = roomRules.keepFilter;
                 tag.originalFilter = tag.style.filter;
                 tag.currentFilter = roomRules.filter.value;
                 tag.style.setProperty(this._css.filter, roomRules.filter.value)
@@ -1604,7 +1642,13 @@ namespace MidnightLizard.ContentScript
                         });
                     Promise
                         .all([tag, applyBgPromise.catch(ex => this._app.isDebug && console.error("Exception in backgroundImagePromise: " + ex))])
-                        .then(([tag]) => this.removeTemporaryFilter(tag));
+                        .then(([tag]) => 
+                        {
+
+                            let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
+                            this.removeTemporaryFilter(tag);
+                            this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+                        });
                 }
                 else
                 {

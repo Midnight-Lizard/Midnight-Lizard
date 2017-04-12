@@ -47,8 +47,8 @@ html, body {
 }
 
 .ml-dialog-title a {
-    color: hsl(282, 100%, 50%);
-    text-shadow: rgba(255, 229, 255, 0.8) 0px 0px 1px ;
+    /* color: hsl(282, 100%, 50%); */
+    text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 1px;
 }
 
 .ml-dialog-commands {
@@ -62,6 +62,7 @@ html, body {
 .ml-dialog-settings {
     display: table;
     width: 100%;
+    min-height: 380px;
 }
 
 .ml-dialog-settings-left {
@@ -79,7 +80,7 @@ html, body {
 .ml-dialog-commands > .ml-dialog-input-text {
     width: 120px;
     margin: 5px 20px 20px 20px;
-    background-color: var(--alt-background-color);
+    background-color: var(--content-background-color);
 }
 
 .ml-dialog-commands > .ml-dialog-label {
@@ -339,4 +340,9 @@ html, body {
 .change-log-icon{width: 24px;}
 .change-log-icon:hover{
     fill: #1B5E20;
+}
+
+#linkHue, #textHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue
+{
+    --ml-ignore:true;
 }

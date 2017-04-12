@@ -1,4 +1,4 @@
 #mv-single
 {
-    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit))
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) url("#ml-blue-filter")
 }

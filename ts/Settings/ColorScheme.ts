@@ -10,6 +10,7 @@ namespace MidnightLizard.Settings
         hostName?: string;
         isEnabled?: boolean;
         isDefault?: boolean;
+        blueFilter: number;
         settingsVersion?: string;
 
         useDefaultSchedule: boolean;
@@ -30,6 +31,12 @@ namespace MidnightLizard.Settings
         textLightnessLimit: number;
         textGraySaturation: number;
         textGrayHue: number;
+
+        linkSaturationLimit: number;
+        linkContrast: number;
+        linkLightnessLimit: number;
+        linkDefaultSaturation: number;
+        linkDefaultHue: number;
 
         borderSaturationLimit: number;
         borderContrast: number;

@@ -103,6 +103,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.textGraySaturation,
                         grayHue: set.textGrayHue
                     },
+                    Link:
+                    {
+                        saturationLimit: set.linkSaturationLimit,
+                        contrast: set.linkContrast,
+                        lightnessLimit: set.linkLightnessLimit,
+                        graySaturation: set.linkDefaultSaturation,
+                        grayHue: set.linkDefaultHue
+                    },
                     TextShadow:
                     {
                         saturationLimit: set.borderSaturationLimit,

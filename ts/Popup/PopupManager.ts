@@ -285,6 +285,10 @@ namespace MidnightLizard.Popup
         protected static onHueChanged(this: HTMLSelectElement)
         {
             this.style.cssText = (this.options[this.selectedIndex] as HTMLOptionElement).style.cssText;
+            if (this.hasAttribute("display-color-on"))
+            {
+                this.ownerDocument.getElementById(this.getAttribute("display-color-on")!)!.style.fill = this.style.backgroundColor;
+            }
         }
 
         protected setUpColorSchemeSelectValue(settings: Settings.ColorScheme)

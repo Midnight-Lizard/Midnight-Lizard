@@ -195,7 +195,7 @@ namespace MidnightLizard.ContentScript
                                         style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
                                         style.innerText = css;
                                         style.disabled = true;
-                                        d.head.appendChild(style);
+                                        (d.head || d.documentElement).appendChild(style);
                                         style.sheet.disabled = true;
                                     })));
                         }

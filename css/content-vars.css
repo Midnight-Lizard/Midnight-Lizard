@@ -5,12 +5,17 @@
 
     --ml-text-color:Text;
     --ml-text-fill:Text;
+    --ml-link-color:Link;
+    --ml-link-fill:Link;
+
     --ml-background-background-color:Background;
     --ml-background-fill:Background;
+
     --ml-backgroundimage:BackgroundImage;
     --ml-image:Image;
     --ml-svgbackground-background-color:SvgBackground;
     --ml-svgbackground-fill:SvgBackground;
+
     --ml-border-border-color:Border;
     --ml-border-border-bottom-color:Border;
     --ml-border-border-left-color:Border;
