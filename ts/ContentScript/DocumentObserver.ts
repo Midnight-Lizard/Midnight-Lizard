@@ -76,12 +76,15 @@ namespace MidnightLizard.ContentScript
                 bodyObserver.observe(doc.body, this._bodyObserverConfig);
                 bodyObserver.state = ObservationState.Active;
 
-                let headObserver = this._headObservers.get(doc);
-                if (headObserver === undefined)
+                if (doc.head)
                 {
-                    this._headObservers.set(doc, headObserver = new MutationObserver(this.headObserverCallback.bind(this)));
+                    let headObserver = this._headObservers.get(doc);
+                    if (headObserver === undefined)
+                    {
+                        this._headObservers.set(doc, headObserver = new MutationObserver(this.headObserverCallback.bind(this)));
+                    }
+                    headObserver.observe(doc.head, this._headObserverConfig);
                 }
-                headObserver.observe(doc.head, this._headObserverConfig);
             }
         }
 
@@ -97,14 +100,16 @@ namespace MidnightLizard.ContentScript
                 bodyObserver.state = ObservationState.Stopped;
                 setTimeout(() => this.bodyObserverCallback(mutations, bodyObserver!), 1);
             }
-
-            const headObserver = this._headObservers.get(doc);
-            if (headObserver !== undefined)
+            if (doc.head)
             {
-                let mutations = headObserver.takeRecords();
-                headObserver.disconnect();
-                headObserver.state = ObservationState.Stopped;
-                setTimeout(() => this.headObserverCallback(mutations, headObserver!), 1);
+                const headObserver = this._headObservers.get(doc);
+                if (headObserver !== undefined)
+                {
+                    let mutations = headObserver.takeRecords();
+                    headObserver.disconnect();
+                    headObserver.state = ObservationState.Stopped;
+                    setTimeout(() => this.headObserverCallback(mutations, headObserver!), 1);
+                }
             }
             return originalState;
         }

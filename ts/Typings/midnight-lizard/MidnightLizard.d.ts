@@ -49,6 +49,7 @@ interface Node
     ////////////////////////////////////////////////////////////////
     currentFilter: string | null | undefined;
     originalFilter: string | null | undefined;
+    keepFilter: boolean | undefined;
     originalTransitionDuration: string | null | undefined;
     originalBackgroundColor: string | null | undefined;
     originalDisplay: string | null | undefined;
@@ -78,6 +79,7 @@ interface Window
     HTMLInputElement: typeof HTMLInputElement;
     HTMLIFrameElement: typeof HTMLIFrameElement;
     HTMLCanvasElement: typeof HTMLCanvasElement;
+    HTMLEmbedElement: typeof HTMLEmbedElement;
 
     SVGElement: typeof SVGElement;
     SVGTextContentElement: typeof SVGTextContentElement;

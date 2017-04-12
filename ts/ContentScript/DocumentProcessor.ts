@@ -1002,6 +1002,7 @@ namespace MidnightLizard.ContentScript
                                     tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : ""
                                 ].filter(f => f).join(" ").trim()
                             };
+                        roomRules.keepFilter = true;
                         roomRules.attributes = roomRules.attributes || new Map<string, string>();
                         roomRules.attributes.set(this._css.transition, this._css.filter);
                     }
@@ -1275,11 +1276,14 @@ namespace MidnightLizard.ContentScript
 
         protected removeTemporaryFilter(tag: HTMLElement | PseudoElement)
         {
-            if (tag.originalFilter !== undefined)
+            if (!tag.keepFilter)
             {
-                tag.style.setProperty(this._css.filter, tag.originalFilter)
+                if (tag.originalFilter !== undefined)
+                {
+                    tag.style.setProperty(this._css.filter, tag.originalFilter)
+                }
+                isRealElement(tag) && tag.removeAttribute(this._css.transition);
             }
-            isRealElement(tag) && tag.removeAttribute(this._css.transition);
         }
 
         protected processBackgroundGradient(tag: HTMLElement | PseudoElement, index: number, gradient: string, size: string, roomRules: RoomRules)
@@ -1471,7 +1475,7 @@ namespace MidnightLizard.ContentScript
                 scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 6px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`.replace(/\s{16}(?=\S)/g, ":not(impt)::-webkit-");
-            doc.head.appendChild(sheet);
+            (doc.head || doc.documentElement).appendChild(sheet);
         }
 
         protected createSvgFilters(doc: Document)
@@ -1494,7 +1498,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
                 doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
-                doc.head.appendChild(doc.mlPseudoStyles);
+                (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
             }
         }
 
@@ -1531,7 +1535,7 @@ namespace MidnightLizard.ContentScript
             noTrans.id = "midnight-lizard-no-trans-style";
             noTrans.mlIgnore = true;
             noTrans.innerHTML = ":not([transition]) { transition: all 0s ease 0s !important; }";
-            doc.head.appendChild(noTrans);
+            (doc.head || doc.documentElement).appendChild(noTrans);
 
             let bgrLight = this.shift.Background.lightnessLimit,
                 imgLight = this.shift.Image.lightnessLimit,
@@ -1551,7 +1555,7 @@ namespace MidnightLizard.ContentScript
                 ` color:${txtColor}!important;` +
                 ` border-color:${brdColor}!important` +
                 `}`;
-            doc.head.appendChild(style);
+            (doc.head || doc.documentElement).appendChild(style);
         }
 
         protected removeLoadingStyles(doc: Document)
@@ -1573,7 +1577,7 @@ namespace MidnightLizard.ContentScript
                 pageScript.id = "midnight-lizard-page-script";
                 pageScript.type = "text/javascript";
                 pageScript.src = this._app.getFullPath("/js/page-script.js");
-                doc.head.appendChild(pageScript);
+                (doc.head || doc.documentElement).appendChild(pageScript);
             }
             catch (ex)
             {
@@ -1605,6 +1609,7 @@ namespace MidnightLizard.ContentScript
             }
             if (roomRules.filter && roomRules.filter.value)
             {
+                tag.keepFilter = roomRules.keepFilter;
                 tag.originalFilter = tag.style.filter;
                 tag.currentFilter = roomRules.filter.value;
                 tag.style.setProperty(this._css.filter, roomRules.filter.value)
