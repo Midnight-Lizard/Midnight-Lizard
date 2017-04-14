@@ -245,7 +245,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
-            blueFilter: 50,
+            blueFilter: 30,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
@@ -297,25 +297,25 @@ namespace MidnightLizard.Settings
             scheduleStartHour: 0,
             scheduleFinishHour: 24,
 
-            backgroundSaturationLimit: 100,
+            backgroundSaturationLimit: 90,
             backgroundContrast: 50,
             backgroundLightnessLimit: 90,
             backgroundGraySaturation: 10,
             backgroundGrayHue: 200,
 
-            textSaturationLimit: 100,
+            textSaturationLimit: 90,
             textContrast: 60,
             textLightnessLimit: 95,
             textGraySaturation: 20,
             textGrayHue: 199,
 
-            linkSaturationLimit: 100,
+            linkSaturationLimit: 90,
             linkContrast: 60,
             linkLightnessLimit: 100,
             linkDefaultSaturation: 100,
             linkDefaultHue: 231,
 
-            borderSaturationLimit: 100,
+            borderSaturationLimit: 90,
             borderContrast: 40,
             borderLightnessLimit: 95,
             borderGraySaturation: 20,
@@ -325,7 +325,7 @@ namespace MidnightLizard.Settings
             imageSaturationLimit: 90,
 
             backgroundImageLightnessLimit: 90,
-            backgroundImageSaturationLimit: 100,
+            backgroundImageSaturationLimit: 90,
 
             scrollbarSaturationLimit: 15,
             scrollbarContrast: 5,
@@ -337,7 +337,7 @@ namespace MidnightLizard.Settings
         {
             runOnThisSite: true,
             restoreColorsOnCopy: false,
-            blueFilter: 20,
+            blueFilter: 5,
 
             useDefaultSchedule: true,
             scheduleStartHour: 0,
