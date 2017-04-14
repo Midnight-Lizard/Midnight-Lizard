@@ -1408,7 +1408,6 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.readyState != "loading" && doc.readyState != "uninitialized" && doc.body && !doc.body.mlBgColor)
             {
-                doc.body.style.setProperty(this._css.color, "rgb(5,5,5)");
                 this.createDynamicStyle(doc);
                 this.processDocument(doc);
             }
