@@ -4,12 +4,18 @@
     --ml-no-invert:true;
 }
 
-.widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before, .maps-sprite-common-arrow-back-white
+.section-reviewchart-bucket-fill
+{
+    --ml-background-background-color:Border;
+}
+
+.widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before,
+.maps-sprite-common-arrow-back-white, .section-star-array li:not(.section-star-empty), .widget-expand-button-pegman-icon
 {
     --ml-no-invert:true;
 }
 
-.dir-tt img
+.dir-tt img, .section-line-group-summary-header-icons img
 {
     filter: invert(var(--ml-invert));
 }
