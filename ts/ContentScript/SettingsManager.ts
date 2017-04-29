@@ -28,7 +28,8 @@ namespace MidnightLizard.ContentScript
     {
         /** period of settings storage in the cookies */
         protected static readonly _storagePeriod = 49;
-        protected static readonly _excludeSettingsForSave: Settings.ColorSchemePropertyName[] = ["isEnabled", "exist", "hostName", "isDefault"];
+        protected static readonly _excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
+        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes"];
         constructor(
             protected readonly _rootDocument: Document,
             protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
@@ -49,28 +50,38 @@ namespace MidnightLizard.ContentScript
                 .then(defaultSettings =>
                 {
                     this._defaultSettings = defaultSettings;
-                    this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
                     if (defaultSettings.settingsVersion !== undefined)
                     {
-                        this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
+                        this.applyUserColorSchemes(defaultSettings);
                         let settings = this.getSettings(defaultSettings.settingsVersion);
                         if (settings.exist)
                         {
-                            Object.assign(this._currentSettings, settings);
+                            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                                Settings.ColorSchemes[settings.colorSchemeId])
+                            {
+                                Object.assign(this._currentSettings, Settings.ColorSchemes[settings.colorSchemeId]);
+                            }
+                            else
+                            {
+                                settings.colorSchemeId = settings.colorSchemeId || "custom" as Settings.ColorSchemeName;
+                                Object.assign(this._currentSettings, settings);
+                            }
+                            this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
                             this.saveCurrentSettings();
                         }
                         else
                         {
-                            defaultSettings.isDefault = true;
+                            defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
                             Object.assign(this._currentSettings, defaultSettings);
                         }
                     }
                     else
                     {
-                        this._currentSettings.isDefault = true;
+                        defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
                         this._currentSettings.settingsVersion = Util.guid("");
                         this._storageManager.set(this._currentSettings);
                     }
+                    this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
                     this.updateSchedule();
                     this.initCurSet();
                     this._onSettingsInitialized.raise(this._shift);
@@ -114,38 +125,45 @@ namespace MidnightLizard.ContentScript
 
         protected saveCurrentSettings()
         {
-            let setting: Settings.ColorSchemePropertyName;
-            for (setting in this._currentSettings)
+            if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
             {
-                if (SettingsManager._excludeSettingsForSave.indexOf(setting) == -1)
+                this._cookiesManager.setCookie(this.getSettingNameForCookies("colorSchemeId"), this._currentSettings.colorSchemeId, SettingsManager._storagePeriod);
+                this._cookiesManager.setCookie(this.getSettingNameForCookies("settingsVersion"), this._currentSettings.settingsVersion, SettingsManager._storagePeriod);
+            }
+            else
+            {
+                let setting: Settings.ColorSchemePropertyName;
+                for (setting in this._currentSettings)
                 {
-                    this._cookiesManager.setCookie(this.getSettingNameForCookies(setting), this._currentSettings[setting], SettingsManager._storagePeriod);
+                    if (SettingsManager._excludeSettingsForSave.indexOf(setting) == -1)
+                    {
+                        this._cookiesManager.setCookie(this.getSettingNameForCookies(setting), this._currentSettings[setting], SettingsManager._storagePeriod);
+                    }
                 }
             }
         }
 
-        protected getSettingNameForCookies(propertyName: string)
+        protected getSettingNameForCookies(propertyName: Settings.ColorSchemePropertyName)
         {
             return "ML" + propertyName.match(/^[^A-Z]{1,4}|[A-Z][^A-Z]{0,2}/g)!.join("").toUpperCase();
         }
 
         protected getSettings(version: string): Settings.ColorScheme
         {
-            let val, settings = new Settings.ColorScheme();
-            for (let setting in Settings.ColorSchemes.default)
+            let val, settings = new Settings.ColorScheme(), setting: Settings.ColorSchemePropertyName;
+            for (setting in Settings.ColorSchemes.default)
             {
-                let prop = setting as Settings.ColorSchemePropertyName;
                 val = this._cookiesManager.getCookie(this.getSettingNameForCookies(setting));
                 if (val)
                 {
-                    switch (typeof Settings.ColorSchemes.default[prop])
+                    switch (typeof Settings.ColorSchemes.default[setting])
                     {
-                        case Util.BOOL: settings[prop] = val == true.toString(); break;
-                        case Util.NUM: settings[prop] = parseInt(val); break;
-                        default: settings[prop] = val; break;
+                        case Util.BOOL: settings[setting] = val == true.toString(); break;
+                        case Util.NUM: settings[setting] = parseInt(val); break;
+                        default: settings[setting] = val; break;
                     }
                 }
-                else break;
+                //else break;
             }
 
             settings.exist = settings.settingsVersion == version;

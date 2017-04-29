@@ -6,10 +6,12 @@ namespace MidnightLizard.Settings
      */
     export class ColorScheme
     {
+        userColorSchemes?: Array<ColorScheme>;
+        colorSchemeId: ColorSchemeName;
+        colorSchemeName: string;
         exist?: boolean;
         hostName?: string;
         isEnabled?: boolean;
-        isDefault?: boolean;
         blueFilter: number;
         settingsVersion?: string;
 

@@ -24,6 +24,10 @@ namespace MidnightLizard.Popup
         protected _useDefaultScheduleCheckBox: HTMLInputElement;
         protected _forgetAllSitesButton: HTMLButtonElement;
         protected _forgetThisSiteButton: HTMLButtonElement;
+        protected _deleteColorSchemeButton: HTMLButtonElement;
+        protected _saveColorSchemeButton: HTMLButtonElement;
+        protected _newColorSchemeName: HTMLInputElement;
+        protected _colorSchemeForEdit: HTMLSelectElement;
 
         constructor(
             protected readonly _popup: Document,
@@ -31,7 +35,10 @@ namespace MidnightLizard.Popup
             protected readonly _commandManager: MidnightLizard.Popup.ICommandManager,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _documentProcessor: MidnightLizard.ContentScript.IDocumentProcessor,
-            protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor)
+            protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
+            protected readonly _dynamicSettingsManager: MidnightLizard.Settings.IDynamicSettingsManager,
+            protected readonly _dynamicTextColorProcessor: MidnightLizard.Colors.IDynamicTextColorProcessor,
+            protected readonly _dynamicBackgroundColorProcessor: MidnightLizard.Colors.IDynamicBackgroundColorProcessor)
         {
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
@@ -63,6 +70,10 @@ namespace MidnightLizard.Popup
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
             this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
+            this._saveColorSchemeButton = doc.getElementById("saveColorSchemeBtn") as HTMLButtonElement;
+            this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
+            this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
+            this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
 
             this._commandManager.getCommands()
                 .then(commands =>
@@ -74,9 +85,6 @@ namespace MidnightLizard.Popup
                     }
                 })
                 .catch(ex => alert("Commands acquiring failed.\n" + (ex.message || ex)));
-
-            PopupManager.ignoreSelect(this._colorSchemeSelect);
-            this._colorSchemeSelect.mlIgnore = false;
 
             this._forgetAllSitesButton.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied, this);
@@ -92,15 +100,22 @@ namespace MidnightLizard.Popup
             this._forgetThisSiteButton.onclick = this.forgetCurrentSiteSettings.bind(this);
             this._setAsDefaultButton.onclick = this.setAsDefaultSettings.bind(this);
 
+            this._colorSchemeForEdit.onchange = this.onColorSchemeForEditChanged.bind(this);
+            this._deleteColorSchemeButton.onclick = this.deleteUserColorScheme.bind(this);
+            this._saveColorSchemeButton.onclick = this.saveUserColorScheme.bind(this);
+            this._newColorSchemeName.oninput = this.updateColorSchemeButtons.bind(this);
+
             Controls.Tab.initTabControl(doc);
             Controls.Slider.initSliders(doc);
 
-            this._hostName.innerText = this._currentSiteSettings.hostName || "{unknown}";
+            this._hostName.innerText = this._currentSiteSettings.hostName || "current page";
 
+            this.fillColorSchemesSelectLists();
             this.setUpInputFields(this._currentSiteSettings);
             this.setUpColorSchemeSelectValue(this._currentSiteSettings);
             this.updateButtonStates();
             this.toggleSchedule();
+            this.onColorSchemeForEditChanged();
         }
 
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
@@ -165,6 +180,97 @@ namespace MidnightLizard.Popup
                 .catch(ex => alert("Extension toggle switching failed.\n" + (ex.message || ex)));
         }
 
+        protected fillColorSchemesSelectLists()
+        {
+            const customScheme = Object.assign({}, this._settingsManager.currentSettings);
+            customScheme.colorSchemeId = "custom" as Settings.ColorSchemeName;
+            customScheme.colorSchemeName = "Custom";
+            this.addColorSchemeOption(this._colorSchemeSelect, customScheme);
+            customScheme.colorSchemeName = "New color scheme";
+            this.addColorSchemeOption(this._colorSchemeForEdit, customScheme);
+            let schemeName: Settings.ColorSchemeName;
+
+            const defaultSettings = this._settingsManager.getDefaultSettingsCache();
+            defaultSettings.colorSchemeId = Settings.ColorSchemes.default.colorSchemeId;
+            defaultSettings.colorSchemeName = Settings.ColorSchemes.default.colorSchemeName;
+
+            for (schemeName in Settings.ColorSchemes)
+            {
+                this.addColorSchemeOption(this._colorSchemeSelect,
+                    schemeName === Settings.ColorSchemes.default.colorSchemeId ? defaultSettings : Settings.ColorSchemes[schemeName]);
+
+                if (schemeName !== Settings.ColorSchemes.default.colorSchemeId && schemeName !== Settings.ColorSchemes.original.colorSchemeId)
+                {
+                    this.addColorSchemeOption(this._colorSchemeForEdit, Settings.ColorSchemes[schemeName]);
+                }
+            }
+        }
+
+        protected addColorSchemeOption(select: HTMLSelectElement, colorScheme: Settings.ColorScheme)
+        {
+            const option = this._popup.createElement("option");
+            option.value = colorScheme.colorSchemeId;
+            option.text = colorScheme.colorSchemeName;
+
+            this._dynamicSettingsManager.changeSettings(colorScheme);
+            option.style.color = this._dynamicTextColorProcessor.changeColor(Colors.RgbaColor.Black, colorScheme.backgroundLightnessLimit / 100, option).color;
+            option.style.backgroundColor = this._dynamicBackgroundColorProcessor.changeColor(Colors.RgbaColor.White, false, option).color;
+
+            select.appendChild(option);
+            return option;
+        }
+
+        protected onColorSchemeForEditChanged()
+        {
+            if (this._colorSchemeForEdit.selectedOptions.length)
+            {
+                this._newColorSchemeName.value = (this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text;
+                this.updateColorSchemeButtons();
+            }
+        }
+
+        protected updateColorSchemeButtons()
+        {
+            this._saveColorSchemeButton.disabled = this._colorSchemeForEdit.value !== "custom" &&
+                this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings,
+                    Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName]) &&
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName ===
+                this._newColorSchemeName.value as Settings.ColorSchemeName;
+            this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
+        }
+
+        protected saveUserColorScheme()
+        {
+            if (this._colorSchemeForEdit.value === "custom" ||
+                confirm(`You are about to update color scheme [${
+                    Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
+                    }] with current popup settings and new name [${this._newColorSchemeName.value}]. Are you sure?`))
+            {
+                const newScheme = Object.assign({}, this._settingsManager.currentSettings);
+                newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
+                newScheme.colorSchemeName = this._newColorSchemeName.value;
+                if (this._colorSchemeForEdit.value === "custom")
+                {
+                    newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
+                }
+                this._settingsManager.saveUserColorScheme(newScheme)
+                    .then(x => alert("Done. It will take effect after page refresh and popup reopen."))
+                    .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
+            }
+        }
+
+        protected deleteUserColorScheme()
+        {
+            if (confirm(`You are about to delete color scheme [${
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
+                }]. Are you sure?`))
+            {
+                this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
+                    .then(x => alert("Done. It will take effect after page refresh and popup reopen."))
+                    .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
+            }
+        }
+
         protected toggleSchedule()
         {
             if (this._useDefaultScheduleCheckBox.checked)
@@ -209,6 +315,19 @@ namespace MidnightLizard.Popup
 
         protected setUpInputFields(settings: Settings.ColorScheme)
         {
+            if (settings.colorSchemeId &&
+                settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
+                settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
+                Settings.ColorSchemes[settings.colorSchemeId])
+            {
+                this._colorSchemeForEdit.value = settings.colorSchemeId;
+            }
+            else
+            {
+                this._colorSchemeForEdit.value = "custom";
+            }
+            this.onColorSchemeForEditChanged();
             let setting: Settings.ColorSchemePropertyName;
             for (setting in settings)
             {
@@ -235,7 +354,6 @@ namespace MidnightLizard.Popup
                         case "select-one":
                             input.value = settingValue!.toString();
                             dom.addEventListener(input, "change", PopupManager.onHueChanged, input)();
-                            PopupManager.ignoreSelect(input as HTMLSelectElement);
                             break;
 
                         default: break;
@@ -250,36 +368,14 @@ namespace MidnightLizard.Popup
 
         protected updateButtonStates()
         {
-            this._applyButton.disabled = this.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings);
+            this.updateColorSchemeButtons();
+            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings);
             Promise
                 .all([this._settingsManager.currentSettings, this._settingsManager.getDefaultSettings()])
                 .then(([currentSettings, defaultSettings]) =>
                 {
-                    this._setAsDefaultButton.disabled = this.settingsAreEqual(currentSettings, defaultSettings);
+                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings);
                 });
-        }
-
-        protected settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
-        {
-            const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] = ["isEnabled", "exist", "hostName", "isDefault", "settingsVersion"];
-            for (let setting in first)
-            {
-                let prop = setting as Settings.ColorSchemePropertyName;
-                if (excludeSettingsForCompare.indexOf(prop) == -1)
-                {
-                    if (first[prop] !== second[prop])
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        protected static ignoreSelect(select: HTMLSelectElement)
-        {
-            select.mlIgnore = true;
-            Array.prototype.forEach.call(select.options, (opt: HTMLOptionElement) => opt.mlIgnore = true);
         }
 
         protected static onHueChanged(this: HTMLSelectElement)
@@ -296,34 +392,39 @@ namespace MidnightLizard.Popup
             dom.removeAllEventListeners(this._colorSchemeSelect);
             setUp:
             {
-                if (settings.isDefault)
-                {
-                    this._colorSchemeSelect.value = "default";
-                }
-                else if (!settings.runOnThisSite)
+                if (!settings.runOnThisSite)
                 {
                     this._colorSchemeSelect.value = "original";
                 }
                 else
                 {
-                    let scheme: Settings.ColorSchemeName;
-                    for (scheme in Settings.ColorSchemes)
+                    if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                        Settings.ColorSchemes[settings.colorSchemeId])
                     {
-                        if (this.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
-                        {
-                            this._colorSchemeSelect.value = scheme;
-                            break setUp;
-                        }
+                        this._colorSchemeSelect.value = settings.colorSchemeId;
                     }
-                    this._colorSchemeSelect.value = "custom";
+                    else
+                    {
+                        let scheme: Settings.ColorSchemeName;
+                        for (scheme in Settings.ColorSchemes)
+                        {
+                            if (this._settingsManager.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
+                            {
+                                this._colorSchemeSelect.value = scheme;
+                                break setUp;
+                            }
+                        }
+                        this._colorSchemeSelect.value = "custom";
+                    }
                 }
             }
+            settings.colorSchemeId = this._colorSchemeSelect.value as Settings.ColorSchemeName;
             dom.addEventListener(this._colorSchemeSelect, "change", this.onColorSchemeChanged, this);
         }
 
         protected onColorSchemeChanged()
         {
-            if (this._colorSchemeSelect.value == "default")
+            if (this._colorSchemeSelect.value === "default")
             {
                 this._settingsManager.getDefaultSettings()
                     .then(this.applySettingsOnPopup.bind(this));
@@ -331,18 +432,15 @@ namespace MidnightLizard.Popup
             else
             {
                 let selectedScheme;
-                if (this._colorSchemeSelect.value == "custom")
+                if (this._colorSchemeSelect.value === "custom")
                 {
                     this.applySettingsOnPopup(this._currentSiteSettings);
                 }
                 else
                 {
-                    let selectedScheme = Object.assign(
-                        {
-                            isEnabled: this._isEnabledToggle.checked,
-                            settingsVersion: this._currentSiteSettings.settingsVersion
-                        },
-                        Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeName]);
+                    let selectedScheme = Object.assign({}, Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeName]);
+                    selectedScheme.isEnabled = this._isEnabledToggle.checked;
+                    selectedScheme.settingsVersion = this._currentSiteSettings.settingsVersion;
                     this.applySettingsOnPopup(selectedScheme);
                 }
             }

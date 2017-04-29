@@ -12,6 +12,8 @@ namespace MidnightLizard.Settings
     {
         static default: ColorScheme =
         {
+            colorSchemeId: "default",
+            colorSchemeName: "Default",
             settingsVersion: "",
             runOnThisSite: false,
             restoreColorsOnCopy: false,
@@ -59,6 +61,8 @@ namespace MidnightLizard.Settings
 
         static original: ColorScheme =
         {
+            colorSchemeId: "original",
+            colorSchemeName: "Original (none)",
             runOnThisSite: false,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -105,6 +109,8 @@ namespace MidnightLizard.Settings
 
         static dimmedDust: ColorScheme =
         {
+            colorSchemeId: "dimmedDust",
+            colorSchemeName: "Dimmed Dust",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -151,6 +157,8 @@ namespace MidnightLizard.Settings
 
         static appleMint: ColorScheme =
         {
+            colorSchemeId: "appleMint",
+            colorSchemeName: "Apple Mint",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -197,6 +205,8 @@ namespace MidnightLizard.Settings
 
         static kappaDream: ColorScheme =
         {
+            colorSchemeId: "kappaDream",
+            colorSchemeName: "Kappa Dream",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -243,6 +253,8 @@ namespace MidnightLizard.Settings
 
         static sunsetSails: ColorScheme =
         {
+            colorSchemeId: "sunsetSails",
+            colorSchemeName: "Sunset Sails",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 30,
@@ -289,6 +301,8 @@ namespace MidnightLizard.Settings
 
         static morningMist: ColorScheme =
         {
+            colorSchemeId: "morningMist",
+            colorSchemeName: "Morning Mist",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -335,6 +349,8 @@ namespace MidnightLizard.Settings
 
         static antiqueCodex: ColorScheme =
         {
+            colorSchemeId: "antiqueCodex",
+            colorSchemeName: "Antique Codex",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 5,
@@ -381,6 +397,8 @@ namespace MidnightLizard.Settings
 
         static increasedContrast: ColorScheme =
         {
+            colorSchemeId: "increasedContrast",
+            colorSchemeName: "Increased Contrast",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -427,6 +445,8 @@ namespace MidnightLizard.Settings
 
         static grayscale: ColorScheme =
         {
+            colorSchemeId: "grayscale",
+            colorSchemeName: "Grayscale",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -473,6 +493,8 @@ namespace MidnightLizard.Settings
 
         static invertedLight: ColorScheme =
         {
+            colorSchemeId: "invertedLight",
+            colorSchemeName: "Inverted Light",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -519,6 +541,8 @@ namespace MidnightLizard.Settings
 
         static invertedGrayscale: ColorScheme =
         {
+            colorSchemeId: "invertedGrayscale",
+            colorSchemeName: "Inverted Grayscale",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -565,6 +589,8 @@ namespace MidnightLizard.Settings
 
         static yellowOnBlack: ColorScheme =
         {
+            colorSchemeId: "yellowOnBlack",
+            colorSchemeName: "Yellow on Black",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,
@@ -611,6 +637,8 @@ namespace MidnightLizard.Settings
 
         static greenOnBlack: ColorScheme =
         {
+            colorSchemeId: "greenOnBlack",
+            colorSchemeName: "Green on Black",
             runOnThisSite: true,
             restoreColorsOnCopy: false,
             blueFilter: 0,

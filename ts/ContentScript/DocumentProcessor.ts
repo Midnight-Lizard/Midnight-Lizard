@@ -107,12 +107,20 @@ namespace MidnightLizard.ContentScript
 
         protected createStandardPseudoCssTexts()
         {
-            this._standardPseudoCssTexts.set(
-                PseudoStyleStandard.InvertedBackgroundImage,
-                `${this._css.filter}:saturate(${this.shift.BackgroundImage.saturationLimit}) brightness(${1 - this.shift.Background.lightnessLimit}) invert(1)`);
-            this._standardPseudoCssTexts.set(
-                PseudoStyleStandard.BackgroundImage,
-                `${this._css.filter}:saturate(${this.shift.BackgroundImage.saturationLimit}) brightness(${this.shift.BackgroundImage.lightnessLimit})`);
+            const
+                invertedBackgroundImageFilter = [
+                    this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
+                    `brightness(${1 - this.shift.Background.lightnessLimit}) invert(1)`,
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
+                ].filter(f => f).join(" ").trim(),
+                backgroundImageFilter = [
+                    this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
+                    this.shift.BackgroundImage.lightnessLimit < 1 ? `brightness(${this.shift.BackgroundImage.lightnessLimit})` : "",
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
+                ].filter(f => f).join(" ").trim();
+
+            this._standardPseudoCssTexts.set(PseudoStyleStandard.InvertedBackgroundImage, `${this._css.filter}:${invertedBackgroundImageFilter}!${this._css.important}`);
+            this._standardPseudoCssTexts.set(PseudoStyleStandard.BackgroundImage, `${this._css.filter}:${backgroundImageFilter}!${this._css.important}`);
         }
 
         protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
@@ -177,8 +185,8 @@ namespace MidnightLizard.ContentScript
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
                 this.createSvgFilters(doc);
-                this._linkColorProcessor.getDefaultColor(doc);
-                this._textColorProcessor.getDefaultColor(doc);
+                this._linkColorProcessor.calculateDefaultColor(doc);
+                this._textColorProcessor.calculateDefaultColor(doc);
                 doc.body.isChecked = true;
                 this.processElement(doc.body);
                 this._documentObserver.startDocumentObservation(doc);
@@ -997,54 +1005,24 @@ namespace MidnightLizard.ContentScript
 
                     if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
                         (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
-                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1))
+                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || this._settingsManager.currentSettings.blueFilter !== 0))
                     {
                         const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                         let imgSet = this.shift[customImageRole] || this.shift.Image;
                         roomRules.filter =
                             {
                                 value: [
+                                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
                                     imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                    imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : "",
-                                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : ""
+                                    imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
                                 ].filter(f => f).join(" ").trim()
                             };
                         roomRules.keepFilter = true;
                         roomRules.attributes = roomRules.attributes || new Map<string, string>();
                         roomRules.attributes.set(this._css.transition, this._css.filter);
                     }
-                    let bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.5;
-
-                    if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
-                    {
-                        let filterValue: Array<string>;
-                        const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
-                        let bgrSet = this.shift[customCanvasRole] || this.shift.Background,
-                            txtSet = this.shift.Text;
-
-                        if (bgInverted)
-                        {
-                            filterValue = [
-                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                `brightness(${1 - bgrSet.lightnessLimit})`,
-                                `invert(1)`,
-                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                `brightness(${txtSet.lightnessLimit})`,
-                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
-                            ];
-                        }
-                        else
-                        {
-                            filterValue = [
-                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : "",
-                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : ""
-                            ];
-                        }
-                        roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
-                    }
+                    const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.5;
 
                     if (tag.isPseudo && tag.computedStyle!.content!.substr(0, 3) == "url")
                     {
@@ -1054,27 +1032,27 @@ namespace MidnightLizard.ContentScript
                                 this.tagIsSmall(tag.parentElement!.parentElement!) &&
                                 (tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden)
                             );
-                        if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert)
+                        if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                         {
                             let imgSet = this.shift.Image;
                             roomRules.filter =
                                 {
                                     value: [
+                                        tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : "",
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                         doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
                                         doInvert ? "invert(1)" : "",
-                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                        tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
+                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
                         }
                     }
 
                     if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none)
-                    {
+                    {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                         let backgroundImage = tag.computedStyle!.backgroundImage!;
-                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|color-stop\([.\d]+%?,\s?(rgba?\([^)]+\)|[^)]+)\)/gi);
+                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|color-stop\((rgba?\([^)]+\)|[^)]+)\)/gi);
                         let gradientColors = new Map<string, string>();
                         if (gradientColorMatches)
                         {
@@ -1092,14 +1070,14 @@ namespace MidnightLizard.ContentScript
                             let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
                             doInvert = (!isTable) && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
-                                //tag.computedStyle!.getPropertyValue("--ml-no-invert") !== "1" &&
+                                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                                 (
                                     this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
                                     this.tagIsSmall(tag.parentElement.parentElement) &&
                                     (tag.parentElement.parentElement.computedStyle!.overflow === this._css.hidden)
                                 );
 
-                            if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert)
+                            if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                             {
                                 isPseudoContent = tag.isPseudo && tag.computedStyle.content !== "''" && tag.computedStyle!.content !== '""';
 
@@ -1196,6 +1174,38 @@ namespace MidnightLizard.ContentScript
                                 }
                             }
                         }
+                    }
+
+                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.5;
+
+                    if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
+                    {
+                        let filterValue: Array<string>;
+                        const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
+                        let bgrSet = this.shift[customCanvasRole] || this.shift.Background,
+                            txtSet = this.shift.Text;
+
+                        if ((bgInverted || txtInverted) && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+                        {
+                            filterValue = [
+                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                                `brightness(${1 - bgrSet.lightnessLimit})`,
+                                `invert(1)`,
+                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
+                                `brightness(${txtSet.lightnessLimit})`
+                            ];
+                        }
+                        else
+                        {
+                            filterValue = [
+                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
+                                bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : ""
+                            ];
+                        }
+                        roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
                     }
 
                     if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
@@ -1297,7 +1307,7 @@ namespace MidnightLizard.ContentScript
         protected processBackgroundGradient(tag: HTMLElement | PseudoElement, index: number, gradient: string, size: string, roomRules: RoomRules)
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
-            let uniqColors = new Set<string>(gradient
+            let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                 .replace(/webkit|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
             if (uniqColors.size > 0)
@@ -1360,7 +1370,8 @@ namespace MidnightLizard.ContentScript
                     img.src = dataUrl;
                 }));
 
-            let result = Promise.all([dataPromise, size, bgFilter, this._settingsManager.currentSettings.blueFilter / 100]).then(
+            const bgFltr = bgFilter.replace('"#ml-blue-filter"', '#ml-blue-filter');
+            let result = Promise.all([dataPromise, size, bgFltr, this._settingsManager.currentSettings.blueFilter / 100]).then(
                 ([img, bgSize, fltr, blueFltr]) =>
                 {
                     let imgWidth = img.width + this._css.px, imgHeight = img.height + this._css.px;
@@ -1471,6 +1482,7 @@ namespace MidnightLizard.ContentScript
                         };`.toLowerCase();
                 }
             }
+            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}`;
             sheet.innerHTML = `:root { ${globalVars} }
                 scrollbar { width: 12px!important; height: 12px!important; background: ${thumbNormalColor}!important; }
                 scrollbar-button:hover { background: ${thumbHoverColor}!important; }
@@ -1525,14 +1537,14 @@ namespace MidnightLizard.ContentScript
         protected getStandardPseudoStyleSelector(pseudoType: PseudoType, pseudoStyleStandard: PseudoStyleStandard, cssText?: string)
         {
             const pseudo = PseudoType[pseudoType].toLowerCase();
-            return `[${pseudo}-style="${PseudoStyleStandard[pseudoStyleStandard]}"]:not(impt)::${pseudo} { ${cssText}!${this._css.important} }`;
+            return `[${pseudo}-style="${PseudoStyleStandard[pseudoStyleStandard]}"]:not(impt)::${pseudo} { ${cssText} }`;
         }
 
         protected clearPseudoStyles(doc: Document)
         {
             if (doc.mlPseudoStyles)
             {
-                doc.mlPseudoStyles.innerHTML = "";
+                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
             }
         }
 
@@ -1619,7 +1631,14 @@ namespace MidnightLizard.ContentScript
                 tag.keepFilter = roomRules.keepFilter;
                 tag.originalFilter = tag.style.filter;
                 tag.currentFilter = roomRules.filter.value;
-                tag.style.setProperty(this._css.filter, roomRules.filter.value)
+                if (tag.isPseudo)
+                {
+                    tag.style.setProperty(this._css.filter, roomRules.filter.value, this._css.important);
+                }
+                else
+                {
+                    tag.style.setProperty(this._css.filter, roomRules.filter.value);
+                }
             }
 
             if (roomRules.transitionDuration && roomRules.transitionDuration.value)

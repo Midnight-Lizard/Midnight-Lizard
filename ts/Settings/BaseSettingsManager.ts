@@ -67,7 +67,7 @@ namespace MidnightLizard.Settings
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
-            this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
+            this._defaultSettings = this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
             this.initCurrentSettings();
         }
 
@@ -202,6 +202,35 @@ namespace MidnightLizard.Settings
         public get onSettingsChanged()
         {
             return this._onSettingsChanged.event;
+        }
+
+        protected applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
+        {
+            if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
+            {
+                for (let userColorScheme of defaultSettings.userColorSchemes)
+                {
+                    Settings.ColorSchemes[userColorScheme.colorSchemeId] = Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
+                }
+            }
+        }
+
+        public settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
+        {
+            const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
+                ["isEnabled", "exist", "hostName", "settingsVersion", "colorSchemeId", "colorSchemeName", "userColorSchemes"];
+            for (let setting in first)
+            {
+                let prop = setting as Settings.ColorSchemePropertyName;
+                if (excludeSettingsForCompare.indexOf(prop) == -1)
+                {
+                    if (first[prop] !== second[prop])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
