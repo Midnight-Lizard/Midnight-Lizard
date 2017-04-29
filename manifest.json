@@ -171,6 +171,22 @@
             ],
             "css": [
                 "css/custom/google-maps.css"
+            ],
+            "js": [
+                "js/custom/google-maps.js"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.google.*/maps/*"
+            ],
+            "js": [
+                "js/custom/google-maps.js"
             ]
         },
         {

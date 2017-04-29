@@ -1,16 +1,16 @@
 {
     "include": [
-        "./ts/**/*"
+        "../../ts/Custom/*.ts"
     ],
-    "compilerOptions": {
-        "pretty": true,
-        "outDir": "./js",
+    "compilerOptions":
+    {
+        "outDir": "../../js/custom",
         "removeComments": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
         "target": "es6",
-        "sourceMap": true,
-        "allowJs": true,
+        "inlineSourceMap": false,
+        "allowJs": false,
         "noImplicitReturns": true,
         "noEmitOnError": true,
         "noImplicitThis": true,

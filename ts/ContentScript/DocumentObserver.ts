@@ -1,6 +1,5 @@
 /// <reference path="../DI/-DI.ts" />
 
-
 namespace MidnightLizard.ContentScript
 {
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;

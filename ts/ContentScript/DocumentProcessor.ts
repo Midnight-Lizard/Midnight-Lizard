@@ -139,6 +139,11 @@ namespace MidnightLizard.ContentScript
 
         protected onSettingsInitialized(shift: Colors.ComponentShift): void
         {
+            if (this._settingsManager.isActive)
+            {
+                this.createStandardPseudoCssTexts();
+                this.createDynamicStyle(this._rootDocument);
+            }
             if (this._rootDocumentLoaded)
             {
                 this.processRootDocument();
@@ -146,11 +151,6 @@ namespace MidnightLizard.ContentScript
             else if (this._settingsManager.isActive)
             {
                 this.createLoadingStyles(this._rootDocument);
-            }
-            if (this._settingsManager.isActive)
-            {
-                this.createStandardPseudoCssTexts();
-                this.createDynamicStyle(this._rootDocument);
             }
         }
 

@@ -39,6 +39,18 @@
             ]
         },
         {
+            "taskName": "TSC Release Custom",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$tsc",
+            "args": [
+                "-p ./config/chrome/custom-release.json"
+            ]
+        },
+        {
             "taskName": "TSC Release Page Script",
             "command": "tsc",
             "isShellCommand": true,
@@ -81,6 +93,16 @@
             ]
         },
         {
+            "taskName": "TSC Build Custom",
+            "command": "tsc",
+            "isShellCommand": true,
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "args": [
+                "-w -p ./config/chrome/custom-debug.json"
+            ]
+        },
+        {
             "taskName": "TSC Build Page Script",
             "command": "tsc",
             "isShellCommand": true,
@@ -94,6 +116,7 @@
             "taskName": "Build",
             "isTestCommand": true,
             "dependsOn": [
+                "TSC Build Custom",
                 "TSC Build Page Script",
                 "TSC Build Popup",
                 "TSC Build Background Page",
@@ -104,6 +127,7 @@
             "taskName": "Release",
             "isBuildCommand": true,
             "dependsOn": [
+                "TSC Release Custom",
                 "TSC Release Page Script",
                 "TSC Release Background Page",
                 "TSC Release Popup",
