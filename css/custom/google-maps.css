@@ -1,4 +1,25 @@
-canvas.widget-scene-canvas
+.app-imagery-mode.app-imagery-viewer-mode canvas.widget-scene-canvas
 {
     --ml-background-background-color:Image;
+    --ml-no-invert:true;
+}
+
+.widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before, .maps-sprite-common-arrow-back-white
+{
+    --ml-no-invert:true;
+}
+
+.dir-tt img
+{
+    filter: invert(var(--ml-invert));
+}
+
+.widget-settings-header::before
+{
+    content: 'Maps';
+    position: absolute;
+    font-size: 15pt;
+    top: 10px;
+    left: 101px;
+    z-index: 9999;
 }
