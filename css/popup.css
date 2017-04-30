@@ -380,6 +380,9 @@ html, body {
     background-image: url("/img/seven_colors_flower.jpg");
     background-size: 264px 148px;
     display: inline-block;
+    font-size: 20pt;
+    text-align: center;
+    padding-top: 35px;
     background-repeat: no-repeat;
 }
 

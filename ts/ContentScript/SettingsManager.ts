@@ -54,6 +54,8 @@ namespace MidnightLizard.ContentScript
                     {
                         this.applyUserColorSchemes(defaultSettings);
                         let settings = this.getSettings(defaultSettings.settingsVersion);
+                        defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
+                        Object.assign(this._currentSettings, defaultSettings);
                         if (settings.exist)
                         {
                             if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
@@ -68,11 +70,6 @@ namespace MidnightLizard.ContentScript
                             }
                             this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
                             this.saveCurrentSettings();
-                        }
-                        else
-                        {
-                            defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
-                            Object.assign(this._currentSettings, defaultSettings);
                         }
                     }
                     else

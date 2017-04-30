@@ -67,6 +67,7 @@ namespace MidnightLizard.Settings
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
+            this.initDefaultColorSchemes();
             this._defaultSettings = this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
             this.initCurrentSettings();
         }
@@ -204,7 +205,17 @@ namespace MidnightLizard.Settings
             return this._onSettingsChanged.event;
         }
 
-        protected applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
+        public initDefaultColorSchemes()
+        {
+            let setting: Settings.ColorSchemeName;
+            for (setting in Settings.ColorSchemes)
+            {
+                delete Settings.ColorSchemes[setting];
+            }
+            this.applyUserColorSchemes(DefaultColorSchemes);
+        }
+
+        public applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
         {
             if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
             {

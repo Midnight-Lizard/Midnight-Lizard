@@ -41,27 +41,27 @@
 		<div class="ml-dialog-settings">
 			<ul class="ml-tab">
 				<li class="ml-tab-item-separator">&nbsp;</li>
-				<li class="ml-tab-item" content="common">
+				<li class="ml-tab-item" content="common" title="Settings that are common for the entire page">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
 						/>
 					</svg>Common
 				</li>
-				<li class="ml-tab-item" content="background">
+				<li class="ml-tab-item" content="background" title="Background color settings">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M16.56 8.94L7.62 0 6.21 1.41l2.38 2.38-5.15 5.15c-.59.59-.59 1.54 0 2.12l5.5 5.5c.29.29.68.44 1.06.44s.77-.15 1.06-.44l5.5-5.5c.59-.58.59-1.53 0-2.12zM5.21 10L10 5.21 14.79 10H5.21zM19 11.5s-2 2.17-2 3.5c0 1.1.9 2 2 2s2-.9 2-2c0-1.33-2-3.5-2-3.5z"
 						/>
 						<path id="backgroundHue" d="M0 20h24v4H0z" fill-opacity="1" />
 					</svg>Background</li>
-				<li class="ml-tab-item" content="text">
+				<li class="ml-tab-item" content="text" title="Text color settings">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path id="textHue" d="M0 20h24v4H0z" fill-opacity="1" />
 						<path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
 					</svg>Text</li>
-				<li class="ml-tab-item" content="links">
+				<li class="ml-tab-item" content="links" title="Hyperlinks color settings">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path id="linkHue" d="M0 20h24v4H0z" fill-opacity="1" />
@@ -70,7 +70,7 @@ h 4 v -1.9 H 7 c -1.71,0 -3.1,-1.39 -3.1,-3.0999997 z M 8,10.333333 h 8 V 8.3333
 1.71,0 3.1,1.39 3.1,3.1 0,1.7099997 -1.39,3.0999997 -3.1,3.0999997 h -4 v 1.9 h 4 c 2.76,0 5,-2.24 5,-4.9999997 0,-2.76 -2.24,-5
 -5,-5 z" />
 					</svg>Links</li>
-				<li class="ml-tab-item" content="borders">
+				<li class="ml-tab-item" content="borders" title="Borders and lines color settings">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M17.75 7L14 3.25l-10 10V17h3.75l10-10zm2.96-2.96c.39-.39.39-1.02 0-1.41L18.37.29c-.39-.39-1.02-.39-1.41 0L15 2.25 18.75 6l1.96-1.96z"
 						/>
@@ -83,21 +83,21 @@ v 2 h 2 z M 9,8 H 7 v 2 h 2 z" />-->
 						<path d="M0 20h24v4H0z" id="borderHue" />
 						<path d="M0 0h24v24H0z" fill="none" />
 					</svg>Borders</li>
-				<li class="ml-tab-item" content="images">
+				<li class="ml-tab-item" content="images" title="Images and pictures adjustment settings">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M 5 3 C 3.9 3 3 3.9 3 5 L 3 19 C 3 20.1 3.9 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 5 C 21 3.9 20.1 3 19 3 L 5 3 z M
 9 7 A 2 2 0 0 1 11 9 A 2 2 0 0 1 9 11 A 2 2 0 0 1 7 9 A 2 2 0 0 1 9 7 z M 14.5 12 L 19 18 L 5 18 L 8.5 13.5 L 11 16.509766
 L 14.5 12 z" />
 						<path d="M0 0h24v24H0z" fill="none" />
 					</svg>Images</li>
-				<li class="ml-tab-item" content="fond-images" title="Background images">
+				<li class="ml-tab-item" content="fond-images" title="Background images adjustment settings.&#xA;Background images are usualy behind the text or they are a part of the text.">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M 5 3 C 3.9 3 3 3.9 3 5 L 3 19 C 3 20.1 3.9 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 5 C 21 3.9 20.1 3 19 3 L 5 3 z M
 6 6 L 18 6 L 18 8 L 6 8 L 6 6 z M 6 10 L 12 10 L 12 12 L 6 12 L 6 10 z M 14.5 12 L 19 18 L 5 18 L 8.5 13.5 L 11 16.509766
 L 14.5 12 z" />
 						<path d="M0 0h24v24H0z" fill="none" />
 					</svg>Fond images</li>
-				<li class="ml-tab-item" content="scrollbars">
+				<li class="ml-tab-item" content="scrollbars" title="Color settings for all scrollbars on the page">
 					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0h24v24H0z" fill="none" />
 						<path d="M 3,3 C 1.9092972,3 1,3.9092972 1,5 v 14 c 0,1.090703 0.9092972,2 2,2 h 18 c 1.090703,0 2,-0.909297 2,-2 V 5 C 23,3.9092972
@@ -621,7 +621,7 @@ L 14.5 12 z" />
 				</div>
 				<div class="ml-input-container">
 					<label class="ml-dialog-label" title="Background image example">Background image example</label>
-					<div class="ml-bg-image-example ml-image-example"></div>
+					<div class="ml-bg-image-example ml-image-example" title="If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly.">Example</div>
 				</div>
 			</div>
 			<div id="scrollbars" class="ml-tab-content"><br>

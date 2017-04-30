@@ -241,10 +241,11 @@ namespace MidnightLizard.Popup
 
         protected saveUserColorScheme()
         {
+            const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
+                ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName : "";
             if (this._colorSchemeForEdit.value === "custom" ||
-                confirm(`You are about to update color scheme [${
-                    Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
-                    }] with current popup settings and new name [${this._newColorSchemeName.value}]. Are you sure?`))
+                confirm(`You are about to update color scheme [${colorSchemeForEditName}] with current popup settings and ${
+                    colorSchemeForEditName === this._newColorSchemeName.value ? "a" : "the new"} name [${this._newColorSchemeName.value}]. Are you sure want to continue?`))
             {
                 const newScheme = Object.assign({}, this._settingsManager.currentSettings);
                 newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
@@ -254,7 +255,11 @@ namespace MidnightLizard.Popup
                     newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
                 }
                 this._settingsManager.saveUserColorScheme(newScheme)
-                    .then(x => alert("Done. It will take effect after page refresh and popup reopen."))
+                    .then(x =>
+                    {
+                        this.updateColorSchemeLists();
+                        alert("Done. It will take effect after page refresh.");
+                    })
                     .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
             }
         }
@@ -263,12 +268,46 @@ namespace MidnightLizard.Popup
         {
             if (confirm(`You are about to delete color scheme [${
                 Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
-                }]. Are you sure?`))
+                }]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?`))
             {
                 this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
-                    .then(x => alert("Done. It will take effect after page refresh and popup reopen."))
+                    .then(x =>
+                    {
+                        this.updateColorSchemeLists();
+                        alert("Done. It will take effect after page refresh.");
+                    })
                     .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
             }
+        }
+
+        protected updateColorSchemeLists()
+        {
+            this._settingsManager.getDefaultSettings().then(defaultSettings =>
+            {
+                this._settingsManager.initDefaultColorSchemes();
+                this._settingsManager.applyUserColorSchemes(defaultSettings);
+                dom.removeAllEventListeners(this._colorSchemeSelect);
+                dom.removeAllEventListeners(this._colorSchemeForEdit);
+                this._colorSchemeSelect.innerHTML = "";
+                this._colorSchemeForEdit.innerHTML = "";
+                this.fillColorSchemesSelectLists();
+                const settings = this._settingsManager.currentSettings;
+                this.setUpColorSchemeSelectValue(settings);
+                this.updateButtonStates();
+                if (settings.colorSchemeId &&
+                    settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                    settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
+                    settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
+                    Settings.ColorSchemes[settings.colorSchemeId])
+                {
+                    this._colorSchemeForEdit.value = settings.colorSchemeId;
+                }
+                else
+                {
+                    this._colorSchemeForEdit.value = "custom";
+                }
+                this.onColorSchemeForEditChanged();
+            });
         }
 
         protected toggleSchedule()
@@ -287,7 +326,7 @@ namespace MidnightLizard.Popup
 
         protected forgetAllSitesSettings()
         {
-            if (confirm("Are you sure? All the settings you have ever made will be deleted!"))
+            if (confirm("All the settings and custom color schemes you have ever made will be deleted! Are you sure want to continue?"))
             {
                 this._settingsManager
                     .deleteAllSettings()

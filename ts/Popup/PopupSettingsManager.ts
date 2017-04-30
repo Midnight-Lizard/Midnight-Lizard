@@ -22,6 +22,8 @@ namespace MidnightLizard.Popup
         abstract get onSettingsInitialized(): ArgEvent<Colors.ComponentShift>;
         abstract get onSettingsInitializationFailed(): ArgEvent<any>;
         abstract get onSettingsChanged(): RespEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
+        abstract initDefaultColorSchemes(): void;
+        abstract applyUserColorSchemes(defaultSettings: Settings.ColorScheme): void;
         abstract getDefaultSettings(): Promise<Settings.ColorScheme>;
         abstract getDefaultSettingsCache(): Settings.ColorScheme;
         abstract setAsDefaultSettings(): Promise<null>;
@@ -74,7 +76,9 @@ namespace MidnightLizard.Popup
 
         public getDefaultSettings()
         {
-            return this._storageManager.get<Settings.ColorScheme>(null);
+            const promise = this._storageManager.get<Settings.ColorScheme>(null);
+            promise.then(settings => this._defaultSettings = settings);
+            return promise;
         }
 
         public getDefaultSettingsCache(): Settings.ColorScheme
