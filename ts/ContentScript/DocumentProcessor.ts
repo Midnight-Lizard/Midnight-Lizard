@@ -419,7 +419,7 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
-            let allNewTags = Array.from(addedElements.values()).filter(tag => this.checkElement(tag));
+            let allNewTags = Array.from(addedElements.values()).filter(tag => this.checkElement(tag) && tag.parentElement);
             DocumentProcessor.processAllElements(allNewTags, null, this);
             let allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
@@ -1245,7 +1245,10 @@ namespace MidnightLizard.ContentScript
                 beforePseudoElement && this.processElement(beforePseudoElement);
                 afterPseudoElement && this.processElement(afterPseudoElement);
 
-                room && this._dorm.get(doc)!.set(room, roomRules);
+                if (room)
+                {
+                    this._dorm.get(doc)!.set(room, roomRules);
+                }
 
                 return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
             }
@@ -1659,7 +1662,7 @@ namespace MidnightLizard.ContentScript
                         .then(([t, rr, ...bgImgs]: [HTMLElement | PseudoElement, RoomRules, BackgroundImage]) =>
                         {
                             rr.backgroundImages = bgImgs as BackgroundImage[];
-                            roomRules.hasBackgroundImagePromises = false;
+                            rr.hasBackgroundImagePromises = false;
                             bgImgs.forEach((img: BackgroundImage, index) =>
                             {
                                 this._images.set(rr.backgroundImageKeys[index], img);

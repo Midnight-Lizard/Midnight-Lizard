@@ -1,4 +1,4 @@
-.app-imagery-mode.app-imagery-viewer-mode canvas.widget-scene-canvas
+.app-imagery-mode canvas.widget-scene-canvas
 {
     --ml-background-background-color:Image;
     --ml-no-invert:true;
@@ -9,13 +9,20 @@
     --ml-background-background-color:Border;
 }
 
+.widget-reveal-card-image:not(impt)
+{
+    --ml-backgroundimage:Image;
+    background-size: cover;
+    background-position-x: -70px;
+}
+
 .widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before,
 .maps-sprite-common-arrow-back-white, .section-star-array li:not(.section-star-empty), .widget-expand-button-pegman-icon
 {
     --ml-no-invert:true;
 }
 
-.dir-tt img, .section-line-group-summary-header-icons img
+.dir-tt img, .section-line-group-summary-header-icons img, .section-reviewchart-histogram, .section-reviewchart-label, .section-reviewchart-bucket
 {
     filter: invert(var(--ml-invert));
 }
@@ -28,4 +35,32 @@
     top: 10px;
     left: 101px;
     z-index: 9999;
+}
+
+.widget-mylocation-tooltip-pointer, .widget-zoom-tooltip-pointer, .widget-runway-tooltip-pointer, .fineprint-tld-tooltip-pointer,
+.widget-pane-toggle-button-tooltip:before, .omnibox-tooltip:before
+{
+    --ml-border-border-color:Background;
+    --ml-border-border-bottom-color:Background;
+    --ml-border-border-left-color:Background;
+    --ml-border-border-right-color:Background;
+    --ml-border-border-top-color:Background;
+}
+
+.widget-pane-toggle-button:after
+{
+    content: '\25C0\2006\25B6';
+    font-size: 6pt;
+    position: relative;
+    bottom: 3px;
+}
+
+.widget-pane-toggle-button
+{
+    background-image: none!important;
+}
+
+.widget-pane-content.scrollable-y:not(impt)::-webkit-scrollbar
+{
+    width: 6px!important;
 }

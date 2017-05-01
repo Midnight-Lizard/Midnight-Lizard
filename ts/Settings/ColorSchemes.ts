@@ -143,7 +143,7 @@ namespace MidnightLizard.Settings
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
-                    backgroundLightnessLimit: 20,
+                    backgroundLightnessLimit: 15,
                     backgroundGraySaturation: 10,
                     backgroundGrayHue: 200,
 
@@ -239,7 +239,7 @@ namespace MidnightLizard.Settings
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
-                    backgroundLightnessLimit: 20,
+                    backgroundLightnessLimit: 15,
                     backgroundGraySaturation: 40,
                     backgroundGrayHue: 122,
 
@@ -287,7 +287,7 @@ namespace MidnightLizard.Settings
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
-                    backgroundLightnessLimit: 20,
+                    backgroundLightnessLimit: 15,
                     backgroundGraySaturation: 40,
                     backgroundGrayHue: 4,
 

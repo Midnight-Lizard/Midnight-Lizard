@@ -2,10 +2,10 @@ namespace MidnightLizard.Custom
 {
     const classObserver = new MutationObserver(classObserverCallback),
         classObserverConfig: MutationObserverInit = { attributes: true, attributeFilter: ["class"] },
-        app = document.getElementById("app-container");
-    if (app)
+        appContainer = document.getElementById("app-container");
+    if (appContainer)
     {
-        classObserver.observe(app, classObserverConfig);
+        classObserver.observe(appContainer, classObserverConfig);
     }
 
     function classObserverCallback(mutations: MutationRecord[], observer: MutationObserver)
@@ -14,6 +14,7 @@ namespace MidnightLizard.Custom
         if (view)
         {
             view.style.filter = "none";
+            view.style.setProperty("--ml-timestamp", Date.now().toString(16));
         }
     }
 }

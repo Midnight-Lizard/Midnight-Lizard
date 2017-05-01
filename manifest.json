@@ -171,9 +171,6 @@
             ],
             "css": [
                 "css/custom/google-maps.css"
-            ],
-            "js": [
-                "js/custom/google-maps.js"
             ]
         },
         {

@@ -1,6 +1,7 @@
 :root
 {
     --ml-ignore:false;
+    --ml-invert:0;
     --ml-no-invert:false;
     --ml-small-svg-is-text:true;
 
