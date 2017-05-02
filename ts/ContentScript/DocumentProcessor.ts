@@ -110,7 +110,7 @@ namespace MidnightLizard.ContentScript
             const
                 invertedBackgroundImageFilter = [
                     this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
-                    `brightness(${1 - this.shift.Background.lightnessLimit}) invert(1)`,
+                    `brightness(${1 - this.shift.Background.lightnessLimit}) hue-rotate(180deg) invert(1)`,
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                 ].filter(f => f).join(" ").trim(),
                 backgroundImageFilter = [
@@ -1042,7 +1042,7 @@ namespace MidnightLizard.ContentScript
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                         doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
-                                        doInvert ? "invert(1)" : "",
+                                        doInvert ? "hue-rotate(180deg) invert(1)" : "",
                                         this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
@@ -1094,7 +1094,7 @@ namespace MidnightLizard.ContentScript
                                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
                                     bgImgLight < 1 ? `brightness(${bgImgLight})` : "",
                                     doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
-                                    doInvert ? "invert(1)" : "",
+                                    doInvert ? "hue-rotate(180deg) invert(1)" : "",
                                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                                 ].filter(f => f).join(" ").trim();
 
@@ -1176,7 +1176,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.5;
+                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.5 &&
+                        this.shift.Background.lightnessLimit < 0.3;
 
                     if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
                     {
@@ -1191,7 +1192,7 @@ namespace MidnightLizard.ContentScript
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 `brightness(${1 - bgrSet.lightnessLimit})`,
-                                `invert(1)`,
+                                `hue-rotate(180deg) invert(1)`,
                                 this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
                                 `brightness(${txtSet.lightnessLimit})`
                             ];

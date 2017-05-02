@@ -155,10 +155,10 @@ namespace MidnightLizard.Settings
                     Image:
                     {
                         saturationLimit: set.imageSaturationLimit,
-                        contrast: 1,
+                        contrast: set.textContrast,
                         lightnessLimit: set.imageLightnessLimit,
-                        graySaturation: 0,
-                        grayHue: 0
+                        graySaturation: set.textGraySaturation,
+                        grayHue: set.textGrayHue
                     },
                     SvgBackground:
                     {
@@ -171,10 +171,10 @@ namespace MidnightLizard.Settings
                     BackgroundImage:
                     {
                         saturationLimit: set.backgroundImageSaturationLimit,
-                        contrast: 1,
+                        contrast: set.backgroundContrast,
                         lightnessLimit: set.backgroundImageLightnessLimit,
-                        graySaturation: 0,
-                        grayHue: 0
+                        graySaturation: set.backgroundGraySaturation,
+                        grayHue: set.backgroundGrayHue
                     }
                 };
         }

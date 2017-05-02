@@ -4,9 +4,20 @@
     --ml-no-invert:true;
 }
 
-.section-reviewchart-bucket-fill
+.section-reviewchart-bucket-fill, .widget-layer-slider-tick,
+.widget-layer-slider-enabled, .widget-layer-slider-thumb, .widget-layer-toggle-bar
 {
     --ml-background-background-color:Border;
+}
+
+.widget-layer-toggle-dot
+{
+    --ml-background-background-color:Text;
+}
+
+.section-line-group-summary-line-name .renderable-component-color-text-background
+{
+    --ml-background-background-color:BackgroundImage;
 }
 
 .widget-reveal-card-image:not(impt)
