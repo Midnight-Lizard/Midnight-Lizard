@@ -69,6 +69,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _scrollbarNormalColorProcessor: MidnightLizard.Colors.IScrollbarNormalColorProcessor,
             protected readonly _scrollbarActiveColorProcessor: MidnightLizard.Colors.IScrollbarActiveColorProcessor,
             protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor,
+            protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
@@ -605,7 +606,7 @@ namespace MidnightLizard.ContentScript
 
         protected tagIsSmall(tag: Element | PseudoElement): boolean
         {
-            let maxSize = 40, maxAxis = 16,
+            let maxSize = 50, maxAxis = 25,
                 check = (w: number, h: number) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
             tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
             let width = parseInt(tag.computedStyle.width!), height = parseInt(tag.computedStyle.height!);
@@ -669,7 +670,8 @@ namespace MidnightLizard.ContentScript
 
         protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
         {
-            let result = Colors.ColorEntry.NotFound;
+            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.ColorEntry.NotFound);
+            result.reason = Colors.ColorReason.NotFound;
             if (tag.parentElement)
             {
                 let bgColor;
@@ -1022,7 +1024,7 @@ namespace MidnightLizard.ContentScript
                         roomRules.attributes = roomRules.attributes || new Map<string, string>();
                         roomRules.attributes.set(this._css.transition, this._css.filter);
                     }
-                    const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.5;
+                    const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
                     if (tag.isPseudo && tag.computedStyle!.content!.substr(0, 3) == "url")
                     {
@@ -1176,7 +1178,7 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.5 &&
+                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.4 &&
                         this.shift.Background.lightnessLimit < 0.3;
 
                     if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
@@ -1279,6 +1281,10 @@ namespace MidnightLizard.ContentScript
                         case cc.Text:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.HighlightedText:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Link:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;

@@ -7,6 +7,7 @@
         "outDir": "../../js/custom",
         "removeComments": true,
         "strictNullChecks": true,
+        "strict": true,
         "noImplicitAny": true,
         "target": "es6",
         "inlineSourceMap": false,

@@ -1,0 +1,72 @@
+.ml-tab-item:before
+{
+    content: attr(tooltip);
+    --ml-text-color:HighlightedText;
+    position: fixed;
+    width: 286px;
+    left: 180px;
+    z-index: 999;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    text-align: justify;
+    padding: 15px;
+    box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.8);
+    background-color: var(--dark-background-color);
+    color: var(--light-color);
+    pointer-events: none;
+    animation: hideEffect 0.3s ease-out forwards;
+    border: solid 1px var(--light-thin-border-color);
+    text-shadow: 0 0 1px black;
+    line-height: 17px;
+    font-size: 15px;
+    margin-top: -35px;
+}
+
+.ml-tab-item:after
+{
+    content: "";
+    pointer-events: none;
+    animation: hideEffect 0.15s ease-out forwards;
+    position: fixed;
+    z-index: 1000;
+    width: 0;
+    height: 0;
+    margin-top: -3px;
+    border: 10px solid transparent;
+    --ml-border-border-left-color:Background;
+    --ml-border-border-right-color:Background;
+}
+
+.ml-tab.left .ml-tab-item:after
+{
+    filter: drop-shadow(-1px 0px 0px var(--light-thin-border-color)) drop-shadow(-2px 0px 1px rgba(0,0,0,0.8));
+    border-right-color: var(--dark-background-color);
+    left: 161px;
+}
+
+.ml-tab.right .ml-tab-item:after
+{
+    filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px rgba(0,0,0,0.8));
+    border-left-color: var(--dark-background-color);
+    right: 163px;
+}
+
+.ml-tab-item:not(.active):hover:after
+{
+    animation: showEffect 0.35s ease-out;
+}
+
+.ml-tab-item:not(.active):hover:before
+{
+    animation: showEffect 0.3s ease-out;
+}
+
+.ml-tab-item[content="fond-images"]:before
+{
+    margin-top: -45px;
+}
+
+.ml-tab-item[content="scrollbars"]:before
+{
+    /* margin-top: -20px; */
+}

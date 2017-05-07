@@ -88,7 +88,7 @@ html, body {
 }
 
 .ml-dialog-commands > .ml-dialog-input-text {
-    width: 120px;
+    width: 121px;
     margin: 5px 20px 16px 20px;
     background-color: var(--content-background-color);
 }
@@ -132,6 +132,12 @@ html, body {
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+
+.ml-input-container:hover
+{
+    --ml-text-color:HighlightedText;
+    color: var(--main-color);
 }
 
 .ml-command-container
@@ -399,4 +405,167 @@ html, body {
     margin: 7px calc((100% - 266px)/2) 0px calc((100% - 266px)/2);
     border: solid 1px var(--thin-border-color);
     padding: 2px;
+}
+
+.intro:hover
+{
+    --ml-text-color:HighlightedText;
+    color: var(--main-color);
+}
+
+.intro:after
+{
+    content: "";
+    position: absolute;
+    z-index: 999;
+    border: dashed 1px var(--outline-color);
+    border-radius: 4px;
+    pointer-events: none;
+    animation: hideEffect 0.3s ease-out forwards;
+}
+
+.intro:before
+{
+    content: "";
+    position: absolute;
+    z-index: 999;
+    border-top: dashed 1px var(--outline-color);
+    pointer-events: none;
+    animation: hideEffect 0.3s ease-out forwards;
+}
+
+.intro:hover:after, .intro:hover:before
+{
+    animation: showEffect 0.3s ease-out;
+}
+
+.intro-select-scheme:after
+{
+    width: 135px;
+    height: 32px;
+    top: 96px;
+    right: -154px;
+}
+
+.intro-select-scheme:before
+{
+    width: 37px;
+    right: -18px;
+    top: 118px;
+    transform: rotate(-20deg);
+}
+
+.intro-edit-schemes:after
+{
+    width: 134px;
+    height: 32px;
+    top: 24px;
+    right: -154px;
+}
+
+.intro-edit-schemes:before
+{
+    width: 238px;
+    right: -119px;
+    top: 175px;
+    transform: rotate(-81deg);
+}
+
+.intro-apply:after
+{
+    width: 136px;
+    height: 34px;
+    top: 264px;
+    right: -155px;
+}
+
+.intro-apply:before
+{
+    width: 40px;
+    right: -17px;
+    bottom: 107px;
+    transform: rotate(21deg);
+}
+
+.intro-tabs:after
+{
+    width: 132px;
+    height: 330px;
+    top: 25px;
+    left: -158px;
+}
+
+.intro-tabs:before
+{
+    width: 48px;
+    left: -28px;
+    top: 177px;
+    transform: rotate(28deg);
+}
+
+.intro-common:after
+{
+    width: 121px;
+    height: 32px;
+    top: 25px;
+    left: -158px;
+}
+
+.intro-common:before
+{
+    width: 60px;
+    left: -38px;
+    top: 58px;
+    transform: rotate(30deg);
+}
+
+.intro-toggle:after
+{
+    width: 62px;
+    height: 34px;
+    top: -42px;
+    right: -165px;
+    border-radius: 15px;
+}
+
+.intro-toggle:before
+{
+    width: 130px;
+    right: -106px;
+    top: 12px;
+    transform: rotate(-25deg);
+}
+
+.intro-default:after
+{
+    width: 136px;
+    height: 34px;
+    top: 208px;
+    right: -155px;
+}
+
+.intro-default:before
+{
+    width: 104px;
+    right: -52px;
+    bottom: 87px;
+    transform: rotate(-70deg);
+}
+
+#edit-schemes p
+{
+    font-size: 14px;
+    text-align: justify;
+    text-indent: 15px;
+    margin: 6px 20px 0px 20px;
+}
+
+@keyframes hideEffect
+{
+    to { opacity: 0; }
+}
+
+@keyframes showEffect
+{
+    from { opacity: 0; }
 }

@@ -104,6 +104,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.textGraySaturation,
                         grayHue: set.textGrayHue
                     },
+                    HighlightedText:
+                    {
+                        saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
+                        contrast: Math.min(set.textContrast * 1.2, 1),
+                        lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
+                        graySaturation: set.textGraySaturation,
+                        grayHue: set.textGrayHue
+                    },
                     Link:
                     {
                         saturationLimit: set.linkSaturationLimit,
@@ -117,7 +125,7 @@ namespace MidnightLizard.Settings
                         saturationLimit: set.borderSaturationLimit,
                         contrast: set.textContrast,
                         lightnessLimit: set.textLightnessLimit,
-                        graySaturation: set.borderGraySaturation * 1.25,
+                        graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
                         grayHue: set.borderGrayHue
                     },
                     Border:

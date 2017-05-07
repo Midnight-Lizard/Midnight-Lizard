@@ -3,6 +3,7 @@
         "./ts/**/*"
     ],
     "compilerOptions": {
+        "strict": true,
         "pretty": true,
         "outDir": "./js",
         "removeComments": true,

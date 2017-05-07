@@ -2,12 +2,16 @@
   --main-background-color: rgb(255, 255, 255);
   --content-background-color: rgb(245, 245, 245);
   --alt-background-color: rgb(230, 230, 230);
+  --dark-background-color: rgb(40, 40, 40);
+  --light-color: rgb(230, 230, 230);
   --main-color: rgb(25, 25, 25);
   --main-border-color: #bebebe;
   --thin-border-color: rgba(140,140,140,0.15);
+  --light-thin-border-color: rgba(200,200,200,0.15);
   --main-text-shadow-color: rgba(255,255,255,0.8);
   --logo-text-color: hsla(120,100%,10%,1);
   --main-input-shadow-color: rgba(0, 0, 0, 0.1);
+  --outline-color: #2196F3;
 
   --icon-shadow-color: black;
   --fotter-background-color: var(--alt-background-color);

@@ -14,7 +14,12 @@ namespace MidnightLizard.Colors
         abstract getDefaultColor(doc: Document): string | undefined;
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
+
     export abstract class ILinkColorProcessor extends ITextColorProcessor
+    {
+    }
+
+    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor
     {
     }
 
@@ -274,6 +279,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Text;
+        }
+    }
+
+    @DI.injectable(IHighlightedTextColorProcessor)
+    class HighlightedTextColorProcessor extends TextColorProcessor implements IHighlightedTextColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.HighlightedText;
         }
     }
 
