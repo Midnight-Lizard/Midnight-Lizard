@@ -198,31 +198,46 @@ namespace MidnightLizard.ContentScript
             }
         }
 
+        protected hasPseudoClassOverrided(tag: HTMLElement, pseudo: PseudoClass)
+        {
+            return !!tag.computedStyle && tag.computedStyle.getPropertyValue(`--ml-pseudo-${PseudoClass[pseudo].toLowerCase()}`) === true.toString()
+        }
+
         protected observeUserActions(tag: HTMLElement)
         {
-            let preFilteredSelectors = this._styleSheetProcessor.getPreFilteredSelectors(tag);
+            let hover = this.hasPseudoClassOverrided(tag, PseudoClass.Hover),
+                focus = this.hasPseudoClassOverrided(tag, PseudoClass.Focus),
+                active = this.hasPseudoClassOverrided(tag, PseudoClass.Active),
+                checked = this.hasPseudoClassOverrided(tag, PseudoClass.Checked);
+
+            const preFilteredSelectors = this._styleSheetProcessor.getPreFilteredSelectors(tag);
             if (preFilteredSelectors.length > 0)
             {
-                if (this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Hover))
-                {
-                    dom.addEventListener(tag, "mouseenter", this._boundUserActionHandler);
-                    dom.addEventListener(tag, "mouseleave", this._boundUserActionHandler);
-                }
-                if (this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Focus))
-                {
-                    dom.addEventListener(tag, "focus", this._boundUserActionHandler);
-                    dom.addEventListener(tag, "blur", this._boundUserActionHandler);
-                }
-                if (this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Active))
-                {
-                    dom.addEventListener(tag, "mousedown", this._boundUserActionHandler);
-                    dom.addEventListener(tag, "mouseup", this._boundUserActionHandler);
-                }
-                if (this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Checked))
-                {
-                    dom.addEventListener(tag, "input", this._boundUserActionHandler);
-                    dom.addEventListener(tag, "change", this._boundUserActionHandler);
-                }
+                hover = hover || this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Hover);
+                focus = focus || this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Focus);
+                active = active || this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Active);
+                checked = checked || this._styleSheetProcessor.canHavePseudoClass(tag, preFilteredSelectors, PseudoClass.Checked);
+            }
+
+            if (hover)
+            {
+                dom.addEventListener(tag, "mouseenter", this._boundUserActionHandler);
+                dom.addEventListener(tag, "mouseleave", this._boundUserActionHandler);
+            }
+            if (focus)
+            {
+                dom.addEventListener(tag, "focus", this._boundUserActionHandler);
+                dom.addEventListener(tag, "blur", this._boundUserActionHandler);
+            }
+            if (active)
+            {
+                dom.addEventListener(tag, "mousedown", this._boundUserActionHandler);
+                dom.addEventListener(tag, "mouseup", this._boundUserActionHandler);
+            }
+            if (checked)
+            {
+                dom.addEventListener(tag, "input", this._boundUserActionHandler);
+                dom.addEventListener(tag, "change", this._boundUserActionHandler);
             }
         }
 

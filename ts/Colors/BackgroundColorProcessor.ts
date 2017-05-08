@@ -201,6 +201,7 @@ namespace MidnightLizard.Colors
                     this.changeHslaColor(hsla, increaseContrast, tag);
                     let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     let result = {
+                        role: this._component,
                         color: newRgbColor.toString(),
                         light: hsla.lightness,
                         originalLight: originalLight,

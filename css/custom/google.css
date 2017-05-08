@@ -1,0 +1,4 @@
+ul[role="listbox"] li[role="presentation"], div[role="region"] > ul[class][aria-dropeffect] li[class] > a[class][data-pid]
+{
+    --ml-pseudo-hover:true;
+}

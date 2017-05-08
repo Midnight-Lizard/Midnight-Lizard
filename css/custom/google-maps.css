@@ -15,9 +15,9 @@
     --ml-background-background-color:Text;
 }
 
-.section-line-group-summary-line-name .renderable-component-color-text-background
+.renderable-component-color-text-background
 {
-    --ml-background-background-color:BackgroundImage;
+    --ml-background-background-color:Border;
 }
 
 .widget-reveal-card-image:not(impt)

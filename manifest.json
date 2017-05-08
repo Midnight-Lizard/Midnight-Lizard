@@ -93,16 +93,34 @@
         {
             "run_at": "document_start",
             "matches": [
-                "https://mail.google.com/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://mail.google.*/*"
             ],
             "css": [
-                "css/custom/gmail.css"
+                "css/custom/google-mail.css"
             ]
         },
         {
             "run_at": "document_start",
             "matches": [
-                "https://plus.google.com/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.google.*/*"
+            ],
+            "css": [
+                "css/custom/google.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://plus.google.*/*"
             ],
             "css": [
                 "css/custom/google-plus.css"
@@ -112,7 +130,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://docs.google.com/forms/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/forms/*"
             ],
             "css": [
                 "css/custom/google-forms.css"
@@ -122,7 +143,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://docs.google.com/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/*"
             ],
             "css": [
                 "css/custom/google-docs.css"
@@ -132,7 +156,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://docs.google.com/document/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/document/*"
             ],
             "css": [
                 "css/custom/google-documents.css"
@@ -142,7 +169,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://docs.google.com/spreadsheets/*"
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/spreadsheets/*"
             ],
             "css": [
                 "css/custom/google-spreadsheets.css"

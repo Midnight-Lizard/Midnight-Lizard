@@ -25,6 +25,11 @@
     --ml-border-border-top-color:Border;
     --ml-border-stroke:Border;
 
+    --ml-pseudo-hover:false;
+    --ml-pseudo-focus:false;
+    --ml-pseudo-active:false;
+    --ml-pseudo-checked:false;
+
     --ml-background-saturation-limit:1;
     --ml-background-contrast:0;
     --ml-background-lightness-limit:1;

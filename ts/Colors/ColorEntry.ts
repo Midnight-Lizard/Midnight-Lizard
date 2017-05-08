@@ -18,6 +18,7 @@ namespace MidnightLizard.Colors
     export class ColorEntry
     {
         public static readonly NotFound: ColorEntry = {
+            role: Component.Background,
             color: RgbaColor.White,
             light: 1,
             originalLight: 1,
@@ -27,7 +28,7 @@ namespace MidnightLizard.Colors
             isUpToDate: true,
             owner: null
         }
-
+        role: Component;
         color: string | null;
         light: number;
         backgroundLight?: number;

@@ -374,6 +374,11 @@ html, body {
     --ml-ignore:true;
 }
 
+#default-tab-content.ml-tab-content q
+{
+    --ml-text-color:HighlightedText;
+}
+
 .ml-image-example
 {
     width: 264px;

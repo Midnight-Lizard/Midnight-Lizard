@@ -1,7 +1,6 @@
 .ml-tab-item:before
 {
     content: attr(tooltip);
-    --ml-text-color:HighlightedText;
     position: fixed;
     width: 286px;
     left: 180px;
@@ -20,6 +19,7 @@
     line-height: 17px;
     font-size: 15px;
     margin-top: -35px;
+    border-radius: 3px;
 }
 
 .ml-tab-item:after
@@ -64,9 +64,4 @@
 .ml-tab-item[content="fond-images"]:before
 {
     margin-top: -45px;
-}
-
-.ml-tab-item[content="scrollbars"]:before
-{
-    /* margin-top: -20px; */
 }

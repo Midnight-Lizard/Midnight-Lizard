@@ -114,7 +114,7 @@ namespace MidnightLizard.Colors
             rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
             let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
             const inheritedColor = this.getInheritedColor(tag, rgbaString);
-            if (inheritedColor && inheritedColor.backgroundLight == backgroundLightness)
+            if (inheritedColor && inheritedColor.backgroundLight === backgroundLightness && inheritedColor.role === this._component)
             {
                 let newColor = Object.assign({}, inheritedColor);
                 return Object.assign(newColor, {
@@ -125,7 +125,7 @@ namespace MidnightLizard.Colors
                     base: this._app.isDebug ? inheritedColor : null
                 });
             }
-            else if (inheritedColor && inheritedColor.backgroundLight != backgroundLightness)
+            else if (inheritedColor && (inheritedColor.backgroundLight !== backgroundLightness || inheritedColor.role !== this._component))
             {
                 rgbaString = inheritedColor.originalColor;
             }
@@ -146,6 +146,7 @@ namespace MidnightLizard.Colors
                 if (rgba.alpha === 0)
                 {
                     result = {
+                        role: this._component,
                         color: null,
                         light: 0,
                         backgroundLight: backgroundLightness,
@@ -166,6 +167,7 @@ namespace MidnightLizard.Colors
                     this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift, customContrast);
                     let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     result = {
+                        role: this._component,
                         color: newRgbColor.toString(),
                         light: hsla.lightness,
                         backgroundLight: backgroundLightness,

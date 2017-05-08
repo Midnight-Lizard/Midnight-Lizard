@@ -12,3 +12,8 @@ div[role="search"] button[aria-label]
 {
     --ml-no-invert:true;
 }
+
+div.T-Kw-Jt
+{
+    --ml-ignore:true;
+}

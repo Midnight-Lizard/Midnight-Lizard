@@ -29,7 +29,7 @@ namespace MidnightLizard.ContentScript
         /** period of settings storage in the cookies */
         protected static readonly _storagePeriod = 49;
         protected static readonly _excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes"];
+        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes", "isDefault" as any];
         constructor(
             protected readonly _rootDocument: Document,
             protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
