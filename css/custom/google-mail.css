@@ -1,0 +1,19 @@
+a[href="#inbox"][title="Gmail"]
+{
+    filter: invert(var(--ml-invert));
+}
+
+div[role="tab"] > div:nth-child(2), .nL.aig
+{
+    --ml-background-background-color:Border;
+}
+
+div[role="search"] button[aria-label]
+{
+    --ml-no-invert:true;
+}
+
+div.T-Kw-Jt
+{
+    --ml-ignore:true;
+}

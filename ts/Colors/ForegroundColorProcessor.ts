@@ -3,19 +3,30 @@
 /// <reference path="BaseColorProcessor.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../Settings/BaseSettingsManager.ts" />
-
+/// <reference path="../ContentScript/CssStyle.ts" />
+/// <reference path="../Settings/DynamicSettingsManager.ts" />
 
 namespace MidnightLizard.Colors
 {
     export abstract class ITextColorProcessor
     {
-        abstract getDefaultColor(doc: Document): string;
+        abstract calculateDefaultColor(doc: Document): string;
+        abstract getDefaultColor(doc: Document): string | undefined;
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
+
     export abstract class ILinkColorProcessor extends ITextColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
+
+    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor
+    {
+    }
+
+    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor
+    {
+    }
+
     export abstract class ITextShadowColorProcessor
     {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, customContrast?: number): ColorEntry;
@@ -51,16 +62,17 @@ namespace MidnightLizard.Colors
             super(app, settingsManager);
         }
 
-        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null | undefined
         {
             return null;
         }
 
-        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, customContrast?: number)
+        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, grayShift: Colors.ColorShift, customContrast?: number)
         {
             let shift = this._colorShift, shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
             if (isGray)
             {
+                shift = grayShift;
                 hsla.hue = shift.grayHue;
                 hsla.saturation = shift.graySaturation;
             }
@@ -102,7 +114,7 @@ namespace MidnightLizard.Colors
             rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
             let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
             const inheritedColor = this.getInheritedColor(tag, rgbaString);
-            if (inheritedColor && inheritedColor.backgroundLight == backgroundLightness)
+            if (inheritedColor && inheritedColor.backgroundLight === backgroundLightness && inheritedColor.role === this._component)
             {
                 let newColor = Object.assign({}, inheritedColor);
                 return Object.assign(newColor, {
@@ -113,7 +125,7 @@ namespace MidnightLizard.Colors
                     base: this._app.isDebug ? inheritedColor : null
                 });
             }
-            else if (inheritedColor && inheritedColor.backgroundLight != backgroundLightness)
+            else if (inheritedColor && (inheritedColor.backgroundLight !== backgroundLightness || inheritedColor.role !== this._component))
             {
                 rgbaString = inheritedColor.originalColor;
             }
@@ -134,6 +146,7 @@ namespace MidnightLizard.Colors
                 if (rgba.alpha === 0)
                 {
                     result = {
+                        role: this._component,
                         color: null,
                         light: 0,
                         backgroundLight: backgroundLightness,
@@ -149,11 +162,12 @@ namespace MidnightLizard.Colors
                 }
                 else
                 {
-                    let hsla = RgbaColor.toHslaColor(rgba);
-                    let originalLight = hsla.lightness;
-                    this.changeHslaColor(hsla, backgroundLightness, this.isGray(tag, rgbaString, hsla), customContrast);
+                    const hsla = RgbaColor.toHslaColor(rgba);
+                    const originalLight = hsla.lightness, isGray = this.isGray(tag, rgbaString, hsla);
+                    this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift, customContrast);
                     let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     result = {
+                        role: this._component,
                         color: newRgbColor.toString(),
                         light: hsla.lightness,
                         backgroundLight: backgroundLightness,
@@ -173,6 +187,11 @@ namespace MidnightLizard.Colors
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
             return hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
         }
     }
 
@@ -215,10 +234,15 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return (hsla.saturation < 0.1 || rgbaString === this._defaultColors.get(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
+            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
         }
 
-        public getDefaultColor(doc: Document)
+        public getDefaultColor(doc: Document): string | undefined
+        {
+            return this._defaultColors.get(doc);
+        }
+
+        public calculateDefaultColor(doc: Document)
         {
             const element = doc.createElement(this._tagName);
             element.mlIgnore = true;
@@ -231,20 +255,21 @@ namespace MidnightLizard.Colors
             return elementColor;
         }
 
-        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null | undefined
         {
             if (tag.parentElement)
             {
-                if ((tag.parentElement as HTMLElement).style.color !== "")
+                const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? ContentScript.USP.svg : ContentScript.USP.htm;
+                if ((tag.parentElement as HTMLElement).style.getPropertyValue(ns.css.fntColor) !== "")
                 {
-                    if (tag.parentElement.mlColor && tag.parentElement.mlColor.color === rgbStr)
+                    if (tag.parentElement!.mlColor && tag.parentElement!.mlColor!.color === rgbStr)
                     {
-                        return tag.parentElement.mlColor;
+                        return tag.parentElement!.mlColor;
                     }
                 }
                 else
                 {
-                    return this.getInheritedColor(tag.parentElement, rgbStr)
+                    return this.getInheritedColor(tag.parentElement!, rgbStr)
                 }
             }
             return null;
@@ -259,14 +284,47 @@ namespace MidnightLizard.Colors
         }
     }
 
+    @DI.injectable(IHighlightedTextColorProcessor)
+    class HighlightedTextColorProcessor extends TextColorProcessor implements IHighlightedTextColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.HighlightedText;
+        }
+    }
+
     @DI.injectable(ILinkColorProcessor)
     class LinkColorProcessor extends TextColorProcessor implements ILinkColorProcessor
     {
         protected readonly _tagName = "a";
 
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            // если серый или равен дефолтному цвету текста то считать текстом
+            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
+                (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) &&
+                this._settingsManager.shift.Text.grayHue !== 0;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            if ((hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)))
+            {
+                return this._settingsManager.shift.Text;
+            }
+            else
+            {
+                return this._colorShift;
+            }
+        }
+
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
-            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
         {
             super(app, settingsManager);
             this._component = Component.Link;
@@ -318,6 +376,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Scrollbar$Active;
+        }
+    }
+
+    @DI.injectable(IDynamicTextColorProcessor)
+    class DynamicTextColorProcessor extends TextColorProcessor implements IDynamicTextColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.Text;
         }
     }
 }

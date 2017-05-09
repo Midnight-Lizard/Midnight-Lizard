@@ -1,848 +1,1843 @@
 <html>
 
 <head>
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
 
-	<title>Midnight Lizard</title>
+    <title>Midnight Lizard</title>
 
-	<link href="../css/global-vars.css" rel="stylesheet" type="text/css">
-	<link href="../css/content-vars.css" rel="stylesheet" type="text/css">
-	<link href="../css/helio-button.css" rel="stylesheet" type="text/css">
-	<link href="../css/slider.css" rel="stylesheet" type="text/css">
-	<link href="../css/checkbox.css" rel="stylesheet" type="text/css">
-	<link href="../css/tab-control.css" rel="stylesheet" type="text/css">
-	<link href="../css/switch.css" rel="stylesheet" type="text/css">
-	<link href="../css/popup.css" rel="stylesheet" type="text/css">
-	<link href="../css/content-idle.css" rel="stylesheet" type="text/css">
+    <link href="../css/global-vars.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/content-vars.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/helio-button.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/slider.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/checkbox.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/tab-control.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/switch.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/popup.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/popup-help.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="../css/content-idle.css"
+          rel="stylesheet"
+          type="text/css">
 
-	<script src="../js/popup.js"></script>
+    <script src="../js/popup.js"></script>
 </head>
 
 <body>
-	<div class="ml-dialog-root">
-		<div class="ml-dialog-title">
-			<img id="logo" class="ml-dialog-logo" src="../img/ml-toolbar-icon-128.png" />
-			<div class="ml-dialog-title-text">
-				<span>Midnight Lizard</span> settings for
-				<a id="hostName" href="#"></a>
-			</div>
-			<a id="help" title="Go to Midnight Lizard Support forum" target="_blank" href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/how+to">?</a>
-			<label id="isEnabledSwitch" class="ml-switch" title="Enable or disable entire extension">
-				<input id="isEnabled" type="checkbox">
-				<div class="ml-slider">
-					<div class="ml-slider-checked"></div>
-					<span class="ml-slider-on">ON</span>
-					<div class="ml-slider-thumb"></div>
-					<span class="ml-slider-off">OFF</span>
-				</div>
-			</label>
-		</div>
-		<div class="ml-dialog-settings">
-			<ul class="ml-tab">
-				<li class="ml-tab-item-separator">&nbsp;</li>
-				<li class="ml-tab-item" content="common">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
-						/>
-					</svg>Common
-				</li>
-				<li class="ml-tab-item" content="background">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M16.56 8.94L7.62 0 6.21 1.41l2.38 2.38-5.15 5.15c-.59.59-.59 1.54 0 2.12l5.5 5.5c.29.29.68.44 1.06.44s.77-.15 1.06-.44l5.5-5.5c.59-.58.59-1.53 0-2.12zM5.21 10L10 5.21 14.79 10H5.21zM19 11.5s-2 2.17-2 3.5c0 1.1.9 2 2 2s2-.9 2-2c0-1.33-2-3.5-2-3.5z"
-						/>
-						<path id="backgroundHue" d="M0 20h24v4H0z" fill-opacity="1" />
-					</svg>Background</li>
-				<li class="ml-tab-item" content="text">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path id="textHue" d="M0 20h24v4H0z" fill-opacity="1" />
-						<path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
-					</svg>Text</li>
-				<li class="ml-tab-item" content="links">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path id="linkHue" d="M0 20h24v4H0z" fill-opacity="1" />
-						<path d="m 3.9,9.3333333 c 0,-1.71 1.39,-3.1 3.1,-3.1 h 4 v -1.9 H 7 c -2.76,0 -5,2.24 -5,5 0,2.7599997 2.24,4.9999997 5,4.9999997
+    <div class="ml-dialog-root">
+        <div class="ml-dialog-title">
+            <img id="logo"
+                 class="ml-dialog-logo"
+                 src="../img/ml-toolbar-icon-128.png" />
+            <div class="ml-dialog-title-text">
+                <span>Midnight Lizard</span> settings for
+                <a id="hostName"
+                   href="#"></a>
+            </div>
+            <a id="help"
+               title="Go to Midnight Lizard Support forum"
+               target="_blank"
+               href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/how+to">?</a>
+            <label id="isEnabledSwitch"
+                   class="ml-switch"
+                   title="Enable or disable entire extension">
+                <input id="isEnabled" type="checkbox">
+                <div class="ml-slider">
+                    <div class="ml-slider-checked"></div>
+                    <span class="ml-slider-on">ON</span>
+                    <div class="ml-slider-thumb"></div>
+                    <span class="ml-slider-off">OFF</span>
+                </div>
+            </label>
+        </div>
+        <div class="ml-dialog-settings">
+            <ul class="ml-tab left">
+                <li class="ml-tab-item-separator">&nbsp;</li>
+                <li class="ml-tab-item"
+                    content="common"
+                    tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Common settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains settings that are common for the entire page.
+&emsp;&bull;&ensp;Activation schedule defines when [Midnight Lizard] should be automatically enabled.
+&emsp;&bull;&ensp;Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
+                        />
+                    </svg>Common
+                </li>
+                <li class="ml-tab-item"
+                    content="background"
+                    tooltip="&emsp;&emsp;&emsp;&emsp;Background color settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains settings that define how elements on the page would be filled with color.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M16.56 8.94L7.62 0 6.21 1.41l2.38 2.38-5.15 5.15c-.59.59-.59 1.54 0 2.12l5.5 5.5c.29.29.68.44 1.06.44s.77-.15 1.06-.44l5.5-5.5c.59-.58.59-1.53 0-2.12zM5.21 10L10 5.21 14.79 10H5.21zM19 11.5s-2 2.17-2 3.5c0 1.1.9 2 2 2s2-.9 2-2c0-1.33-2-3.5-2-3.5z"
+                        />
+                        <path id="backgroundHue"
+                              d="M0 20h24v4H0z"
+                              fill-opacity="1" />
+                    </svg>Background</li>
+                <li class="ml-tab-item"
+                    content="text"
+                    tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Text color settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains color adjustment settings for all text elements on the page.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path id="textHue"
+                              d="M0 20h24v4H0z"
+                              fill-opacity="1" />
+                        <path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
+                    </svg>Text</li>
+                <li class="ml-tab-item"
+                    content="links"
+                    tooltip="&emsp;&emsp;&emsp;&emsp;Hyperlinks color settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains color adjustment settings for all hyperlinks on the page.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path id="linkHue"
+                              d="M0 20h24v4H0z"
+                              fill-opacity="1" />
+                        <path d="m 3.9,9.3333333 c 0,-1.71 1.39,-3.1 3.1,-3.1 h 4 v -1.9 H 7 c -2.76,0 -5,2.24 -5,5 0,2.7599997 2.24,4.9999997 5,4.9999997
 h 4 v -1.9 H 7 c -1.71,0 -3.1,-1.39 -3.1,-3.0999997 z M 8,10.333333 h 8 V 8.3333333 H 8 Z m 9,-5.9999997 h -4 v 1.9 h 4 c
 1.71,0 3.1,1.39 3.1,3.1 0,1.7099997 -1.39,3.0999997 -3.1,3.0999997 h -4 v 1.9 h 4 c 2.76,0 5,-2.24 5,-4.9999997 0,-2.76 -2.24,-5
 -5,-5 z" />
-					</svg>Links</li>
-				<li class="ml-tab-item" content="borders">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="m 13,4 h -2 v 2 h 2 z m 0,4 h -2 v 2 h 2 z m 4,0 h -2 v 2 h 2 z M 3,0 V 18 H 21 V 0 Z M 19,16 H 5 V 2 h 14 z m -6,-4 h -2
-v 2 h 2 z M 9,8 H 7 v 2 h 2 z" />
-						<!--<path d="M13 7h-2v2h2V7zm0 4h-2v2h2v-2zm4 0h-2v2h2v-2zM3 3v18h18V3H3zm16 16H5V5h14v14zm-6-4h-2v2h2v-2zm-4-4H7v2h2v-2z" />-->
-						<!--<path d="M 3,3 V 21 H 21 V 3 Z M 19,19 H 5 V 5 h 14 z" />
-						<path id="borderHue" d="m 13,7 h -2 v 2 h 2 z m 0,4 h -2 v 2 h 2 z m 4,0 h -2 v 2 h 2 z m -4,4 h -2 v 2 h 2 z M 9,11 H 7 v 2 h 2 z" />-->
-						<path id="borderHue" d="M0 21h24v3H0z" fill-opacity="1" />
-						<path d="M0 0h24v24H0z" fill="none" />
-					</svg>Borders</li>
-				<li class="ml-tab-item" content="images">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
-						/>
-						<path d="M0 0h24v24H0z" fill="none" />
-					</svg>Images</li>
-				<li class="ml-tab-item" content="fond-images" title="Background images">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z m-3,-7l12,0l0,1l-12,0l0,-1zm0,4l6,0l0,1l-6,0l0,-1z"
-						/>
-						<path d="M0 0h24v24H0z" fill="none" />
-					</svg>Fond images</li>
-				<li class="ml-tab-item" content="scrollbars">
-					<svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M 21,0 H 3 C 1.9,0 1,0.9 1,2 v 14 c 0,1.1 0.9,2 2,2 h 18 c 1.1,0 2,-0.9 2,-2 V 2 C 23,0.9 22.1,0 21,0 Z m 0,16.01 H 3 V 1.99
-h 18 z"
-						/>
-						<rect rx="1" height="8" width="1" y="4" x="17" />
-						<rect rx="1" height="1" width="12" y="13" x="5" />
-						<path id="scrollbarHue" d="M0 21h24v3H0z" fill-opacity="1" />
-					</svg>Scrollbars</li>
-				<li class="ml-tab-item-separator">
-					&nbsp;</li>
-			</ul>
-			<div id="default-tab-content" class="ml-tab-content">
-				<h3>Introduction</h3>
-				<p>
-					To <span>enable</span> or <span>disable</span> an entire extension switch the toggle button in the top-right corner.
-					You also can do the same on a per-site basis by using "Run on this site" checkbox in the "Common" tab on the left pane.
-				</p>
-				<p>
-					You can choose one of the <span>predefined color schemes</span> from the drop-down list on the right pane and use it
-					off the shelf.
-				</p>
-				<p>
-					Apart from that you can <span>adjust</span> your chosen scheme as you wish. For this purpose you have all the settings
-					in the tabs on the left pane. Any changes you would have made will be immediately applied but only on the popup so you
-					can safely play with it.
-				</p>
-				<p>
-					To assign the settings of your preference to the <span>current website</span> press "Apply" button on the right pane.
-				</p>
-				<p>
-					If you want to set up current settings as a <span>default settings</span> for all websites press "Set as default" button
-					on the right pane.
-				</p>
-			</div>
-			<div id="common" class="ml-tab-content"><br>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" title="Run [Midnight Lizard] on this website" for="runOnThisSite">
-						<input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
-					</label>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" title="Restore original colors before copying content from the page" for="restoreColorsOnCopy">
-						<input class="ml-checkbox setting" id="restoreColorsOnCopy" type="checkbox">Restore original colors on copy
-					</label>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
-					 for="useDefaultSchedule">
-						<input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
-					</label>
-				</div><br>
-				<div id="scheduleStartHourContainer" class="ml-input-container time">
-					<label class="ml-dialog-label time" for="scheduleStartHour" title="Extension will be active on the current website only starting from this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Activation time</label>
-					<input class="ml-input-range setting time reverse" id="scheduleStartHour" type="range" min="0" max="24" step="1" list="time">
-					<svg for="scheduleStartHour" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
-						/>
-					</svg>
-					<svg for="scheduleStartHour" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"
-						/>
-					</svg>
-				</div>
-				<div id="scheduleFinishHourContainer" class="ml-input-container time">
-					<label class="ml-dialog-label time" for="scheduleFinishHour" title="Extension will be active on the current website only until this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Deactivation time</label>
-					<input class="ml-input-range setting time direct" id="scheduleFinishHour" type="range" min="0" max="24" step="1" list="time">
-					<svg for="scheduleFinishHour" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
-						/>
-					</svg>
-					<svg for="scheduleFinishHour" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="blueFilter" title="Blue filter intensity&#xA;Removes blue light from the page and replces it with red light">Blue filter</label>
-					<input class="ml-input-range setting percent" id="blueFilter" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="blueFilter" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M 19,3 H 5 C 3.9,3 3,3.9 3,5 v 14 c 0,1.1 0.9,2 2,2 h 14 c 1.1,0 2,-0.9 2,-2 V 5 C 21,3.9 20.1,3 19,3 Z m 0,16 H 5 V 5 h 14 z"
-						/>
-						<text style="font-size:8pt;font-family:sans-serif;fill:blue" x="8" y="16">
-							B
-						</text>
-					</svg>
-					<svg for="blueFilter" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M 19,3 H 5 C 3.9,3 3,3.9 3,5 v 14 c 0,1.1 0.9,2 2,2 h 14 c 1.1,0 2,-0.9 2,-2 V 5 C 21,3.9 20.1,3 19,3 Z m 0,16 H 5 V 5 h 14 z"
-						/>
-						<path d="M 6,6 H 18 L 6,18 Z" fill-opacity="0.3" />
-						<text style="font-size:8pt;font-family:sans-serif;fill:red" x="8" y="16">
-							B
-						</text>
-					</svg>
-				</div>
-				<input type="hidden" class="setting" id="settingsVersion">
-			</div>
-			<div id="background" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundSaturationLimit" title="Background saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting percent" id="backgroundSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="backgroundSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="backgroundSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundContrast" title="Minimal difference between similar backgrounds">Contrast</label>
-					<input class="ml-input-range setting percent" id="backgroundContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="backgroundContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
-					</svg>
-					<svg for="backgroundContrast" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundLightnessLimit" title="Background brightness limit">Brightness limit</label>
-					<input class="ml-input-range setting percent" id="backgroundLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="backgroundLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="backgroundLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundGraySaturation" title="Saturation of the gray backgrounds">Gray background saturation</label>
-					<input class="ml-input-range setting percent" id="backgroundGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="backgroundGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
-						/>
-					</svg>
-					<svg for="backgroundGraySaturation" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" for="backgroundGrayHue" title="Hue to be used to increase saturation of the gray background colors">Gray background hue</label>
-					<br>
-					<select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting" id="backgroundGrayHue" display-color-on="backgroundHue">
-						<option value="4" label="Red" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-						<option value="340" label="Pink" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-						<option value="291" label="Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-						<option value="262" label="Deep Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-						<option value="231" label="Indigo" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-						<option value="207" label="Blue" style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-						<option value="199" label="Light Blue" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-						<option value="187" label="Cyan" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-						<option value="174" label="Teal" style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-						<option value="122" label="Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-						<option value="88" label="Light Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-						<option value="66" label="Lime" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-						<option value="54" label="Yellow" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-						<option value="45" label="Amber" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-						<option value="36" label="Orange" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-						<option value="14" label="Deep Orange" style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-						<option value="16" label="Brown" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-						<option value="0" label="Grey" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-						<option value="200" label="Blue Grey" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
-					</select>
-				</div>
+                    </svg>Links</li>
+                <li class="ml-tab-item"
+                    content="borders"
+                    tooltip="&emsp;&emsp;&emsp;&ensp;&emsp;Borders color settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains color adjustment settings for all borders and lines on the page.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.75 7L14 3.25l-10 10V17h3.75l10-10zm2.96-2.96c.39-.39.39-1.02 0-1.41L18.37.29c-.39-.39-1.02-.39-1.41 0L15 2.25 18.75 6l1.96-1.96z"
+                        />
+                        <!--<path d="m 13,4 h -2 v 2 h 2 z m 0,4 h -2 v 2 h 2 z m 4,0 h -2 v 2 h 2 z M 3,0 V 18 H 21 V 0 Z M 19,16 H 5 V 2 h 14 z m -6,-4 h -2
+v 2 h 2 z M 9,8 H 7 v 2 h 2 z" />-->
+                        <!--<path d="M13 7h-2v2h2V7zm0 4h-2v2h2v-2zm4 0h-2v2h2v-2zM3 3v18h18V3H3zm16 16H5V5h14v14zm-6-4h-2v2h2v-2zm-4-4H7v2h2v-2z" />-->
+                        <!--<path d="M 3,3 V 21 H 21 V 3 Z M 19,19 H 5 V 5 h 14 z" />
+                        <path id="borderHue" d="m 13,7 h -2 v 2 h 2 z m 0,4 h -2 v 2 h 2 z m 4,0 h -2 v 2 h 2 z m -4,4 h -2 v 2 h 2 z M 9,11 H 7 v 2 h 2 z" />-->
+                        <!--<path id="borderHue" d="M0 21h24v3H0z" fill-opacity="1" />-->
+                        <path d="M0 20h24v4H0z"
+                              id="borderHue" />
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                    </svg>Borders</li>
+                <li class="ml-tab-item"
+                    content="images"
+                    tooltip="&emsp;&emsp;&emsp;&ensp;Images adjustment settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains settings for the saturation and brightness adjustment of the images and pictures.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 5 3 C 3.9 3 3 3.9 3 5 L 3 19 C 3 20.1 3.9 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 5 C 21 3.9 20.1 3 19 3 L 5 3 z M
+9 7 A 2 2 0 0 1 11 9 A 2 2 0 0 1 9 11 A 2 2 0 0 1 7 9 A 2 2 0 0 1 9 7 z M 14.5 12 L 19 18 L 5 18 L 8.5 13.5 L 11 16.509766
+L 14.5 12 z" />
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                    </svg>Images</li>
+                <li class="ml-tab-item"
+                    content="fond-images"
+                    tooltip="&emsp;Background images adjustment settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;This tab contains settings for the background images saturation and brightness adjustment.
+&emsp;Background images are a special type of an element background fill. Such images are usually inside or behind the text.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 5 3 C 3.9 3 3 3.9 3 5 L 3 19 C 3 20.1 3.9 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 5 C 21 3.9 20.1 3 19 3 L 5 3 z M
+6 6 L 18 6 L 18 8 L 6 8 L 6 6 z M 6 10 L 12 10 L 12 12 L 6 12 L 6 10 z M 14.5 12 L 19 18 L 5 18 L 8.5 13.5 L 11 16.509766
+L 14.5 12 z" />
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                    </svg>Fond images</li>
+                <li class="ml-tab-item"
+                    content="scrollbars"
+                    tooltip="&emsp;&emsp;&emsp;&emsp;Scrollbars color settings
+━━━━━━━━━━━━━━━━━━━
+&emsp;Color settings for all scrollbars on the page.">
+                    <svg class="ml-tab-item-icon"
+                         role="img"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M 3,3 C 1.9092972,3 1,3.9092972 1,5 v 14 c 0,1.090703 0.9092972,2 2,2 h 18 c 1.090703,0 2,-0.909297 2,-2 V 5 C 23,3.9092972
+22.090703,3 21,3 Z M 3,5 H 21 V 19 H 3 Z" />
+                        <g id="scrollbarHue">
+                            <rect width="13"
+                                  height="3"
+                                  x="4"
+                                  y="15"
+                                  rx="1"
+                                  ry="1" />
+                            <rect width="3"
+                                  height="9"
+                                  x="17"
+                                  y="6"
+                                  rx="1"
+                                  ry="1" />
+                        </g>
+                    </svg>Scrollbars</li>
+                <li class="ml-tab-item-separator">
+                    &nbsp;</li>
+            </ul>
+            <div id="default-tab-content"
+                 class="ml-tab-content">
+                <h3>Introduction</h3>
+                <p>
+                    <run class="intro intro-toggle">
+                        To <span>enable</span> or <span>disable</span> an entire extension switch the toggle button in the
+                        top-right corner.
+                    </run>
+                    <run class="intro intro-common">
+                        You also can do the same on a <span>per-website basis</span> by using <q>Run on this site</q> checkbox
+                        in the <q>Common</q> tab on the left pane.
+                    </run>
+                </p>
+                <p class="intro intro-select-scheme">
+                    You can choose one of the <span>predefined color schemes</span> from the drop-down list on the right
+                    pane and use it off the shelf.
+                </p>
+                <p class="intro intro-tabs">
+                    Apart from that you can <span>adjust</span> your chosen scheme as you wish. For this purpose you have
+                    all the settings in the tabs on the left pane. Any changes you would have made will be immediately applied
+                    but only on the popup so you can safely play with it.
+                </p>
+                <p>
+                    <run class="intro intro-apply">
+                        To assign the settings of your preference to the <span>current website</span> press <q>Apply</q> button
+                        on the right pane.
+                    </run>
+                    <run class="intro intro-edit-schemes">
+                        Or you can <span>add your scheme</span> to the list of the predefined color schemes for futher use
+                        on any other website.
+                    </run>
+                </p>
+                <p class="intro intro-default">
+                    If you want to set up current settings as a <span>default settings</span> for all websites press <q>Set
+                    as default</q> button on the right pane.
+                </p>
+            </div>
+            <div id="common"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Run [Midnight Lizard] on this website&#xA;Do not forget to press [Apply] button after changing this option to apply changes on the current wibsite."
+                
+                           for="runOnThisSite">
+                        <input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
+                    </label>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Restore original colors before copying content from the page"
+                           for="restoreColorsOnCopy">
+                        <input class="ml-checkbox setting" id="restoreColorsOnCopy" type="checkbox">Restore original colors on copy
+                    </label>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
+                
+                           for="useDefaultSchedule">
+                        <input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
+                    </label>
+                </div><br>
+                <div id="scheduleStartHourContainer"
+                     class="ml-input-container time">
+                    <label class="ml-dialog-label time"
+                           for="scheduleStartHour"
+                           title="Extension will be active on the current website only starting from this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Activation time</label>
+                    <input class="ml-input-range setting time reverse"
+                           id="scheduleStartHour"
+                           type="range"
+                           min="0"
+                           max="24"
+                           step="1"
+                           list="time">
+                    <svg for="scheduleStartHour"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
+                        />
+                    </svg>
+                    <svg for="scheduleStartHour"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"
+                        />
+                    </svg>
+                </div>
+                <div id="scheduleFinishHourContainer"
+                     class="ml-input-container time">
+                    <label class="ml-dialog-label time"
+                           for="scheduleFinishHour"
+                           title="Extension will be active on the current website only until this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Deactivation time</label>
+                    <input class="ml-input-range setting time direct"
+                           id="scheduleFinishHour"
+                           type="range"
+                           min="0"
+                           max="24"
+                           step="1"
+                           list="time">
+                    <svg for="scheduleFinishHour"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"
+                        />
+                    </svg>
+                    <svg for="scheduleFinishHour"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79 2.73 2.71 7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58 3.51-3.47 9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="blueFilter"
+                           title="Blue filter intensity&#xA;Removes blue light from the page and replces it with red light">Blue filter intensity</label>
+                    <input class="ml-input-range setting percent"
+                           id="blueFilter"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="blueFilter"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M 19,3 H 5 C 3.9,3 3,3.9 3,5 v 14 c 0,1.1 0.9,2 2,2 h 14 c 1.1,0 2,-0.9 2,-2 V 5 C 21,3.9 20.1,3 19,3 Z m 0,16 H 5 V 5 h 14 z"
+                        />
+                        <text style="font-size:8pt;font-family:sans-serif;fill:blue"
+                              x="8"
+                              y="16">
+                            B
+                        </text>
+                    </svg>
+                    <svg for="blueFilter"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M 19,3 H 5 C 3.9,3 3,3.9 3,5 v 14 c 0,1.1 0.9,2 2,2 h 14 c 1.1,0 2,-0.9 2,-2 V 5 C 21,3.9 20.1,3 19,3 Z m 0,16 H 5 V 5 h 14 z"
+                        />
+                        <path d="M 6,6 H 18 L 6,18 Z"
+                              fill-opacity="0.3" />
+                        <text style="font-size:8pt;font-family:sans-serif;fill:red"
+                              x="8"
+                              y="16">
+                            B
+                        </text>
+                    </svg>
+                </div>
+                <input type="hidden"
+                       class="setting"
+                       id="settingsVersion">
+            </div>
+            <div id="background"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundSaturationLimit"
+                           title="Background saturation limit">Saturation limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="backgroundSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundContrast"
+                           title="Minimal difference between similar backgrounds">Contrast</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundContrast"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundContrast"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <ellipse rx="6"
+                                 ry="6"
+                                 cy="12"
+                                 cx="12"
+                                 fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
+                              fill-opacity="0.2" />
+                    </svg>
+                    <svg for="backgroundContrast"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundLightnessLimit"
+                           title="Background brightness limit">Brightness limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="backgroundLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundGraySaturation"
+                           title="Saturation of the gray backgrounds">Gray background saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundGraySaturation"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path fill-rule="evenodd"
+                              d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
+                        />
+                    </svg>
+                    <svg for="backgroundGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="backgroundGrayHue"
+                           title="Hue to be used to increase saturation of the gray background colors">Gray background hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="backgroundGrayHue"
+                            display-color-on="backgroundHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
 
-			</div>
-			<div id="text" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="textSaturationLimit" title="Text saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting percent" id="textSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="textSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="textSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="textContrast" title="Minimal difference between text and background brightness">Contrast</label>
-					<input class="ml-input-range setting percent" id="textContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="textContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<!--<path d="m12.15621,9.38983c1.4953,0 2.70701,1.18234 2.70701,2.64139s-1.21171,2.64139 -2.70701,2.64139s-2.70701,-1.18234 -2.70701,-2.64139s1.21171,-2.64139 2.70701,-2.64139m0,-2.38983c-2.84881,0 -5.15621,2.25147 -5.15621,5.03122s2.30741,5.03122 5.15621,5.03122s5.15621,-2.25147 5.15621,-5.03122s-2.30741,-5.03122 -5.15621,-5.03122z"/>-->
-						<ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
-					</svg>
-					<svg for="textContrast" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="textLightnessLimit" title="Limit of maximum text brightness">Brightness limit</label>
-					<input class="ml-input-range setting percent" id="textLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="textLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="textLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="textGraySaturation" title="Saturation of the gray text">Gray text saturation</label>
-					<input class="ml-input-range setting percent" id="textGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="textGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
-						/>
-					</svg>
-					<svg for="textGraySaturation" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" for="textGrayHue" title="Hue to be used to increase saturation of the gray text colors">Gray text hue</label>
-					<br>
-					<select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting" id="textGrayHue" display-color-on="textHue">
-						<option value="4" label="Red" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-						<option value="340" label="Pink" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-						<option value="291" label="Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-						<option value="262" label="Deep Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-						<option value="231" label="Indigo" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-						<option value="207" label="Blue" style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-						<option value="199" label="Light Blue" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-						<option value="187" label="Cyan" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-						<option value="174" label="Teal" style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-						<option value="122" label="Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-						<option value="88" label="Light Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-						<option value="66" label="Lime" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-						<option value="54" label="Yellow" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-						<option value="45" label="Amber" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-						<option value="36" label="Orange" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-						<option value="14" label="Deep Orange" style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-						<option value="16" label="Brown" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-						<option value="0" label="Grey" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-						<option value="200" label="Blue Grey" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
-					</select>
-				</div>
-			</div>
-			<div id="links" class="ml-tab-content">
-				<br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="linkSaturationLimit" title="Links saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting percent" id="linkSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="linkSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="linkSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="linkContrast" title="Minimal difference between link and background brightness">Contrast</label>
-					<input class="ml-input-range setting percent" id="linkContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="linkContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
-					</svg>
-					<svg for="linkContrast" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="linkLightnessLimit" title="Limit of maximum link brightness">Brightness limit</label>
-					<input class="ml-input-range setting percent" id="linkLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="linkLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="linkLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="linkDefaultSaturation" title="Saturation of the links with default text color">Default link saturation</label>
-					<input class="ml-input-range setting percent" id="linkDefaultSaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="linkDefaultSaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
-						/>
-					</svg>
-					<svg for="linkDefaultSaturation" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" for="linkDefaultHue" title="Hue to be used to replace the default link hue">Default link hue</label>
-					<br>
-					<select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting" id="linkDefaultHue" display-color-on="linkHue">
-						<option value="4" label="Red" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-						<option value="340" label="Pink" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-						<option value="291" label="Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-						<option value="262" label="Deep Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-						<option value="231" label="Indigo" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-						<option value="207" label="Blue" style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-						<option value="199" label="Light Blue" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-						<option value="187" label="Cyan" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-						<option value="174" label="Teal" style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-						<option value="122" label="Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-						<option value="88" label="Light Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-						<option value="66" label="Lime" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-						<option value="54" label="Yellow" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-						<option value="45" label="Amber" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-						<option value="36" label="Orange" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-						<option value="14" label="Deep Orange" style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-						<option value="16" label="Brown" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-						<option value="0" label="Grey" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-						<option value="200" label="Blue Grey" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
-					</select>
-				</div>
-			</div>
-			<div id="borders" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="borderSaturationLimit" title="Border saturation limit">Saturation limit</label>
-					<input class="ml-input-range setting percent" id="borderSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="borderSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="borderSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="borderContrast" title="Minimal difference between border and background brightness">Contrast</label>
-					<input class="ml-input-range setting percent" id="borderContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="borderContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
-					</svg>
-					<svg for="borderContrast" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="borderLightnessLimit" title="Limit of maximum border brightness">Brightness limit</label>
-					<input class="ml-input-range setting percent" id="borderLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="borderLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="borderLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="borderGraySaturation" title="Saturation of the gray borders">Gray borders saturation</label>
-					<input class="ml-input-range setting percent" id="borderGraySaturation" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="borderGraySaturation" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path fill-rule="evenodd" d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
-						/>
-					</svg>
-					<svg for="borderGraySaturation" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" for="borderGrayHue" title="Hue to be used to increase saturation of the gray border colors">Gray borders hue</label>
-					<br>
-					<select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting" id="borderGrayHue" display-color-on="borderHue">
-						<option value="4" label="Red" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-						<option value="340" label="Pink" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-						<option value="291" label="Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-						<option value="262" label="Deep Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-						<option value="231" label="Indigo" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-						<option value="207" label="Blue" style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-						<option value="199" label="Light Blue" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-						<option value="187" label="Cyan" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-						<option value="174" label="Teal" style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-						<option value="122" label="Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-						<option value="88" label="Light Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-						<option value="66" label="Lime" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-						<option value="54" label="Yellow" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-						<option value="45" label="Amber" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-						<option value="36" label="Orange" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-						<option value="14" label="Deep Orange" style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-						<option value="16" label="Brown" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-						<option value="0" label="Grey" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-						<option value="200" label="Blue Grey" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
-					</select>
-				</div>
-			</div>
-			<div id="images" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="imageSaturationLimit" title="Set saturation of images to this value">Saturation</label>
-					<input class="ml-input-range setting percent" id="imageSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="imageSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="imageSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="imageLightnessLimit" title="Limit of image brightness">Brightness</label>
-					<input class="ml-input-range setting percent" id="imageLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="imageLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="imageLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-			</div>
-			<div id="fond-images" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundImageSaturationLimit" title="Saturation of background images">Saturation</label>
-					<input class="ml-input-range setting percent" id="backgroundImageSaturationLimit" type="range" min="0" max="100" step="1"
-					 list="from-0-to-100-percent">
-					<svg for="backgroundImageSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="backgroundImageSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="backgroundImageLightnessLimit" title="Limit of background image lightness">Brightness</label>
-					<input class="ml-input-range setting percent" id="backgroundImageLightnessLimit" type="range" min="0" max="100" step="1"
-					 list="from-0-to-100-percent">
-					<svg for="backgroundImageLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="backgroundImageLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-			</div>
-			<div id="scrollbars" class="ml-tab-content"><br>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="scrollbarSaturationLimit" title="Scrollbar thumb saturation">Saturation</label>
-					<input class="ml-input-range setting percent" id="scrollbarSaturationLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="scrollbarSaturationLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-					</svg>
-					<svg for="scrollbarSaturationLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-						/>
-						<ellipse rx="3" ry="3" cy="12" cx="12" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="scrollbarContrast" title="Minimal difference between scrollbar thumb and background brightness">Contrast</label>
-					<input class="ml-input-range setting percent" id="scrollbarContrast" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="scrollbarContrast" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
-					</svg>
-					<svg for="scrollbarContrast" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-						/>
-						<path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
-					</svg>
-				</div>
-				<div class="ml-input-container percent">
-					<label class="ml-dialog-label" for="scrollbarLightnessLimit" title="Scrollbar thumb brightness">Brightness</label>
-					<input class="ml-input-range setting percent" id="scrollbarLightnessLimit" type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
-					<svg for="scrollbarLightnessLimit" role="button" class="ml-input-range-icon low" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
-						/>
-					</svg>
-					<svg for="scrollbarLightnessLimit" role="button" class="ml-input-range-icon high" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
-						/>
-					</svg>
-				</div>
-				<div class="ml-input-container">
-					<label class="ml-dialog-label" for="scrollbarGrayHue" title="Scrollbar thumb hue">Scrollbar hue</label>
-					<br>
-					<select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting" id="scrollbarGrayHue" display-color-on="scrollbarHue">
-						<option value="4" label="Red" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-						<option value="340" label="Pink" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-						<option value="291" label="Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-						<option value="262" label="Deep Purple" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-						<option value="231" label="Indigo" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-						<option value="207" label="Blue" style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-						<option value="199" label="Light Blue" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-						<option value="187" label="Cyan" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-						<option value="174" label="Teal" style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-						<option value="122" label="Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-						<option value="88" label="Light Green" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-						<option value="66" label="Lime" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-						<option value="54" label="Yellow" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-						<option value="45" label="Amber" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-						<option value="36" label="Orange" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-						<option value="14" label="Deep Orange" style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-						<option value="16" label="Brown" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-						<option value="0" label="Grey" style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-						<option value="200" label="Blue Grey" style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
-					</select>
-				</div>
-			</div>
-			<div class="ml-dialog-commands">
-				<label class="ml-dialog-label" for="colorScheme" title="Choose your favorite color scheme">Current color scheme</label>
-				<br>
-				<select class="ml-dialog-input ml-dialog-input-text" id="colorScheme">
-					<option value="custom" label="Custom" title="The scheme you are currently using on this web site.&#xA;This scheme is selected when the current scheme is different from all others.">Custom (current)</option>
-					<option value="original" label="Original" title="No color scheme applied.">Original (none)</option>
-					<option value="default" label="Default" title="The scheme which is currently used as default.">Default</option>
+            </div>
+            <div id="text"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="textSaturationLimit"
+                           title="Text saturation limit">Saturation limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="textSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="textSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="textSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="textContrast"
+                           title="Minimal difference between text and background brightness">Contrast</label>
+                    <input class="ml-input-range setting percent"
+                           id="textContrast"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="textContrast"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <!--<path d="m12.15621,9.38983c1.4953,0 2.70701,1.18234 2.70701,2.64139s-1.21171,2.64139 -2.70701,2.64139s-2.70701,-1.18234 -2.70701,-2.64139s1.21171,-2.64139 2.70701,-2.64139m0,-2.38983c-2.84881,0 -5.15621,2.25147 -5.15621,5.03122s2.30741,5.03122 5.15621,5.03122s5.15621,-2.25147 5.15621,-5.03122s-2.30741,-5.03122 -5.15621,-5.03122z"/>-->
+                        <ellipse rx="6"
+                                 ry="6"
+                                 cy="12"
+                                 cx="12"
+                                 fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
+                              fill-opacity="0.2" />
+                    </svg>
+                    <svg for="textContrast"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="textLightnessLimit"
+                           title="Limit of maximum text brightness">Brightness limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="textLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="textLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="textLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="textGraySaturation"
+                           title="Saturation of the gray text">Gray text saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="textGraySaturation"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="textGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path fill-rule="evenodd"
+                              d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
+                        />
+                    </svg>
+                    <svg for="textGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="textGrayHue"
+                           title="Hue to be used to increase saturation of the gray text colors">Gray text hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="textGrayHue"
+                            display-color-on="textHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+            </div>
+            <div id="links"
+                 class="ml-tab-content">
+                <br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="linkSaturationLimit"
+                           title="Links saturation limit">Saturation limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="linkSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="linkSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="linkSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="linkContrast"
+                           title="Minimal difference between link and background brightness">Contrast</label>
+                    <input class="ml-input-range setting percent"
+                           id="linkContrast"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="linkContrast"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <ellipse rx="6"
+                                 ry="6"
+                                 cy="12"
+                                 cx="12"
+                                 fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
+                              fill-opacity="0.2" />
+                    </svg>
+                    <svg for="linkContrast"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="linkLightnessLimit"
+                           title="Limit of maximum link brightness">Brightness limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="linkLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="linkLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="linkLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="linkDefaultSaturation"
+                           title="Saturation of the links with default text color">Default link saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="linkDefaultSaturation"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="linkDefaultSaturation"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path fill-rule="evenodd"
+                              d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
+                        />
+                    </svg>
+                    <svg for="linkDefaultSaturation"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="linkDefaultHue"
+                           title="Hue to be used to replace the default link hue">Default link hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="linkDefaultHue"
+                            display-color-on="linkHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+            </div>
+            <div id="borders"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="borderSaturationLimit"
+                           title="Border saturation limit">Saturation limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="borderSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="borderSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="borderSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="borderContrast"
+                           title="Minimal difference between border and background brightness">Contrast</label>
+                    <input class="ml-input-range setting percent"
+                           id="borderContrast"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="borderContrast"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <ellipse rx="6"
+                                 ry="6"
+                                 cy="12"
+                                 cx="12"
+                                 fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
+                              fill-opacity="0.2" />
+                    </svg>
+                    <svg for="borderContrast"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="borderLightnessLimit"
+                           title="Limit of maximum border brightness">Brightness limit</label>
+                    <input class="ml-input-range setting percent"
+                           id="borderLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="borderLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="borderLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="borderGraySaturation"
+                           title="Saturation of the gray borders">Gray borders saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="borderGraySaturation"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="borderGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path fill-rule="evenodd"
+                              d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
+                        />
+                    </svg>
+                    <svg for="borderGraySaturation"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="borderGrayHue"
+                           title="Hue to be used to increase saturation of the gray border colors">Gray borders hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="borderGrayHue"
+                            display-color-on="borderHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+            </div>
+            <div id="images"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="imageSaturationLimit"
+                           title="Set saturation of images to this value">Saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="imageSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="imageSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="imageSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="imageLightnessLimit"
+                           title="Limit of image brightness">Brightness</label>
+                    <input class="ml-input-range setting percent"
+                           id="imageLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="imageLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="imageLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Image example">Image example</label>
+                    <img class="ml-image-example"
+                         src="../img/seven_colors_flower.jpg" />
+                </div>
+            </div>
+            <div id="fond-images"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundImageSaturationLimit"
+                           title="Saturation of background images">Saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundImageSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundImageSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="backgroundImageSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundImageLightnessLimit"
+                           title="Limit of background image lightness">Brightness</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundImageLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundImageLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="backgroundImageLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Background image example">Background image example</label>
+                    <div class="ml-bg-image-example ml-image-example"
+                         title="If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly.">Example</div>
+                </div>
+            </div>
+            <div id="scrollbars"
+                 class="ml-tab-content"><br>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="scrollbarSaturationLimit"
+                           title="Scrollbar thumb saturation">Saturation</label>
+                    <input class="ml-input-range setting percent"
+                           id="scrollbarSaturationLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="scrollbarSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                    </svg>
+                    <svg for="scrollbarSaturationLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                        />
+                        <ellipse rx="3"
+                                 ry="3"
+                                 cy="12"
+                                 cx="12" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="scrollbarContrast"
+                           title="Minimal difference between scrollbar thumb and background brightness">Contrast</label>
+                    <input class="ml-input-range setting percent"
+                           id="scrollbarContrast"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="scrollbarContrast"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <ellipse rx="6"
+                                 ry="6"
+                                 cy="12"
+                                 cx="12"
+                                 fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
+                              fill-opacity="0.2" />
+                    </svg>
+                    <svg for="scrollbarContrast"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                        />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
+                    </svg>
+                </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="scrollbarLightnessLimit"
+                           title="Scrollbar thumb brightness">Brightness</label>
+                    <input class="ml-input-range setting percent"
+                           id="scrollbarLightnessLimit"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="scrollbarLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon low"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
+                        />
+                    </svg>
+                    <svg for="scrollbarLightnessLimit"
+                         role="button"
+                         class="ml-input-range-icon high"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                        />
+                    </svg>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="scrollbarGrayHue"
+                           title="Scrollbar thumb hue">Scrollbar hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="scrollbarGrayHue"
+                            display-color-on="scrollbarHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Scrollbar example">Scrollbar example</label>
+                    <div class="ml-scrollbar-example">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                    </div>
+                </div>
+            </div>
+            <div id="edit-schemes"
+                 class="ml-tab-content">
+                <br>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="colorSchemeForEdit"
+                           title="Choose color scheme for edit.&#xA;You can create a new scheme and update or delete existing color scheme.">Color scheme for edit</label>
+                    <br>
+                    <select id="colorSchemeForEdit"
+                            class="ml-dialog-input ml-dialog-input-text">
+                    </select>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="colorSchemeName"
+                           title="You can edit color scheme name before to save">Color scheme name</label>
+                    <br>
+                    <input id="newColorSchemeName"
+                           type="text"
+                           class="ml-dialog-input ml-dialog-input-text"
+                           maxlength="32">
+                </div>
+                <div class="ml-command-container">
+                    <button id="deleteColorSchemeBtn"
+                            title="Delete color scheme selected for edit"
+                            class="ml-helio-button red">
+                        Delete
+                    </button>
+                    <button id="saveColorSchemeBtn"
+                            title="Update selected color scheme with current settings"
+                            class="ml-helio-button blue">
+                        Save
+                    </button>
+                </div>
+            </div>
+            <div class="ml-right-pane">
+                <ul class="ml-tab right">
+                    <li class="ml-tab-item-separator">
+                        &nbsp;</li>
+                    <li class="ml-tab-item"
+                        content="edit-schemes"
+                        tooltip="&emsp;&emsp;&emsp;&emsp;Color schemes editing
+━━━━━━━━━━━━━━━━━━━
+&emsp;Settings currently applied on the popup can be used to create a new color scheme or update existing one. If you create a new color scheme it will be available on all other websites.
+&emsp;Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.
+&emsp;The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.
+&emsp;Find more examples under the question mark in the popup top-left corner.">Color schemes
+                        <svg class="ml-tab-item-icon"
+                             role="img"
+                             viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z"
+                                  fill="none" />
+                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+                            />
+                        </svg>
+                    </li>
+                    <li class="ml-tab-item-separator">
+                        &nbsp;</li>
+                </ul>
+                <div class="ml-dialog-commands">
+                    <label class="ml-dialog-label"
+                           for="colorScheme"
+                           title="Choose your favorite color scheme">Current color scheme</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text"
+                            id="colorScheme">
+                    </select>
+                    <div class="ml-tool-box">
+                        <button id="forgetThisSiteBtn"
+                                class="ml-helio-button orange"
+                                title="Forget current site settings">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/>
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>This
+                    </button>
+                        <div class="ml-tool-box-separator"></div>
+                        <button id="forgetAllSitesBtn"
+                                class="ml-helio-button orange"
+                                title="Forget all customizations for all websites">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </svg>All
+                    </button>
+                    </div>
+                    <button id="setAsDefaultBtn"
+                            title="Set current settings as a default for all web sites which don't have custom settings"
+                            class="ml-helio-button blue">
+                        Set as default
+                    </button>
+                    <br>
+                    <button id="applyBtn"
+                            title="Apply and save current settings for this site"
+                            class="ml-helio-button green">
+                        Apply
+                    </button>
+                    <br>
+                    <button id="closeBtn"
+                            title="Close popup and discard all unsaved changes"
+                            class="ml-helio-button red">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="ml-dialog-fotter">
+            <div class="ml-fotter-icon-container left">
+                <a target="_blank"
+                   href="https://www.facebook.com/Midnight.Lizard/"
+                   title="https://facebook.com/Midnight.Lizard">
+                    <svg class="ml-fotter-icon facebook-icon"
+                         viewBox="0 0 155.139 155.139">
+                        <path d="M89.584,155.139V84.378h23.742l3.562-27.585H89.584V39.184 c0-7.984,2.208-13.425,13.67-13.425l14.595-0.006V1.08C115.325,0.752,106.661,0,96.577,0C75.52,0,61.104,12.853,61.104,36.452 v20.341H37.29v27.585h23.814v70.761H89.584z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container left">
+                <a target="_blank"
+                   href="https://plus.google.com/u/0/114088392745534897694"
+                   title="https://plus.google.com/Midnight.Lizard">
+                    <svg class="ml-fotter-icon google-plus-icon"
+                         viewBox="0 0 64 64">
+                        <path d="M56,30h-5v-5h-4v5h-5v4h5v5h4v-5h5 M24,29v6.24h8.721C32.05,39,28.79,41.74,24,41.74 c-5.279,0-9.57-4.471-9.57-9.75c0-5.281,4.291-9.74,9.57-9.74c2.38,0,4.51,0.82,6.189,2.42v0.01l4.511-4.51 C31.93,17.59,28.32,16,24,16c-8.84,0-16,7.16-16,16s7.16,16,16,16c9.24,0,15.359-6.5,15.359-15.641c0-1.17-0.109-2.289-0.31-3.359 H24z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container left">
+                <a target="_blank"
+                   href="https://twitter.com/MidnightLizard"
+                   title="https://twitter.com/MidnightLizard">
+                    <svg class="ml-fotter-icon twitter-icon"
+                         viewBox="0 0 300.00006 244.18703">
+                        <g transform="translate(-539.18 -568.86)">
+                            <path d="m633.9 812.04c112.46 0 173.96-93.168 173.96-173.96 0-2.6463-0.0539-5.2806-0.1726-7.903 11.938-8.6302 22.314-19.4 30.498-31.66-10.955 4.8694-22.744 8.1474-35.111 9.6255 12.623-7.5693 22.314-19.543 26.886-33.817-11.813 7.0031-24.895 12.093-38.824 14.841-11.157-11.884-27.041-19.317-44.629-19.317-33.764 0-61.144 27.381-61.144 61.132 0 4.7978 0.5364 9.4646 1.5854 13.941-50.815-2.5569-95.874-26.886-126.03-63.88-5.2508 9.0354-8.2785 19.531-8.2785 30.73 0 21.212 10.794 39.938 27.208 50.893-10.031-0.30992-19.454-3.0635-27.69-7.6468-0.009 0.25652-0.009 0.50661-0.009 0.78077 0 29.61 21.075 54.332 49.051 59.934-5.1376 1.4006-10.543 2.1516-16.122 2.1516-3.9336 0-7.766-0.38716-11.491-1.1026 7.7838 24.293 30.355 41.971 57.115 42.465-20.926 16.402-47.287 26.171-75.937 26.171-4.929 0-9.7983-0.28036-14.584-0.84634 27.059 17.344 59.189 27.464 93.722 27.464"
+                            />
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container left">
+                <a target="_blank"
+                   href="https://www.instagram.com/Midnight.Lizard/"
+                   title="https://instagram.com/Midnight.Lizard">
+                    <svg class="ml-fotter-icon instagram-icon"
+                         viewBox="0 0 512 512">
+                        <g>
+                            <path d="M256 109.3c47.8 0 53.4 0.2 72.3 1 17.4 0.8 26.9 3.7 33.2 6.2 8.4 3.2 14.3 7.1 20.6 13.4 6.3 6.3 10.1 12.2 13.4 20.6 2.5 6.3 5.4 15.8 6.2 33.2 0.9 18.9 1 24.5 1 72.3s-0.2 53.4-1 72.3c-0.8 17.4-3.7 26.9-6.2 33.2 -3.2 8.4-7.1 14.3-13.4 20.6 -6.3 6.3-12.2 10.1-20.6 13.4 -6.3 2.5-15.8 5.4-33.2 6.2 -18.9 0.9-24.5 1-72.3 1s-53.4-0.2-72.3-1c-17.4-0.8-26.9-3.7-33.2-6.2 -8.4-3.2-14.3-7.1-20.6-13.4 -6.3-6.3-10.1-12.2-13.4-20.6 -2.5-6.3-5.4-15.8-6.2-33.2 -0.9-18.9-1-24.5-1-72.3s0.2-53.4 1-72.3c0.8-17.4 3.7-26.9 6.2-33.2 3.2-8.4 7.1-14.3 13.4-20.6 6.3-6.3 12.2-10.1 20.6-13.4 6.3-2.5 15.8-5.4 33.2-6.2C202.6 109.5 208.2 109.3 256 109.3M256 77.1c-48.6 0-54.7 0.2-73.8 1.1 -19 0.9-32.1 3.9-43.4 8.3 -11.8 4.6-21.7 10.7-31.7 20.6 -9.9 9.9-16.1 19.9-20.6 31.7 -4.4 11.4-7.4 24.4-8.3 43.4 -0.9 19.1-1.1 25.2-1.1 73.8 0 48.6 0.2 54.7 1.1 73.8 0.9 19 3.9 32.1 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19.1 0.9 25.2 1.1 73.8 1.1s54.7-0.2 73.8-1.1c19-0.9 32.1-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4 0.9-19.1 1.1-25.2 1.1-73.8s-0.2-54.7-1.1-73.8c-0.9-19-3.9-32.1-8.3-43.4 -4.6-11.8-10.7-21.7-20.6-31.7 -9.9-9.9-19.9-16.1-31.7-20.6 -11.4-4.4-24.4-7.4-43.4-8.3C310.7 77.3 304.6 77.1 256 77.1L256 77.1z"></path>
+                            <path d="M256 164.1c-50.7 0-91.9 41.1-91.9 91.9s41.1 91.9 91.9 91.9 91.9-41.1 91.9-91.9S306.7 164.1 256 164.1zM256 315.6c-32.9 0-59.6-26.7-59.6-59.6s26.7-59.6 59.6-59.6 59.6 26.7 59.6 59.6S288.9 315.6 256 315.6z"></path>
+                            <circle cx="351.5"
+                                    cy="160.5"
+                                    r="21.5"></circle>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-separator"></div>
+            <div class="ml-fotter-icon-container right">
+                <a target="_blank"
+                   title="Rate this extension"
+                   href="https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews">
+                    <svg class="ml-fotter-icon rate-icon"
+                         viewBox="0 0 18 18">
+                        <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z" />
+                        <path d="M0 0h18v18H0z"
+                              fill="none" />
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container right">
+                <a target="_blank"
+                   title="Send email to the developer"
+                   href="mailto:midnight.lizard.extension@gmail.com">
+                    <svg class="ml-fotter-icon email-icon"
+                         viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container right">
+                <a target="_blank"
+                   title="Report a bug"
+                   href="https://groups.google.com/forum/#!newtopic/midnight-lizard-support">
+                    <svg class="ml-fotter-icon bug-report-icon"
+                         viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="ml-fotter-icon-container right">
+                <a id="version"
+                   title="Changelog"
+                   target="_blank"
+                   href="../ui/change-log.html">
+                    <svg class="ml-fotter-icon change-log-icon"
+                         viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z"
+                              fill="none" />
+                        <path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="ml-dialog-error"
+         style="display:none"
+         id="dialogError">
+        Midnight Lizard cannot connect to this page<br/> <span>because of one of the following reasons</span> <br/><br/>
+        <ul>
+            <li>Web browser does not allow to run extensions on this page</li><br/>
+            <li>[Midnight Lizard] has been updated and page needs to be refreshed</li><br/>
+            <li>Current page represented by a local file,<br/>but you have not allowed [Midnight Lizard] to process local files</li>
+        </ul>
+    </div>
 
-					<option value="dimmedDust" label="Dimmed Dust" style="color: rgb(217, 198, 191); background-color: rgb(46, 53, 56);">Dimmed Dust</option>
-					<option value="appleMint" label="Apple Mint" style="color: rgb(192, 204, 179); background-color: rgb(8, 69, 63);">Apple Mint</option>
-					<option value="kappaDream" label="Kappa Dream" style="color: rgb(212, 214, 194); background-color: rgb(31, 71, 32);">Kappa Dream</option>
-					<option value="sunsetSails" label="Sunset Sails" title="Effect is similar to f.lux and Redshift" style="color: rgb(214, 209, 194); background-color: rgb(71, 33, 31) !important">Sunset Sails</option>
-					<option value="morningMist" label="Morning Mist" style="color: rgb(0,0,0); background-color: rgb(227, 230, 232);">Morning Mist</option>
-					<option value="antiqueCodex" label="Antique Codex" style="color: rgb(0,0,0); background-color: rgb(246, 242, 228);">Antique Codex</option>
+    <datalist id="from-0-to-100-percent">
+        <option>0</option>
+        <option>10</option>
+        <option>20</option>
+        <option>30</option>
+        <option>40</option>
+        <option>50</option>
+        <option>60</option>
+        <option>70</option>
+        <option>80</option>
+        <option>90</option>
+        <option>100</option>
+    </datalist>
 
-					<option value="increasedContrast" label="Increased Contrast" style="color: rgb(0,0,0); background-color: rgb(255, 255, 255);">Increased Contrast</option>
-					<option value="grayscale" label="Grayscale" style="color: rgb(0,0,0); background-color: rgb(255, 255, 255);">Grayscale</option>
-					<option value="invertedLight" label="Inverted Light" style="color: rgb(179, 179, 179); background-color: rgb(25, 25, 25);">Inverted Light</option>
-					<option value="invertedGrayscale" label="Inverted Grayscale" style="color: rgb(179, 179, 179); background-color: rgb(27, 27, 27);">Inverted Grayscale</option>
-					<option value="yellowOnBlack" label="Yellow on Black" style="color: rgb(235, 218, 71); background-color: rgb(26, 26, 26);">Yellow on Black</option>
-					<option value="greenOnBlack" label="Green on Black" style="color: rgb(71, 235, 77); background-color: rgb(26, 26, 26);">Green on Black</option>
-				</select>
-				<div class="ml-tool-box">
-					<button id="forgetThisSiteBtn" class="ml-helio-button orange" title="Forget current site settings">
-						<svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-							<path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/>
-							<path d="M0 0h24v24H0z" fill="none" />
-						</svg>This
-					</button>
-					<div class="ml-tool-box-separator"></div>
-					<button id="forgetAllSitesBtn" class="ml-helio-button orange" title="Forget all customizations for all sites">
-						<svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-							<path d="M0 0h24v24H0z" fill="none" />
-							<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
-						</svg>All
-					</button>
-				</div>
-				<button id="setAsDefaultBtn" title="Set current settings as a default for all web sites which don't have custom settings"
-				 class="ml-helio-button blue">
-					Set as default
-					</button>
-				<br>
-				<button id="applyBtn" title="Apply and save current settings for this site" class="ml-helio-button green">
-					Apply
-				</button>
-				<br>
-				<button id="closeBtn" title="Close popup and discard all unsaved changes" class="ml-helio-button red">
-					Close
-				</button>
-			</div>
-		</div>
-		<div class="ml-dialog-fotter">
-			<div class="ml-fotter-icon-container left">
-				<a target="_blank" href="https://www.facebook.com/Midnight.Lizard/" title="https://facebook.com/Midnight.Lizard">
-					<svg class="ml-fotter-icon facebook-icon" viewBox="0 0 155.139 155.139">
-						<path d="M89.584,155.139V84.378h23.742l3.562-27.585H89.584V39.184 c0-7.984,2.208-13.425,13.67-13.425l14.595-0.006V1.08C115.325,0.752,106.661,0,96.577,0C75.52,0,61.104,12.853,61.104,36.452 v20.341H37.29v27.585h23.814v70.761H89.584z"
-						/>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container left">
-				<a target="_blank" href="https://plus.google.com/u/0/114088392745534897694" title="https://plus.google.com/Midnight.Lizard">
-					<svg class="ml-fotter-icon google-plus-icon" viewBox="0 0 64 64">
-						<path d="M56,30h-5v-5h-4v5h-5v4h5v5h4v-5h5 M24,29v6.24h8.721C32.05,39,28.79,41.74,24,41.74 c-5.279,0-9.57-4.471-9.57-9.75c0-5.281,4.291-9.74,9.57-9.74c2.38,0,4.51,0.82,6.189,2.42v0.01l4.511-4.51 C31.93,17.59,28.32,16,24,16c-8.84,0-16,7.16-16,16s7.16,16,16,16c9.24,0,15.359-6.5,15.359-15.641c0-1.17-0.109-2.289-0.31-3.359 H24z"
-						/>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container left">
-				<a target="_blank" href="https://twitter.com/MidnightLizard" title="https://twitter.com/MidnightLizard">
-					<svg class="ml-fotter-icon twitter-icon" viewBox="0 0 300.00006 244.18703">
-						<g transform="translate(-539.18 -568.86)">
-							<path d="m633.9 812.04c112.46 0 173.96-93.168 173.96-173.96 0-2.6463-0.0539-5.2806-0.1726-7.903 11.938-8.6302 22.314-19.4 30.498-31.66-10.955 4.8694-22.744 8.1474-35.111 9.6255 12.623-7.5693 22.314-19.543 26.886-33.817-11.813 7.0031-24.895 12.093-38.824 14.841-11.157-11.884-27.041-19.317-44.629-19.317-33.764 0-61.144 27.381-61.144 61.132 0 4.7978 0.5364 9.4646 1.5854 13.941-50.815-2.5569-95.874-26.886-126.03-63.88-5.2508 9.0354-8.2785 19.531-8.2785 30.73 0 21.212 10.794 39.938 27.208 50.893-10.031-0.30992-19.454-3.0635-27.69-7.6468-0.009 0.25652-0.009 0.50661-0.009 0.78077 0 29.61 21.075 54.332 49.051 59.934-5.1376 1.4006-10.543 2.1516-16.122 2.1516-3.9336 0-7.766-0.38716-11.491-1.1026 7.7838 24.293 30.355 41.971 57.115 42.465-20.926 16.402-47.287 26.171-75.937 26.171-4.929 0-9.7983-0.28036-14.584-0.84634 27.059 17.344 59.189 27.464 93.722 27.464"
-							/>
-						</g>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container left">
-				<a target="_blank" href="https://www.instagram.com/Midnight.Lizard/" title="https://instagram.com/Midnight.Lizard">
-					<svg class="ml-fotter-icon instagram-icon" viewBox="0 0 512 512">
-						<g>
-							<path d="M256 109.3c47.8 0 53.4 0.2 72.3 1 17.4 0.8 26.9 3.7 33.2 6.2 8.4 3.2 14.3 7.1 20.6 13.4 6.3 6.3 10.1 12.2 13.4 20.6 2.5 6.3 5.4 15.8 6.2 33.2 0.9 18.9 1 24.5 1 72.3s-0.2 53.4-1 72.3c-0.8 17.4-3.7 26.9-6.2 33.2 -3.2 8.4-7.1 14.3-13.4 20.6 -6.3 6.3-12.2 10.1-20.6 13.4 -6.3 2.5-15.8 5.4-33.2 6.2 -18.9 0.9-24.5 1-72.3 1s-53.4-0.2-72.3-1c-17.4-0.8-26.9-3.7-33.2-6.2 -8.4-3.2-14.3-7.1-20.6-13.4 -6.3-6.3-10.1-12.2-13.4-20.6 -2.5-6.3-5.4-15.8-6.2-33.2 -0.9-18.9-1-24.5-1-72.3s0.2-53.4 1-72.3c0.8-17.4 3.7-26.9 6.2-33.2 3.2-8.4 7.1-14.3 13.4-20.6 6.3-6.3 12.2-10.1 20.6-13.4 6.3-2.5 15.8-5.4 33.2-6.2C202.6 109.5 208.2 109.3 256 109.3M256 77.1c-48.6 0-54.7 0.2-73.8 1.1 -19 0.9-32.1 3.9-43.4 8.3 -11.8 4.6-21.7 10.7-31.7 20.6 -9.9 9.9-16.1 19.9-20.6 31.7 -4.4 11.4-7.4 24.4-8.3 43.4 -0.9 19.1-1.1 25.2-1.1 73.8 0 48.6 0.2 54.7 1.1 73.8 0.9 19 3.9 32.1 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19.1 0.9 25.2 1.1 73.8 1.1s54.7-0.2 73.8-1.1c19-0.9 32.1-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4 0.9-19.1 1.1-25.2 1.1-73.8s-0.2-54.7-1.1-73.8c-0.9-19-3.9-32.1-8.3-43.4 -4.6-11.8-10.7-21.7-20.6-31.7 -9.9-9.9-19.9-16.1-31.7-20.6 -11.4-4.4-24.4-7.4-43.4-8.3C310.7 77.3 304.6 77.1 256 77.1L256 77.1z"></path>
-							<path d="M256 164.1c-50.7 0-91.9 41.1-91.9 91.9s41.1 91.9 91.9 91.9 91.9-41.1 91.9-91.9S306.7 164.1 256 164.1zM256 315.6c-32.9 0-59.6-26.7-59.6-59.6s26.7-59.6 59.6-59.6 59.6 26.7 59.6 59.6S288.9 315.6 256 315.6z"></path>
-							<circle cx="351.5" cy="160.5" r="21.5"></circle>
-						</g>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-separator"></div>
-			<div class="ml-fotter-icon-container right">
-				<a target="_blank" title="Rate this extension" href="https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews">
-					<svg class="ml-fotter-icon rate-icon" viewBox="0 0 18 18">
-						<path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z" />
-						<path d="M0 0h18v18H0z" fill="none" />
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container right">
-				<a target="_blank" title="Send email to the developer" href="mailto:midnight.lizard.extension@gmail.com">
-					<svg class="ml-fotter-icon email-icon" viewBox="0 0 24 24">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
-						/>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container right">
-				<a target="_blank" title="Report a bug" href="https://groups.google.com/forum/#!newtopic/midnight-lizard-support">
-					<svg class="ml-fotter-icon bug-report-icon" viewBox="0 0 24 24">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z"
-						/>
-					</svg>
-				</a>
-			</div>
-			<div class="ml-fotter-icon-container right">
-				<a id="version" title="Changelog" target="_blank" href="../ui/change-log.html">
-					<svg class="ml-fotter-icon change-log-icon" viewBox="0 0 24 24">
-						<path d="M0 0h24v24H0z" fill="none" />
-						<path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"
-						/>
-					</svg>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="ml-dialog-error" style="display:none" id="dialogError">
-		Midnight Lizard cannot connect to this page<br/> <span>because of one of the following reasons</span> <br/>
-		<ul>
-			<li>Web browser does not allow to run extensions on this page</li>
-			<li>Midnight Lizard has been updated and page needs to be refreshed</li>
-		</ul>
-	</div>
-
-	<datalist id="from-0-to-100-percent">
-		<option>0</option>
-		<option>10</option>
-		<option>20</option>
-		<option>30</option>
-		<option>40</option>
-		<option>50</option>
-		<option>60</option>
-		<option>70</option>
-		<option>80</option>
-		<option>90</option>
-		<option>100</option>
-	</datalist>
-
-	<datalist id="time">
-		<option>0</option>
-		<option>3</option>
-		<option>6</option>
-		<option>9</option>
-		<option>12</option>
-		<option>15</option>
-		<option>18</option>
-		<option>21</option>
-		<option>24</option>
-	</datalist>
+    <datalist id="time">
+        <option>0</option>
+        <option>3</option>
+        <option>6</option>
+        <option>9</option>
+        <option>12</option>
+        <option>15</option>
+        <option>18</option>
+        <option>21</option>
+        <option>24</option>
+    </datalist>
 </body>
 
 </html>

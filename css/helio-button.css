@@ -3,9 +3,8 @@
     user-select: none;
     --button-border-radius: 3px;
     position: relative;
-    min-width: 120px;
     border-radius: var(--button-border-radius);
-    height: 26px;
+    height: 28px;
     border: none;
     font: normal normal bold 14px Arial, Helvetica, sans-serif;
     text-shadow: 0 0 1px rgba(0,0,0,1);

@@ -6,6 +6,7 @@
     {
         "outFile": "../../js/popup.js",
         "removeComments": true,
+        "strict": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
         "target": "es6",

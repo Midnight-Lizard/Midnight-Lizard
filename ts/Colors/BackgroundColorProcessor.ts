@@ -3,19 +3,21 @@
 /// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../Settings/BaseSettingsManager.ts" />
 /// <reference path="./-Colors.ts" />
+/// <reference path="../Settings/DynamicSettingsManager.ts" />
 
 namespace MidnightLizard.Colors
 {
     export abstract class IBackgroundColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
         abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry;
     }
 
-    export abstract class ISvgBackgroundColorProcessor
+    export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor
     {
-        /** Sets UI component type for this __ColorProcessor__ */
-        abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry;
+    }
+
+    export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor
+    {
     }
 
     /** BackgroundColorProcessor */
@@ -199,6 +201,7 @@ namespace MidnightLizard.Colors
                     this.changeHslaColor(hsla, increaseContrast, tag);
                     let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                     let result = {
+                        role: this._component,
                         color: newRgbColor.toString(),
                         light: hsla.lightness,
                         originalLight: originalLight,
@@ -224,6 +227,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.SvgBackground;
+        }
+    }
+
+    @DI.injectable(IDynamicBackgroundColorProcessor)
+    class DynamicBackgroundColorProcessor extends BackgroundColorProcessor implements IDynamicBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.Background;
         }
     }
 }

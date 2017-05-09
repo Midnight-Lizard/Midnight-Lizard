@@ -1,9 +1,10 @@
 {
     "include": [
-        "../../ts/Chrome/ChromeContentScriptStarter.ts"
+        "../../ts/Custom/*.ts"
     ],
-    "compilerOptions": {
-        "outFile": "../../js/content-script.js",
+    "compilerOptions":
+    {
+        "outDir": "../../js/custom",
         "removeComments": false,
         "strict": true,
         "strictNullChecks": true,

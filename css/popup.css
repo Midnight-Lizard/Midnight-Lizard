@@ -9,6 +9,7 @@ html, body {
     font: normal 14px/1 Arial, Helvetica, sans-serif;
     color: var(--main-color);
     text-shadow: 0 0 1px var(--main-text-shadow-color);
+    --ml-svgbackground-fill:Text;
 }
 
 .ml-dialog-logo {
@@ -28,6 +29,7 @@ html, body {
     text-align: center;
     border-bottom: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
+    position: relative;
 }
 
 .ml-dialog-fotter
@@ -51,10 +53,18 @@ html, body {
     text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 1px;
 }
 
+.ml-right-pane
+{
+    display: table-cell;
+    position: relative;
+}
+
 .ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
-    display: table-cell;
-    vertical-align: middle;
+    position: absolute;
+    top: 81px;
+    bottom: 0px;
+    vertical-align: bottom;
     background-color: var(--main-background-color);
     width: 170px;
 }
@@ -78,8 +88,8 @@ html, body {
 }
 
 .ml-dialog-commands > .ml-dialog-input-text {
-    width: 120px;
-    margin: 5px 20px 20px 20px;
+    width: 121px;
+    margin: 5px 20px 16px 20px;
     background-color: var(--content-background-color);
 }
 
@@ -89,7 +99,7 @@ html, body {
 
 .ml-dialog-commands > button, .ml-dialog-commands > .ml-tool-box
 {
-    margin: 15px 20px;
+    margin: 14px 20px;
     width: 130px;
 }
 
@@ -122,6 +132,28 @@ html, body {
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+
+.ml-input-container:hover
+{
+    --ml-text-color:HighlightedText;
+    color: var(--main-color);
+}
+
+.ml-command-container
+{
+    --w: 260px;
+    /* position: absolute; */
+    /* bottom: 26px; */
+    text-align: center;
+    width: var(--w);
+    margin: 35px calc((100% - var(--w))/2) 0px calc((100% - var(--w))/2);
+}
+
+.ml-command-container button
+{
+    width: 100px;
+    margin: auto 14px;
 }
 
 .disabled
@@ -161,6 +193,7 @@ html, body {
 .ml-dialog-hue-select {
     box-shadow: none;
     border-color: var(--pseudo-border-color);
+    --ml-ignore:true;
 }
 
 #help {
@@ -213,7 +246,7 @@ html, body {
 
 .ml-dialog-error ul{
     font-size: 14pt;
-    line-height: 22pt;
+    line-height: 18pt;
 }
 
 .ml-tool-box
@@ -279,12 +312,6 @@ html, body {
     width: 100%;
 }
 
-.ml-fotter-version-container
-{
-    display: table-cell;
-    vertical-align: middle;
-}
-
 .instagram-icon
 {
     width: 26px;
@@ -342,7 +369,208 @@ html, body {
     fill: #1B5E20;
 }
 
-#linkHue, #textHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue
+#linkHue, #textHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue, #colorSchemeForEdit option, #colorScheme option
 {
     --ml-ignore:true;
+}
+
+#default-tab-content.ml-tab-content q
+{
+    --ml-text-color:HighlightedText;
+}
+
+.ml-image-example
+{
+    width: 264px;
+    height: 148px;
+    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+}
+
+.ml-bg-image-example
+{
+    background-image: url("/img/seven_colors_flower.jpg");
+    background-size: 264px 148px;
+    display: inline-block;
+    font-size: 20pt;
+    text-align: center;
+    padding-top: 35px;
+    background-repeat: no-repeat;
+}
+
+.ml-scrollbar-example
+{
+    font-size: 10px;
+    text-align: justify;
+    width: 260px;
+    height: 35px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background: var(--main-background-color);
+    margin: 7px calc((100% - 266px)/2) 0px calc((100% - 266px)/2);
+    border: solid 1px var(--thin-border-color);
+    padding: 2px;
+}
+
+.intro:hover
+{
+    --ml-text-color:HighlightedText;
+    color: var(--main-color);
+}
+
+.intro:after
+{
+    content: "";
+    position: absolute;
+    z-index: 999;
+    border: dashed 1px var(--outline-color);
+    border-radius: 4px;
+    pointer-events: none;
+    animation: hideEffect 0.3s ease-out forwards;
+}
+
+.intro:before
+{
+    content: "";
+    position: absolute;
+    z-index: 999;
+    border-top: dashed 1px var(--outline-color);
+    pointer-events: none;
+    animation: hideEffect 0.3s ease-out forwards;
+}
+
+.intro:hover:after, .intro:hover:before
+{
+    animation: showEffect 0.3s ease-out;
+}
+
+.intro-select-scheme:after
+{
+    width: 135px;
+    height: 32px;
+    top: 96px;
+    right: -154px;
+}
+
+.intro-select-scheme:before
+{
+    width: 37px;
+    right: -18px;
+    top: 118px;
+    transform: rotate(-20deg);
+}
+
+.intro-edit-schemes:after
+{
+    width: 134px;
+    height: 32px;
+    top: 24px;
+    right: -154px;
+}
+
+.intro-edit-schemes:before
+{
+    width: 238px;
+    right: -119px;
+    top: 175px;
+    transform: rotate(-81deg);
+}
+
+.intro-apply:after
+{
+    width: 136px;
+    height: 34px;
+    top: 264px;
+    right: -155px;
+}
+
+.intro-apply:before
+{
+    width: 40px;
+    right: -17px;
+    bottom: 107px;
+    transform: rotate(21deg);
+}
+
+.intro-tabs:after
+{
+    width: 132px;
+    height: 330px;
+    top: 25px;
+    left: -158px;
+}
+
+.intro-tabs:before
+{
+    width: 48px;
+    left: -28px;
+    top: 177px;
+    transform: rotate(28deg);
+}
+
+.intro-common:after
+{
+    width: 121px;
+    height: 32px;
+    top: 25px;
+    left: -158px;
+}
+
+.intro-common:before
+{
+    width: 60px;
+    left: -38px;
+    top: 58px;
+    transform: rotate(30deg);
+}
+
+.intro-toggle:after
+{
+    width: 62px;
+    height: 34px;
+    top: -42px;
+    right: -165px;
+    border-radius: 15px;
+}
+
+.intro-toggle:before
+{
+    width: 130px;
+    right: -106px;
+    top: 12px;
+    transform: rotate(-25deg);
+}
+
+.intro-default:after
+{
+    width: 136px;
+    height: 34px;
+    top: 208px;
+    right: -155px;
+}
+
+.intro-default:before
+{
+    width: 104px;
+    right: -52px;
+    bottom: 87px;
+    transform: rotate(-70deg);
+}
+
+#edit-schemes p
+{
+    font-size: 14px;
+    text-align: justify;
+    text-indent: 15px;
+    margin: 6px 20px 0px 20px;
+}
+
+@keyframes hideEffect
+{
+    to { opacity: 0; }
+}
+
+@keyframes showEffect
+{
+    from { opacity: 0; }
 }

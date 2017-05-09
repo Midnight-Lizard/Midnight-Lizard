@@ -67,7 +67,8 @@ namespace MidnightLizard.Settings
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
-            this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
+            this.initDefaultColorSchemes();
+            this._defaultSettings = this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
             this.initCurrentSettings();
         }
 
@@ -103,6 +104,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.textGraySaturation,
                         grayHue: set.textGrayHue
                     },
+                    HighlightedText:
+                    {
+                        saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
+                        contrast: Math.min(set.textContrast * 1.2, 1),
+                        lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
+                        graySaturation: set.textGraySaturation,
+                        grayHue: set.textGrayHue
+                    },
                     Link:
                     {
                         saturationLimit: set.linkSaturationLimit,
@@ -116,7 +125,7 @@ namespace MidnightLizard.Settings
                         saturationLimit: set.borderSaturationLimit,
                         contrast: set.textContrast,
                         lightnessLimit: set.textLightnessLimit,
-                        graySaturation: set.borderGraySaturation * 1.25,
+                        graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
                         grayHue: set.borderGrayHue
                     },
                     Border:
@@ -154,10 +163,10 @@ namespace MidnightLizard.Settings
                     Image:
                     {
                         saturationLimit: set.imageSaturationLimit,
-                        contrast: 1,
+                        contrast: set.textContrast,
                         lightnessLimit: set.imageLightnessLimit,
-                        graySaturation: 0,
-                        grayHue: 0
+                        graySaturation: set.textGraySaturation,
+                        grayHue: set.textGrayHue
                     },
                     SvgBackground:
                     {
@@ -170,10 +179,10 @@ namespace MidnightLizard.Settings
                     BackgroundImage:
                     {
                         saturationLimit: set.backgroundImageSaturationLimit,
-                        contrast: 1,
+                        contrast: set.backgroundContrast,
                         lightnessLimit: set.backgroundImageLightnessLimit,
-                        graySaturation: 0,
-                        grayHue: 0
+                        graySaturation: set.backgroundGraySaturation,
+                        grayHue: set.backgroundGrayHue
                     }
                 };
         }
@@ -202,6 +211,45 @@ namespace MidnightLizard.Settings
         public get onSettingsChanged()
         {
             return this._onSettingsChanged.event;
+        }
+
+        public initDefaultColorSchemes()
+        {
+            let setting: Settings.ColorSchemeName;
+            for (setting in Settings.ColorSchemes)
+            {
+                delete Settings.ColorSchemes[setting];
+            }
+            this.applyUserColorSchemes(DefaultColorSchemes);
+        }
+
+        public applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
+        {
+            if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
+            {
+                for (let userColorScheme of defaultSettings.userColorSchemes)
+                {
+                    Settings.ColorSchemes[userColorScheme.colorSchemeId] = Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
+                }
+            }
+        }
+
+        public settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
+        {
+            const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
+                ["isEnabled", "exist", "hostName", "settingsVersion", "colorSchemeId", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+            for (let setting in first)
+            {
+                let prop = setting as Settings.ColorSchemePropertyName;
+                if (excludeSettingsForCompare.indexOf(prop) == -1)
+                {
+                    if (first[prop] !== second[prop])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

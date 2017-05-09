@@ -1,6 +1,5 @@
 /// <reference path="../DI/-DI.ts" />
 
-
 namespace MidnightLizard.ContentScript
 {
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
@@ -153,10 +152,6 @@ namespace MidnightLizard.ContentScript
                         break;
                 }
             });
-            if (classChanges.size > 0)
-            {
-                this._onClassChanged.raise(classChanges);
-            }
             if (styleChanges.size > 0)
             {
                 this._onStyleChanged.raise(styleChanges);
@@ -164,6 +159,10 @@ namespace MidnightLizard.ContentScript
             if (childListChanges.size > 0)
             {
                 this._onElementAdded.raise(childListChanges);
+            }
+            if (classChanges.size > 0)
+            {
+                this._onClassChanged.raise(classChanges);
             }
             if (!this._settingsManager.isActive)
             {
