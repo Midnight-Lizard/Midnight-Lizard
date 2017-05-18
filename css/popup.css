@@ -150,7 +150,7 @@ html, body {
     margin: 35px calc((100% - var(--w))/2) 0px calc((100% - var(--w))/2);
 }
 
-.ml-command-container button
+.ml-command-container .ml-helio-button
 {
     width: 100px;
     margin: auto 14px;
@@ -221,7 +221,7 @@ html, body {
 
 #closeBtn {
     position: relative;
-    z-index: 1000;
+    z-index: 500;
 }
 
 .ml-dialog-error {

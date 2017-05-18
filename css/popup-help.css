@@ -1,67 +1,145 @@
-.ml-tab-item:before
+[tooltip]:before
 {
     content: attr(tooltip);
+    pointer-events: none;
     position: fixed;
-    width: 286px;
-    left: 180px;
-    z-index: 999;
-    word-wrap: normal;
-    white-space: pre-wrap;
-    text-align: justify;
     padding: 15px;
     box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.8);
     background-color: var(--dark-background-color);
     color: var(--light-color);
-    pointer-events: none;
-    animation: hideEffect 0.3s ease-out forwards;
     border: solid 1px var(--light-thin-border-color);
+    border-radius: 3px;
     text-shadow: 0 0 1px black;
     line-height: 17px;
     font-size: 15px;
-    margin-top: -35px;
-    border-radius: 3px;
+    font-weight: normal;
+    z-index: 999;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    text-align: justify;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
 }
 
-.ml-tab-item:after
+[tooltip]:after
 {
     content: "";
     pointer-events: none;
-    animation: hideEffect 0.15s ease-out forwards;
+
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+
     position: fixed;
     z-index: 1000;
     width: 0;
     height: 0;
-    margin-top: -3px;
+
     border: 10px solid transparent;
     --ml-border-border-left-color:Background;
     --ml-border-border-right-color:Background;
+    --ml-border-border-top-color:Background;
+    --ml-border-border-bottom-color:Background;
 }
 
-.ml-tab.left .ml-tab-item:after
+.ml-fotter-icon-container [tooltip]:before
+{
+    bottom: 41px;
+    padding: 10px;
+}
+
+.ml-fotter-icon-container [tooltip]:after
+{
+    bottom: 22px;
+    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
+    border-top-color: var(--dark-background-color);
+}
+
+.ml-dialog-title [tooltip]:after
+{
+    top: 30px;
+    filter: drop-shadow(0px -1px 0px var(--light-thin-border-color)) drop-shadow(0px -2px 1px rgba(0,0,0,0.8));
+    border-bottom-color: var(--dark-background-color);
+}
+
+.ml-dialog-title [tooltip]:before
+{
+    top: 49px;
+    padding: 10px;
+}
+
+#help:after {margin-left: -15px;}
+#help:before {margin-left: -14px;}
+
+#isEnabledSwitch:before {right: 7px;}
+#isEnabledSwitch:after {right: 28px;}
+
+#rate-link:before {right: 125px;}
+#rate-link:after {right: 140px;}
+#email-link:before {right: 81px;}
+#email-link:after {right: 98px;}
+#bug-report-link:before {right: 43px;}
+#bug-report-link:after {right: 58px;}
+#change-log-link:before {right: 6px;}
+#change-log-link:after {right: 18px;}
+
+.ml-fotter-icon-container.left [tooltip]:before { margin-left: -10px; }
+.ml-fotter-icon-container.left [tooltip]:after { margin-left: -11px; }
+#facebook-link:before, #facebook-link:after { margin-left: -9px; }
+#google-plus-link:before, #google-plus-link:after {margin-left: -14px;}
+
+.ml-tab-item[tooltip]:before
+{
+    width: 286px;
+    left: 180px;
+    margin-top: -35px;
+}
+
+.ml-tab-item[tooltip]:after
+{
+    margin-top: -3px;
+}
+
+.ml-tab.left .ml-tab-item[tooltip]:after
 {
     filter: drop-shadow(-1px 0px 0px var(--light-thin-border-color)) drop-shadow(-2px 0px 1px rgba(0,0,0,0.8));
     border-right-color: var(--dark-background-color);
     left: 161px;
 }
 
-.ml-tab.right .ml-tab-item:after
+.ml-tab.right .ml-tab-item[tooltip]:after
 {
     filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px rgba(0,0,0,0.8));
     border-left-color: var(--dark-background-color);
     right: 163px;
 }
 
-.ml-tab-item:not(.active):hover:after
+[tooltip]:hover:before, [tooltip]:hover:after
 {
-    animation: showEffect 0.35s ease-out;
+    opacity: 1;
+    animation-name: delayedShowEffect;
+    animation-timing-function: ease-out;
+    animation-duration: 600ms;
+    animation-fill-mode: none;
 }
 
-.ml-tab-item:not(.active):hover:before
+.ml-tab-item.active:hover:before, .ml-tab-item.active:hover:after
 {
-    animation: showEffect 0.3s ease-out;
+    opacity: 0;
+    animation: none;
 }
 
-.ml-tab-item[content="fond-images"]:before
+.ml-tab-item[tooltip][content="fond-images"]:before
 {
     margin-top: -45px;
+}
+
+@keyframes delayedShowEffect
+{
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }

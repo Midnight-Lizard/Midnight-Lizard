@@ -28,8 +28,7 @@ namespace MidnightLizard.ContentScript
     {
         /** period of settings storage in the cookies */
         protected static readonly _storagePeriod = 49;
-        protected static readonly _excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+
         constructor(
             protected readonly _rootDocument: Document,
             protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
@@ -91,7 +90,7 @@ namespace MidnightLizard.ContentScript
             let setting: Settings.ColorSchemePropertyName;
             for (setting in this._currentSettings)
             {
-                if (SettingsManager._excludeSettingsForSave.indexOf(setting) == -1)
+                if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
                 {
                     this._cookiesManager.deleteCookieByName(this.getSettingNameForCookies(setting));
                 }
@@ -132,7 +131,7 @@ namespace MidnightLizard.ContentScript
                 let setting: Settings.ColorSchemePropertyName;
                 for (setting in this._currentSettings)
                 {
-                    if (SettingsManager._excludeSettingsForSave.indexOf(setting) == -1)
+                    if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
                     {
                         this._cookiesManager.setCookie(this.getSettingNameForCookies(setting), this._currentSettings[setting], SettingsManager._storagePeriod);
                     }

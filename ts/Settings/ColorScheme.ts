@@ -1,6 +1,13 @@
 namespace MidnightLizard.Settings
 {
     export type ColorSchemePropertyName = keyof ColorScheme;
+
+    export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
+        ["isEnabled", "exist", "hostName", "userColorSchemes", "settingsVersion", "isDefault" as any];
+
+    export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] = 
+        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+
     /**
      * ColorScheme - MidnightLizard Settings
      */

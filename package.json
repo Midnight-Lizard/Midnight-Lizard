@@ -5,9 +5,10 @@
     "email": "midnight.lizard.extension@gmail.com"
   },
   "license": "GPL-3.0",
-  "version": "8.0.0",
+  "version": "8.5.0",
   "dependencies": {
     "@types/chrome": "0.0.37",
+    "@types/fb": "0.0.22",
     "reflect-metadata": "^0.1.9"
   },
   "repository": {
