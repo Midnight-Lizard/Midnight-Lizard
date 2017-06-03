@@ -460,13 +460,16 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
-            let allNewTags = Array.from(addedElements.values()).filter(tag => this.checkElement(tag) && tag.parentElement);
+            addedElements.forEach(tag => this.restoreElementColors(tag));
+            let allNewTags = Array.from(addedElements.values())
+                .filter(tag => this.checkElement(tag) && tag.parentElement);
             DocumentProcessor.processAllElements(allNewTags, null, this, bigReCalculationDelays);
             let allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
             {
                 Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                 {
+                    this.restoreElementColors(childTag);
                     if ((addedElements.has(childTag) === false) && this.checkElement(childTag))
                     {
                         allChildTags.add(childTag);
