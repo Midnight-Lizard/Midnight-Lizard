@@ -19,7 +19,7 @@
     text-align: justify;
     opacity: 0;
     transition-property: opacity;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
     transition-timing-function: ease-out;
 }
 
@@ -30,7 +30,7 @@
 
     opacity: 0;
     transition-property: opacity;
-    transition-duration: 150ms;
+    transition-duration: 100ms;
     transition-timing-function: ease-out;
 
     position: fixed;
@@ -140,6 +140,6 @@
 @keyframes delayedShowEffect
 {
     0% { opacity: 0; }
-    50% { opacity: 0; }
+    60% { opacity: 0; }
     100% { opacity: 1; }
 }

@@ -293,9 +293,9 @@ namespace MidnightLizard.ContentScript
 
         protected reCalcRootElement(rootElem: HTMLElement, full: boolean, clearParentBgColors = false)
         {
-            if (rootElem && (!rootElem.reCalculationCount || rootElem.reCalculationCount < 100))
+            if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
-                rootElem.reCalculationCount = (rootElem.reCalculationCount || 0) + 1;
+                rootElem.mlTimestamp = Date.now();
                 let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
                 if (allTags && allTags.length > 0)
                 {

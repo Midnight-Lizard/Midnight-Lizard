@@ -11,7 +11,7 @@ interface Document
 
 interface Node
 {
-    reCalculationCount: number | undefined;
+    mlTimestamp: number | undefined;
     shadowElement: HTMLElement | undefined;
     /** Processing order */
     order: MidnightLizard.ContentScript.ProcessingOrder | undefined;
