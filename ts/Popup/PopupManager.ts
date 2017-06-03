@@ -573,7 +573,7 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                             : "black"
                     }
                 });
-            this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props, true);
+            this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props);
         }
 
         protected onRangeRoomRulesApplied(tag: HTMLElement, roomRules: ContentScript.RoomRules)
@@ -598,7 +598,7 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     borderColor: { color: currentStyle.borderColor },
                     textShadow: { value: shadowColor.color }
                 });
-            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props, true);
+            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
     }
 }

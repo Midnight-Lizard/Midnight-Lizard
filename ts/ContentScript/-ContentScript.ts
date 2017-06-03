@@ -1,3 +1,4 @@
+/// <reference path="ProcessingOrder.ts" />
 /// <reference path="Pseudos.ts" />
 /// <reference path="CssStyle.ts" />
 /// <reference path="StyleSheetProcessor.ts" />

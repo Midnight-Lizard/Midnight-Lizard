@@ -112,76 +112,79 @@ namespace MidnightLizard.Colors
         {
             rgbaString = rgbaString || RgbaColor.Black;
             rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
-            let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
             const inheritedColor = this.getInheritedColor(tag, rgbaString);
-            if (inheritedColor && inheritedColor.backgroundLight === backgroundLightness && inheritedColor.role === this._component)
+            let inheritedColorValue: string | undefined = undefined;
+            if (inheritedColor)
             {
-                let newColor = Object.assign({}, inheritedColor);
-                return Object.assign(newColor, {
-                    color: null,
-                    reason: ColorReason.Inherited,
-                    originalColor: rgbaString,
-                    owner: this._app.isDebug ? tag : null,
-                    base: this._app.isDebug ? inheritedColor : null
-                });
-            }
-            else if (inheritedColor && (inheritedColor.backgroundLight !== backgroundLightness || inheritedColor.role !== this._component))
-            {
-                rgbaString = inheritedColor.originalColor;
-            }
-
-            if (prevColor && prevColor !== undefined)
-            {
-                let newColor = Object.assign({}, prevColor);
-                return Object.assign(newColor, {
-                    reason: ColorReason.Previous,
-                    originalColor: rgbaString,
-                    owner: this._app.isDebug ? tag : null,
-                    base: this._app.isDebug ? prevColor : null
-                });
-            }
-            else
-            {
-                let rgba = RgbaColor.parse(rgbaString!), result: ColorEntry;
-                if (rgba.alpha === 0)
+                if (//inheritedColor.inheritance === ColorInheritance.Original &&
+                    inheritedColor.backgroundLight === backgroundLightness &&
+                    inheritedColor.role === this._component)
                 {
-                    result = {
-                        role: this._component,
-                        color: null,
-                        light: 0,
-                        backgroundLight: backgroundLightness,
-                        originalLight: 0,
-                        originalColor: rgbaString,
-                        alpha: 0,
-                        isUpToDate: true,
-                        reason: ColorReason.Transparent,
-                        owner: this._app.isDebug ? tag : null,
-                    };
-                    this._colors.set(key, result);
-                    return result;
+                    inheritedColor.owner = this._app.isDebug ? tag : null;
+                    return inheritedColor;
                 }
                 else
                 {
-                    const hsla = RgbaColor.toHslaColor(rgba);
-                    const originalLight = hsla.lightness, isGray = this.isGray(tag, rgbaString, hsla);
-                    this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift, customContrast);
-                    let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
-                    result = {
-                        role: this._component,
-                        color: newRgbColor.toString(),
-                        light: hsla.lightness,
-                        backgroundLight: backgroundLightness,
-                        originalLight: originalLight,
-                        originalColor: rgbaString,
-                        alpha: rgba.alpha,
-                        isUpToDate: true,
-                        reason: ColorReason.Ok,
-                        owner: this._app.isDebug ? tag : null,
-                    };
-                    this._colors.set(key, result);
-                    return result;
+                    inheritedColorValue = rgbaString;
+                    rgbaString = inheritedColor.originalColor;
                 }
             }
+
+            // let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
+            // if (prevColor && prevColor !== undefined)
+            // {
+            //     let newColor = Object.assign({}, prevColor);
+            //     newColor.reason = ColorReason.Previous;
+            //     newColor.originalColor = rgbaString;
+            //     newColor.inheritedColor = inheritedColorValue;
+            //     newColor.owner = this._app.isDebug ? tag : null;
+            //     newColor.base = this._app.isDebug ? prevColor : null;
+            //     return newColor;
+            // }
+            // else
+            // {
+            let rgba = RgbaColor.parse(rgbaString!), result: ColorEntry;
+            if (rgba.alpha === 0)
+            {
+                result = {
+                    role: this._component,
+                    color: null,
+                    light: 0,
+                    backgroundLight: backgroundLightness,
+                    originalLight: 0,
+                    originalColor: rgbaString,
+                    inheritedColor: inheritedColorValue,
+                    alpha: 0,
+                    isUpToDate: true,
+                    reason: ColorReason.Transparent,
+                    owner: this._app.isDebug ? tag : null,
+                };
+                // this._colors.set(key, result);
+                return result;
+            }
+            else
+            {
+                const hsla = RgbaColor.toHslaColor(rgba);
+                const originalLight = hsla.lightness, isGray = this.isGray(tag, rgbaString, hsla);
+                this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift, customContrast);
+                let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
+                result = {
+                    role: this._component,
+                    color: newRgbColor.toString(),
+                    light: hsla.lightness,
+                    backgroundLight: backgroundLightness,
+                    originalLight: originalLight,
+                    originalColor: rgbaString,
+                    inheritedColor: inheritedColorValue,
+                    alpha: rgba.alpha,
+                    isUpToDate: true,
+                    reason: ColorReason.Ok,
+                    owner: this._app.isDebug ? tag : null,
+                };
+                // this._colors.set(key, result);
+                return result;
+            }
+            // }
         }
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
@@ -198,15 +201,34 @@ namespace MidnightLizard.Colors
     @DI.injectable(ITextShadowColorProcessor)
     class TextShadowColorProcessor extends ForegroundColorProcessor implements ITextShadowColorProcessor
     {
-        public getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        public getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null
         {
-            if (tag.parentElement)
+            const type = tag.ownerDocument.defaultView.HTMLElement;
+            if (tag.parentElement && tag.parentElement instanceof type === tag instanceof type)
             {
-                if ((tag.parentElement as HTMLElement).style.textShadow !== "none")
+                if (tag.parentElement.mlTextShadow)
                 {
-                    if (tag.parentElement.mlTextShadow && tag.parentElement.mlTextShadow.color == rgbStr)
+                    let inheritedColor: ColorEntry | undefined
+                    if (tag.parentElement.mlTextShadow.color === rgbStr)
                     {
-                        return tag.parentElement.mlTextShadow;
+                        inheritedColor = Object.assign({}, tag.parentElement!.mlTextShadow!);
+                        inheritedColor.inheritance = ColorInheritance.Afterwards;
+                    }
+                    else if (tag.parentElement.mlTextShadow.originalColor === rgbStr ||
+                        tag.parentElement.mlTextShadow.inheritedColor === rgbStr)
+                    {
+                        if (!tag.style.textShadow)
+                        {
+                            inheritedColor = Object.assign({}, tag.parentElement!.mlTextShadow!);
+                            inheritedColor.inheritance = ColorInheritance.Original;
+                        }
+                    }
+                    if (inheritedColor)
+                    {
+                        inheritedColor.color = null;
+                        inheritedColor.reason = ColorReason.Inherited;
+                        inheritedColor.base = this._app.isDebug ? tag.parentElement!.mlTextShadow : null
+                        return inheritedColor;
                     }
                 }
                 else
@@ -255,16 +277,38 @@ namespace MidnightLizard.Colors
             return elementColor;
         }
 
-        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null | undefined
+        protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null 
         {
-            if (tag.parentElement)
+            const type = tag.ownerDocument.defaultView.HTMLElement;
+            if (tag.parentElement && (tag.isPseudo || tag.parentElement instanceof type === tag instanceof type) &&
+                !(tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement))
             {
-                const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? ContentScript.USP.svg : ContentScript.USP.htm;
-                if ((tag.parentElement as HTMLElement).style.getPropertyValue(ns.css.fntColor) !== "")
+                if (tag.parentElement!.mlColor)
                 {
-                    if (tag.parentElement!.mlColor && tag.parentElement!.mlColor!.color === rgbStr)
+                    let inheritedColor: ColorEntry | undefined
+                    if (tag.parentElement!.mlColor!.color === rgbStr)
                     {
-                        return tag.parentElement!.mlColor;
+                        inheritedColor = Object.assign({}, tag.parentElement!.mlColor!);
+                        inheritedColor.inheritance = ColorInheritance.Afterwards;
+                    }
+                    else if (tag.parentElement!.mlColor!.originalColor === rgbStr ||
+                        tag.parentElement!.mlColor!.inheritedColor === rgbStr ||
+                        tag.parentElement!.mlColor!.intendedColor === rgbStr)
+                    {
+                        const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? ContentScript.USP.svg : ContentScript.USP.htm;
+                        if (!tag.style.getPropertyValue(ns.css.fntColor))
+                        {
+                            inheritedColor = Object.assign({}, tag.parentElement!.mlColor!);
+                            inheritedColor.inheritance = ColorInheritance.Original;
+                        }
+                    }
+                    if (inheritedColor)
+                    {
+                        inheritedColor.intendedColor = inheritedColor.intendedColor || inheritedColor.color;
+                        inheritedColor.color = null;
+                        inheritedColor.reason = ColorReason.Inherited;
+                        inheritedColor.base = this._app.isDebug ? tag.parentElement!.mlColor! : null
+                        return inheritedColor;
                     }
                 }
                 else

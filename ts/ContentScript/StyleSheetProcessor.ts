@@ -113,17 +113,23 @@ namespace MidnightLizard.ContentScript
         {
             return x.forget(
                 x.forget(x.BeginningOfLine, x.Or, x.WhiteSpace),
-                x.neverOrOnce(x.forget( // tagName
-                    x.$var(Var[Var.tagName])
-                )),
-                x.neverOrOnce(x.forget( // #id
-                    x.Hash, x.$var(Var[Var.id]),
-                )),
-                x.anytime(x.forget( // .className1.className2
-                    x.Dot, x.forget(x.$var(Var[Var.className])),
-                )),
-                x.WordBoundary, x.notFollowedBy( // end of literal
-                    x.Minus
+                x.forget(
+                    x.neverOrOnce(x.forget( // tagName
+                        x.$var(Var[Var.tagName])
+                    )),
+                    x.neverOrOnce(x.forget( // #id
+                        x.Hash, x.$var(Var[Var.id])
+                    )),
+                    x.anytime(x.forget( // .className1.className2
+                        x.Dot, x.$var(Var[Var.className])
+                    )),
+                    x.WordBoundary, x.notFollowedBy( // end of literal
+                        x.Minus
+                    ),
+                    x.Or,
+                    x.neverOrOnce(x.forget( // "any tag name"
+                        x.Asterisk
+                    ))
                 ),
                 x.notFollowedBy( // exclude another tag names, ids and classes
                     x.some(x.Word)
@@ -283,7 +289,7 @@ namespace MidnightLizard.ContentScript
                     //     x.WordBoundary + x.notFollowedBy(x.Minus) + x.Or) +
                     //     x.WordBoundary + x.notFollowedBy(x.Minus);
                     // notThisClassNames = x.notFollowedBy(classNameRegExp);
-                    className = (Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or)
+                    className =  x.forget((Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or));
                 }
                 let vars = new Map<string, string>();
                 vars.set(Var[Var.id], tag.id);

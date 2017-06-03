@@ -164,12 +164,11 @@ namespace MidnightLizard.Colors
             {
                 this.tryUpdateLightArea(tag, prevColor.originalLight);
                 let newColor = Object.assign({}, prevColor);
-                return Object.assign(newColor, {
-                    reason: ColorReason.Previous,
-                    originalColor: rgbaString,
-                    owner: this._app.isDebug ? tag : null,
-                    base: this._app.isDebug ? prevColor : null
-                });
+                newColor.reason = ColorReason.Previous;
+                newColor.originalColor = rgbaString;
+                newColor.owner = this._app.isDebug ? tag : null;
+                newColor.base = this._app.isDebug ? prevColor : null;
+                return newColor;
             }
             else
             {
@@ -186,13 +185,12 @@ namespace MidnightLizard.Colors
                     let parentBgColor = getParentBackground(tag);
                     this.tryUpdateLightArea(tag, parentBgColor.originalLight);
                     let newColor = Object.assign({}, parentBgColor);
-                    return Object.assign(newColor, {
-                        color: null,
-                        reason: ColorReason.Parent,
-                        originalColor: rgbaString,
-                        owner: this._app.isDebug ? tag : null,
-                        base: this._app.isDebug ? parentBgColor : null
-                    });
+                    newColor.color = null;
+                    newColor.reason = ColorReason.Parent;
+                    newColor.originalColor = rgbaString;
+                    newColor.owner = this._app.isDebug ? tag : null;
+                    newColor.base = this._app.isDebug ? parentBgColor : null;
+                    return newColor;
                 }
                 else
                 {

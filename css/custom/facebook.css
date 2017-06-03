@@ -19,3 +19,15 @@ a[role="tab"] > span[class]
     /*background-position: 0 -728px!important;*/
     --ml-backgroundimage:Text;
 }
+
+div[data-reaction] i, [contenteditable="true"]
+{
+    --ml-no-invert:true;
+    --ml-backgroundimage:Image;
+}
+
+table[role="presentation"] a > div[style*="background-image"]
+{
+    --ml-no-invert:true;
+    --ml-backgroundimage:Background;
+}

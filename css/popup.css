@@ -48,10 +48,10 @@ html, body {
     text-shadow: 0 0 1px hsla(94,100%,70%,0.8);
 }
 
-.ml-dialog-title a {
-    /* color: hsl(282, 100%, 50%); */
+/*.ml-dialog-title a {
+     color: hsl(282, 100%, 50%);
     text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 1px;
-}
+}*/
 
 .ml-right-pane
 {
@@ -353,19 +353,23 @@ html, body {
 }
 
 .bug-report-icon{width: 24px;}
-.bug-report-icon:hover{
+.bug-report-icon:hover
+{
     fill: #B71C1C;
 }
 .rate-icon{width: 28px;}
-.rate-icon:hover{
+.rate-icon:hover
+{
     fill: #F57F17;
 }
 .email-icon{width: 24px;}
-.email-icon:hover{
+.email-icon:hover
+{
     fill: #1A237E;
 }
 .change-log-icon{width: 24px;}
-.change-log-icon:hover{
+.change-log-icon:hover
+{
     fill: #1B5E20;
 }
 

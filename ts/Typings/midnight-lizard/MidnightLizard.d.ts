@@ -11,6 +11,11 @@ interface Document
 
 interface Node
 {
+    reCalculationCount: number | undefined;
+    shadowElement: HTMLElement | undefined;
+    /** Processing order */
+    order: MidnightLizard.ContentScript.ProcessingOrder | undefined;
+    rowNumber: number | undefined;
     /** If true - Midnight Lizard would not process this element */
     mlIgnore: boolean | null | undefined;
     /** Calculated background color */
@@ -40,8 +45,6 @@ interface Node
     area: number | undefined;
     /** Element path in the DOM tree */
     path: string | undefined | null;
-    /** Legacy background attribute */
-    // bgColor: string | null | undefined;
     /** is true if this element has been verified as suitable for the processing */
     isChecked: boolean | null | undefined;
     ////////////////////////////////////////////////////////////////
@@ -71,11 +74,17 @@ interface Node
     innerHtmlCache: { value: string, timestamp: number };
 }
 
+interface HTMLInputElement
+{
+    labelElement: HTMLLabelElement | undefined;
+}
+
 interface Window
 {
     Element: typeof Element;
     HTMLElement: typeof HTMLElement;
     HTMLAnchorElement: typeof HTMLAnchorElement;
+    HTMLLabelElement: typeof HTMLLabelElement;
     HTMLInputElement: typeof HTMLInputElement;
     HTMLIFrameElement: typeof HTMLIFrameElement;
     HTMLCanvasElement: typeof HTMLCanvasElement;

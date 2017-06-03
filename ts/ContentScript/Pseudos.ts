@@ -71,6 +71,7 @@ namespace MidnightLizard.ContentScript
         style: PseudoElementStyle & CSSStyleDeclarationKeys;
         ownerDocument: Document;
         selectors = "";
+        selectorText: string;
         stylePromise: Promise<string>;
         protected resolveCss: (css: string) => void;
         getBoundingClientRect()
@@ -82,9 +83,7 @@ namespace MidnightLizard.ContentScript
         applyStyleChanges(standardCssText?: string)
         {
             const cssText = standardCssText === undefined ? this.style.cssText : standardCssText;
-            let css = cssText === ""
-                ? ""
-                : `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}{${cssText}}`;
+            let css = cssText === "" ? "" : `${this.selectorText}{${cssText}}`;
             this.resolveCss(css);
         }
 
@@ -94,6 +93,7 @@ namespace MidnightLizard.ContentScript
             this.id = id;
             this.classList = [this.className = "::" + typeName];
             this.tagName = typeName;
+            this.selectorText = `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}`;
             this.parentElement = parent;
             this.computedStyle = computedStyle;
             this.rect = parent.rect;

@@ -238,6 +238,26 @@
             "css": [
                 "css/custom/facebook.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.quora.com/*"
+            ],
+            "css": [
+                "css/custom/quora.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.twitter.com/*",
+                "https://twitter.com/*"
+            ],
+            "css": [
+                "css/custom/twitter.css"
+            ]
         }
     ]
 }

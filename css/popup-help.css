@@ -39,10 +39,10 @@
     height: 0;
 
     border: 10px solid transparent;
-    --ml-border-border-left-color:Background;
+    /*--ml-border-border-left-color:Background;
     --ml-border-border-right-color:Background;
     --ml-border-border-top-color:Background;
-    --ml-border-border-bottom-color:Background;
+    --ml-border-border-bottom-color:Background;*/
 }
 
 .ml-fotter-icon-container [tooltip]:before

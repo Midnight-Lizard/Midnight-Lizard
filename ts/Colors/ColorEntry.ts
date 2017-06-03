@@ -10,11 +10,17 @@ namespace MidnightLizard.Colors
         Inherited,
         Transparent,
         NotFound,
-        SameAsBackground
+        SameAsBackground,
+        SvgText,
+        FixedInheritance
     }
-    /**
-     * ColorEntry
-     */
+
+    export enum ColorInheritance
+    {
+        Original,
+        Afterwards
+    }
+
     export class ColorEntry
     {
         public static readonly NotFound: ColorEntry = {
@@ -34,10 +40,13 @@ namespace MidnightLizard.Colors
         backgroundLight?: number;
         originalLight: number;
         originalColor: string;
+        inheritedColor?: string | null;
+        intendedColor?: string | null;
         alpha: number;
         reason: ColorReason;
+        inheritance?: ColorInheritance;
         owner: any;
-        base?: ColorEntry;
+        base?: ColorEntry | null;
         isUpToDate: boolean;
         constructor() { }
     }

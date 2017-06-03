@@ -11,9 +11,6 @@
 [transition="filter"]:not([style*="#ml-blue-filter"]):hover
 {
     animation-name: transition-filter-none;
-    animation-timing-function: ease-out;
-    animation-duration: 200ms;
-    animation-delay: 100ms;
     animation-fill-mode: forwards;
 }
 
@@ -21,8 +18,7 @@
 {
     animation-name: transition-filter-original;
     animation-timing-function: ease-out;
-    animation-duration: 300ms;
-    animation-delay: 100ms;
+    animation-duration: 333ms;
     animation-fill-mode: backwards;
 }
 

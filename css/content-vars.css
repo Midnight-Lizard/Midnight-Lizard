@@ -12,6 +12,11 @@
 
     --ml-background-background-color:Background;
     --ml-background-fill:Background;
+    --ml-background-border-color:Background;
+    --ml-background-border-bottom-color:Background;
+    --ml-background-border-left-color:Background;
+    --ml-background-border-right-color:Background;
+    --ml-background-border-top-color:Background;
 
     --ml-backgroundimage:BackgroundImage;
     --ml-image:Image;

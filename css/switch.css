@@ -59,8 +59,6 @@
 }
 
 .ml-slider-thumb:before {
-    background-color: rgba(0,0,0,0);
-    /* background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)); */
     border-radius: 6px;
     box-shadow: 0 0 8px 0 rgba(0,0,0,0.06) inset;
     content: "";
@@ -76,6 +74,6 @@ input:checked + .ml-slider .ml-slider-checked {
     opacity: 1;
 }
 
-input:checked  + .ml-slider .ml-slider-thumb {
+input:checked + .ml-slider .ml-slider-thumb {
     transform: translateX(28px);
 }
