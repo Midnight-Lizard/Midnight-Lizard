@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
-    "description": "This extension changes page colors, brightness and contrast to increase readability",
+    "description": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web",
     "version": "8.5.0",
     "author": "Pavel Agarkov",
     "icons": {
