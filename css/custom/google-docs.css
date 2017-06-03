@@ -12,3 +12,16 @@
 {
     background-color: white;
 }
+
+.goog-toolbar-menu-button-dropdown:not(imprt), .goog-toolbar-combo-button-dropdown:not(imprt)
+{
+    --ml-no-invert:true;
+    --ml-backgroundimage:Text;
+    filter: brightness(calc(var(--ml-invert, 0) + 1))!important;
+}
+
+.jfk-tooltip-arrowimplafter
+{
+    --ml-border-border-bottom-color:Background;
+    --ml-border-border-top-color:Background;
+}

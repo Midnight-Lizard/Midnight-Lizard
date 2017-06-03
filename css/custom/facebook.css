@@ -31,3 +31,24 @@ table[role="presentation"] a > div[style*="background-image"]
     --ml-no-invert:true;
     --ml-backgroundimage:Background;
 }
+
+div > span > a[id] > span > i, div > span > a[role="button"] > span > i, h6 > span > span > i,
+.fbPhotoSnowlift > div > div > a > i, .snowliftPager
+{
+    --ml-no-invert:true;
+    --ml-backgroundimage:Text;
+}
+
+.overlayBarButtons .comment_link,
+.overlayBarButtons .share_action_link,
+.overlayBarButtons .UFILinkBright,
+.overlayBarButtons .profilePicButton,
+.overlayBarButtons .fbPhotosPhotoActionsTag,
+.overlayBarButtons .fbPhotoSnowliftDropdownButton,
+.overlayBarButtons .sendButton,
+.fbPhotoMediaTitle
+{
+    --ml-ignore:true;
+    color: white!important;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}

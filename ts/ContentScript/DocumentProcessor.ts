@@ -469,10 +469,13 @@ namespace MidnightLizard.ContentScript
             {
                 Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                 {
-                    this.restoreElementColors(childTag);
-                    if ((addedElements.has(childTag) === false) && this.checkElement(childTag))
+                    if (addedElements.has(childTag) === false)
                     {
-                        allChildTags.add(childTag);
+                        this.restoreElementColors(childTag);
+                        if (this.checkElement(childTag))
+                        {
+                            allChildTags.add(childTag);
+                        }
                     }
                 });
             });
@@ -1355,7 +1358,7 @@ namespace MidnightLizard.ContentScript
                         else if (!isSvg)
                         {
                             let borderRole = cc.Border, transBordersCount = 0;
-                            if (tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
+                            if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
                                 ((transBordersCount = [
                                     tag.computedStyle!.borderTopColor,
                                     tag.computedStyle!.borderRightColor,
