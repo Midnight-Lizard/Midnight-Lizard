@@ -2,8 +2,8 @@
     "manifest_version": 2,
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
-    "description": "This extension changes page colors, brightness and contrast to increase readability",
-    "version": "8.4.2",
+    "description": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web",
+    "version": "8.5.1",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
@@ -11,6 +11,7 @@
         "32": "img/ml-icon-32.png",
         "16": "img/ml-icon-16.png"
     },
+    "content_security_policy": "script-src 'self' https://*.facebook.net https://*.facebook.com; object-src 'self'",
     "permissions": [
         "storage"
     ],
@@ -236,6 +237,26 @@
             ],
             "css": [
                 "css/custom/facebook.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.quora.com/*"
+            ],
+            "css": [
+                "css/custom/quora.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.twitter.com/*",
+                "https://twitter.com/*"
+            ],
+            "css": [
+                "css/custom/twitter.css"
             ]
         }
     ]

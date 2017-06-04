@@ -28,6 +28,7 @@ namespace MidnightLizard.Util.RegExpBuilder
     export const Dot = "\\.", DOT = Dot;
     export const Comma = ",", COM = Comma;
     export const Hash = "#", HSH = Hash;
+    export const Asterisk = "\\*", AST = Asterisk;
     export const Colon = ":", CLN = Colon;
     export const Minus = "\\-", MNS = Minus;
     export const LeftParenthesis = "\\(", LPR = LeftParenthesis;

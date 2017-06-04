@@ -30,9 +30,11 @@
     --ml-background-background-color:Border;
 }
 
-.ytp-volume-slider-handle:before
+.ytp-volume-slider-handle:before, .ytp-volume-slider-handle
 {
-    background-color: currentColor!important;
+    /*background-color: currentColor!important;*/
+    /*--ml-text-color:HighlightedText;*/
+    --ml-ignore:true;
 }
 
 .ytp-volume-slider-handle:after
@@ -43,15 +45,16 @@
     ) !important;
 }
 
-.ytp-volume-slider-handle, .ytp-menuitem-toggle-checkbox:after, .toggle-button, .toggle
+.ytp-menuitem-toggle-checkbox:after, .toggle-button, .toggle, .ytp-chrome-controls .ytp-button[aria-pressed=true]:after
 {
     --ml-background-background-color:Text;
 }
 
-.style-scope.yt-icon, .ytp-svg-fill
+.style-scope.yt-icon, .ytp-svg-fill, .ytp-button:not(.ytp-subtitles-button) > svg, .ytp-time-display
 {
-    --ml-svgbackground-fill:Text;
-    --ml-background-fill:Text;
+    --ml-svgbackground-fill:HighlightedText;
+    --ml-background-fill:HighlightedText;
+    --ml-text-fill:HighlightedText;
 }
 
 .ytp-settings-button.ytp-hd-quality-badge:after
@@ -59,4 +62,23 @@
     color: white;
     background-size: 13px 9px;
     --ml-backgroundimage:Text;
+}
+
+.checked
+{
+    --ml-no-invert:true;
+    transition: opacity 0.1s;
+}
+
+.yt-uix-checkbox-on-off input[type=checkbox]:not(:checked) + label > .checked
+{
+    opacity: 0;
+}
+
+.yt-uix-button-arrow
+{
+    --ml-background-border-bottom-color:Border;
+    --ml-background-border-left-color:Border;
+    --ml-background-border-right-color:Border;
+    --ml-background-border-top-color:Border;
 }

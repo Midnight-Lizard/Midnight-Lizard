@@ -1,13 +1,13 @@
 namespace MidnightLizard.Util
 {
 
-    export function forEachPromise<TResult>(arrayOfParams: any[][], action: (...p: any[]) => TResult, initialDelay = 0, getNextDelay?: (prevDelay: number, index: number) => number)
+    export function forEachPromise<TResult>(arrayOfParams: any[][], action: (...p: any[]) => TResult, initialDelay = 0, getNextDelay?: (params: any[], prevDelay?: number, index?: number) => number)
     {
         let fePromise: Promise<TResult> = null!;
         let lastDelay = initialDelay;
         arrayOfParams.forEach((params, index) =>
         {
-            lastDelay = getNextDelay ? getNextDelay(lastDelay, index) : lastDelay;
+            lastDelay = getNextDelay ? getNextDelay(params, lastDelay, index) : lastDelay;
             fePromise = Promise
                 .all([action, lastDelay, params, fePromise])
                 .then(([act, delay, params, prev]) =>
@@ -49,8 +49,8 @@ namespace MidnightLizard.Util
     /** Handles promise results in order to be safely used inside Promise.all so one failure would not stop the process */
     export function handlePromise<TResult>(promise: Promise<TResult>)
     {
-        return promise.then(
+        return promise && promise.then(
             result => new HandledPromiseResult<TResult>(PromiseStatus.Success, result),
-            error => new HandledPromiseResult<TResult>(PromiseStatus.Failure));
+            error => new HandledPromiseResult<TResult>(PromiseStatus.Failure, error));
     }
 }

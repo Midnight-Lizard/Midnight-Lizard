@@ -8,7 +8,7 @@ div[role="tab"] > div:nth-child(2), .nL.aig
     --ml-background-background-color:Border;
 }
 
-div[role="search"] button[aria-label]
+div[role="search"] button[aria-label], .ZC
 {
     --ml-no-invert:true;
 }
@@ -16,4 +16,9 @@ div[role="search"] button[aria-label]
 div.T-Kw-Jt
 {
     --ml-ignore:true;
+}
+
+.J-N-JT .J-N-Jz, .J-N-JW .J-N-Jz
+{
+    color: rgb(50, 50, 50)!important;
 }

@@ -15,8 +15,8 @@ namespace MidnightLizard.Settings
     type Storage = { isEnabled?: boolean, settingsVersion?: string, defaultSettingsVersion?: string };
     type ArgEvent<TRequestArgs> = MidnightLizard.Events.ArgumentedEvent<TRequestArgs>;
     type RespEvent<TResponseMethod extends Function, TRequestArgs> = MidnightLizard.Events.ResponsiveEvent<TResponseMethod, TRequestArgs>;
-    let ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    let ResponsiveEventDispatcher = MidnightLizard.Events.ResponsiveEventDispatcher;
+    const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
+    const ResponsiveEventDispatcher = MidnightLizard.Events.ResponsiveEventDispatcher;
     export abstract class IBaseSettingsManager
     {
         /** MidnightLizard should be running on this page */

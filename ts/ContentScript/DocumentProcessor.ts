@@ -12,22 +12,22 @@
 
 namespace MidnightLizard.ContentScript
 {
+    const chunkLength = 300;
     const dom = Events.HtmlEvent;
     const cx = Colors.RgbaColor;
     const cc = Colors.Component;
+    const po = ProcessingOrder;
     const Status = Util.PromiseStatus;
     type PromiseResult<T> = Util.HandledPromiseResult<T>;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const normalDelays = [0, 1, 10, 50, 100, 250, 500, 750, 1000];
-    const smallReCalculationDelays = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    const bigReCalculationDelays = [0, 1, 5, 10, 20, 50, 75, 100, 150];
     const doNotInvertRegExp = /user|account|photo|importan|grey|gray|flag/gi;
+    const maxAttrLen = 100;
 
     export abstract class IDocumentProcessor
     {
         abstract get onRootDocumentProcessing(): ArgEvent<Document>;
-        abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any, isVirtual: boolean): void;
+        abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
     }
 
     /** Base Document Processor */
@@ -40,6 +40,7 @@ namespace MidnightLizard.ContentScript
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
+        protected readonly _boundCheckedLabelHandler: (e: Event) => void;
         protected readonly _css: MidnightLizard.ContentScript.CssStyleKeys;
         protected readonly _transitionForbiddenProperties: Set<string>;
         protected readonly _boundParentBackgroundGetter: any;
@@ -97,6 +98,7 @@ namespace MidnightLizard.ContentScript
                     this._css.filter
                 ]);
             this._boundUserActionHandler = this.onUserAction.bind(this);
+            this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
             dom.addEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded, this);
             _settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this);
             _settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this, Events.EventHandlerPriority.Low);
@@ -182,19 +184,18 @@ namespace MidnightLizard.ContentScript
                 {
                     dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
                 }
-                this.applyLoadingShadow(doc.documentElement);
+                //this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
                 this.createSvgFilters(doc);
+                this.createPageScript(doc);
                 this._linkColorProcessor.calculateDefaultColor(doc);
                 this._textColorProcessor.calculateDefaultColor(doc);
                 doc.body.isChecked = true;
-                this.processElement(doc.body);
+                DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
                 this._documentObserver.startDocumentObservation(doc);
-                this.createPageScript(doc);
-                let allTags = Array.prototype.slice.call(doc.getElementsByTagName("*"))
-                    .filter((tag: HTMLElement) => this.checkElement(tag));
-                DocumentProcessor.processAllElements(allTags, doc.documentElement, this);
+                let allTags = Array.from(doc.getElementsByTagName("*")).filter((tag) => this.checkElement(tag)) as HTMLElement[];
+                DocumentProcessor.processAllElements(allTags, /*doc.documentElement*/null, this);
             }
         }
 
@@ -205,10 +206,10 @@ namespace MidnightLizard.ContentScript
 
         protected observeUserActions(tag: HTMLElement)
         {
-            let hover = this.hasPseudoClassOverrided(tag, PseudoClass.Hover),
-                focus = this.hasPseudoClassOverrided(tag, PseudoClass.Focus),
-                active = this.hasPseudoClassOverrided(tag, PseudoClass.Active),
-                checked = this.hasPseudoClassOverrided(tag, PseudoClass.Checked);
+            let hover = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Hover),
+                focus = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Focus),
+                active = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Active),
+                checked = false; // this.hasPseudoClassOverrided(tag, PseudoClass.Checked);
 
             const preFilteredSelectors = this._styleSheetProcessor.getPreFilteredSelectors(tag);
             if (preFilteredSelectors.length > 0)
@@ -236,17 +237,41 @@ namespace MidnightLizard.ContentScript
             }
             if (checked)
             {
-                dom.addEventListener(tag, "input", this._boundUserActionHandler);
-                dom.addEventListener(tag, "change", this._boundUserActionHandler);
+                if (tag instanceof HTMLInputElement || tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
+                {
+                    dom.addEventListener(tag, "input", this._boundUserActionHandler);
+                    dom.addEventListener(tag, "change", this._boundUserActionHandler);
+                }
+                else if ((tag instanceof HTMLLabelElement || tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement)
+                    && (tag as HTMLLabelElement).htmlFor)
+                {
+                    const checkBox = tag.ownerDocument.getElementById((tag as HTMLLabelElement).htmlFor) as HTMLInputElement;
+                    if (checkBox)
+                    {
+                        checkBox.labelElement = tag as any;
+                        dom.addEventListener(checkBox, "input", this._boundCheckedLabelHandler);
+                        dom.addEventListener(checkBox, "change", this._boundCheckedLabelHandler);
+                    }
+                }
+            }
+        }
+
+        protected onLabelChecked(eArg: Event)
+        {
+            const labelElement = (eArg.currentTarget as HTMLInputElement).labelElement;
+            if (labelElement)
+            {
+                this.onUserAction({ currentTarget: labelElement } as any);
             }
         }
 
         protected onUserAction(eArg: Event)
         {
-            if (this._settingsManager.isActive && (eArg.currentTarget as HTMLElement).selectors !==
-                this._styleSheetProcessor.getElementMatchedSelectors(eArg.currentTarget as HTMLElement))
+            const target = eArg.currentTarget as HTMLElement;
+            if (this._settingsManager.isActive && target.selectors !==
+                this._styleSheetProcessor.getElementMatchedSelectors(target))
             {
-                this.reCalcRootElement(eArg.currentTarget as HTMLElement, false, true);
+                this.reCalcRootElement(target, false, true);
             }
         }
 
@@ -268,8 +293,9 @@ namespace MidnightLizard.ContentScript
 
         protected reCalcRootElement(rootElem: HTMLElement, full: boolean, clearParentBgColors = false)
         {
-            if (rootElem)
+            if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
+                rootElem.mlTimestamp = Date.now();
                 let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
                 if (allTags && allTags.length > 0)
                 {
@@ -287,33 +313,32 @@ namespace MidnightLizard.ContentScript
                         });
                     }
                     filteredTags.splice(0, 0, rootElem);
-                    if (filteredTags.length < 10 || full)
+                    if (filteredTags.length < 100 || full)
                     {
+                        const useShadow = false;//filteredTags.length > 50;
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        DocumentProcessor.processAllElements(filteredTags, null, this, smallReCalculationDelays);
-                    }
-                    else if (filteredTags.length < 100)
-                    {
-                        this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
-                        this.applyLoadingShadow(rootElem);
-                        this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        DocumentProcessor.processAllElements(filteredTags, rootElem, this, bigReCalculationDelays);
+                        DocumentProcessor.processAllElements(filteredTags, useShadow ? rootElem : null, this, bigReCalculationDelays);
+                        if (useShadow)
+                        {
+                            this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
+                            this.applyLoadingShadow(rootElem);
+                            this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
+                        }
                     }
                     else
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         this.restoreElementColors(rootElem, true);
-                        DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
+                        DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
                     }
                 }
                 else
                 {
                     this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                     this.restoreElementColors(rootElem, true);
-                    DocumentProcessor.procElementsChunk([rootElem], this, null, 0);
+                    DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
                 }
             }
         }
@@ -435,104 +460,145 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
-            let allNewTags = Array.from(addedElements.values()).filter(tag => this.checkElement(tag) && tag.parentElement);
-            DocumentProcessor.processAllElements(allNewTags, null, this);
+            addedElements.forEach(tag => this.restoreElementColors(tag));
+            let allNewTags = Array.from(addedElements.values())
+                .filter(tag => this.checkElement(tag) && tag.parentElement);
+            DocumentProcessor.processAllElements(allNewTags, null, this, bigReCalculationDelays);
             let allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
             {
                 Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                 {
-                    if ((addedElements.has(childTag) === false) && this.checkElement(childTag))
+                    if (addedElements.has(childTag) === false)
                     {
-                        allChildTags.add(childTag);
+                        this.restoreElementColors(childTag);
+                        if (this.checkElement(childTag))
+                        {
+                            allChildTags.add(childTag);
+                        }
                     }
                 });
             });
-            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), null, this);
+            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), null, this, bigReCalculationDelays);
         }
 
-        protected static processAllElements(allTags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays): void
+        protected static processAllElements(allTags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor,
+            delays = normalDelays, delayInvisibleElements = true): void
         {
             if (allTags.length > 0)
             {
-                let viewColorTags = new Array<HTMLElement>(), visColorTags = new Array<HTMLElement>(), invisColorTags = new Array<HTMLElement>(),
-                    viewImageTags = new Array<HTMLElement>(), visImageTags = new Array<HTMLElement>(), invisImageTags = new Array<HTMLElement>(),
-                    viewLinks = new Array<HTMLElement>(), visLinks = new Array<HTMLElement>(), invisLinks = new Array<HTMLElement>(),
-                    viewTransTags = new Array<HTMLElement>(), visTransTags = new Array<HTMLElement>(), invisTransTags = new Array<HTMLElement>(),
-                    ns = USP.htm, isSvg: boolean, bgrColor: string, isVisible: boolean, isLink: boolean, hasBgColor: boolean, hasImage: boolean, inView: boolean,
+                let otherInvisTags = new Array<HTMLElement>(), rowNumber = 0,
+                    ns = USP.htm, isSvg: boolean, isVisible: boolean, isLink = false, hasBgColor = false, hasImage = false, inView: boolean,
                     hm = allTags[0].ownerDocument.defaultView.innerHeight,
                     wm = allTags[0].ownerDocument.defaultView.innerWidth;
                 for (let tag of allTags)
                 {
+                    tag.rowNumber = rowNumber++;
                     isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
-                    tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
-                    isVisible = tag.tagName == "BODY" || !isSvg && tag.offsetParent !== null || tag.computedStyle.position == docProc._css.fixed || isSvg;
-                    isLink = tag instanceof HTMLAnchorElement || tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
-                    bgrColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor);
-                    hasBgColor = !!bgrColor && bgrColor !== "rgba(0, 0, 0, 0)";
-                    hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
+                    isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
+                    if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
+                    {
+                        tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
+                        isLink = tag instanceof HTMLAnchorElement || tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
+                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== "rgba(0, 0, 0, 0)";
+                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
+                    }
 
                     if (isVisible)
                     {
                         tag.rect = tag.rect || tag.getBoundingClientRect();
                         isVisible = tag.rect.width !== 0 && tag.rect.height !== 0;
+                        isVisible && (tag.area = tag.rect.width * tag.rect.height);
                         inView = isVisible &&
                             (tag.rect.bottom >= 0 && tag.rect.bottom <= hm || tag.rect.top >= 0 && tag.rect.top <= hm) &&
                             (tag.rect.right >= 0 && tag.rect.right <= wm || tag.rect.left >= 0 && tag.rect.left <= wm);
                         if (!isVisible)
                         {
                             tag.rect = null;
-                            if (hasBgColor) invisColorTags.push(tag);
-                            else if (hasImage) invisImageTags.push(tag);
-                            else if (isLink) invisLinks.push(tag);
-                            else invisTransTags.push(tag);
+                            if (hasBgColor) tag.order = po.invisColorTags;
+                            else if (hasImage) tag.order = po.invisImageTags;
+                            else if (isLink) tag.order = po.invisLinks;
+                            else tag.order = po.invisTransTags;
                         }
                         else if (hasBgColor)
                         {
-                            if (inView) viewColorTags.push(tag);
-                            else visColorTags.push(tag);
+                            if (inView) tag.order = po.viewColorTags;
+                            else tag.order = po.visColorTags;
                         }
                         else if (hasImage)
                         {
-                            if (inView) viewImageTags.push(tag);
-                            else visImageTags.push(tag);
+                            if (inView) tag.order = po.viewImageTags;
+                            else tag.order = po.visImageTags;
                         }
-                        else if (isLink) 
+                        else if (isLink)
                         {
-                            if (inView) viewLinks.push(tag);
-                            else visLinks.push(tag);
+                            if (inView) tag.order = po.viewLinks;
+                            else tag.order = po.visLinks;
                         }
                         else
                         {
-                            if (inView) viewTransTags.push(tag);
-                            else visTransTags.push(tag);
+                            if (inView) tag.order = po.viewTransTags;
+                            else tag.order = po.visTransTags;
                         }
+                    }
+                    else if (tag.computedStyle)
+                    {
+                        if (hasBgColor) tag.order = po.invisColorTags;
+                        else if (hasImage) tag.order = po.invisImageTags;
+                        else tag.order = po.invisTransTags;
                     }
                     else
                     {
-                        if (hasBgColor) invisColorTags.push(tag);
-                        else if (hasImage) invisImageTags.push(tag);
-                        else invisTransTags.push(tag);
+                        tag.order = po.delayedInvisTags;
+                        otherInvisTags.push(tag);
                     }
                 }
-                let tagsArray: (HTMLElement[] | HTMLElement | null | DocumentProcessor)[][] =
-                    [
-                        [viewColorTags, null, docProc], [visColorTags, null, docProc], [viewLinks, null, docProc], [viewImageTags, null, docProc],
-                        [viewTransTags, null, docProc], [visLinks, null, docProc], [visTransTags, null, docProc], [visImageTags, null, docProc],
-                        [invisColorTags, null, docProc], [invisTransTags, null, docProc], [invisLinks, null, docProc], [invisImageTags, null, docProc]
-                    ].filter(param => (param[0] as HTMLElement[]).length > 0);
-                if (tagsArray.length > 0)
+
+                allTags.sort((a, b) =>
+                    a.order !== b.order ? a.order! - b.order!
+                        : b.area && a.area && b.area !== a.area ? b.area - a.area
+                            : a.rowNumber! - b.rowNumber!);
+                allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
+
+                const results = Util.handlePromise(DocumentProcessor.processOrderedElements(allTags, shadowElement, docProc, delays)!);
+
+                if (otherInvisTags.length > 0)
                 {
-                    tagsArray[0][1] = shadowElement;
-                    let density = 2000 / allTags.length
-                    let delayArray = delays.map(d => Math.round(d / density));
-                    Util.forEachPromise(tagsArray, DocumentProcessor.processElements, 0, (prevDelay, index) => delayArray[index]);
+                    Promise.all([otherInvisTags, docProc, delays, results])
+                        .then(([otherTags, dp, dl]) => DocumentProcessor.processAllElements(otherTags, null, dp, dl, false));
                 }
-                else if (shadowElement)
-                {
-                    DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
-                }
+
+                Promise.all([allTags, docProc, results])
+                    .then(([tags, dp]) =>
+                    {
+                        if (tags && tags.length > 0)
+                        {
+                            tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                            {
+                                const reCalcTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
+                                    && tag.mlColor.reason === Colors.ColorReason.Inherited
+                                    && tag.mlColor.color === null
+                                    && tag.mlColor.intendedColor && tag.computedStyle
+                                    && tag.mlColor.intendedColor !== tag.computedStyle.color);
+                                if (reCalcTags.length > 0)
+                                {
+                                    dProc._documentObserver.stopDocumentObservation(reCalcTags[0].ownerDocument);
+                                    reCalcTags.forEach(tag =>
+                                    {
+                                        const newColor = Object.assign({}, tag.mlColor!);
+                                        newColor.base = dProc._app.isDebug ? tag.mlColor : null
+                                        newColor.reason = Colors.ColorReason.FixedInheritance;
+                                        newColor.color = newColor.intendedColor!;
+                                        tag.mlColor = newColor;
+                                        tag.originalColor = tag.style.color;
+                                        tag.style.setProperty(dProc._css.color, newColor.color, dProc._css.important);
+                                    });
+                                    docProc._documentObserver.startDocumentObservation(reCalcTags[0].ownerDocument);
+                                }
+                            }).bind(null, tags, dp));
+                        }
+                    });
             }
             else if (shadowElement)
             {
@@ -540,51 +606,74 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected static processElements(tags: HTMLElement[], shadowElement: HTMLElement, docProc: DocumentProcessor, prev: null, delay: number)
+        protected static processOrderedElements(tags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays)
         {
-            shadowElement && DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
             if (tags.length > 0)
             {
-                let chunkLength = 500, cssPromises: IterableIterator<Promise<PromiseResult<void>>> | null = null;
-                let needObservation = docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
-                if (needObservation)
-                {
-                    cssPromises = docProc._styleSheetProcessor.getCssPromises(tags[0].ownerDocument);
-                }
+                const density = 2000 / tags.length
+                let result: Promise<HTMLElement[]>, needObservation = docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
                 if (tags.length < chunkLength)
                 {
-                    let result = DocumentProcessor.procElementsChunk(tags, docProc, null, delay);
-                    if (needObservation)
-                    {
-                        Promise.all([tags, docProc, result as any, ...cssPromises!])
-                            .then(([t, dp]) => DocumentProcessor.startObservation(t, dp));
-                    }
-                    return result;
+                    result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].order || po.viewColorTags)! / density);
+                    shadowElement && DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
                 }
                 else
                 {
-                    let result = Util.forEachPromise(
-                        Util.sliceIntoChunks(tags, chunkLength).map(chunk => [chunk, docProc]),
-                        DocumentProcessor.procElementsChunk, delay);
-                    if (needObservation)
+                    const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
+                        _delays.get(chunk[0].order || po.viewColorTags) / _density)
+                        .bind(null, delays, density);
+                    if (shadowElement)
                     {
-                        Promise.all([tags, docProc, result as any, ...cssPromises!])
-                            .then(([t, dp]) => DocumentProcessor.startObservation(t, dp));
+                        let firstOrder = tags[0].order, firstOrderLenght = 0;
+                        while (++firstOrderLenght < tags.length && tags[firstOrderLenght].order === firstOrder);
+                        tags[firstOrderLenght].shadowElement = shadowElement;
                     }
-                    return result;
+                    result = Util.forEachPromise(
+                        Util.sliceIntoChunks(tags, chunkLength).map(chunk => [chunk, docProc]),
+                        DocumentProcessor.processElementsChunk, 0, getNextDelay) as Promise<HTMLElement[]>;
                 }
+                if (needObservation)
+                {
+                    Promise.all([tags as any, docProc, Util.handlePromise(result), ...docProc._styleSheetProcessor.getCssPromises(tags[0].ownerDocument)!])
+                        .then(([t, dp]) => dp._rootDocument.defaultView.requestAnimationFrame(() => DocumentProcessor.startObservation(t, dp)));
+                }
+                return result;
             }
             return undefined;
         }
 
-        protected static procElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
+        protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
         {
-            let paramsForPromiseAll: [HTMLElement[] | Document | number | Promise<PromiseResult<string>>] =
+            const paramsForPromiseAll: [HTMLElement[] | Document | number | Promise<PromiseResult<string>>] =
                 [chunk, chunk[0].ownerDocument, delay];
+            const results = chunk.map(tag => { return { tag: tag, result: docProc.calculateRoomRules(tag) } });
             docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
-            let results = chunk.map(tag => docProc.processElement(tag));
+            results
+                .filter(r => r.result)
+                .map(tr =>
+                {
+                    return Object.assign(tr, {
+                        beforeRoomRules: tr.result!.before && docProc.calculateRoomRules(tr.result!.before!),
+                        afterRoomRules: tr.result!.after && docProc.calculateRoomRules(tr.result!.after!)
+                    });
+                })
+                .map(tr =>
+                {
+                    tr.tag.shadowElement && DocumentProcessor.removeLoadingShadow(tr.tag.shadowElement, docProc);
+                    tr.tag.shadowElement = undefined;
+                    docProc.applyRoomRules(tr.tag, tr.result!.roomRules);
+                    if (tr.beforeRoomRules)
+                    {
+                        docProc.applyRoomRules(tr.result!.before!, tr.beforeRoomRules.roomRules);
+                    }
+                    if (tr.afterRoomRules)
+                    {
+                        docProc.applyRoomRules(tr.result!.after!, tr.afterRoomRules.roomRules);
+                    }
+                    return [tr.result!.before, tr.result!.after].filter(x => x).map(x => x!.stylePromise);
+                })
+                .filter(r => r).forEach(r => paramsForPromiseAll.push(...r!.map(Util.handlePromise)));
             docProc._documentObserver.startDocumentObservation(chunk[0].ownerDocument);
-            results.filter(r => r).forEach(r => paramsForPromiseAll.push(...r!.map(Util.handlePromise)));
             return Promise.all<HTMLElement[] | Document | number | PromiseResult<string>>(paramsForPromiseAll)
                 .then(([tags, doc, dl, ...cssArray]: [HTMLElement[], Document, number, PromiseResult<string>]) =>
                 {
@@ -646,7 +735,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected calcTagArea(tag: Element | PseudoElement)
+        protected calcTagArea(tag: Element | PseudoElement, tryClientRect = true)
         {
             if (tag.area === undefined)
             {
@@ -656,23 +745,41 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.area = width * height;
                 }
-                else
+                else if (tryClientRect)
                 {
                     tag.rect = tag.rect || tag.getBoundingClientRect();
-                    tag.area = tag.rect.width * tag.rect.height;
+                    if (tag.rect.width || tag.rect.height)
+                    {
+                        tag.area = tag.rect.width * tag.rect.height;
+                    }
+                    else
+                    {
+                        tag.rect = null;
+                    }
                 }
             }
         }
 
         protected calcElementPath(tag: HTMLElement | PseudoElement)
         {
-            let parentPath = "";
+            var parentPath = "";
             if (tag.parentElement)
             {
                 parentPath = (tag.parentElement.path ? tag.parentElement.path : this.calcElementPath(tag.parentElement as HTMLElement)) + " ";
             }
-            tag.path = parentPath + tag.tagName +
-                (!(tag instanceof PseudoElement) ? Array.from(tag.attributes).map(x => `${x.name}=${x.value}`).join(";") : "");
+            tag.path = parentPath + tag.tagName;
+            if (!tag.isPseudo)
+            {
+                var attr: Attr, length = (tag as Node).attributes.length;
+                for (var i = 0; i < length; i++)
+                {
+                    attr = (tag as Node).attributes[i];
+                    if (attr.value && attr.name && !attr.name.endsWith("timer") && attr.name !== "d")
+                    {
+                        tag.path += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
+                    }
+                }
+            }
             return tag.path;
         }
 
@@ -794,12 +901,16 @@ namespace MidnightLizard.ContentScript
 
         protected static removeLoadingShadow(tag: HTMLElement, docProc: DocumentProcessor)
         {
-            let originalState = docProc._documentObserver.stopDocumentObservation(tag.ownerDocument);
-            tag.setAttribute(docProc._css.transition, docProc._css.filter);
-            tag.style.filter = tag.originalFilter!;
-            tag.originalFilter = undefined;
-            setTimeout(() => tag.removeAttribute(docProc._css.transition), 200);
-            docProc._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+            docProc._rootDocument.defaultView.requestAnimationFrame(((_tag: HTMLElement, _docProc: DocumentProcessor) =>
+            {
+                let originalState = _docProc._documentObserver.stopDocumentObservation(_tag.ownerDocument);
+                _tag.setAttribute(_docProc._css.transition, _docProc._css.filter);
+                _tag.style.filter = _tag.originalFilter!;
+                _tag.originalFilter = undefined;
+                setTimeout((tg: HTMLElement, dp: DocumentProcessor) =>
+                    dp._rootDocument.defaultView.requestAnimationFrame(tg.removeAttribute.bind(tg, dp._css.transition)), 200, _tag, _docProc);
+                _docProc._documentObserver.startDocumentObservation(_tag.ownerDocument, originalState)
+            }).bind(null, tag, docProc));
         }
 
         protected restoreDocumentColors(doc: Document)
@@ -828,60 +939,60 @@ namespace MidnightLizard.ContentScript
                 tag.selectors = null;
                 tag.path = null;
 
-                if (tag.originalBackgroundColor !== undefined)
+                if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
                     tag.style.setProperty(ns.css.bgrColor, tag.originalBackgroundColor);
                 }
-                if (tag.originalDisplay !== undefined)
+                if (tag.originalDisplay !== undefined && tag.originalDisplay !== tag.style.display)
                 {
                     tag.style.display = tag.originalDisplay;
                 }
-                if (tag.originalZIndex !== undefined)
+                if (tag.originalZIndex !== undefined && tag.style.zIndex !== tag.originalZIndex)
                 {
                     tag.style.zIndex = tag.originalZIndex;
                 }
-                if (tag.originalColor !== undefined)
+                if (tag.originalColor !== undefined && tag.originalColor !== tag.style.getPropertyValue(ns.css.fntColor))
                 {
                     tag.style.setProperty(ns.css.fntColor, tag.originalColor);
                     tag.style.removeProperty("--original-color");
                 }
-                if (tag.originalTextShadow !== undefined)
+                if (tag.originalTextShadow !== undefined && tag.style.textShadow !== tag.originalTextShadow)
                 {
                     tag.style.textShadow = tag.originalTextShadow;
                 }
-                if (tag.originalBorderColor !== undefined)
+                if (tag.originalBorderColor !== undefined && tag.originalBorderColor !== tag.style.getPropertyValue(ns.css.brdColor))
                 {
                     tag.style.setProperty(ns.css.brdColor, tag.originalBorderColor);
                 }
-                if (tag.originalBorderTopColor !== undefined)
+                if (tag.originalBorderTopColor !== undefined && tag.style.borderTopColor !== tag.originalBorderTopColor)
                 {
                     tag.style.borderTopColor = tag.originalBorderTopColor;
                 }
-                if (tag.originalBorderRightColor !== undefined)
+                if (tag.originalBorderRightColor !== undefined && tag.style.borderRightColor !== tag.originalBorderRightColor)
                 {
                     tag.style.borderRightColor = tag.originalBorderRightColor;
                 }
-                if (tag.originalBorderBottomColor !== undefined)
+                if (tag.originalBorderBottomColor !== undefined && tag.style.borderBottomColor !== tag.originalBorderBottomColor)
                 {
                     tag.style.borderBottomColor = tag.originalBorderBottomColor;
                 }
-                if (tag.originalBorderLeftColor !== undefined)
+                if (tag.originalBorderLeftColor !== undefined && tag.style.borderLeftColor !== tag.originalBorderLeftColor)
                 {
                     tag.style.borderLeftColor = tag.originalBorderLeftColor;
                 }
-                if (tag.originalBackgroundImage !== undefined)
+                if (tag.originalBackgroundImage !== undefined && tag.style.backgroundImage !== tag.originalBackgroundImage)
                 {
                     tag.style.backgroundImage = tag.originalBackgroundImage;
-                    if (tag.originalBackgroundSize !== undefined)
+                    if (tag.originalBackgroundSize !== undefined && tag.style.backgroundSize !== tag.originalBackgroundSize)
                     {
                         tag.style.backgroundSize = tag.originalBackgroundSize;
                     }
                 }
-                if (tag.originalFilter !== undefined)
+                if (tag.originalFilter !== undefined && tag.style.filter !== tag.originalFilter)
                 {
                     tag.style.filter = tag.originalFilter;
                 }
-                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration)
+                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration && tag.style.transitionDuration !== tag.originalTransitionDuration)
                 {
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
@@ -915,11 +1026,14 @@ namespace MidnightLizard.ContentScript
         protected checkElement(tag: Element)
         {
             return tag.isChecked =
-                (tag instanceof Element || tag!.ownerDocument && tag!.ownerDocument.defaultView && tag instanceof tag!.ownerDocument.defaultView.HTMLElement) &&
+                (tag instanceof Element || tag!.ownerDocument && tag!.ownerDocument.defaultView && tag instanceof tag!.ownerDocument.defaultView.Element) &&
                 !tag.mlBgColor && !!tag.tagName && !tag.mlIgnore && !!(tag as HTMLElement).style;
         }
 
-        protected processElement(tag: HTMLElement | PseudoElement): Promise<string>[] | void
+        protected calculateRoomRules(tag: HTMLElement | PseudoElement):
+            {
+                roomRules: RoomRules, before?: PseudoElement, after?: PseudoElement
+            } | undefined
         {
             if (tag && tag.ownerDocument.defaultView && !(tag as HTMLElement).mlBgColor
                 && (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
@@ -971,7 +1085,7 @@ namespace MidnightLizard.ContentScript
                             roomRules.attributes.set("after-style", roomId);
                         }
                     }
-                    if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css.zeroSec)
+                    if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
                     {
                         let hasForbiddenTransition = false;
                         let durations = tag.computedStyle.transitionDuration!.split(", ");
@@ -979,7 +1093,7 @@ namespace MidnightLizard.ContentScript
                         {
                             if (this._transitionForbiddenProperties.has(prop))
                             {
-                                durations[index] = this._css.zeroSec;
+                                durations[index] = this._css._0s;
                                 hasForbiddenTransition = true;
                             }
                         });
@@ -996,6 +1110,7 @@ namespace MidnightLizard.ContentScript
                             {
                                 isSvgText = true;
                                 roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
+                                roomRules.backgroundColor.reason = Colors.ColorReason.SvgText;
                                 roomRules.backgroundColor.color = null;
                             }
                             else
@@ -1150,7 +1265,8 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        const textRole = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement
+                        const textRole = (tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement) || tag.isPseudo
+                            && (tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement)
                             ? cc.Link
                             : cc.Text;
                         roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
@@ -1193,9 +1309,6 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    const txtInverted = roomRules.color && Math.abs(roomRules.color.originalLight - roomRules.color.light) >= 0.4 &&
-                        this.shift.Background.lightnessLimit < 0.3;
-
                     if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
                     {
                         let filterValue: Array<string>;
@@ -1203,8 +1316,9 @@ namespace MidnightLizard.ContentScript
                         let bgrSet = this.shift[customCanvasRole] || this.shift.Background,
                             txtSet = this.shift.Text;
 
-                        if ((bgInverted || txtInverted) && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+                        if (this.shift.Background.lightnessLimit < 0.3 && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
                         {
+                            roomRules.backgroundColor.color = null;
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
@@ -1243,39 +1357,69 @@ namespace MidnightLizard.ContentScript
                         }
                         else if (!isSvg)
                         {
+                            let borderRole = cc.Border, transBordersCount = 0;
+                            if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
+                                ((transBordersCount = [
+                                    tag.computedStyle!.borderTopColor,
+                                    tag.computedStyle!.borderRightColor,
+                                    tag.computedStyle!.borderBottomColor,
+                                    tag.computedStyle!.borderLeftColor
+                                ].filter(c => c === Colors.RgbaColor.Transparent).length) === 3 ||
+                                    transBordersCount === 2 && [
+                                        tag.computedStyle!.borderTopWidth,
+                                        tag.computedStyle!.borderRightWidth,
+                                        tag.computedStyle!.borderBottomWidth,
+                                        tag.computedStyle!.borderLeftWidth
+                                    ].filter(c => c === this._css._0px).length === 1))
+                            {
+                                borderRole = cc.Background;
+                            }
                             roomRules.borderTopColor = this.changeColor(
-                                { role: cc.Border, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
+                                { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
 
                             roomRules.borderRightColor = this.changeColor(
-                                { role: cc.Border, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
+                                { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
 
                             roomRules.borderBottomColor = this.changeColor(
-                                { role: cc.Border, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
+                                { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
 
                             roomRules.borderLeftColor = this.changeColor(
-                                { role: cc.Border, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
+                                { role: borderRole, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
                         }
                     }
                 }
 
-                this.applyRoomRules(tag, roomRules, ns);
+                //this.applyRoomRules(tag, roomRules, ns);
 
-                beforePseudoElement && this.processElement(beforePseudoElement);
-                afterPseudoElement && this.processElement(afterPseudoElement);
+                // beforePseudoElement && this.processElement(beforePseudoElement);
+                // afterPseudoElement && this.processElement(afterPseudoElement);
 
                 if (room)
                 {
                     this._dorm.get(doc)!.set(room, roomRules);
                 }
 
-                return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
+                if (isRealElement(tag))
+                {
+                    tag.mlBgColor = roomRules.backgroundColor;
+                    tag.mlColor = roomRules.color;
+                    if (roomRules.textShadow)
+                    {
+                        tag.mlTextShadow = roomRules.textShadow.color;
+                    }
+                }
+
+                // return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
+
+                return { roomRules: roomRules, before: beforePseudoElement, after: afterPseudoElement };
             }
+            return undefined;
         }
 
         protected changeColor(
             {
-                role: component, property: property, tag: tag, bgLight: bgLight
-            }:
+            role: component, property: property, tag: tag, bgLight: bgLight
+        }:
                 {
                     role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number
                 }): Colors.ColorEntry | undefined
@@ -1606,11 +1750,12 @@ namespace MidnightLizard.ContentScript
         {
             let style = doc.getElementById("midnight-lizard-loading-style");
             style && style.remove();
-            setTimeout((d: Document) => 
+            const removeNoTrans = ((d: Document) => 
             {
                 let noTrans = d.getElementById("midnight-lizard-no-trans-style");
                 noTrans && noTrans.remove();
-            }, 1, doc);
+            }).bind(null, doc);
+            setTimeout(requestAnimationFrame.bind(doc.defaultView, removeNoTrans), 100);
         }
 
         protected createPageScript(doc: Document)
@@ -1635,21 +1780,15 @@ namespace MidnightLizard.ContentScript
             pageScript && pageScript.remove();
         }
 
-        public applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns = USP.htm, isVirtual = false)
+        public applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, _ns?: any)
         {
+            let isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
             let applyBgPromise;
-            if (isRealElement(tag))
+            let ns = USP.htm;
+            ns = _ns || (isSvg ? USP.svg : USP.htm);
+            if (isRealElement(tag) && roomRules.attributes && roomRules.attributes.size > 0)
             {
-                if (!isVirtual)
-                {
-                    tag.mlBgColor = roomRules.backgroundColor;
-                    tag.mlColor = roomRules.color;
-                    roomRules.textShadow && (tag.mlTextShadow = roomRules.textShadow.color);
-                }
-                if (roomRules.attributes && roomRules.attributes.size > 0)
-                {
-                    roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
-                }
+                roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
             }
             if (roomRules.filter && roomRules.filter.value)
             {
@@ -1678,7 +1817,6 @@ namespace MidnightLizard.ContentScript
                 tag.originalBackgroundSize = tag.style.backgroundSize;
                 if (roomRules.hasBackgroundImagePromises)
                 {
-                    let fuck = [tag, roomRules, ...roomRules.backgroundImages];
                     applyBgPromise = Promise.all<HTMLElement | PseudoElement | RoomRules | BackgroundImage | Promise<BackgroundImage>>
                         ([tag, roomRules, ...roomRules.backgroundImages])
                         .then(([t, rr, ...bgImgs]: [HTMLElement | PseudoElement, RoomRules, BackgroundImage]) =>
@@ -1692,13 +1830,16 @@ namespace MidnightLizard.ContentScript
                             return this.applyBackgroundImages(t, bgImgs as BackgroundImage[]);
                         });
                     Promise
-                        .all([tag, applyBgPromise.catch(ex => this._app.isDebug && console.error("Exception in backgroundImagePromise: " + ex))])
-                        .then(([tag]) => 
+                        .all([tag, Util.handlePromise(applyBgPromise)])
+                        .then(([tag, result]) => 
                         {
-
-                            let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
-                            this.removeTemporaryFilter(tag);
-                            this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+                            if (result && result.status === Util.PromiseStatus.Failure)
+                            {
+                                this._app.isDebug && console.error("Can not fetch background image: " + result.data);
+                                let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
+                                this.removeTemporaryFilter(tag);
+                                this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+                            }
                         });
                 }
                 else
@@ -1797,6 +1938,12 @@ namespace MidnightLizard.ContentScript
                                 break;
                             }
                         }
+                    }
+                    if (cssText && tag.ownerDocument.mlPseudoStyles && Array.prototype.find.call(
+                        (tag.ownerDocument.mlPseudoStyles.sheet as CSSStyleSheet).cssRules,
+                        (rule: CSSStyleRule) => rule.selectorText === tag.selectorText))
+                    {
+                        cssText = "";
                     }
                     tag.applyStyleChanges(cssText);
                 }

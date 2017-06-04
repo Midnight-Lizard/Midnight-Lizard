@@ -53,12 +53,12 @@
                    href="#"></a>
             </div>
             <a id="help"
-               title="Go to Midnight Lizard Support forum"
+               tooltip="Support forum"
                target="_blank"
                href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/how+to">?</a>
             <label id="isEnabledSwitch"
                    class="ml-switch"
-                   title="Enable or disable entire extension">
+                   tooltip="Enable or disable entire extension">
                 <input id="isEnabled" type="checkbox">
                 <div class="ml-slider">
                     <div class="ml-slider-checked"></div>
@@ -197,7 +197,7 @@ L 14.5 12 z" />
                     content="scrollbars"
                     tooltip="&emsp;&emsp;&emsp;&emsp;Scrollbars color settings
 ━━━━━━━━━━━━━━━━━━━
-&emsp;Color settings for all scrollbars on the page.">
+&emsp;Color adjustment settings for all scrollbars on the page.">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -248,8 +248,7 @@ L 14.5 12 z" />
                 </p>
                 <p>
                     <run class="intro intro-apply">
-                        To assign the settings of your preference to the <span>current website</span> press <q>Apply</q> button
-                        on the right pane.
+                        To assign the settings of your preference to the <span>current website</span> press <q>Apply</q>                        button on the right pane.
                     </run>
                     <run class="intro intro-edit-schemes">
                         Or you can <span>add your scheme</span> to the list of the predefined color schemes for futher use
@@ -1614,13 +1613,43 @@ L 14.5 12 z" />
                     <button id="deleteColorSchemeBtn"
                             title="Delete color scheme selected for edit"
                             class="ml-helio-button red">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
                         Delete
                     </button>
                     <button id="saveColorSchemeBtn"
                             title="Update selected color scheme with current settings"
                             class="ml-helio-button blue">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+                        </svg>&nbsp;
+                        <!--⁕*⁎⁙⁛⁜※⁂•⚫⚪⭕🌑🔴✏✳✴❄❇📎🚩🆕⬆📄📝✎-->
                         Save
                     </button>
+                </div>
+                <div class="ml-command-container">
+                    <button id="exportColorSchemeBtn"
+                            title="Export current color scheme as selected color scheme with specified name to file"
+                            class="ml-helio-button orange">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                        Export
+                    </button>
+                    <label id="importColorSchemeBtn"
+                           title="Import color schemes from file"
+                           class="ml-helio-button green">
+                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
+                        </svg>
+                        <input id="importColorSchemeFileInput" type="file" accept=".json" style="display: none" multiple>
+                        Import
+                    </label>
                 </div>
             </div>
             <div class="ml-right-pane">
@@ -1659,7 +1688,7 @@ L 14.5 12 z" />
                     <div class="ml-tool-box">
                         <button id="forgetThisSiteBtn"
                                 class="ml-helio-button orange"
-                                title="Forget current site settings">
+                                title="Forget current website settings">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/>
                             <path d="M0 0h24v24H0z" fill="none" />
@@ -1698,8 +1727,9 @@ L 14.5 12 z" />
         <div class="ml-dialog-fotter">
             <div class="ml-fotter-icon-container left">
                 <a target="_blank"
+                   id="facebook-link"
                    href="https://www.facebook.com/Midnight.Lizard/"
-                   title="https://facebook.com/Midnight.Lizard">
+                   tooltip="Facebook">
                     <svg class="ml-fotter-icon facebook-icon"
                          viewBox="0 0 155.139 155.139">
                         <path d="M89.584,155.139V84.378h23.742l3.562-27.585H89.584V39.184 c0-7.984,2.208-13.425,13.67-13.425l14.595-0.006V1.08C115.325,0.752,106.661,0,96.577,0C75.52,0,61.104,12.853,61.104,36.452 v20.341H37.29v27.585h23.814v70.761H89.584z"
@@ -1709,8 +1739,9 @@ L 14.5 12 z" />
             </div>
             <div class="ml-fotter-icon-container left">
                 <a target="_blank"
+                   id="google-plus-link"
                    href="https://plus.google.com/u/0/114088392745534897694"
-                   title="https://plus.google.com/Midnight.Lizard">
+                   tooltip="Google Plus">
                     <svg class="ml-fotter-icon google-plus-icon"
                          viewBox="0 0 64 64">
                         <path d="M56,30h-5v-5h-4v5h-5v4h5v5h4v-5h5 M24,29v6.24h8.721C32.05,39,28.79,41.74,24,41.74 c-5.279,0-9.57-4.471-9.57-9.75c0-5.281,4.291-9.74,9.57-9.74c2.38,0,4.51,0.82,6.189,2.42v0.01l4.511-4.51 C31.93,17.59,28.32,16,24,16c-8.84,0-16,7.16-16,16s7.16,16,16,16c9.24,0,15.359-6.5,15.359-15.641c0-1.17-0.109-2.289-0.31-3.359 H24z"
@@ -1721,7 +1752,7 @@ L 14.5 12 z" />
             <div class="ml-fotter-icon-container left">
                 <a target="_blank"
                    href="https://twitter.com/MidnightLizard"
-                   title="https://twitter.com/MidnightLizard">
+                   tooltip="Twitter">
                     <svg class="ml-fotter-icon twitter-icon"
                          viewBox="0 0 300.00006 244.18703">
                         <g transform="translate(-539.18 -568.86)">
@@ -1734,7 +1765,7 @@ L 14.5 12 z" />
             <div class="ml-fotter-icon-container left">
                 <a target="_blank"
                    href="https://www.instagram.com/Midnight.Lizard/"
-                   title="https://instagram.com/Midnight.Lizard">
+                   tooltip="Instagram">
                     <svg class="ml-fotter-icon instagram-icon"
                          viewBox="0 0 512 512">
                         <g>
@@ -1750,7 +1781,8 @@ L 14.5 12 z" />
             <div class="ml-fotter-separator"></div>
             <div class="ml-fotter-icon-container right">
                 <a target="_blank"
-                   title="Rate this extension"
+                   id="rate-link"
+                   tooltip="Rate this extension"
                    href="https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews">
                     <svg class="ml-fotter-icon rate-icon"
                          viewBox="0 0 18 18">
@@ -1762,7 +1794,8 @@ L 14.5 12 z" />
             </div>
             <div class="ml-fotter-icon-container right">
                 <a target="_blank"
-                   title="Send email to the developer"
+                   id="email-link"
+                   tooltip="Send email to the developer"
                    href="mailto:midnight.lizard.extension@gmail.com">
                     <svg class="ml-fotter-icon email-icon"
                          viewBox="0 0 24 24">
@@ -1775,7 +1808,8 @@ L 14.5 12 z" />
             </div>
             <div class="ml-fotter-icon-container right">
                 <a target="_blank"
-                   title="Report a bug"
+                   id="bug-report-link"
+                   tooltip="Report a bug"
                    href="https://groups.google.com/forum/#!newtopic/midnight-lizard-support">
                     <svg class="ml-fotter-icon bug-report-icon"
                          viewBox="0 0 24 24">
@@ -1787,8 +1821,8 @@ L 14.5 12 z" />
                 </a>
             </div>
             <div class="ml-fotter-icon-container right">
-                <a id="version"
-                   title="Changelog"
+                <a id="change-log-link"
+                   tooltip="Changelog"
                    target="_blank"
                    href="../ui/change-log.html">
                     <svg class="ml-fotter-icon change-log-icon"

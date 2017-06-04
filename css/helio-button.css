@@ -1,5 +1,6 @@
 .ml-helio-button
 {
+    display: inline-block;
     user-select: none;
     --button-border-radius: 3px;
     position: relative;
@@ -8,7 +9,15 @@
     border: none;
     font: normal normal bold 14px Arial, Helvetica, sans-serif;
     text-shadow: 0 0 1px rgba(0,0,0,1);
+    padding: 1px 6px;
+    vertical-align: middle;
     color: rgb(255, 255, 255);
+}
+
+label.ml-helio-button
+{
+    padding: 0px;
+    line-height: 30px;
 }
 
 .ml-helio-button:not(:disabled)

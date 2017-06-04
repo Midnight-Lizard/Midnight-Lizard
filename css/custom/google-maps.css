@@ -18,6 +18,7 @@
 .renderable-component-color-text-background
 {
     --ml-background-background-color:Border;
+    --ml-text-color:Background;
 }
 
 .widget-reveal-card-image:not(impt)

@@ -2,3 +2,8 @@
 {
     --ml-svgbackground-fill:Background;
 }
+
+div[role="progressbar"]
+{
+    --ml-background-background-color:Border;
+}
