@@ -630,7 +630,7 @@ namespace MidnightLizard.ContentScript
                     }
                     result = Util.forEachPromise(
                         Util.sliceIntoChunks(tags, chunkLength).map(chunk => [chunk, docProc]),
-                        DocumentProcessor.processElementsChunk, 0, getNextDelay) as Promise<HTMLElement[]>;
+                        DocumentProcessor.processElementsChunk, 0, getNextDelay);
                 }
                 if (needObservation)
                 {
@@ -1023,7 +1023,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected checkElement(tag: Element)
+        protected checkElement(tag: any)
         {
             return tag.isChecked =
                 (tag instanceof Element || tag!.ownerDocument && tag!.ownerDocument.defaultView && tag instanceof tag!.ownerDocument.defaultView.Element) &&
@@ -1870,7 +1870,7 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                 if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    (tag.parentElement instanceof HTMLElement || tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement) &&
+                    (tag.parentElement instanceof HTMLElement || tag.parentElement && (tag.parentElement as any) instanceof tag.ownerDocument.defaultView.HTMLElement) &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty("--original-color", tag.originalColor!);

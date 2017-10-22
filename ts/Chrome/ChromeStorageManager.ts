@@ -20,7 +20,7 @@ namespace Chrome
             return this.chromePromise.storage.local.set(obj);
         }
 
-        get<T extends Object>(key: T)
+        get<T extends Object>(key: T | null)
         {
             return this.chromePromise.storage.local.get(key) as Promise<T>;
         }

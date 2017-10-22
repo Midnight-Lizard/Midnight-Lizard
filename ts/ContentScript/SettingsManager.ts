@@ -45,7 +45,7 @@ namespace MidnightLizard.ContentScript
 
         protected initCurrentSettings()
         {
-            this._storageManager.get<Settings.ColorScheme>(null)
+            this._storageManager.get(new Settings.ColorScheme())
                 .then(defaultSettings =>
                 {
                     this._defaultSettings = defaultSettings;

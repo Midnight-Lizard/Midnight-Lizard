@@ -2,8 +2,7 @@
     "include": [
         "../../ts/Chrome/ChromeBackgroundPageStarter.ts"
     ],
-    "compilerOptions":
-    {
+    "compilerOptions": {
         "outFile": "../../js/background-page.js",
         "removeComments": false,
         "strict": true,
