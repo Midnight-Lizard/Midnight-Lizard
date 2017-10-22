@@ -23,7 +23,7 @@ namespace MidnightLizard.Settings
         static invertedLight: ColorScheme;
         static invertedGrayscale: ColorScheme;
         static yellowOnBlack: ColorScheme;
-        static greenOnBlack: ColorScheme
+        static greenOnBlack: ColorScheme;
     }
 
     /**
@@ -34,10 +34,12 @@ namespace MidnightLizard.Settings
             userColorSchemes: [
                 // Default
                 {
+                    userColorSchemes: [],
                     colorSchemeId: "default",
                     colorSchemeName: "Default",
                     settingsVersion: "",
-                    runOnThisSite: false,
+                    runOnThisSite: true,
+                    isEnabled: true,
                     restoreColorsOnCopy: false,
                     blueFilter: 0,
 
@@ -144,7 +146,7 @@ namespace MidnightLizard.Settings
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 15,
-                    backgroundGraySaturation: 10,
+                    backgroundGraySaturation: 5,
                     backgroundGrayHue: 200,
 
                     textSaturationLimit: 80,
@@ -192,7 +194,7 @@ namespace MidnightLizard.Settings
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 15,
-                    backgroundGraySaturation: 80,
+                    backgroundGraySaturation: 60,
                     backgroundGrayHue: 174,
 
                     textSaturationLimit: 80,
@@ -240,7 +242,7 @@ namespace MidnightLizard.Settings
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 15,
-                    backgroundGraySaturation: 40,
+                    backgroundGraySaturation: 30,
                     backgroundGrayHue: 122,
 
                     textSaturationLimit: 80,
@@ -288,7 +290,7 @@ namespace MidnightLizard.Settings
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 15,
-                    backgroundGraySaturation: 40,
+                    backgroundGraySaturation: 30,
                     backgroundGrayHue: 4,
 
                     textSaturationLimit: 80,

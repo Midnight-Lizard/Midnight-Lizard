@@ -5,5 +5,6 @@ namespace MidnightLizard.Settings
         abstract set(obj: Object): Promise<null>;
         abstract get<T>(key: T | null): Promise<T>;
         abstract clear(): Promise<null>;
+        abstract remove(key: string): Promise<null>;
     }
 }

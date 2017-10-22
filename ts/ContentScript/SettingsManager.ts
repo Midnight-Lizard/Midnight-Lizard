@@ -28,73 +28,72 @@ namespace MidnightLizard.ContentScript
     {
         /** period of settings storage in the cookies */
         protected static readonly _storagePeriod = 49;
+        protected readonly _settingsKey: string;
 
         constructor(
             protected readonly _rootDocument: Document,
-            protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
+            // protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
             super(app, storageManager, settingsBus);
+            this._settingsKey = `ws:${_rootDocument.location.hostname}`;
             settingsBus.onCurrentSettingsRequested.addListener(this.onCurrentSettingsRequested, this);
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);
             settingsBus.onSettingsDeletionRequested.addListener(this.onSettingsDeletionRequested, this);
         }
 
-        protected initCurrentSettings()
+        protected async initCurrentSettings()
         {
-            this._storageManager.get(new Settings.ColorScheme())
-                .then(defaultSettings =>
+            try
+            {
+                const defaultSettings = await this._storageManager.get(Settings.ColorSchemes.default);
+                this._defaultSettings = defaultSettings;
+                if (defaultSettings.settingsVersion !== undefined)
                 {
-                    this._defaultSettings = defaultSettings;
-                    if (defaultSettings.settingsVersion !== undefined)
+                    this.applyUserColorSchemes(defaultSettings);
+                    const settings = await this.getSettings(defaultSettings.settingsVersion);
+                    defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
+                    Object.assign(this._currentSettings, defaultSettings);
+                    if (settings.exist)
                     {
-                        this.applyUserColorSchemes(defaultSettings);
-                        let settings = this.getSettings(defaultSettings.settingsVersion);
-                        defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
-                        Object.assign(this._currentSettings, defaultSettings);
-                        if (settings.exist)
+                        if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                            Settings.ColorSchemes[settings.colorSchemeId])
                         {
-                            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
-                                Settings.ColorSchemes[settings.colorSchemeId])
-                            {
-                                Object.assign(this._currentSettings, Settings.ColorSchemes[settings.colorSchemeId]);
-                            }
-                            else
-                            {
-                                settings.colorSchemeId = settings.colorSchemeId || "custom" as Settings.ColorSchemeName;
-                                Object.assign(this._currentSettings, settings);
-                            }
-                            this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
-                            this.saveCurrentSettings();
+                            Object.assign(this._currentSettings, Settings.ColorSchemes[settings.colorSchemeId]);
                         }
+                        else
+                        {
+                            settings.colorSchemeId = settings.colorSchemeId || "custom" as Settings.ColorSchemeName;
+                            Object.assign(this._currentSettings, settings);
+                        }
+                        this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
+                        this.saveCurrentSettings();
                     }
-                    else
-                    {
-                        defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
-                        this._currentSettings.settingsVersion = Util.guid("");
-                        this._storageManager.set(this._currentSettings);
-                    }
-                    this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
-                    this.updateSchedule();
-                    this.initCurSet();
-                    this._onSettingsInitialized.raise(this._shift);
-                })
-                .catch(ex => this._app.isDebug && console.error(ex));
+                }
+                else
+                {
+                    defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
+                    this._currentSettings.settingsVersion = Util.guid("");
+                    this._storageManager.set(this._currentSettings);
+                }
+                this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
+                this.updateSchedule();
+                this.initCurSet();
+                this._onSettingsInitialized.raise(this._shift);
+            }
+            catch (ex)
+            {
+                this._app.isDebug && console.error(ex);
+            }
         }
 
-        protected onSettingsDeletionRequested(response: AnyResponse): void
+        protected async onSettingsDeletionRequested(response: AnyResponse)
         {
             let setting: Settings.ColorSchemePropertyName;
-            for (setting in this._currentSettings)
-            {
-                if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
-                {
-                    this._cookiesManager.deleteCookieByName(this.getSettingNameForCookies(setting));
-                }
-            }
+            await this._storageManager.remove(this._settingsKey);
             response(null);
         }
 
@@ -123,19 +122,25 @@ namespace MidnightLizard.ContentScript
         {
             if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
             {
-                this._cookiesManager.setCookie(this.getSettingNameForCookies("colorSchemeId"), this._currentSettings.colorSchemeId, SettingsManager._storagePeriod);
-                this._cookiesManager.setCookie(this.getSettingNameForCookies("settingsVersion"), this._currentSettings.settingsVersion, SettingsManager._storagePeriod);
+                this._storageManager.set({
+                    [this._settingsKey]: {
+                        colorSchemeId: this._currentSettings.colorSchemeId,
+                        settingsVersion: this._currentSettings.settingsVersion
+                    }
+                });
             }
             else
             {
                 let setting: Settings.ColorSchemePropertyName;
+                const forSave = new Settings.ColorScheme();
                 for (setting in this._currentSettings)
                 {
                     if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
                     {
-                        this._cookiesManager.setCookie(this.getSettingNameForCookies(setting), this._currentSettings[setting], SettingsManager._storagePeriod);
+                        forSave[setting] = this._currentSettings[setting];
                     }
                 }
+                this._storageManager.set({ [this._settingsKey]: forSave });
             }
         }
 
@@ -144,27 +149,17 @@ namespace MidnightLizard.ContentScript
             return "ML" + propertyName.match(/^[^A-Z]{1,4}|[A-Z][^A-Z]{0,2}/g)!.join("").toUpperCase();
         }
 
-        protected getSettings(version: string): Settings.ColorScheme
+        protected getSettings(version: string): Promise<Settings.ColorScheme>
         {
-            let val, settings = new Settings.ColorScheme(), setting: Settings.ColorSchemePropertyName;
-            for (setting in Settings.ColorSchemes.default)
-            {
-                val = this._cookiesManager.getCookie(this.getSettingNameForCookies(setting));
-                if (val)
+            return this._storageManager.get<any>(this._settingsKey)
+                .then(x => x[this._settingsKey])
+                .then((settings: Settings.ColorScheme) =>
                 {
-                    switch (typeof Settings.ColorSchemes.default[setting])
-                    {
-                        case Util.BOOL: settings[setting] = val == true.toString(); break;
-                        case Util.NUM: settings[setting] = parseInt(val); break;
-                        default: settings[setting] = val; break;
-                    }
-                }
-                //else break;
-            }
-
-            settings.exist = settings.settingsVersion == version;
-            settings.settingsVersion = version;
-            return settings;
+                    settings = settings || {};
+                    settings.exist = settings.settingsVersion == version;
+                    settings.settingsVersion = version;
+                    return settings;
+                });
         }
     }
 }

@@ -29,5 +29,10 @@ namespace Chrome
         {
             return this.chromePromise.storage.local.clear();
         }
+
+        remove(key: string): Promise<null>
+        {
+            return this.chromePromise.storage.local.remove(key);
+        }
     }
 }
