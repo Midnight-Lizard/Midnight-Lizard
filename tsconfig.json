@@ -16,6 +16,9 @@
         "noEmitOnError": true,
         "noImplicitThis": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "types": [
+            "./ts/Typings/**/*"
+        ]
     }
 }

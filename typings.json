@@ -1,5 +1,0 @@
-{
-  "globalDependencies": {
-    "MidnightLizard": "file:ts/typings/midnight-lizard/MidnightLizard.d.ts"
-  }
-}

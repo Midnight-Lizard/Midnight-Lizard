@@ -5,10 +5,14 @@
         {
             "taskName": "TSC Release Content Script",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
-            "showOutput": "always",
-            "echoCommand": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/content-script-release.json"
@@ -17,10 +21,14 @@
         {
             "taskName": "TSC Release Background Page",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
-            "showOutput": "always",
-            "echoCommand": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/background-page-release.json"
@@ -29,10 +37,14 @@
         {
             "taskName": "TSC Release Popup",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
-            "showOutput": "always",
-            "echoCommand": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/popup-release.json"
@@ -41,10 +53,14 @@
         {
             "taskName": "TSC Release Custom",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
-            "showOutput": "always",
-            "echoCommand": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/custom-release.json"
@@ -53,10 +69,14 @@
         {
             "taskName": "TSC Release Page Script",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
-            "showOutput": "always",
-            "echoCommand": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/page-script-release.json"
@@ -65,7 +85,7 @@
         {
             "taskName": "TSC Build Content Script",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
@@ -75,7 +95,7 @@
         {
             "taskName": "TSC Build Background Page",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
@@ -85,7 +105,7 @@
         {
             "taskName": "TSC Build Popup",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
@@ -95,7 +115,7 @@
         {
             "taskName": "TSC Build Custom",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
@@ -105,7 +125,7 @@
         {
             "taskName": "TSC Build Page Script",
             "command": "tsc",
-            "isShellCommand": true,
+            "type": "shell",
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
@@ -114,7 +134,10 @@
         },
         {
             "taskName": "Build",
-            "isTestCommand": true,
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
             "dependsOn": [
                 "TSC Build Custom",
                 "TSC Build Page Script",
@@ -125,7 +148,10 @@
         },
         {
             "taskName": "Release",
-            "isBuildCommand": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "dependsOn": [
                 "TSC Release Custom",
                 "TSC Release Page Script",
