@@ -143,7 +143,7 @@ namespace MidnightLizard.Settings
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
 
-                    backgroundSaturationLimit: 80,
+                    backgroundSaturationLimit: 65,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 15,
                     backgroundGraySaturation: 5,

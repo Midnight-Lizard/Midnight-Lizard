@@ -237,7 +237,8 @@ namespace MidnightLizard.Settings
         public settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
         {
             const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
-                ["isEnabled", "exist", "hostName", "settingsVersion", "colorSchemeId", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+                ["isEnabled", "exist", "hostName", "settingsVersion", "colorSchemeId", "colorSchemeName",
+                    "userColorSchemes", "runOnThisSite", "isDefault" as any];
             for (let setting in first)
             {
                 let prop = setting as Settings.ColorSchemePropertyName;

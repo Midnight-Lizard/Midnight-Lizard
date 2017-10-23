@@ -1,42 +1,20 @@
 <html>
 
 <head>
-    <meta name="viewport"
-          content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
 
     <title>Midnight Lizard</title>
 
-    <link href="../css/global-vars.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/content-vars.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/helio-button.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/slider.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/checkbox.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/tab-control.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/switch.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/popup.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/popup-help.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/content-idle.css"
-          rel="stylesheet"
-          type="text/css">
+    <link href="../css/global-vars.css" rel="stylesheet" type="text/css">
+    <link href="../css/content-vars.css" rel="stylesheet" type="text/css">
+    <link href="../css/helio-button.css" rel="stylesheet" type="text/css">
+    <link href="../css/slider.css" rel="stylesheet" type="text/css">
+    <link href="../css/checkbox.css" rel="stylesheet" type="text/css">
+    <link href="../css/tab-control.css" rel="stylesheet" type="text/css">
+    <link href="../css/switch.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup-help.css" rel="stylesheet" type="text/css">
+    <link href="../css/content-idle.css" rel="stylesheet" type="text/css">
 
     <script src="../js/popup.js"></script>
 </head>
@@ -44,17 +22,16 @@
 <body>
     <div class="ml-dialog-root">
         <div class="ml-dialog-title">
-            <img id="logo"
-                 class="ml-dialog-logo"
-                 src="../img/ml-toolbar-icon-128.png" />
+            <img id="logo" class="ml-dialog-logo" src="../img/ml-toolbar-icon-128.png" />
             <div class="ml-dialog-title-text">
                 <span>Midnight Lizard</span> settings for
-                <a id="hostName"
-                   href="#"></a>
+                <b class="ml-host-state" tooltip="Toggle current website">
+                    <b id="hostState"></b>
+                </b>
+                <a id="hostName" href="#" tooltip="Current website
+Click to toggle it."></a>
             </div>
-            <a id="help"
-               tooltip="Support forum"
-               target="_blank"
+            <a id="help" tooltip="Support forum" target="_blank"
                href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/%22how$20to%22">?</a>
             <label id="isEnabledSwitch"
                    class="ml-switch"
@@ -71,8 +48,7 @@
         <div class="ml-dialog-settings">
             <ul class="ml-tab left">
                 <li class="ml-tab-item-separator">&nbsp;</li>
-                <li class="ml-tab-item"
-                    content="common"
+                <li class="ml-tab-item" content="common"
                     tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Common settings
 ━━━━━━━━━━━━━━━━━━━
 &emsp;This tab contains settings that are common for the entire page.
@@ -265,7 +241,6 @@ L 14.5 12 z" />
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            title="Run [Midnight Lizard] on this website&#xA;Do not forget to press [Apply] button after changing this option to apply changes on the current wibsite."
-                
                            for="runOnThisSite">
                         <input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
                     </label>

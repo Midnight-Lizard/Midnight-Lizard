@@ -49,7 +49,8 @@ namespace MidnightLizard.ContentScript
         {
             try
             {
-                const defaultSettings = await this._storageManager.get(Settings.ColorSchemes.default);
+                const defaultSettings = await this._storageManager.get(
+                    { ...Settings.ColorSchemes.default, ...Settings.ColorSchemes.dimmedDust });
                 this._defaultSettings = defaultSettings;
                 if (defaultSettings.settingsVersion !== undefined)
                 {
@@ -63,6 +64,7 @@ namespace MidnightLizard.ContentScript
                             Settings.ColorSchemes[settings.colorSchemeId])
                         {
                             Object.assign(this._currentSettings, Settings.ColorSchemes[settings.colorSchemeId]);
+                            this._currentSettings.runOnThisSite = settings.runOnThisSite;
                         }
                         else
                         {
@@ -92,9 +94,8 @@ namespace MidnightLizard.ContentScript
 
         protected async onSettingsDeletionRequested(response: AnyResponse)
         {
-            let setting: Settings.ColorSchemePropertyName;
-            await this._storageManager.remove(this._settingsKey);
             response(null);
+            await this._storageManager.remove(this._settingsKey);
         }
 
         protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings: Settings.ColorScheme): void
@@ -125,7 +126,8 @@ namespace MidnightLizard.ContentScript
                 this._storageManager.set({
                     [this._settingsKey]: {
                         colorSchemeId: this._currentSettings.colorSchemeId,
-                        settingsVersion: this._currentSettings.settingsVersion
+                        settingsVersion: this._currentSettings.settingsVersion,
+                        runOnThisSite: this._currentSettings.runOnThisSite
                     }
                 });
             }

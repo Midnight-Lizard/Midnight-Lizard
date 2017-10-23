@@ -578,3 +578,39 @@ html, body {
 {
     from { opacity: 0; }
 }
+
+#hostState:before
+{
+    display: inline-block;
+    margin-right: -1px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#hostState.run:before
+{
+    content: "\2714";
+    color: var(--logo-text-color);
+}
+
+#hostState.do-not-run:before
+{
+   content: "\26D4";
+   color: red;
+}
+
+.ml-host-state:before
+{
+    margin-left: -75px;
+}
+.ml-host-state:after
+{
+    margin-left: -20px;
+}
+
+#hostName:after
+{
+    margin-left: -111px;
+}
