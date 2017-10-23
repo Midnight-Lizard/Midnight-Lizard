@@ -207,7 +207,7 @@ html, body {
     font-weight: bold;
     background: rgb(48, 63, 161);
     color: white;
-    border: solid 1px rgb(140, 140, 140);
+    border: solid 1px white;
     border-radius: 50%;
     text-decoration: none;
 }
@@ -587,18 +587,27 @@ html, body {
     font-size: 14px;
     font-weight: normal;
     cursor: pointer;
+    border-radius: 50%;
+    width: 1.1em;
+    line-height: 1.1em;
+    border: 1px solid;
 }
 
 #hostState.run:before
 {
     content: "\2714";
     color: var(--logo-text-color);
+    background-color: #b5e3b7;
+    border-color: var(--thin-border-color);
 }
 
 #hostState.do-not-run:before
 {
-   content: "\26D4";
-   color: red;
+   content: "\2212";
+   color: white;
+   font-weight: bold;
+   background-color: red;
+   border-color: rgba(255, 255, 255, 0.9);
 }
 
 .ml-host-state:before

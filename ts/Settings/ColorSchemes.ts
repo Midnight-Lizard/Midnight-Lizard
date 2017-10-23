@@ -38,7 +38,7 @@ namespace MidnightLizard.Settings
                     colorSchemeId: "default",
                     colorSchemeName: "Default",
                     settingsVersion: "",
-                    runOnThisSite: true,
+                    runOnThisSite: false,
                     isEnabled: true,
                     restoreColorsOnCopy: false,
                     blueFilter: 0,
