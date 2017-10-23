@@ -35,6 +35,8 @@ namespace MidnightLizard.Popup
         abstract saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>;
         abstract deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>;
         abstract settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean;
+        abstract toggleSync(value: boolean): Promise<null>;
+        abstract getCurrentSorage(): Promise<boolean>;
     }
 
     @DI.injectable(IPopupSettingsManager)
@@ -60,7 +62,6 @@ namespace MidnightLizard.Popup
             Promise.all([this.getDefaultSettings(), this._settingsBus.getCurrentSettings()])
                 .then(([defaultSettings, currentSettings]) =>
                 {
-                    this._defaultSettings = defaultSettings;
                     this.applyUserColorSchemes(defaultSettings);
                     this._currentSettings = currentSettings;
                     this.updateSchedule();
@@ -74,9 +75,15 @@ namespace MidnightLizard.Popup
                 });
         }
 
+        public getCurrentSorage()
+        {
+            return this._storageManager.getCurrentStorage().then(storType => storType === "sync");
+        }
+
         public getDefaultSettings()
         {
-            const promise = this._storageManager.get<Settings.ColorScheme>(null);
+            const promise = this._storageManager.get(
+                { ...Settings.ColorSchemes.default, ...Settings.ColorSchemes.dimmedDust });
             promise.then(settings => this._defaultSettings = settings);
             return promise;
         }
@@ -158,6 +165,11 @@ namespace MidnightLizard.Popup
         public deleteCurrentSiteSettings()
         {
             return this._settingsBus.deleteSettings();
+        }
+
+        public toggleSync(value: boolean): Promise<null>
+        {
+            return this._storageManager.toggleSync(value);
         }
 
         public applySettings()

@@ -38,6 +38,7 @@ namespace MidnightLizard.Popup
         protected _newColorSchemeName: HTMLInputElement;
         protected _colorSchemeForEdit: HTMLSelectElement;
         protected _importColorSchemeFileInput: HTMLInputElement;
+        protected _syncSettingsCheckBox: HTMLInputElement;
 
         constructor(
             protected readonly _popup: Document,
@@ -100,6 +101,13 @@ namespace MidnightLizard.Popup
             this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
             this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
             this._importColorSchemeFileInput = doc.getElementById("importColorSchemeFileInput") as HTMLInputElement;
+            this._syncSettingsCheckBox = doc.getElementById("syncSettings") as HTMLInputElement;
+
+            this._settingsManager.getCurrentSorage().then(isSync =>
+            {
+                this._syncSettingsCheckBox.checked = isSync;
+                this._syncSettingsCheckBox.onchange = this.onSettingsSyncChanged.bind(this);
+            });
 
             doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}  Changelog`);
 
@@ -270,6 +278,12 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value = (this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text.replace(editMark, "");
                 this.updateColorSchemeButtons();
             }
+        }
+
+        protected onSettingsSyncChanged()
+        {
+            this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
+                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));;
         }
 
         protected updateColorSchemeButtons()

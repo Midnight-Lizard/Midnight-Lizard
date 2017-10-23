@@ -255,11 +255,11 @@ L 14.5 12 z" />
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
-                
                            for="useDefaultSchedule">
                         <input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
                     </label>
                 </div>
+                <br>
                 <div id="scheduleStartHourContainer"
                      class="ml-input-container time">
                     <label class="ml-dialog-label time"
@@ -1565,6 +1565,13 @@ L 14.5 12 z" />
             <div id="edit-schemes"
                  class="ml-tab-content">
                 <br>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Sync [Midnight Lizard] settings across all your devices where this option is also checked.&#xA;When checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one."
+                           for="syncSettings">
+                        <input class="ml-checkbox" id="syncSettings" type="checkbox">Sync settings across your devices
+                    </label>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="colorSchemeForEdit"

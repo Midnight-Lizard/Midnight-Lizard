@@ -5,34 +5,64 @@
 
 namespace Chrome
 {
-    /**
-     * ChromeStorage
-     */
     @MidnightLizard.DI.injectable(MidnightLizard.Settings.IStorageManager)
     class ChromeStorageManager implements MidnightLizard.Settings.IStorageManager
     {
+        currentStorage?: MidnightLizard.Settings.StorageType;
+
         constructor(readonly chromePromise: Chrome.ChromePromise)
         {
         }
 
         set(obj: Object)
         {
-            return this.chromePromise.storage.local.set(obj);
+            return this.getCurrentStorage()
+                .then(storage => this.chromePromise.storage[storage].set(obj));
         }
 
         get<T extends Object>(key: T | null)
         {
-            return this.chromePromise.storage.local.get(key) as Promise<T>;
+            return this.getCurrentStorage()
+                .then(storage => this.chromePromise.storage[storage].get(key) as Promise<T>);
         }
 
         clear()
         {
-            return this.chromePromise.storage.local.clear();
+            return this.getCurrentStorage()
+                .then(storage => this.chromePromise.storage[storage].clear());
         }
 
         remove(key: string): Promise<null>
         {
-            return this.chromePromise.storage.local.remove(key);
+            return this.getCurrentStorage()
+                .then(storage => this.chromePromise.storage[storage].remove(key));
+        }
+
+        toggleSync(value: boolean): Promise<null>
+        {
+            const newStorage = value ? "sync" : "local";
+            this.getCurrentStorage().then(currStorage =>
+            {
+                if (newStorage !== currStorage)
+                {
+                    this.chromePromise.storage[currStorage].get(null)
+                        .then(currContent => this.chromePromise.storage[newStorage].set(currContent));
+                }
+            });
+            return this.chromePromise.storage.local.set({ sync: value });
+        }
+
+        getCurrentStorage(): Promise<MidnightLizard.Settings.StorageType>
+        {
+            if (this.currentStorage)
+            {
+                return Promise.resolve(this.currentStorage);
+            }
+            else
+            {
+                return this.chromePromise.storage.local.get({ sync: true })
+                    .then(x => this.currentStorage = x.sync ? "sync" : "local");
+            }
         }
     }
 }

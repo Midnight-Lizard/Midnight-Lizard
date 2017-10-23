@@ -105,5 +105,6 @@ namespace Chrome
             remove(key: string): Promise<null>;
         }
         export var local: StorageArea;
+        export var sync: StorageArea;
     }
 }
