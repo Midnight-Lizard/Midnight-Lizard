@@ -438,7 +438,8 @@ html, body {
     content: "";
     position: absolute;
     z-index: 999;
-    border-top: dashed 1px var(--outline-color);
+    border: dashed var(--outline-color);
+    border-width: 1px 0px 0px 0px;
     pointer-events: none;
     animation: hideEffect 0.3s ease-out forwards;
 }
@@ -512,20 +513,24 @@ html, body {
     transform: rotate(28deg);
 }
 
-.intro-common:after
+.intro-host:after
 {
-    width: 121px;
+    width: 152px;
     height: 32px;
-    top: 25px;
-    left: -158px;
+    top: -38px;
+    right: -49px;
+    border-width: 0px 0px 1px 0px;
 }
 
-.intro-common:before
+.intro-host:before
 {
-    width: 60px;
-    left: -38px;
-    top: 58px;
-    transform: rotate(30deg);
+    width: 13px;
+    height: 80px;
+    right: 7px;
+    top: -3px;
+    border-bottom-right-radius: 5px;
+    /* transform: rotate(30deg); */
+    border-width: 0px 1px 1px 0px;
 }
 
 .intro-toggle:after

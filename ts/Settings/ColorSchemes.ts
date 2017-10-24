@@ -150,13 +150,13 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 200,
 
                     textSaturationLimit: 80,
-                    textContrast: 54,
+                    textContrast: 55,
                     textLightnessLimit: 80,
                     textGraySaturation: 24,
                     textGrayHue: 16,
 
                     linkSaturationLimit: 80,
-                    linkContrast: 54,
+                    linkContrast: 55,
                     linkLightnessLimit: 70,
                     linkDefaultSaturation: 70,
                     linkDefaultHue: 207,
