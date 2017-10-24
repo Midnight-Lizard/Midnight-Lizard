@@ -38,18 +38,25 @@ namespace Chrome
                 .then(storage => this.chromePromise.storage[storage].remove(key));
         }
 
-        toggleSync(value: boolean): Promise<null>
+        async toggleSync(value: boolean): Promise<null>
         {
             const newStorage = value ? "sync" : "local";
-            this.getCurrentStorage().then(currStorage =>
+            const currStorage = await this.getCurrentStorage();
+            if (newStorage !== currStorage)
             {
-                if (newStorage !== currStorage)
-                {
-                    this.chromePromise.storage[currStorage].get(null)
-                        .then(currContent => this.chromePromise.storage[newStorage].set(currContent));
-                }
-            });
+                await this.transferStorage(currStorage, newStorage);
+            }
             return this.chromePromise.storage.local.set({ sync: value });
+        }
+
+        protected async transferStorage(from: MidnightLizard.Settings.StorageType, to: MidnightLizard.Settings.StorageType)
+        {
+            const newStorageContent = await this.chromePromise.storage[to].get(null);
+            if (!newStorageContent || Object.keys(newStorageContent).length === 0)
+            {
+                this.chromePromise.storage[to].set(
+                    await this.chromePromise.storage[from].get(null));
+            }
         }
 
         getCurrentStorage(): Promise<MidnightLizard.Settings.StorageType>
