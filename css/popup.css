@@ -422,6 +422,8 @@ html, body {
 {
     --ml-text-color:HighlightedText;
     color: var(--main-color);
+    outline: dashed 1px rgb(25, 113, 184);
+    outline-offset: 1px;
 }
 
 .intro:after
@@ -440,8 +442,8 @@ html, body {
     content: "";
     position: absolute;
     z-index: 999;
-    border: dashed var(--outline-color);
-    border-width: 1px 0px 0px 0px;
+    border: dotted var(--outline-color);
+    border-width: 0px 1px 0px 0px;
     pointer-events: none;
     animation: hideEffect 0.3s ease-out forwards;
 }
@@ -461,10 +463,10 @@ html, body {
 
 .intro-select-scheme:before
 {
-    width: 38px;
-    right: -18px;
-    top: 129px;
-    transform: rotate(-25deg);
+    height: 20px;
+    right: 1px;
+    top: 121px;
+    transform: skew(-60deg);
 }
 
 .intro-edit-schemes:after
@@ -477,10 +479,14 @@ html, body {
 
 .intro-edit-schemes:before
 {
-    width: 272px;
-    right: -134px;
-    top: 180px;
-    transform: rotate(-83deg);
+    height: 253px;
+    width: 5px;
+    border-bottom-right-radius: 10px;
+    border-style: dashed;
+    right: -2px;
+    top: 60px;
+    transform: skew(-7deg);
+    border-width: 0px 1px 1px 0px;
 }
 
 .intro-apply:after
@@ -493,10 +499,10 @@ html, body {
 
 .intro-apply:before
 {
-    width: 40px;
-    right: -18px;
-    top: 298px;
-    transform: rotate(28deg);
+    height: 21px;
+    right: 1px;
+    top: 288px;
+    transform: skew(57deg);
 }
 
 .intro-tabs:after
@@ -509,10 +515,10 @@ html, body {
 
 .intro-tabs:before
 {
-    width: 55px;
-    left: -24px;
-    top: 184px;
-    transform: rotate(17deg);
+    height: 22px;
+    left: -4px;
+    top: 170px;
+    transform: skew(60deg);
 }
 
 .intro-host:after
@@ -526,13 +532,14 @@ html, body {
 
 .intro-host:before
 {
-    width: 13px;
+    width: 17px;
     height: 98px;
-    right: 7px;
+    right: 15px;
     top: -5px;
-    border-radius: 51%;
-    transform: rotate(7deg);
-    border-width: 0px 1px 0px 0px;
+    border-bottom-right-radius: 6px;
+    transform: skew(16deg);
+    border-width: 0px 1px 1px 0px;
+    border-style: dashed;
 }
 
 .intro-toggle:after
@@ -546,10 +553,10 @@ html, body {
 
 .intro-toggle:before
 {
-    width: 142px;
-    right: -109px;
-    top: 16px;
-    transform: rotate(-28deg);
+    height: 63px;
+    right: -42px;
+    top: -17px;
+    transform: skew(-62deg);
 }
 
 .intro-default:after
@@ -562,10 +569,13 @@ html, body {
 
 .intro-default:before
 {
-    width: 104px;
-    right: -52px;
-    top: 312px;
-    transform: rotate(-70deg);
+    height: 107px;
+    width: 7px;
+    right: -3px;
+    top: 264px;
+    transform: skew(-15deg);
+    border-style: dashed;
+    border-bottom-right-radius: 10px;
 }
 
 .intro-help:after
@@ -590,13 +600,26 @@ html, body {
 
 .intro-help:before
 {
+    width: 77px;
+    height: 360px;
+    top: 12px;
+    border-radius: 0px 10px 0px 0px;
+    border-width: 1px 1px 0px 0px;
+    left: -95px;
+    border-style: dashed;
+    transform: skew(11deg, 35deg);
+}
+
+/* .intro-help:before
+{
     width: 190px;
     height: 416px;
     top: -8px;
     border-radius: 8px 0px 0px 10px;
     border-width: 0px 0px 1px 1px;
     left: -160px;
-}
+    border-style: dashed;
+} */
 
 #edit-schemes p
 {

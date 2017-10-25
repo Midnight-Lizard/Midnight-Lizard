@@ -273,7 +273,7 @@ input[type=range].ml-input-range:focus
 
   --x: 7px;
   --h: 7.5px;
-  --o: 14px;
+  --o: 15px;
   --f: 15px;
 
   background-size:
@@ -287,7 +287,8 @@ input[type=range].ml-input-range:focus
     calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
     100% 100%,
     var(--range-segment-width) 8px,
-    calc(100% - var(--f)) 100%, calc(100% - var(--f)) 100%;
+    calc(100% - var(--f)) 100%,
+    calc(100% - var(--f)) 100%;
 
   background-position:
     calc(100% - var(--h)) 0px,
@@ -300,7 +301,8 @@ input[type=range].ml-input-range:focus
     var(--x) 0px,
     0px 0px,
     var(--x) 0px,
-    var(--x) 0px, var(--x) 0px;
+    var(--x) 0px,
+    var(--x) 0px;
 
   background-repeat:
     no-repeat, no-repeat,
@@ -332,10 +334,10 @@ input[type=range].ml-input-range:focus
       var(--pseudo-background-color) 25%,
       var(--pseudo-background-color) 30%,
       rgba(  0,  0,  0, 0  ) 30%,
-      rgba(  0,  0,  0, 0  ) 45%,
-      var(--pseudo-background-color) 45%,
-      var(--pseudo-background-color) 55%,
-      rgba(  0,  0,  0, 0  ) 55%,
+      rgba(  0,  0,  0, 0  ) 47%,
+      var(--pseudo-background-color) 47%,
+      var(--pseudo-background-color) 53%,
+      rgba(  0,  0,  0, 0  ) 53%,
       rgba(  0,  0,  0, 0  ) 70%,
       var(--pseudo-background-color) 70%,
       var(--pseudo-background-color) 75%,
