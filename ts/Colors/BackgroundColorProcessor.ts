@@ -11,14 +11,9 @@ namespace MidnightLizard.Colors
     {
         abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry;
     }
-
-    export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor
-    {
-    }
-
-    export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor
-    {
-    }
+    export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
+    export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
+    export abstract class ITextSelectionColorProcessor extends IBackgroundColorProcessor { }
 
     /** BackgroundColorProcessor */
     @DI.injectable(IBackgroundColorProcessor)
@@ -225,6 +220,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.SvgBackground;
+        }
+    }
+
+    @DI.injectable(ITextSelectionColorProcessor)
+    class TextSelectionColorProcessor extends BackgroundColorProcessor implements ITextSelectionColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.TextSelection;
         }
     }
 

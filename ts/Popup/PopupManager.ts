@@ -145,7 +145,18 @@ namespace MidnightLizard.Popup
             this._exportColorSchemeButton.onclick = this.exportColorScheme.bind(this);
             this._importColorSchemeFileInput.onchange = this.importColorSchemes.bind(this);
 
-            Controls.Tab.initTabControl(doc);
+            Controls.Tab.initTabControl(doc, (tab) =>
+            {
+                if (tab === "text")
+                {
+                    const text = this._popup.getElementById("selection") as Node;
+                    const selection = this._popup.defaultView.getSelection();
+                    const range = this._popup.createRange();
+                    range.selectNodeContents(text);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            });
             Controls.Slider.initSliders(doc);
 
             this._hostName.innerText = this._currentSiteSettings.hostName || "current page";

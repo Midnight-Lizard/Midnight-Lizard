@@ -96,6 +96,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.backgroundGraySaturation,
                         grayHue: set.backgroundGrayHue
                     },
+                    TextSelection:
+                    {
+                        saturationLimit: Math.max(set.textSaturationLimit, 0.3),
+                        contrast: set.backgroundContrast,
+                        lightnessLimit: 0.46,
+                        graySaturation: Math.max(set.textSaturationLimit, 0.3),
+                        grayHue: set.textSelectionHue
+                    },
                     Text:
                     {
                         saturationLimit: set.textSaturationLimit,

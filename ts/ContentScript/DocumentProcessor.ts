@@ -70,6 +70,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _scrollbarNormalColorProcessor: MidnightLizard.Colors.IScrollbarNormalColorProcessor,
             protected readonly _scrollbarActiveColorProcessor: MidnightLizard.Colors.IScrollbarActiveColorProcessor,
             protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor,
+            protected readonly _textSelectionColorProcessor: MidnightLizard.Colors.ITextSelectionColorProcessor,
             protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
@@ -1627,14 +1628,15 @@ namespace MidnightLizard.ContentScript
 
         protected createDynamicStyle(doc: Document)
         {
-            let sheet = doc.createElement('style');
+            const sheet = doc.createElement('style');
             sheet.id = "midnight-lizard-dynamic-style";
             sheet.mlIgnore = true;
-            let bgLight = this.shift.Background.lightnessLimit;
-            let thumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color;
-            let thumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color;
-            let thumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color;
-            let trackColor = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color;
+            const selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc).color;
+            const bgLight = this.shift.Background.lightnessLimit;
+            const thumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color;
+            const thumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color;
+            const thumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color;
+            const trackColor = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color;
             let globalVars = "";
             let component: keyof Colors.ComponentShift,
                 property: keyof Colors.ColorShift;
@@ -1652,7 +1654,8 @@ namespace MidnightLizard.ContentScript
                 }
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}`;
-            sheet.innerHTML = `:root { ${globalVars} }
+            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}`;
+            sheet.innerHTML = `:root { ${globalVars} }\n:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }
                 scrollbar { width: 12px!important; height: 12px!important; background: ${thumbNormalColor}!important; }
                 scrollbar-button:hover { background: ${thumbHoverColor}!important; }
                 scrollbar-button { background: ${thumbNormalColor}!important; width:5px!important; height:5px!important; }

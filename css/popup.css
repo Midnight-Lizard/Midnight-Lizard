@@ -20,8 +20,8 @@ html, body {
 
 .ml-dialog-title-text {
     display: inline-block;
-    vertical-align: top;
     margin-top: 12px;
+    vertical-align: top;
 }
 
 .ml-dialog-title {
@@ -30,6 +30,7 @@ html, body {
     border-bottom: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
     position: relative;
+    vertical-align: baseline;
 }
 
 .ml-dialog-fotter
@@ -62,7 +63,7 @@ html, body {
 .ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
     position: absolute;
-    top: 81px;
+    top: 90px;
     bottom: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
@@ -99,7 +100,7 @@ html, body {
 
 .ml-dialog-commands > button, .ml-dialog-commands > .ml-tool-box
 {
-    margin: 14px 20px;
+    margin: 18px 20px;
     width: 130px;
 }
 
@@ -210,6 +211,7 @@ html, body {
     border: solid 1px white;
     border-radius: 50%;
     text-decoration: none;
+    user-select: none;
 }
 
 #isEnabledSwitch {
@@ -373,7 +375,7 @@ html, body {
     fill: #1B5E20;
 }
 
-#linkHue, #textHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue, #colorSchemeForEdit option, #colorScheme option
+#linkHue, #textHue, #txtSelHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue, #colorSchemeForEdit option, #colorScheme option
 {
     --ml-ignore:true;
 }
@@ -406,9 +408,9 @@ html, body {
     font-size: 10px;
     text-align: justify;
     width: 260px;
-    height: 35px;
+    height: 60px;
     overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: scroll;
     white-space: nowrap;
     background: var(--main-background-color);
     margin: 7px calc((100% - 266px)/2) 0px calc((100% - 266px)/2);
@@ -453,64 +455,64 @@ html, body {
 {
     width: 135px;
     height: 32px;
-    top: 96px;
+    top: 104px;
     right: -154px;
 }
 
 .intro-select-scheme:before
 {
-    width: 37px;
+    width: 38px;
     right: -18px;
-    top: 118px;
-    transform: rotate(-20deg);
+    top: 129px;
+    transform: rotate(-25deg);
 }
 
 .intro-edit-schemes:after
 {
     width: 134px;
     height: 32px;
-    top: 24px;
-    right: -154px;
+    top: 27px;
+    right: -152px;
 }
 
 .intro-edit-schemes:before
 {
-    width: 238px;
-    right: -119px;
-    top: 175px;
-    transform: rotate(-81deg);
+    width: 272px;
+    right: -134px;
+    top: 180px;
+    transform: rotate(-83deg);
 }
 
 .intro-apply:after
 {
     width: 136px;
     height: 34px;
-    top: 264px;
+    top: 292px;
     right: -155px;
 }
 
 .intro-apply:before
 {
     width: 40px;
-    right: -17px;
-    bottom: 107px;
-    transform: rotate(21deg);
+    right: -18px;
+    top: 298px;
+    transform: rotate(28deg);
 }
 
 .intro-tabs:after
 {
     width: 132px;
     height: 330px;
-    top: 25px;
+    top: 55px;
     left: -158px;
 }
 
 .intro-tabs:before
 {
-    width: 48px;
-    left: -28px;
-    top: 177px;
-    transform: rotate(28deg);
+    width: 55px;
+    left: -24px;
+    top: 184px;
+    transform: rotate(17deg);
 }
 
 .intro-host:after
@@ -525,12 +527,12 @@ html, body {
 .intro-host:before
 {
     width: 13px;
-    height: 80px;
+    height: 98px;
     right: 7px;
-    top: -3px;
-    border-bottom-right-radius: 5px;
-    /* transform: rotate(30deg); */
-    border-width: 0px 1px 1px 0px;
+    top: -5px;
+    border-radius: 51%;
+    transform: rotate(7deg);
+    border-width: 0px 2px 0px 0px;
 }
 
 .intro-toggle:after
@@ -544,9 +546,9 @@ html, body {
 
 .intro-toggle:before
 {
-    width: 130px;
+    width: 159px;
     right: -106px;
-    top: 12px;
+    top: 13px;
     transform: rotate(-25deg);
 }
 
@@ -554,7 +556,7 @@ html, body {
 {
     width: 136px;
     height: 34px;
-    top: 208px;
+    top: 228px;
     right: -155px;
 }
 
@@ -562,8 +564,28 @@ html, body {
 {
     width: 104px;
     right: -52px;
-    bottom: 87px;
+    top: 312px;
     transform: rotate(-70deg);
+}
+
+.intro-help:after
+{
+    width: 33px;
+    height: 34px;
+    top: -42px;
+    left: -162px;
+    border-radius: 50%;
+}
+
+.intro-help:before
+{
+    width: 456px;
+    height: 56px;
+    left: -282px;
+    top: 175px;
+    border-radius: 51%;
+    transform: rotate(-112deg);
+    border-width: 2px 0px 0px 0px;
 }
 
 #edit-schemes p
@@ -617,14 +639,23 @@ html, body {
 
 .ml-host-state:before
 {
-    margin-left: -75px;
+    margin-left: -103px;
 }
 .ml-host-state:after
 {
-    margin-left: -20px;
+    margin-left: -22px;
 }
 
 #hostName:after
 {
-    margin-left: -111px;
+    margin-left: -116px;
+}
+
+#hostName
+{
+    display: inline-block;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: top;
 }

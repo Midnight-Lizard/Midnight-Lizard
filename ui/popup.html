@@ -29,7 +29,7 @@
                     <b id="hostState"></b>
                 </b>
                 <a id="hostName" href="#" tooltip="&emsp;&emsp;&ensp;Current website
-━━━━━━━━━━━━━
+━━━━━━━━━━━━
 Click&ensp;to&ensp;toggle&ensp;it&ensp;between
 white&ensp;&amp;&ensp;black&ensp;lists"></a>
             </div>
@@ -88,15 +88,10 @@ white&ensp;&amp;&ensp;black&ensp;lists"></a>
                     tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Text color settings
 ━━━━━━━━━━━━━━━━━━━
 &emsp;This tab contains color adjustment settings for all text elements on the page.">
-                    <svg class="ml-tab-item-icon"
-                         role="img"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
-                        <path id="textHue"
-                              d="M0 20h24v4H0z"
-                              fill-opacity="1" />
+                    <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path id="textHue" d="M0 20h12v4H0z" fill-opacity="1" />
+                        <path id="txtSelHue" d="M12 20h12v4H12z" fill-opacity="1"/>
                         <path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
                     </svg>Text</li>
                 <li class="ml-tab-item"
@@ -235,6 +230,9 @@ L 14.5 12 z" />
                 <p class="intro intro-default">
                     If you want to set up current settings as a <span>default settings</span> for all websites press <q>Set
                     as default</q> button on the right pane.
+                </p>
+                <p class="intro intro-help">
+                    If you need <span>more help</span> go to the support forum to read existing tutorials or ask a new question.
                 </p>
             </div>
             <div id="common"
@@ -739,6 +737,70 @@ L 14.5 12 z" />
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="textGrayHue"
                             display-color-on="textHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label" for="textSelectionHue" title="Text selection hue">Text <span id="selection">selection</span> hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="textSelectionHue" display-color-on="txtSelHue">
                         <option value="4"
                                 label="Red"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
@@ -1558,8 +1620,13 @@ L 14.5 12 z" />
                            title="Scrollbar example">Scrollbar example</label>
                     <div class="ml-scrollbar-example">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
                 </div>
             </div>

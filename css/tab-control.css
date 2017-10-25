@@ -72,7 +72,7 @@
 {
     margin-left: 10px;
     border-right: solid 1px var(--thin-border-color);
-    height: 22px;
+    height: 54px;
 }
 
 .right .ml-tab-item-separator
@@ -81,7 +81,7 @@
     margin-right: 10px;
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
-    height: 20px;
+    height: 25px;
 }
 
 .active
@@ -121,7 +121,7 @@
 
 #default-tab-content.ml-tab-content p
 {
-    margin: 6px 20px 0px 20px;
+    margin: 9px 20px 0px 20px;
 }
 
 #default-tab-content.ml-tab-content p b, #default-tab-content.ml-tab-content p span, #default-tab-content.ml-tab-content p i
@@ -132,7 +132,7 @@
 #default-tab-content.ml-tab-content h3
 {
     text-align: center;
-    margin: 9px;
+    margin: 16px;
 }
 
 @keyframes fadeEffect

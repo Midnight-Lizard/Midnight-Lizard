@@ -5,6 +5,7 @@ namespace MidnightLizard.Colors
     {
         Background,
         Text,
+        TextSelection,
         HighlightedText,
         Link,
         TextShadow,
@@ -24,6 +25,7 @@ namespace MidnightLizard.Colors
     {
         Background: ColorShift;
         Text: ColorShift;
+        TextSelection: ColorShift;
         HighlightedText: ColorShift;
         Link: ColorShift;
         TextShadow: ColorShift;

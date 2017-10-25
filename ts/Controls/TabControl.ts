@@ -1,11 +1,12 @@
 namespace MidnightLizard.Controls.Tab
 {
-    export function initTabControl(doc: Document)
+    export function initTabControl(doc: Document, onTabOpened: (tab: string) => void)
     {
-        let tabs = Array.prototype.slice.call(doc.getElementsByClassName("ml-tab-item"));
+        const tabs = Array.prototype.slice.call(doc.getElementsByClassName("ml-tab-item"));
+        const openTabBound = openTab.bind(null, onTabOpened);
         for (let tab of tabs)
         {
-            tab.onclick = openTab;
+            tab.onclick = openTabBound;
             if (tab.hasAttribute("selected"))
             {
                 tab.click();
@@ -13,9 +14,9 @@ namespace MidnightLizard.Controls.Tab
         }
     }
 
-    function openTab(eventArgs: Event)
+    function openTab(onTabOpened: (tab: string) => void, eventArgs: Event)
     {
-        let target = eventArgs.currentTarget as Element;
+        let target = eventArgs.currentTarget as HTMLElement;
         let doc = target.ownerDocument;
 
         let tabContents = Array.prototype.slice.call(doc.getElementsByClassName("ml-tab-content"));
@@ -29,7 +30,9 @@ namespace MidnightLizard.Controls.Tab
         {
             tab.classList.remove("active");
         }
-        doc.getElementById(target.getAttribute("content") !) !.style.display = "table-cell";
+        const content = target.getAttribute("content")!;
+        doc.getElementById(content)!.style.display = "table-cell";
         target.classList.add("active");
+        onTabOpened(content);
     }
 }

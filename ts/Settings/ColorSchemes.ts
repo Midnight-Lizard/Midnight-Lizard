@@ -58,6 +58,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 0,
                     textGrayHue: 0,
+                    textSelectionHue: 0,
 
                     linkSaturationLimit: 100,
                     linkContrast: 0,
@@ -106,6 +107,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 0,
                     textGrayHue: 0,
+                    textSelectionHue: 0,
 
                     linkSaturationLimit: 100,
                     linkContrast: 0,
@@ -154,6 +156,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 80,
                     textGraySaturation: 24,
                     textGrayHue: 16,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 80,
                     linkContrast: 55,
@@ -202,6 +205,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 90,
                     textGraySaturation: 20,
                     textGrayHue: 88,
+                    textSelectionHue: 88,
 
                     linkSaturationLimit: 80,
                     linkContrast: 60,
@@ -250,6 +254,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 90,
                     textGraySaturation: 30,
                     textGrayHue: 66,
+                    textSelectionHue: 88,
 
                     linkSaturationLimit: 80,
                     linkContrast: 55,
@@ -298,6 +303,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 90,
                     textGraySaturation: 20,
                     textGrayHue: 45,
+                    textSelectionHue: 291,
 
                     linkSaturationLimit: 80,
                     linkContrast: 55,
@@ -346,6 +352,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 95,
                     textGraySaturation: 20,
                     textGrayHue: 199,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 90,
                     linkContrast: 60,
@@ -394,6 +401,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 40,
                     textGrayHue: 16,
+                    textSelectionHue: 14,
 
                     linkSaturationLimit: 80,
                     linkContrast: 80,
@@ -442,6 +450,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 40,
                     textGrayHue: 16,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 100,
                     linkContrast: 60,
@@ -490,6 +499,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 0,
                     textGrayHue: 0,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 10,
                     linkContrast: 60,
@@ -538,6 +548,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 70,
                     textGraySaturation: 0,
                     textGrayHue: 0,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 80,
                     linkContrast: 50,
@@ -586,6 +597,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 80,
                     textGraySaturation: 0,
                     textGrayHue: 0,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 10,
                     linkContrast: 50,
@@ -634,6 +646,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 80,
                     textGraySaturation: 60,
                     textGrayHue: 54,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 80,
                     linkContrast: 50,
@@ -682,6 +695,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 80,
                     textGraySaturation: 60,
                     textGrayHue: 122,
+                    textSelectionHue: 231,
 
                     linkSaturationLimit: 80,
                     linkContrast: 50,
