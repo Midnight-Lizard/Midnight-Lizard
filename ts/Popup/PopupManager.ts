@@ -294,7 +294,8 @@ namespace MidnightLizard.Popup
         protected onSettingsSyncChanged()
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
-                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));;
+                .then(x => alert("Changes have been successfully applied."))
+                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));
         }
 
         protected updateColorSchemeButtons()
