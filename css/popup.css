@@ -532,7 +532,7 @@ html, body {
     top: -5px;
     border-radius: 51%;
     transform: rotate(7deg);
-    border-width: 0px 2px 0px 0px;
+    border-width: 0px 1px 0px 0px;
 }
 
 .intro-toggle:after
@@ -546,10 +546,10 @@ html, body {
 
 .intro-toggle:before
 {
-    width: 159px;
-    right: -106px;
-    top: 13px;
-    transform: rotate(-25deg);
+    width: 142px;
+    right: -109px;
+    top: 16px;
+    transform: rotate(-28deg);
 }
 
 .intro-default:after
@@ -577,7 +577,7 @@ html, body {
     border-radius: 50%;
 }
 
-.intro-help:before
+/* .intro-help:before
 {
     width: 456px;
     height: 56px;
@@ -585,7 +585,17 @@ html, body {
     top: 175px;
     border-radius: 51%;
     transform: rotate(-112deg);
-    border-width: 2px 0px 0px 0px;
+    border-width: 1px 0px 0px 0px;
+} */
+
+.intro-help:before
+{
+    width: 190px;
+    height: 416px;
+    top: -8px;
+    border-radius: 8px 0px 0px 10px;
+    border-width: 0px 0px 1px 1px;
+    left: -160px;
 }
 
 #edit-schemes p
@@ -623,9 +633,10 @@ html, body {
 #hostState.run:before
 {
     content: "\2714";
-    color: var(--logo-text-color);
-    background-color: #b5e3b7;
-    border-color: var(--thin-border-color);
+    text-shadow: 0 0 1px hsla(65,100%,5%,0.8);
+    color: #EEFF41;
+    background-color: #2E7D32;
+    border-color: hsla(124, 55%, 20%, 0.3);
 }
 
 #hostState.do-not-run:before
@@ -634,7 +645,7 @@ html, body {
    color: white;
    font-weight: bold;
    background-color: red;
-   border-color: rgba(255, 255, 255, 0.9);
+   border-color: hsla(0, 73%, 41%, 0.3);
 }
 
 .ml-host-state:before
