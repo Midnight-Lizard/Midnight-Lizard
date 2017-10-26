@@ -375,7 +375,7 @@ html, body {
     fill: #1B5E20;
 }
 
-#linkHue, #textHue, #txtSelHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue, #colorSchemeForEdit option, #colorScheme option
+#linkHue, #textHue, #visitedHue, #txtSelHue, #backgroundHue, #scrollbarHue, #scrollbarHue rect, #borderHue, #colorSchemeForEdit option, #colorScheme option
 {
     --ml-ignore:true;
 }

@@ -2,6 +2,7 @@
 {
     --ml-ignore:false;
     --ml-invert:0;
+    --ml-is-active:0;
     --ml-no-invert:false;
     --ml-small-svg-is-text:true;
 
@@ -9,6 +10,8 @@
     --ml-text-fill:Text;
     --ml-link-color:Link;
     --ml-link-fill:Link;
+    --ml-visitedlink-color:VisitedLink;
+    --ml-visitedlink-fill:VisitedLink;
 
     --ml-background-background-color:Background;
     --ml-background-fill:Background;

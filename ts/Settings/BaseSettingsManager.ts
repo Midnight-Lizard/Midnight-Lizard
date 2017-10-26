@@ -128,6 +128,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.linkDefaultSaturation,
                         grayHue: set.linkDefaultHue
                     },
+                    VisitedLink:
+                    {
+                        saturationLimit: set.linkSaturationLimit,
+                        contrast: set.linkContrast,
+                        lightnessLimit: set.linkLightnessLimit,
+                        graySaturation: set.linkDefaultSaturation,
+                        grayHue: set.linkVisitedHue
+                    },
                     TextShadow:
                     {
                         saturationLimit: set.borderSaturationLimit,

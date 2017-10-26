@@ -47,6 +47,7 @@ namespace MidnightLizard.Settings
         linkLightnessLimit: number;
         linkDefaultSaturation: number;
         linkDefaultHue: number;
+        linkVisitedHue: number;
 
         borderSaturationLimit: number;
         borderContrast: number;

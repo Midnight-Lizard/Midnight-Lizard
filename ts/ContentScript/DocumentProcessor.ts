@@ -73,6 +73,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _textSelectionColorProcessor: MidnightLizard.Colors.ITextSelectionColorProcessor,
             protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
+            protected readonly _visitedLinkColorProcessor: MidnightLizard.Colors.IVisitedLinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter)
@@ -952,10 +953,15 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.zIndex = tag.originalZIndex;
                 }
-                if (tag.originalColor !== undefined && tag.originalColor !== tag.style.getPropertyValue(ns.css.fntColor))
+                if (tag.originalColor !== undefined)
                 {
-                    tag.style.setProperty(ns.css.fntColor, tag.originalColor);
-                    tag.style.removeProperty("--original-color");
+                    if (tag.originalColor !== tag.style.getPropertyValue(ns.css.fntColor))
+                    {
+                        tag.style.setProperty(ns.css.fntColor, tag.originalColor);
+                    }
+                    tag.style.removeProperty(this._css.originalColor);
+                    tag.style.removeProperty(this._css.linkColor);
+                    tag.style.removeProperty(this._css.visitedColor);
                 }
                 if (tag.originalTextShadow !== undefined && tag.style.textShadow !== tag.originalTextShadow)
                 {
@@ -1271,6 +1277,10 @@ namespace MidnightLizard.ContentScript
                             ? cc.Link
                             : cc.Text;
                         roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        if (textRole === cc.Link)
+                        {
+                            roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        }
                         if (roomRules.color)
                         {
                             let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
@@ -1449,6 +1459,10 @@ namespace MidnightLizard.ContentScript
                         case cc.Link:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.VisitedLink:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Border:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
@@ -1655,7 +1669,11 @@ namespace MidnightLizard.ContentScript
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}`;
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}`;
-            sheet.innerHTML = `:root { ${globalVars} }\n:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }
+            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }`;
+            const linkColors =
+                "[style*=--link]:link:not(imp) { color: var(--link-color)!important; }" +
+                "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
+            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}
                 scrollbar { width: 12px!important; height: 12px!important; background: ${thumbNormalColor}!important; }
                 scrollbar-button:hover { background: ${thumbHoverColor}!important; }
                 scrollbar-button { background: ${thumbNormalColor}!important; width:5px!important; height:5px!important; }
@@ -1876,9 +1894,17 @@ namespace MidnightLizard.ContentScript
                     (tag.parentElement instanceof HTMLElement || tag.parentElement && (tag.parentElement as any) instanceof tag.ownerDocument.defaultView.HTMLElement) &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
-                    tag.style.setProperty("--original-color", tag.originalColor!);
+                    tag.style.setProperty(this._css.originalColor, tag.originalColor!);
                 }
-                tag.style.setProperty(ns.css.fntColor, roomRules.color.color, this._css.important);
+                if (roomRules.visitedColor && roomRules.visitedColor.color)
+                {
+                    tag.style.setProperty(this._css.linkColor, roomRules.color.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColor, roomRules.visitedColor.color, this._css.important);
+                }
+                else
+                {
+                    tag.style.setProperty(ns.css.fntColor, roomRules.color.color, this._css.important);
+                }
             }
             else if (roomRules.color && (roomRules.color.reason === Colors.ColorReason.Inherited) && tag.style.getPropertyValue(ns.css.fntColor))
             {
