@@ -577,15 +577,15 @@ namespace MidnightLizard.ContentScript
                         {
                             tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
                             {
-                                const reCalcTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
+                                const brokenTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
                                     && tag.mlColor.reason === Colors.ColorReason.Inherited
                                     && tag.mlColor.color === null
                                     && tag.mlColor.intendedColor && tag.computedStyle
                                     && tag.mlColor.intendedColor !== tag.computedStyle.color);
-                                if (reCalcTags.length > 0)
+                                if (brokenTags.length > 0)
                                 {
-                                    dProc._documentObserver.stopDocumentObservation(reCalcTags[0].ownerDocument);
-                                    reCalcTags.forEach(tag =>
+                                    dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
+                                    brokenTags.forEach(tag =>
                                     {
                                         const newColor = Object.assign({}, tag.mlColor!);
                                         newColor.base = dProc._app.isDebug ? tag.mlColor : null
@@ -595,7 +595,7 @@ namespace MidnightLizard.ContentScript
                                         tag.originalColor = tag.style.color;
                                         tag.style.setProperty(dProc._css.color, newColor.color, dProc._css.important);
                                     });
-                                    docProc._documentObserver.startDocumentObservation(reCalcTags[0].ownerDocument);
+                                    docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
                                 }
                             }).bind(null, tags, dp));
                         }

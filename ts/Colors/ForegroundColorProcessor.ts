@@ -14,18 +14,9 @@ namespace MidnightLizard.Colors
         abstract getDefaultColor(doc: Document): string | undefined;
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
-
-    export abstract class ILinkColorProcessor extends ITextColorProcessor
-    {
-    }
-
-    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor
-    {
-    }
-
-    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor
-    {
-    }
+    export abstract class ILinkColorProcessor extends ITextColorProcessor { }
+    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor { }
+    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
 
     export abstract class ITextShadowColorProcessor
     {
