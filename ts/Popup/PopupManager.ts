@@ -527,12 +527,14 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
         {
             this.updateColorSchemeButtons();
             this._hostState.className = this._settingsManager.currentSettings.runOnThisSite ? "run" : "do-not-run";
-            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings);
+            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings) &&
+                this._settingsManager.currentSettings.runOnThisSite === this._currentSiteSettings.runOnThisSite;
             Promise
                 .all([this._settingsManager.currentSettings, this._settingsManager.getDefaultSettings()])
                 .then(([currentSettings, defaultSettings]) =>
                 {
-                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings);
+                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings) &&
+                        currentSettings.runOnThisSite === defaultSettings.runOnThisSite;
                 });
         }
 

@@ -508,18 +508,18 @@ html, body {
 
 .intro-tabs:after
 {
-    width: 132px;
-    height: 330px;
-    top: 55px;
-    left: -158px;
+    width: 134px;
+    height: 361px;
+    top: 40px;
+    left: -160px;
 }
 
 .intro-tabs:before
 {
-    height: 22px;
+    height: 21px;
     left: -4px;
     top: 170px;
-    transform: skew(60deg);
+    transform: skew(63deg);
 }
 
 .intro-host:after
@@ -601,14 +601,14 @@ html, body {
 
 .intro-help:before
 {
-    width: 77px;
+    width: 82px;
     height: 360px;
     top: 12px;
     border-radius: 0px 10px 0px 0px;
     border-width: 1px 1px 0px 0px;
-    left: -95px;
+    left: -96px;
     border-style: dashed;
-    transform: skew(11deg, 35deg);
+    transform: skew(10deg, 33deg);
 }
 
 /* .intro-help:before
