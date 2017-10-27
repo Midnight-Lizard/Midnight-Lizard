@@ -114,6 +114,7 @@ namespace MidnightLizard.Popup
             this._commandManager.getCommands()
                 .then(commands =>
                 {
+                    console.log(commands);
                     let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {
@@ -590,7 +591,6 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                 {
                     let selectedScheme = Object.assign({}, Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeName]);
                     selectedScheme.isEnabled = this._isEnabledToggle.checked;
-                    selectedScheme.settingsVersion = this._currentSiteSettings.settingsVersion;
                     this.applySettingsOnPopup(selectedScheme);
                 }
             }

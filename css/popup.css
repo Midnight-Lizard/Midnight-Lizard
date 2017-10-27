@@ -63,7 +63,7 @@ html, body {
 .ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
     position: absolute;
-    top: 90px;
+    top: 103px;
     bottom: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
@@ -100,7 +100,7 @@ html, body {
 
 .ml-dialog-commands > button, .ml-dialog-commands > .ml-tool-box
 {
-    margin: 18px 20px;
+    margin: 17px 20px;
     width: 130px;
 }
 
@@ -212,6 +212,7 @@ html, body {
     border-radius: 50%;
     text-decoration: none;
     user-select: none;
+    --ml-link-color:Text;
 }
 
 #isEnabledSwitch {
@@ -457,34 +458,34 @@ html, body {
 {
     width: 135px;
     height: 32px;
-    top: 104px;
+    top: 118px;
     right: -154px;
 }
 
 .intro-select-scheme:before
 {
-    height: 20px;
-    right: 1px;
-    top: 121px;
-    transform: skew(-60deg);
+    height: 12px;
+    right: 0px;
+    top: 133px;
+    transform: skew(-71deg);
 }
 
 .intro-edit-schemes:after
 {
     width: 134px;
     height: 32px;
-    top: 27px;
+    top: 33px;
     right: -152px;
 }
 
 .intro-edit-schemes:before
 {
-    height: 253px;
+    height: 247px;
     width: 5px;
     border-bottom-right-radius: 10px;
     border-style: dashed;
     right: -2px;
-    top: 60px;
+    top: 66px;
     transform: skew(-7deg);
     border-width: 0px 1px 1px 0px;
 }
@@ -493,16 +494,16 @@ html, body {
 {
     width: 136px;
     height: 34px;
-    top: 292px;
+    top: 300px;
     right: -155px;
 }
 
 .intro-apply:before
 {
-    height: 21px;
+    height: 30px;
     right: 1px;
-    top: 288px;
-    transform: skew(57deg);
+    top: 287px;
+    transform: skew(50deg);
 }
 
 .intro-tabs:after
@@ -563,17 +564,17 @@ html, body {
 {
     width: 136px;
     height: 34px;
-    top: 228px;
+    top: 238px;
     right: -155px;
 }
 
 .intro-default:before
 {
-    height: 107px;
+    height: 97px;
     width: 7px;
-    right: -3px;
-    top: 264px;
-    transform: skew(-15deg);
+    right: -4px;
+    top: 273px;
+    transform: skew(-17deg);
     border-style: dashed;
     border-bottom-right-radius: 10px;
 }

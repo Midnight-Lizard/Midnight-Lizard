@@ -6,7 +6,6 @@ namespace MidnightLizard.Popup
 {
     type AnyResponse = (args: any) => void;
     type ColorSchemeResponse = (settings: Settings.ColorScheme) => void;
-    type Storage = { isEnabled?: boolean, settingsVersion?: string, defaultSettingsVersion?: string };
     type ArgEvent<TRequestArgs> = MidnightLizard.Events.ArgumentedEvent<TRequestArgs>;
     type RespEvent<TResponseMethod extends Function, TRequestArgs> = MidnightLizard.Events.ResponsiveEvent<TResponseMethod, TRequestArgs>;
     let ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
@@ -62,7 +61,6 @@ namespace MidnightLizard.Popup
             Promise.all([this.getDefaultSettings(), this._settingsBus.getCurrentSettings()])
                 .then(([defaultSettings, currentSettings]) =>
                 {
-                    this.applyUserColorSchemes(defaultSettings);
                     this._currentSettings = currentSettings;
                     this.updateSchedule();
                     this.initCurSet();
@@ -80,12 +78,17 @@ namespace MidnightLizard.Popup
             return this._storageManager.getCurrentStorage().then(storType => storType === "sync");
         }
 
-        public getDefaultSettings()
+        public async getDefaultSettings()
         {
-            const promise = this._storageManager.get(
-                { ...Settings.ColorSchemes.default, ...Settings.ColorSchemes.dimmedDust });
-            promise.then(settings => this._defaultSettings = settings);
-            return promise;
+            const defaultSettings = await this._storageManager.get({
+                ...Settings.ColorSchemes.default,
+                ...Settings.ColorSchemes.dimmedDust
+            });
+            this.applyUserColorSchemes(defaultSettings);
+            this.assignSettings(this._defaultSettings, defaultSettings);
+            this._defaultSettings.colorSchemeId = "default";
+            this._defaultSettings.colorSchemeName = "Default";
+            return this._defaultSettings;
         }
 
         public getDefaultSettingsCache(): Settings.ColorScheme
@@ -113,48 +116,39 @@ namespace MidnightLizard.Popup
         public setAsDefaultSettings()
         {
             this._defaultSettings = Object.assign({}, this._currentSettings);
-            Object.assign(this._defaultSettings, { isDefault: true, colorSchemeId: "default" });
-            return this._storageManager.set(this._defaultSettings);
+            this._defaultSettings.colorSchemeId = "default";
+            this._defaultSettings.colorSchemeName = "Default";
+            return this._storageManager.set(this._currentSettings);
         }
 
-        public saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>
+        public async saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>
         {
-            return Promise.all([this.getDefaultSettings(), userColorScheme])
-                .then(([defaultSettings, userScheme]) =>
+            const storage = await this._storageManager.get<Settings.ColorScheme>({ userColorSchemes: [] } as any);
+            let existingScheme = storage.userColorSchemes!.find(sch => sch.colorSchemeId === userColorScheme.colorSchemeId);
+            if (existingScheme)
+            {
+                Object.assign(existingScheme, userColorScheme)
+            }
+            else
+            {
+                storage.userColorSchemes!.push(userColorScheme);
+            }
+            return this._storageManager.set(storage);
+        }
+
+        public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>
+        {
+            const storage = await this._storageManager.get<Settings.ColorScheme>({ userColorSchemes: [] } as any);
+            if (storage.userColorSchemes && storage.userColorSchemes.length > 0)
+            {
+                let existingSchemeIndex = storage.userColorSchemes.findIndex(sch => sch.colorSchemeId === colorSchemeId);
+                if (existingSchemeIndex > -1)
                 {
-                    const storage = new Settings.ColorScheme();
-                    storage.userColorSchemes = defaultSettings.userColorSchemes || new Array<Settings.ColorScheme>();
-                    let existingScheme = storage.userColorSchemes.find(sch => sch.colorSchemeId === userScheme.colorSchemeId);
-                    if (!existingScheme)
-                    {
-                        storage.userColorSchemes.push(Object.assign({}, userScheme));
-                    }
-                    else
-                    {
-                        Object.assign(existingScheme, userScheme)
-                    }
+                    storage.userColorSchemes.splice(existingSchemeIndex, 1);
                     return this._storageManager.set(storage);
-                });
-        }
-
-        public deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>
-        {
-            return Promise.all([this.getDefaultSettings(), colorSchemeId])
-                .then(([defaultSettings, id]) =>
-                {
-                    if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
-                    {
-                        const storage = {} as Settings.ColorScheme;
-                        storage.userColorSchemes = defaultSettings.userColorSchemes;
-                        let existingSchemeIndex = storage.userColorSchemes.findIndex(sch => sch.colorSchemeId === id);
-                        if (existingSchemeIndex > -1)
-                        {
-                            storage.userColorSchemes.splice(existingSchemeIndex, 1);
-                            return this._storageManager.set(storage);
-                        }
-                    }
-                    return null;
-                });
+                }
+            }
+            return null;
         }
 
         public deleteAllSettings()

@@ -38,7 +38,7 @@
 
 .ml-tab-item
 {
-    padding: 13px 12px 13px 12px;
+    padding: 15px 12px 15px 15px;
     margin-left: 10px;
     text-align: left;
     display: block;
@@ -72,7 +72,7 @@
 {
     margin-left: 10px;
     border-right: solid 1px var(--thin-border-color);
-    height: 54px;
+    height: 38px;
 }
 
 .right .ml-tab-item-separator
@@ -81,7 +81,7 @@
     margin-right: 10px;
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
-    height: 25px;
+    height: 31px;
 }
 
 .active
@@ -91,7 +91,7 @@
     border-right: solid 1px rgba(0, 0, 0, 0);
     margin-left: 9px;
     --ml-text-color: HighlightedText;
-    padding: 12px;
+    padding: 14px 12px 14px 15px;
     cursor: default!important;
 }
 

@@ -163,7 +163,7 @@ namespace MidnightLizard.ContentScript
         {
             dom.removeEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded);
             this._rootDocumentLoaded = true;
-            if (this._settingsManager.isActive !== undefined)
+            if (this._settingsManager.isActive)
             {
                 this.processRootDocument();
             }

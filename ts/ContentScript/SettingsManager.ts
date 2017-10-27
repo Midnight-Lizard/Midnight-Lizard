@@ -6,7 +6,6 @@ namespace MidnightLizard.ContentScript
 {
     type AnyResponse = (args: any) => void;
     type ColorSchemeResponse = (settings: Settings.ColorScheme) => void;
-    type Storage = { isEnabled?: boolean, settingsVersion?: string, defaultSettingsVersion?: string };
     type ArgEvent<TRequestArgs> = MidnightLizard.Events.ArgumentedEvent<TRequestArgs>;
     type RespEvent<TResponseMethod extends Function, TRequestArgs> = MidnightLizard.Events.ResponsiveEvent<TResponseMethod, TRequestArgs>;
 
@@ -49,39 +48,20 @@ namespace MidnightLizard.ContentScript
         {
             try
             {
-                const defaultSettings = await this._storageManager.get(
-                    { ...Settings.ColorSchemes.default, ...Settings.ColorSchemes.dimmedDust });
-                this._defaultSettings = defaultSettings;
-                if (defaultSettings.settingsVersion !== undefined)
+                const defaultSettings = await this._storageManager.get({
+                    ...Settings.ColorSchemes.default,
+                    ...Settings.ColorSchemes.dimmedDust
+                });
+                this.applyUserColorSchemes(defaultSettings);
+                this.assignSettings(this._defaultSettings, defaultSettings);
+                this._defaultSettings.colorSchemeId = "default";
+                this._defaultSettings.colorSchemeName = "Default";
+                Object.assign(this._currentSettings, this._defaultSettings);
+                const settings = await this.getSettings();
+                if (settings.exist)
                 {
-                    this.applyUserColorSchemes(defaultSettings);
-                    const settings = await this.getSettings(defaultSettings.settingsVersion);
-                    defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
-                    Object.assign(this._currentSettings, defaultSettings);
-                    if (settings.exist)
-                    {
-                        if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
-                            Settings.ColorSchemes[settings.colorSchemeId])
-                        {
-                            Object.assign(this._currentSettings, Settings.ColorSchemes[settings.colorSchemeId]);
-                            this._currentSettings.runOnThisSite = settings.runOnThisSite;
-                        }
-                        else
-                        {
-                            settings.colorSchemeId = settings.colorSchemeId || "custom" as Settings.ColorSchemeName;
-                            Object.assign(this._currentSettings, settings);
-                        }
-                        this._currentSettings.settingsVersion = defaultSettings.settingsVersion;
-                        this.saveCurrentSettings();
-                    }
+                    this.assignSettings(this._currentSettings, settings);
                 }
-                else
-                {
-                    defaultSettings.colorSchemeId = defaultSettings.colorSchemeId || "default";
-                    this._currentSettings.settingsVersion = Util.guid("");
-                    this._storageManager.set(this._currentSettings);
-                }
-                this._currentSettings.isEnabled = defaultSettings.isEnabled === undefined || defaultSettings.isEnabled;
                 this.updateSchedule();
                 this.initCurSet();
                 this._onSettingsInitialized.raise(this._shift);
@@ -101,8 +81,8 @@ namespace MidnightLizard.ContentScript
         protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings: Settings.ColorScheme): void
         {
             this._currentSettings = newSettings;
-            this.updateSchedule();
             this.saveCurrentSettings();
+            this.updateSchedule();
             this.initCurSet();
             this._onSettingsChanged.raise(response, this._shift);
         }
@@ -121,12 +101,15 @@ namespace MidnightLizard.ContentScript
 
         protected saveCurrentSettings()
         {
-            if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
+            if (this._currentSettings.colorSchemeId === "default")
+            {
+                this._storageManager.remove(this._settingsKey);
+            }
+            else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
             {
                 this._storageManager.set({
                     [this._settingsKey]: {
                         colorSchemeId: this._currentSettings.colorSchemeId,
-                        settingsVersion: this._currentSettings.settingsVersion,
                         runOnThisSite: this._currentSettings.runOnThisSite
                     }
                 });
@@ -151,15 +134,14 @@ namespace MidnightLizard.ContentScript
             return "ML" + propertyName.match(/^[^A-Z]{1,4}|[A-Z][^A-Z]{0,2}/g)!.join("").toUpperCase();
         }
 
-        protected getSettings(version: string): Promise<Settings.ColorScheme>
+        protected getSettings(): Promise<Settings.ColorScheme>
         {
             return this._storageManager.get<any>(this._settingsKey)
                 .then(x => x[this._settingsKey])
                 .then((settings: Settings.ColorScheme) =>
                 {
                     settings = settings || {};
-                    settings.exist = settings.settingsVersion == version;
-                    settings.settingsVersion = version;
+                    settings.exist = !!settings.colorSchemeId;
                     return settings;
                 });
         }
