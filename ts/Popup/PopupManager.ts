@@ -114,7 +114,6 @@ namespace MidnightLizard.Popup
             this._commandManager.getCommands()
                 .then(commands =>
                 {
-                    console.log(commands);
                     let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {

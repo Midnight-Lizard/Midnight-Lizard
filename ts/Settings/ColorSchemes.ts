@@ -157,7 +157,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 80,
                     textGraySaturation: 24,
                     textGrayHue: 16,
-                    textSelectionHue: 231,
+                    textSelectionHue: 207,
 
                     linkSaturationLimit: 80,
                     linkContrast: 55,
@@ -557,7 +557,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 70,
                     textGraySaturation: 0,
                     textGrayHue: 0,
-                    textSelectionHue: 231,
+                    textSelectionHue: 207,
 
                     linkSaturationLimit: 80,
                     linkContrast: 52,
