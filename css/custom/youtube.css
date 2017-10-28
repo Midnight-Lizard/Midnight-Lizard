@@ -82,3 +82,8 @@
     --ml-background-border-right-color:Border;
     --ml-background-border-top-color:Border;
 }
+
+.webgl canvas:not(imp)
+{
+    --ml-ignore:true;
+}
