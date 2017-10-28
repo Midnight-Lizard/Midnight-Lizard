@@ -264,6 +264,7 @@ namespace MidnightLizard.Settings
             {
                 Object.assign(to, Settings.ColorSchemes[settings.colorSchemeId]);
                 to.runOnThisSite = settings.runOnThisSite;
+                to.isEnabled = settings.isEnabled;
             }
             else
             {

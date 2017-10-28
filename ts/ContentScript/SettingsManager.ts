@@ -58,7 +58,7 @@ namespace MidnightLizard.ContentScript
                 this._defaultSettings.colorSchemeName = "Default";
                 Object.assign(this._currentSettings, this._defaultSettings);
                 const settings = await this.getSettings();
-                if (settings.exist)
+                if (settings)
                 {
                     this.assignSettings(this._currentSettings, settings);
                 }
@@ -104,6 +104,11 @@ namespace MidnightLizard.ContentScript
             if (this._currentSettings.colorSchemeId === "default")
             {
                 this._storageManager.remove(this._settingsKey);
+                this._storageManager.set({
+                    [this._settingsKey]: {
+                        runOnThisSite: this._currentSettings.runOnThisSite
+                    }
+                });
             }
             else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
             {
@@ -137,13 +142,7 @@ namespace MidnightLizard.ContentScript
         protected getSettings(): Promise<Settings.ColorScheme>
         {
             return this._storageManager.get<any>(this._settingsKey)
-                .then(x => x[this._settingsKey])
-                .then((settings: Settings.ColorScheme) =>
-                {
-                    settings = settings || {};
-                    settings.exist = !!settings.colorSchemeId;
-                    return settings;
-                });
+                .then(x => x[this._settingsKey]);
         }
     }
 }
