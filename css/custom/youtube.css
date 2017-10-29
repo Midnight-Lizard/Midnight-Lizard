@@ -51,6 +51,15 @@
     --ml-background-background-color:HighlightedText;
 }
 
+#selectionBar.paper-tabs
+{
+    --ml-border-border-color:HighlightedText;
+    --ml-border-border-bottom-color:HighlightedText;
+    --ml-border-border-left-color:HighlightedText;
+    --ml-border-border-right-color:HighlightedText;
+    --ml-border-border-top-color:HighlightedText;
+}
+
 .style-scope.yt-icon, .ytp-button > svg *, .ytp-time-display
 {
     --ml-svgbackground-fill:HighlightedText;
