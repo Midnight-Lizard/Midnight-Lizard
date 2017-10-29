@@ -409,13 +409,13 @@ html, body {
     font-size: 10px;
     text-align: justify;
     width: 260px;
-    height: 60px;
+    height: 80px;
     overflow-x: scroll;
     overflow-y: scroll;
     white-space: nowrap;
     background: var(--main-background-color);
     margin: 7px calc((100% - 266px)/2) 0px calc((100% - 266px)/2);
-    border: solid 1px var(--thin-border-color);
+    outline: solid 1px var(--thin-border-color);
     padding: 2px;
 }
 

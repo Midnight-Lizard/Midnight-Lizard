@@ -263,12 +263,17 @@ namespace MidnightLizard.Settings
                 Settings.ColorSchemes[settings.colorSchemeId])
             {
                 Object.assign(to, Settings.ColorSchemes[settings.colorSchemeId]);
-                to.runOnThisSite = settings.runOnThisSite;
-                to.isEnabled = settings.isEnabled;
+                if (settings.runOnThisSite !== undefined)
+                {
+                    to.runOnThisSite = settings.runOnThisSite;
+                }
+                if (settings.isEnabled !== undefined)
+                {
+                    to.isEnabled = settings.isEnabled;
+                }
             }
             else
             {
-                settings.colorSchemeId = settings.colorSchemeId || "custom" as Settings.ColorSchemeName;
                 Object.assign(to, settings);
             }
         }
@@ -285,6 +290,8 @@ namespace MidnightLizard.Settings
                 {
                     if (first[prop] !== second[prop])
                     {
+                        console.log(`${first.colorSchemeId}.${prop}=[${first[prop]}]`);
+                        console.log(`${second.colorSchemeId}.${prop}=[${second[prop]}]`);
                         return false;
                     }
                 }

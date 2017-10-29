@@ -1077,14 +1077,14 @@ namespace MidnightLizard.ContentScript
                         let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
                         let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
                         let roomId = "";
-                        if (beforeStyle && beforeStyle.content)
+                        if (beforeStyle && beforeStyle.content && beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
                             roomRules.attributes = roomRules.attributes || new Map<string, string>();
                             roomRules.attributes.set("before-style", roomId);
                         }
-                        if (afterStyle && afterStyle.content)
+                        if (afterStyle && afterStyle.content && afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
@@ -1674,16 +1674,57 @@ namespace MidnightLizard.ContentScript
                 "[style*=--link]:link:not(imp) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
             sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}
-                scrollbar { width: 12px!important; height: 12px!important; background: ${thumbNormalColor}!important; }
-                scrollbar-button:hover { background: ${thumbHoverColor}!important; }
-                scrollbar-button { background: ${thumbNormalColor}!important; width:5px!important; height:5px!important; }
-                scrollbar-button:active { background: ${thumbActiveColor}!important; }
-                scrollbar-thumb:hover { background: ${thumbHoverColor}!important; }
-                scrollbar-thumb { background: ${thumbNormalColor}!important; border-radius: 6px!important; box-shadow: inset 0 0 8px rgba(0,0,0,0.5)!important; border: none!important; }
-                scrollbar-thumb:active { background: ${thumbActiveColor}!important; box-shadow: inset 0 0 8px rgba(0,0,0,0.2)!important; }
-                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 6px!important; border: none!important; }
+                scrollbar { width: 10px!important; height: 10px!important; background: ${thumbNormalColor}!important; }
+                scrollbar-button:hover { --bg-color: ${thumbHoverColor}!important; }
+                scrollbar-button:active { --bg-color: ${thumbActiveColor}!important; }
+                scrollbar-button
+                {
+                    --bg-color: ${thumbNormalColor}!important; width:10px!important; height:10px!important;
+                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
+                    background:
+                        linear-gradient(var(--deg-one), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
+                        linear-gradient(var(--deg-two), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
+                        linear-gradient(var(--deg-one), transparent 50%, currentColor 50%, currentColor 55%, transparent 55%),
+                        linear-gradient(var(--deg-two), transparent 50%, currentColor 50%, currentColor 55%, transparent 55%),
+                        var(--bg-color)!important;
+                }
+                scrollbar-button:vertical:start { --deg-one: 45deg; --deg-two: -45deg; }
+                scrollbar-button:vertical:end { --deg-one: 135deg; --deg-two: -135deg; }
+                scrollbar-button:horizontal:start { --deg-one: -135deg; --deg-two: -45deg; }
+                scrollbar-button:horizontal:end { --deg-one: 45deg; --deg-two: 135deg; }
+                scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}!important; }
+                scrollbar-thumb:active { --bg-color: ${thumbActiveColor}!important; }
+                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; }
+                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; }
+                scrollbar-thumb
+                {
+                    --bg-color: ${thumbNormalColor}!important; border-radius: 1px!important;
+                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important; border: none!important;
+                    background:
+                        linear-gradient(var(--deg-two),
+                            var(--bg-color) 30%,
+                            transparent 30%, transparent 70%,
+                            var(--bg-color) 70%),
+                        linear-gradient(var(--deg-one),
+                            transparent 10%,
+                            currentColor 10%, currentColor 15%,
+                            transparent 15%, transparent 35%,
+                            currentColor 35%, currentColor 40%,
+                            transparent 40%, transparent 60%,
+                            currentColor 60%, currentColor 65%,
+                            transparent 65%, transparent 85%,
+                            currentColor 85%, currentColor 90%,
+                            transparent 90%),
+                        var(--bg-color);
+                    background-size: 10px 10px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
-                scrollbar-corner { background: ${thumbNormalColor}!important; }`.replace(/\s{16}(?=\S)/g, ":not(impt)::-webkit-");
+                scrollbar-corner { background: ${thumbNormalColor}!important; }`
+                .replace(/\s{16}/g, "")
+                .replace(/scrollbar/g, ":not(impt)::-webkit-scrollbar");
             (doc.head || doc.documentElement).appendChild(sheet);
         }
 

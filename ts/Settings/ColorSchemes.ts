@@ -178,10 +178,10 @@ namespace MidnightLizard.Settings
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
 
-                    scrollbarSaturationLimit: 10,
-                    scrollbarContrast: 5,
+                    scrollbarSaturationLimit: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
-                    scrollbarGrayHue: 174
+                    scrollbarGrayHue: 16
                 } as ColorScheme,
 
                 // Apple Mint
@@ -229,7 +229,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 100,
 
                     scrollbarSaturationLimit: 12,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 122
                 } as ColorScheme,
@@ -329,7 +329,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 100,
 
                     scrollbarSaturationLimit: 30,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 36
                 } as ColorScheme,
@@ -579,7 +579,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 100,
 
                     scrollbarSaturationLimit: 0,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 0
                 } as ColorScheme,
@@ -629,7 +629,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 10,
 
                     scrollbarSaturationLimit: 0,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 0
                 } as ColorScheme,
@@ -679,7 +679,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 100,
 
                     scrollbarSaturationLimit: 40,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 54
                 } as ColorScheme,
@@ -729,7 +729,7 @@ namespace MidnightLizard.Settings
                     backgroundImageSaturationLimit: 100,
 
                     scrollbarSaturationLimit: 40,
-                    scrollbarContrast: 5,
+                    scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 122
                 } as ColorScheme
