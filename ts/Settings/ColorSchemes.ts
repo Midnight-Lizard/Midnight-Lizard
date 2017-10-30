@@ -15,6 +15,7 @@ namespace MidnightLizard.Settings
         static dimmedDust: ColorScheme;
         static appleMint: ColorScheme;
         static kappaDream: ColorScheme;
+        static almondRipe: ColorScheme;
         static sunsetSails: ColorScheme;
         static morningMist: ColorScheme;
         static antiqueCodex: ColorScheme;
@@ -180,7 +181,7 @@ namespace MidnightLizard.Settings
 
                     scrollbarSaturationLimit: 5,
                     scrollbarContrast: 0,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 16
                 } as ColorScheme,
 
@@ -228,9 +229,9 @@ namespace MidnightLizard.Settings
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
 
-                    scrollbarSaturationLimit: 12,
+                    scrollbarSaturationLimit: 10,
                     scrollbarContrast: 0,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 122
                 } as ColorScheme,
 
@@ -278,10 +279,60 @@ namespace MidnightLizard.Settings
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
 
-                    scrollbarSaturationLimit: 30,
-                    scrollbarContrast: 5,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarSaturationLimit: 20,
+                    scrollbarContrast: 0,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 122
+                } as ColorScheme,
+
+                // Almond Ripe
+                {
+                    colorSchemeId: "almondRipe",
+                    colorSchemeName: "Almond Ripe",
+                    runOnThisSite: true,
+                    restoreColorsOnCopy: false,
+                    blueFilter: 5,
+
+                    useDefaultSchedule: true,
+                    scheduleStartHour: 0,
+                    scheduleFinishHour: 24,
+
+                    backgroundSaturationLimit: 80,
+                    backgroundContrast: 50,
+                    backgroundLightnessLimit: 11,
+                    backgroundGraySaturation: 30,
+                    backgroundGrayHue: 36,
+
+                    textSaturationLimit: 70,
+                    textContrast: 54,
+                    textLightnessLimit: 80,
+                    textGraySaturation: 10,
+                    textGrayHue: 88,
+                    textSelectionHue: 36,
+
+                    linkSaturationLimit: 80,
+                    linkContrast: 50,
+                    linkLightnessLimit: 70,
+                    linkDefaultSaturation: 60,
+                    linkDefaultHue: 88,
+                    linkVisitedHue: 122,
+
+                    borderSaturationLimit: 80,
+                    borderContrast: 30,
+                    borderLightnessLimit: 50,
+                    borderGraySaturation: 20,
+                    borderGrayHue: 54,
+
+                    imageLightnessLimit: 80,
+                    imageSaturationLimit: 90,
+
+                    backgroundImageLightnessLimit: 40,
+                    backgroundImageSaturationLimit: 80,
+
+                    scrollbarSaturationLimit: 20,
+                    scrollbarContrast: 0,
+                    scrollbarLightnessLimit: 40,
+                    scrollbarGrayHue: 45
                 } as ColorScheme,
 
                 // Sunset Sails
@@ -328,9 +379,9 @@ namespace MidnightLizard.Settings
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
 
-                    scrollbarSaturationLimit: 30,
+                    scrollbarSaturationLimit: 20,
                     scrollbarContrast: 0,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 36
                 } as ColorScheme,
 
@@ -580,7 +631,7 @@ namespace MidnightLizard.Settings
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 0
                 } as ColorScheme,
 
@@ -630,7 +681,7 @@ namespace MidnightLizard.Settings
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
-                    scrollbarLightnessLimit: 50,
+                    scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 0
                 } as ColorScheme,
 
@@ -713,8 +764,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 50,
                     linkLightnessLimit: 70,
                     linkDefaultSaturation: 90,
-                    linkDefaultHue: 122,
-                    linkVisitedHue: 45,
+                    linkDefaultHue: 88,
+                    linkVisitedHue: 122,
 
                     borderSaturationLimit: 80,
                     borderContrast: 40,

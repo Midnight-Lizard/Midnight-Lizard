@@ -290,8 +290,8 @@ namespace MidnightLizard.Settings
                 {
                     if (first[prop] !== second[prop])
                     {
-                        console.log(`${first.colorSchemeId}.${prop}=[${first[prop]}]`);
-                        console.log(`${second.colorSchemeId}.${prop}=[${second[prop]}]`);
+                        //console.log(`${first.colorSchemeId}.${prop}=[${first[prop]}]`);
+                        //console.log(`${second.colorSchemeId}.${prop}=[${second[prop]}]`);
                         return false;
                     }
                 }
