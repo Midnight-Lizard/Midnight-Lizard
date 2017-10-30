@@ -21,6 +21,7 @@
   ✔ Has options to schedule extension activation and deactivation
   ✔ File export and import for color schemes
   ✔ Completely customizable
+  ✔ All settings synchronized across devices by default
   ✔ Works almost everywhere
   ✔ Easy to enable/disable by a global toggle and a keyboard shortcut
   ✔ Free forever
