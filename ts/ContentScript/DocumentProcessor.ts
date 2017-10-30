@@ -846,7 +846,7 @@ namespace MidnightLizard.ContentScript
                 bgColor = bgColor ||
                     (tag.parentElement!.mlBgColor && tag.parentElement!.mlBgColor!.isUpToDate ? tag.parentElement!.mlBgColor : null) ||
                     tag.parentElement!.mlParentBgColor;
-                if (bgColor)
+                if (bgColor && bgColor.alpha > 0.2)
                 {
                     result = bgColor;
                 }
@@ -1163,13 +1163,18 @@ namespace MidnightLizard.ContentScript
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                    if (tag.isPseudo && tag.computedStyle!.content!.substr(0, 3) == "url")
+                    if (tag.computedStyle!.content!.substr(0, 3) == "url")
                     {
                         let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
                             (
-                                this.tagIsSmall(tag) || tag.parentElement!.parentElement &&
+                                this.tagIsSmall(tag)
+
+                                || tag.isPseudo && tag.parentElement!.parentElement &&
                                 this.tagIsSmall(tag.parentElement!.parentElement!) &&
-                                (tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden)
+                                tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden
+
+                                || !tag.isPseudo && this.tagIsSmall(tag.parentElement!) &&
+                                tag.parentElement!.computedStyle!.overflow === this._css.hidden
                             );
                         if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                         {
@@ -1177,7 +1182,7 @@ namespace MidnightLizard.ContentScript
                             roomRules.filter =
                                 {
                                     value: [
-                                        tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : "",
+                                        tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                         doInvert ? `brightness(${1 - this.shift.Background.lightnessLimit})` : "",
@@ -1675,11 +1680,11 @@ namespace MidnightLizard.ContentScript
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
             sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}
                 scrollbar { width: 10px!important; height: 10px!important; background: ${thumbNormalColor}!important; }
-                scrollbar-button:hover { --bg-color: ${thumbHoverColor}!important; }
-                scrollbar-button:active { --bg-color: ${thumbActiveColor}!important; }
+                scrollbar-button:hover { --bg-color: ${thumbHoverColor}; }
+                scrollbar-button:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-button
                 {
-                    --bg-color: ${thumbNormalColor}!important; width:10px!important; height:10px!important;
+                    --bg-color: ${thumbNormalColor}; width:10px!important; height:10px!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
                         linear-gradient(var(--deg-one), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
@@ -1692,13 +1697,13 @@ namespace MidnightLizard.ContentScript
                 scrollbar-button:vertical:end { --deg-one: 135deg; --deg-two: -135deg; }
                 scrollbar-button:horizontal:start { --deg-one: -135deg; --deg-two: -45deg; }
                 scrollbar-button:horizontal:end { --deg-one: 45deg; --deg-two: 135deg; }
-                scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}!important; }
-                scrollbar-thumb:active { --bg-color: ${thumbActiveColor}!important; }
+                scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
+                scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; }
                 scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; }
                 scrollbar-thumb
                 {
-                    --bg-color: ${thumbNormalColor}!important; border-radius: 1px!important;
+                    --bg-color: ${thumbNormalColor}; border-radius: 1px!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important; border: none!important;
                     background:
                         linear-gradient(var(--deg-two),
@@ -1715,16 +1720,16 @@ namespace MidnightLizard.ContentScript
                             transparent 65%, transparent 85%,
                             currentColor 85%, currentColor 90%,
                             transparent 90%),
-                        var(--bg-color);
-                    background-size: 10px 10px;
-                    background-repeat: no-repeat;
-                    background-position: center;
+                        var(--bg-color)!important;
+                    background-size: 10px 10px!important;
+                    background-repeat: no-repeat!important;
+                    background-position: center!important;
                 }
                 scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
-                .replace(/\s{16}/g, "")
-                .replace(/scrollbar/g, ":not(impt)::-webkit-scrollbar");
+                .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar")
+                .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
         }
 
