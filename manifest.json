@@ -68,9 +68,6 @@
             ],
             "css": [
                 "css/custom/chrome-new-tab.css"
-            ],
-            "js": [
-                "js/custom/chrome-new-tab.js"
             ]
         },
         {
