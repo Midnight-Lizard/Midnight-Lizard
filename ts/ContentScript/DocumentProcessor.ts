@@ -1684,7 +1684,8 @@ namespace MidnightLizard.ContentScript
                 scrollbar-button:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-button
                 {
-                    --bg-color: ${thumbNormalColor}; width:10px!important; height:10px!important;
+                    --bg-color: ${thumbNormalColor};
+                    width:10px!important; height:10px!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
                         linear-gradient(var(--deg-one), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
@@ -1699,12 +1700,13 @@ namespace MidnightLizard.ContentScript
                 scrollbar-button:horizontal:increment { --deg-one: 45deg; --deg-two: 135deg; }
                 scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
-                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; }
-                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; }
+                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: 20px!important; }
+                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: 20px!important; }
                 scrollbar-thumb
                 {
-                    --bg-color: ${thumbNormalColor}; border-radius: 1px!important;
-                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important; border: none!important;
+                    --bg-color: ${thumbNormalColor};
+                    border-radius: 1px!important; border: none!important;
+                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
                         linear-gradient(var(--deg-two),
                             var(--bg-color) 30%,

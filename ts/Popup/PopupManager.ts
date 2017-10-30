@@ -366,9 +366,9 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
                 }
                 this._settingsManager.saveUserColorScheme(newScheme)
-                    .then(x =>
+                    .then(async (x) =>
                     {
-                        this.updateColorSchemeListsFromDefaultSettings();
+                        await this.updateColorSchemeListsFromDefaultSettings();
                         alert("Done. It will take effect after page refresh.");
                     })
                     .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
@@ -382,28 +382,28 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                 }]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?`))
             {
                 this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
-                    .then(x =>
+                    .then(async (x) =>
                     {
-                        this.updateColorSchemeListsFromDefaultSettings();
+                        await this.updateColorSchemeListsFromDefaultSettings();
                         alert("Done. It will take effect after page refresh.");
                     })
                     .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
             }
         }
 
-        protected updateColorSchemeListsFromDefaultSettings()
+        protected async updateColorSchemeListsFromDefaultSettings()
         {
-            this._settingsManager.getDefaultSettings()
-                .then(defSet =>
-                {
-                    this._settingsManager.initDefaultColorSchemes();
-                    this.updateColorSchemeLists(defSet);
-                });
+            this._settingsManager.initDefaultColorSchemes();
+            await this._settingsManager.getDefaultSettings();
+            this.updateColorSchemeLists();
         }
 
-        protected updateColorSchemeLists(colorScheme: Settings.ColorScheme)
+        protected updateColorSchemeLists(colorScheme?: Settings.ColorScheme)
         {
-            this._settingsManager.applyUserColorSchemes(colorScheme);
+            if (colorScheme)
+            {
+                this._settingsManager.applyUserColorSchemes(colorScheme);
+            }
             dom.removeAllEventListeners(this._colorSchemeSelect);
             dom.removeAllEventListeners(this._colorSchemeForEdit);
             this._colorSchemeSelect.innerHTML = "";
