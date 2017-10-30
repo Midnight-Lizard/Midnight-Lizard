@@ -25,8 +25,10 @@ namespace MidnightLizard.Popup
         protected _closeButton: HTMLButtonElement;
         protected _setAsDefaultButton: HTMLButtonElement;
         protected _hostName: HTMLAnchorElement;
+        protected _hostState: HTMLElement;
         protected _facebookLink: HTMLAnchorElement;
         protected _isEnabledToggle: HTMLInputElement;
+        protected _runOnThisSiteCheckBox: HTMLInputElement;
         protected _useDefaultScheduleCheckBox: HTMLInputElement;
         protected _forgetAllSitesButton: HTMLButtonElement;
         protected _forgetThisSiteButton: HTMLButtonElement;
@@ -36,6 +38,7 @@ namespace MidnightLizard.Popup
         protected _newColorSchemeName: HTMLInputElement;
         protected _colorSchemeForEdit: HTMLSelectElement;
         protected _importColorSchemeFileInput: HTMLInputElement;
+        protected _syncSettingsCheckBox: HTMLInputElement;
 
         constructor(
             protected readonly _popup: Document,
@@ -67,7 +70,7 @@ namespace MidnightLizard.Popup
 
         protected beforeSettingsInitialized(shift: Colors.ComponentShift): void
         {
-            this._currentSiteSettings = this._settingsManager.currentSettings;
+            this._currentSiteSettings = { ...this._settingsManager.currentSettings };
         }
 
         protected onSettingsInitializationFailed(ex: any): void
@@ -85,17 +88,26 @@ namespace MidnightLizard.Popup
             this._applyButton = doc.getElementById("applyBtn") as HTMLButtonElement;
             this._closeButton = doc.getElementById("closeBtn") as HTMLButtonElement;
             this._hostName = doc.getElementById("hostName") as HTMLAnchorElement;
+            this._hostState = doc.getElementById("hostState")!;
             this._facebookLink = doc.getElementById("facebook-link") as HTMLAnchorElement;
             this._isEnabledToggle = doc.getElementById("isEnabled") as HTMLInputElement;
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
             this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
+            this._runOnThisSiteCheckBox = doc.getElementById("runOnThisSite") as HTMLInputElement;
             this._saveColorSchemeButton = doc.getElementById("saveColorSchemeBtn") as HTMLButtonElement;
             this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
             this._exportColorSchemeButton = doc.getElementById("exportColorSchemeBtn") as HTMLButtonElement;
             this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
             this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
             this._importColorSchemeFileInput = doc.getElementById("importColorSchemeFileInput") as HTMLInputElement;
+            this._syncSettingsCheckBox = doc.getElementById("syncSettings") as HTMLInputElement;
+
+            this._settingsManager.getCurrentSorage().then(isSync =>
+            {
+                this._syncSettingsCheckBox.checked = isSync;
+                this._syncSettingsCheckBox.onchange = this.onSettingsSyncChanged.bind(this);
+            });
 
             doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}  Changelog`);
 
@@ -117,7 +129,8 @@ namespace MidnightLizard.Popup
             range.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             range.onRoomRulesApplied.addListener(this.onRangeRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, range);
 
-            this._hostName.onclick = this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
+            this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
+            this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
             this._applyButton.onclick = this.applySettingsOnPage.bind(this);
             this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
             this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
@@ -132,7 +145,18 @@ namespace MidnightLizard.Popup
             this._exportColorSchemeButton.onclick = this.exportColorScheme.bind(this);
             this._importColorSchemeFileInput.onchange = this.importColorSchemes.bind(this);
 
-            Controls.Tab.initTabControl(doc);
+            Controls.Tab.initTabControl(doc, (tab) =>
+            {
+                if (tab === "text")
+                {
+                    const text = this._popup.getElementById("selection") as Node;
+                    const selection = this._popup.defaultView.getSelection();
+                    const range = this._popup.createRange();
+                    range.selectNodeContents(text);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            });
             Controls.Slider.initSliders(doc);
 
             this._hostName.innerText = this._currentSiteSettings.hostName || "current page";
@@ -196,7 +220,18 @@ namespace MidnightLizard.Popup
                 .applySettings()
                 .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
                 .then(x => this.updateButtonStates())
-                .catch(ex => alert("Settings application failed.\n" + (ex.message || ex)));
+                .catch(ex => alert("Settings application failed. Refresh the page and try again.\n" + (ex.message || ex)));
+        }
+
+        protected toggleRunOnThisSite()
+        {
+            this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
+            this.onInputFieldChanged();
+            this.applySettingsOnPage();
+            // this._settingsManager.toggleRunOnThisSite()
+            //     .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
+            //     .then(x => this.updateButtonStates())
+            //     .catch(ex => alert("Current website toggle failed. Refresh the page and try again.\n" + (ex.message || ex)));
         }
 
         protected toggleIsEnabled()
@@ -204,7 +239,7 @@ namespace MidnightLizard.Popup
             this._currentSiteSettings.isEnabled = this._isEnabledToggle.checked;
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
-                .catch(ex => alert("Extension toggle switching failed.\n" + (ex.message || ex)));
+                .catch(ex => alert("Extension toggle switching failed. Refresh the page and try again.\n" + (ex.message || ex)));
         }
 
         protected fillColorSchemesSelectLists()
@@ -254,6 +289,13 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value = (this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text.replace(editMark, "");
                 this.updateColorSchemeButtons();
             }
+        }
+
+        protected onSettingsSyncChanged()
+        {
+            this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
+                .then(x => alert("Changes have been successfully applied."))
+                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));
         }
 
         protected updateColorSchemeButtons()
@@ -324,9 +366,9 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
                 }
                 this._settingsManager.saveUserColorScheme(newScheme)
-                    .then(x =>
+                    .then(async (x) =>
                     {
-                        this.updateColorSchemeListsFromDefaultSettings();
+                        await this.updateColorSchemeListsFromDefaultSettings();
                         alert("Done. It will take effect after page refresh.");
                     })
                     .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
@@ -340,28 +382,28 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                 }]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?`))
             {
                 this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
-                    .then(x =>
+                    .then(async (x) =>
                     {
-                        this.updateColorSchemeListsFromDefaultSettings();
+                        await this.updateColorSchemeListsFromDefaultSettings();
                         alert("Done. It will take effect after page refresh.");
                     })
                     .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
             }
         }
 
-        protected updateColorSchemeListsFromDefaultSettings()
+        protected async updateColorSchemeListsFromDefaultSettings()
         {
-            this._settingsManager.getDefaultSettings()
-                .then(defSet =>
-                {
-                    this._settingsManager.initDefaultColorSchemes();
-                    this.updateColorSchemeLists(defSet);
-                });
+            this._settingsManager.initDefaultColorSchemes();
+            await this._settingsManager.getDefaultSettings();
+            this.updateColorSchemeLists();
         }
 
-        protected updateColorSchemeLists(colorScheme: Settings.ColorScheme)
+        protected updateColorSchemeLists(colorScheme?: Settings.ColorScheme)
         {
-            this._settingsManager.applyUserColorSchemes(colorScheme);
+            if (colorScheme)
+            {
+                this._settingsManager.applyUserColorSchemes(colorScheme);
+            }
             dom.removeAllEventListeners(this._colorSchemeSelect);
             dom.removeAllEventListeners(this._colorSchemeForEdit);
             this._colorSchemeSelect.innerHTML = "";
@@ -483,12 +525,15 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
         protected updateButtonStates()
         {
             this.updateColorSchemeButtons();
-            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings);
+            this._hostState.className = this._settingsManager.currentSettings.runOnThisSite ? "run" : "do-not-run";
+            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings) &&
+                this._settingsManager.currentSettings.runOnThisSite === this._currentSiteSettings.runOnThisSite;
             Promise
                 .all([this._settingsManager.currentSettings, this._settingsManager.getDefaultSettings()])
                 .then(([currentSettings, defaultSettings]) =>
                 {
-                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings);
+                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings) &&
+                        currentSettings.runOnThisSite === defaultSettings.runOnThisSite;
                 });
         }
 
@@ -506,30 +551,23 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             dom.removeAllEventListeners(this._colorSchemeSelect);
             setUp:
             {
-                if (!settings.runOnThisSite)
+                if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                    Settings.ColorSchemes[settings.colorSchemeId])
                 {
-                    this._colorSchemeSelect.value = "original";
+                    this._colorSchemeSelect.value = settings.colorSchemeId;
                 }
                 else
                 {
-                    if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
-                        Settings.ColorSchemes[settings.colorSchemeId])
+                    let scheme: Settings.ColorSchemeName;
+                    for (scheme in Settings.ColorSchemes)
                     {
-                        this._colorSchemeSelect.value = settings.colorSchemeId;
-                    }
-                    else
-                    {
-                        let scheme: Settings.ColorSchemeName;
-                        for (scheme in Settings.ColorSchemes)
+                        if (this._settingsManager.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
                         {
-                            if (this._settingsManager.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
-                            {
-                                this._colorSchemeSelect.value = scheme;
-                                break setUp;
-                            }
+                            this._colorSchemeSelect.value = scheme;
+                            break setUp;
                         }
-                        this._colorSchemeSelect.value = "custom";
                     }
+                    this._colorSchemeSelect.value = "custom";
                 }
             }
             settings.colorSchemeId = this._colorSchemeSelect.value as Settings.ColorSchemeName;
@@ -554,7 +592,6 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                 {
                     let selectedScheme = Object.assign({}, Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeName]);
                     selectedScheme.isEnabled = this._isEnabledToggle.checked;
-                    selectedScheme.settingsVersion = this._currentSiteSettings.settingsVersion;
                     this.applySettingsOnPopup(selectedScheme);
                 }
             }

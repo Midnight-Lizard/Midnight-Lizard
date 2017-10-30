@@ -3,10 +3,10 @@ namespace MidnightLizard.Settings
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "exist", "hostName", "userColorSchemes", "settingsVersion", "isDefault" as any];
+        ["isEnabled", "exist", "hostName", "userColorSchemes"];
 
-    export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] = 
-        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+    export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
+        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes"];
 
     /**
      * ColorScheme - MidnightLizard Settings
@@ -20,7 +20,6 @@ namespace MidnightLizard.Settings
         hostName?: string;
         isEnabled?: boolean;
         blueFilter: number;
-        settingsVersion?: string;
 
         useDefaultSchedule: boolean;
         scheduleStartHour: number;
@@ -40,12 +39,14 @@ namespace MidnightLizard.Settings
         textLightnessLimit: number;
         textGraySaturation: number;
         textGrayHue: number;
+        textSelectionHue: number;
 
         linkSaturationLimit: number;
         linkContrast: number;
         linkLightnessLimit: number;
         linkDefaultSaturation: number;
         linkDefaultHue: number;
+        linkVisitedHue: number;
 
         borderSaturationLimit: number;
         borderContrast: number;

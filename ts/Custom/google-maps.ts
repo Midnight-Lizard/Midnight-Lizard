@@ -13,7 +13,7 @@ namespace MidnightLizard.Custom
         const view = document.querySelector(".widget-scene-canvas") as HTMLCanvasElement;
         if (view)
         {
-            view.style.filter = "none";
+            view.style.removeProperty("filter");
             view.style.setProperty("--ml-timestamp", Date.now().toString(16));
         }
     }

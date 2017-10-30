@@ -8,7 +8,7 @@
 
   ✔ Intelligent dark themes
   ✔ Increased contrast
-  ✔ Inverted lightness instead of inverted colors
+  ✔ Inverted brightness instead of inverted colors
   ✔ Selective grayscale
   ✔ Increased differentiation between similar background colors
   ✔ Returns images to the original state on mouse hover

@@ -1,4 +1,4 @@
-.app-imagery-mode canvas.widget-scene-canvas
+.app-imagery-mode canvas.widget-scene-canvas, .app-imagery-mode .canvas-container canvas
 {
     --ml-background-background-color:Image;
     --ml-no-invert:true;
@@ -12,7 +12,7 @@
 
 .widget-layer-toggle-dot
 {
-    --ml-background-background-color:Text;
+    --ml-background-background-color:HighlightedText;
 }
 
 .renderable-component-color-text-background

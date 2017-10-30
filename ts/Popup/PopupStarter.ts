@@ -1,5 +1,5 @@
 /// <reference path="../DI/-DI.ts" />
-/// <reference path="../Typings/midnight-lizard/MidnightLizard.d.ts" />
+/// <reference path="../Typings/MidnightLizard.d.ts" />
 /// <reference path="../Settings/-Settings.ts" />
 /// <reference path="-Popup.ts" />
 

@@ -77,7 +77,6 @@ namespace Chrome
                 }
             }
         }
-
     }
 
     namespace Commands
@@ -103,7 +102,9 @@ namespace Chrome
             set(items: Object): Promise<null>;
             get(keys: string | string[] | Object | null): Promise<{ [key: string]: any }>;
             clear(): Promise<null>;
+            remove(key: string): Promise<null>;
         }
         export var local: StorageArea;
+        export var sync: StorageArea;
     }
 }

@@ -18,6 +18,8 @@ namespace MidnightLizard.Settings
             super(null as any, null as any, null as any);
         }
 
+        public initDefaultColorSchemes() { }
+
         protected initCurrentSettings() { }
 
         changeSettings(newSettings: ColorScheme): void

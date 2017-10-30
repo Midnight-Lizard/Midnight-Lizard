@@ -1,42 +1,20 @@
 <html>
 
 <head>
-    <meta name="viewport"
-          content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
 
     <title>Midnight Lizard</title>
 
-    <link href="../css/global-vars.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/content-vars.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/helio-button.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/slider.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/checkbox.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/tab-control.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/switch.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/popup.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/popup-help.css"
-          rel="stylesheet"
-          type="text/css">
-    <link href="../css/content-idle.css"
-          rel="stylesheet"
-          type="text/css">
+    <link href="../css/global-vars.css" rel="stylesheet" type="text/css">
+    <link href="../css/content-vars.css" rel="stylesheet" type="text/css">
+    <link href="../css/helio-button.css" rel="stylesheet" type="text/css">
+    <link href="../css/slider.css" rel="stylesheet" type="text/css">
+    <link href="../css/checkbox.css" rel="stylesheet" type="text/css">
+    <link href="../css/tab-control.css" rel="stylesheet" type="text/css">
+    <link href="../css/switch.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup.css" rel="stylesheet" type="text/css">
+    <link href="../css/popup-help.css" rel="stylesheet" type="text/css">
+    <link href="../css/content-idle.css" rel="stylesheet" type="text/css">
 
     <script src="../js/popup.js"></script>
 </head>
@@ -44,17 +22,19 @@
 <body>
     <div class="ml-dialog-root">
         <div class="ml-dialog-title">
-            <img id="logo"
-                 class="ml-dialog-logo"
-                 src="../img/ml-toolbar-icon-128.png" />
+            <img id="logo" class="ml-dialog-logo" src="../img/ml-toolbar-icon-128.png" />
             <div class="ml-dialog-title-text">
                 <span>Midnight Lizard</span> settings for
-                <a id="hostName"
-                   href="#"></a>
+                <b class="ml-host-state" tooltip="Toggle current website between
+whitelist and blacklist">
+                    <b id="hostState"></b>
+                </b>
+                <a id="hostName" href="#" tooltip="&emsp;&emsp;&ensp;Current website
+━━━━━━━━━━━━
+Click&ensp;to&ensp;toggle&ensp;it&ensp;between
+whitelist&ensp;and&ensp;blacklist"></a>
             </div>
-            <a id="help"
-               tooltip="Support forum"
-               target="_blank"
+            <a id="help" tooltip="Support forum" target="_blank"
                href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/%22how$20to%22">?</a>
             <label id="isEnabledSwitch"
                    class="ml-switch"
@@ -71,8 +51,7 @@
         <div class="ml-dialog-settings">
             <ul class="ml-tab left">
                 <li class="ml-tab-item-separator">&nbsp;</li>
-                <li class="ml-tab-item"
-                    content="common"
+                <li class="ml-tab-item" content="common"
                     tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Common settings
 ━━━━━━━━━━━━━━━━━━━
 &emsp;This tab contains settings that are common for the entire page.
@@ -110,15 +89,10 @@
                     tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Text color settings
 ━━━━━━━━━━━━━━━━━━━
 &emsp;This tab contains color adjustment settings for all text elements on the page.">
-                    <svg class="ml-tab-item-icon"
-                         role="img"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
-                        <path id="textHue"
-                              d="M0 20h24v4H0z"
-                              fill-opacity="1" />
+                    <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path id="textHue" d="M0 20h12v4H0z" fill-opacity="1" />
+                        <path id="txtSelHue" d="M12 20h12v4H12z" fill-opacity="1"/>
                         <path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
                     </svg>Text</li>
                 <li class="ml-tab-item"
@@ -126,15 +100,10 @@
                     tooltip="&emsp;&emsp;&emsp;&emsp;Hyperlinks color settings
 ━━━━━━━━━━━━━━━━━━━
 &emsp;This tab contains color adjustment settings for all hyperlinks on the page.">
-                    <svg class="ml-tab-item-icon"
-                         role="img"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
-                        <path id="linkHue"
-                              d="M0 20h24v4H0z"
-                              fill-opacity="1" />
+                    <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path id="linkHue" d="M0 20h12v4H0z" fill-opacity="1" />
+                        <path id="visitedHue" d="M12 20h12v4H12z" fill-opacity="1"/>
                         <path d="m 3.9,9.3333333 c 0,-1.71 1.39,-3.1 3.1,-3.1 h 4 v -1.9 H 7 c -2.76,0 -5,2.24 -5,5 0,2.7599997 2.24,4.9999997 5,4.9999997
 h 4 v -1.9 H 7 c -1.71,0 -3.1,-1.39 -3.1,-3.0999997 z M 8,10.333333 h 8 V 8.3333333 H 8 Z m 9,-5.9999997 h -4 v 1.9 h 4 c
 1.71,0 3.1,1.39 3.1,3.1 0,1.7099997 -1.39,3.0999997 -3.1,3.0999997 h -4 v 1.9 h 4 c 2.76,0 5,-2.24 5,-4.9999997 0,-2.76 -2.24,-5
@@ -232,9 +201,9 @@ L 14.5 12 z" />
                         To <span>enable</span> or <span>disable</span> an entire extension switch the toggle button in the
                         top-right corner.
                     </run>
-                    <run class="intro intro-common">
-                        You also can do the same on a <span>per-website basis</span> by using <q>Run on this site</q> checkbox
-                        in the <q>Common</q> tab on the left pane.
+                    <run class="intro intro-host">
+                        You also can toggle any particular website between <span>blacklist</span> and <span>whitelist</span>
+                        by clicking on its label on the popup header bar.
                     </run>
                 </p>
                 <p class="intro intro-select-scheme">
@@ -248,7 +217,8 @@ L 14.5 12 z" />
                 </p>
                 <p>
                     <run class="intro intro-apply">
-                        To assign the settings of your preference to the <span>current website</span> press <q>Apply</q>                        button on the right pane.
+                        To assign the settings of your preference to the <span>current website</span> press <q>Apply</q>
+                        button on the right pane.
                     </run>
                     <run class="intro intro-edit-schemes">
                         Or you can <span>add your scheme</span> to the list of the predefined color schemes for futher use
@@ -259,13 +229,15 @@ L 14.5 12 z" />
                     If you want to set up current settings as a <span>default settings</span> for all websites press <q>Set
                     as default</q> button on the right pane.
                 </p>
+                <p class="intro intro-help">
+                    If you need <span>more help</span> go to the support forum to read existing tutorials or ask a new question.
+                </p>
             </div>
             <div id="common"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            title="Run [Midnight Lizard] on this website&#xA;Do not forget to press [Apply] button after changing this option to apply changes on the current wibsite."
-                
                            for="runOnThisSite">
                         <input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
                     </label>
@@ -280,11 +252,11 @@ L 14.5 12 z" />
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
-                
                            for="useDefaultSchedule">
                         <input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
                     </label>
-                </div><br>
+                </div>
+                <br>
                 <div id="scheduleStartHourContainer"
                      class="ml-input-container time">
                     <label class="ml-dialog-label time"
@@ -395,9 +367,6 @@ L 14.5 12 z" />
                         </text>
                     </svg>
                 </div>
-                <input type="hidden"
-                       class="setting"
-                       id="settingsVersion">
             </div>
             <div id="background"
                  class="ml-tab-content"><br>
@@ -822,6 +791,70 @@ L 14.5 12 z" />
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
                     </select>
                 </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label" for="textSelectionHue" title="Text selection hue">Text <span id="selection">selection</span> hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="textSelectionHue" display-color-on="txtSelHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
             </div>
             <div id="links"
                  class="ml-tab-content">
@@ -937,7 +970,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="linkDefaultSaturation"
-                           title="Saturation of the links with default text color">Default link saturation</label>
+                           title="Saturation of the links with default text color and for visited links">Link saturation</label>
                     <input class="ml-input-range setting percent"
                            id="linkDefaultSaturation"
                            type="range"
@@ -975,6 +1008,73 @@ L 14.5 12 z" />
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="linkDefaultHue"
                             display-color-on="linkHue">
+                        <option value="4"
+                                label="Red"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
+                        <option value="340"
+                                label="Pink"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
+                        <option value="291"
+                                label="Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
+                        <option value="262"
+                                label="Deep Purple"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
+                        <option value="231"
+                                label="Indigo"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
+                        <option value="207"
+                                label="Blue"
+                                style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
+                        <option value="199"
+                                label="Light Blue"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
+                        <option value="187"
+                                label="Cyan"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
+                        <option value="174"
+                                label="Teal"
+                                style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
+                        <option value="122"
+                                label="Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
+                        <option value="88"
+                                label="Light Green"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
+                        <option value="66"
+                                label="Lime"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
+                        <option value="54"
+                                label="Yellow"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
+                        <option value="45"
+                                label="Amber"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
+                        <option value="36"
+                                label="Orange"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
+                        <option value="14"
+                                label="Deep Orange"
+                                style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
+                        <option value="16"
+                                label="Brown"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
+                        <option value="0"
+                                label="Grey"
+                                style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
+                        <option value="200"
+                                label="Blue Grey"
+                                style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
+                    </select>
+                </div>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           for="linkVisitedHue"
+                           title="Visited link hue">Visited link hue</label>
+                    <br>
+                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
+                            id="linkVisitedHue"
+                            display-color-on="visitedHue">
                         <option value="4"
                                 label="Red"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
@@ -1582,14 +1682,30 @@ L 14.5 12 z" />
                            title="Scrollbar example">Scrollbar example</label>
                     <div class="ml-scrollbar-example">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        <br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <br/>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
                 </div>
             </div>
             <div id="edit-schemes"
                  class="ml-tab-content">
                 <br>
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label"
+                           title="Sync [Midnight Lizard] settings across all your devices where this option is also checked.&#xA;When checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.&#xA;You also need to enable [Sync] in the [Chrome] settings in order for [Midnight Lizard] settings synchronization to work."
+                           for="syncSettings">
+                        <input class="ml-checkbox" id="syncSettings" type="checkbox">Sync settings across your devices
+                    </label>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="colorSchemeForEdit"
@@ -1620,7 +1736,7 @@ L 14.5 12 z" />
                         Delete
                     </button>
                     <button id="saveColorSchemeBtn"
-                            title="Update selected color scheme with current settings"
+                            title="Update selected color scheme with current popup settings"
                             class="ml-helio-button blue">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0h24v24H0z" fill="none" />

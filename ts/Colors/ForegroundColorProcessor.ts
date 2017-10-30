@@ -14,18 +14,10 @@ namespace MidnightLizard.Colors
         abstract getDefaultColor(doc: Document): string | undefined;
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
-
-    export abstract class ILinkColorProcessor extends ITextColorProcessor
-    {
-    }
-
-    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor
-    {
-    }
-
-    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor
-    {
-    }
+    export abstract class ILinkColorProcessor extends ITextColorProcessor { }
+    export abstract class IVisitedLinkColorProcessor extends ITextColorProcessor { }
+    export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor { }
+    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
 
     export abstract class ITextShadowColorProcessor
     {
@@ -372,6 +364,30 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Link;
+        }
+    }
+
+    @DI.injectable(IVisitedLinkColorProcessor)
+    class VisitedLinkColorProcessor extends TextColorProcessor implements IVisitedLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return true;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
+        }
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.VisitedLink;
         }
     }
 

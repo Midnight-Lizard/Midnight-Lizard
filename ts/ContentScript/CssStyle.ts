@@ -51,17 +51,20 @@ namespace MidnightLizard.ContentScript
 
     class CssConstants
     {
-        all = "all";
-        none = "none";
-        important = "important";
         _0px = "0px";
         _0s = "0s";
         _200ms = "200ms";
-        "px" = "px";
-        "fixed" = "fixed";
-        "absolute" = "absolute";
-        "relative" = "relative";
-        "hidden" = "hidden";
+        all = "all";
+        none = "none";
+        important = "important";
+        px = "px";
+        fixed = "fixed";
+        absolute = "absolute";
+        relative = "relative";
+        hidden = "hidden";
+        originalColor = "--original-color";
+        linkColor = "--link-color";
+        visitedColor = "--visited-color";
     }
 
     @DI.injectable()

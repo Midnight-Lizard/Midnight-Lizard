@@ -25,12 +25,13 @@
     z-index: 9999;
 }
 
-.ytp-swatch-background-color, .ytp-swatch-background-color-secondary, .ytp-menuitem-toggle-checkbox, .toggle-bar
+.ytp-swatch-background-color, .ytp-swatch-background-color-secondary, .ytp-menuitem-toggle-checkbox,
+.toggle-bar, .ytd-sentiment-bar-renderer, .toggle-button[aria-pressed=false], paper-toggle-button[aria-pressed=false]
 {
     --ml-background-background-color:Border;
 }
 
-.ytp-volume-slider-handle:before, .ytp-volume-slider-handle
+.ytp-volume-slider-handle:before, .ytp-volume-slider-handle, .ytp-button[aria-pressed]:after, #like-bar.ytd-sentiment-bar-renderer
 {
     /*background-color: currentColor!important;*/
     /*--ml-text-color:HighlightedText;*/
@@ -45,23 +46,41 @@
     ) !important;
 }
 
-.ytp-menuitem-toggle-checkbox:after, .toggle-button, .toggle, .ytp-chrome-controls .ytp-button[aria-pressed=true]:after
+.ytp-menuitem-toggle-checkbox:after, .toggle-button[aria-pressed=true], paper-toggle-button[aria-pressed=true], .toggle
 {
-    --ml-background-background-color:Text;
+    --ml-background-background-color:HighlightedText;
 }
 
-.style-scope.yt-icon, .ytp-svg-fill, .ytp-button:not(.ytp-subtitles-button) > svg, .ytp-time-display
+#selectionBar.paper-tabs
+{
+    --ml-border-border-color:HighlightedText;
+    --ml-border-border-bottom-color:HighlightedText;
+    --ml-border-border-left-color:HighlightedText;
+    --ml-border-border-right-color:HighlightedText;
+    --ml-border-border-top-color:HighlightedText;
+}
+
+.style-scope.yt-icon, .ytp-button > svg *, .ytp-time-display
 {
     --ml-svgbackground-fill:HighlightedText;
     --ml-background-fill:HighlightedText;
     --ml-text-fill:HighlightedText;
 }
 
+.ytp-button > svg
+{
+    --ml-svgbackground-fill:Background;
+    --ml-background-fill:Background;
+    --ml-text-fill:Background;
+}
+
 .ytp-settings-button.ytp-hd-quality-badge:after
 {
     color: white;
     background-size: 13px 9px;
-    --ml-backgroundimage:Text;
+    --ml-backgroundimage:HighlightedText;
+    --ml-text-color:HighlightedText;
+    --ml-background-background-color:Border;
 }
 
 .checked
@@ -81,4 +100,9 @@
     --ml-background-border-left-color:Border;
     --ml-background-border-right-color:Border;
     --ml-background-border-top-color:Border;
+}
+
+.webgl canvas:not(imp)
+{
+    --ml-ignore:true;
 }

@@ -34,7 +34,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
             protected readonly _styleSheetProcessor: IStyleSheetProcessor)
         {
-            _settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this);
+            _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
         }
 
         protected _onClassChanged = new ArgEventDispatcher<Set<Element>>();
@@ -55,7 +55,7 @@ namespace MidnightLizard.ContentScript
             return this._onElementAdded.event;
         }
 
-        protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
+        protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
         {
             if (!this._settingsManager.isActive)
             {

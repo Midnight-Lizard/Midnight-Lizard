@@ -9,6 +9,7 @@ namespace MidnightLizard.ContentScript
         owner: any;
         backgroundColor: Colors.ColorEntry | null | undefined;
         color: Colors.ColorEntry | null | undefined;
+        visitedColor: Colors.ColorEntry | null | undefined;
         borderColor: Colors.ColorEntry | null | undefined;
         borderTopColor: Colors.ColorEntry | null | undefined;
         borderRightColor: Colors.ColorEntry | null | undefined;

@@ -1,5 +1,5 @@
 /// <reference path="../DI/-DI.ts" />
-/// <reference path="../Typings/midnight-lizard/MidnightLizard.d.ts" />
+/// <reference path="../Typings/MidnightLizard.d.ts" />
 /// <reference path="../ContentScript/-ContentScript.ts" />
 
 namespace MidnightLizard.ContentScript

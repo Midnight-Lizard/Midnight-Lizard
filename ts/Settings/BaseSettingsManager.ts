@@ -12,7 +12,6 @@ namespace MidnightLizard.Settings
 {
     type AnyResponse = (args: any) => void;
     type ColorSchemeResponse = (settings: ColorScheme) => void;
-    type Storage = { isEnabled?: boolean, settingsVersion?: string, defaultSettingsVersion?: string };
     type ArgEvent<TRequestArgs> = MidnightLizard.Events.ArgumentedEvent<TRequestArgs>;
     type RespEvent<TResponseMethod extends Function, TRequestArgs> = MidnightLizard.Events.ResponsiveEvent<TResponseMethod, TRequestArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
@@ -55,7 +54,8 @@ namespace MidnightLizard.Settings
         public get shift() { return this._shift }
 
         /** MidnightLizard should be running on this page */
-        public get isActive() { return this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
+        public get isActive() { return this.isInit && this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
+        protected isInit = false;
 
         /** SettingsManager constructor
          * @param _cookiesManager - abstract cookies manager
@@ -68,8 +68,12 @@ namespace MidnightLizard.Settings
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
             this.initDefaultColorSchemes();
-            this._defaultSettings = this._currentSettings = Object.assign(new ColorScheme(), ColorSchemes.dimmedDust);
+            this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
+            this._defaultSettings.colorSchemeId = "default";
+            this._defaultSettings.colorSchemeName = "Default";
+            this._currentSettings = { ...this._defaultSettings };
             this.initCurrentSettings();
+            this.onSettingsInitialized.addListener(shift => this.isInit = true, this);
         }
 
         protected abstract initCurrentSettings(): void;
@@ -96,6 +100,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.backgroundGraySaturation,
                         grayHue: set.backgroundGrayHue
                     },
+                    TextSelection:
+                    {
+                        saturationLimit: Math.max(set.textSaturationLimit, 0.3),
+                        contrast: set.backgroundContrast,
+                        lightnessLimit: 0.46,
+                        graySaturation: Math.max(set.textSaturationLimit, 0.3),
+                        grayHue: set.textSelectionHue
+                    },
                     Text:
                     {
                         saturationLimit: set.textSaturationLimit,
@@ -119,6 +131,14 @@ namespace MidnightLizard.Settings
                         lightnessLimit: set.linkLightnessLimit,
                         graySaturation: set.linkDefaultSaturation,
                         grayHue: set.linkDefaultHue
+                    },
+                    VisitedLink:
+                    {
+                        saturationLimit: set.linkSaturationLimit,
+                        contrast: set.linkContrast,
+                        lightnessLimit: set.linkLightnessLimit,
+                        graySaturation: set.linkDefaultSaturation,
+                        grayHue: set.linkVisitedHue
                     },
                     TextShadow:
                     {
@@ -189,7 +209,7 @@ namespace MidnightLizard.Settings
 
         protected updateSchedule()
         {
-            if (this._currentSettings.useDefaultSchedule && this._defaultSettings.settingsVersion !== undefined)
+            if (this._currentSettings.useDefaultSchedule)
             {
                 this._scheduleStartHour = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
                 this._scheduleFinishHour = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
@@ -232,12 +252,37 @@ namespace MidnightLizard.Settings
                     Settings.ColorSchemes[userColorScheme.colorSchemeId] = Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
                 }
             }
+            Object.assign(Settings.ColorSchemes.default, defaultSettings.colorSchemeId ? defaultSettings : Settings.ColorSchemes.dimmedDust);
+            Settings.ColorSchemes.default.colorSchemeId = "default";
+            Settings.ColorSchemes.default.colorSchemeName = "Default";
+        }
+
+        protected assignSettings(to: Settings.ColorScheme, settings: Settings.ColorScheme)
+        {
+            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                Settings.ColorSchemes[settings.colorSchemeId])
+            {
+                Object.assign(to, Settings.ColorSchemes[settings.colorSchemeId]);
+                if (settings.runOnThisSite !== undefined)
+                {
+                    to.runOnThisSite = settings.runOnThisSite;
+                }
+                if (settings.isEnabled !== undefined)
+                {
+                    to.isEnabled = settings.isEnabled;
+                }
+            }
+            else
+            {
+                Object.assign(to, settings);
+            }
         }
 
         public settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
         {
             const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
-                ["isEnabled", "exist", "hostName", "settingsVersion", "colorSchemeId", "colorSchemeName", "userColorSchemes", "isDefault" as any];
+                ["isEnabled", "exist", "hostName", "colorSchemeId", "colorSchemeName",
+                    "userColorSchemes", "runOnThisSite"];
             for (let setting in first)
             {
                 let prop = setting as Settings.ColorSchemePropertyName;
@@ -245,6 +290,8 @@ namespace MidnightLizard.Settings
                 {
                     if (first[prop] !== second[prop])
                     {
+                        //console.log(`${first.colorSchemeId}.${prop}=[${first[prop]}]`);
+                        //console.log(`${second.colorSchemeId}.${prop}=[${second[prop]}]`);
                         return false;
                     }
                 }

@@ -1,7 +1,7 @@
 namespace MidnightLizard.Util
 {
 
-    export function forEachPromise<TResult>(arrayOfParams: any[][], action: (...p: any[]) => TResult, initialDelay = 0, getNextDelay?: (params: any[], prevDelay?: number, index?: number) => number)
+    export function forEachPromise<TResult>(arrayOfParams: any[][], action: (...p: any[]) => Promise<TResult> | TResult, initialDelay = 0, getNextDelay?: (params: any[], prevDelay?: number, index?: number) => number)
     {
         let fePromise: Promise<TResult> = null!;
         let lastDelay = initialDelay;
@@ -19,7 +19,7 @@ namespace MidnightLizard.Util
         return fePromise;
     }
 
-    export function setTimeoutPromise<TResult>(action: (...p: any[]) => TResult, delay: number, params: any[])
+    export function setTimeoutPromise<TResult>(action: (...p: any[]) => Promise<TResult> | TResult, delay: number, params: any[])
     {
         params && params.push(delay);
         return new Promise<TResult>((resolve, reject) =>
