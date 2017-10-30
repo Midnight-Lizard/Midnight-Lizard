@@ -1693,10 +1693,10 @@ namespace MidnightLizard.ContentScript
                         linear-gradient(var(--deg-two), transparent 50%, currentColor 50%, currentColor 55%, transparent 55%),
                         var(--bg-color)!important;
                 }
-                scrollbar-button:vertical:start { --deg-one: 45deg; --deg-two: -45deg; }
-                scrollbar-button:vertical:end { --deg-one: 135deg; --deg-two: -135deg; }
-                scrollbar-button:horizontal:start { --deg-one: -135deg; --deg-two: -45deg; }
-                scrollbar-button:horizontal:end { --deg-one: 45deg; --deg-two: 135deg; }
+                scrollbar-button:vertical:decrement { --deg-one: 45deg; --deg-two: -45deg; }
+                scrollbar-button:vertical:increment { --deg-one: 135deg; --deg-two: -135deg; }
+                scrollbar-button:horizontal:decrement { --deg-one: -135deg; --deg-two: -45deg; }
+                scrollbar-button:horizontal:increment { --deg-one: 45deg; --deg-two: 135deg; }
                 scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; }
