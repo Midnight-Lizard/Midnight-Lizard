@@ -17,6 +17,7 @@ namespace MidnightLizard.Settings
         static kappaDream: ColorScheme;
         static almondRipe: ColorScheme;
         static sunsetSails: ColorScheme;
+        static halloween: ColorScheme;
         static morningMist: ColorScheme;
         static antiqueCodex: ColorScheme;
         static increasedContrast: ColorScheme;
@@ -383,6 +384,56 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 36
+                } as ColorScheme,
+
+                // Halloween
+                {
+                    colorSchemeId: "halloween",
+                    colorSchemeName: "Halloween",
+                    runOnThisSite: true,
+                    restoreColorsOnCopy: false,
+                    blueFilter: 80,
+
+                    useDefaultSchedule: true,
+                    scheduleStartHour: 0,
+                    scheduleFinishHour: 24,
+
+                    backgroundSaturationLimit: 80,
+                    backgroundContrast: 60,
+                    backgroundLightnessLimit: 7,
+                    backgroundGraySaturation: 80,
+                    backgroundGrayHue: 16,
+
+                    textSaturationLimit: 80,
+                    textContrast: 60,
+                    textLightnessLimit: 90,
+                    textGraySaturation: 80,
+                    textGrayHue: 14,
+                    textSelectionHue: 4,
+
+                    linkSaturationLimit: 50,
+                    linkContrast: 55,
+                    linkLightnessLimit: 100,
+                    linkDefaultSaturation: 100,
+                    linkDefaultHue: 14,
+                    linkVisitedHue: 4,
+
+                    borderSaturationLimit: 80,
+                    borderContrast: 30,
+                    borderLightnessLimit: 60,
+                    borderGraySaturation: 100,
+                    borderGrayHue: 4,
+
+                    imageLightnessLimit: 80,
+                    imageSaturationLimit: 90,
+
+                    backgroundImageLightnessLimit: 40,
+                    backgroundImageSaturationLimit: 80,
+
+                    scrollbarSaturationLimit: 30,
+                    scrollbarContrast: 0,
+                    scrollbarLightnessLimit: 20,
+                    scrollbarGrayHue: 16
                 } as ColorScheme,
 
                 // Morning Mist
