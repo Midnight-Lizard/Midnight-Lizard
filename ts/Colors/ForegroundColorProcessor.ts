@@ -368,25 +368,16 @@ namespace MidnightLizard.Colors
     }
 
     @DI.injectable(IVisitedLinkColorProcessor)
-    class VisitedLinkColorProcessor extends TextColorProcessor implements IVisitedLinkColorProcessor
+    class VisitedLinkColorProcessor extends LinkColorProcessor implements IVisitedLinkColorProcessor
     {
         protected readonly _tagName = "a";
 
-        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
-        {
-            return true;
-        }
-
-        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
-        {
-            return this._colorShift;
-        }
-
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
-            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
         {
-            super(app, settingsManager);
+            super(app, settingsManager, textColorProcessor);
             this._component = Component.VisitedLink;
         }
     }
