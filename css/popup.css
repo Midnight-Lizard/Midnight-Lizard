@@ -683,7 +683,12 @@ html, body {
 
 #hostName:after
 {
-    margin-left: -116px;
+    margin-left: -50px;
+}
+
+#hostName:before
+{
+    margin-left: -30px;
 }
 
 #hostName
