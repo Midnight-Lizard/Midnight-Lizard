@@ -59,16 +59,22 @@ namespace Chrome
             }
         }
 
-        getCurrentStorage(): Promise<MidnightLizard.Settings.StorageType>
+        async getCurrentStorage(): Promise<MidnightLizard.Settings.StorageType>
         {
             if (this.currentStorage)
             {
-                return Promise.resolve(this.currentStorage);
+                return this.currentStorage;
             }
             else
             {
-                return this.chromePromise.storage.local.get({ sync: true })
-                    .then(x => this.currentStorage = x.sync ? "sync" : "local");
+                const state = await this.chromePromise.storage.local.get({ sync: true, synced: false });
+                this.currentStorage = state.sync ? "sync" : "local"
+                if (this.currentStorage === "sync" && !state.synced)
+                {
+                    await this.transferStorage("local", "sync");
+                    await this.chromePromise.storage.local.set({ synced: true });
+                }
+                return this.currentStorage
             }
         }
     }
