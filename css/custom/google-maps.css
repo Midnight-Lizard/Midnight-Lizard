@@ -24,8 +24,8 @@
 .widget-reveal-card-image:not(impt)
 {
     --ml-backgroundimage:Image;
-    background-size: cover;
-    background-position-x: -70px;
+    /* background-size: cover;
+    background-position-x: -70px; */
 }
 
 .widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before,
