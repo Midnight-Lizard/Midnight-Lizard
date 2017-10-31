@@ -34,6 +34,7 @@ namespace MidnightLizard.Settings
     {
         protected _scheduleStartHour = 0;
         protected _scheduleFinishHour = 24;
+        protected readonly _settingsKey: string;
         protected get isScheduled(): boolean
         {
             let curHour = new Date().getHours();
@@ -62,11 +63,12 @@ namespace MidnightLizard.Settings
          * @param _settingsBus - abstract settings communication bus
          * @param _storageManager - abstract browser storage manager
          **/
-        constructor(
+        constructor(rootDocument: Document,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
+            this._settingsKey = `ws:${rootDocument.location.hostname}`;
             this.initDefaultColorSchemes();
             this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
             this._defaultSettings.colorSchemeId = "default";

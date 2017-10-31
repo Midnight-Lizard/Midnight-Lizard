@@ -13,9 +13,9 @@ namespace MidnightLizard.Settings
     @DI.injectable(IDynamicSettingsManager)
     class DynamicSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IDynamicSettingsManager
     {
-        constructor()
+        constructor(rootDocument: Document)
         {
-            super(null as any, null as any, null as any);
+            super(rootDocument, null as any, null as any, null as any);
         }
 
         public initDefaultColorSchemes() { }

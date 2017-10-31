@@ -78,6 +78,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter)
         {
+            _rootDocument.documentElement.setAttribute("preload", "");
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
                 [
@@ -144,6 +145,7 @@ namespace MidnightLizard.ContentScript
 
         protected onSettingsInitialized(shift: Colors.ComponentShift): void
         {
+            this._rootDocument.documentElement.removeAttribute("preload");
             if (this._settingsManager.isActive)
             {
                 this.createStandardPseudoCssTexts();

@@ -25,10 +25,6 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class SettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements ISettingsManager
     {
-        /** period of settings storage in the cookies */
-        protected static readonly _storagePeriod = 49;
-        protected readonly _settingsKey: string;
-
         constructor(
             protected readonly _rootDocument: Document,
             // protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
@@ -36,28 +32,29 @@ namespace MidnightLizard.ContentScript
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
-            super(app, storageManager, settingsBus);
-            this._settingsKey = `ws:${_rootDocument.location.hostname}`;
+            super(_rootDocument, app, storageManager, settingsBus);
             settingsBus.onCurrentSettingsRequested.addListener(this.onCurrentSettingsRequested, this);
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);
             settingsBus.onSettingsDeletionRequested.addListener(this.onSettingsDeletionRequested, this);
         }
 
-        protected async initCurrentSettings()
+        protected initCurrentSettings()
         {
-            try
+            const storage = {
+                ...Settings.ColorSchemes.default,
+                ...Settings.ColorSchemes.dimmedDust,
+                ...{ [this._settingsKey]: {} }
+            };
+            this._storageManager.get(storage).then(defaultSettings =>
             {
-                const defaultSettings = await this._storageManager.get({
-                    ...Settings.ColorSchemes.default,
-                    ...Settings.ColorSchemes.dimmedDust
-                });
+                const settings = (defaultSettings as any)[this._settingsKey] as Settings.ColorScheme;
+                delete (defaultSettings as any)[this._settingsKey];
                 this.applyUserColorSchemes(defaultSettings);
                 this.assignSettings(this._defaultSettings, defaultSettings);
                 this._defaultSettings.colorSchemeId = "default";
                 this._defaultSettings.colorSchemeName = "Default";
                 Object.assign(this._currentSettings, this._defaultSettings);
-                const settings = await this.getSettings();
                 if (settings)
                 {
                     this.assignSettings(this._currentSettings, settings);
@@ -65,11 +62,7 @@ namespace MidnightLizard.ContentScript
                 this.updateSchedule();
                 this.initCurSet();
                 this._onSettingsInitialized.raise(this._shift);
-            }
-            catch (ex)
-            {
-                this._app.isDebug && console.error(ex);
-            }
+            }).catch(ex => this._app.isDebug && console.error(ex));
         }
 
         protected async onSettingsDeletionRequested(response: AnyResponse)
@@ -137,12 +130,6 @@ namespace MidnightLizard.ContentScript
         protected getSettingNameForCookies(propertyName: Settings.ColorSchemePropertyName)
         {
             return "ML" + propertyName.match(/^[^A-Z]{1,4}|[A-Z][^A-Z]{0,2}/g)!.join("").toUpperCase();
-        }
-
-        protected getSettings(): Promise<Settings.ColorScheme>
-        {
-            return this._storageManager.get<any>(this._settingsKey)
-                .then(x => x[this._settingsKey]);
         }
     }
 }

@@ -48,12 +48,12 @@ namespace MidnightLizard.Popup
         onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
         onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
 
-        constructor(
+        constructor(rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
-            super(app, storageManager, settingsBus);
+            super(rootDocument, app, storageManager, settingsBus);
         }
 
         protected initCurrentSettings()
