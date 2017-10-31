@@ -368,6 +368,7 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                 this._settingsManager.saveUserColorScheme(newScheme)
                     .then(async (x) =>
                     {
+                        this._settingsManager.changeSettings(newScheme);
                         await this.updateColorSchemeListsFromDefaultSettings();
                         alert("Done. It will take effect after page refresh.");
                     })
