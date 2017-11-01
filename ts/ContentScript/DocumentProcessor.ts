@@ -65,6 +65,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _documentObserver: MidnightLizard.ContentScript.IDocumentObserver,
             protected readonly _styleSheetProcessor: MidnightLizard.ContentScript.IStyleSheetProcessor,
             protected readonly _backgroundColorProcessor: MidnightLizard.Colors.IBackgroundColorProcessor,
+            protected readonly _buttonBackgroundColorProcessor: MidnightLizard.Colors.IButtonBackgroundColorProcessor,
             protected readonly _svgColorProcessor: MidnightLizard.Colors.ISvgBackgroundColorProcessor,
             protected readonly _scrollbarHoverColorProcessor: MidnightLizard.Colors.IScrollbarHoverColorProcessor,
             protected readonly _scrollbarNormalColorProcessor: MidnightLizard.Colors.IScrollbarNormalColorProcessor,
@@ -76,6 +77,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _visitedLinkColorProcessor: MidnightLizard.Colors.IVisitedLinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
+            protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter)
         {
             _rootDocument.documentElement.setAttribute("preload", "");
@@ -1052,6 +1054,11 @@ namespace MidnightLizard.ContentScript
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
                 let isSvg = tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement,
                     isSvgText = tag instanceof SVGTextContentElement || tag instanceof doc.defaultView.SVGTextContentElement,
+                    isLink = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement,
+                    isButton = tag instanceof HTMLButtonElement || tag instanceof doc.defaultView.HTMLButtonElement ||
+                        (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
+                        (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
+                        isRealElement(tag) && tag.getAttribute("role") === "button",
                     isTable =
                         tag instanceof HTMLTableElement || tag instanceof doc.defaultView.HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
                         tag instanceof HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof HTMLTableSectionElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
@@ -1129,7 +1136,8 @@ namespace MidnightLizard.ContentScript
                         }
                         else
                         {
-                            roomRules.backgroundColor = this.changeColor({ role: cc.Background, property: ns.css.bgrColor, tag: tag });
+                            roomRules.backgroundColor = this.changeColor(
+                                { role: isButton ? cc.ButtonBackground : cc.Background, property: ns.css.bgrColor, tag: tag });
                         }
 
                         if (this._app.preserveDisplay && roomRules.backgroundColor && roomRules.backgroundColor.color && tag.id && tag.className)
@@ -1266,7 +1274,7 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else if (/gradient/gi.test(bgImg))
                                 {
-                                    return this.processBackgroundGradient(tag, index, bgImg, size, roomRules!);
+                                    return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules!);
                                 }
                                 else
                                 {
@@ -1279,7 +1287,7 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        const textRole = (tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement) || tag.isPseudo
+                        const textRole = isLink || tag.isPseudo
                             && (tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement)
                             ? cc.Link
                             : cc.Text;
@@ -1370,12 +1378,12 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                roomRules.borderColor = this.changeColor({ role: cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight });
+                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight });
                             }
                         }
                         else if (!isSvg)
                         {
-                            let borderRole = cc.Border, transBordersCount = 0;
+                            let borderRole = isButton ? cc.ButtonBorder : cc.Border, transBordersCount = 0;
                             if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
                                 ((transBordersCount = [
                                     tag.computedStyle!.borderTopColor,
@@ -1455,6 +1463,9 @@ namespace MidnightLizard.ContentScript
                         case cc.Background:
                             return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
 
+                        case cc.ButtonBackground:
+                            return this._buttonBackgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+
                         case cc.Text:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
@@ -1474,6 +1485,10 @@ namespace MidnightLizard.ContentScript
                         case cc.Border:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.ButtonBorder:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.SvgBackground:
                             return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
@@ -1495,7 +1510,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected processBackgroundGradient(tag: HTMLElement | PseudoElement, index: number, gradient: string, size: string, roomRules: RoomRules)
+        protected processBackgroundGradient(tag: HTMLElement | PseudoElement, isButton: boolean, index: number, gradient: string, size: string, roomRules: RoomRules)
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
@@ -1506,7 +1521,9 @@ namespace MidnightLizard.ContentScript
                 uniqColors.forEach(c =>
                 {
                     let prevColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
-                    let newColor = this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                    let newColor = isButton
+                        ? this._buttonBackgroundColorProcessor.changeColor(prevColor, false, tag)
+                        : this._backgroundColorProcessor.changeColor(prevColor, false, tag);
                     lightSum += newColor.light;
                     if (newColor.color)
                     {
@@ -1678,7 +1695,7 @@ namespace MidnightLizard.ContentScript
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}`;
             const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }`;
             const linkColors =
-                "[style*=--link]:link:not(imp) { color: var(--link-color)!important; }" +
+                "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
             sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}
                 scrollbar { width: 10px!important; height: 10px!important; background: ${thumbNormalColor}!important; }

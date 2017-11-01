@@ -59,19 +59,6 @@
     --ml-border-border-top-color:Background;
 }
 
-.widget-pane-toggle-button:after
-{
-    content: '\25C0\2006\25B6';
-    font-size: 6pt;
-    position: relative;
-    bottom: 3px;
-}
-
-.widget-pane-toggle-button
-{
-    background-image: none!important;
-}
-
 .widget-pane-content.scrollable-y:not(impt)::-webkit-scrollbar
 {
     width: 6px!important;

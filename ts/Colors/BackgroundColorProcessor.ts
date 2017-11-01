@@ -14,6 +14,7 @@ namespace MidnightLizard.Colors
     export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class ITextSelectionColorProcessor extends IBackgroundColorProcessor { }
+    export abstract class IButtonBackgroundColorProcessor extends IBackgroundColorProcessor { }
 
     /** BackgroundColorProcessor */
     @DI.injectable(IBackgroundColorProcessor)
@@ -232,6 +233,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.TextSelection;
+        }
+    }
+
+    @DI.injectable(IButtonBackgroundColorProcessor)
+    class ButtonBackgroundColorProcessor extends BackgroundColorProcessor implements IButtonBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.ButtonBackground;
         }
     }
 

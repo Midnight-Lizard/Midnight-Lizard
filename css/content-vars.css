@@ -21,22 +21,31 @@
     --ml-background-border-right-color:Background;
     --ml-background-border-top-color:Background;
 
+    --ml-buttonbackground-background-color:ButtonBackground;
+    --ml-buttonbackground-fill:ButtonBackground;
+
     --ml-backgroundimage:BackgroundImage;
     --ml-image:Image;
     --ml-svgbackground-background-color:SvgBackground;
     --ml-svgbackground-fill:SvgBackground;
 
+    --ml-border-background-color:Border;
     --ml-border-border-color:Border;
     --ml-border-border-bottom-color:Border;
     --ml-border-border-left-color:Border;
     --ml-border-border-right-color:Border;
     --ml-border-border-top-color:Border;
     --ml-border-stroke:Border;
+    --ml-border-fill:Border;
 
-    --ml-pseudo-hover:false;
-    --ml-pseudo-focus:false;
-    --ml-pseudo-active:false;
-    --ml-pseudo-checked:false;
+    --ml-buttonborder-background-color:ButtonBorder;
+    --ml-buttonborder-border-color:ButtonBorder;
+    --ml-buttonborder-border-bottom-color:ButtonBorder;
+    --ml-buttonborder-border-left-color:ButtonBorder;
+    --ml-buttonborder-border-right-color:ButtonBorder;
+    --ml-buttonborder-border-top-color:ButtonBorder;
+    --ml-buttonborder-stroke:ButtonBorder;
+    --ml-buttonborder-fill:ButtonBorder;
 
     --ml-background-saturation-limit:1;
     --ml-background-contrast:0;

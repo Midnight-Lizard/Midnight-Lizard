@@ -29,6 +29,7 @@ namespace MidnightLizard.Colors
     {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
+    export abstract class IButtonBorderColorProcessor extends IBorderColorProcessor { }
 
     export abstract class IScrollbarHoverColorProcessor
     {
@@ -391,6 +392,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Border;
+        }
+    }
+
+    @DI.injectable(IButtonBorderColorProcessor)
+    class ButtonBorderColorProcessor extends ForegroundColorProcessor implements IButtonBorderColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.ButtonBorder;
         }
     }
 

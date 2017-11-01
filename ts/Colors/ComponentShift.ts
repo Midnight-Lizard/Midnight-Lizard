@@ -16,7 +16,9 @@ namespace MidnightLizard.Colors
         Scrollbar$Active,
         Image,
         SvgBackground,
-        BackgroundImage
+        BackgroundImage,
+        ButtonBackground,
+        ButtonBorder
     }
 
     /**
@@ -38,6 +40,8 @@ namespace MidnightLizard.Colors
         Image: ColorShift;
         SvgBackground: ColorShift;
         BackgroundImage: ColorShift;
+        ButtonBackground: ColorShift;
+        ButtonBorder: ColorShift;
         constructor() { }
     }
 }

@@ -102,6 +102,14 @@ namespace MidnightLizard.Settings
                         graySaturation: set.backgroundGraySaturation,
                         grayHue: set.backgroundGrayHue
                     },
+                    ButtonBackground:
+                    {
+                        saturationLimit: Math.min(set.backgroundSaturationLimit * 1.1, 1),
+                        contrast: set.backgroundContrast,
+                        lightnessLimit: set.backgroundLightnessLimit * 0.8,
+                        graySaturation: Math.min(set.backgroundGraySaturation * 1.1, 1),
+                        grayHue: set.backgroundGrayHue
+                    },
                     TextSelection:
                     {
                         saturationLimit: Math.max(set.textSaturationLimit, 0.3),
@@ -155,6 +163,14 @@ namespace MidnightLizard.Settings
                         saturationLimit: set.borderSaturationLimit,
                         contrast: set.borderContrast,
                         lightnessLimit: set.borderLightnessLimit,
+                        graySaturation: set.borderGraySaturation,
+                        grayHue: set.borderGrayHue
+                    },
+                    ButtonBorder:
+                    {
+                        saturationLimit: set.borderSaturationLimit,
+                        contrast: set.borderContrast * 0.5,
+                        lightnessLimit: set.borderLightnessLimit * 0.8,
                         graySaturation: set.borderGraySaturation,
                         grayHue: set.borderGrayHue
                     },
