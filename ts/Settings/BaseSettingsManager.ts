@@ -168,7 +168,7 @@ namespace MidnightLizard.Settings
                     },
                     ButtonBorder:
                     {
-                        saturationLimit: set.borderSaturationLimit,
+                        saturationLimit: set.borderSaturationLimit * 0.8,
                         contrast: set.borderContrast * 0.5,
                         lightnessLimit: set.borderLightnessLimit * 0.8,
                         graySaturation: set.borderGraySaturation,

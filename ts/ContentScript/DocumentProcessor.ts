@@ -41,6 +41,7 @@ namespace MidnightLizard.ContentScript
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
+        protected readonly _boundUserHoverHandler: (e: Event) => void;
         protected readonly _css: MidnightLizard.ContentScript.CssStyleKeys;
         protected readonly _transitionForbiddenProperties: Set<string>;
         protected readonly _boundParentBackgroundGetter: any;
@@ -104,6 +105,7 @@ namespace MidnightLizard.ContentScript
                 ]);
             this._boundUserActionHandler = this.onUserAction.bind(this);
             this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
+            this._boundUserHoverHandler = this.onUserHover.bind(this);
             dom.addEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded, this);
             _settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this);
             _settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this, Events.EventHandlerPriority.Low);
@@ -228,8 +230,8 @@ namespace MidnightLizard.ContentScript
 
             if (hover)
             {
-                dom.addEventListener(tag, "mouseenter", this._boundUserActionHandler);
-                dom.addEventListener(tag, "mouseleave", this._boundUserActionHandler);
+                dom.addEventListener(tag, "mouseenter", this._boundUserHoverHandler);
+                dom.addEventListener(tag, "mouseleave", this._boundUserHoverHandler);
             }
             if (focus)
             {
@@ -268,6 +270,17 @@ namespace MidnightLizard.ContentScript
             if (labelElement)
             {
                 this.onUserAction({ currentTarget: labelElement } as any);
+            }
+        }
+
+        protected onUserHover(eArg: Event)
+        {
+            const tag = eArg.currentTarget as HTMLElement;
+            const eventTargets = tag instanceof HTMLTableCellElement || tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
+                ? Array.from(tag.parentElement!.children) : [tag];
+            for (let target of eventTargets)
+            {
+                this.onUserAction({ currentTarget: target } as any);
             }
         }
 
@@ -1691,8 +1704,8 @@ namespace MidnightLizard.ContentScript
                         };`.toLowerCase();
                 }
             }
-            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}`;
-            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}`;
+            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
+            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
             const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }`;
             const linkColors =
                 "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
