@@ -10,7 +10,7 @@ namespace MidnightLizard.Colors
 {
     export abstract class ITextColorProcessor
     {
-        abstract calculateDefaultColor(doc: Document): string;
+        abstract calculateDefaultColor(doc: Document, defaultColor?: string): string;
         abstract getDefaultColor(doc: Document): string | undefined;
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
@@ -257,15 +257,19 @@ namespace MidnightLizard.Colors
             return this._defaultColors.get(doc);
         }
 
-        public calculateDefaultColor(doc: Document)
+        public calculateDefaultColor(doc: Document, defaultColor?: string)
         {
-            const element = doc.createElement(this._tagName);
-            element.mlIgnore = true;
-            (element as any).href = "#";
-            element.style.display = "none";
-            doc.body.appendChild(element);
-            const elementColor = doc.defaultView.getComputedStyle(element, "").color!;
-            element.remove();
+            let elementColor = defaultColor || "";
+            if (!elementColor)
+            {
+                const element = doc.createElement(this._tagName);
+                element.mlIgnore = true;
+                (element as any).href = "#";
+                element.style.display = "none";
+                doc.body.appendChild(element);
+                elementColor = doc.defaultView.getComputedStyle(element, "").color!;
+                element.remove();
+            }
             this._defaultColors.set(doc, elementColor);
             return elementColor;
         }

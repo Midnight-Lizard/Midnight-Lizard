@@ -197,7 +197,8 @@ namespace MidnightLizard.ContentScript
                 this.createPseudoStyles(doc);
                 this.createSvgFilters(doc);
                 this.createPageScript(doc);
-                this._linkColorProcessor.calculateDefaultColor(doc);
+                const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
+                this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
                 this._textColorProcessor.calculateDefaultColor(doc);
                 doc.body.isChecked = true;
                 DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
