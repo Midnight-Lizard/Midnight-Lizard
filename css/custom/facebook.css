@@ -52,3 +52,14 @@ div > span > a[id] > span > i, div > span > a[role="button"] > span > i, h6 > sp
     color: white!important;
     text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
+
+._fbEntstreamMediaPhoto__sphericalPhotoLink canvas,
+h1[data-click="bluebar_logo"]
+{
+    --ml-no-invert:true;
+}
+
+[data-testid="fbfeed_placeholder_story"] > div > div
+{
+    --ml-background-background-color:Border;
+}
