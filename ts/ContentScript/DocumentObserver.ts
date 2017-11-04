@@ -123,7 +123,7 @@ namespace MidnightLizard.ContentScript
                 switch (mutation.type)
                 {
                     case "attributes":
-                        if (mutation.target.isChecked)
+                        if (mutation.target.isChecked || mutation.target instanceof HTMLBodyElement)
                         {
                             switch (mutation.attributeName)
                             {
