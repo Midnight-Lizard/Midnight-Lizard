@@ -351,14 +351,16 @@ namespace MidnightLizard.ContentScript
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         this.restoreElementColors(rootElem, true);
-                        DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
+                        const results = DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
+                        DocumentProcessor.fixColorInheritance([rootElem], this, results);
                     }
                 }
                 else
                 {
                     this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                     this.restoreElementColors(rootElem, true);
-                    DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
+                    const results = DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
+                    DocumentProcessor.fixColorInheritance([rootElem], this, results);
                 }
             }
         }
@@ -589,41 +591,46 @@ namespace MidnightLizard.ContentScript
                         .then(([otherTags, dp, dl]) => DocumentProcessor.processAllElements(otherTags, null, dp, dl, false));
                 }
 
-                Promise.all([allTags, docProc, results])
-                    .then(([tags, dp]) =>
-                    {
-                        if (tags && tags.length > 0)
-                        {
-                            tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
-                            {
-                                const brokenTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
-                                    && tag.mlColor.reason === Colors.ColorReason.Inherited
-                                    && tag.mlColor.color === null
-                                    && tag.mlColor.intendedColor && tag.computedStyle
-                                    && tag.mlColor.intendedColor !== tag.computedStyle.color);
-                                if (brokenTags.length > 0)
-                                {
-                                    dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
-                                    brokenTags.forEach(tag =>
-                                    {
-                                        const newColor = Object.assign({}, tag.mlColor!);
-                                        newColor.base = dProc._app.isDebug ? tag.mlColor : null
-                                        newColor.reason = Colors.ColorReason.FixedInheritance;
-                                        newColor.color = newColor.intendedColor!;
-                                        tag.mlColor = newColor;
-                                        tag.originalColor = tag.style.color;
-                                        tag.style.setProperty(dProc._css.color, newColor.color, dProc._css.important);
-                                    });
-                                    docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
-                                }
-                            }).bind(null, tags, dp));
-                        }
-                    });
+                DocumentProcessor.fixColorInheritance(allTags, docProc, results);
             }
             else if (shadowElement)
             {
                 DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
             }
+        }
+
+        protected static fixColorInheritance(allTags: HTMLElement[], docProc: DocumentProcessor, results: Promise<any>)
+        {
+            Promise.all([allTags, docProc, results])
+                .then(([tags, dp]) =>
+                {
+                    if (tags && tags.length > 0)
+                    {
+                        tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                        {
+                            const brokenTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
+                                && tag.mlColor.reason === Colors.ColorReason.Inherited
+                                && tag.mlColor.color === null
+                                && tag.mlColor.intendedColor && tag.computedStyle
+                                && tag.mlColor.intendedColor !== tag.computedStyle.color);
+                            if (brokenTags.length > 0)
+                            {
+                                dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
+                                brokenTags.forEach(tag =>
+                                {
+                                    const newColor = Object.assign({}, tag.mlColor!);
+                                    newColor.base = dProc._app.isDebug ? tag.mlColor : null
+                                    newColor.reason = Colors.ColorReason.FixedInheritance;
+                                    newColor.color = newColor.intendedColor!;
+                                    tag.mlColor = newColor;
+                                    tag.originalColor = tag.style.color;
+                                    tag.style.setProperty(dProc._css.color, newColor.color, dProc._css.important);
+                                });
+                                docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
+                            }
+                        }).bind(null, tags, dp));
+                    }
+                });
         }
 
         protected static processOrderedElements(tags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays)

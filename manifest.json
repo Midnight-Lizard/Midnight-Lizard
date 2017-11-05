@@ -3,7 +3,7 @@
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
     "description": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web",
-    "version": "8.6.3",
+    "version": "8.6.4",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
