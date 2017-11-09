@@ -3,7 +3,7 @@
     "runner": "terminal",
     "tasks": [
         {
-            "taskName": "TSC Release Content Script",
+            "label": "TSC Release Content Script",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -19,7 +19,7 @@
             ]
         },
         {
-            "taskName": "TSC Release Background Page",
+            "label": "TSC Release Background Page",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -35,7 +35,7 @@
             ]
         },
         {
-            "taskName": "TSC Release Popup",
+            "label": "TSC Release Popup",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -51,7 +51,7 @@
             ]
         },
         {
-            "taskName": "TSC Release Custom",
+            "label": "TSC Release Custom",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -67,7 +67,7 @@
             ]
         },
         {
-            "taskName": "TSC Release Page Script",
+            "label": "TSC Release Page Script",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -83,7 +83,7 @@
             ]
         },
         {
-            "taskName": "TSC Build Content Script",
+            "label": "TSC Build Content Script",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -93,7 +93,7 @@
             ]
         },
         {
-            "taskName": "TSC Build Background Page",
+            "label": "TSC Build Background Page",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -103,7 +103,7 @@
             ]
         },
         {
-            "taskName": "TSC Build Popup",
+            "label": "TSC Build Popup",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -113,7 +113,7 @@
             ]
         },
         {
-            "taskName": "TSC Build Custom",
+            "label": "TSC Build Custom",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -123,7 +123,7 @@
             ]
         },
         {
-            "taskName": "TSC Build Page Script",
+            "label": "TSC Build Page Script",
             "command": "tsc",
             "type": "shell",
             "isBackground": true,
@@ -133,7 +133,7 @@
             ]
         },
         {
-            "taskName": "Build",
+            "label": "Build",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -147,7 +147,7 @@
             ]
         },
         {
-            "taskName": "Release",
+            "label": "Release",
             "group": {
                 "kind": "build",
                 "isDefault": true
