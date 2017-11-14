@@ -3,9 +3,10 @@
     --ml-ignore:true;
 }
 
-#docs-toolbar-wrapper
+#docs-toolbar-wrapper:not(imp)
 {
     box-shadow: none!important;
+    color: magenta;
 }
 
 #docs-omnibox-toolbar.goog-toolbar

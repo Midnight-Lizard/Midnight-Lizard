@@ -17,3 +17,8 @@
 {
     --ml-background-background-color:Border;
 }
+
+.docs-title-input:not(imp)
+{
+    color: transparent;
+}
