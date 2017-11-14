@@ -26,3 +26,8 @@
     --ml-border-border-bottom-color:Background;
     --ml-border-border-top-color:Background;
 }
+
+.scb-private-icon-white
+{
+    --ml-no-invert:true;
+}

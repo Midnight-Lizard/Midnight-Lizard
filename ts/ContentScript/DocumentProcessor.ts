@@ -109,9 +109,9 @@ namespace MidnightLizard.ContentScript
             dom.addEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded, this);
             _settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this);
             _settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this, Events.EventHandlerPriority.Low);
-            _documentObserver.onElementsAdded.addListener(this.onElementsAdded, this);
-            _documentObserver.onClassChanged.addListener(this.onClassChanged, this);
-            _documentObserver.onStyleChanged.addListener(this.onStyleChanged, this);
+            _documentObserver.onElementsAdded.addListener(this.onElementsAdded as any, this);
+            _documentObserver.onClassChanged.addListener(this.onClassChanged as any, this);
+            _documentObserver.onStyleChanged.addListener(this.onStyleChanged as any, this);
             this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
         }
 
@@ -133,7 +133,7 @@ namespace MidnightLizard.ContentScript
             this._standardPseudoCssTexts.set(PseudoStyleStandard.BackgroundImage, `${this._css.filter}:${backgroundImageFilter}!${this._css.important}`);
         }
 
-        protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
+        protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
             this._images.clear();
             this._imagePromises.clear();
@@ -147,7 +147,7 @@ namespace MidnightLizard.ContentScript
             response(this._settingsManager.currentSettings);
         }
 
-        protected onSettingsInitialized(shift: Colors.ComponentShift): void
+        protected onSettingsInitialized(shift?: Colors.ComponentShift): void
         {
             this._rootDocument.documentElement.removeAttribute("preload");
             if (this._settingsManager.isActive)
@@ -466,6 +466,12 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.path || ""))
+                {
+                    console.log(needReCalculation);
+                    console.log(tag.style.cssText);
+                }
+
                 if (needReCalculation)
                 {
                     elementsForReCalculation.add(tag);
@@ -491,7 +497,7 @@ namespace MidnightLizard.ContentScript
             {
                 Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                 {
-                    if (addedElements.has(childTag) === false)
+                    if (addedElements!.has(childTag) === false)
                     {
                         this.restoreElementColors(childTag);
                         if (this.checkElement(childTag))
@@ -701,8 +707,8 @@ namespace MidnightLizard.ContentScript
                 })
                 .filter(r => r).forEach(r => paramsForPromiseAll.push(...r!.map(Util.handlePromise)));
             docProc._documentObserver.startDocumentObservation(chunk[0].ownerDocument);
-            return Promise.all<HTMLElement[] | Document | number | PromiseResult<string>>(paramsForPromiseAll)
-                .then(([tags, doc, dl, ...cssArray]: [HTMLElement[], Document, number, PromiseResult<string>]) =>
+            return Promise.all(paramsForPromiseAll as [HTMLElement[], Document, number, PromiseResult<string>])
+                .then(([tags, doc, dl, ...cssArray]) =>
                 {
                     let css = (cssArray as PromiseResult<string>[])
                         .filter(result => result.status === Status.Success && result.data)
@@ -1714,7 +1720,7 @@ namespace MidnightLizard.ContentScript
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
-            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; }`;
+            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
             const linkColors =
                 "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
@@ -1753,15 +1759,15 @@ namespace MidnightLizard.ContentScript
                             transparent 30%, transparent 70%,
                             var(--bg-color) 70%),
                         linear-gradient(var(--deg-one),
-                            transparent 10%,
+                            transparent 9%,
                             currentColor 10%, currentColor 15%,
-                            transparent 15%, transparent 35%,
+                            transparent 16%, transparent 34%,
                             currentColor 35%, currentColor 40%,
-                            transparent 40%, transparent 60%,
+                            transparent 41%, transparent 59%,
                             currentColor 60%, currentColor 65%,
-                            transparent 65%, transparent 85%,
+                            transparent 66%, transparent 84%,
                             currentColor 85%, currentColor 90%,
-                            transparent 90%),
+                            transparent 91%),
                         var(--bg-color)!important;
                     background-size: 10px 10px!important;
                     background-repeat: no-repeat!important;
@@ -1926,13 +1932,13 @@ namespace MidnightLizard.ContentScript
                 tag.originalBackgroundSize = tag.style.backgroundSize;
                 if (roomRules.hasBackgroundImagePromises)
                 {
-                    applyBgPromise = Promise.all<HTMLElement | PseudoElement | RoomRules | BackgroundImage | Promise<BackgroundImage>>
-                        ([tag, roomRules, ...roomRules.backgroundImages])
-                        .then(([t, rr, ...bgImgs]: [HTMLElement | PseudoElement, RoomRules, BackgroundImage]) =>
+                    applyBgPromise = Promise.all
+                        ([tag, roomRules, ...roomRules.backgroundImages] as [HTMLElement | PseudoElement, RoomRules, BackgroundImage])
+                        .then(([t, rr, ...bgImgs]) =>
                         {
                             rr.backgroundImages = bgImgs as BackgroundImage[];
                             rr.hasBackgroundImagePromises = false;
-                            bgImgs.forEach((img: BackgroundImage, index) =>
+                            (bgImgs as BackgroundImage[]).forEach((img: BackgroundImage, index) =>
                             {
                                 this._images.set(rr.backgroundImageKeys[index], img);
                             });
@@ -2031,11 +2037,17 @@ namespace MidnightLizard.ContentScript
                 }
             }
 
+            if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.path || ""))
+            {
+                console.log(roomRules);
+                console.log(tag.style.cssText);
+            }
+
             if (isPseudoElement(tag))
             {
                 if (applyBgPromise)
                 {
-                    applyBgPromise.then((x: PseudoElement) => x.applyStyleChanges());
+                    applyBgPromise.then(x => (x as PseudoElement).applyStyleChanges());
                     Promise.all([tag, applyBgPromise.catch(ex => ex)]).then(([t]) => t.applyStyleChanges());
                 }
                 else
