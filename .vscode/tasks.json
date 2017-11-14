@@ -133,12 +133,32 @@
             ]
         },
         {
+            "label": "Copy reflect-metadata",
+            "command": "cp",
+            "type": "shell",
+            "isBackground": true,
+            "args": [
+                "./node_modules/reflect-metadata/Reflect.js ./js/Reflect.js"
+            ]
+        },
+        {
+            "label": "NPM Install",
+            "command": "npm",
+            "type": "shell",
+            "isBackground": true,
+            "args": [
+                "install"
+            ]
+        },
+        {
             "label": "Build",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
             "dependsOn": [
+                "NPM Install",
+                "Copy reflect-metadata",
                 "TSC Build Custom",
                 "TSC Build Page Script",
                 "TSC Build Popup",
@@ -153,6 +173,8 @@
                 "isDefault": true
             },
             "dependsOn": [
+                "NPM Install",
+                "Copy reflect-metadata",
                 "TSC Release Custom",
                 "TSC Release Page Script",
                 "TSC Release Background Page",

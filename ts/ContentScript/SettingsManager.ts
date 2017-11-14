@@ -71,16 +71,16 @@ namespace MidnightLizard.ContentScript
             await this._storageManager.remove(this._settingsKey);
         }
 
-        protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings: Settings.ColorScheme): void
+        protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings?: Settings.ColorScheme): void
         {
-            this._currentSettings = newSettings;
+            this._currentSettings = newSettings!;
             this.saveCurrentSettings();
             this.updateSchedule();
             this.initCurSet();
             this._onSettingsChanged.raise(response, this._shift);
         }
 
-        protected onIsEnabledToggleRequested(response: AnyResponse, isEnabled: boolean): void
+        protected onIsEnabledToggleRequested(response: AnyResponse, isEnabled?: boolean): void
         {
             this._currentSettings.isEnabled = isEnabled;
             this._onSettingsChanged.raise(response, this._shift);

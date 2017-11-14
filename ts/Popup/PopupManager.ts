@@ -57,7 +57,7 @@ namespace MidnightLizard.Popup
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
-            _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime, this, Events.EventHandlerPriority.High);
+            _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime as any, this, Events.EventHandlerPriority.High);
             _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
         }
 
@@ -68,7 +68,7 @@ namespace MidnightLizard.Popup
                 .catch(error => this._app.isDebug && console.error(error));
         }
 
-        protected beforeSettingsInitialized(shift: Colors.ComponentShift): void
+        protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
         {
             this._currentSiteSettings = { ...this._settingsManager.currentSettings };
         }
@@ -82,7 +82,7 @@ namespace MidnightLizard.Popup
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
         {
-            this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime, this);
+            this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime as any, this);
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;
             this._colorSchemeSelect = doc.getElementById("colorScheme") as HTMLSelectElement;
             this._applyButton = doc.getElementById("applyBtn") as HTMLButtonElement;
@@ -124,7 +124,7 @@ namespace MidnightLizard.Popup
                 .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));
 
             this._forgetAllSitesButton.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
-            this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied, this);
+            this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied as any, this);
             let range = document.querySelector(".ml-input-range") as HTMLInputElement;
             range.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             range.onRoomRulesApplied.addListener(this.onRangeRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, range);
@@ -169,7 +169,7 @@ namespace MidnightLizard.Popup
             this.onColorSchemeForEditChanged();
         }
 
-        protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
+        protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
             this._popup.documentElement.style.cssText = "";
             this.updateButtonStates();

@@ -55,7 +55,7 @@ namespace MidnightLizard.ContentScript
             return this._onElementAdded.event;
         }
 
-        protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift: Colors.ComponentShift): void
+        protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
             if (!this._settingsManager.isActive)
             {

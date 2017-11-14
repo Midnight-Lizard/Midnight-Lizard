@@ -22,12 +22,12 @@ namespace MidnightLizard.Colors
             _settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this, Events.EventHandlerPriority.High);
         }
 
-        protected onSettingsInitialized(shift: Colors.ComponentShift): void
+        protected onSettingsInitialized(shift?: Colors.ComponentShift): void
         {
             this._colorShift = this._settingsManager.shift[Component[this._component] as keyof Colors.ComponentShift];
         }
 
-        protected onSettingsChanged(response: SchemeResponse, newSettings: ComponentShift): void
+        protected onSettingsChanged(response: SchemeResponse, newSettings?: ComponentShift): void
         {
             this._colorShift = this._settingsManager.shift[Component[this._component] as keyof Colors.ComponentShift];
             this._colors.clear();

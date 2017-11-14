@@ -15,6 +15,12 @@
         "noEmitOnError": true,
         "noImplicitThis": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    }
+        "emitDecoratorMetadata": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "node_modules",
+        "./node_modules/*"
+    ]
 }

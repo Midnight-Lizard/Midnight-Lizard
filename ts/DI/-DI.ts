@@ -1,4 +1,4 @@
-/// <reference path="../../node_modules/reflect-metadata/Reflect.ts" />
+/// <reference path="../../node_modules/reflect-metadata/Reflect.d.ts" />
 
 namespace MidnightLizard.DI
 {

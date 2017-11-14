@@ -18,7 +18,7 @@ namespace MidnightLizard.BackgroundPage
             commandListener.onCommand.addListener(this.processCommand, this);
         }
 
-        protected processCommand(command: string)
+        protected processCommand(command?: string)
         {
             switch (command)
             {
