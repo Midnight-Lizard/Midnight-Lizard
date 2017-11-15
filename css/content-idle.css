@@ -31,3 +31,8 @@
 {
     from { filter: none; }
 }
+
+symbol
+{
+    --ml-ignore:true;
+}
