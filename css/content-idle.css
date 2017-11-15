@@ -32,7 +32,7 @@
     from { filter: none; }
 }
 
-symbol
+symbol, defs
 {
     --ml-ignore:true;
 }
