@@ -2,7 +2,8 @@
     "manifest_version": 2,
     "name": "Midnight Lizard",
     "short_name": "Mid.Lizard",
-    "description": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web",
+    "description": "__MSG_appDesc__",
+    "default_locale": "en",
     "version": "8.6.5",
     "author": "Pavel Agarkov",
     "icons": {
@@ -18,7 +19,7 @@
     "offline_enabled": true,
     "commands": {
         "global-toggle": {
-            "description": "Global extension toggle",
+            "description": "__MSG_globalToggleKey__",
             "suggested_key": {
                 "default": "Alt+Shift+M"
             }
