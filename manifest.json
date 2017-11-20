@@ -5,7 +5,7 @@
     "description": "__MSG_appDesc__",
     "default_locale": "en",
     "version": "8.6.5",
-    "author": "__MSG_author__",
+    "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
         "48": "img/ml-icon-48++.png",

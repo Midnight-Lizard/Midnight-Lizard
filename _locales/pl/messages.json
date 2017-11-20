@@ -1,10 +1,6 @@
 {
-    "author": {
-        "message": "Paweł Agarkow",
-        "description": "Extension author"
-    },
     "appDesc": {
-        "message": "Umożliwia dostosowanie kontrastu, jasności, nasycenia kolorów i trybów innych na wszystkich witrynach internetowych. Przenosi strony na tryb nocny.",
+        "message": "Dostosuje kontrast, jasnośc i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny.",
         "description": "The description of the application, displayed in the web store."
     },
     "globalToggleKey": {

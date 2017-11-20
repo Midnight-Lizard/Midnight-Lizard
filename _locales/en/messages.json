@@ -1,8 +1,4 @@
 {
-    "author": {
-        "message": "Pavel Agarkov",
-        "description": "Extension author"
-    },
     "appDesc": {
         "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web",
         "description": "The description of the application, displayed in the web store."
