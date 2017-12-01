@@ -12,3 +12,13 @@
 {
     filter: invert(var(--ml-invert));
 }
+
+.kix-selection-overlay
+{
+    --ml-background-background-color:TextSelection;
+    --ml-border-border-color:TextSelection;
+    --ml-border-border-bottom-color:TextSelection;
+    --ml-border-border-left-color:TextSelection;
+    --ml-border-border-right-color:TextSelection;
+    --ml-border-border-top-color:TextSelection;
+}
