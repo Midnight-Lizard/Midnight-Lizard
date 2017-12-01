@@ -13,14 +13,18 @@ html, body {
 }
 
 .ml-dialog-logo {
+    display: inline;
+    vertical-align: top;
     height: 32px;
-    margin: 5px;
-    filter: drop-shadow(0px 0px 0px rgba(10,100,50,1));
+    width: 32px;
+    margin: -7px 0px 0px 0px;
+    /* filter: drop-shadow(0px 0px 0px rgba(10,100,50,1)); */
+    --ml-svgbackground-fill:Text;
 }
 
 .ml-dialog-title-text {
     display: inline-block;
-    margin-top: 12px;
+    margin-top: 13px;
     vertical-align: top;
 }
 
@@ -31,6 +35,7 @@ html, body {
     background: var(--alt-background-color);
     position: relative;
     vertical-align: baseline;
+    height: 47px;
 }
 
 .ml-dialog-fotter
