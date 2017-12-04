@@ -1233,7 +1233,7 @@ namespace MidnightLizard.ContentScript
                     if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none)
                     {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                         let backgroundImage = tag.computedStyle!.backgroundImage!;
-                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|color-stop\((rgba?\([^)]+\)|[^)]+)\)/gi);
+                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
                         let gradientColors = new Map<string, string>();
                         if (gradientColorMatches)
                         {
