@@ -64,6 +64,7 @@ namespace MidnightLizard.Settings
         scrollbarContrast: number;
         scrollbarLightnessLimit: number;
         scrollbarGrayHue: number;
+        scrollbarWidth: number;
 
         constructor() { }
     }

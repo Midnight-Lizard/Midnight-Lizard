@@ -87,7 +87,7 @@ namespace MidnightLizard.Settings
             {
                 let prop = setting as ColorSchemePropertyName;
                 let val = set[prop];
-                if (!/Hue/g.test(prop) && Util.isNum(val))
+                if (!/Hue|Width/g.test(prop) && Util.isNum(val))
                 {
                     set[prop] = val / 100;
                 }

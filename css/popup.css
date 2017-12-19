@@ -133,6 +133,12 @@ html, body {
     font-weight: bold;
 }
 
+.ml-dialog-label.width:after
+{
+    content: ": " var(--input-string) "px";
+    font-weight: bold;
+}
+
 .ml-input-container
 {
     position: relative;
@@ -211,7 +217,7 @@ html, body {
     padding: 3px 6px 1px 6px;
     font-size: 16px;
     font-weight: bold;
-    background: rgb(48, 63, 161);
+    background: hsla(232, 54%, 35%, 1);
     color: white;
     border: solid 1px white;
     border-radius: 50%;
@@ -414,7 +420,7 @@ html, body {
     font-size: 10px;
     text-align: justify;
     width: 260px;
-    height: 82px;
+    height: 60px;
     overflow-x: scroll;
     overflow-y: scroll;
     white-space: nowrap;

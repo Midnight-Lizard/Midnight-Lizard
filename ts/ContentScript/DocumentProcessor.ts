@@ -1704,6 +1704,7 @@ namespace MidnightLizard.ContentScript
             const sheet = doc.createElement('style');
             sheet.id = "midnight-lizard-dynamic-style";
             sheet.mlIgnore = true;
+            const sbw = this._settingsManager.currentSettings.scrollbarWidth;
             const selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc).color;
             const bgLight = this.shift.Background.lightnessLimit;
             const thumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color;
@@ -1732,20 +1733,23 @@ namespace MidnightLizard.ContentScript
             const linkColors =
                 "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
-            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}
-                scrollbar { width: 10px!important; height: 10px!important; background: ${thumbNormalColor}!important; }
+            let scrollbars = "";
+            if (sbw)
+            {
+                scrollbars = `
+                scrollbar { width: ${sbw}px!important; height: ${sbw}px!important; background: ${thumbNormalColor}!important; }
                 scrollbar-button:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-button:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-button
                 {
                     --bg-color: ${thumbNormalColor};
-                    width:10px!important; height:10px!important;
+                    width:${sbw}px!important; height:${sbw}px!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
-                        linear-gradient(var(--deg-one), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
-                        linear-gradient(var(--deg-two), var(--bg-color) 35%, transparent 35%, transparent 55%, var(--bg-color) 55%),
-                        linear-gradient(var(--deg-one), transparent 50%, currentColor 50%, currentColor 55%, transparent 55%),
-                        linear-gradient(var(--deg-two), transparent 50%, currentColor 50%, currentColor 55%, transparent 55%),
+                        linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%),
+                        linear-gradient(var(--deg-two), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%),
+                        linear-gradient(var(--deg-one), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%),
+                        linear-gradient(var(--deg-two), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%),
                         var(--bg-color)!important;
                 }
                 scrollbar-button:vertical:decrement { --deg-one: 45deg; --deg-two: -45deg; }
@@ -1754,8 +1758,8 @@ namespace MidnightLizard.ContentScript
                 scrollbar-button:horizontal:increment { --deg-one: 45deg; --deg-two: 135deg; }
                 scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
-                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: 20px!important; }
-                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: 20px!important; }
+                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: ${sbw * 2}px!important; }
+                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: ${sbw * 2}px!important; }
                 scrollbar-thumb
                 {
                     --bg-color: ${thumbNormalColor};
@@ -1777,14 +1781,16 @@ namespace MidnightLizard.ContentScript
                             currentColor 85%, currentColor 90%,
                             transparent 91%),
                         var(--bg-color)!important;
-                    background-size: 10px 10px!important;
+                    background-size: ${sbw}px ${sbw}px!important;
                     background-repeat: no-repeat!important;
                     background-position: center!important;
                 }
-                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 6px rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
+                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 ${sbw * 0.6}px rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
-                .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar")
+                    .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
+            }
+            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
         }
