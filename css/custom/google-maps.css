@@ -20,6 +20,13 @@
     --ml-background-background-color:Border;
     --ml-text-color:Background;
 }
+.renderable-component-color-text-background:before,
+.renderable-component-color-text-background:after
+{
+    --ml-ignore:true;
+    background-color: inherit!important;
+    border-color: inherit!important;
+}
 
 .widget-reveal-card-image:not(impt)
 {
