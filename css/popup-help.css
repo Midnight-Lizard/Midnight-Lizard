@@ -71,8 +71,8 @@
     padding: 10px;
 }
 
-#help:after {margin-left: -15px;}
-#help:before {margin-left: -14px;}
+#help:after {margin-left: -10px;}
+#help:before {margin-left: -8px;}
 
 #isEnabledSwitch:before {right: 7px;}
 #isEnabledSwitch:after {right: 28px;}
