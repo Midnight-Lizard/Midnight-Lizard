@@ -2,7 +2,7 @@ namespace MidnightLizard.Events
 {
     type EventMap = DocumentEventMap & HTMLElementEventMap & { DOMContentLoaded: void };
     type Listener = (...args: any[]) => any;
-    let _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();
+    const _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();
 
     export abstract class HtmlEvent
     {
