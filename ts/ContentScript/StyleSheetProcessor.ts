@@ -35,17 +35,17 @@ namespace MidnightLizard.ContentScript
         protected readonly _stylesLimit = 500;
         protected readonly _trimmedStylesLimit = 500;
         protected readonly _styleProps =
-        [
-            { prop: "background-color", priority: 1 },
-            { prop: "color", priority: 1 },
-            { prop: "fill", priority: 2 },
-            { prop: "border-color", priority: 2 },
-            { prop: "stroke", priority: 2 },
-            { prop: "background-image", priority: 3 },
-            { prop: "background-position", priority: 3 },
-            { prop: "background-size", priority: 4 },
-            { prop: "text-shadow", priority: 4 }
-        ];
+            [
+                { prop: "background-color", priority: 1 },
+                { prop: "color", priority: 1 },
+                { prop: "fill", priority: 2 },
+                { prop: "border-color", priority: 2 },
+                { prop: "stroke", priority: 2 },
+                { prop: "background-image", priority: 3 },
+                { prop: "background-position", priority: 3 },
+                { prop: "background-size", priority: 4 },
+                { prop: "text-shadow", priority: 4 }
+            ];
 
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
         getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
@@ -161,15 +161,24 @@ namespace MidnightLizard.ContentScript
             this._preFilteredSelectors.delete(doc);
             let styleRules = new Array<CSSStyleRule>();
             let styleSheets = Array.from(doc.styleSheets) as CSSStyleSheet[];
+            let cssRules: CSSRuleList | undefined;
             for (let sheet of styleSheets)
             {
                 if (sheet)
                 {
-                    if (sheet.cssRules)
+                    try
                     {
-                        if (sheet.cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
+                        cssRules = sheet.cssRules;
+                    }
+                    catch
+                    {
+                        cssRules = undefined;
+                    }
+                    if (cssRules)
+                    {
+                        if (cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
-                            for (let rule of Array.from(sheet.cssRules) as CSSRule[])
+                            for (let rule of Array.from(cssRules) as CSSRule[])
                             {
                                 if (rule instanceof doc.defaultView.CSSStyleRule)
                                 {
@@ -289,7 +298,7 @@ namespace MidnightLizard.ContentScript
                     //     x.WordBoundary + x.notFollowedBy(x.Minus) + x.Or) +
                     //     x.WordBoundary + x.notFollowedBy(x.Minus);
                     // notThisClassNames = x.notFollowedBy(classNameRegExp);
-                    className =  x.forget((Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or));
+                    className = x.forget((Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or));
                 }
                 let vars = new Map<string, string>();
                 vars.set(Var[Var.id], tag.id);
