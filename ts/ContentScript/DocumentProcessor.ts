@@ -23,6 +23,11 @@ namespace MidnightLizard.ContentScript
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
     const doNotInvertRegExp = /user|account|photo|importan|grey|gray|flag/gi;
     const maxAttrLen = 100;
+    /** 2 fraction digits number format */
+    const float = new Intl.NumberFormat('en-US', {
+        useGrouping: false,
+        maximumFractionDigits: 2
+    });
 
     export abstract class IDocumentProcessor
     {
@@ -120,7 +125,7 @@ namespace MidnightLizard.ContentScript
             const
                 invertedBackgroundImageFilter = [
                     this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
-                    `brightness(${(1 - this.shift.Background.lightnessLimit).toFixed(2)}) hue-rotate(180deg) invert(1)`,
+                    `brightness(${float.format(1 - this.shift.Background.lightnessLimit)}) hue-rotate(180deg) invert(1)`,
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                 ].filter(f => f).join(" ").trim(),
                 backgroundImageFilter = [
@@ -1222,7 +1227,7 @@ namespace MidnightLizard.ContentScript
                                         tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
-                                        doInvert ? `brightness(${(1 - this.shift.Background.lightnessLimit).toFixed(2)})` : "",
+                                        doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
                                         doInvert ? "hue-rotate(180deg) invert(1)" : "",
                                         this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                                     ].filter(f => f).join(" ").trim()
@@ -1273,8 +1278,8 @@ namespace MidnightLizard.ContentScript
 
                                 bgFilter = [
                                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
-                                    bgImgLight < 1 ? `brightness(${bgImgLight})` : "",
-                                    doInvert ? `brightness(${(1 - this.shift.Background.lightnessLimit).toFixed(2)})` : "",
+                                    bgImgLight < 1 ? `brightness(${float.format(bgImgLight)})` : "",
+                                    doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
                                     doInvert ? "hue-rotate(180deg) invert(1)" : "",
                                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
                                 ].filter(f => f).join(" ").trim();
@@ -1375,7 +1380,7 @@ namespace MidnightLizard.ContentScript
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                `brightness(${(1 - bgrSet.lightnessLimit).toFixed(2)})`,
+                                `brightness(${float.format(1 - bgrSet.lightnessLimit)})`,
                                 `hue-rotate(180deg) invert(1)`,
                                 this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
                                 `brightness(${txtSet.lightnessLimit})`
