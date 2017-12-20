@@ -1,6 +1,5 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="./-Settings.ts" />
-/// <reference path="../Cookies/CookiesManager.ts" />
 /// <reference path="./IStorageManager.ts" />
 /// <reference path="../Events/-Events.ts" />
 /// <reference path="./ISettingsBus.ts" />

@@ -1,5 +1,6 @@
 :root
 {
+    --zoom:1;
     --ml-ignore:false;
     --ml-invert:0;
     --ml-is-active:0;

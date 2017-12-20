@@ -3,6 +3,7 @@
 /// <reference path="CssStyle.ts" />
 /// <reference path="StyleSheetProcessor.ts" />
 /// <reference path="DocumentObserver.ts" />
+/// <reference path="DocumentZoomObserver.ts" />
 /// <reference path="DocumentProcessor.ts" />
 /// <reference path="BackgroundImage.ts" />
 /// <reference path="RoomRules.ts" />

@@ -18,11 +18,8 @@ namespace Chrome
             protected readonly _chromePromise: Chrome.ChromePromise,
             protected readonly _document: Document)
         {
-            type message =
-                MidnightLizard.Settings.CurrentSettingsRequestMessage | MidnightLizard.Settings.NewSettingsApplicationRequestMessage |
-                MidnightLizard.Settings.SettingsDeletionRequestMessage | MidnightLizard.Settings.IsEnabledToggleRequestMessage;
             chrome.runtime.onMessage.addListener(
-                (request: message, sender, sendResponse) =>
+                (request: MidnightLizard.Settings.MessageTypes, sender, sendResponse) =>
                 {
                     if (!sender.tab)
                     {
@@ -42,6 +39,10 @@ namespace Chrome
 
                             case Action.ToggleIsEnabled:
                                 this._onIsEnabledToggleRequested.raise(sendResponse, request.isEnabled);
+                                break;
+
+                            case Action.ZoomChanged:
+                                this._onZoomChanged.raise(sendResponse, request.zoom);
                                 break;
 
                             default:
@@ -75,18 +76,28 @@ namespace Chrome
             return this._onIsEnabledToggleRequested.event;
         }
 
-        protected sendMessageToSelectedTab<TResult>(msg: MidnightLizard.Settings.SettingsRequestMessage)
+        protected _onZoomChanged = new EventDispatcher<AnyResponse, number>();
+        public get onZoomChanged()
         {
-            return this._chromePromise.tabs.query({ active: true, currentWindow: true })
-                .then<TResult>(tabs => 
-                this._chromePromise.tabs.sendMessage(tabs[0].id!, msg));
+            return this._onZoomChanged.event;
         }
 
-        protected sendMessageToAllTabs<TResult>(msg: MidnightLizard.Settings.SettingsRequestMessage)
+        protected sendMessageToSelectedTab<TResult>(msg: MidnightLizard.Settings.MessageTypes)
         {
-            return this._chromePromise.tabs.query({}).then<Promise<TResult>[]>(
-                tabs => tabs.map<Promise<TResult>>(
-                    tab => this._chromePromise.tabs.sendMessage(tab.id!, msg)));
+            return this._chromePromise.tabs.query({ active: true, currentWindow: true })
+                .then(tabs =>
+                    this._chromePromise.tabs.sendMessage<TResult>(tabs[0].id!, msg));
+        }
+
+        protected sendMessageToAllTabs<TResult>(msg: MidnightLizard.Settings.MessageTypes)
+        {
+            return this._chromePromise.tabs.query({}).then(tabs => tabs.map(
+                tab => this._chromePromise.tabs.sendMessage<TResult>(tab.id!, msg)));
+        }
+
+        protected sendMessageToTab<TResult>(tabId: number, msg: MidnightLizard.Settings.MessageTypes)
+        {
+            return this._chromePromise.tabs.sendMessage<TResult>(tabId, msg);
         }
 
         public deleteSettings()
@@ -107,6 +118,11 @@ namespace Chrome
         public toggleIsEnabled(isEnabled: boolean)
         {
             return this.sendMessageToAllTabs<null>(new MidnightLizard.Settings.IsEnabledToggleRequestMessage(isEnabled));
+        }
+
+        public setTabZoom(tabId: number, zoom: number)
+        {
+            return this.sendMessageToTab<null>(tabId, new MidnightLizard.Settings.ZoomChangedMessage(zoom));
         }
     }
 }

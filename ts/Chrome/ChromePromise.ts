@@ -86,8 +86,9 @@ namespace Chrome
 
     namespace Tabs
     {
+        export declare function getZoom(tabId: number): Promise<number>;
         export declare function query(queryInfo: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]>;
-        export declare function sendMessage(tabId: number, message: any): Promise<any>;
+        export declare function sendMessage<TResult>(tabId: number, message: any): Promise<TResult>;
     }
 
     namespace Runtime
