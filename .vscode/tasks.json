@@ -137,6 +137,9 @@
             "command": "cp",
             "type": "shell",
             "isBackground": true,
+            "dependsOn": [
+                "NPM Install"
+            ],
             "args": [
                 "./node_modules/reflect-metadata/Reflect.js ./js/Reflect.js"
             ]
@@ -157,7 +160,6 @@
                 "isDefault": true
             },
             "dependsOn": [
-                "NPM Install",
                 "Copy reflect-metadata",
                 "TSC Build Custom",
                 "TSC Build Page Script",
@@ -173,7 +175,6 @@
                 "isDefault": true
             },
             "dependsOn": [
-                "NPM Install",
                 "Copy reflect-metadata",
                 "TSC Release Custom",
                 "TSC Release Page Script",
