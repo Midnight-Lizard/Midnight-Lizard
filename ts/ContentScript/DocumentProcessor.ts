@@ -1739,13 +1739,13 @@ namespace MidnightLizard.ContentScript
             if (sbSize)
             {
                 scrollbars = `
-                scrollbar { width: calc(${sbSize}px / var(--zoom))!important; height: calc(${sbSize}px / var(--zoom))!important; background: ${thumbNormalColor}!important; }
+                scrollbar { width: calc(${sbSize}px / var(--ml-zoom))!important; height: calc(${sbSize}px / var(--ml-zoom))!important; background: ${thumbNormalColor}!important; }
                 scrollbar-button:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-button:active { --bg-color: ${thumbActiveColor}; }
                 scrollbar-button
                 {
                     --bg-color: ${thumbNormalColor};
-                    width:calc(${sbSize}px / var(--zoom))!important; height:calc(${sbSize}px / var(--zoom))!important;
+                    width:calc(${sbSize}px / var(--ml-zoom))!important; height:calc(${sbSize}px / var(--ml-zoom))!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
                         linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%),
@@ -1760,12 +1760,12 @@ namespace MidnightLizard.ContentScript
                 scrollbar-button:horizontal:increment { --deg-one: 45deg; --deg-two: 135deg; }
                 scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
                 scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
-                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: calc(${sbSize * 2}px / var(--zoom))!important; }
-                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: calc(${sbSize * 2}px / var(--zoom))!important; }
+                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: calc(${sbSize * 2}px / var(--ml-zoom))!important; }
+                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: calc(${sbSize * 2}px / var(--ml-zoom))!important; }
                 scrollbar-thumb
                 {
                     --bg-color: ${thumbNormalColor};
-                    border-radius: calc(${sbSize / 10}px / var(--zoom))!important; border: none!important;
+                    border-radius: calc(${sbSize / 10}px / var(--ml-zoom))!important; border: none!important;
                     box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
                     background:
                         linear-gradient(var(--deg-two),
@@ -1783,11 +1783,11 @@ namespace MidnightLizard.ContentScript
                             currentColor 85%, currentColor 90%,
                             transparent 91%),
                         var(--bg-color)!important;
-                    background-size: calc(${sbSize}px / var(--zoom)) calc(${sbSize}px / var(--zoom))!important;
+                    background-size: calc(${sbSize}px / var(--ml-zoom)) calc(${sbSize}px / var(--ml-zoom))!important;
                     background-repeat: no-repeat!important;
                     background-position: center!important;
                 }
-                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 calc(${sbSize * 0.6}px / var(--zoom)) rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
+                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 calc(${sbSize * 0.6}px / var(--ml-zoom)) rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
                 scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
                     .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");

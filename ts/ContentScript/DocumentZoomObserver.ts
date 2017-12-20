@@ -32,7 +32,7 @@ namespace MidnightLizard.ContentScript
 
         protected setDocumentZoom(doc: Document, zoom: number)
         {
-            doc.documentElement.style.setProperty("--zoom", zoom.toString(), "important");
+            doc.documentElement.style.setProperty("--ml-zoom", zoom.toString(), "important");
         }
 
     }
