@@ -47,6 +47,8 @@ namespace MidnightLizard.ContentScript
                 { prop: "text-shadow", priority: 4 }
             ];
 
+        protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
+
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
         getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
         {
@@ -160,7 +162,7 @@ namespace MidnightLizard.ContentScript
             }
             this._preFilteredSelectors.delete(doc);
             let styleRules = new Array<CSSStyleRule>();
-            let styleSheets = Array.from(doc.styleSheets) as CSSStyleSheet[];
+            let styleSheets = Array.from(doc.styleSheets) as (CSSStyleSheet | CSSMediaRule)[];
             let cssRules: CSSRuleList | undefined;
             for (let sheet of styleSheets)
             {
@@ -176,7 +178,7 @@ namespace MidnightLizard.ContentScript
                     }
                     if (cssRules)
                     {
-                        if (cssRules.length > 0 && (!sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
+                        if (cssRules.length > 0 && (sheet instanceof doc.defaultView.CSSMediaRule || !sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
                             for (let rule of Array.from(cssRules) as CSSRule[])
                             {
@@ -192,15 +194,22 @@ namespace MidnightLizard.ContentScript
                                 {
                                     styleSheets.push(rule.styleSheet);
                                 }
+                                else if (rule instanceof doc.defaultView.CSSMediaRule)
+                                {
+                                    if (this.validateMediaQuery(doc, rule.conditionText))
+                                    {
+                                        styleSheets.push(rule);
+                                    }
+                                }
                             }
                         }
                     }
-                    else if (sheet.href) // external css
+                    else if (sheet instanceof doc.defaultView.CSSStyleSheet && sheet.href) // external css
                     {
                         if (!externalCssPromises!.has(sheet.href))
                         {
                             let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
-                            cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${sheet.href}\nDetails: ${ex.message || ex}`));
+                            cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
                             externalCssPromises.set(
                                 sheet.href,
                                 Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
@@ -331,6 +340,23 @@ namespace MidnightLizard.ContentScript
                     x.Colon + pseudoClassName + x.WordBoundary,
                     "gi");
             return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 && tag.matches(s.replace(pseudoRegExp, "$1")));
+        }
+
+        protected validateMediaQuery(doc: Document, mediaQuery: string)
+        {
+            let mediaMap = this._mediaQueries.get(doc);
+            if (mediaMap === undefined)
+            {
+                mediaMap = new Map<string, boolean>();
+                this._mediaQueries.set(doc, mediaMap);
+            }
+            let mediaResult = mediaMap.get(mediaQuery);
+            if (mediaResult === undefined)
+            {
+                mediaResult = doc.defaultView.matchMedia(mediaQuery).matches;
+                mediaMap.set(mediaQuery, mediaResult);
+            }
+            return mediaResult;
         }
     }
 }
