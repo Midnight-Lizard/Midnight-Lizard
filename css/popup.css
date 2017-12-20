@@ -142,6 +142,15 @@ body {
     margin-top: 10px;
 }
 
+.ml-input-container.example
+{
+    margin-top: 25px;
+}
+
+.ml-dialog-label.time {
+    margin-left: calc((100% - 257px)/2);
+}
+
 .ml-input-container:hover {
     --ml-text-color:HighlightedText;
     color: var(--main-color);

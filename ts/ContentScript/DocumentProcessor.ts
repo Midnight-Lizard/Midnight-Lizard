@@ -1203,7 +1203,10 @@ namespace MidnightLizard.ContentScript
                             };
                         roomRules.keepFilter = true;
                         roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                        roomRules.attributes.set(this._css.transition, this._css.filter);
+                        if (this._settingsManager.currentSettings.useImageHoverAnimation)
+                        {
+                            roomRules.attributes.set(this._css.transition, this._css.filter);
+                        }
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 

@@ -76,6 +76,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 100,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
@@ -127,6 +128,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 100,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
@@ -178,6 +180,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 90,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
@@ -229,6 +232,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
@@ -280,6 +284,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
@@ -331,6 +336,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 90,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
@@ -382,6 +388,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
@@ -433,6 +440,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 80,
                     imageSaturationLimit: 90,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
@@ -484,6 +492,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 90,
                     imageSaturationLimit: 90,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 90,
                     backgroundImageSaturationLimit: 90,
@@ -535,6 +544,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 93,
                     imageSaturationLimit: 50,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 93,
                     backgroundImageSaturationLimit: 30,
@@ -586,6 +596,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 100,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
@@ -637,6 +648,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 100,
                     imageSaturationLimit: 10,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 10,
@@ -688,6 +700,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 75,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
@@ -739,6 +752,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 75,
                     imageSaturationLimit: 10,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 30,
                     backgroundImageSaturationLimit: 10,
@@ -790,6 +804,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 75,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
@@ -841,6 +856,7 @@ namespace MidnightLizard.Settings
 
                     imageLightnessLimit: 75,
                     imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,

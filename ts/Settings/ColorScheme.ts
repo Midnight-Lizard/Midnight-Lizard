@@ -56,6 +56,7 @@ namespace MidnightLizard.Settings
 
         imageLightnessLimit: number;
         imageSaturationLimit: number;
+        useImageHoverAnimation: boolean;
 
         backgroundImageLightnessLimit: number;
         backgroundImageSaturationLimit: number;
