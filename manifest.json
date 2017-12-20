@@ -248,6 +248,16 @@
         {
             "run_at": "document_start",
             "matches": [
+                "https://www.medium.com/*",
+                "https://medium.com/*"
+            ],
+            "css": [
+                "css/custom/medium.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
                 "https://www.quora.com/*"
             ],
             "css": [
