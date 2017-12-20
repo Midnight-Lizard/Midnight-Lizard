@@ -621,7 +621,7 @@ namespace MidnightLizard.ContentScript
                     {
                         tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
                         {
-                            const brokenTags = t.filter(tag => tag instanceof HTMLElement && tag.mlColor
+                            const brokenTags = t.filter(tag => !tag.isPseudo && tag.mlColor
                                 && tag.mlColor.reason === Colors.ColorReason.Inherited
                                 && tag.mlColor.color === null
                                 && tag.mlColor.intendedColor && tag.computedStyle
