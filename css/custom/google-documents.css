@@ -8,7 +8,7 @@
     box-shadow: 0 0 1pt 0pt #ccc!important;
 }
 
-.docs-listpreset-palette, .docos-comment-bubble-icon:before
+.docs-listpreset-palette, .docos-comment-bubble-icon:before, .docs-instant-button-bubble-icon:before
 {
     filter: invert(var(--ml-invert));
 }
