@@ -16,6 +16,7 @@ namespace Chrome
             if (e.tabId)
             {
                 this._settingsBus.setTabZoom(e.tabId, e.newZoomFactor)
+                    .catch(() => { });
             }
         }
     }
