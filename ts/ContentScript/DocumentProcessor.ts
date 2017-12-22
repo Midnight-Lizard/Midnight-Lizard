@@ -625,19 +625,22 @@ namespace MidnightLizard.ContentScript
                                 && tag.mlColor.reason === Colors.ColorReason.Inherited
                                 && tag.mlColor.color === null
                                 && tag.mlColor.intendedColor && tag.computedStyle
-                                && tag.mlColor.intendedColor !== tag.computedStyle.color);
+                                && tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
+                                    ? tag.computedStyle!.color
+                                    : tag!.computedStyle!.fill));
                             if (brokenTags.length > 0)
                             {
                                 dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
                                 brokenTags.forEach(tag =>
                                 {
+                                    const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
                                     const newColor = Object.assign({}, tag.mlColor!);
                                     newColor.base = dProc._app.isDebug ? tag.mlColor : null
                                     newColor.reason = Colors.ColorReason.FixedInheritance;
                                     newColor.color = newColor.intendedColor!;
                                     tag.mlColor = newColor;
-                                    tag.originalColor = tag.style.color;
-                                    tag.style.setProperty(dProc._css.color, newColor.color, dProc._css.important);
+                                    tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
+                                    tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
                                 });
                                 docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
                             }

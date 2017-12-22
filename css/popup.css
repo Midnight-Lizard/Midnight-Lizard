@@ -232,11 +232,6 @@ body {
     height: 24px;
 }
 
-.help-icon *
-{
-    --ml-ignore:true;
-}
-
 .help-icon:hover {
     fill: currentColor;
 }
@@ -317,11 +312,6 @@ body {
     display: table-cell;
     vertical-align: middle;
     /* cursor: pointer; */
-}
-
-.ml-fotter-icon-container svg *
-{
-    --ml-ignore:true;
 }
 
 .ml-fotter-icon-container.left {
