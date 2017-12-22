@@ -159,7 +159,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 200,
 
                     textSaturationLimit: 80,
-                    textContrast: 55,
+                    textContrast: 58,
                     textLightnessLimit: 80,
                     textGraySaturation: 24,
                     textGrayHue: 16,
@@ -263,7 +263,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 122,
 
                     textSaturationLimit: 80,
-                    textContrast: 55,
+                    textContrast: 58,
                     textLightnessLimit: 90,
                     textGraySaturation: 30,
                     textGrayHue: 66,
@@ -315,7 +315,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 36,
 
                     textSaturationLimit: 70,
-                    textContrast: 54,
+                    textContrast: 58,
                     textLightnessLimit: 80,
                     textGraySaturation: 10,
                     textGrayHue: 88,
@@ -367,7 +367,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 4,
 
                     textSaturationLimit: 80,
-                    textContrast: 55,
+                    textContrast: 58,
                     textLightnessLimit: 90,
                     textGraySaturation: 20,
                     textGrayHue: 45,
@@ -679,7 +679,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 0,
 
                     textSaturationLimit: 80,
-                    textContrast: 52,
+                    textContrast: 58,
                     textLightnessLimit: 70,
                     textGraySaturation: 0,
                     textGrayHue: 0,
@@ -731,7 +731,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 0,
 
                     textSaturationLimit: 10,
-                    textContrast: 52,
+                    textContrast: 58,
                     textLightnessLimit: 80,
                     textGraySaturation: 0,
                     textGrayHue: 0,
@@ -783,7 +783,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 0,
 
                     textSaturationLimit: 80,
-                    textContrast: 50,
+                    textContrast: 52,
                     textLightnessLimit: 80,
                     textGraySaturation: 60,
                     textGrayHue: 54,
@@ -835,7 +835,7 @@ namespace MidnightLizard.Settings
                     backgroundGrayHue: 0,
 
                     textSaturationLimit: 80,
-                    textContrast: 50,
+                    textContrast: 52,
                     textLightnessLimit: 80,
                     textGraySaturation: 60,
                     textGrayHue: 122,
