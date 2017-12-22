@@ -238,6 +238,19 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://*.wikipedia.org/*"
+            ],
+            "css": [
+                "css/custom/wikipedia.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
             "matches": [
                 "https://www.facebook.com/*"
             ],

@@ -1,0 +1,66 @@
+#p-logo {
+    position: relative;
+}
+
+#p-logo:before {
+    content: "";
+    background-color: #f0f0f0;
+    position: absolute;
+    bottom: 3px;
+    left: 0px;
+    right: 0px;
+    height: 45px;
+    z-index: 999;
+}
+
+#p-logo:after {
+    --ml-ignore:true;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-image: url(/static/images/project-logos/enwiki.png);
+    position: absolute;
+    bottom: 3px;
+    left: 0px;
+    right: 0px;
+    height: 45px;
+    z-index: 999;
+    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min--moz-device-pixel-ratio:1.5),
+(min-resolution:1.5dppx),
+(min-resolution:144dpi) {
+    #p-logo:after {
+        background-image: url(/static/images/project-logos/enwiki-1.5x.png);
+        background-size: 135px auto
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min--moz-device-pixel-ratio:2),
+(min-resolution:2dppx),
+(min-resolution:192dpi) {
+    #p-logo:after {
+        background-image: url(/static/images/project-logos/enwiki-2x.png);
+        background-size: 135px auto
+    }
+}
+
+div.vectorTabs li.selected:not(imp) {
+    background-image: none;
+    background-color: white;
+}
+
+div.vectorTabs ul li:not(imp) {
+    background-image: -webkit-linear-gradient(white 0%, #eaf2f8 98%, #a7d7f9 99%);
+}
+
+#mw-page-base:not(imp) {
+    background-image: linear-gradient(#ffffff 50%, #f2f2f2 100%);
+}
+
+body:not(imp) {
+    background-color: #f0f0f0;
+}
