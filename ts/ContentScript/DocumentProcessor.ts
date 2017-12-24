@@ -1286,7 +1286,7 @@ namespace MidnightLizard.ContentScript
 
                                 bgFilter = [
                                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
-                                    bgImgLight < 1 ? `brightness(${float.format(bgImgLight)})` : "",
+                                    bgImgLight < 1 && !doInvert ? `brightness(${float.format(bgImgLight)})` : "",
                                     doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
                                     doInvert ? "hue-rotate(180deg) invert(1)" : "",
                                     this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
