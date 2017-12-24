@@ -64,3 +64,9 @@ div.vectorTabs ul li:not(imp) {
 body:not(imp) {
     background-color: #f0f0f0;
 }
+
+.mwe-math-fallback-image-inline {
+    --ml-ignore:true;
+    /* background-color: #E0E0E0; */
+    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+}
