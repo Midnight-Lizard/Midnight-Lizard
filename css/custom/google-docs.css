@@ -27,7 +27,7 @@
     --ml-border-border-top-color:Background;
 }
 
-.scb-private-icon-white, .scb-invalid-icon-white
+.scb-private-icon-white, .scb-invalid-icon-white, .scb-unlisted-icon-white
 {
     --ml-no-invert:true;
 }
