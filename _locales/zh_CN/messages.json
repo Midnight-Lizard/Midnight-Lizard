@@ -1,10 +1,10 @@
 {
     "appDesc": {
-        "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites.",
+        "message": "这个扩展改变了页面的颜色，亮度和对比度，提高了可读性。夜间模式为所有网站开启。",
         "description": "The description of the application, displayed in the web store."
     },
     "globalToggleKey": {
-        "message": "Global extension toggle",
+        "message": "全局扩展程序切换",
         "description": "Global extension toggle key description"
     }
 }
