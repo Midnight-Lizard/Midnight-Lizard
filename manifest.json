@@ -4,7 +4,7 @@
     "short_name": "Mid.Lizard",
     "description": "__MSG_appDesc__",
     "default_locale": "en",
-    "version": "8.7.2",
+    "version": "8.7.3",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
@@ -51,7 +51,8 @@
             ],
             "css": [
                 "css/preload.css",
-                "css/content-vars.css"
+                "css/content-vars.css",
+                "css/custom/bookmark-sidebar.css"
             ]
         },
         {
