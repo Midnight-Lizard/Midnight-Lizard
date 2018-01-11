@@ -3,4 +3,5 @@
 /// <reference path="./ChromeStorageManager.ts" />
 /// <reference path="./ChromeSettingsBus.ts" />
 /// <reference path="./ChromeZoomService.ts" />
+/// <reference path="./ChromeUninstallUrlSetter.ts" />
 /// <reference path="../BackgroundPage/BackgroundPageStarter.ts" />

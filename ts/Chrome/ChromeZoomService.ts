@@ -1,5 +1,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../BackgroundPage/IZoomService.ts" />
+/// <reference path="../Settings/ISettingsBus.ts" />
+
 
 namespace Chrome
 {
