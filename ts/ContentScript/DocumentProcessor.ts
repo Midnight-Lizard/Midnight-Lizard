@@ -687,8 +687,7 @@ namespace MidnightLizard.ContentScript
 
         protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
         {
-            const paramsForPromiseAll: [HTMLElement[] | Document | number | Promise<PromiseResult<string>>] =
-                [chunk, chunk[0].ownerDocument, delay];
+            const paramsForPromiseAll: any[] = [chunk, chunk[0].ownerDocument, delay];
             const results = chunk.map(tag => { return { tag: tag, result: docProc.calculateRoomRules(tag) } });
             docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
             results
@@ -835,7 +834,7 @@ namespace MidnightLizard.ContentScript
 
         protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
         {
-            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.ColorEntry.NotFound);
+            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.NotFound);
             result.reason = Colors.ColorReason.NotFound;
             if (tag.parentElement)
             {
@@ -1484,8 +1483,8 @@ namespace MidnightLizard.ContentScript
 
         protected changeColor(
             {
-            role: component, property: property, tag: tag, bgLight: bgLight
-        }:
+                role: component, property: property, tag: tag, bgLight: bgLight
+            }:
                 {
                     role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number
                 }): Colors.ColorEntry | undefined
@@ -2083,6 +2082,10 @@ namespace MidnightLizard.ContentScript
                             {
                                 const attrName = `${tag.tagName}-style`,
                                     attrValue = PseudoStyleStandard[standardType];
+                                if (!tag.parentRoomRules.attributes)
+                                {
+                                    tag.parentRoomRules.attributes = new Map<string, string>();
+                                }
                                 tag.parentRoomRules.attributes.set(attrName, attrValue);
                                 tag.parentElement.setAttribute(attrName, attrValue);
                                 cssText = "";

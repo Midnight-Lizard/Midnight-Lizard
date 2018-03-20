@@ -20,9 +20,9 @@ namespace MidnightLizard.ContentScript
         keepFilter: boolean | undefined;
         transitionDuration: { value: string } | null | undefined;
         display: string | null | undefined;
-        attributes: Map<string, string>;
-        backgroundImageKeys: Array<string>;
-        backgroundImages: Array<Promise<BackgroundImage> | BackgroundImage>;
+        attributes?: Map<string, string>;
+        backgroundImageKeys: any;
+        backgroundImages?: Array<Promise<BackgroundImage> | BackgroundImage>;
         hasBackgroundImagePromises: boolean = false;
     }
 }

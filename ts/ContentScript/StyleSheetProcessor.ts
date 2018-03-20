@@ -64,7 +64,7 @@ namespace MidnightLizard.ContentScript
 
         protected readonly _preFilteredSelectors = new WeakMap<Document, Map<string, string[]>>();
 
-        protected readonly _excludeStylesRegExp: string;
+        // protected readonly _excludeStylesRegExp: string;
         protected readonly _includeStylesRegExp: string;
 
         /** StyleSheetProcessor constructor

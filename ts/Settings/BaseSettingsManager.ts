@@ -49,7 +49,7 @@ namespace MidnightLizard.Settings
         public get currentSettings() { return this._currentSettings }
 
         /** Current settings for calculations */
-        protected _shift: Colors.ComponentShift;
+        protected _shift!: Colors.ComponentShift;
         /** Current settings for calculations */
         public get shift() { return this._shift }
 
@@ -81,7 +81,7 @@ namespace MidnightLizard.Settings
 
         protected initCurSet()
         {
-            let set = Object.assign(new ColorScheme(), this._currentSettings);
+            let set = Object.assign({}, this._currentSettings);
             for (let setting in set)
             {
                 let prop = setting as ColorSchemePropertyName;

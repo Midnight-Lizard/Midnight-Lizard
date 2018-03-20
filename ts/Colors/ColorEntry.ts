@@ -21,19 +21,21 @@ namespace MidnightLizard.Colors
         Afterwards
     }
 
-    export class ColorEntry
+
+    export const NotFound: ColorEntry = {
+        role: Component.Background,
+        color: RgbaColor.White,
+        light: 1,
+        originalLight: 1,
+        originalColor: RgbaColor.White,
+        alpha: 1,
+        reason: ColorReason.NotFound,
+        isUpToDate: true,
+        owner: null
+    }
+
+    export interface ColorEntry
     {
-        public static readonly NotFound: ColorEntry = {
-            role: Component.Background,
-            color: RgbaColor.White,
-            light: 1,
-            originalLight: 1,
-            originalColor: RgbaColor.White,
-            alpha: 1,
-            reason: ColorReason.NotFound,
-            isUpToDate: true,
-            owner: null
-        }
         role: Component;
         color: string | null;
         light: number;
@@ -48,6 +50,5 @@ namespace MidnightLizard.Colors
         owner: any;
         base?: ColorEntry | null;
         isUpToDate: boolean;
-        constructor() { }
     }
 }

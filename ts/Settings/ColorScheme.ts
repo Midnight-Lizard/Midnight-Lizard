@@ -11,7 +11,7 @@ namespace MidnightLizard.Settings
     /**
      * ColorScheme - MidnightLizard Settings
      */
-    export class ColorScheme
+    export interface ColorScheme
     {
         userColorSchemes?: Array<ColorScheme>;
         colorSchemeId: ColorSchemeName;
@@ -66,7 +66,5 @@ namespace MidnightLizard.Settings
         scrollbarLightnessLimit: number;
         scrollbarGrayHue: number;
         scrollbarSize: number;
-
-        constructor() { }
     }
 }

@@ -24,7 +24,7 @@ namespace MidnightLizard.Colors
     /**
      * ComponentShift
      */
-    export class ComponentShift
+    export interface ComponentShift
     {
         Background: ColorShift;
         Text: ColorShift;
@@ -42,6 +42,5 @@ namespace MidnightLizard.Colors
         BackgroundImage: ColorShift;
         ButtonBackground: ColorShift;
         ButtonBorder: ColorShift;
-        constructor() { }
     }
 }

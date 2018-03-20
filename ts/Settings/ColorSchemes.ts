@@ -8,25 +8,24 @@ namespace MidnightLizard.Settings
     /**
      * ColorSchemes
      */
-    export abstract class ColorSchemes extends ColorScheme
-    {
-        static default: ColorScheme;
-        static original: ColorScheme;
-        static dimmedDust: ColorScheme;
-        static appleMint: ColorScheme;
-        static kappaDream: ColorScheme;
-        static almondRipe: ColorScheme;
-        static sunsetSails: ColorScheme;
-        static halloween: ColorScheme;
-        static morningMist: ColorScheme;
-        static antiqueCodex: ColorScheme;
-        static increasedContrast: ColorScheme;
-        static grayscale: ColorScheme;
-        static invertedLight: ColorScheme;
-        static invertedGrayscale: ColorScheme;
-        static yellowOnBlack: ColorScheme;
-        static greenOnBlack: ColorScheme;
-    }
+    export const ColorSchemes: {
+        default: ColorScheme;
+        original: ColorScheme;
+        dimmedDust: ColorScheme;
+        appleMint: ColorScheme;
+        kappaDream: ColorScheme;
+        almondRipe: ColorScheme;
+        sunsetSails: ColorScheme;
+        halloween: ColorScheme;
+        morningMist: ColorScheme;
+        antiqueCodex: ColorScheme;
+        increasedContrast: ColorScheme;
+        grayscale: ColorScheme;
+        invertedLight: ColorScheme;
+        invertedGrayscale: ColorScheme;
+        yellowOnBlack: ColorScheme;
+        greenOnBlack: ColorScheme;
+    } = {} as any
 
     /**
      * DefaultColorSchemes

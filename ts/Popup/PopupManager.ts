@@ -19,26 +19,26 @@ namespace MidnightLizard.Popup
     @DI.injectable(IPopupManager)
     class PopupManager
     {
-        protected _currentSiteSettings: Settings.ColorScheme;
-        protected _colorSchemeSelect: HTMLSelectElement;
-        protected _applyButton: HTMLButtonElement;
-        protected _closeButton: HTMLButtonElement;
-        protected _setAsDefaultButton: HTMLButtonElement;
-        protected _hostName: HTMLAnchorElement;
-        protected _hostState: HTMLElement;
-        protected _facebookLink: HTMLAnchorElement;
-        protected _isEnabledToggle: HTMLInputElement;
-        protected _runOnThisSiteCheckBox: HTMLInputElement;
-        protected _useDefaultScheduleCheckBox: HTMLInputElement;
-        protected _forgetAllSitesButton: HTMLButtonElement;
-        protected _forgetThisSiteButton: HTMLButtonElement;
-        protected _deleteColorSchemeButton: HTMLButtonElement;
-        protected _saveColorSchemeButton: HTMLButtonElement;
-        protected _exportColorSchemeButton: HTMLButtonElement;
-        protected _newColorSchemeName: HTMLInputElement;
-        protected _colorSchemeForEdit: HTMLSelectElement;
-        protected _importColorSchemeFileInput: HTMLInputElement;
-        protected _syncSettingsCheckBox: HTMLInputElement;
+        protected _currentSiteSettings!: Settings.ColorScheme;
+        protected _colorSchemeSelect!: HTMLSelectElement;
+        protected _applyButton!: HTMLButtonElement;
+        protected _closeButton!: HTMLButtonElement;
+        protected _setAsDefaultButton!: HTMLButtonElement;
+        protected _hostName!: HTMLAnchorElement;
+        protected _hostState!: HTMLElement;
+        protected _facebookLink!: HTMLAnchorElement;
+        protected _isEnabledToggle!: HTMLInputElement;
+        protected _runOnThisSiteCheckBox!: HTMLInputElement;
+        protected _useDefaultScheduleCheckBox!: HTMLInputElement;
+        protected _forgetAllSitesButton!: HTMLButtonElement;
+        protected _forgetThisSiteButton!: HTMLButtonElement;
+        protected _deleteColorSchemeButton!: HTMLButtonElement;
+        protected _saveColorSchemeButton!: HTMLButtonElement;
+        protected _exportColorSchemeButton!: HTMLButtonElement;
+        protected _newColorSchemeName!: HTMLInputElement;
+        protected _colorSchemeForEdit!: HTMLSelectElement;
+        protected _importColorSchemeFileInput!: HTMLInputElement;
+        protected _syncSettingsCheckBox!: HTMLInputElement;
 
         constructor(
             protected readonly _popup: Document,
@@ -185,7 +185,7 @@ namespace MidnightLizard.Popup
 
         protected getSettingsFromPopup()
         {
-            let settings = new Settings.ColorScheme(), value: string | number | boolean;
+            let settings: Settings.ColorScheme = {} as any, value: string | number | boolean;
             settings.isEnabled = this._isEnabledToggle.checked;
             for (let setting of Array.prototype.slice.call(document.querySelectorAll(".setting")))
             {
@@ -332,7 +332,7 @@ namespace MidnightLizard.Popup
                 Promise.all(this._settingsImporter.import(this._importColorSchemeFileInput.files))
                     .then(colorSchemes =>
                     {
-                        const importedColorSchemes = new Settings.ColorScheme();
+                        const importedColorSchemes: Settings.ColorScheme = {} as any;
                         importedColorSchemes.userColorSchemes = new Array<Settings.ColorScheme>();
                         colorSchemes.forEach(arr => importedColorSchemes.userColorSchemes!.push(...arr));
                         if (importedColorSchemes.userColorSchemes && importedColorSchemes.userColorSchemes.length > 0)
@@ -605,11 +605,11 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             let newRules = Object.assign(new ContentScript.RoomRules(),
                 {
                     textShadow:
-                    {
-                        value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
-                            ? roomRules.textShadow.color.color
-                            : "black"
-                    }
+                        {
+                            value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
+                                ? roomRules.textShadow.color.color
+                                : "black"
+                        }
                 });
             this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props);
         }

@@ -9,10 +9,10 @@ namespace Chrome
     export class ChromePromise
     {
         [anyProperty: string]: any;
-        storage: typeof Storage;
-        runtime: typeof Runtime;
-        tabs: typeof Tabs;
-        commands: typeof Commands;
+        storage!: typeof Storage;
+        runtime!: typeof Runtime;
+        tabs!: typeof Tabs;
+        commands!: typeof Commands;
 
         constructor()
         {

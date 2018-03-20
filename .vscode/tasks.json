@@ -16,6 +16,9 @@
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/content-script-release.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -32,6 +35,9 @@
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/background-page-release.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -48,6 +54,9 @@
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/popup-release.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -64,6 +73,9 @@
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/custom-release.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -80,6 +92,9 @@
             "problemMatcher": "$tsc",
             "args": [
                 "-p ./config/chrome/page-script-release.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -90,6 +105,9 @@
             "problemMatcher": "$tsc-watch",
             "args": [
                 "-w -p ./config/chrome/content-script-debug.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -100,6 +118,9 @@
             "problemMatcher": "$tsc-watch",
             "args": [
                 "-w -p ./config/chrome/background-page-debug.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -110,6 +131,9 @@
             "problemMatcher": "$tsc-watch",
             "args": [
                 "-w -p ./config/chrome/popup-debug.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {
@@ -120,6 +144,9 @@
             "problemMatcher": "$tsc-watch",
             "args": [
                 "-w -p ./config/chrome/custom-debug.json"
+            ],
+            "dependsOn": [
+                "NPM Install"
             ]
         },
         {

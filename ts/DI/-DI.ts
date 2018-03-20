@@ -26,7 +26,7 @@ namespace MidnightLizard.DI
      **/
     export class RegistrationCompletedError extends Error
     {
-        name: "RegistrationCompletedError";
+        name = "RegistrationCompletedError";
         constructor()
         {
             super("Registration process has been completed. No more new registrations can be done.");
@@ -38,7 +38,7 @@ namespace MidnightLizard.DI
      **/
     export class ResolveFailedError extends Error
     {
-        name: "ResolveFailedError";
+        name = "ResolveFailedError";
         constructor(abstraction: any)
         {
             super(`DependencyInjector could not resolve type: ${abstraction}.`);
@@ -50,7 +50,7 @@ namespace MidnightLizard.DI
      **/
     export class DependencyInjector
     {
-        protected _registrationCompleted: boolean;
+        protected _registrationCompleted = false;
         protected readonly _registrations = new Map<Prototype<any>, { implementaion: Constructor, parameterTypes: any[], scope: Scope }>();
         protected readonly _resolvedInstances = new WeakMap<Prototype<any>, any>();
         /** Dependency Injector constructor */

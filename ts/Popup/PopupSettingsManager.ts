@@ -42,11 +42,11 @@ namespace MidnightLizard.Popup
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
-        isActive: boolean;
-        shift: Colors.ComponentShift;
-        currentSettings: Settings.ColorScheme;
-        onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
-        onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
+        // isActive: boolean;
+        // shift: Colors.ComponentShift;
+        // currentSettings: Settings.ColorScheme;
+        // onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
+        // onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
 
         constructor(rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,

@@ -10,9 +10,9 @@ namespace MidnightLizard.Colors
     export type SchemeResponse = (scheme: Settings.ColorScheme) => void;
     export abstract class BaseColorProcessor
     {
-        protected _colorShift: ColorShift;
+        protected _colorShift!: ColorShift;
         protected readonly _colors = new Map<string, ColorEntry>();
-        protected _component: Component;
+        protected _component!: Component;
 
         constructor(
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
