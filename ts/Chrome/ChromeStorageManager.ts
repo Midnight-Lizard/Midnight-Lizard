@@ -1,7 +1,7 @@
 /// <reference path="./ChromePromise.ts" />
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Settings/IStorageManager.ts" />
-
+/// <reference path="../Settings/IApplicationSettings.ts" />
 
 namespace Chrome
 {
@@ -10,7 +10,8 @@ namespace Chrome
     {
         currentStorage?: MidnightLizard.Settings.StorageType;
 
-        constructor(readonly chromePromise: Chrome.ChromePromise)
+        constructor(readonly chromePromise: Chrome.ChromePromise,
+            protected readonly _app: MidnightLizard.Settings.IApplicationSettings)
         {
         }
 
@@ -68,7 +69,7 @@ namespace Chrome
             else
             {
                 const state = await this.chromePromise.storage.local.get({
-                    sync: ChromeStorageManager.defaultStorageIsSync, synced: false
+                    sync: !this._app.isDebug, synced: false
                 });
                 this.currentStorage = state.sync ? "sync" : "local"
                 if (this.currentStorage === "sync" && !state.synced)
@@ -79,7 +80,5 @@ namespace Chrome
                 return this.currentStorage
             }
         }
-
-        private static readonly defaultStorageIsSync = false;
     }
 }
