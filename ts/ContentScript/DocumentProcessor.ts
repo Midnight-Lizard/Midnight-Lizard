@@ -291,7 +291,9 @@ namespace MidnightLizard.ContentScript
                 ? Array.from(tag.parentElement!.children) : [tag];
             for (let target of eventTargets)
             {
-                this.onUserAction({ currentTarget: target } as any);
+                // setTimeout(this._boundUserActionHandler, 0, { currentTarget: target });
+                tag.ownerDocument.defaultView.requestAnimationFrame(
+                    () => this.onUserAction({ currentTarget: target } as any));
             }
         }
 
