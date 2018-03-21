@@ -9,19 +9,18 @@
         "strict": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
-        "target": "es6",
+        "target": "es5",
         "inlineSourceMap": false,
-        "allowJs": false,
+        "allowJs": true,
         "noImplicitReturns": true,
         "noEmitOnError": true,
         "noImplicitThis": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipDefaultLibCheck": true,
-        "skipLibCheck": true
-    },
-    "exclude": [
-        "node_modules",
-        "./node_modules/*"
-    ]
+        "skipLibCheck": true,
+        "lib": [
+            "es6", "dom"
+        ]
+    }
 }
