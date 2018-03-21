@@ -44,6 +44,7 @@ namespace MidnightLizard.ContentScript
         protected _standardPseudoCssTextsArray: [PseudoStyleStandard, string][] = [];
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
+        protected readonly _anchors = new WeakMap<Document, HTMLAnchorElement>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
@@ -1584,6 +1585,18 @@ namespace MidnightLizard.ContentScript
             return new BackgroundImage(size, gradient, BackgroundImageType.Gradient);
         }
 
+        protected getAbsoluteUrl(doc: Document, relativeUrl: string): string
+        {
+            let anchor = this._anchors.get(doc);
+            if (!anchor)
+            {
+                anchor = doc.createElement("a");
+                this._anchors.set(doc, anchor);
+            }
+            anchor.href = relativeUrl;
+            return anchor.href;
+        }
+
         protected processBackgroundImage(tag: HTMLElement | PseudoElement, index: number, url: string,
             size: string, roomRules: RoomRules, doInvert: boolean, isPseudoContent: boolean, bgFilter: string):
             BackgroundImage | Promise<BackgroundImage>
@@ -1602,7 +1615,7 @@ namespace MidnightLizard.ContentScript
                 roomRules.hasBackgroundImagePromises = true;
                 return prevPromise;
             }
-            url = Util.trim(url.substr(3), "()'\"");
+            url = this.getAbsoluteUrl(tag.ownerDocument, Util.trim(url.substr(3), "()'\""));
             let dataPromise = fetch(url, { cache: "force-cache" })
                 .then(resp => resp.blob())
                 .then(blob => new Promise<string>((resolve, reject) =>
