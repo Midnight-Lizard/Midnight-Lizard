@@ -26,7 +26,7 @@ namespace MidnightLizard.ContentScript
         abstract canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean;
         abstract getSelectorsCount(doc: Document): number;
         abstract getSelectorsQuality(doc: Document): number | undefined;
-        abstract getCssPromises(doc: Document): IterableIterator<CssPromise>;
+        abstract getCssPromises(doc: Document): CssPromise[];
     }
 
     @DI.injectable(IStyleSheetProcessor)
@@ -50,10 +50,10 @@ namespace MidnightLizard.ContentScript
         protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
 
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
-        getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
+        getCssPromises(doc: Document): Promise<Util.HandledPromiseResult<void>>[]
         {
             let promises = this._externalCssPromises.get(doc);
-            return promises ? promises.values() : [] as any;
+            return promises ? Array.from(promises.values()) : [] as any;
         }
 
         protected readonly _selectors = new WeakMap<Document, string[]>();

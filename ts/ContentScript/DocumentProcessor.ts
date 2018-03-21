@@ -41,6 +41,7 @@ namespace MidnightLizard.ContentScript
     {
         protected _rootDocumentLoaded: boolean = false;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
+        protected _standardPseudoCssTextsArray: [PseudoStyleStandard, string][] = [];
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
@@ -137,6 +138,7 @@ namespace MidnightLizard.ContentScript
 
             this._standardPseudoCssTexts.set(PseudoStyleStandard.InvertedBackgroundImage, `${this._css.filter}:${invertedBackgroundImageFilter}!${this._css.important}`);
             this._standardPseudoCssTexts.set(PseudoStyleStandard.BackgroundImage, `${this._css.filter}:${backgroundImageFilter}!${this._css.important}`);
+            this._standardPseudoCssTextsArray = Array.from(this._standardPseudoCssTexts.entries());
         }
 
         protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
@@ -961,7 +963,7 @@ namespace MidnightLizard.ContentScript
             this.removeDynamicStyle(doc);
             this.removePageScript(doc);
             this.clearPseudoStyles(doc);
-            for (let tag of doc.getElementsByTagName("*"))
+            for (let tag of Array.from(doc.getElementsByTagName("*")))
             {
                 this.restoreElementColors(tag as HTMLElement);
             }
@@ -2076,7 +2078,7 @@ namespace MidnightLizard.ContentScript
                     let cssText = tag.style.cssText;
                     if (cssText)
                     {
-                        for (let [standardType, standardCssText] of this._standardPseudoCssTexts)
+                        for (let [standardType, standardCssText] of this._standardPseudoCssTextsArray)
                         {
                             if (cssText === standardCssText)
                             {

@@ -60,12 +60,12 @@ namespace MidnightLizard.Events
             let handlersOnTarget = _handlers.get(target);
             if (handlersOnTarget !== undefined)
             {
-                for (let tp of type ? [type] : handlersOnTarget.keys())
+                for (let tp of type ? [type] : Array.from(handlersOnTarget.keys()))
                 {
                     let handlersOfType = handlersOnTarget!.get(tp);
                     if (handlersOfType !== undefined)
                     {
-                        for (let boundHandler of handlersOfType.values())
+                        for (let boundHandler of Array.from(handlersOfType.values()))
                         {
                             target.removeEventListener(tp, boundHandler, true);
                             target.removeEventListener(tp, boundHandler, false);
