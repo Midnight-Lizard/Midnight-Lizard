@@ -1826,7 +1826,8 @@ namespace MidnightLizard.ContentScript
                 redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
             svgFilter.id = "midnight-lizard-filters"
             svgFilter.mlIgnore = true;
-            svgFilter.style.display = this._css.none;
+            svgFilter.style.height = this._css._0px;
+            svgFilter.style.position = this._css.absolute;
             svgFilter.innerHTML = `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="${redShiftMatrix}"/></filter>`;
             doc.body.appendChild(svgFilter);
         }
