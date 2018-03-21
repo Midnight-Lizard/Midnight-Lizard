@@ -67,7 +67,9 @@ namespace Chrome
             }
             else
             {
-                const state = await this.chromePromise.storage.local.get({ sync: true, synced: false });
+                const state = await this.chromePromise.storage.local.get({
+                    sync: ChromeStorageManager.defaultStorageIsSync, synced: false
+                });
                 this.currentStorage = state.sync ? "sync" : "local"
                 if (this.currentStorage === "sync" && !state.synced)
                 {
@@ -77,5 +79,7 @@ namespace Chrome
                 return this.currentStorage
             }
         }
+
+        private static readonly defaultStorageIsSync = false;
     }
 }
