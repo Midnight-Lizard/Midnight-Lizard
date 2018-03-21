@@ -9,7 +9,7 @@
         "removeComments": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
-        "target": "es6",
+        "target": "es5",
         "sourceMap": true,
         "allowJs": true,
         "noImplicitReturns": true,
@@ -18,10 +18,9 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipDefaultLibCheck": true,
-        "skipLibCheck": true
-    },
-    "exclude": [
-        "node_modules",
-        "./node_modules/*"
-    ]
+        "skipLibCheck": true,
+        "lib": [
+            "es6", "dom"
+        ]
+    }
 }
