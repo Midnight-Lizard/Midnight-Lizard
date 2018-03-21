@@ -16,7 +16,6 @@
     "permissions": [
         "storage"
     ],
-    "offline_enabled": true,
     "commands": {
         "global-toggle": {
             "description": "__MSG_globalToggleKey__",
@@ -34,7 +33,6 @@
     },
     "background": {
         "scripts": [
-            "js/Reflect.js",
             "js/background-page.js"
         ]
     },
@@ -62,7 +60,6 @@
                 "<all_urls>"
             ],
             "js": [
-                "js/Reflect.js",
                 "js/content-script.js"
             ]
         },
