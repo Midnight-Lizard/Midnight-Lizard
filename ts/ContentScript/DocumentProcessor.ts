@@ -1194,8 +1194,12 @@ namespace MidnightLizard.ContentScript
                     }
 
                     if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
-                        (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
-                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || this._settingsManager.currentSettings.blueFilter !== 0))
+                        (tag.type == "checkbox" || tag.type == "radio") &&
+                        (tag.computedStyle!.webkitAppearance && tag.computedStyle!.webkitAppearance !== this._css.none ||
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") &&
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") !== this._css.none)) &&
+                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
+                            this._settingsManager.currentSettings.blueFilter !== 0))
                     {
                         const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                         let imgSet = this.shift[customImageRole] || this.shift.Image;
