@@ -1753,7 +1753,9 @@ namespace MidnightLizard.ContentScript
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
-            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
+            let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
+            const mozSelection = selection.replace("{x}", "-moz-");
+            selection = selection.replace("{x}", "");
             const linkColors =
                 "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
@@ -1814,7 +1816,7 @@ namespace MidnightLizard.ContentScript
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
                     .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
             }
-            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}\n${scrollbars}`
+            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
         }

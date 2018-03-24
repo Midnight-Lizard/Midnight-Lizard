@@ -50,6 +50,7 @@
     white-space: nowrap;
     border-right: solid 1px var(--thin-border-color);
     user-select: none;
+    -moz-user-select: none;
 }
 
 .right .ml-tab-item

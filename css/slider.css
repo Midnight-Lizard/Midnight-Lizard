@@ -242,6 +242,7 @@ input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-
   position: absolute;
   top: 18px;
   user-select: none;
+  -moz-user-select: none;
   cursor: pointer;
 }
 
