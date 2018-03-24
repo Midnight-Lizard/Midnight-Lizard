@@ -15,6 +15,7 @@
     display: block;
     position: absolute;
     z-index: 1;
+    top: 0px;
 }
 
 .ml-tab-item-icon
@@ -121,7 +122,7 @@
 
 #default-tab-content.ml-tab-content p
 {
-    margin: 9px 20px 0px 20px;
+    margin: 8px 20px 0px 20px;
 }
 
 #default-tab-content.ml-tab-content p b, #default-tab-content.ml-tab-content p span, #default-tab-content.ml-tab-content p i
