@@ -8,7 +8,7 @@
         "strict": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
-        "target": "es5",
+        "target": "es6",
         "inlineSourceMap": true,
         "allowJs": true,
         "noImplicitReturns": true,
@@ -17,9 +17,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
-        "lib": [
-            "es6", "dom"
-        ]
+        "skipLibCheck": true
     }
 }

@@ -113,7 +113,7 @@ namespace MidnightLizard.Colors
                     if (this._lights.size > 0 && minLightDiff > 0)
                     {
                         let prevLight = -1, nextLight = +2, prevOrigin = 0, nextOrigin = 1;
-                        this._lights.forEach((otherLight, originalLight) =>
+                        for (let [originalLight, otherLight] of this._lights)
                         {
                             if (otherLight < light && otherLight > prevLight)
                             {
@@ -125,7 +125,7 @@ namespace MidnightLizard.Colors
                                 nextLight = otherLight;
                                 nextOrigin = originalLight;
                             }
-                        });
+                        }
                         let prevArea = this._lightAreas.get(prevOrigin),
                             nextArea = this._lightAreas.get(nextOrigin);
                         let deflect = 0;
