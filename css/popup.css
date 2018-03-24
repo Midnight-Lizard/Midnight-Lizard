@@ -312,7 +312,7 @@ body {
 .ml-fotter-icon-container {
     display: table-cell;
     vertical-align: middle;
-    /* cursor: pointer; */
+    position: relative;
 }
 
 .ml-fotter-icon-container.left {
@@ -524,11 +524,23 @@ body {
     left: -160px;
 }
 
-.intro-tabs:before {
-    height: 21px;
-    left: -4px;
-    top: 170px;
-    transform: skew(63deg);
+@supports (-moz-appearance: none)
+{
+    .intro-tabs:before {
+        height: 21px;
+        left: -18px;
+        top: 170px;
+        transform: skew(63deg);
+    }    
+}
+@supports not (-moz-appearance: none)
+{
+    .intro-tabs:before {
+        height: 21px;
+        left: -4px;
+        top: 170px;
+        transform: skew(63deg);
+    }    
 }
 
 .intro-host:after {
@@ -673,20 +685,8 @@ body {
     border-color: hsla(0, 73%, 41%, 0.3);
 }
 
-.ml-host-state:before {
-    margin-left: -103px;
-}
-
-.ml-host-state:after {
-    margin-left: -22px;
-}
-
-#hostName:after {
-    margin-left: -50px;
-}
-
-#hostName:before {
-    margin-left: -30px;
+.ml-host-state {
+    position: relative;
 }
 
 #hostName {
