@@ -117,6 +117,7 @@
     width: 286px;
     left: 180px;
     margin-top: -35px;
+    position: fixed;
 }
 
 .ml-tab-item[tooltip]:after
@@ -136,6 +137,7 @@
     filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px rgba(0,0,0,0.8));
     border-left-color: var(--dark-background-color);
     right: 164px;
+    position: fixed;
 }
 
 [tooltip]:hover:before, [tooltip]:hover:after
