@@ -1413,7 +1413,7 @@ namespace MidnightLizard.ContentScript
                     if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        if (brdColor.indexOf(" r") == -1)
+                        if (brdColor.indexOf(" r") == -1 && brdColor != "")
                         {
                             if (brdColor === tag.computedStyle!.getPropertyValue(ns.css.bgrColor))
                             {
