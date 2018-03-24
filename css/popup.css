@@ -192,6 +192,7 @@ body {
     width: 259px;
     font: normal 12px/normal Arial, Helvetica, sans-serif;
     font-size: 14px;
+    height: 17px;
     color: rgb(80, 80, 80);
     text-overflow: clip;
     background: var(--main-background-color);
