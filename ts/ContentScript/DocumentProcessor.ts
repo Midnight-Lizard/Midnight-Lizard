@@ -1825,15 +1825,25 @@ namespace MidnightLizard.ContentScript
 
         protected createSvgFilters(doc: Document)
         {
-            const svgFilter = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+            const svgNs = "http://www.w3.org/2000/svg";
+            const svg = doc.createElementNS(svgNs, "svg"),
+                filter = doc.createElementNS(svgNs, "filter"),
+                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
                 blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
                 redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
-            svgFilter.id = "midnight-lizard-filters"
-            svgFilter.mlIgnore = true;
-            svgFilter.style.height = this._css._0px;
-            svgFilter.style.position = this._css.absolute;
-            svgFilter.innerHTML = `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="${redShiftMatrix}"/></filter>`;
-            doc.body.appendChild(svgFilter);
+            svg.id = "midnight-lizard-filters"
+            svg.mlIgnore = true;
+            svg.style.height = this._css._0px;
+            svg.style.position = this._css.absolute;
+            svg.appendChild(filter);
+
+            filter.id = "ml-blue-filter";
+            filter.appendChild(feColorMatrix);
+
+            feColorMatrix.setAttribute("type", "matrix");
+            feColorMatrix.setAttribute("values", redShiftMatrix);
+
+            doc.body.appendChild(svg);
         }
 
         protected createPseudoStyles(doc: Document)
