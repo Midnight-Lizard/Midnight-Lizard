@@ -187,7 +187,6 @@
                 "isDefault": true
             },
             "dependsOn": [
-                "Copy reflect-metadata",
                 "TSC Build Custom",
                 "TSC Build Page Script",
                 "TSC Build Popup",
@@ -202,7 +201,6 @@
                 "isDefault": true
             },
             "dependsOn": [
-                "Copy reflect-metadata",
                 "TSC Release Custom",
                 "TSC Release Page Script",
                 "TSC Release Background Page",
