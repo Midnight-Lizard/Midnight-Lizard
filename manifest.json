@@ -12,7 +12,6 @@
         "32": "img/ml-icon-32.png",
         "16": "img/ml-icon-16.png"
     },
-    "content_security_policy": "script-src 'self' https://*.facebook.net https://*.facebook.com; object-src 'self'",
     "permissions": [
         "storage"
     ],
