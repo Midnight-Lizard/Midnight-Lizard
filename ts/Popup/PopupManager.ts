@@ -5,7 +5,7 @@
 /// <reference path="../Controls/-Controls.ts" />
 /// <reference path="../Events/-Events.ts" />
 /// <reference path="ICommandManager.ts" />
-/// <reference path="../SocialMedia/Facebook/FacebookService.ts" />
+// /// <reference path="../SocialMedia/Facebook/FacebookService.ts" />
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Settings/SettingsExporter.ts" />
 /// <reference path="../Settings/SettingsImporter.ts" />
@@ -50,7 +50,7 @@ namespace MidnightLizard.Popup
             protected readonly _dynamicSettingsManager: MidnightLizard.Settings.IDynamicSettingsManager,
             protected readonly _dynamicTextColorProcessor: MidnightLizard.Colors.IDynamicTextColorProcessor,
             protected readonly _dynamicBackgroundColorProcessor: MidnightLizard.Colors.IDynamicBackgroundColorProcessor,
-            protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
+            // protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter)
         {
@@ -58,15 +58,15 @@ namespace MidnightLizard.Popup
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
             _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime as any, this, Events.EventHandlerPriority.High);
-            _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
+            // _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
         }
 
-        protected onFacebookServiceInitialized()
-        {
-            this._facebookService.getFanCount()
-                .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
-                .catch(error => this._app.isDebug && console.error(error));
-        }
+        // protected onFacebookServiceInitialized()
+        // {
+        //     this._facebookService.getFanCount()
+        //         .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
+        //         .catch(error => this._app.isDebug && console.error(error));
+        // }
 
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
         {
