@@ -407,8 +407,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             }
             dom.removeAllEventListeners(this._colorSchemeSelect);
             dom.removeAllEventListeners(this._colorSchemeForEdit);
-            this._colorSchemeSelect.innerHTML = "";
-            this._colorSchemeForEdit.innerHTML = "";
+            this._colorSchemeSelect.textContent = "";
+            this._colorSchemeForEdit.textContent = "";
             this.fillColorSchemesSelectLists();
             const settings = this._settingsManager.currentSettings;
             this.setUpColorSchemeSelectValue(settings);

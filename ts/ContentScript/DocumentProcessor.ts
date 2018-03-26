@@ -1818,7 +1818,7 @@ namespace MidnightLizard.ContentScript
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
                     .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
             }
-            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
+            sheet.textContent = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
         }
@@ -1853,7 +1853,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles = doc.createElement('style');
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
                 (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
             }
         }
@@ -1881,7 +1881,7 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.mlPseudoStyles)
             {
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
             }
         }
 
@@ -1890,7 +1890,7 @@ namespace MidnightLizard.ContentScript
             let noTrans = doc.createElement('style');
             noTrans.id = "midnight-lizard-no-trans-style";
             noTrans.mlIgnore = true;
-            noTrans.innerHTML = ":not([transition]) { transition: all 0s ease 0s !important; }";
+            noTrans.textContent = ":not([transition]) { transition: all 0s ease 0s !important; }";
             (doc.head || doc.documentElement).appendChild(noTrans);
 
             let bgrLight = this.shift.Background.lightnessLimit,
@@ -1902,7 +1902,7 @@ namespace MidnightLizard.ContentScript
                 style = doc.createElement('style');
             style.id = "midnight-lizard-loading-style";
             style.mlIgnore = true;
-            style.innerHTML =
+            style.textContent =
                 `img[src]:not(impt),iframe:not(impt){filter:brightness(${imgLight}) saturate(${imgSatrt})!important}` +
                 `:not(impt),:not(impt):before,:not(impt):after` +
                 `{` +
