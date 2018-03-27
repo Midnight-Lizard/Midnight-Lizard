@@ -185,7 +185,7 @@ namespace MidnightLizard.ContentScript
                                 if (rule instanceof doc.defaultView.CSSStyleRule)
                                 {
                                     let style = rule.style;
-                                    if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                    if (this._styleProps.some(p => !!style.getPropertyValue(p.prop)))
                                     {
                                         styleRules.push(rule);
                                     }
@@ -236,7 +236,7 @@ namespace MidnightLizard.ContentScript
             {
                 selectorsQuality--;
                 styleProps = styleProps.filter(p => p.priority <= maxPriority);
-                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => this.checkPropertyIsValuable(r.style, p.prop)));
+                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => !!r.style.getPropertyValue(p.prop)));
             }
 
             if (filteredStyleRules.length > this._stylesLimit)
