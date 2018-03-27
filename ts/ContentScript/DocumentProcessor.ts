@@ -1273,7 +1273,7 @@ namespace MidnightLizard.ContentScript
                             const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                             let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
-                            doInvert = (!isTable) && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
+                            doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
                                 tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                                 (
                                     this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
@@ -1308,8 +1308,8 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else isInput = true;
 
-                                haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || isPseudoContent ||
-                                    !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
+                                haveToProcBgImg = isRealElement(tag) && tag.tagName === "BODY" && !!tag.firstChild ||
+                                    isPseudoContent || !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
                             }
                         }
                         if (haveToProcBgImg || haveToProcBgGrad)
