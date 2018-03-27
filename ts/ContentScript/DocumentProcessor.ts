@@ -1125,14 +1125,18 @@ namespace MidnightLizard.ContentScript
                         let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
                         let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
                         let roomId = "";
-                        if (beforeStyle && beforeStyle.content && beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (beforeStyle && beforeStyle.content &&
+                            beforeStyle.content !== this._css.none &&
+                            beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
                             roomRules.attributes = roomRules.attributes || new Map<string, string>();
                             roomRules.attributes.set("before-style", roomId);
                         }
-                        if (afterStyle && afterStyle.content && afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (afterStyle && afterStyle.content &&
+                            afterStyle.content !== this._css.none &&
+                            afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
@@ -1412,11 +1416,22 @@ namespace MidnightLizard.ContentScript
                         roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
                     }
 
-                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
+                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
+                        tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
+                        !tag.computedStyle!.borderStyle && (
+                            tag.computedStyle!.borderTopStyle !== this._css.none ||
+                            tag.computedStyle!.borderRightStyle !== this._css.none ||
+                            tag.computedStyle!.borderBottomStyle !== this._css.none ||
+                            tag.computedStyle!.borderLeftStyle !== this._css.none)))
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        if (brdColor.indexOf(" r") == -1 && brdColor != "")
+                        let brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
+                            tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
+                            tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
+                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor
+                        if (brdColorIsSingle)
                         {
+                            brdColor = brdColor || tag.computedStyle!.borderTopColor!;
                             if (brdColor === tag.computedStyle!.getPropertyValue(ns.css.bgrColor))
                             {
                                 let result = Object.assign({}, roomRules.backgroundColor);
@@ -1424,7 +1439,7 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight });
+                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight, propVal: brdColor });
                             }
                         }
                         else if (!isSvg)
@@ -1490,10 +1505,10 @@ namespace MidnightLizard.ContentScript
 
         protected changeColor(
             {
-                role: component, property: property, tag: tag, bgLight: bgLight
+                role: component, property: property, tag: tag, bgLight: bgLight, propVal: propVal
             }:
                 {
-                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number
+                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number, propVal?: string
                 }): Colors.ColorEntry | undefined
         {
             if (tag.computedStyle)
@@ -1502,7 +1517,7 @@ namespace MidnightLizard.ContentScript
                 [tag.computedStyle.getPropertyValue(`--ml-${cc[component].toLowerCase()}-${property}`)];
                 if (propRole !== undefined)
                 {
-                    const propVal = tag.computedStyle!.getPropertyValue(property);
+                    propVal = propVal || tag.computedStyle!.getPropertyValue(property);
                     let bgLightVal = 1;
                     switch (propRole)
                     {
