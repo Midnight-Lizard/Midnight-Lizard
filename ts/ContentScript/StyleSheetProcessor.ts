@@ -26,7 +26,7 @@ namespace MidnightLizard.ContentScript
         abstract canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean;
         abstract getSelectorsCount(doc: Document): number;
         abstract getSelectorsQuality(doc: Document): number | undefined;
-        abstract getCssPromises(doc: Document): IterableIterator<CssPromise>;
+        abstract getCssPromises(doc: Document): CssPromise[];
     }
 
     @DI.injectable(IStyleSheetProcessor)
@@ -50,10 +50,10 @@ namespace MidnightLizard.ContentScript
         protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
 
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
-        getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
+        getCssPromises(doc: Document): Promise<Util.HandledPromiseResult<void>>[]
         {
             let promises = this._externalCssPromises.get(doc);
-            return promises ? promises.values() : [] as any;
+            return promises ? Array.from(promises.values()) : [] as any;
         }
 
         protected readonly _selectors = new WeakMap<Document, string[]>();
@@ -185,7 +185,7 @@ namespace MidnightLizard.ContentScript
                                 if (rule instanceof doc.defaultView.CSSStyleRule)
                                 {
                                     let style = rule.style;
-                                    if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                    if (this._styleProps.some(p => !!style.getPropertyValue(p.prop)))
                                     {
                                         styleRules.push(rule);
                                     }
@@ -236,7 +236,7 @@ namespace MidnightLizard.ContentScript
             {
                 selectorsQuality--;
                 styleProps = styleProps.filter(p => p.priority <= maxPriority);
-                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => this.checkPropertyIsValuable(r.style, p.prop)));
+                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => !!r.style.getPropertyValue(p.prop)));
             }
 
             if (filteredStyleRules.length > this._stylesLimit)

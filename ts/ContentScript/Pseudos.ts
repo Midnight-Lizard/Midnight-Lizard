@@ -28,7 +28,7 @@ namespace MidnightLizard.ContentScript
         constructor() { }
         public get cssText()
         {
-            return ([...this._props] as [string, [string, string]][])
+            return Array.from(this._props)
                 .map(([key, [value, priority]]) => `${key}:${value}${priority}`)
                 .join(";");
         }

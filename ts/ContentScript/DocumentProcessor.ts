@@ -43,6 +43,7 @@ namespace MidnightLizard.ContentScript
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
+        protected readonly _anchors = new WeakMap<Document, HTMLAnchorElement>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
@@ -285,10 +286,12 @@ namespace MidnightLizard.ContentScript
         {
             const tag = eArg.currentTarget as HTMLElement;
             const eventTargets = tag instanceof HTMLTableCellElement || tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
-                ? Array.from(tag.parentElement!.children) : [tag];
+                ? tag.parentElement!.children : [tag];
             for (let target of eventTargets)
             {
-                this.onUserAction({ currentTarget: target } as any);
+                // setTimeout(this._boundUserActionHandler, 0, { currentTarget: target });
+                tag.ownerDocument.defaultView.requestAnimationFrame(
+                    () => this.onUserAction({ currentTarget: target } as any));
             }
         }
 
@@ -1122,14 +1125,18 @@ namespace MidnightLizard.ContentScript
                         let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
                         let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
                         let roomId = "";
-                        if (beforeStyle && beforeStyle.content && beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (beforeStyle && beforeStyle.content &&
+                            beforeStyle.content !== this._css.none &&
+                            beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
                             roomRules.attributes = roomRules.attributes || new Map<string, string>();
                             roomRules.attributes.set("before-style", roomId);
                         }
-                        if (afterStyle && afterStyle.content && afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (afterStyle && afterStyle.content &&
+                            afterStyle.content !== this._css.none &&
+                            afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
@@ -1189,8 +1196,12 @@ namespace MidnightLizard.ContentScript
                     }
 
                     if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
-                        (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
-                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || this._settingsManager.currentSettings.blueFilter !== 0))
+                        (tag.type == "checkbox" || tag.type == "radio") &&
+                        (tag.computedStyle!.webkitAppearance && tag.computedStyle!.webkitAppearance !== this._css.none ||
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") &&
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") !== this._css.none)) &&
+                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
+                            this._settingsManager.currentSettings.blueFilter !== 0))
                     {
                         const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                         let imgSet = this.shift[customImageRole] || this.shift.Image;
@@ -1212,7 +1223,7 @@ namespace MidnightLizard.ContentScript
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                    if (tag.computedStyle!.content!.substr(0, 3) == "url")
+                    if (tag.computedStyle!.content!.substr(0, 3) == "url" && !beforePseudoElement && !afterPseudoElement)
                     {
                         let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
                             (
@@ -1405,11 +1416,22 @@ namespace MidnightLizard.ContentScript
                         roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
                     }
 
-                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
+                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
+                        tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
+                        !tag.computedStyle!.borderStyle && (
+                            tag.computedStyle!.borderTopStyle !== this._css.none ||
+                            tag.computedStyle!.borderRightStyle !== this._css.none ||
+                            tag.computedStyle!.borderBottomStyle !== this._css.none ||
+                            tag.computedStyle!.borderLeftStyle !== this._css.none)))
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        if (brdColor.indexOf(" r") == -1)
+                        let brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
+                            tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
+                            tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
+                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor
+                        if (brdColorIsSingle)
                         {
+                            brdColor = brdColor || tag.computedStyle!.borderTopColor!;
                             if (brdColor === tag.computedStyle!.getPropertyValue(ns.css.bgrColor))
                             {
                                 let result = Object.assign({}, roomRules.backgroundColor);
@@ -1417,7 +1439,7 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight });
+                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight, propVal: brdColor });
                             }
                         }
                         else if (!isSvg)
@@ -1483,10 +1505,10 @@ namespace MidnightLizard.ContentScript
 
         protected changeColor(
             {
-                role: component, property: property, tag: tag, bgLight: bgLight
+                role: component, property: property, tag: tag, bgLight: bgLight, propVal: propVal
             }:
                 {
-                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number
+                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number, propVal?: string
                 }): Colors.ColorEntry | undefined
         {
             if (tag.computedStyle)
@@ -1495,7 +1517,7 @@ namespace MidnightLizard.ContentScript
                 [tag.computedStyle.getPropertyValue(`--ml-${cc[component].toLowerCase()}-${property}`)];
                 if (propRole !== undefined)
                 {
-                    const propVal = tag.computedStyle!.getPropertyValue(property);
+                    propVal = propVal || tag.computedStyle!.getPropertyValue(property);
                     let bgLightVal = 1;
                     switch (propRole)
                     {
@@ -1556,7 +1578,7 @@ namespace MidnightLizard.ContentScript
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                .replace(/webkit|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
+                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
             if (uniqColors.size > 0)
             {
@@ -1582,6 +1604,18 @@ namespace MidnightLizard.ContentScript
             return new BackgroundImage(size, gradient, BackgroundImageType.Gradient);
         }
 
+        protected getAbsoluteUrl(doc: Document, relativeUrl: string): string
+        {
+            let anchor = this._anchors.get(doc);
+            if (!anchor)
+            {
+                anchor = doc.createElement("a");
+                this._anchors.set(doc, anchor);
+            }
+            anchor.href = relativeUrl;
+            return anchor.href;
+        }
+
         protected processBackgroundImage(tag: HTMLElement | PseudoElement, index: number, url: string,
             size: string, roomRules: RoomRules, doInvert: boolean, isPseudoContent: boolean, bgFilter: string):
             BackgroundImage | Promise<BackgroundImage>
@@ -1600,7 +1634,7 @@ namespace MidnightLizard.ContentScript
                 roomRules.hasBackgroundImagePromises = true;
                 return prevPromise;
             }
-            url = Util.trim(url.substr(3), "()'\"");
+            url = this.getAbsoluteUrl(tag.ownerDocument, Util.trim(url.substr(3), "()'\""));
             let dataPromise = fetch(url, { cache: "force-cache" })
                 .then(resp => resp.blob())
                 .then(blob => new Promise<string>((resolve, reject) =>
@@ -1736,7 +1770,9 @@ namespace MidnightLizard.ContentScript
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
-            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
+            let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
+            const mozSelection = selection.replace("{x}", "-moz-");
+            selection = selection.replace("{x}", "");
             const linkColors =
                 "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
                 "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
@@ -1797,21 +1833,32 @@ namespace MidnightLizard.ContentScript
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
                     .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
             }
-            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}\n${scrollbars}`
+            sheet.textContent = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
         }
 
         protected createSvgFilters(doc: Document)
         {
-            const svgFilter = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+            const svgNs = "http://www.w3.org/2000/svg";
+            const svg = doc.createElementNS(svgNs, "svg"),
+                filter = doc.createElementNS(svgNs, "filter"),
+                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
                 blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
                 redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
-            svgFilter.id = "midnight-lizard-filters"
-            svgFilter.mlIgnore = true;
-            svgFilter.style.display = this._css.none;
-            svgFilter.innerHTML = `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="${redShiftMatrix}"/></filter>`;
-            doc.body.appendChild(svgFilter);
+            svg.id = "midnight-lizard-filters"
+            svg.mlIgnore = true;
+            svg.style.height = this._css._0px;
+            svg.style.position = this._css.absolute;
+            svg.appendChild(filter);
+
+            filter.id = "ml-blue-filter";
+            filter.appendChild(feColorMatrix);
+
+            feColorMatrix.setAttribute("type", "matrix");
+            feColorMatrix.setAttribute("values", redShiftMatrix);
+
+            doc.body.appendChild(svg);
         }
 
         protected createPseudoStyles(doc: Document)
@@ -1821,7 +1868,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles = doc.createElement('style');
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
                 (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
             }
         }
@@ -1849,7 +1896,7 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.mlPseudoStyles)
             {
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
             }
         }
 
@@ -1858,7 +1905,7 @@ namespace MidnightLizard.ContentScript
             let noTrans = doc.createElement('style');
             noTrans.id = "midnight-lizard-no-trans-style";
             noTrans.mlIgnore = true;
-            noTrans.innerHTML = ":not([transition]) { transition: all 0s ease 0s !important; }";
+            noTrans.textContent = ":not([transition]) { transition: all 0s ease 0s !important; }";
             (doc.head || doc.documentElement).appendChild(noTrans);
 
             let bgrLight = this.shift.Background.lightnessLimit,
@@ -1870,7 +1917,7 @@ namespace MidnightLizard.ContentScript
                 style = doc.createElement('style');
             style.id = "midnight-lizard-loading-style";
             style.mlIgnore = true;
-            style.innerHTML =
+            style.textContent =
                 `img[src]:not(impt),iframe:not(impt){filter:brightness(${imgLight}) saturate(${imgSatrt})!important}` +
                 `:not(impt),:not(impt):before,:not(impt):after` +
                 `{` +

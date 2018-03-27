@@ -1,6 +1,7 @@
 input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-slider-runnable-track, input[type='range'].ml-input-range::-webkit-slider-thumb
 {
   -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 :root
@@ -241,6 +242,7 @@ input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-
   position: absolute;
   top: 18px;
   user-select: none;
+  -moz-user-select: none;
   cursor: pointer;
 }
 
@@ -258,6 +260,58 @@ input[type=range].ml-input-range:focus
 {
   outline: none;
   box-shadow: 0px 0px 3px 0px rgb(0, 122, 204);
+}
+
+.ml-input-range::-moz-range-track
+{
+  position: relative;
+  color: inherit;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--pseudo-background-color);
+  background-image: var(--range-track-background);
+
+  --x: 7px;
+  --h: 7.5px;
+  --o: 15px;
+  --f: 15px;
+
+  background-size:
+    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 8px,
+    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 8px,
+    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    100% 100%,
+    var(--range-segment-width) 8px,
+    calc(100% - var(--f)) 100%,
+    calc(100% - var(--f)) 100%;
+
+  background-position:
+    calc(100% - var(--x)) 0px,
+    var(--h) 0px,
+    var(--h) 0px,
+    calc(100% - var(--h)) 0px,
+    var(--x) 0px,
+    var(--x) 0px,
+    calc(100% - var(--h)) 0px,
+    var(--x) 0px,
+    0px 0px,
+    var(--x) 0px,
+    var(--x) 0px,
+    var(--x) 0px;
+
+  background-repeat:
+    no-repeat, no-repeat,
+    repeat-x,
+    no-repeat, no-repeat,
+    repeat-x,
+    no-repeat, no-repeat, no-repeat,
+    repeat-x,
+    no-repeat, no-repeat;
 }
 
 .ml-input-range::-webkit-slider-runnable-track
@@ -310,6 +364,56 @@ input[type=range].ml-input-range:focus
     no-repeat, no-repeat, no-repeat,
     repeat-x,
     no-repeat, no-repeat;
+}
+
+.ml-input-range::-moz-range-thumb
+{
+  position: relative;
+  cursor: default;
+  border: none;
+  border-radius: 50% 50% 0;
+  background-color: currentColor;
+  background-image:
+    linear-gradient(-45deg, 
+      currentColor 30%, 
+      rgba(0,0,0,0) 35%, 
+      rgba(0,0,0,0) 65%,
+      currentColor 70%
+    ), 
+    linear-gradient(45deg,
+      rgba(  0,  0,  0, 0  ) 25%,
+      var(--pseudo-background-color) 25%,
+      var(--pseudo-background-color) 30%,
+      rgba(  0,  0,  0, 0  ) 30%,
+      rgba(  0,  0,  0, 0  ) 47%,
+      var(--pseudo-background-color) 47%,
+      var(--pseudo-background-color) 53%,
+      rgba(  0,  0,  0, 0  ) 53%,
+      rgba(  0,  0,  0, 0  ) 70%,
+      var(--pseudo-background-color) 70%,
+      var(--pseudo-background-color) 75%,
+      rgba(  0,  0,  0, 0  ) 75%
+    );
+  background-size: 12px 12px, 10px 10px;
+  background-position: 2px 2px, 3px 3px;
+  background-repeat: no-repeat, no-repeat;
+  width: 15px;
+  height: 15px;
+  box-shadow:
+    14.0px 14.0px 0px -7px currentColor,
+    13.5px 13.5px 0px -7px currentColor,
+    13.0px 13.0px 0px -7px currentColor,
+    12.5px 12.5px 0px -7px currentColor,
+    12.0px 12.0px 0px -7px currentColor,
+    11.5px 11.5px 0px -7px currentColor,
+    11.0px 11.0px 0px -7px currentColor,
+    10.5px 10.5px 0px -7px currentColor,
+    10.0px 10.0px 0px -7px currentColor,
+     9.5px  9.5px 0px -7px currentColor,
+     9.0px  9.0px 0px -7px currentColor,
+     8.5px  8.5px 0px -7px currentColor,
+     8.0px  8.0px 0px -7px currentColor;
+  transform: translate(0px, 15px) rotate(-135deg);
 }
 
 .ml-input-range::-webkit-slider-thumb

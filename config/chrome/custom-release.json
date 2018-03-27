@@ -11,7 +11,7 @@
         "noImplicitAny": true,
         "target": "es6",
         "inlineSourceMap": false,
-        "allowJs": false,
+        "allowJs": true,
         "noImplicitReturns": true,
         "noEmitOnError": true,
         "noImplicitThis": true,
@@ -19,9 +19,5 @@
         "emitDecoratorMetadata": true,
         "skipDefaultLibCheck": true,
         "skipLibCheck": true
-    },
-    "exclude": [
-        "node_modules",
-        "./node_modules/*"
-    ]
+    }
 }
