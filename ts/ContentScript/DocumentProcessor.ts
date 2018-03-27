@@ -1223,7 +1223,7 @@ namespace MidnightLizard.ContentScript
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                    if (tag.computedStyle!.content!.substr(0, 3) == "url")
+                    if (tag.computedStyle!.content!.substr(0, 3) == "url" && !beforePseudoElement && !afterPseudoElement)
                     {
                         let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
                             (
