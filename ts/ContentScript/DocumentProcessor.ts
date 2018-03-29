@@ -1337,8 +1337,9 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        const textRole = isLink || tag.isPseudo
-                            && (tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement)
+                        const textRole = isLink || !isSvg && ( //tag.isPseudo &&
+                            tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement ||
+                            tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link)
                             ? cc.Link
                             : cc.Text;
                         roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
@@ -1773,9 +1774,13 @@ namespace MidnightLizard.ContentScript
             let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
             const mozSelection = selection.replace("{x}", "-moz-");
             selection = selection.replace("{x}", "");
-            const linkColors =
-                "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
-                "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
+            const linkColors = `
+                [style*=--link]:not(imp), a[style*=--link]:not(:visited) {
+                    color: var(--link-color)!important;
+                }
+                [style*=--visited]:visited:not(imp) {
+                    color: var(--visited-color)!important;
+                }`;
             let scrollbars = "";
             if (sbSize)
             {

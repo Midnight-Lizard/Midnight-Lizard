@@ -117,6 +117,15 @@ body {
     margin: 5px;
 }
 
+.ml-replace-all-hues-label {
+    
+position: absolute;
+    
+right: 24px;
+    
+top: -5px;
+}
+
 .ml-dialog-label {
     margin-left: calc((100% - 267px)/2);
 }
@@ -398,6 +407,7 @@ body {
 #visitedHue,
 #txtSelHue,
 #backgroundHue,
+#buttonHue,
 #scrollbarHue,
 #scrollbarHue rect,
 #borderHue,
@@ -519,9 +529,9 @@ body {
 }
 
 .intro-tabs:after {
-    width: 134px;
-    height: 361px;
-    top: 40px;
+    width: 138px;
+    height: 415px;
+    top: 12px;
     left: -160px;
 }
 
@@ -537,8 +547,8 @@ body {
 @supports not (-moz-appearance: none)
 {
     .intro-tabs:before {
-        height: 21px;
-        left: -4px;
+        height: 19px;
+        left: -2px;
         top: 170px;
         transform: skew(63deg);
     }    

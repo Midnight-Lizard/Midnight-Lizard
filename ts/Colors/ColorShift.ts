@@ -10,5 +10,6 @@ namespace MidnightLizard.Colors
         readonly lightnessLimit: number;
         readonly graySaturation: number;
         readonly grayHue: number;
+        readonly replaceAllHues: boolean;
     }
 }

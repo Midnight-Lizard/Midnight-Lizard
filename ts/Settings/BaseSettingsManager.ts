@@ -91,137 +91,136 @@ namespace MidnightLizard.Settings
                     set[prop] = val / 100;
                 }
             }
-            this._shift =
-                {
-                    Background:
-                    {
-                        saturationLimit: set.backgroundSaturationLimit,
-                        contrast: set.backgroundContrast,
-                        lightnessLimit: set.backgroundLightnessLimit,
-                        graySaturation: set.backgroundGraySaturation,
-                        grayHue: set.backgroundGrayHue
-                    },
-                    ButtonBackground:
-                    {
-                        saturationLimit: Math.min(set.backgroundSaturationLimit * 1.1, 1),
-                        contrast: set.backgroundContrast,
-                        lightnessLimit: set.backgroundLightnessLimit * 0.8,
-                        graySaturation: Math.min(set.backgroundGraySaturation * 1.1, 1),
-                        grayHue: set.backgroundGrayHue
-                    },
-                    TextSelection:
-                    {
-                        saturationLimit: Math.max(set.textSaturationLimit, 0.3),
-                        contrast: set.backgroundContrast,
-                        lightnessLimit: 0.46,
-                        graySaturation: Math.max(set.textSaturationLimit, 0.3),
-                        grayHue: set.textSelectionHue
-                    },
-                    Text:
-                    {
-                        saturationLimit: set.textSaturationLimit,
-                        contrast: set.textContrast,
-                        lightnessLimit: set.textLightnessLimit,
-                        graySaturation: set.textGraySaturation,
-                        grayHue: set.textGrayHue
-                    },
-                    HighlightedText:
-                    {
-                        saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
-                        contrast: Math.min(set.textContrast * 1.2, 1),
-                        lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
-                        graySaturation: set.textGraySaturation,
-                        grayHue: set.textGrayHue
-                    },
-                    Link:
-                    {
-                        saturationLimit: set.linkSaturationLimit,
-                        contrast: set.linkContrast,
-                        lightnessLimit: set.linkLightnessLimit,
-                        graySaturation: set.linkDefaultSaturation,
-                        grayHue: set.linkDefaultHue
-                    },
-                    VisitedLink:
-                    {
-                        saturationLimit: set.linkSaturationLimit,
-                        contrast: set.linkContrast,
-                        lightnessLimit: set.linkLightnessLimit,
-                        graySaturation: set.linkDefaultSaturation,
-                        grayHue: set.linkVisitedHue
-                    },
-                    TextShadow:
-                    {
-                        saturationLimit: set.borderSaturationLimit,
-                        contrast: set.textContrast,
-                        lightnessLimit: set.textLightnessLimit,
-                        graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
-                        grayHue: set.borderGrayHue
-                    },
-                    Border:
-                    {
-                        saturationLimit: set.borderSaturationLimit,
-                        contrast: set.borderContrast,
-                        lightnessLimit: set.borderLightnessLimit,
-                        graySaturation: set.borderGraySaturation,
-                        grayHue: set.borderGrayHue
-                    },
-                    ButtonBorder:
-                    {
-                        saturationLimit: set.borderSaturationLimit * 0.8,
-                        contrast: set.borderContrast * 0.5,
-                        lightnessLimit: set.borderLightnessLimit * 0.8,
-                        graySaturation: set.borderGraySaturation,
-                        grayHue: set.borderGrayHue
-                    },
-                    Scrollbar$Hover:
-                    {
-                        saturationLimit: set.scrollbarSaturationLimit,
-                        contrast: set.scrollbarContrast,
-                        lightnessLimit: set.scrollbarLightnessLimit * 1,
-                        graySaturation: set.scrollbarSaturationLimit,
-                        grayHue: set.scrollbarGrayHue
-                    },
-                    Scrollbar$Normal:
-                    {
-                        saturationLimit: set.scrollbarSaturationLimit,
-                        contrast: set.scrollbarContrast,
-                        lightnessLimit: set.scrollbarLightnessLimit * 0.8,
-                        graySaturation: set.scrollbarSaturationLimit,
-                        grayHue: set.scrollbarGrayHue
-                    },
-                    Scrollbar$Active:
-                    {
-                        saturationLimit: set.scrollbarSaturationLimit,
-                        contrast: set.scrollbarContrast,
-                        lightnessLimit: set.scrollbarLightnessLimit * 0.7,
-                        graySaturation: set.scrollbarSaturationLimit,
-                        grayHue: set.scrollbarGrayHue
-                    },
-                    Image:
-                    {
-                        saturationLimit: set.imageSaturationLimit,
-                        contrast: set.textContrast,
-                        lightnessLimit: set.imageLightnessLimit,
-                        graySaturation: set.textGraySaturation,
-                        grayHue: set.textGrayHue
-                    },
-                    SvgBackground:
-                    {
-                        saturationLimit: set.backgroundSaturationLimit,
-                        contrast: set.backgroundContrast,
-                        lightnessLimit: set.imageLightnessLimit,
-                        graySaturation: set.borderGraySaturation,
-                        grayHue: set.borderGrayHue
-                    },
-                    BackgroundImage:
-                    {
-                        saturationLimit: set.backgroundImageSaturationLimit,
-                        contrast: set.backgroundContrast,
-                        lightnessLimit: set.backgroundImageLightnessLimit,
-                        graySaturation: set.backgroundGraySaturation,
-                        grayHue: set.backgroundGrayHue
-                    }
-                };
+            this._shift = {
+                Background: {
+                    saturationLimit: set.backgroundSaturationLimit,
+                    contrast: set.backgroundContrast,
+                    lightnessLimit: set.backgroundLightnessLimit,
+                    graySaturation: set.backgroundGraySaturation,
+                    grayHue: set.backgroundGrayHue,
+                    replaceAllHues: set.backgroundReplaceAllHues
+                },
+                ButtonBackground: {
+                    saturationLimit: set.buttonSaturationLimit,
+                    contrast: set.buttonContrast,
+                    lightnessLimit: set.buttonLightnessLimit,
+                    graySaturation: set.buttonGraySaturation,
+                    grayHue: set.buttonGrayHue,
+                    replaceAllHues: set.buttonReplaceAllHues
+                },
+                TextSelection: {
+                    saturationLimit: Math.max(set.textSaturationLimit, 0.3),
+                    contrast: set.backgroundContrast,
+                    lightnessLimit: 0.46,
+                    graySaturation: Math.max(set.textSaturationLimit, 0.3),
+                    grayHue: set.textSelectionHue,
+                    replaceAllHues: true
+                },
+                Text: {
+                    saturationLimit: set.textSaturationLimit,
+                    contrast: set.textContrast,
+                    lightnessLimit: set.textLightnessLimit,
+                    graySaturation: set.textGraySaturation,
+                    grayHue: set.textGrayHue,
+                    replaceAllHues: set.textReplaceAllHues
+                },
+                HighlightedText: {
+                    saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
+                    contrast: Math.min(set.textContrast * 1.2, 1),
+                    lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
+                    graySaturation: set.textGraySaturation,
+                    grayHue: set.textGrayHue,
+                    replaceAllHues: set.textReplaceAllHues
+                },
+                Link: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: set.linkContrast,
+                    lightnessLimit: set.linkLightnessLimit,
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkDefaultHue,
+                    replaceAllHues: set.linkReplaceAllHues
+                },
+                VisitedLink: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: set.linkContrast,
+                    lightnessLimit: set.linkLightnessLimit,
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkVisitedHue,
+                    replaceAllHues: set.linkReplaceAllHues
+                },
+                TextShadow: {
+                    saturationLimit: set.borderSaturationLimit,
+                    contrast: set.textContrast,
+                    lightnessLimit: set.textLightnessLimit,
+                    graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
+                    grayHue: set.borderGrayHue,
+                    replaceAllHues: set.textReplaceAllHues
+                },
+                Border: {
+                    saturationLimit: set.borderSaturationLimit,
+                    contrast: set.borderContrast,
+                    lightnessLimit: set.borderLightnessLimit,
+                    graySaturation: set.borderGraySaturation,
+                    grayHue: set.borderGrayHue,
+                    replaceAllHues: set.borderReplaceAllHues
+                },
+                ButtonBorder: {
+                    saturationLimit: set.borderSaturationLimit * 0.8,
+                    contrast: set.borderContrast * 0.5,
+                    lightnessLimit: set.borderLightnessLimit * 0.8,
+                    graySaturation: set.borderGraySaturation,
+                    grayHue: set.borderGrayHue,
+                    replaceAllHues: set.borderReplaceAllHues
+                },
+                Scrollbar$Hover: {
+                    saturationLimit: set.scrollbarSaturationLimit,
+                    contrast: set.scrollbarContrast,
+                    lightnessLimit: set.scrollbarLightnessLimit * 1,
+                    graySaturation: set.scrollbarSaturationLimit,
+                    grayHue: set.scrollbarGrayHue,
+                    replaceAllHues: false
+                },
+                Scrollbar$Normal: {
+                    saturationLimit: set.scrollbarSaturationLimit,
+                    contrast: set.scrollbarContrast,
+                    lightnessLimit: set.scrollbarLightnessLimit * 0.8,
+                    graySaturation: set.scrollbarSaturationLimit,
+                    grayHue: set.scrollbarGrayHue,
+                    replaceAllHues: false
+                },
+                Scrollbar$Active: {
+                    saturationLimit: set.scrollbarSaturationLimit,
+                    contrast: set.scrollbarContrast,
+                    lightnessLimit: set.scrollbarLightnessLimit * 0.7,
+                    graySaturation: set.scrollbarSaturationLimit,
+                    grayHue: set.scrollbarGrayHue,
+                    replaceAllHues: false
+                },
+                Image: {
+                    saturationLimit: set.imageSaturationLimit,
+                    contrast: set.textContrast,
+                    lightnessLimit: set.imageLightnessLimit,
+                    graySaturation: set.textGraySaturation,
+                    grayHue: set.textGrayHue,
+                    replaceAllHues: false
+                },
+                SvgBackground: {
+                    saturationLimit: set.backgroundSaturationLimit,
+                    contrast: set.backgroundContrast,
+                    lightnessLimit: set.imageLightnessLimit,
+                    graySaturation: set.borderGraySaturation,
+                    grayHue: set.borderGrayHue,
+                    replaceAllHues: false
+                },
+                BackgroundImage: {
+                    saturationLimit: set.backgroundImageSaturationLimit,
+                    contrast: set.backgroundContrast,
+                    lightnessLimit: set.backgroundImageLightnessLimit,
+                    graySaturation: set.backgroundGraySaturation,
+                    grayHue: set.backgroundGrayHue,
+                    replaceAllHues: false
+                }
+            };
         }
 
         protected updateSchedule()

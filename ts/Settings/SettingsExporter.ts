@@ -27,9 +27,9 @@ namespace MidnightLizard.Settings
                     version: this._app.version,
                     timestamp: new Date(),
                     colorSchemes:
-                    [
-                        settings
-                    ]
+                        [
+                            settings
+                        ]
                 };
             const fileContentText = JSON.stringify(fileContentObject, (propName, propVal) =>
                 !propName || excludeSettingsForExport.indexOf(propName as ColorSchemePropertyName) === -1 || fileContentObject.hasOwnProperty(propName)
@@ -37,6 +37,7 @@ namespace MidnightLizard.Settings
                     : undefined, 4);
             const fileLink = this._doc.createElement("a");
             fileLink.style.display = "none";
+            fileLink.target = "_blank";
             fileLink.download = `${(settings.colorSchemeName || "midnight lizard color scheme").replace(/\W/gi, "-")}.json`;
             fileLink.href = `data:application/json;charset=utf-8,${encodeURIComponent(fileContentText)}`;
             this._doc.body.appendChild(fileLink);

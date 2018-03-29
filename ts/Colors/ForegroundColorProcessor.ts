@@ -182,7 +182,7 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
+            return this._colorShift.replaceAllHues || hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
         }
 
         protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
@@ -249,7 +249,7 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
+            return this._colorShift.replaceAllHues || (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
         }
 
         public getDefaultColor(doc: Document): string | undefined
@@ -345,7 +345,7 @@ namespace MidnightLizard.Colors
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
             // если серый или равен дефолтному цвету текста то считать текстом
-            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
+            return this._colorShift.replaceAllHues || (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
                 (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) &&
                 this._settingsManager.shift.Text.grayHue !== 0;
         }

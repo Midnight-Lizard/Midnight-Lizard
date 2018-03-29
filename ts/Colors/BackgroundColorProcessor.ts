@@ -88,7 +88,7 @@ namespace MidnightLizard.Colors
         protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean, tag: Element): void
         {
             const shift = this._colorShift;
-            if (hsla.saturation < 0.1 && shift.grayHue !== 0)
+            if (shift.replaceAllHues || hsla.saturation < 0.1 && shift.grayHue !== 0)
             {
                 hsla.hue = shift.grayHue;
                 hsla.saturation = shift.graySaturation;
