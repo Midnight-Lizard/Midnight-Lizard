@@ -254,15 +254,14 @@ namespace MidnightLizard.ContentScript
             }
             if (checked)
             {
-                if (tag instanceof HTMLInputElement || tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
+                if (tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
                 {
                     dom.addEventListener(tag, "input", this._boundUserActionHandler);
                     dom.addEventListener(tag, "change", this._boundUserActionHandler);
                 }
-                else if ((tag instanceof HTMLLabelElement || tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement)
-                    && (tag as HTMLLabelElement).htmlFor)
+                else if (tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement && tag.htmlFor)
                 {
-                    const checkBox = tag.ownerDocument.getElementById((tag as HTMLLabelElement).htmlFor) as HTMLInputElement;
+                    const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
                     if (checkBox)
                     {
                         checkBox.labelElement = tag as any;
@@ -285,7 +284,7 @@ namespace MidnightLizard.ContentScript
         protected onUserHover(eArg: Event)
         {
             const tag = eArg.currentTarget as HTMLElement;
-            const eventTargets = tag instanceof HTMLTableCellElement || tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
+            const eventTargets = tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
                 ? tag.parentElement!.children : [tag];
             for (let target of eventTargets)
             {
@@ -381,7 +380,7 @@ namespace MidnightLizard.ContentScript
             changedElements.forEach(tag =>
             {
                 let needReCalculation = false, value: string | null | undefined;
-                const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 value = tag.style.getPropertyValue(ns.css.bgrColor);
                 if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
@@ -532,13 +531,13 @@ namespace MidnightLizard.ContentScript
                 for (let tag of allTags)
                 {
                     tag.rowNumber = rowNumber++;
-                    isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
+                    isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        isLink = tag instanceof HTMLAnchorElement || tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
+                        isLink = tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== "rgba(0, 0, 0, 0)";
                         hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
                     }
@@ -843,8 +842,8 @@ namespace MidnightLizard.ContentScript
             {
                 let bgColor;
                 let doc = tag.ownerDocument;
-                let isSvg = (tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement) &&
-                    (tag.parentElement instanceof SVGElement || tag.parentElement instanceof doc.defaultView.SVGElement);
+                let isSvg = tag instanceof doc.defaultView.SVGElement &&
+                    tag.parentElement instanceof doc.defaultView.SVGElement;
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
                 if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
@@ -974,7 +973,7 @@ namespace MidnightLizard.ContentScript
         {
             if (tag.mlBgColor)
             {
-                let ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 tag.mlBgColor = null;
                 tag.mlColor = null;
@@ -1059,7 +1058,7 @@ namespace MidnightLizard.ContentScript
                     tag.removeAttribute("after-style")
                 }
 
-                if (tag instanceof HTMLIFrameElement || tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
+                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
                 {
                     try
                     {
@@ -1091,20 +1090,34 @@ namespace MidnightLizard.ContentScript
                 let doc = tag.ownerDocument;
                 let isSmall, bgInverted;
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
-                let isSvg = tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement,
-                    isSvgText = tag instanceof SVGTextContentElement || tag instanceof doc.defaultView.SVGTextContentElement,
-                    isLink = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement,
-                    isButton = tag instanceof HTMLButtonElement || tag instanceof doc.defaultView.HTMLButtonElement ||
-                        (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
+                let isSvg = tag instanceof doc.defaultView.SVGElement,
+                    isSvgText = tag instanceof doc.defaultView.SVGTextContentElement,
+                    isLink = tag instanceof doc.defaultView.HTMLAnchorElement,
+                    isButton = tag instanceof doc.defaultView.HTMLButtonElement ||
+                        tag instanceof doc.defaultView.HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
                         isRealElement(tag) && tag.getAttribute("role") === "button",
                     isTable =
-                        tag instanceof HTMLTableElement || tag instanceof doc.defaultView.HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
-                        tag instanceof HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof HTMLTableSectionElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
+                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
+                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
                 let ns = isSvg ? USP.svg : USP.htm;
                 let beforePseudoElement: PseudoElement | undefined, afterPseudoElement: PseudoElement | undefined;
 
-                if (tag instanceof HTMLIFrameElement || tag instanceof doc.defaultView.HTMLIFrameElement)
+                if (!isButton && tag instanceof doc.defaultView.HTMLLabelElement && tag.htmlFor)
+                {
+                    const labeledElement = doc.getElementById(tag.htmlFor);
+                    isButton = labeledElement instanceof doc.defaultView.HTMLInputElement &&
+                        labeledElement.type === "file";
+                }
+
+                if (isLink && !isButton && !isSvg &&
+                    tag.className && tag.className && tag.className &&
+                    (tag.className.includes("button") || tag.className.includes("btn")))
+                {
+                    isButton = true;
+                }
+
+                if (tag instanceof doc.defaultView.HTMLIFrameElement)
                 {
                     setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
                 }
@@ -1195,7 +1208,7 @@ namespace MidnightLizard.ContentScript
                         roomRules.backgroundColor.color = null;
                     }
 
-                    if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
+                    if ((tag.tagName == ns.img || tag instanceof doc.defaultView.HTMLInputElement &&
                         (tag.type == "checkbox" || tag.type == "radio") &&
                         (tag.computedStyle!.webkitAppearance && tag.computedStyle!.webkitAppearance !== this._css.none ||
                             tag.computedStyle!.getPropertyValue("-moz-appearance") &&
@@ -1386,7 +1399,7 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
+                    if (tag instanceof doc.defaultView.HTMLCanvasElement)
                     {
                         let filterValue: Array<string>;
                         const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
@@ -1526,7 +1539,8 @@ namespace MidnightLizard.ContentScript
                             return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
 
                         case cc.ButtonBackground:
-                            return this._buttonBackgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._buttonBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Text:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
@@ -1586,9 +1600,16 @@ namespace MidnightLizard.ContentScript
                 uniqColors.forEach(c =>
                 {
                     let prevColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
-                    let newColor = isButton
-                        ? this._buttonBackgroundColorProcessor.changeColor(prevColor, false, tag)
-                        : this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                    let newColor: Colors.ColorEntry;
+                    if (isButton)
+                    {
+                        newColor = this._buttonBackgroundColorProcessor
+                            .changeColor(prevColor, roomRules.backgroundColor!.backgroundLight!, tag);
+                    }
+                    else
+                    {
+                        newColor = this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                    }
                     lightSum += newColor.light;
                     if (newColor.color)
                     {
@@ -1970,7 +1991,7 @@ namespace MidnightLizard.ContentScript
 
         public applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, _ns?: any)
         {
-            let isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
+            let isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
             let applyBgPromise;
             let ns = USP.htm;
             ns = _ns || (isSvg ? USP.svg : USP.htm);

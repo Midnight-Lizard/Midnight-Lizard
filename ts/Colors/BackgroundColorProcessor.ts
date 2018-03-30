@@ -14,7 +14,7 @@ namespace MidnightLizard.Colors
     export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class ITextSelectionColorProcessor extends IBackgroundColorProcessor { }
-    export abstract class IButtonBackgroundColorProcessor extends IBackgroundColorProcessor { }
+    // export abstract class IButtonBackgroundColorProcessor extends IBackgroundColorProcessor { }
 
     /** BackgroundColorProcessor */
     @DI.injectable(IBackgroundColorProcessor)
@@ -97,6 +97,12 @@ namespace MidnightLizard.Colors
             {
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
+            // if (hsla.alpha === 0 && shift.replaceAllHues)
+            // {
+            //     hsla.alpha = 1;
+            //     hsla.lightness = shift.lightnessLimit;
+            // }
+
             let light = hsla.lightness;
             if (increaseContrast)
             {
@@ -236,17 +242,17 @@ namespace MidnightLizard.Colors
         }
     }
 
-    @DI.injectable(IButtonBackgroundColorProcessor)
-    class ButtonBackgroundColorProcessor extends BackgroundColorProcessor implements IButtonBackgroundColorProcessor
-    {
-        constructor(
-            app: MidnightLizard.Settings.IApplicationSettings,
-            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
-        {
-            super(app, settingsManager);
-            this._component = Component.ButtonBackground;
-        }
-    }
+    // @DI.injectable(IButtonBackgroundColorProcessor)
+    // class ButtonBackgroundColorProcessor extends BackgroundColorProcessor implements IButtonBackgroundColorProcessor
+    // {
+    //     constructor(
+    //         app: MidnightLizard.Settings.IApplicationSettings,
+    //         settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+    //     {
+    //         super(app, settingsManager);
+    //         this._component = Component.ButtonBackground;
+    //     }
+    // }
 
     @DI.injectable(IDynamicBackgroundColorProcessor)
     class DynamicBackgroundColorProcessor extends BackgroundColorProcessor implements IDynamicBackgroundColorProcessor
