@@ -514,7 +514,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="backgroundGraySaturation"
-                           title="Saturation of the gray backgrounds">Gray background saturation</label>
+                           title="Saturation of the gray backgrounds after applying selected default hue">Gray background saturation</label>
                     <input class="ml-input-range setting percent"
                            id="backgroundGraySaturation"
                            type="range"
@@ -544,12 +544,40 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="backgroundHueGravity"
+                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <input class="ml-input-range setting percent"
+                           id="backgroundHueGravity"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="backgroundHueGravity" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                    <svg for="backgroundHueGravity" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <circle cx="18" cy="9" fill="black" r="2" />
+                         <path d="m 12,4.5 c -4.1362133,0 -7.5,3.3637867 -7.5,7.5 0,4.136213 3.3637867,7.5 7.5,7.5 4.136213,0 7.5,-3.363787 7.5,-7.5 0,-4.1362133 -3.363787,-7.5 -7.5,-7.5 z m 0,1 c 3.595773,0 6.5,2.9042268 6.5,6.5 0,3.595773 -2.904227,6.5 -6.5,6.5 C 8.4042268,18.5 5.5,15.595773 5.5,12 5.5,8.4042268 8.4042268,5.5 12,5.5 Z"/>
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="backgroundGrayHue"
-                           title="Hue to be used to increase saturation of the gray background colors">Gray background hue</label>
+                           title="Hue to be used to increase saturation of the gray background colors">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.">
+                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
                         Replace all<input class="ml-checkbox setting" id="backgroundReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -730,7 +758,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="buttonGraySaturation"
-                           title="Saturation of the gray button backgrounds">Gray button saturation</label>
+                           title="Saturation of the gray button backgrounds after applying selected default hue">Gray button saturation</label>
                     <input class="ml-input-range setting percent"
                            id="buttonGraySaturation"
                            type="range"
@@ -760,12 +788,40 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="buttonHueGravity"
+                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <input class="ml-input-range setting percent"
+                           id="buttonHueGravity"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="buttonHueGravity" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                    <svg for="buttonHueGravity" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <circle cx="18" cy="9" fill="black" r="2" />
+                         <path d="m 12,4.5 c -4.1362133,0 -7.5,3.3637867 -7.5,7.5 0,4.136213 3.3637867,7.5 7.5,7.5 4.136213,0 7.5,-3.363787 7.5,-7.5 0,-4.1362133 -3.363787,-7.5 -7.5,-7.5 z m 0,1 c 3.595773,0 6.5,2.9042268 6.5,6.5 0,3.595773 -2.904227,6.5 -6.5,6.5 C 8.4042268,18.5 5.5,15.595773 5.5,12 5.5,8.4042268 8.4042268,5.5 12,5.5 Z"/>
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="buttonGrayHue"
-                           title="Hue to be used to increase saturation of the gray button background colors">Gray button hue</label>
+                           title="Hue to be used to increase saturation of the gray button background colors">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.">
+                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
                         Replace all<input class="ml-checkbox setting" id="buttonReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -945,7 +1001,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="textGraySaturation"
-                           title="Saturation of the gray text">Gray text saturation</label>
+                           title="Saturation of the gray text after applying selected default hue">Gray text saturation</label>
                     <input class="ml-input-range setting percent"
                            id="textGraySaturation"
                            type="range"
@@ -975,12 +1031,40 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="textHueGravity"
+                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <input class="ml-input-range setting percent"
+                           id="textHueGravity"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="textHueGravity" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                    <svg for="textHueGravity" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <circle cx="18" cy="9" fill="black" r="2" />
+                         <path d="m 12,4.5 c -4.1362133,0 -7.5,3.3637867 -7.5,7.5 0,4.136213 3.3637867,7.5 7.5,7.5 4.136213,0 7.5,-3.363787 7.5,-7.5 0,-4.1362133 -3.363787,-7.5 -7.5,-7.5 z m 0,1 c 3.595773,0 6.5,2.9042268 6.5,6.5 0,3.595773 -2.904227,6.5 -6.5,6.5 C 8.4042268,18.5 5.5,15.595773 5.5,12 5.5,8.4042268 8.4042268,5.5 12,5.5 Z"/>
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="textGrayHue"
-                           title="Hue to be used to increase saturation of the gray text colors">Gray text hue</label>
+                           title="Hue to be used to increase saturation of the gray text colors">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.">
+                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
                         Replace all<input class="ml-checkbox setting" id="textReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -1225,7 +1309,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="linkDefaultSaturation"
-                           title="Saturation of the links with default text color and for visited links">Link saturation</label>
+                           title="Saturation of the links with default link color and for visited links after applying selected hues">Gray link saturation</label>
                     <input class="ml-input-range setting percent"
                            id="linkDefaultSaturation"
                            type="range"
@@ -1255,12 +1339,40 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="linkHueGravity"
+                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <input class="ml-input-range setting percent"
+                           id="linkHueGravity"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="linkHueGravity" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                    <svg for="linkHueGravity" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <circle cx="18" cy="9" fill="black" r="2" />
+                         <path d="m 12,4.5 c -4.1362133,0 -7.5,3.3637867 -7.5,7.5 0,4.136213 3.3637867,7.5 7.5,7.5 4.136213,0 7.5,-3.363787 7.5,-7.5 0,-4.1362133 -3.363787,-7.5 -7.5,-7.5 z m 0,1 c 3.595773,0 6.5,2.9042268 6.5,6.5 0,3.595773 -2.904227,6.5 -6.5,6.5 C 8.4042268,18.5 5.5,15.595773 5.5,12 5.5,8.4042268 8.4042268,5.5 12,5.5 Z"/>
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="linkDefaultHue"
                            title="Hue to be used to replace the default link hue">Default link hue</label>
                     <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.">
+                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides gray hue gravity.">
                         Replace all<input class="ml-checkbox setting" id="linkReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -1507,7 +1619,7 @@ L 14.5 12 z" />
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label"
                            for="borderGraySaturation"
-                           title="Saturation of the gray borders">Gray borders saturation</label>
+                           title="Saturation of the gray borders after applying selected default hue">Gray borders saturation</label>
                     <input class="ml-input-range setting percent"
                            id="borderGraySaturation"
                            type="range"
@@ -1537,12 +1649,40 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
+                <div class="ml-input-container percent">
+                    <label class="ml-dialog-label"
+                           for="borderHueGravity"
+                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <input class="ml-input-range setting percent"
+                           id="borderHueGravity"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           list="from-0-to-100-percent">
+                    <svg for="borderHueGravity" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                    <svg for="borderHueGravity" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M0 0h24v24H0z" fill="none" />
+                         <circle cx="12" cy="12" fill="black" r="3" />
+                         <circle cx="4" cy="5" fill="black" r="2" />
+                         <circle cx="18" cy="9" fill="black" r="2" />
+                         <path d="m 12,4.5 c -4.1362133,0 -7.5,3.3637867 -7.5,7.5 0,4.136213 3.3637867,7.5 7.5,7.5 4.136213,0 7.5,-3.363787 7.5,-7.5 0,-4.1362133 -3.363787,-7.5 -7.5,-7.5 z m 0,1 c 3.595773,0 6.5,2.9042268 6.5,6.5 0,3.595773 -2.904227,6.5 -6.5,6.5 C 8.4042268,18.5 5.5,15.595773 5.5,12 5.5,8.4042268 8.4042268,5.5 12,5.5 Z"/>
+                         <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
+                    </svg>
+                </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            for="borderGrayHue"
-                           title="Hue to be used to increase saturation of the gray border colors">Gray borders hue</label>
+                           title="Hue to be used to increase saturation of the gray border colors">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.">
+                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
                         Replace all<input class="ml-checkbox setting" id="borderReplaceAllHues" type="checkbox">
                     </label>
                     <br>

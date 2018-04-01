@@ -822,6 +822,10 @@ namespace MidnightLizard.ContentScript
                     {
                         tag.path += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
                     }
+                    else if (attr.name === "disabled")
+                    {
+                        tag.path += "X";
+                    }
                 }
             }
             return tag.path;
@@ -1321,7 +1325,7 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else isInput = true;
 
-                                haveToProcBgImg = isRealElement(tag) && tag.tagName === "BODY" && !!tag.firstChild ||
+                                haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
                                     isPseudoContent || !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
                             }
                         }

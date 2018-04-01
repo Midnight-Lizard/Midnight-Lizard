@@ -68,7 +68,7 @@ body {
 .ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
     position: absolute;
-    top: 103px;
+    top: 120px;
     bottom: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
@@ -95,7 +95,7 @@ body {
 
 .ml-dialog-commands>.ml-dialog-input-text {
     width: 121px;
-    margin: 5px 20px 16px 20px;
+    margin: 5px 20px 20px 20px;
     background-color: var(--content-background-color);
 }
 
@@ -105,7 +105,7 @@ body {
 
 .ml-dialog-commands>button,
 .ml-dialog-commands>.ml-tool-box {
-    margin: 17px 20px;
+    margin: 20px 20px;
     width: 130px;
 }
 
@@ -485,31 +485,31 @@ top: -5px;
 .intro-select-scheme:after {
     width: 135px;
     height: 32px;
-    top: 118px;
+    top: 135px;
     right: -154px;
 }
 
 .intro-select-scheme:before {
     height: 12px;
     right: 0px;
-    top: 133px;
-    transform: skew(-71deg);
+    top: 139px;
+    transform: skew(-108deg);
 }
 
 .intro-edit-schemes:after {
     width: 134px;
     height: 32px;
-    top: 33px;
+    top: 42px;
     right: -152px;
 }
 
 .intro-edit-schemes:before {
-    height: 247px;
+    height: 239px;
     width: 5px;
     border-bottom-right-radius: 10px;
     border-style: dashed;
     right: -2px;
-    top: 66px;
+    top: 74px;
     transform: skew(-7deg);
     border-width: 0px 1px 1px 0px;
 }
@@ -517,21 +517,21 @@ top: -5px;
 .intro-apply:after {
     width: 136px;
     height: 34px;
-    top: 300px;
+    top: 336px;
     right: -155px;
 }
 
 .intro-apply:before {
-    height: 30px;
-    right: 1px;
-    top: 287px;
-    transform: skew(50deg);
+    height: 50px;
+    right: 0px;
+    top: 286px;
+    transform: skew(36deg);
 }
 
 .intro-tabs:after {
     width: 138px;
     height: 415px;
-    top: 12px;
+    top: 47px;
     left: -160px;
 }
 
@@ -591,16 +591,16 @@ top: -5px;
 .intro-default:after {
     width: 136px;
     height: 34px;
-    top: 238px;
+    top: 268px;
     right: -155px;
 }
 
 .intro-default:before {
-    height: 97px;
+    height: 68px;
     width: 7px;
     right: -4px;
-    top: 273px;
-    transform: skew(-17deg);
+    top: 303px;
+    transform: skew(-22deg);
     border-style: dashed;
     border-bottom-right-radius: 10px;
 }

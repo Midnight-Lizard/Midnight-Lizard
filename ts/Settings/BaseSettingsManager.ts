@@ -86,7 +86,7 @@ namespace MidnightLizard.Settings
             {
                 let prop = setting as ColorSchemePropertyName;
                 let val = set[prop];
-                if (!/Hue|Width/g.test(prop) && Util.isNum(val))
+                if (!/Hue$|Width/g.test(prop) && Util.isNum(val))
                 {
                     set[prop] = val / 100;
                 }
@@ -98,23 +98,36 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.backgroundLightnessLimit,
                     graySaturation: set.backgroundGraySaturation,
                     grayHue: set.backgroundGrayHue,
-                    replaceAllHues: set.backgroundReplaceAllHues
+                    replaceAllHues: set.backgroundReplaceAllHues || false,
+                    hueGravity: set.backgroundHueGravity || 0
                 },
                 ButtonBackground: {
-                    saturationLimit: set.buttonSaturationLimit,
-                    contrast: set.buttonContrast,
-                    lightnessLimit: set.buttonLightnessLimit,
-                    graySaturation: set.buttonGraySaturation,
-                    grayHue: set.buttonGrayHue,
-                    replaceAllHues: set.buttonReplaceAllHues
+                    saturationLimit: isNaN(set.buttonSaturationLimit)
+                        ? Math.min(set.backgroundSaturationLimit * 1.1, 1)
+                        : set.buttonSaturationLimit,
+                    contrast: isNaN(set.buttonContrast)
+                        ? set.backgroundContrast
+                        : set.buttonContrast,
+                    lightnessLimit: isNaN(set.buttonLightnessLimit)
+                        ? set.backgroundLightnessLimit * 0.8
+                        : set.buttonLightnessLimit,
+                    graySaturation: isNaN(set.buttonGraySaturation)
+                        ? Math.min(set.backgroundGraySaturation * 1.1, 1)
+                        : set.buttonGraySaturation,
+                    grayHue: set.buttonGrayHue === undefined
+                        ? set.backgroundGrayHue
+                        : set.buttonGrayHue,
+                    replaceAllHues: set.buttonReplaceAllHues || false,
+                    hueGravity: set.buttonHueGravity || 0
                 },
                 TextSelection: {
                     saturationLimit: Math.max(set.textSaturationLimit, 0.3),
-                    contrast: set.backgroundContrast,
+                    contrast: 0,
                     lightnessLimit: 0.46,
                     graySaturation: Math.max(set.textSaturationLimit, 0.3),
                     grayHue: set.textSelectionHue,
-                    replaceAllHues: true
+                    replaceAllHues: true,
+                    hueGravity: 0
                 },
                 Text: {
                     saturationLimit: set.textSaturationLimit,
@@ -122,7 +135,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.textLightnessLimit,
                     graySaturation: set.textGraySaturation,
                     grayHue: set.textGrayHue,
-                    replaceAllHues: set.textReplaceAllHues
+                    replaceAllHues: set.textReplaceAllHues || false,
+                    hueGravity: set.textHueGravity || 0
                 },
                 HighlightedText: {
                     saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
@@ -130,7 +144,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
                     graySaturation: set.textGraySaturation,
                     grayHue: set.textGrayHue,
-                    replaceAllHues: set.textReplaceAllHues
+                    replaceAllHues: set.textReplaceAllHues || false,
+                    hueGravity: set.textHueGravity || 0
                 },
                 Link: {
                     saturationLimit: set.linkSaturationLimit,
@@ -138,7 +153,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.linkLightnessLimit,
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkDefaultHue,
-                    replaceAllHues: set.linkReplaceAllHues
+                    replaceAllHues: set.linkReplaceAllHues || false,
+                    hueGravity: set.linkHueGravity || 0
                 },
                 VisitedLink: {
                     saturationLimit: set.linkSaturationLimit,
@@ -146,7 +162,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.linkLightnessLimit,
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkVisitedHue,
-                    replaceAllHues: set.linkReplaceAllHues
+                    replaceAllHues: true,
+                    hueGravity: 0
                 },
                 TextShadow: {
                     saturationLimit: set.borderSaturationLimit,
@@ -154,7 +171,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.textLightnessLimit,
                     graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
                     grayHue: set.borderGrayHue,
-                    replaceAllHues: set.textReplaceAllHues
+                    replaceAllHues: set.borderReplaceAllHues || false,
+                    hueGravity: set.borderHueGravity || 0
                 },
                 Border: {
                     saturationLimit: set.borderSaturationLimit,
@@ -162,7 +180,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.borderLightnessLimit,
                     graySaturation: set.borderGraySaturation,
                     grayHue: set.borderGrayHue,
-                    replaceAllHues: set.borderReplaceAllHues
+                    replaceAllHues: set.borderReplaceAllHues || false,
+                    hueGravity: set.borderHueGravity || 0
                 },
                 ButtonBorder: {
                     saturationLimit: set.borderSaturationLimit * 0.8,
@@ -170,7 +189,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.borderLightnessLimit * 0.8,
                     graySaturation: set.borderGraySaturation,
                     grayHue: set.borderGrayHue,
-                    replaceAllHues: set.borderReplaceAllHues
+                    replaceAllHues: set.borderReplaceAllHues || false,
+                    hueGravity: set.borderHueGravity || 0
                 },
                 Scrollbar$Hover: {
                     saturationLimit: set.scrollbarSaturationLimit,
@@ -178,7 +198,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.scrollbarLightnessLimit * 1,
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: 0
                 },
                 Scrollbar$Normal: {
                     saturationLimit: set.scrollbarSaturationLimit,
@@ -186,7 +207,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.scrollbarLightnessLimit * 0.8,
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: 0
                 },
                 Scrollbar$Active: {
                     saturationLimit: set.scrollbarSaturationLimit,
@@ -194,7 +216,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.scrollbarLightnessLimit * 0.7,
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: 0
                 },
                 Image: {
                     saturationLimit: set.imageSaturationLimit,
@@ -202,7 +225,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.imageLightnessLimit,
                     graySaturation: set.textGraySaturation,
                     grayHue: set.textGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: 0
                 },
                 SvgBackground: {
                     saturationLimit: set.backgroundSaturationLimit,
@@ -210,7 +234,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.imageLightnessLimit,
                     graySaturation: set.borderGraySaturation,
                     grayHue: set.borderGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: set.backgroundHueGravity || 0
                 },
                 BackgroundImage: {
                     saturationLimit: set.backgroundImageSaturationLimit,
@@ -218,7 +243,8 @@ namespace MidnightLizard.Settings
                     lightnessLimit: set.backgroundImageLightnessLimit,
                     graySaturation: set.backgroundGraySaturation,
                     grayHue: set.backgroundGrayHue,
-                    replaceAllHues: false
+                    replaceAllHues: false,
+                    hueGravity: 0
                 }
             };
         }

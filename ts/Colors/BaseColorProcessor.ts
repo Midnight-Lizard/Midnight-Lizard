@@ -38,6 +38,14 @@ namespace MidnightLizard.Colors
             return Math.min(Math.min(currentValue, scaleLimit * Math.atan(currentValue * Math.PI / 2)), scaleLimit);
         }
 
+        protected shiftHue(originalHue: number, targetHue: number, gravity: number)
+        {
+            let delta = (targetHue - originalHue + 180) % 360 - 180;
+            delta = delta < -180 ? delta + 360 : delta;
+            // const compression = Math.PI / 2 - Math.atan(Math.abs(180 / delta * Math.PI / 2));
+            return originalHue + Math.round(delta * gravity);// * compression);
+        }
+
         protected applyBlueFilter(rgba: Colors.RgbaColor)
         {
             if (this._settingsManager.currentSettings.blueFilter !== 0)

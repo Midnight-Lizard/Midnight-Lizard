@@ -75,6 +75,10 @@ namespace MidnightLizard.Colors
             }
             else
             {
+                if (shift.hueGravity)
+                {
+                    hsla.hue = this.shiftHue(hsla.hue, shift.grayHue, shift.hueGravity);
+                }
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
             hsla.lightness = this.scaleValue(hsla.lightness, shift.lightnessLimit);

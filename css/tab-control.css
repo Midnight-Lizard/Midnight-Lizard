@@ -74,7 +74,7 @@
 {
     margin-left: 10px;
     border-right: solid 1px var(--thin-border-color);
-    height: 15px;
+    height: 48px;
 }
 
 .right .ml-tab-item-separator
@@ -83,7 +83,7 @@
     margin-right: 10px;
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
-    height: 31px;
+    height: 40px;
 }
 
 .active

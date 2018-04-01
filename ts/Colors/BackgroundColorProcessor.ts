@@ -95,13 +95,12 @@ namespace MidnightLizard.Colors
             }
             else
             {
+                if (shift.hueGravity)
+                {
+                    hsla.hue = this.shiftHue(hsla.hue, shift.grayHue, shift.hueGravity);
+                }
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
-            // if (hsla.alpha === 0 && shift.replaceAllHues)
-            // {
-            //     hsla.alpha = 1;
-            //     hsla.lightness = shift.lightnessLimit;
-            // }
 
             let light = hsla.lightness;
             if (increaseContrast)

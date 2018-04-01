@@ -34,6 +34,7 @@ namespace MidnightLizard.Settings
         backgroundGraySaturation: number;
         backgroundGrayHue: number;
         backgroundReplaceAllHues: boolean;
+        backgroundHueGravity: number;
 
         buttonSaturationLimit: number;
         buttonContrast: number;
@@ -41,6 +42,7 @@ namespace MidnightLizard.Settings
         buttonGraySaturation: number;
         buttonGrayHue: number;
         buttonReplaceAllHues: boolean;
+        buttonHueGravity: number;
 
         textSaturationLimit: number;
         textContrast: number;
@@ -49,6 +51,7 @@ namespace MidnightLizard.Settings
         textGrayHue: number;
         textSelectionHue: number;
         textReplaceAllHues: boolean;
+        textHueGravity: number;
 
         linkSaturationLimit: number;
         linkContrast: number;
@@ -57,6 +60,7 @@ namespace MidnightLizard.Settings
         linkDefaultHue: number;
         linkVisitedHue: number;
         linkReplaceAllHues: boolean;
+        linkHueGravity: number;
 
         borderSaturationLimit: number;
         borderContrast: number;
@@ -64,6 +68,7 @@ namespace MidnightLizard.Settings
         borderGraySaturation: number;
         borderGrayHue: number;
         borderReplaceAllHues: boolean;
+        borderHueGravity: number;
 
         imageLightnessLimit: number;
         imageSaturationLimit: number;
