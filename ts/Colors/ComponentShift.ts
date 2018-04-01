@@ -8,7 +8,11 @@ namespace MidnightLizard.Colors
         TextSelection,
         HighlightedText,
         Link,
+        Link$Hover,
+        Link$Active,
         VisitedLink,
+        VisitedLink$Hover,
+        VisitedLink$Active,
         TextShadow,
         Border,
         Scrollbar$Hover,
@@ -31,7 +35,11 @@ namespace MidnightLizard.Colors
         TextSelection: ColorShift;
         HighlightedText: ColorShift;
         Link: ColorShift;
+        Link$Hover: ColorShift;
+        Link$Active: ColorShift;
         VisitedLink: ColorShift;
+        VisitedLink$Hover: ColorShift;
+        VisitedLink$Active: ColorShift;
         TextShadow: ColorShift;
         Border: ColorShift;
         Scrollbar$Hover: ColorShift;

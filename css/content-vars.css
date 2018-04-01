@@ -11,8 +11,16 @@
     --ml-text-fill:Text;
     --ml-link-color:Link;
     --ml-link-fill:Link;
+    --ml-link-active-color:Link$Active;
+    --ml-link-active-fill:Link$Active;
+    --ml-link-hover-color:Link$Hover;
+    --ml-link-hover-fill:Link$Hover;
     --ml-visitedlink-color:VisitedLink;
     --ml-visitedlink-fill:VisitedLink;
+    --ml-visitedlink-hover-color:VisitedLink$Hover;
+    --ml-visitedlink-hover-fill:VisitedLink$Hover;
+    --ml-visitedlink-active-color:VisitedLink$Active;
+    --ml-visitedlink-active-fill:VisitedLink$Active;
 
     --ml-background-background-color:Background;
     --ml-background-fill:Background;

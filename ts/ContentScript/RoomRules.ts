@@ -10,6 +10,10 @@ namespace MidnightLizard.ContentScript
         backgroundColor: Colors.ColorEntry | null | undefined;
         color: Colors.ColorEntry | null | undefined;
         visitedColor: Colors.ColorEntry | null | undefined;
+        color$Hover: Colors.ColorEntry | null | undefined;
+        visitedColor$Hover: Colors.ColorEntry | null | undefined;
+        color$Avtive: Colors.ColorEntry | null | undefined;
+        visitedColor$Active: Colors.ColorEntry | null | undefined;
         borderColor: Colors.ColorEntry | null | undefined;
         borderTopColor: Colors.ColorEntry | null | undefined;
         borderRightColor: Colors.ColorEntry | null | undefined;

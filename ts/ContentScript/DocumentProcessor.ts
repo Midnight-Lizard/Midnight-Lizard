@@ -82,6 +82,10 @@ namespace MidnightLizard.ContentScript
             protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _visitedLinkColorProcessor: MidnightLizard.Colors.IVisitedLinkColorProcessor,
+            protected readonly _activeVisitedLinkColorProcessor: MidnightLizard.Colors.IActiveVisitedLinkColorProcessor,
+            protected readonly _hoverVisitedLinkColorProcessor: MidnightLizard.Colors.IHoverVisitedLinkColorProcessor,
+            protected readonly _activeLinkColorProcessor: MidnightLizard.Colors.IActiveLinkColorProcessor,
+            protected readonly _hoverLinkColorProcessor: MidnightLizard.Colors.IHoverLinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
@@ -207,6 +211,8 @@ namespace MidnightLizard.ContentScript
                 this.createPageScript(doc);
                 const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
                 this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+                this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+                this._hoverLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
                 this._textColorProcessor.calculateDefaultColor(doc);
                 doc.body.isChecked = true;
                 DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
@@ -625,6 +631,7 @@ namespace MidnightLizard.ContentScript
                         {
                             const brokenTags = t.filter(tag => !tag.isPseudo && tag.mlColor
                                 && tag.mlColor.reason === Colors.ColorReason.Inherited
+                                && tag.mlColor.role !== cc.Link
                                 && tag.mlColor.color === null
                                 && tag.mlColor.intendedColor && tag.computedStyle
                                 && tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
@@ -1008,6 +1015,10 @@ namespace MidnightLizard.ContentScript
                     tag.style.removeProperty(this._css.originalColor);
                     tag.style.removeProperty(this._css.linkColor);
                     tag.style.removeProperty(this._css.visitedColor);
+                    tag.style.removeProperty(this._css.linkColorActive);
+                    tag.style.removeProperty(this._css.visitedColorActive);
+                    tag.style.removeProperty(this._css.linkColorHover);
+                    tag.style.removeProperty(this._css.visitedColorHover);
                 }
                 if (tag.originalTextShadow !== undefined && tag.style.textShadow !== tag.originalTextShadow)
                 {
@@ -1354,15 +1365,21 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        const textRole = isLink || !isSvg && ( //tag.isPseudo &&
-                            tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement ||
-                            tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link)
-                            ? cc.Link
-                            : cc.Text;
-                        roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                        if (textRole === cc.Link)
+                        if (isLink || !isSvg && ( //tag.isPseudo &&
+                            tag.parentElement instanceof doc.defaultView.HTMLAnchorElement ||
+                            tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
                         {
+                            roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+
                             roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        }
+                        else
+                        {
+                            roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                         }
                         if (roomRules.color)
                         {
@@ -1532,7 +1549,7 @@ namespace MidnightLizard.ContentScript
             if (tag.computedStyle)
             {
                 const propRole = (cc as any as { [p: string]: Colors.Component })
-                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].toLowerCase()}-${property}`)];
+                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)];
                 if (propRole !== undefined)
                 {
                     propVal = propVal || tag.computedStyle!.getPropertyValue(property);
@@ -1558,9 +1575,25 @@ namespace MidnightLizard.ContentScript
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
+                        case cc.Link$Active:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._activeLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.Link$Hover:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._hoverLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
                         case cc.VisitedLink:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                             return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.VisitedLink$Active:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._activeVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                        case cc.VisitedLink$Hover:
+                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                            return this._hoverVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                         case cc.Border:
                             bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
@@ -1803,8 +1836,24 @@ namespace MidnightLizard.ContentScript
                 [style*=--link]:not(imp), a[style*=--link]:not(:visited) {
                     color: var(--link-color)!important;
                 }
-                [style*=--visited]:visited:not(imp) {
+                [style*=--link]:not(imp):hover, a[style*=--link]:not(:visited):hover {
+                    color: var(--link-color-hover)!important;
+                }
+                [style*=--link]:not(imp):active, a[style*=--link]:not(:visited):active {
+                    color: var(--link-color-active)!important;
+                }
+                a:visited [style*=--visited]:not(imp), [style*=--visited]:visited:not(imp) {
                     color: var(--visited-color)!important;
+                }
+                a:visited:active [style*=--visited]:not(imp),
+                [style*=--visited]:visited:not(imp):active,
+                a:visited:active [style*=--visited]:not(imp):hover,
+                a:visited:active:hover [style*=--visited]:not(imp),
+                [style*=--visited]:visited:not(imp):active:hover {
+                    color: var(--visited-color-active)!important;
+                }
+                a:visited [style*=--visited]:not(imp):hover, [style*=--visited]:visited:not(imp):hover {
+                    color: var(--visited-color-hover)!important;
                 }`;
             let scrollbars = "";
             if (sbSize)
@@ -2083,7 +2132,7 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                 if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    (tag.parentElement instanceof HTMLElement || tag.parentElement && (tag.parentElement as any) instanceof tag.ownerDocument.defaultView.HTMLElement) &&
+                    tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty(this._css.originalColor, tag.originalColor!);
@@ -2091,7 +2140,12 @@ namespace MidnightLizard.ContentScript
                 if (roomRules.visitedColor && roomRules.visitedColor.color)
                 {
                     tag.style.setProperty(this._css.linkColor, roomRules.color.color, this._css.important);
+                    tag.style.setProperty(this._css.linkColorHover, roomRules.color$Hover!.color, this._css.important);
+                    tag.style.setProperty(this._css.linkColorActive, roomRules.color$Avtive!.color, this._css.important);
+
                     tag.style.setProperty(this._css.visitedColor, roomRules.visitedColor.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorHover, roomRules.visitedColor$Hover!.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorActive, roomRules.visitedColor$Active!.color, this._css.important);
                 }
                 else
                 {

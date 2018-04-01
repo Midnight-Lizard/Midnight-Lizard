@@ -65,6 +65,10 @@ namespace MidnightLizard.ContentScript
         originalColor = "--original-color";
         linkColor = "--link-color";
         visitedColor = "--visited-color";
+        linkColorHover = "--link-color-hover";
+        visitedColorHover = "--visited-color-hover";
+        linkColorActive = "--link-color-active";
+        visitedColorActive = "--visited-color-active";
     }
 
     @DI.injectable()

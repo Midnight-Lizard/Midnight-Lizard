@@ -156,10 +156,46 @@ namespace MidnightLizard.Settings
                     replaceAllHues: set.linkReplaceAllHues || false,
                     hueGravity: set.linkHueGravity || 0
                 },
+                Link$Active: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: set.linkContrast,
+                    lightnessLimit: set.linkLightnessLimit * 0.9,
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkDefaultHue,
+                    replaceAllHues: set.linkReplaceAllHues || false,
+                    hueGravity: set.linkHueGravity || 0
+                },
+                Link$Hover: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: Math.min(set.linkContrast * 1.1, 1),
+                    lightnessLimit: Math.min(set.linkLightnessLimit * 1.1, 1),
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkDefaultHue,
+                    replaceAllHues: set.linkReplaceAllHues || false,
+                    hueGravity: set.linkHueGravity || 0
+                },
                 VisitedLink: {
                     saturationLimit: set.linkSaturationLimit,
                     contrast: set.linkContrast,
                     lightnessLimit: set.linkLightnessLimit,
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkVisitedHue,
+                    replaceAllHues: true,
+                    hueGravity: 0
+                },
+                VisitedLink$Hover: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: Math.min(set.linkContrast * 1.1, 1),
+                    lightnessLimit: Math.min(set.linkLightnessLimit * 1.1, 1),
+                    graySaturation: set.linkDefaultSaturation,
+                    grayHue: set.linkVisitedHue,
+                    replaceAllHues: true,
+                    hueGravity: 0
+                },
+                VisitedLink$Active: {
+                    saturationLimit: set.linkSaturationLimit,
+                    contrast: set.linkContrast,
+                    lightnessLimit: set.linkLightnessLimit * 0.9,
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkVisitedHue,
                     replaceAllHues: true,

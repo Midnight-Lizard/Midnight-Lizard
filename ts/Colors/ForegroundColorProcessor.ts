@@ -15,7 +15,11 @@ namespace MidnightLizard.Colors
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
     export abstract class ILinkColorProcessor extends ITextColorProcessor { }
-    export abstract class IVisitedLinkColorProcessor extends ITextColorProcessor { }
+    export abstract class IVisitedLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IHoverVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IActiveVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IHoverLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IActiveLinkColorProcessor extends ILinkColorProcessor { }
     export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor { }
     export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
 
@@ -66,7 +70,7 @@ namespace MidnightLizard.Colors
 
         protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, grayShift: Colors.ColorShift, customContrast?: number)
         {
-            let shift = this._colorShift, shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
+            let shift = this._colorShift;
             if (isGray)
             {
                 shift = grayShift;
@@ -82,7 +86,8 @@ namespace MidnightLizard.Colors
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
             hsla.lightness = this.scaleValue(hsla.lightness, shift.lightnessLimit);
-            let currentContrast = hsla.lightness - backgroundLightness,
+            const shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
+            const currentContrast = hsla.lightness - backgroundLightness,
                 down = Math.max(backgroundLightness - Math.min(Math.max(backgroundLightness - shiftContrast, 0), shift.lightnessLimit), 0).toFixed(2),
                 up = Math.max(Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit) - backgroundLightness, 0).toFixed(2);
             if (currentContrast < 0) // background is lighter
@@ -380,6 +385,66 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager, textColorProcessor);
             this._component = Component.VisitedLink;
+        }
+    }
+
+    @DI.injectable(IActiveLinkColorProcessor)
+    class ActiveLinkColorProcessor extends LinkColorProcessor implements IActiveLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.Link$Active;
+        }
+    }
+
+    @DI.injectable(IHoverLinkColorProcessor)
+    class HoverLinkColorProcessor extends LinkColorProcessor implements IHoverLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.Link$Hover;
+        }
+    }
+
+    @DI.injectable(IActiveVisitedLinkColorProcessor)
+    class ActiveVisitedLinkColorProcessor extends LinkColorProcessor implements IActiveVisitedLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.VisitedLink$Active;
+        }
+    }
+
+    @DI.injectable(IHoverVisitedLinkColorProcessor)
+    class HoverVisitedLinkColorProcessor extends LinkColorProcessor implements IHoverVisitedLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.VisitedLink$Hover;
         }
     }
 
