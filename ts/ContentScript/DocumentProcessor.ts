@@ -631,7 +631,7 @@ namespace MidnightLizard.ContentScript
                         {
                             const brokenTags = t.filter(tag => !tag.isPseudo && tag.mlColor
                                 && tag.mlColor.reason === Colors.ColorReason.Inherited
-                                && tag.mlColor.role !== cc.Link
+                                // && (tag.mlColor.role !== cc.Link || tag.id)
                                 && tag.mlColor.color === null
                                 && tag.mlColor.intendedColor && tag.computedStyle
                                 && tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement

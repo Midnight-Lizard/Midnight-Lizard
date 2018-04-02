@@ -343,6 +343,11 @@ namespace MidnightLizard.Colors
     {
         protected readonly _tagName = "a";
 
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        {
+            return null;
+        }
+
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
             // если серый или равен дефолтному цвету текста то считать текстом
