@@ -667,7 +667,8 @@ namespace MidnightLizard.ContentScript
                             !tag.mlBgColor.color && tag.computedStyle &&
                             tag.mlBgColor.reason === Colors.ColorReason.Parent &&
                             tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
-                            tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent
+                            tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
+                            !tag.hasAttribute("fixed")
                         );
                         if (brokenTransparentTags.length > 0)
                         {
@@ -1098,6 +1099,10 @@ namespace MidnightLizard.ContentScript
                 if (tag.hasAttribute("after-style"))
                 {
                     tag.removeAttribute("after-style")
+                }
+                if (tag.hasAttribute("fixed"))
+                {
+                    tag.removeAttribute("fixed");
                 }
 
                 if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
@@ -1577,66 +1582,64 @@ namespace MidnightLizard.ContentScript
             if (tag.computedStyle)
             {
                 const propRole = (cc as any as { [p: string]: Colors.Component })
-                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)];
-                if (propRole !== undefined)
+                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)]
+                    || component;
+                propVal = propVal || tag.computedStyle!.getPropertyValue(property);
+                let bgLightVal = 1;
+                switch (propRole)
                 {
-                    propVal = propVal || tag.computedStyle!.getPropertyValue(property);
-                    let bgLightVal = 1;
-                    switch (propRole)
-                    {
-                        case cc.Background:
-                            return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+                    case cc.Background:
+                        return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
 
-                        case cc.ButtonBackground:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._buttonBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.ButtonBackground:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._buttonBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Text:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Text:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.HighlightedText:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.HighlightedText:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Link:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Link$Active:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._activeLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link$Active:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._activeLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Link$Hover:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._hoverLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link$Hover:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._hoverLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.VisitedLink:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.VisitedLink:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.VisitedLink$Active:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._activeVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.VisitedLink$Active:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._activeVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.VisitedLink$Hover:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._hoverVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.VisitedLink$Hover:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._hoverVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Border:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Border:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.ButtonBorder:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.ButtonBorder:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.SvgBackground:
-                            return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
+                    case cc.SvgBackground:
+                        return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
 
-                        case cc.TextSelection:
-                            return this._textSelectionColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
-                    }
+                    case cc.TextSelection:
+                        return this._textSelectionColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
                 }
             }
             return undefined;
