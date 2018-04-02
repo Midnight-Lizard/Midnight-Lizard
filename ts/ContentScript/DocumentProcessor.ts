@@ -39,7 +39,7 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(IDocumentProcessor)
     class DocumentProcessor implements IDocumentProcessor
     {
-        protected _rootDocumentLoaded: boolean = false;
+        protected _rootDocumentContentLoaded: boolean = false;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
@@ -166,7 +166,7 @@ namespace MidnightLizard.ContentScript
                 this.createStandardPseudoCssTexts();
                 this.createDynamicStyle(this._rootDocument);
             }
-            if (this._rootDocumentLoaded)
+            if (this._rootDocumentContentLoaded)
             {
                 this.processRootDocument();
             }
@@ -179,7 +179,7 @@ namespace MidnightLizard.ContentScript
         protected onDocumentContentLoaded()
         {
             dom.removeEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded);
-            this._rootDocumentLoaded = true;
+            this._rootDocumentContentLoaded = true;
             if (this._settingsManager.isActive)
             {
                 this.processRootDocument();
@@ -544,7 +544,7 @@ namespace MidnightLizard.ContentScript
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
                         isLink = tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
-                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== "rgba(0, 0, 0, 0)";
+                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                         hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
                     }
 
@@ -622,40 +622,67 @@ namespace MidnightLizard.ContentScript
 
         protected static fixColorInheritance(allTags: HTMLElement[], docProc: DocumentProcessor, results: Promise<any>)
         {
-            Promise.all([allTags, docProc, results])
-                .then(([tags, dp]) =>
+            const waitResults = Promise.all([allTags, docProc, results]);
+            waitResults.then(([tags, dp]) =>
+            {
+                if (tags && tags.length > 0)
                 {
-                    if (tags && tags.length > 0)
+                    tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
                     {
-                        tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                        const brokenColorTags = t.filter(tag =>
+                            !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
+                            tag.mlColor.reason === Colors.ColorReason.Inherited &&
+                            tag.mlColor.intendedColor && tag.computedStyle &&
+                            tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
+                                ? tag.computedStyle!.color
+                                : tag!.computedStyle!.fill));
+
+                        if (brokenColorTags.length > 0)
                         {
-                            const brokenTags = t.filter(tag => !tag.isPseudo && tag.mlColor
-                                && tag.mlColor.reason === Colors.ColorReason.Inherited
-                                // && (tag.mlColor.role !== cc.Link || tag.id)
-                                && tag.mlColor.color === null
-                                && tag.mlColor.intendedColor && tag.computedStyle
-                                && tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
-                                    ? tag.computedStyle!.color
-                                    : tag!.computedStyle!.fill));
-                            if (brokenTags.length > 0)
+                            dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
+                            brokenColorTags.forEach(tag =>
                             {
-                                dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
-                                brokenTags.forEach(tag =>
-                                {
-                                    const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
-                                    const newColor = Object.assign({}, tag.mlColor!);
-                                    newColor.base = dProc._app.isDebug ? tag.mlColor : null
-                                    newColor.reason = Colors.ColorReason.FixedInheritance;
-                                    newColor.color = newColor.intendedColor!;
-                                    tag.mlColor = newColor;
-                                    tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                                    tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
-                                });
-                                docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
-                            }
-                        }).bind(null, tags, dp));
-                    }
-                });
+                                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                                const newColor = Object.assign({}, tag.mlColor!);
+                                newColor.base = dProc._app.isDebug ? tag.mlColor : null
+                                newColor.reason = Colors.ColorReason.FixedInheritance;
+                                newColor.color = newColor.intendedColor!;
+                                tag.mlColor = newColor;
+                                tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
+                                tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
+                            });
+                            docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
+                        }
+                    }).bind(null, tags, dp));
+                }
+            });
+            waitResults.then(([tags, dp]) =>
+            {
+                if (tags && tags.length > 0)
+                {
+                    setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                    {
+                        const brokenTransparentTags = t.filter(tag =>
+                            tag.ownerDocument.defaultView && tag.mlBgColor &&
+                            !tag.mlBgColor.color && tag.computedStyle &&
+                            tag.mlBgColor.reason === Colors.ColorReason.Parent &&
+                            tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                            tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent
+                        );
+                        if (brokenTransparentTags.length > 0)
+                        {
+                            dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                            brokenTransparentTags.forEach(tag =>
+                            {
+                                dProc.restoreElementColors(tag, true);
+                                tag.setAttribute("fixed", "bgcolor");
+                            });
+                            dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                            DocumentProcessor.processAllElements(brokenTransparentTags, null, dProc, bigReCalculationDelays);
+                        }
+                    }).bind(null, tags, dp), 1);
+                }
+            });
         }
 
         protected static processOrderedElements(tags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays)
@@ -1132,7 +1159,7 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                if (tag instanceof doc.defaultView.HTMLIFrameElement)
+                if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
                     setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
                 }
