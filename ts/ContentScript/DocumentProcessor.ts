@@ -1420,7 +1420,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof doc.defaultView.HTMLCanvasElement)
+                    if (tag instanceof doc.defaultView.HTMLCanvasElement ||
+                        tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible)
                     {
                         let filterValue: Array<string>;
                         const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
@@ -1433,10 +1434,10 @@ namespace MidnightLizard.ContentScript
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                `brightness(${float.format(1 - bgrSet.lightnessLimit)})`,
+                                `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
                                 `hue-rotate(180deg) invert(1)`,
                                 this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                `brightness(${txtSet.lightnessLimit})`
+                                `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
                             ];
                         }
                         else
@@ -1754,6 +1755,10 @@ namespace MidnightLizard.ContentScript
             }
             catch (ex)
             {
+                iframe.mlInaccessible = true;
+                this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
+                this.restoreElementColors(iframe, true);
+                DocumentProcessor.processElementsChunk([iframe], this, null, 0);
                 //docProc._app.isDebug && console.error(ex);
             }
         }
