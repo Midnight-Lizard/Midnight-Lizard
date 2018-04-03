@@ -212,8 +212,8 @@ namespace MidnightLizard.ContentScript
                             cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
                             externalCssPromises.set(
                                 sheet.href,
-                                Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
-                                    .then(([d, css, extCss, href]) => 
+                                Util.handlePromise(Promise.all([doc, cssPromise, sheet.href])
+                                    .then(([d, css, href]) =>
                                     {
                                         let style = d.createElement('style');
                                         style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;

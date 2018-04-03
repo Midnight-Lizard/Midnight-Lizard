@@ -1788,6 +1788,7 @@ namespace MidnightLizard.ContentScript
                 iframe.mlInaccessible = true;
                 this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
                 this.restoreElementColors(iframe, true);
+                iframe.setAttribute("fixed", "access");
                 DocumentProcessor.processElementsChunk([iframe], this, null, 0);
                 //docProc._app.isDebug && console.error(ex);
             }
