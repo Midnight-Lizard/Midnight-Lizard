@@ -9,6 +9,8 @@
 /// <reference path="../Colors/BackgroundColorProcessor.ts" />
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
+/// <reference path="./SvgFilters.ts" />
+
 
 namespace MidnightLizard.ContentScript
 {
@@ -40,6 +42,8 @@ namespace MidnightLizard.ContentScript
     class DocumentProcessor implements IDocumentProcessor
     {
         protected _rootDocumentContentLoaded: boolean = false;
+        protected readonly _rootImageUrl: string;
+        protected readonly _isPdf: boolean;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
@@ -90,9 +94,12 @@ namespace MidnightLizard.ContentScript
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter,
-            protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver)
+            protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
+            protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
         {
             _rootDocument.documentElement.setAttribute("preload", "");
+            this._rootImageUrl = `url("${_rootDocument.location.href}")`;
+            this._isPdf = /.+\.pdf(#.*)?/i.test(_rootDocument.location.href);
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
                 [
@@ -207,7 +214,7 @@ namespace MidnightLizard.ContentScript
                 //this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
-                this.createSvgFilters(doc);
+                this._svgFilters.createSvgFilters(doc);
                 this.createPageScript(doc);
                 const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
                 this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
@@ -1314,7 +1321,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none)
+                    if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
+                        tag.computedStyle!.backgroundImage !== this._rootImageUrl)
                     {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                         let backgroundImage = tag.computedStyle!.backgroundImage!;
                         let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
@@ -1454,7 +1462,8 @@ namespace MidnightLizard.ContentScript
                     }
 
                     if (tag instanceof doc.defaultView.HTMLCanvasElement ||
-                        tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible)
+                        tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
+                        this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         let filterValue: Array<string>;
                         const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
@@ -1466,6 +1475,7 @@ namespace MidnightLizard.ContentScript
                             roomRules.backgroundColor.color = null;
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                                tag instanceof HTMLEmbedElement ? `url("#pdf-bg-filter")` : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
                                 `hue-rotate(180deg) invert(1)`,
@@ -1952,29 +1962,6 @@ namespace MidnightLizard.ContentScript
             sheet.textContent = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
-        }
-
-        protected createSvgFilters(doc: Document)
-        {
-            const svgNs = "http://www.w3.org/2000/svg";
-            const svg = doc.createElementNS(svgNs, "svg"),
-                filter = doc.createElementNS(svgNs, "filter"),
-                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
-                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
-                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
-            svg.id = "midnight-lizard-filters"
-            svg.mlIgnore = true;
-            svg.style.height = this._css._0px;
-            svg.style.position = this._css.absolute;
-            svg.appendChild(filter);
-
-            filter.id = "ml-blue-filter";
-            filter.appendChild(feColorMatrix);
-
-            feColorMatrix.setAttribute("type", "matrix");
-            feColorMatrix.setAttribute("values", redShiftMatrix);
-
-            doc.body.appendChild(svg);
         }
 
         protected createPseudoStyles(doc: Document)
