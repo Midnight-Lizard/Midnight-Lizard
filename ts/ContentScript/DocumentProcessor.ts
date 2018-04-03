@@ -1223,12 +1223,13 @@ namespace MidnightLizard.ContentScript
                     }
                     if (!isSvgText)
                     {
-                        if (isSvg)
+                        if (tag instanceof doc.defaultView.SVGElement)
                         {
                             if (this.tagIsSmall(tag) && tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                             {
                                 isSvgText = true;
-                                roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
+                                roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
+                                    tag.ownerSVGElement || tag));
                                 roomRules.backgroundColor.reason = Colors.ColorReason.SvgText;
                                 roomRules.backgroundColor.color = null;
                             }
