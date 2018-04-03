@@ -245,6 +245,19 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://*.wikibooks.org/*"
+            ],
+            "css": [
+                "css/custom/wikibooks.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
             "matches": [
                 "https://www.facebook.com/*"
             ],
