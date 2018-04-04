@@ -1,6 +1,6 @@
 namespace MidnightLizard.Events
 {
-    type EventMap = DocumentEventMap & HTMLElementEventMap & { DOMContentLoaded: void };
+    type EventMap = DocumentEventMap & HTMLElementEventMap & { DOMContentLoaded: void, beforeprint: void };
     type Listener = (...args: any[]) => any;
     const _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();
 
@@ -9,23 +9,27 @@ namespace MidnightLizard.Events
         public static addEventListener(target: EventTarget, type: keyof EventMap,
             listener: Listener, thisArg?: any, useCapture?: boolean, ...args: any[]): Listener
         {
-            HtmlEvent.removeEventListener(target, type, listener);
-            let handlersOnTarget = _handlers.get(target);
-            if (handlersOnTarget === undefined)
+            if (target)
             {
-                handlersOnTarget = new Map<keyof EventMap, Map<Listener, Listener>>();
-                _handlers.set(target, handlersOnTarget);
+                HtmlEvent.removeEventListener(target, type, listener);
+                let handlersOnTarget = _handlers.get(target);
+                if (handlersOnTarget === undefined)
+                {
+                    handlersOnTarget = new Map<keyof EventMap, Map<Listener, Listener>>();
+                    _handlers.set(target, handlersOnTarget);
+                }
+                let handlersOfType = handlersOnTarget.get(type);
+                if (handlersOfType === undefined)
+                {
+                    handlersOfType = new Map<Listener, Listener>();
+                    handlersOnTarget.set(type, handlersOfType);
+                }
+                let boundHandler = thisArg || args.length > 0 ? listener.bind(thisArg, ...args) : listener;
+                handlersOfType.set(listener as any, boundHandler);
+                target.addEventListener(type, boundHandler, useCapture);
+                return boundHandler;
             }
-            let handlersOfType = handlersOnTarget.get(type);
-            if (handlersOfType === undefined)
-            {
-                handlersOfType = new Map<Listener, Listener>();
-                handlersOnTarget.set(type, handlersOfType);
-            }
-            let boundHandler = thisArg || args.length > 0 ? listener.bind(thisArg, ...args) : listener;
-            handlersOfType.set(listener as any, boundHandler);
-            target.addEventListener(type, boundHandler, useCapture);
-            return boundHandler;
+            else throw new Error("target is not a valid EventTarget object");
         }
 
         public static removeEventListener(target: EventTarget, type: keyof EventMap, listener: Listener): void

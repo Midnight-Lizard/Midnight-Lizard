@@ -211,6 +211,22 @@ namespace MidnightLizard.ContentScript
                 {
                     dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
                 }
+                if (this._settingsManager.currentSettings.restoreColorsOnPrint)
+                {
+                    const printMedia = doc.defaultView.matchMedia("print");
+                    printMedia.addListener(mql =>
+                    {
+                        if (mql.matches)
+                        {
+                            this.restoreDocumentColors(doc);
+                        }
+                        else
+                        {
+                            this.createDynamicStyle(doc);
+                            this.processDocument(doc);
+                        }
+                    });
+                }
                 //this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);

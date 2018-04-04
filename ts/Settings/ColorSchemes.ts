@@ -41,6 +41,7 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     isEnabled: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -109,6 +110,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Original (none)",
                     runOnThisSite: false,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -177,6 +179,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Dimmed Dust",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -245,6 +248,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Apple Mint",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -313,6 +317,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Kappa Dream",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -381,6 +386,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Almond Ripe",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 5,
 
                     useDefaultSchedule: true,
@@ -449,6 +455,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Sunset Sails",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 30,
 
                     useDefaultSchedule: true,
@@ -517,6 +524,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Halloween",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 80,
 
                     useDefaultSchedule: true,
@@ -585,6 +593,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Morning Mist",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -653,6 +662,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Antique Codex",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 5,
 
                     useDefaultSchedule: true,
@@ -721,6 +731,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Increased Contrast",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -789,6 +800,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Grayscale",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -857,6 +869,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Inverted Light",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -925,6 +938,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Inverted Grayscale",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -993,6 +1007,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Yellow on Black",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -1061,6 +1076,7 @@ namespace MidnightLizard.Settings
                     colorSchemeName: "Green on Black",
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
