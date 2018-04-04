@@ -267,9 +267,9 @@ namespace MidnightLizard.Settings
                 SvgBackground: {
                     saturationLimit: set.backgroundSaturationLimit,
                     contrast: set.backgroundContrast,
-                    lightnessLimit: set.imageLightnessLimit,
-                    graySaturation: set.borderGraySaturation,
-                    grayHue: set.borderGrayHue,
+                    lightnessLimit: Math.min(set.backgroundLightnessLimit * 1.2, 1),
+                    graySaturation: set.backgroundGraySaturation,
+                    grayHue: set.backgroundGrayHue,
                     replaceAllHues: false,
                     hueGravity: set.backgroundHueGravity || 0
                 },

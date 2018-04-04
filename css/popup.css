@@ -267,12 +267,18 @@ top: -5px;
     bottom: 0px;
     z-index: 999;
     /* pointer-events: none; */
-    background-color: rgba(19, 19, 19, 0.95);
+    background-color: rgba(19, 19, 19, 0.98);
     color: rgb(255, 223, 0);
     text-align: center;
     font-size: 20pt;
     text-shadow: 0 0 3px rgb(0, 0, 0);
     padding-top: 38px;
+}
+
+.ml-dialog-error hr {
+    border-width: 1px 0px 0px 0px;
+    border-color: rgb(255, 223, 0);
+    box-shadow: 0 0 3px rgb(0, 0, 0);
 }
 
 .ml-dialog-error span {
@@ -282,6 +288,13 @@ top: -5px;
 .ml-dialog-error ul {
     font-size: 14pt;
     line-height: 18pt;
+    list-style-type: decimal;
+}
+
+.ml-dialog-error em {
+    font-style: normal;
+    font-size: 16pt;
+    line-height: 21pt;
 }
 
 .ml-tool-box {
