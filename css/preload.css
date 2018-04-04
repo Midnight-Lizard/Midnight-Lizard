@@ -1,7 +1,7 @@
-html[preload], html[preload] body
+html[preload][ml-is-active]
 {
     background: white;
-    filter: brightness(60%);
+    filter: brightness(var(--ml-background-lightness-limit));
     position: fixed;
     top: 0px;
     bottom: 0px;

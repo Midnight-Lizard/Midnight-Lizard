@@ -71,9 +71,9 @@ namespace MidnightLizard.Events
             let keys = new Set(this._handlers.keys());
             Util.getEnumValues<EventHandlerPriority>(EventHandlerPriority)
                 .filter(priority => keys.has(priority))
-                .map(priority => { return { priority: priority, contexts: this._handlers.get(priority) ! } })
+                .map(priority => { return { priority: priority, contexts: this._handlers.get(priority)! } })
                 .forEach(x => x.priority == EventHandlerPriority.After
-                    ? setTimeout(([ctxt, ea, $this]: [AHIP<TArg>, TArg, AED<TArg>]) =>
+                    ? setTimeout((ctxt: AHIP<TArg>, ea: TArg, $this: AED<TArg>) =>
                         $this.executeHandler(ctxt, ea), 1, x.contexts, eventArgs, this)
                     : this.executeHandler(x.contexts, eventArgs));
         }
@@ -150,9 +150,9 @@ namespace MidnightLizard.Events
             let keys = new Set(this._handlers.keys());
             Util.getEnumValues<EventHandlerPriority>(EventHandlerPriority)
                 .filter(priority => keys.has(priority))
-                .map(priority => { return { priority: priority, contexts: this._handlers.get(priority) ! } })
+                .map(priority => { return { priority: priority, contexts: this._handlers.get(priority)! } })
                 .forEach(x => x.priority == EventHandlerPriority.After
-                    ? setTimeout(([ctxt, resp, ea, $this]: [RHIP<TResponse, TArg>, TResponse, TArg, RED<TResponse, TArg>]) =>
+                    ? setTimeout((ctxt: RHIP<TResponse, TArg>, resp: TResponse, ea: TArg, $this: RED<TResponse, TArg>) =>
                         $this.executeHandler(ctxt, resp, ea), 1, x.contexts, response, eventArgs, this)
                     : this.executeHandler(x.contexts, response, eventArgs));
         }

@@ -10,7 +10,7 @@
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
 /// <reference path="./SvgFilters.ts" />
-
+/// <reference path="./PreloadManager.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -73,6 +73,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _rootDocument: Document,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            protected readonly _preloadManager: MidnightLizard.ContentScript.IPreloadManager,
             protected readonly _documentObserver: MidnightLizard.ContentScript.IDocumentObserver,
             protected readonly _styleSheetProcessor: MidnightLizard.ContentScript.IStyleSheetProcessor,
             protected readonly _backgroundColorProcessor: MidnightLizard.Colors.IBackgroundColorProcessor,
@@ -2055,7 +2056,7 @@ namespace MidnightLizard.ContentScript
         {
             let style = doc.getElementById("midnight-lizard-loading-style");
             style && style.remove();
-            const removeNoTrans = ((d: Document) => 
+            const removeNoTrans = ((d: Document) =>
             {
                 let noTrans = d.getElementById("midnight-lizard-no-trans-style");
                 noTrans && noTrans.remove();
@@ -2136,7 +2137,7 @@ namespace MidnightLizard.ContentScript
                         });
                     Promise
                         .all([tag, Util.handlePromise(applyBgPromise)])
-                        .then(([tag, result]) => 
+                        .then(([tag, result]) =>
                         {
                             if (result && result.status === Util.PromiseStatus.Failure)
                             {
