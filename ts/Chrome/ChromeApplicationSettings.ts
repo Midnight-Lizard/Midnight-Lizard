@@ -3,11 +3,20 @@
 
 namespace Chrome
 {
+    declare var browser: any;
+
     @MidnightLizard.DI.injectable(MidnightLizard.Settings.IApplicationSettings)
     class ChromeApplicationSettings implements MidnightLizard.Settings.IApplicationSettings
     {
         protected readonly _isDebug: boolean;
         get isDebug() { return this._isDebug }
+
+        get browserName()
+        {
+            return typeof browser === "object"
+                ? MidnightLizard.Settings.BrowserName.Firefox
+                : MidnightLizard.Settings.BrowserName.Chrome
+        }
 
         protected readonly _preserveDisplay: boolean;
         get preserveDisplay() { return this._preserveDisplay }

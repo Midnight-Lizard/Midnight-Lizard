@@ -1,7 +1,16 @@
 namespace MidnightLizard.Settings
 {
+    export enum BrowserName
+    {
+        Chrome = "Chrome",
+        Firefox = "Firefox"
+    }
+
     export abstract class IApplicationSettings
     {
+        /** Returns current browser name */
+        abstract get browserName(): BrowserName;
+
         /** Determines whether extension is in debug mode */
         abstract get isDebug(): boolean;
 

@@ -1291,7 +1291,10 @@ namespace MidnightLizard.ContentScript
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                    if (tag.computedStyle!.content!.substr(0, 3) == "url" && !beforePseudoElement && !afterPseudoElement)
+                    if (tag.computedStyle!.content!.startsWith("url") &&
+                        (this._app.browserName === Settings.BrowserName.Chrome ||
+                            !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
+                            !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
                     {
                         let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
                             (
@@ -1387,7 +1390,7 @@ namespace MidnightLizard.ContentScript
                             {
                                 gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
                                 let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
-                                if (haveToProcBgImg && bgImg.substr(0, 3) == "url")
+                                if (haveToProcBgImg && bgImg.startsWith("url"))
                                 {
                                     return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
                                 }
@@ -2211,12 +2214,6 @@ namespace MidnightLizard.ContentScript
                     tag.originalBorderLeftColor = tag.style.borderLeftColor;
                     tag.style.setProperty(this._css.borderLeftColor, roomRules.borderLeftColor.color, this._css.important);
                 }
-            }
-
-            if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.path || ""))
-            {
-                console.log(roomRules);
-                console.log(tag.style.cssText);
             }
 
             if (isPseudoElement(tag))
