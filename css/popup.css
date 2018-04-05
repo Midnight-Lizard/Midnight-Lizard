@@ -22,6 +22,21 @@ body {
     }
 }
 
+@supports (-webkit-appearance: button)
+{
+    .firefox-only
+    {
+        display: none;
+    }
+}
+@supports (-moz-appearance: button)
+{
+    .chrome-only
+    {
+        display: none;
+    }
+}
+
 .ml-dialog-root {
     font: normal 14px/1 Arial, Helvetica, sans-serif;
     color: var(--main-color);
