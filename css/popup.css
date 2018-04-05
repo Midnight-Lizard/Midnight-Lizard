@@ -1,9 +1,25 @@
-html,
 body {
     margin: 0;
     min-width: 680px;
-    min-height: 400px;
-    /* background: #212121; */
+    min-height: 600px;
+    overflow: hidden!important;
+}
+
+@supports (zoom: 1)
+{
+    body
+    {
+        zoom: var(--popup-scale, 1);
+    }
+}
+
+@supports not (zoom: 1)
+{
+    body
+    {
+        transform: scale(var(--popup-scale, 1));
+        transform-origin: 0 0;
+    }
 }
 
 .ml-dialog-root {

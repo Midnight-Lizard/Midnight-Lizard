@@ -54,6 +54,12 @@ namespace MidnightLizard.Popup
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter)
         {
+            dom.addEventListener(_popup.defaultView, "resize",
+                () => _popup.documentElement.style
+                    .setProperty("--popup-scale", Math.min(
+                        _popup.defaultView.innerWidth / 680.0,
+                        _popup.defaultView.innerHeight / 600.0,
+                    ).toString()));
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
@@ -82,6 +88,7 @@ namespace MidnightLizard.Popup
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
         {
+            // doc.documentElement.style.setProperty("--popup-scale", (doc.defaultView.innerWidth / 680.0).toString());
             this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime as any, this);
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;
             this._colorSchemeSelect = doc.getElementById("colorScheme") as HTMLSelectElement;
