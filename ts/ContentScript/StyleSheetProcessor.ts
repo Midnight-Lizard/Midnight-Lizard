@@ -310,7 +310,7 @@ namespace MidnightLizard.ContentScript
                     className = x.forget((Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or));
                 }
                 let vars = new Map<string, string>();
-                vars.set(Var[Var.id], tag.id);
+                vars.set(Var[Var.id], x.escape(tag.id));
                 vars.set(Var[Var.tagName], tag.tagName);
                 vars.set(Var[Var.className], className);
                 //vars.set(Var[Var.notThisTagId], tag.id ? x.notFollowedBy(tag.id + x.WordBoundary) : "");
