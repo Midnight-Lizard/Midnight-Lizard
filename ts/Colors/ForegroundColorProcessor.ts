@@ -21,7 +21,6 @@ namespace MidnightLizard.Colors
     export abstract class IHoverLinkColorProcessor extends ILinkColorProcessor { }
     export abstract class IActiveLinkColorProcessor extends ILinkColorProcessor { }
     export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor { }
-    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
 
     export abstract class ITextShadowColorProcessor
     {
@@ -53,6 +52,12 @@ namespace MidnightLizard.Colors
     {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
     }
+
+    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
+    export abstract class IDynamicLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IDynamicVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IDynamicBorderColorProcessor extends IBorderColorProcessor { }
+    export abstract class IDynamicButtonBackgroundColorProcessor extends IButtonBackgroundColorProcessor { }
 
     abstract class ForegroundColorProcessor extends BaseColorProcessor
     {
@@ -551,6 +556,74 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Text;
+        }
+    }
+
+    @DI.injectable(IDynamicLinkColorProcessor)
+    class DynamicLinkColorProcessor extends LinkColorProcessor implements IDynamicLinkColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager, null as any);
+            this._component = Component.Link;
+        }
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return true;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
+        }
+    }
+
+    @DI.injectable(IDynamicVisitedLinkColorProcessor)
+    class DynamicVisitedLinkColorProcessor extends VisitedLinkColorProcessor implements IDynamicVisitedLinkColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager, null as any);
+            this._component = Component.VisitedLink;
+        }
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return true;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
+        }
+    }
+
+    @DI.injectable(IDynamicBorderColorProcessor)
+    class DynamicBorderColorProcessor extends BorderColorProcessor implements IDynamicBorderColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.Border;
+        }
+    }
+
+    @DI.injectable(IDynamicButtonBackgroundColorProcessor)
+    class DynamicButtonBackgroundColorProcessor extends ButtonBackgroundColorProcessor implements IDynamicButtonBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.ButtonBackground;
         }
     }
 }

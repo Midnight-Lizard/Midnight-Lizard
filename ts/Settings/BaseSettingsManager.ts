@@ -25,6 +25,7 @@ namespace MidnightLizard.Settings
         abstract get currentSettings(): Settings.ColorScheme;
         abstract get onSettingsInitialized(): ArgEvent<Colors.ComponentShift>;
         abstract get onSettingsChanged(): RespEvent<(scheme: ColorScheme) => void, Colors.ComponentShift>;
+        abstract getDefaultSettings(): Promise<Settings.ColorScheme>;
     }
     /**
      * Base Settings Manager
@@ -319,6 +320,19 @@ namespace MidnightLizard.Settings
                 delete Settings.ColorSchemes[setting];
             }
             this.applyUserColorSchemes(DefaultColorSchemes);
+        }
+
+        public async getDefaultSettings()
+        {
+            const defaultSettings = await this._storageManager.get({
+                ...Settings.ColorSchemes.default,
+                ...Settings.ColorSchemes.dimmedDust
+            });
+            this.applyUserColorSchemes(defaultSettings);
+            this.assignSettings(this._defaultSettings, defaultSettings);
+            this._defaultSettings.colorSchemeId = "default";
+            this._defaultSettings.colorSchemeName = "Default";
+            return this._defaultSettings;
         }
 
         public applyUserColorSchemes(defaultSettings: Settings.ColorScheme)

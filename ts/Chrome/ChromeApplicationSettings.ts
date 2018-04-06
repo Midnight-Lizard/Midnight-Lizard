@@ -3,8 +3,6 @@
 
 namespace Chrome
 {
-    declare var browser: any;
-
     @MidnightLizard.DI.injectable(MidnightLizard.Settings.IApplicationSettings)
     class ChromeApplicationSettings implements MidnightLizard.Settings.IApplicationSettings
     {

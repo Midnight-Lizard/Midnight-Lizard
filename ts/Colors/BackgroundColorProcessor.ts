@@ -14,7 +14,8 @@ namespace MidnightLizard.Colors
     export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class ITextSelectionColorProcessor extends IBackgroundColorProcessor { }
-    // export abstract class IButtonBackgroundColorProcessor extends IBackgroundColorProcessor { }
+
+    export abstract class IDynamicTextSelectionColorProcessor extends ITextSelectionColorProcessor { }
 
     /** BackgroundColorProcessor */
     @DI.injectable(IBackgroundColorProcessor)
@@ -241,18 +242,6 @@ namespace MidnightLizard.Colors
         }
     }
 
-    // @DI.injectable(IButtonBackgroundColorProcessor)
-    // class ButtonBackgroundColorProcessor extends BackgroundColorProcessor implements IButtonBackgroundColorProcessor
-    // {
-    //     constructor(
-    //         app: MidnightLizard.Settings.IApplicationSettings,
-    //         settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
-    //     {
-    //         super(app, settingsManager);
-    //         this._component = Component.ButtonBackground;
-    //     }
-    // }
-
     @DI.injectable(IDynamicBackgroundColorProcessor)
     class DynamicBackgroundColorProcessor extends BackgroundColorProcessor implements IDynamicBackgroundColorProcessor
     {
@@ -262,6 +251,18 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Background;
+        }
+    }
+
+    @DI.injectable(IDynamicTextSelectionColorProcessor)
+    class DynamicTextSelectionColorProcessor extends TextSelectionColorProcessor implements IDynamicTextSelectionColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.TextSelection;
         }
     }
 }

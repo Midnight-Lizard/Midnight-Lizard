@@ -49,6 +49,18 @@ namespace Chrome
                                 break;
                         }
                     }
+                    else
+                    {
+                        switch (request.action)
+                        {
+                            case Action.SettingsApplied:
+                                this._onSettingsApplied.raise(sendResponse, request.settings);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
                 });
         }
 
@@ -62,6 +74,12 @@ namespace Chrome
         public get onNewSettingsApplicationRequested()
         {
             return this._onNewSettingsApplicationRequested.event;
+        }
+
+        protected _onSettingsApplied = new EventDispatcher<AnyResponse, ColorScheme>();
+        public get onSettingsApplied()
+        {
+            return this._onSettingsApplied.event;
         }
 
         protected _onSettingsDeletionRequested = new EventDispatcher<AnyResponse, null>();
@@ -80,6 +98,11 @@ namespace Chrome
         public get onZoomChanged()
         {
             return this._onZoomChanged.event;
+        }
+
+        protected sendMessage<TResult>(msg: MidnightLizard.Settings.MessageTypes)
+        {
+            return this._chromePromise.runtime.sendMessage<TResult>(msg);
         }
 
         protected sendMessageToSelectedTab<TResult>(msg: MidnightLizard.Settings.MessageTypes)
@@ -123,6 +146,11 @@ namespace Chrome
         public setTabZoom(tabId: number, zoom: number)
         {
             return this.sendMessageToTab<null>(tabId, new MidnightLizard.Settings.ZoomChangedMessage(zoom));
+        }
+
+        public notifySettingsApplied(settings: ColorScheme)
+        {
+            return this.sendMessage<ColorScheme>(new MidnightLizard.Settings.SettingsAppliedMessage(settings));
         }
     }
 }

@@ -78,19 +78,6 @@ namespace MidnightLizard.Popup
             return this._storageManager.getCurrentStorage().then(storType => storType === "sync");
         }
 
-        public async getDefaultSettings()
-        {
-            const defaultSettings = await this._storageManager.get({
-                ...Settings.ColorSchemes.default,
-                ...Settings.ColorSchemes.dimmedDust
-            });
-            this.applyUserColorSchemes(defaultSettings);
-            this.assignSettings(this._defaultSettings, defaultSettings);
-            this._defaultSettings.colorSchemeId = "default";
-            this._defaultSettings.colorSchemeName = "Default";
-            return this._defaultSettings;
-        }
-
         public getDefaultSettingsCache(): Settings.ColorScheme
         {
             return this._defaultSettings;

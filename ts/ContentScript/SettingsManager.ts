@@ -39,6 +39,13 @@ namespace MidnightLizard.ContentScript
             settingsBus.onSettingsDeletionRequested.addListener(this.onSettingsDeletionRequested, this);
         }
 
+        protected initCurSet()
+        {
+            super.initCurSet();
+            this._settingsBus.notifySettingsApplied(this._currentSettings)
+                .catch(ex => this._app.isDebug && console.error(ex));
+        }
+
         protected initCurrentSettings()
         {
             const storage = {
