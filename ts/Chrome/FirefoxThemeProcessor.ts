@@ -75,6 +75,9 @@ namespace Firefox
                                 .changeColor(cx.RgbaColor.White, false, document.body);
 
                         browser.theme.update({
+                            images: {
+                              "headerURL": "img/none.png"
+                            },
                             colors: {
                                 accentcolor: darkBgColor.color,
                                 textcolor: darkTextColor.color,
