@@ -54,12 +54,7 @@ namespace MidnightLizard.Popup
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter)
         {
-            dom.addEventListener(_popup.defaultView, "resize",
-                () => _popup.documentElement.style
-                    .setProperty("--popup-scale", Math.min(
-                        _popup.defaultView.innerWidth / 680.0,
-                        _popup.defaultView.innerHeight / 600.0,
-                    ).toString()));
+            dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
@@ -73,6 +68,15 @@ namespace MidnightLizard.Popup
         //         .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
         //         .catch(error => this._app.isDebug && console.error(error));
         // }
+
+        protected setPopupScale()
+        {
+            this._popup.documentElement.style
+                .setProperty("--popup-scale", Math.min(
+                    this._popup.defaultView.innerWidth / 680.0,
+                    this._popup.defaultView.innerHeight / 600.0,
+                ).toString());
+        }
 
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
         {
@@ -179,6 +183,7 @@ namespace MidnightLizard.Popup
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
             this._popup.documentElement.style.cssText = "";
+            this.setPopupScale();
             this.updateButtonStates();
             this.toggleSchedule();
         }

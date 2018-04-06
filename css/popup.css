@@ -45,7 +45,6 @@ body {
 }
 
 .ml-dialog-logo {
-    display: inline;
     vertical-align: top;
     height: 32px;
     width: 32px;
@@ -583,10 +582,10 @@ top: -5px;
 {
     .intro-tabs:before {
         height: 21px;
-        left: -18px;
+        left: -17px;
         top: 170px;
-        transform: skew(63deg);
-    }    
+        transform: skew(62deg);
+    }
 }
 @supports not (-moz-appearance: none)
 {
@@ -595,7 +594,7 @@ top: -5px;
         left: -2px;
         top: 170px;
         transform: skew(63deg);
-    }    
+    }
 }
 
 .intro-host:after {

@@ -13,9 +13,9 @@
         "16": "img/ml-icon-16.png"
     },
     "permissions": [
-        "storage"
+        "storage",
+        "theme"
     ],
-    "offline_enabled": true,
     "commands": {
         "global-toggle": {
             "description": "__MSG_globalToggleKey__",
