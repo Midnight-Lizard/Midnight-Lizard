@@ -15,7 +15,8 @@
             },
             "problemMatcher": "$tsc",
             "args": [
-                "-p ./config/chrome/content-script-release.json"
+                "-p",
+                "./config/chrome/content-script-release.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -34,7 +35,8 @@
             },
             "problemMatcher": "$tsc",
             "args": [
-                "-p ./config/chrome/background-page-release.json"
+                "-p",
+                "./config/chrome/background-page-release.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -53,7 +55,8 @@
             },
             "problemMatcher": "$tsc",
             "args": [
-                "-p ./config/chrome/popup-release.json"
+                "-p",
+                "./config/chrome/popup-release.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -72,7 +75,8 @@
             },
             "problemMatcher": "$tsc",
             "args": [
-                "-p ./config/chrome/custom-release.json"
+                "-p",
+                "./config/chrome/custom-release.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -91,7 +95,8 @@
             },
             "problemMatcher": "$tsc",
             "args": [
-                "-p ./config/chrome/page-script-release.json"
+                "-p",
+                "./config/chrome/page-script-release.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -104,7 +109,9 @@
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
-                "-w -p ./config/chrome/content-script-debug.json"
+                "-w",
+                "-p",
+                "./config/chrome/content-script-debug.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -117,7 +124,9 @@
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
-                "-w -p ./config/chrome/background-page-debug.json"
+                "-w",
+                "-p",
+                "./config/chrome/background-page-debug.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -130,7 +139,9 @@
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
-                "-w -p ./config/chrome/popup-debug.json"
+                "-w",
+                "-p",
+                "./config/chrome/popup-debug.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -143,7 +154,9 @@
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
-                "-w -p ./config/chrome/custom-debug.json"
+                "-w",
+                "-p",
+                "./config/chrome/custom-debug.json"
             ],
             "dependsOn": [
                 "NPM Install"
@@ -156,7 +169,9 @@
             "isBackground": true,
             "problemMatcher": "$tsc-watch",
             "args": [
-                "-w -p ./config/chrome/page-script-debug.json"
+                "-w",
+                "-p",
+                "./config/chrome/page-script-debug.json"
             ]
         },
         {
@@ -195,17 +210,46 @@
             ]
         },
         {
-            "label": "Release",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "label": "Release Chrome",
+            "type": "shell",
+            "command": "./release.sh",
+            "args": [
+                "chrome"
+            ],
+            "dependsOn": [
+                "Release build"
+            ]
+        },
+        {
+            "label": "Release Firefox",
+            "type": "shell",
+            "command": "./release.sh",
+            "args": [
+                "firefox"
+            ],
+            "dependsOn": [
+                "Release build"
+            ]
+        },
+        {
+            "label": "Release build",
             "dependsOn": [
                 "TSC Release Custom",
                 "TSC Release Page Script",
                 "TSC Release Background Page",
                 "TSC Release Popup",
                 "TSC Release Content Script"
+            ]
+        },
+        {
+            "label": "Release publish",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Release Chrome",
+                "Release Firefox",
             ]
         }
     ]
