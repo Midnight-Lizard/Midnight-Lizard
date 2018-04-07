@@ -9,6 +9,8 @@
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Settings/SettingsExporter.ts" />
 /// <reference path="../Settings/SettingsImporter.ts" />
+/// <reference path="../i18n/DocumentTranslator.ts" />
+
 
 namespace MidnightLizard.Popup
 {
@@ -52,7 +54,9 @@ namespace MidnightLizard.Popup
             protected readonly _dynamicBackgroundColorProcessor: MidnightLizard.Colors.IDynamicBackgroundColorProcessor,
             // protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
-            protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter)
+            protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter,
+            protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
             dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
@@ -92,6 +96,7 @@ namespace MidnightLizard.Popup
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
         {
+            this._documentTranslator.translateDocument(doc);
             // doc.documentElement.style.setProperty("--popup-scale", (doc.defaultView.innerWidth / 680.0).toString());
             this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime as any, this);
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;
@@ -232,7 +237,7 @@ namespace MidnightLizard.Popup
                 .applySettings()
                 .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
                 .then(x => this.updateButtonStates())
-                .catch(ex => alert("Settings application failed. Refresh the page and try again.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("applyOnPageFailureMessage") + (ex.message || ex)));
         }
 
         protected toggleRunOnThisSite()
@@ -240,10 +245,6 @@ namespace MidnightLizard.Popup
             this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
             this.onInputFieldChanged();
             this.applySettingsOnPage();
-            // this._settingsManager.toggleRunOnThisSite()
-            //     .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
-            //     .then(x => this.updateButtonStates())
-            //     .catch(ex => alert("Current website toggle failed. Refresh the page and try again.\n" + (ex.message || ex)));
         }
 
         protected toggleIsEnabled()
@@ -251,7 +252,7 @@ namespace MidnightLizard.Popup
             this._currentSiteSettings.isEnabled = this._isEnabledToggle.checked;
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
-                .catch(ex => alert("Extension toggle switching failed. Refresh the page and try again.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("toggleExtensionFailureMessage") + (ex.message || ex)));
         }
 
         protected fillColorSchemesSelectLists()
@@ -306,8 +307,8 @@ namespace MidnightLizard.Popup
         protected onSettingsSyncChanged()
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
-                .then(x => alert("Changes have been successfully applied."))
-                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));
+                .then(x => alert(this._i18n.getMessage("syncChangeSuccessMessage")))
+                .catch(ex => alert(this._i18n.getMessage("syncChangeFailureMessage") + (ex.message || ex)));
         }
 
         protected updateColorSchemeButtons()
@@ -319,10 +320,11 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value as Settings.ColorSchemeName;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
 
-            this._exportColorSchemeButton.title =
-                `Export to file current color scheme [${(this._colorSchemeSelect.selectedOptions[0] as HTMLOptionElement).text
-                }] as color scheme for edit [${(this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text
-                }] with name [${this._newColorSchemeName.value}]`;
+            this._exportColorSchemeButton.title = this._i18n.getMessage("exportColorSchemeBtn_@title",
+                this._colorSchemeSelect.selectedOptions[0].text,
+                this._colorSchemeForEdit.selectedOptions[0].text,
+                this._newColorSchemeName.value
+            );
         }
 
         protected exportColorScheme()
@@ -353,9 +355,10 @@ namespace MidnightLizard.Popup
                             this.updateColorSchemeLists(importedColorSchemes);
                             this._colorSchemeSelect.value = importedColorSchemes.userColorSchemes[0].colorSchemeId;
                             this.onColorSchemeChanged();
-                            alert(`${importedColorSchemes.userColorSchemes.length} color schemes have been successfully imported from the files.
-Imported color schemes are marked with a ${editMark}symbol and will be deleted with the popup closure unless you save each of them.
-To save imported color scheme select it in the [Current color scheme] dropdown list and press [Save] button.`)
+                            const msg = this._i18n.getMessage("colorSchemeImportSuccessMessage",
+                                importedColorSchemes.userColorSchemes.length.toString(),
+                                editMark);
+                            alert(msg);
                         }
                     })
                     .catch(error => alert(error));
@@ -367,8 +370,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
                 ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName : "";
             if (this._colorSchemeForEdit.value === "custom" ||
-                confirm(`You are about to update color scheme [${colorSchemeForEditName}] with current popup settings and ${
-                    colorSchemeForEditName === this._newColorSchemeName.value ? "a" : "the new"} name [${this._newColorSchemeName.value}]. Are you sure want to continue?`))
+                confirm(this._i18n.getMessage("colorSchemeSaveConfirmationMessage",
+                    colorSchemeForEditName, this._newColorSchemeName.value)))
             {
                 const newScheme = Object.assign({}, this._settingsManager.currentSettings);
                 newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
@@ -382,25 +385,24 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     {
                         this._settingsManager.changeSettings(newScheme);
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert("Done. It will take effect after page refresh.");
+                        alert(this._i18n.getMessage("colorSchemeSaveSuccessMessage"));
                     })
-                    .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
+                    .catch(ex => alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + (ex.message || ex)));
             }
         }
 
         protected deleteUserColorScheme()
         {
-            if (confirm(`You are about to delete color scheme [${
-                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
-                }]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?`))
+            if (confirm(this._i18n.getMessage("colorSchemeDeleteConfirmationMessage",
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName)))
             {
                 this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
                     .then(async (x) =>
                     {
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert("Done. It will take effect after page refresh.");
+                        alert(this._i18n.getMessage("colorSchemeDeleteSuccessMessage"));
                     })
-                    .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
+                    .catch(ex => alert(this._i18n.getMessage("colorSchemeDeleteFailureMessage") + (ex.message || ex)));
             }
         }
 
@@ -456,13 +458,13 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
 
         protected forgetAllSitesSettings()
         {
-            if (confirm("All the settings and custom color schemes you have ever made will be deleted! Are you sure want to continue?"))
+            if (confirm(this._i18n.getMessage("forgetAllConfirmationMessage")))
             {
                 this._settingsManager
                     .deleteAllSettings()
                     .then(x => this.updateButtonStates())
-                    .then(x => alert("Done. It will take effect after page refresh."))
-                    .catch(ex => alert("All sites settings deletion failed.\n" + (ex.message || ex)));
+                    .then(x => alert(this._i18n.getMessage("forgetAllSuccessMessage")))
+                    .catch(ex => alert(this._i18n.getMessage("forgetAllFailureMessage") + (ex.message || ex)));
             }
         }
 
@@ -470,8 +472,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
         {
             this._settingsManager
                 .deleteCurrentSiteSettings()
-                .then(x => alert("Done. It will take effect after page refresh."))
-                .catch(ex => alert("Current site settings deletion failed.\n" + (ex.message || ex)));
+                .then(x => alert(this._i18n.getMessage("forgetThisSuccessMessage")))
+                .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
         }
 
         protected setAsDefaultSettings()
@@ -479,7 +481,7 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             this._settingsManager
                 .setAsDefaultSettings()
                 .then(x => this.updateButtonStates())
-                .catch(ex => alert("Default settings setup failed.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
         }
 
         protected setUpInputFields(settings: Settings.ColorScheme)

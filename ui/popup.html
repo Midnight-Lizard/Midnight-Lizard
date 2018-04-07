@@ -23,7 +23,7 @@
     <div class="ml-dialog-root">
         <div class="ml-dialog-title">
             <!-- <img id="logo" class="ml-dialog-logo" src="../img/ml-toolbar-icon-128.png" /> -->
-            <div class="ml-dialog-title-text">
+            <div class="ml-dialog-title-text" i18n="settingsHeader" i18n-text="label">
                 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
                         id="logo" class="ml-dialog-logo" version="1.1" viewBox="0 0 120 120">
                     <g>
@@ -36,35 +36,25 @@
                     </g>
                 </svg>
                 <span>Midnight Lizard</span> settings for
-                <b class="ml-host-state" tooltip="Toggle current website between
-whitelist and blacklist">
+                <b class="ml-host-state" i18n="hostState" i18n-attr="tooltip">
                     <b id="hostState"></b>
                 </b>
-                <u id="host-name" tooltip="&emsp;&emsp;&emsp;&emsp;Current website
-━━━━━━━━━━━━━━━
-Click&ensp;to&ensp;toggle&emsp;current&ensp;website
-between&emsp;whitelist&ensp;and&ensp;blacklist.
-
-To blacklist all websites by default
-blacklist&ensp;one&emsp;and&emsp;then&emsp;press
-'Set as default' button."><a id="hostName" href="#"></a></u>
+                <u id="host-name" i18n="hostName" i18n-attr="tooltip"><a id="hostName" href="#"></a></u>
             </div>
-            <a id="help" tooltip="Support forum" target="_blank"
+            <a id="help" i18n="helpLink" i18n-attr="tooltip" target="_blank"
                href="https://groups.google.com/forum/#!searchin/midnight-lizard-support/%22how$20to%22">
                <svg class="help-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none"/>
                     <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
                 </svg>
             </a>
-            <label id="isEnabledSwitch"
-                   class="ml-switch"
-                   tooltip="Enable or disable entire extension">
+            <label id="isEnabledSwitch" class="ml-switch" i18n="isEnabledSwitch" i18n-attr="tooltip">
                 <input id="isEnabled" type="checkbox">
                 <div class="ml-slider">
                     <div class="ml-slider-checked"></div>
-                    <span class="ml-slider-on">ON</span>
+                    <span class="ml-slider-on" i18n="isEnabledOn" i18n-text="label">ON</span>
                     <div class="ml-slider-thumb"></div>
-                    <span class="ml-slider-off">OFF</span>
+                    <span class="ml-slider-off" i18n="isEnabledOff" i18n-text="label">OFF</span>
                 </div>
             </label>
         </div>
@@ -72,26 +62,15 @@ blacklist&ensp;one&emsp;and&emsp;then&emsp;press
             <ul class="ml-tab left">
                 <li class="ml-tab-item-separator">&nbsp;</li>
                 <li class="ml-tab-item" content="common"
-                    tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Common settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains settings that are common for the entire page.
-&emsp;&bull;&ensp;Activation schedule defines when [Midnight Lizard] should be automatically enabled.
-&emsp;&bull;&ensp;Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time.">
-                    <svg class="ml-tab-item-icon"
-                         role="img"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    i18n="commonTab" i18n-attr="tooltip" i18n-text="label">
+                    <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
                         />
                     </svg>Common
                 </li>
-                <li class="ml-tab-item"
-                    content="background"
-                    tooltip="&emsp;&emsp;&emsp;&emsp;Background color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains settings that define how elements on the page would be filled with color.">
+                <li class="ml-tab-item" content="background"
+                    i18n="backgroundTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -104,11 +83,8 @@ blacklist&ensp;one&emsp;and&emsp;then&emsp;press
                               d="M0 20h24v4H0z"
                               fill-opacity="1" />
                     </svg>Background</li>
-                <li class="ml-tab-item"
-                    content="button"
-                    tooltip="&emsp;&emsp;Button background color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color.">
+                <li class="ml-tab-item" content="button"
+                    i18n="buttonsTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0h24v24H0z" fill="none" />
                         <!-- <path d="M 19,4 H 5 C 3.9,4 3,4.9 3,6 v 8 c 0,1.1 0.9,2 2,2 h 14 c 1.1,0 2,-0.9 2,-2 V 6 C 21,4.9 20.1,4 19,4 Z m 0,10 H 5 V 6 h 14 z"/>
@@ -117,22 +93,16 @@ blacklist&ensp;one&emsp;and&emsp;then&emsp;press
                               transform="translate(-8,8) rotate(-45)"/>
                         <path id="buttonHue" d="M0 20h24v4H0z" fill-opacity="1" />
                     </svg>Buttons</li>
-                <li class="ml-tab-item"
-                    content="text"
-                    tooltip="&emsp;&emsp;&emsp;&emsp;&emsp;Text color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains color adjustment settings for all text elements on the page.">
+                <li class="ml-tab-item" content="text"
+                    i18n="textTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path id="textHue" d="M0 20h12v4H0z" fill-opacity="1" />
                         <path id="txtSelHue" d="M12 20h12v4H12z" fill-opacity="1"/>
                         <path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z" />
                     </svg>Text</li>
-                <li class="ml-tab-item"
-                    content="links"
-                    tooltip="&emsp;&emsp;&emsp;&emsp;Hyperlinks color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains color adjustment settings for all hyperlinks on the page.">
+                <li class="ml-tab-item" content="links"
+                    i18n="linksTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path id="linkHue" d="M0 20h12v4H0z" fill-opacity="1" />
@@ -142,11 +112,8 @@ h 4 v -1.9 H 7 c -1.71,0 -3.1,-1.39 -3.1,-3.0999997 z M 8,10.333333 h 8 V 8.3333
 1.71,0 3.1,1.39 3.1,3.1 0,1.7099997 -1.39,3.0999997 -3.1,3.0999997 h -4 v 1.9 h 4 c 2.76,0 5,-2.24 5,-4.9999997 0,-2.76 -2.24,-5
 -5,-5 z" />
                     </svg>Links</li>
-                <li class="ml-tab-item"
-                    content="borders"
-                    tooltip="&emsp;&emsp;&emsp;&ensp;&emsp;Borders color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains color adjustment settings for all borders and lines on the page.">
+                <li class="ml-tab-item" content="borders"
+                    i18n="bordersTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -164,11 +131,8 @@ v 2 h 2 z M 9,8 H 7 v 2 h 2 z" />-->
                         <path d="M0 0h24v24H0z"
                               fill="none" />
                     </svg>Borders</li>
-                <li class="ml-tab-item"
-                    content="images"
-                    tooltip="&emsp;&emsp;&emsp;&ensp;Images adjustment settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains settings for the saturation and brightness adjustment of the images and pictures.">
+                <li class="ml-tab-item" content="images"
+                    i18n="imagesTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -179,12 +143,8 @@ L 14.5 12 z" />
                         <path d="M0 0h24v24H0z"
                               fill="none" />
                     </svg>Images</li>
-                <li class="ml-tab-item"
-                    content="fond-images"
-                    tooltip="&emsp;Background images adjustment settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;This tab contains settings for the background images saturation and brightness adjustment.
-&emsp;Background images are a special type of an element background fill. Such images are usually inside or behind the text.">
+                <li class="ml-tab-item" content="fond-images"
+                    i18n="backgroundImagesTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -195,12 +155,8 @@ L 14.5 12 z" />
                         <path d="M0 0h24v24H0z"
                               fill="none" />
                     </svg>Fond images</li>
-                <li class="ml-tab-item"
-                    content="scrollbars"
-                    tooltip="&emsp;&emsp;&emsp;&emsp;Scrollbars color settings
-━━━━━━━━━━━━━━━━━━━
-&emsp;Color adjustment settings for all scrollbars on the page.
-Unsupported by Firefox.">
+                <li class="ml-tab-item" content="scrollbars"
+                    i18n="scrollbarsTab" i18n-attr="tooltip" i18n-text="label">
                     <svg class="ml-tab-item-icon"
                          role="img"
                          viewBox="0 0 24 24"
@@ -270,46 +226,35 @@ Unsupported by Firefox.">
             <div id="common"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Run [Midnight Lizard] on this website&#xA;Do not forget to press [Apply] button after changing this option to apply changes on the current wibsite."
-                           for="runOnThisSite">
+                    <label class="ml-dialog-label" i18n="runOnThisSite" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="runOnThisSite" type="checkbox">Run on this website
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Restore original colors before copying content from the page"
-                           for="restoreColorsOnCopy">
+                    <label class="ml-dialog-label" i18n="restoreColorsOnCopy" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="restoreColorsOnCopy" type="checkbox">Restore original colors on copy
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Restore original colors before printing content of the page"
-                           for="restoreColorsOnPrint">
+                    <label class="ml-dialog-label" i18n="restoreColorsOnPrint" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="restoreColorsOnPrint" type="checkbox">Restore original colors on print
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Adjust browser theme to the current color scheme.&#xA;Supported only by Firefox"
-                           for="changeBrowserTheme">
+                    <label class="ml-dialog-label" i18n="changeBrowserTheme" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="changeBrowserTheme" type="checkbox">Change browser theme
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Use schedule from default settings&#xA;If you want to use single schedule for all websites then you need to specify it in the default settings."
-                           for="useDefaultSchedule">
+                    <label class="ml-dialog-label" i18n="useDefaultSchedule" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
                     </label>
                 </div>
                 <br>
                 <div id="scheduleStartHourContainer"
                      class="ml-input-container time">
-                    <label class="ml-dialog-label time"
-                           for="scheduleStartHour"
-                           title="Extension will be active on the current website only starting from this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Activation time</label>
+                    <label class="ml-dialog-label time" for="scheduleStartHour"
+                           i18n="scheduleStartHour" i18n-attr="title" i18n-text="label">Activation time</label>
                     <input class="ml-input-range setting time reverse"
                            id="scheduleStartHour"
                            type="range"
@@ -340,9 +285,8 @@ Unsupported by Firefox.">
                 </div>
                 <div id="scheduleFinishHourContainer"
                      class="ml-input-container time">
-                    <label class="ml-dialog-label time"
-                           for="scheduleFinishHour"
-                           title="Extension will be active on the current website only until this time&#xA;Page should be refreshed during the specified time lapse in order for schedule to take effect">Deactivation time</label>
+                    <label class="ml-dialog-label time" for="scheduleFinishHour"
+                           i18n="scheduleFinishHour" i18n-attr="title" i18n-text="label">Deactivation time</label>
                     <input class="ml-input-range setting time direct"
                            id="scheduleFinishHour"
                            type="range"
@@ -372,9 +316,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="blueFilter"
-                           title="Blue filter intensity&#xA;Removes blue light from the page and replces it with red light">Blue filter intensity</label>
+                    <label class="ml-dialog-label" for="blueFilter"
+                           i18n="blueFilter" i18n-attr="title" i18n-text="label">Blue filter intensity</label>
                     <input class="ml-input-range setting percent"
                            id="blueFilter"
                            type="range"
@@ -419,157 +362,91 @@ Unsupported by Firefox.">
             <div id="background"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundSaturationLimit"
-                           title="Background saturation limit">Saturation limit</label>
+                    <label class="ml-dialog-label" for="backgroundSaturationLimit"
+                           i18n="backgroundSaturationLimit" i18n-attr="title" i18n-text="label">Saturation limit</label>
                     <input class="ml-input-range setting percent"
-                           id="backgroundSaturationLimit"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           list="from-0-to-100-percent">
+                           id="backgroundSaturationLimit" type="range"
+                           min="0" max="100" step="1" list="from-0-to-100-percent">
                     <svg for="backgroundSaturationLimit"
-                         role="button"
-                         class="ml-input-range-icon low"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                         role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
                         />
                     </svg>
                     <svg for="backgroundSaturationLimit"
-                         role="button"
-                         class="ml-input-range-icon high"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                         role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M18.7 12.4c-.28-.16-.57-.29-.86-.4.29-.11.58-.24.86-.4 1.92-1.11 2.99-3.12 3-5.19-1.79-1.03-4.07-1.11-6 0-.28.16-.54.35-.78.54.05-.31.08-.63.08-.95 0-2.22-1.21-4.15-3-5.19C10.21 1.85 9 3.78 9 6c0 .32.03.64.08.95-.24-.2-.5-.39-.78-.55-1.92-1.11-4.2-1.03-6 0 0 2.07 1.07 4.08 3 5.19.28.16.57.29.86.4-.29.11-.58.24-.86.4-1.92 1.11-2.99 3.12-3 5.19 1.79 1.03 4.07 1.11 6 0 .28-.16.54-.35.78-.54-.05.32-.08.64-.08.96 0 2.22 1.21 4.15 3 5.19 1.79-1.04 3-2.97 3-5.19 0-.32-.03-.64-.08-.95.24.2.5.38.78.54 1.92 1.11 4.2 1.03 6 0-.01-2.07-1.08-4.08-3-5.19zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
                         />
-                        <ellipse rx="3"
-                                 ry="3"
-                                 cy="12"
-                                 cx="12" />
+                        <ellipse rx="3" ry="3" cy="12" cx="12" />
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundContrast"
-                           title="Minimal difference between similar backgrounds">Contrast</label>
+                    <label class="ml-dialog-label" for="backgroundContrast"
+                           i18n="backgroundContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
-                           id="backgroundContrast"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           list="from-0-to-100-percent">
-                    <svg for="backgroundContrast"
-                         role="button"
-                         class="ml-input-range-icon low"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                           id="backgroundContrast" type="range"
+                           min="0" max="100" step="1" list="from-0-to-100-percent">
+                    <svg for="backgroundContrast" role="button" class="ml-input-range-icon low" 
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
                         />
-                        <ellipse rx="6"
-                                 ry="6"
-                                 cy="12"
-                                 cx="12"
-                                 fill-opacity="0.1" />
-                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z"
-                              fill-opacity="0.2" />
+                        <ellipse rx="6" ry="6" cy="12" cx="12" fill-opacity="0.1" />
+                        <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" fill-opacity="0.2" />
                     </svg>
-                    <svg for="backgroundContrast"
-                         role="button"
-                         class="ml-input-range-icon high"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    <svg for="backgroundContrast" role="button" class="ml-input-range-icon high" 
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
                         />
                         <path d="M12,1 L12,6 A5,5 1 1,0 12,18 z" />
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundLightnessLimit"
-                           title="Background brightness limit">Brightness limit</label>
-                    <input class="ml-input-range setting percent"
-                           id="backgroundLightnessLimit"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           list="from-0-to-100-percent">
-                    <svg for="backgroundLightnessLimit"
-                         role="button"
-                         class="ml-input-range-icon low"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    <label class="ml-dialog-label" for="backgroundLightnessLimit"
+                           i18n="backgroundLightnessLimit" i18n-attr="title" i18n-text="label">Brightness limit</label>
+                    <input class="ml-input-range setting percent" id="backgroundLightnessLimit"
+                           type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+                    <svg for="backgroundLightnessLimit" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"
                         />
                     </svg>
-                    <svg for="backgroundLightnessLimit"
-                         role="button"
-                         class="ml-input-range-icon high"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    <svg for="backgroundLightnessLimit" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
                         />
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundGraySaturation"
-                           title="Saturation of the gray backgrounds after applying selected default hue">Gray background saturation</label>
-                    <input class="ml-input-range setting percent"
-                           id="backgroundGraySaturation"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           list="from-0-to-100-percent">
-                    <svg for="backgroundGraySaturation"
-                         role="button"
-                         class="ml-input-range-icon low"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    <label class="ml-dialog-label" for="backgroundGraySaturation"
+                           i18n="backgroundGraySaturation" i18n-attr="title" i18n-text="label">Gray background saturation</label>
+                    <input class="ml-input-range setting percent" id="backgroundGraySaturation"
+                           type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
+                    <svg for="backgroundGraySaturation" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path fill-rule="evenodd"
                               d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z m8.5,-11c-2.21,0 -4,1.79 -4,4s1.79,4 4,4s4,-1.79 4,-4s-1.79,-4 -4,-4z"
                         />
                     </svg>
-                    <svg for="backgroundGraySaturation"
-                         role="button"
-                         class="ml-input-range-icon high"
-                         viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
+                    <svg for="backgroundGraySaturation" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
                         />
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundHueGravity"
-                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
-                    <input class="ml-input-range setting percent"
-                           id="backgroundHueGravity"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           list="from-0-to-100-percent">
+                    <label class="ml-dialog-label" for="backgroundHueGravity"
+                           i18n="backgroundHueGravity" i18n-attr="title" i18n-text="label">Default hue gravity</label>
+                    <input class="ml-input-range setting percent" id="backgroundHueGravity"
+                           type="range" min="0" max="100" step="1" list="from-0-to-100-percent">
                     <svg for="backgroundHueGravity" role="button" class="ml-input-range-icon low"
                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <path d="M0 0h24v24H0z" fill="none" />
@@ -588,73 +465,53 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="backgroundGrayHue"
-                           title="Hue to be used to increase saturation of the gray background colors">Default hue</label>
+                    <label class="ml-dialog-label" for="backgroundGrayHue"
+                           i18n="backgroundGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
-                        Replace all<input class="ml-checkbox setting" id="backgroundReplaceAllHues" type="checkbox">
+                           i18n="backgroundReplaceAllHues" i18n-attr="title" i18n-text="label">Replace all
+                        <input class="ml-checkbox setting" id="backgroundReplaceAllHues" type="checkbox">
                     </label>
                     <br>
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="backgroundGrayHue"
                             display-color-on="backgroundHue">
-                        <option value="4"
-                                label="Red"
+                        <option value="4" label="Red"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(244, 67, 54);">Red</option>
-                        <option value="340"
-                                label="Pink"
+                        <option value="340" label="Pink"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(233, 30, 99);">Pink</option>
-                        <option value="291"
-                                label="Purple"
+                        <option value="291" label="Purple"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(156, 39, 176);">Purple</option>
-                        <option value="262"
-                                label="Deep Purple"
+                        <option value="262" label="Deep Purple"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(103, 58, 183);">Deep Purple</option>
-                        <option value="231"
-                                label="Indigo"
+                        <option value="231" label="Indigo"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(63, 81, 181);">Indigo</option>
-                        <option value="207"
-                                label="Blue"
+                        <option value="207" label="Blue"
                                 style="color: rgb(255, 255, 255); background-color: rgb(33, 150, 243);">Blue</option>
-                        <option value="199"
-                                label="Light Blue"
+                        <option value="199" label="Light Blue"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(3, 169, 244);">Light Blue</option>
-                        <option value="187"
-                                label="Cyan"
+                        <option value="187" label="Cyan"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(0, 188, 212);">Cyan</option>
-                        <option value="174"
-                                label="Teal"
+                        <option value="174" label="Teal"
                                 style="color: rgb(255, 255, 255); background-color: rgb(0, 150, 136);">Teal</option>
-                        <option value="122"
-                                label="Green"
+                        <option value="122" label="Green"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(76, 175, 80);">Green</option>
-                        <option value="88"
-                                label="Light Green"
+                        <option value="88" label="Light Green"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(139, 195, 74);">Light Green</option>
-                        <option value="66"
-                                label="Lime"
+                        <option value="66" label="Lime"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(205, 220, 57);">Lime</option>
-                        <option value="54"
-                                label="Yellow"
+                        <option value="54" label="Yellow"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 235, 59);">Yellow</option>
-                        <option value="45"
-                                label="Amber"
+                        <option value="45" label="Amber"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 193, 7);">Amber</option>
-                        <option value="36"
-                                label="Orange"
+                        <option value="36" label="Orange"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(255, 152, 0);">Orange</option>
-                        <option value="14"
-                                label="Deep Orange"
+                        <option value="14" label="Deep Orange"
                                 style="color: rgb(255, 255, 255); background-color: rgb(255, 87, 34);">Deep Orange</option>
-                        <option value="16"
-                                label="Brown"
+                        <option value="16" label="Brown"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(121, 85, 72);">Brown</option>
-                        <option value="0"
-                                label="Grey"
+                        <option value="0" label="Grey"
                                 style="color: rgba(0, 0, 0, 0.870588); background-color: rgb(158, 158, 158);">Grey</option>
-                        <option value="200"
-                                label="Blue Grey"
+                        <option value="200" label="Blue Grey"
                                 style="color: rgba(255, 255, 255, 0.870588); background-color: rgb(96, 125, 139);">Blue Grey</option>
                     </select>
                 </div>
@@ -663,9 +520,8 @@ Unsupported by Firefox.">
             <div id="button"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="buttonSaturationLimit"
-                           title="Button background saturation limit">Saturation limit</label>
+                    <label class="ml-dialog-label" for="buttonSaturationLimit"
+                           i18n="buttonSaturationLimit" i18n-attr="title" i18n-text="label">Saturation limit</label>
                     <input class="ml-input-range setting percent"
                            id="buttonSaturationLimit"
                            type="range"
@@ -699,9 +555,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="buttonContrast"
-                           title="Minimal difference between similar button backgrounds">Contrast</label>
+                    <label class="ml-dialog-label" for="buttonContrast"
+                           i18n="buttonContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
                            id="buttonContrast"
                            type="range"
@@ -739,9 +594,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="buttonLightnessLimit"
-                           title="Button background brightness limit">Brightness limit</label>
+                    <label class="ml-dialog-label" for="buttonLightnessLimit"
+                           i18n="buttonLightnessLimit" i18n-attr="title" i18n-text="label">Brightness limit</label>
                     <input class="ml-input-range setting percent"
                            id="buttonLightnessLimit"
                            type="range"
@@ -771,9 +625,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="buttonGraySaturation"
-                           title="Saturation of the gray button backgrounds after applying selected default hue">Gray button saturation</label>
+                    <label class="ml-dialog-label" for="buttonGraySaturation"
+                           i18n="buttonGraySaturation" i18n-attr="title" i18n-text="label">Gray button saturation</label>
                     <input class="ml-input-range setting percent"
                            id="buttonGraySaturation"
                            type="range"
@@ -804,9 +657,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="buttonHueGravity"
-                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <label class="ml-dialog-label" for="buttonHueGravity"
+                           i18n="buttonHueGravity" i18n-attr="title" i18n-text="label">Default hue gravity</label>
                     <input class="ml-input-range setting percent"
                            id="buttonHueGravity"
                            type="range"
@@ -832,11 +684,10 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="buttonGrayHue"
-                           title="Hue to be used to increase saturation of the gray button background colors">Default hue</label>
+                    <label class="ml-dialog-label" for="buttonGrayHue"
+                           i18n="buttonGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                           title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
+                           i18n="buttonReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="buttonReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -905,9 +756,8 @@ Unsupported by Firefox.">
             <div id="text"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="textSaturationLimit"
-                           title="Text saturation limit">Saturation limit</label>
+                    <label class="ml-dialog-label" for="textSaturationLimit"
+                           i18n="textSaturationLimit" i18n-attr="title" i18n-text="label">Saturation limit</label>
                     <input class="ml-input-range setting percent"
                            id="textSaturationLimit"
                            type="range"
@@ -941,9 +791,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="textContrast"
-                           title="Minimal difference between text and background brightness">Contrast</label>
+                    <label class="ml-dialog-label" for="textContrast"
+                           i18n="textContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
                            id="textContrast"
                            type="range"
@@ -982,9 +831,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="textLightnessLimit"
-                           title="Limit of maximum text brightness">Brightness limit</label>
+                    <label class="ml-dialog-label" for="textLightnessLimit"
+                           i18n="textLightnessLimit" i18n-attr="title" i18n-text="label">Brightness limit</label>
                     <input class="ml-input-range setting percent"
                            id="textLightnessLimit"
                            type="range"
@@ -1014,9 +862,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="textGraySaturation"
-                           title="Saturation of the gray text after applying selected default hue">Gray text saturation</label>
+                    <label class="ml-dialog-label" for="textGraySaturation"
+                           i18n="textGraySaturation" i18n-attr="title" i18n-text="label">Gray text saturation</label>
                     <input class="ml-input-range setting percent"
                            id="textGraySaturation"
                            type="range"
@@ -1047,9 +894,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="textHueGravity"
-                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <label class="ml-dialog-label" for="textHueGravity"
+                           i18n="textHueGravity" i18n-attr="title" i18n-text="label">Default hue gravity</label>
                     <input class="ml-input-range setting percent"
                            id="textHueGravity"
                            type="range"
@@ -1075,11 +921,9 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="textGrayHue"
-                           title="Hue to be used to increase saturation of the gray text colors">Default hue</label>
-                    <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
+                    <label class="ml-dialog-label" for="textGrayHue"
+                           i18n="textGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
+                    <label class="ml-replace-all-hues-label" i18n="textReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="textReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -1146,7 +990,9 @@ Unsupported by Firefox.">
                     </select>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="textSelectionHue" title="Text selection hue">Text <span id="selection">selection</span> hue</label>
+                    <label class="ml-dialog-label" for="textSelectionHue" i18n="textSelectionHue" i18n-attr="title" i18n-html="label">
+                        Text <span id="selection">selection</span> hue
+                    </label>
                     <br>
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="textSelectionHue" display-color-on="txtSelHue">
@@ -1214,9 +1060,8 @@ Unsupported by Firefox.">
                  class="ml-tab-content">
                 <br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="linkSaturationLimit"
-                           title="Links saturation limit">Saturation limit</label>
+                    <label class="ml-dialog-label" for="linkSaturationLimit"
+                           i18n="linkSaturationLimit" i18n-attr="title" i18n-text="label">Saturation limit</label>
                     <input class="ml-input-range setting percent"
                            id="linkSaturationLimit"
                            type="range"
@@ -1250,9 +1095,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="linkContrast"
-                           title="Minimal difference between link and background brightness">Contrast</label>
+                    <label class="ml-dialog-label" for="linkContrast"
+                           i18n="linkContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
                            id="linkContrast"
                            type="range"
@@ -1290,9 +1134,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="linkLightnessLimit"
-                           title="Limit of maximum link brightness">Brightness limit</label>
+                    <label class="ml-dialog-label" for="linkLightnessLimit"
+                           i18n="linkLightnessLimit" i18n-attr="title" i18n-text="label">Brightness limit</label>
                     <input class="ml-input-range setting percent"
                            id="linkLightnessLimit"
                            type="range"
@@ -1322,9 +1165,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="linkDefaultSaturation"
-                           title="Saturation of the links with default link color and for visited links after applying selected hues">Gray link saturation</label>
+                    <label class="ml-dialog-label" for="linkDefaultSaturation"
+                           i18n="linkDefaultSaturation" i18n-attr="title" i18n-text="label">Gray link saturation</label>
                     <input class="ml-input-range setting percent"
                            id="linkDefaultSaturation"
                            type="range"
@@ -1355,9 +1197,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="linkHueGravity"
-                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <label class="ml-dialog-label" for="linkHueGravity"
+                           i18n="linkHueGravity" i18n-attr="title" i18n-text="label">Default hue gravity</label>
                     <input class="ml-input-range setting percent"
                            id="linkHueGravity"
                            type="range"
@@ -1383,11 +1224,10 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="linkDefaultHue"
-                           title="Hue to be used to replace the default link hue">Default link hue</label>
+                    <label class="ml-dialog-label" for="linkDefaultHue"
+                           i18n="linkDefaultHue" i18n-attr="title" i18n-text="label">Default link hue</label>
                     <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides gray hue gravity.">
+                           i18n="linkReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="linkReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -1454,9 +1294,8 @@ Unsupported by Firefox.">
                     </select>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="linkVisitedHue"
-                           title="Visited link hue">Visited link hue</label>
+                    <label class="ml-dialog-label" for="linkVisitedHue"
+                           i18n="linkVisitedHue" i18n-attr="title" i18n-text="label">Visited link hue</label>
                     <br>
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="linkVisitedHue"
@@ -1524,9 +1363,8 @@ Unsupported by Firefox.">
             <div id="borders"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="borderSaturationLimit"
-                           title="Border saturation limit">Saturation limit</label>
+                    <label class="ml-dialog-label" for="borderSaturationLimit"
+                           i18n="borderSaturationLimit" i18n-attr="title" i18n-text="label">Saturation limit</label>
                     <input class="ml-input-range setting percent"
                            id="borderSaturationLimit"
                            type="range"
@@ -1560,9 +1398,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="borderContrast"
-                           title="Minimal difference between border and background brightness">Contrast</label>
+                    <label class="ml-dialog-label" for="borderContrast"
+                           i18n="borderContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
                            id="borderContrast"
                            type="range"
@@ -1600,9 +1437,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="borderLightnessLimit"
-                           title="Limit of maximum border brightness">Brightness limit</label>
+                    <label class="ml-dialog-label" for="borderLightnessLimit"
+                           i18n="borderLightnessLimit" i18n-attr="title" i18n-text="label">Brightness limit</label>
                     <input class="ml-input-range setting percent"
                            id="borderLightnessLimit"
                            type="range"
@@ -1632,9 +1468,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="borderGraySaturation"
-                           title="Saturation of the gray borders after applying selected default hue">Gray borders saturation</label>
+                    <label class="ml-dialog-label" for="borderGraySaturation"
+                           i18n="borderGraySaturation" i18n-attr="title" i18n-text="label">Gray borders saturation</label>
                     <input class="ml-input-range setting percent"
                            id="borderGraySaturation"
                            type="range"
@@ -1665,9 +1500,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="borderHueGravity"
-                           title="Determines how all other hues will be affected by the selected default hue.&#xA;The stronger gravity, the closer all other hues will be moved towards the selected default hue.&#xA;Saturation limit will be used for affected hues.&#xA;Does not work if [Replace all] hues is checked.&#xA;[Replace all] hues works faster and should be prefered over 100% gravity.">Default hue gravity</label>
+                    <label class="ml-dialog-label" for="borderHueGravity"
+                           i18n="borderHueGravity" i18n-attr="title" i18n-text="label">Default hue gravity</label>
                     <input class="ml-input-range setting percent"
                            id="borderHueGravity"
                            type="range"
@@ -1693,11 +1527,10 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="borderGrayHue"
-                           title="Hue to be used to increase saturation of the gray border colors">Default hue</label>
+                    <label class="ml-dialog-label" for="borderGrayHue"
+                           i18n="borderGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
-                            title="Replace all original hues with a selected one.&#xA;Otherwise only gray, black and white hues will be replaced.&#xA;Gray saturation will be used for replaced hues.&#xA;Completely overrides default hue gravity.">
+                           i18n="borderReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="borderReplaceAllHues" type="checkbox">
                     </label>
                     <br>
@@ -1767,9 +1600,8 @@ Unsupported by Firefox.">
             <div id="images"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="imageSaturationLimit"
-                           title="Set saturation of images to this value">Saturation</label>
+                    <label class="ml-dialog-label" for="imageSaturationLimit"
+                           i18n="imageSaturationLimit" i18n-attr="title" i18n-text="label">Saturation</label>
                     <input class="ml-input-range setting percent"
                            id="imageSaturationLimit"
                            type="range"
@@ -1803,9 +1635,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="imageLightnessLimit"
-                           title="Limit of image brightness">Brightness</label>
+                    <label class="ml-dialog-label" for="imageLightnessLimit"
+                           i18n="imageLightnessLimit" i18n-attr="title" i18n-text="label">Brightness</label>
                     <input class="ml-input-range setting percent"
                            id="imageLightnessLimit"
                            type="range"
@@ -1835,15 +1666,13 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Remove all efects from image when you hover mouse on it"
-                           for="useImageHoverAnimation">
+                    <label class="ml-dialog-label" i18n="useImageHoverAnimation" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="useImageHoverAnimation" type="checkbox">Use image hover animation
                     </label>
                 </div>
                 <div class="ml-input-container example">
                     <label class="ml-dialog-label"
-                           title="Image example">Image example</label>
+                           i18n="imageExample" i18n-attr="title" i18n-text="label">Image example</label>
                     <img class="ml-image-example"
                          src="../img/seven_colors_flower.jpg" />
                 </div>
@@ -1851,9 +1680,8 @@ Unsupported by Firefox.">
             <div id="fond-images"
                  class="ml-tab-content"><br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundImageSaturationLimit"
-                           title="Saturation of background images">Saturation</label>
+                    <label class="ml-dialog-label" for="backgroundImageSaturationLimit"
+                           i18n="" i18n-attr="title" i18n-text="label">Saturation</label>
                     <input class="ml-input-range setting percent"
                            id="backgroundImageSaturationLimit"
                            type="range"
@@ -1887,9 +1715,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="backgroundImageLightnessLimit"
-                           title="Limit of background image lightness">Brightness</label>
+                    <label class="ml-dialog-label" for="backgroundImageLightnessLimit"
+                           i18n="backgroundImageLightnessLimit" i18n-attr="title" i18n-text="label">Brightness</label>
                     <input class="ml-input-range setting percent"
                            id="backgroundImageLightnessLimit"
                            type="range"
@@ -1919,19 +1746,18 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container example">
-                    <label class="ml-dialog-label"
-                           title="Background image example">Background image example</label>
+                    <label class="ml-dialog-label" i18n="backgroundImageExample" 
+                           i18n-attr="title" i18n-text="label">Background image example</label>
                     <div class="ml-bg-image-example ml-image-example"
-                         title="If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly.">Example</div>
+                         i18n="backgroundImageExampleText" i18n-attr="title" i18n-text="label">Example</div>
                 </div>
             </div>
             <div id="scrollbars"
                  class="ml-tab-content">
                 <br>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="scrollbarSaturationLimit"
-                           title="Scrollbar thumb saturation">Saturation</label>
+                    <label class="ml-dialog-label" for="scrollbarSaturationLimit"
+                           i18n="scrollbarSaturationLimit" i18n-attr="title" i18n-text="label">Saturation</label>
                     <input class="ml-input-range setting percent"
                            id="scrollbarSaturationLimit"
                            type="range"
@@ -1960,9 +1786,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="scrollbarContrast"
-                           title="Minimal difference between scrollbar thumb and background brightness">Contrast</label>
+                    <label class="ml-dialog-label" for="scrollbarContrast"
+                           i18n="scrollbarContrast" i18n-attr="title" i18n-text="label">Contrast</label>
                     <input class="ml-input-range setting percent"
                            id="scrollbarContrast"
                            type="range"
@@ -2000,9 +1825,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container percent">
-                    <label class="ml-dialog-label"
-                           for="scrollbarLightnessLimit"
-                           title="Scrollbar thumb brightness">Brightness</label>
+                    <label class="ml-dialog-label" for="scrollbarLightnessLimit"
+                           i18n="scrollbarLightnessLimit" i18n-attr="title" i18n-text="label">Brightness</label>
                     <input class="ml-input-range setting percent"
                            id="scrollbarLightnessLimit"
                            type="range"
@@ -2033,7 +1857,7 @@ Unsupported by Firefox.">
                 </div>
                 <div class="ml-input-container percent">
                     <label class="ml-dialog-label size" for="scrollbarSize"
-                           title="Scrollbar size">Size</label>
+                           i18n="scrollbarSize" i18n-attr="title" i18n-text="label">Size</label>
                     <input class="ml-input-range setting percent"
                            id="scrollbarSize" type="range"
                            min="0" max="50" step="1" list="scrollbar-size">
@@ -2050,9 +1874,8 @@ Unsupported by Firefox.">
                     </svg>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="scrollbarGrayHue"
-                           title="Scrollbar thumb and buttons hue">Scrollbar hue</label>
+                    <label class="ml-dialog-label" for="scrollbarGrayHue"
+                           i18n="scrollbarGrayHue" i18n-attr="title" i18n-text="label">Scrollbar hue</label>
                     <br>
                     <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
                             id="scrollbarGrayHue"
@@ -2117,8 +1940,6 @@ Unsupported by Firefox.">
                     </select>
                 </div>
                 <div class="ml-input-container">
-                    <!-- <label class="ml-dialog-label"
-                           title="Scrollbar example">Scrollbar example</label> -->
                     <div class="ml-scrollbar-example">
                         <b>Scrollbar example</b>
                         <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -2140,25 +1961,23 @@ Unsupported by Firefox.">
                  class="ml-tab-content">
                 <br>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           title="Sync [Midnight Lizard] settings across all your devices where this option is also checked.&#xA;When checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.&#xA;You also need to enable [Sync] in the [Chrome] settings in order for [Midnight Lizard] settings synchronization to work."
-                           for="syncSettings">
+                    <label class="ml-dialog-label" i18n="syncSettings" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox" id="syncSettings" type="checkbox">Sync settings across your devices
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="colorSchemeForEdit"
-                           title="Choose color scheme for edit.&#xA;You can create a new scheme and update or delete existing color scheme.">Color scheme for edit</label>
+                    <label class="ml-dialog-label" for="colorSchemeForEdit"
+                           i18n="colorSchemeForEdit" i18n-attr="title" i18n-text="label">Color scheme for edit</label>
                     <br>
                     <select id="colorSchemeForEdit"
                             class="ml-dialog-input ml-dialog-input-text">
                     </select>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label"
-                           for="colorSchemeName"
-                           title="You can edit color scheme name before to save">Color scheme name</label>
+                    <label class="ml-dialog-label" for="colorSchemeName"
+                           i18n="colorSchemeName" i18n-attr="title" i18n-text="label">
+                        Color scheme name
+                    </label>
                     <br>
                     <input id="newColorSchemeName"
                            type="text"
@@ -2166,115 +1985,87 @@ Unsupported by Firefox.">
                            maxlength="32">
                 </div>
                 <div class="ml-command-container">
-                    <button id="deleteColorSchemeBtn"
-                            title="Delete color scheme selected for edit"
-                            class="ml-helio-button red">
+                    <button id="deleteColorSchemeBtn" class="ml-helio-button red"
+                            i18n="deleteColorSchemeBtn" i18n-attr="title" i18n-text="label">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
                             <path d="M0 0h24v24H0z" fill="none" />
-                        </svg>
-                        Delete
+                        </svg>Delete
                     </button>
-                    <button id="saveColorSchemeBtn"
-                            title="Update selected color scheme with current popup settings"
-                            class="ml-helio-button blue">
+                    <button id="saveColorSchemeBtn" class="ml-helio-button blue"
+                            i18n="saveColorSchemeBtn" i18n-attr="title" i18n-text="label">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0h24v24H0z" fill="none" />
                             <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
-                        </svg>&nbsp;
-                        <!--⁕*⁎⁙⁛⁜※⁂•⚫⚪⭕🌑🔴✏✳✴❄❇📎🚩🆕⬆📄📝✎-->
-                        Save
+                        </svg>&nbsp;Save
                     </button>
                 </div>
                 <div class="ml-command-container">
-                    <button id="exportColorSchemeBtn"
-                            title="Export current color scheme as selected color scheme with specified name to file"
-                            class="ml-helio-button orange">
+                    <button id="exportColorSchemeBtn" class="ml-helio-button orange"
+                            i18n="exportColorSchemeBtn" i18n-attr="title" i18n-text="label">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
                             <path d="M0 0h24v24H0z" fill="none" />
-                        </svg>
-                        Export
+                        </svg>Export
                     </button>
-                    <label id="importColorSchemeBtn" role="button"
-                           title="Import color schemes from file"
-                           class="ml-helio-button green">
+                    <label id="importColorSchemeBtn" role="button" class="ml-helio-button green"
+                           i18n="importColorSchemeBtn" i18n-attr="title" i18n-text="label">
                         <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0h24v24H0z" fill="none" />
                             <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
-                        </svg>
+                        </svg>Import
                         <input id="importColorSchemeFileInput" type="file" accept=".json" style="display: none" multiple>
-                        Import
                     </label>
                 </div>
             </div>
             <div class="ml-right-pane">
                 <ul class="ml-tab right">
-                    <li class="ml-tab-item-separator">
-                        &nbsp;</li>
-                    <li class="ml-tab-item"
-                        content="edit-schemes"
-                        tooltip="&emsp;&emsp;&emsp;&emsp;Color schemes editing
-━━━━━━━━━━━━━━━━━━━
-&emsp;Settings currently applied on the popup can be used to create a new color scheme or update existing one. If you create a new color scheme it will be available on all other websites.
-&emsp;Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.
-&emsp;The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.
-&emsp;Find more examples under the question mark in the popup top-left corner.">Color schemes
-                        <svg class="ml-tab-item-icon"
-                             role="img"
-                             viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0h24v24H0z"
-                                  fill="none" />
-                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
-                            />
+                    <li class="ml-tab-item-separator">&nbsp;</li>
+                    <li class="ml-tab-item" content="edit-schemes"
+                        i18n="editSchemesTab" i18n-attr="tooltip" i18n-text="label">Color schemes
+                        <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
                         </svg>
                     </li>
-                    <li class="ml-tab-item-separator">
-                        &nbsp;</li>
+                    <li class="ml-tab-item-separator">&nbsp;</li>
                 </ul>
                 <div class="ml-dialog-commands">
-                    <label class="ml-dialog-label"
-                           for="colorScheme"
-                           title="Choose your favorite color scheme">Current color scheme</label>
+                    <label class="ml-dialog-label" for="colorScheme"
+                           i18n="currentColorScheme" i18n-attr="title" i18n-text="label">
+                        Current color scheme
+                    </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text"
-                            id="colorScheme">
-                    </select>
+                    <select class="ml-dialog-input ml-dialog-input-text" id="colorScheme"></select>
                     <div class="ml-tool-box">
-                        <button id="forgetThisSiteBtn"
-                                class="ml-helio-button orange"
-                                title="Forget current website settings">
-                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/>
-                            <path d="M0 0h24v24H0z" fill="none" />
-                        </svg>This
-                    </button>
+                        <button id="forgetThisSiteBtn" class="ml-helio-button orange"
+                                i18n="forgetThisSiteBtn" i18n-attr="title" i18n-text="label">
+                            <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/>
+                                <path d="M0 0h24v24H0z" fill="none" />
+                            </svg>This
+                        </button>
                         <div class="ml-tool-box-separator"></div>
-                        <button id="forgetAllSitesBtn"
-                                class="ml-helio-button orange"
-                                title="Forget all customizations for all websites">
-                        <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
-                        </svg>All
-                    </button>
+                        <button id="forgetAllSitesBtn" class="ml-helio-button orange"
+                                i18n="forgetAllSitesBtn" i18n-attr="title" i18n-text="label">
+                            <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>All
+                        </button>
                     </div>
-                    <button id="setAsDefaultBtn"
-                            title="Set current settings as a default for all websites w/o custom settings"
-                            class="ml-helio-button blue">
+                    <button id="setAsDefaultBtn" class="ml-helio-button blue"
+                            i18n="setAsDefaultBtn" i18n-attr="title" i18n-text="label">
                         Set as default
                     </button>
                     <br>
-                    <button id="applyBtn"
-                            title="Apply and save current settings for this site"
-                            class="ml-helio-button green">
+                    <button id="applyBtn" class="ml-helio-button green"
+                            i18n="applyBtn" i18n-attr="title" i18n-text="label">
                         Apply
                     </button>
                     <br>
-                    <button id="closeBtn"
-                            title="Close popup and discard all unsaved changes"
-                            class="ml-helio-button red">
+                    <button id="closeBtn" class="ml-helio-button red"
+                            i18n="closeBtn" i18n-attr="title" i18n-text="label">
                         Close
                     </button>
                 </div>
@@ -2332,22 +2123,17 @@ Unsupported by Firefox.">
                 </a>
             </div>
             <div class="ml-fotter-separator"></div>
-            <div class="ml-fotter-icon-container right"
-                 id="rate-link"
-                 tooltip="Rate this extension">
+            <div class="ml-fotter-icon-container right" id="rate-link" i18n="rateLink" i18n-attr="tooltip">
                 <a target="_blank"
                    href="https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews">
                     <svg class="ml-fotter-icon rate-icon"
                          viewBox="0 0 18 18">
                         <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z" />
-                        <path d="M0 0h18v18H0z"
-                              fill="none" />
+                        <path d="M0 0h18v18H0z" fill="none" />
                     </svg>
                 </a>
             </div>
-            <div class="ml-fotter-icon-container right"
-                 tooltip="Send email to the developer"
-                 id="email-link">
+            <div class="ml-fotter-icon-container right" id="email-link" i18n="emailLink" i18n-attr="tooltip">
                 <a target="_blank" href="mailto:midnight.lizard.extension@gmail.com">
                     <svg class="ml-fotter-icon email-icon"
                          viewBox="0 0 24 24">
@@ -2358,9 +2144,7 @@ Unsupported by Firefox.">
                     </svg>
                 </a>
             </div>
-            <div class="ml-fotter-icon-container right"
-                 id="bug-report-link"
-                 tooltip="Report a bug">
+            <div class="ml-fotter-icon-container right" id="bug-report-link" i18n="bugReportLink" i18n-attr="tooltip">
                 <a target="_blank" href="https://groups.google.com/forum/#!newtopic/midnight-lizard-support">
                     <svg class="ml-fotter-icon bug-report-icon"
                          viewBox="0 0 24 24">
@@ -2371,24 +2155,17 @@ Unsupported by Firefox.">
                     </svg>
                 </a>
             </div>
-            <div id="change-log-link"
-                 tooltip="Changelog"
-                 class="ml-fotter-icon-container right">
+            <div id="change-log-link" class="ml-fotter-icon-container right" i18n="changeLogLink" i18n-attr="tooltip">
                 <a target="_blank" href="../ui/change-log.html">
-                    <svg class="ml-fotter-icon change-log-icon"
-                         viewBox="0 0 24 24">
-                        <path d="M0 0h24v24H0z"
-                              fill="none" />
-                        <path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"
-                        />
+                    <svg class="ml-fotter-icon change-log-icon" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"/>
                     </svg>
                 </a>
             </div>
         </div>
     </div>
-    <div class="ml-dialog-error"
-         style="display:none"
-         id="dialogError">
+    <div class="ml-dialog-error" style="display:none" id="dialogError">
         Midnight Lizard cannot connect to this page<br/> <span>because of one of the following reasons</span> <br/><br/>
         <ul>
             <li>Web browser does not allow to run extensions on this page<br/>(e.g. Web Store, Settings, New Tab)</li><br/>

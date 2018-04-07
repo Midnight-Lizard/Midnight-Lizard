@@ -1,10 +1,8 @@
 {
     "appDesc": {
-        "message": "Dostosuje kontrast, jasnośc i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny.",
-        "description": "The description of the application, displayed in the web store."
+        "message": "Dostosuje kontrast, jasnośc i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny."
     },
     "globalToggleKey": {
-        "message": "Globalny przełącznik rozszerzenia",
-        "description": "Global extension toggle key description"
+        "message": "Globalny przełącznik rozszerzenia"
     }
 }
