@@ -134,7 +134,9 @@ namespace MidnightLizard.Popup
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {
                         const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
-                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") + `\nShortcut: ${globalToggleCommand.shortcut}`);
+                        isEnabledSwitch.setAttribute("tooltip",
+                            isEnabledSwitch.getAttribute("tooltip") +
+                            `\n${this._i18n.getMessage("shortcut_text_lable")}: ${globalToggleCommand.shortcut}`);
                     }
                 })
                 .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));

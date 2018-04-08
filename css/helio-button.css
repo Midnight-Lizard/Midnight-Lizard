@@ -10,17 +10,24 @@
     border: none;
     font: normal normal bold 14px Arial, Helvetica, sans-serif;
     text-shadow: 0 0 1px rgba(0,0,0,1);
-    padding: 1px 6px;
+    padding: 1px 0px;
     vertical-align: middle;
     color: rgb(255, 255, 255);
 }
 
+.ml-helio-button.icon-button{padding: 1px 0px 1px 20px;}
+
+label.ml-helio-button.icon-button
+{
+    padding: 0px;
+    line-height: 30px;
+    text-indent: 20px;
+}
+
 label.ml-helio-button
 {
-    
-padding: 0px;
-    
-line-height: 30px;
+    padding: 0px;
+    line-height: 30px;
 }
 
 .ml-helio-button:not(:disabled)

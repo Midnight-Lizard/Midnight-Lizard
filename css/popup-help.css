@@ -14,8 +14,8 @@
     font-size: 15px;
     font-weight: normal;
     z-index: 999;
-    word-wrap: normal;
-    white-space: pre-wrap;
+    /* word-wrap: normal; */
+    white-space: pre-line;
     text-align: justify;
     opacity: 0;
     transition-property: opacity;
@@ -68,10 +68,10 @@
 }
 
 #help:after {left: 2px;bottom: -19px;}
-#help:before {left: -5px;white-space: nowrap;bottom: -56px;}
+#help:before {left: -5px;white-space: nowrap;top: 41px;}
 
 .ml-host-state:after {left: 4px;bottom: -19px;}
-.ml-host-state:before {left: -105px;white-space: pre;bottom: -73px;}
+.ml-host-state:before {left: -105px;white-space: pre;top: 37px;}
 
 #host-name {
     position: relative;
@@ -84,11 +84,13 @@
 
 #host-name:before {
     left: -12px;
-    bottom: -174px;
-    white-space: pre;
+    top: 38px;
+    white-space: pre-line;
+    width: 225px;
+    text-align: justify;
 }
 
-#isEnabledSwitch:before {right: 0px;bottom: -70px;white-space: pre;}
+#isEnabledSwitch:before {right: 0px;top: 42px;white-space: pre;}
 #isEnabledSwitch:after {right: 20px;bottom: -16px;}
 
 #rate-link:before {/* right: 15px; */}

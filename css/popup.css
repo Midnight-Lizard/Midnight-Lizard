@@ -148,12 +148,9 @@ body {
 }
 
 .ml-replace-all-hues-label {
-    
-position: absolute;
-    
-right: 24px;
-    
-top: -5px;
+    position: absolute;
+    right: 24px;
+    top: -4.5px;
 }
 
 .ml-dialog-label {
@@ -201,12 +198,12 @@ top: -5px;
     /* bottom: 26px; */
     text-align: center;
     width: var(--w);
-    margin: 35px calc((100% - var(--w))/2) 0px calc((100% - var(--w))/2);
+    margin: 33px calc((100% - var(--w))/2) 0px calc((100% - var(--w))/2);
 }
 
 .ml-command-container .ml-helio-button {
-    width: 100px;
-    margin: auto 14px;
+    width: 120px;
+    margin: auto 4px;
 }
 
 .disabled {
@@ -353,8 +350,11 @@ top: -5px;
     width: 18px;
     fill: rgb(255, 255, 255);
     filter: drop-shadow(0 0 1px var(--icon-shadow-color));
-    vertical-align: sub;
-    margin-right: 5px;
+    /* vertical-align: sub; */
+    /* margin-right: 5px; */
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
 }
 
 .ml-tool-box-separator {
