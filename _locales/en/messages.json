@@ -606,5 +606,8 @@
     },
     "syncChangeFailureMessage": {
         "message": "Failed to change settings sync option.\n"
+    },
+    "introduction_html_content": {
+        "message": ""
     }
 }
