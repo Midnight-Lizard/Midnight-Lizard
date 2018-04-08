@@ -105,7 +105,7 @@
         "message": "Contrast"
     },
     "buttonContrast_@title": {
-        "message": "Minimal difference between similar button backgrounds"
+        "message": "Minimal difference in brightness between buttons and background around them"
     },
     "buttonLightnessLimit_text_label": {
         "message": "Brightness limit"
@@ -147,7 +147,7 @@
         "message": "Contrast"
     },
     "textContrast_@title": {
-        "message": "Minimal difference between text and background brightness"
+        "message": "Minimal difference in brightness between text and its background"
     },
     "textLightnessLimit_text_label": {
         "message": "Brightness limit"
@@ -357,55 +357,55 @@
         "message": "Common"
     },
     "commonTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003\u2003Common settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains settings that are common for the entire page.\n\u2003\u2022\u2002Activation schedule defines when [Midnight Lizard] should be automatically enabled.\n\u2003\u2022\u2002Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
+        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when [Midnight Lizard] should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
     "backgroundTab_text_label": {
         "message": "Background"
     },
     "backgroundTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003Background color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains settings that define how elements on the page would be filled with color."
+        "message": "    Background color settings\n―――――――――――――――――――\n This tab contains settings that define how elements on the page would be filled with color."
     },
     "buttonsTab_text_label": {
         "message": "Buttons"
     },
     "buttonsTab_@tooltip": {
-        "message": "\u2003\u2003Button background color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color."
+        "message": "  Button background color settings\n―――――――――――――――――――\n This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color."
     },
     "textTab_text_label": {
         "message": "Text"
     },
     "textTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003\u2003Text color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains color adjustment settings for all text elements on the page."
+        "message": "     Text color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all text elements on the page."
     },
     "linkTab_text_label": {
         "message": "Links"
     },
     "linkTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003Hyperlinks color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains color adjustment settings for all hyperlinks on the page."
+        "message": "    Hyperlinks color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all hyperlinks on the page."
     },
     "borderTab_text_label": {
         "message": "Borders"
     },
     "borderTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2002\u2003Borders color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains color adjustment settings for all borders and lines on the page."
+        "message": "     Borders color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all borders and lines on the page."
     },
     "imagesTab_text_label": {
         "message": "Images"
     },
     "imagesTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2002Images adjustment settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains settings for the saturation and brightness adjustment of the images and pictures."
+        "message": "    Images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the saturation and brightness adjustment of the images and pictures."
     },
     "backgroundImagesTab_text_label": {
         "message": "Fond images"
     },
     "backgroundImagesTab_@tooltip": {
-        "message": "\u2003Background images adjustment settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003This tab contains settings for the background images saturation and brightness adjustment.\n\u2003Background images are a special type of an element background fill. Such images are usually inside or behind the text."
+        "message": " Background images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the background images saturation and brightness adjustment.\n Background images are a special type of an element background fill. Such images are usually inside or behind the text."
     },
     "scrollbarsTab_text_label": {
         "message": "Scrollbars"
     },
     "scrollbarsTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003Scrollbars color settings\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
+        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
     },
     "settingsHeader_text_label": {
         "message": " settings for"
@@ -414,7 +414,7 @@
         "message": "Toggle current website between\nwhitelist and blacklist"
     },
     "hostName_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003Current website\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nClick\u2002to\u2002toggle\u2003current\u2002website\nbetween\u2003whitelist\u2002and\u2002blacklist.\n\nTo blacklist all websites by default\nblacklist\u2002one\u2003and\u2003then\u2003press\n'Set as default' button."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default blacklist one and then press 'Set as default' button."
     },
     "helpLink_@tooltip": {
         "message": "Support forum"
@@ -432,7 +432,7 @@
         "message": "Sync settings across your devices"
     },
     "syncSettings_@title": {
-        "message": "Sync [Midnight Lizard] settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable [Sync] in the [Chrome] settings in order for [Midnight Lizard] settings synchronization to work."
+        "message": "Sync [Midnight Lizard] settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable [Sync] in the browser settings in order for [Midnight Lizard] settings synchronization to work."
     },
     "colorSchemeForEdit_text_label": {
         "message": "Color scheme for edit"
@@ -453,7 +453,7 @@
         "message": "Delete color scheme selected for edit"
     },
     "saveColorSchemeBtn_text_label": {
-        "message": " Save"
+        "message": "Save"
     },
     "saveColorSchemeBtn_@title": {
         "message": "Update selected color scheme with current popup settings"
@@ -462,7 +462,7 @@
         "message": "Export"
     },
     "exportColorSchemeBtn_@title": {
-        "message": "Export to file current color scheme [$current_color_scheme$] as color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$]",
+        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with current applied on the popup settings from [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -485,7 +485,7 @@
         "message": "Color schemes"
     },
     "editSchemesTab_@tooltip": {
-        "message": "\u2003\u2003\u2003\u2003Color schemes editing\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2003Settings currently applied on the popup can be used to create a new color scheme or update existing one. If you create a new color scheme it will be available on all other websites.\n\u2003Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.\n\u2003The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.\n\u2003Find more examples under the question mark in the popup top-left corner."
+        "message": "    Color schemes editing\n―――――――――――――――――――\n Settings currently applied on the popup can be used to create a new color scheme or update existing one. If you create a new color scheme it will be available on all other websites.\n Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.\n The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.\n Find more examples under the question mark in the popup top-left corner."
     },
     "currentColorScheme_text_label": {
         "message": "Current color scheme"
@@ -515,7 +515,7 @@
         "message": "Apply"
     },
     "applyBtn_@title": {
-        "message": "Apply and save current settings for this site"
+        "message": "Apply and save current settings for this website"
     },
     "closeBtn_text_label": {
         "message": "Close"
@@ -564,7 +564,7 @@
         "message": "Color scheme update failed.\n"
     },
     "colorSchemeDeleteConfirmationMessage": {
-        "message": "You are about to delete color scheme [$color_scheme_for_edit_name$]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
+        "message": "You are about to delete color scheme [$color_scheme_for_edit_name$].\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -608,6 +608,6 @@
         "message": "Failed to change settings sync option.\n"
     },
     "introduction_html_content": {
-        "message": ""
+        "message": "<h3>Introduction</h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        To\n        <span>enable</span> or\n        <span>disable</span> an entire extension switch the toggle button in the top-right corner.\n    </run>\n    <run class=\"intro intro-host\">\n        You also can toggle any particular website between\n        <span>blacklist</span> and\n        <span>whitelist</span>\n        by clicking on its label on the popup header bar.\n    </run>\n</p>\n<p class=\"intro intro-select-scheme\">\n    You can choose one of the\n    <span>predefined color schemes</span> from the drop-down list on the right pane and use it off the shelf.\n</p>\n<p class=\"intro intro-tabs\">\n    Apart from that you can\n    <span>adjust</span> your chosen scheme as you wish. For this purpose you have all the settings in the tabs on the left pane.\n    Any changes you would have made will be immediately applied but only on the popup so you can safely play with it.\n</p>\n<p>\n    <run class=\"intro intro-apply\">\n        To assign the settings of your preference to the\n        <span>current website</span> press\n        <q>Apply</q>\n        button on the right pane.\n    </run>\n    <run class=\"intro intro-edit-schemes\">\n        Or you can\n        <span>add your scheme</span> to the list of the predefined color schemes for futher use on any other website.\n    </run>\n</p>\n<p class=\"intro intro-default\">\n    If you want to set up current settings as a\n    <span>default settings</span> for all websites press\n    <q>Set as default</q> button on the right pane.\n</p>\n<p class=\"intro intro-help\">\n    You can find\n    <span>more help</span> on the support forum, read existing tutorials or ask a new question.\n</p>"
     }
 }
