@@ -612,5 +612,11 @@
     },
     "shortcut_text_lable": {
         "message": "Shortcut"
+    },
+    "colorSchemeName_Custom": {
+        "message": "Custom"
+    },
+    "colorSchemeName_New": {
+        "message": "New color scheme"
     }
 }
