@@ -602,7 +602,7 @@
         "message": "Extension toggle switching failed. Restart all browser windows and try again.\n"
     },
     "syncChangeSuccessMessage": {
-        "message": "Changes have been successfully applied."
+        "message": "Changes have been successfully applied.\nYou might need to refresh the page to see the changes."
     },
     "syncChangeFailureMessage": {
         "message": "Failed to change settings sync option.\n"
@@ -624,5 +624,35 @@
     },
     "syncStorageOverrideConfirmationMessage": {
         "message": "Your sync (cloud) settings storage already contains some data.\nDo you want to override it with data from the local storage\nand lose the overridden data?"
+    },
+    "backgroundExample_text_label": {
+        "message": "Background example"
+    },
+    "backgroundExample_@title": {
+        "message": "Example of different background colors processing"
+    },
+    "smallBackgroundImageExample_@title": {
+        "message": "Example of small background images processing"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "message": "Small background images example"
+    },
+    "scrollbarExample_text_label": {
+        "message": "Scrollbar example"
+    },
+    "scrollbarExample_@title": {
+        "message": "Example of styled scrollbars"
+    },
+    "buttonExample_text_label": {
+        "message": "Buttons example"
+    },
+    "buttonExample_@title": {
+        "message": "Example of different buttons colors processing"
+    },
+    "borderExample_@title": {
+        "message": "Example of different border colors processing"
+    },
+    "borderExample_text_label": {
+        "message": "Border example"
     }
 }
