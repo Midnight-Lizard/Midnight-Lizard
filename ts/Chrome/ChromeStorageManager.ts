@@ -72,12 +72,12 @@ namespace Chrome
                     sync: !this._app.isDebug, synced: false
                 });
                 this.currentStorage = state.sync ? "sync" : "local"
-                if (this.currentStorage === "sync" && !state.synced)
-                {
-                    await this.transferStorage("local", "sync");
-                    await this.chromePromise.storage.local.set({ synced: true });
-                }
-                return this.currentStorage
+                // if (this.currentStorage === "sync" && !state.synced)
+                // {
+                //     await this.transferStorage("local", "sync");
+                //     await this.chromePromise.storage.local.set({ synced: true });
+                // }
+                return this.currentStorage;
             }
         }
     }
