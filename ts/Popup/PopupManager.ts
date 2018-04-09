@@ -125,7 +125,7 @@ namespace MidnightLizard.Popup
                 this._syncSettingsCheckBox.onchange = this.onSettingsSyncChanged.bind(this);
             });
 
-            doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}  Changelog`);
+            doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}\n${this._i18n.getMessage("changeLogLink_@tooltip")}`);
 
             this._commandManager.getCommands()
                 .then(commands =>
@@ -134,8 +134,7 @@ namespace MidnightLizard.Popup
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {
                         const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
-                        isEnabledSwitch.setAttribute("tooltip",
-                            isEnabledSwitch.getAttribute("tooltip") +
+                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
                             `\n${this._i18n.getMessage("shortcut_text_lable")}: ${globalToggleCommand.shortcut}`);
                     }
                 })
@@ -261,9 +260,9 @@ namespace MidnightLizard.Popup
         {
             const customScheme = Object.assign({}, this._settingsManager.currentSettings);
             customScheme.colorSchemeId = "custom" as Settings.ColorSchemeName;
-            customScheme.colorSchemeName = "Custom";
+            customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_Custom");
             this.addColorSchemeOption(this._colorSchemeSelect, customScheme);
-            customScheme.colorSchemeName = "New color scheme";
+            customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_New");
             this.addColorSchemeOption(this._colorSchemeForEdit, customScheme);
             let schemeName: Settings.ColorSchemeName;
 
