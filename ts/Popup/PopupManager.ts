@@ -309,6 +309,7 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
                 .then(x => alert(this._i18n.getMessage("syncChangeSuccessMessage")))
+                .then(x=> this.updateColorSchemeListsFromDefaultSettings())
                 .catch(ex => alert(this._i18n.getMessage("syncChangeFailureMessage") + (ex.message || ex)));
         }
 
