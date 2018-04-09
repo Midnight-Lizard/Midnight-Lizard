@@ -632,7 +632,7 @@
         "message": "Example of different background colors processing"
     },
     "smallBackgroundImageExample_@title": {
-        "message": "Example of small background images processing"
+        "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case [Brightness] of background images is not affecting them."
     },
     "smallBackgroundImageExample_text_label": {
         "message": "Small background images example"
