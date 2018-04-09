@@ -2,6 +2,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Settings/IStorageManager.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
+/// <reference path="../i18n/ITranslationAccessor.ts" />
 
 namespace Chrome
 {
@@ -11,7 +12,8 @@ namespace Chrome
         currentStorage?: MidnightLizard.Settings.StorageType;
 
         constructor(readonly chromePromise: Chrome.ChromePromise,
-            protected readonly _app: MidnightLizard.Settings.IApplicationSettings)
+            protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
         }
 
@@ -46,6 +48,7 @@ namespace Chrome
             if (newStorage !== currStorage)
             {
                 await this.transferStorage(currStorage, newStorage);
+                this.setCurrentStorage(newStorage);
             }
             return this.chromePromise.storage.local.set({ sync: value });
         }
@@ -53,7 +56,8 @@ namespace Chrome
         protected async transferStorage(from: MidnightLizard.Settings.StorageType, to: MidnightLizard.Settings.StorageType)
         {
             const newStorageContent = await this.chromePromise.storage[to].get(null);
-            if (!newStorageContent || Object.keys(newStorageContent).length === 0)
+            if (!newStorageContent || Object.keys(newStorageContent).length === 0 ||
+                confirm(this._i18n.getMessage(`${to}StorageOverrideConfirmationMessage`)))
             {
                 this.chromePromise.storage[to].set(
                     await this.chromePromise.storage[from].get(null));
@@ -68,17 +72,15 @@ namespace Chrome
             }
             else
             {
-                const state = await this.chromePromise.storage.local.get({
-                    sync: !this._app.isDebug, synced: false
-                });
+                const state = await this.chromePromise.storage.local.get({ sync: !this._app.isDebug });
                 this.currentStorage = state.sync ? "sync" : "local"
-                // if (this.currentStorage === "sync" && !state.synced)
-                // {
-                //     await this.transferStorage("local", "sync");
-                //     await this.chromePromise.storage.local.set({ synced: true });
-                // }
                 return this.currentStorage;
             }
+        }
+
+        protected setCurrentStorage(storage: MidnightLizard.Settings.StorageType)
+        {
+            this.currentStorage = storage;
         }
     }
 }
