@@ -212,7 +212,8 @@
                 "https://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/maps/*"
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
             ],
             "css": [
                 "css/custom/google-maps.css"
@@ -225,7 +226,8 @@
                 "https://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/maps/*"
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
             ],
             "js": [
                 "js/custom/google-maps.js"
