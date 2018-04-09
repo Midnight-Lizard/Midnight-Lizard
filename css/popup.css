@@ -472,6 +472,205 @@ top: -4.5px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
 }
 
+.ml-bg-example
+{
+    height: 35px;
+    width: 264px;
+    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    border-width: 0px;
+    border-spacing: 0px;
+}
+
+.ml-bg-example td {
+    width: calc(100% / 8);
+    text-align: center;
+}
+
+.ml-bg-example td:nth-of-type(1) {
+    background-color: gray;
+}
+
+.ml-bg-example td:nth-of-type(2) {
+    background-color: red;
+}
+
+.ml-bg-example td:nth-of-type(3) {
+    background-color: yellow;
+}
+
+.ml-bg-example td:nth-of-type(4) {
+    background-color: green;
+}
+
+.ml-bg-example td:nth-of-type(5) {
+    background-color: cyan;
+}
+
+.ml-bg-example td:nth-of-type(6) {
+    background-color: blue;
+}
+
+.ml-bg-example td:nth-of-type(7) {
+    background-color: indigo;
+}
+
+.ml-bg-example td:nth-of-type(8) {
+    background-color: purple;
+}
+
+.ml-small-bg-image-example
+{
+    width: 264px;
+    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    text-align: justify;
+}
+
+.ml-small-bg-image-example span {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-size: 18px 18px;
+}
+
+.ml-small-bg-image-example span:nth-of-type(1) {
+    background-image: url("/img/examples/aries.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(2) {
+    background-image: url("/img/examples/taurus.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(3) {
+    background-image: url("/img/examples/gemini.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(4) {
+    background-image: url("/img/examples/cancer.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(5) {
+    background-image: url("/img/examples/leo.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(6) {
+    background-image: url("/img/examples/virgo.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(7) {
+    background-image: url("/img/examples/libra.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(8) {
+    background-image: url("/img/examples/scorpius.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(9) {
+    background-image: url("/img/examples/sagittarius.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(10) {
+    background-image: url("/img/examples/capricorn.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(11) {
+    background-image: url("/img/examples/aquarius.png");
+}
+
+.ml-small-bg-image-example span:nth-of-type(12) {
+    background-image: url("/img/examples/pisces.png");
+}
+
+.ml-button-example
+{
+    width: 264px;
+    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    text-align: justify;
+}
+
+.ml-button-example button {
+    width: calc(100% / 9);
+    height: 30px;
+    text-align: center;
+    border: 1px solid black;
+    /* margin: 0px; */
+    border-radius: 4px;
+}
+
+.ml-button-example button:nth-of-type(1) {
+    background-color: gray;
+}
+
+.ml-button-example button:nth-of-type(2) {
+    background-color: red;
+}
+
+.ml-button-example button:nth-of-type(3) {
+    background-color: yellow;
+}
+
+.ml-button-example button:nth-of-type(4) {
+    background-color: green;
+}
+
+.ml-button-example button:nth-of-type(5) {
+    background-color: cyan;
+}
+
+.ml-button-example button:nth-of-type(6) {
+    background-color: blue;
+}
+
+.ml-button-example button:nth-of-type(7) {
+    background-color: indigo;
+}
+
+.ml-button-example button:nth-of-type(8) {
+    background-color: purple;
+}
+
+.ml-border-example {
+    width: 264px;
+    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+}
+
+.ml-border-example hr {
+    border-width: 1px;
+    border-style: solid;
+    font-size: 7px;
+}
+
+.ml-border-example hr:nth-of-type(1) {
+    border-color: gray;
+}
+
+.ml-border-example hr:nth-of-type(2) {
+    border-color: red;
+}
+
+.ml-border-example hr:nth-of-type(3) {
+    border-color: yellow;
+}
+
+.ml-border-example hr:nth-of-type(4) {
+    border-color: green;
+}
+
+.ml-border-example hr:nth-of-type(5) {
+    border-color: cyan;
+}
+
+.ml-border-example hr:nth-of-type(6) {
+    border-color: blue;
+}
+
+.ml-border-example hr:nth-of-type(7) {
+    border-color: indigo;
+}
+
+.ml-border-example hr:nth-of-type(8) {
+    border-color: purple;
+}
+
 .ml-bg-image-example {
     background-image: url("/img/seven_colors_flower.jpg");
     background-size: 264px 148px;
