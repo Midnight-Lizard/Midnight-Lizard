@@ -618,5 +618,11 @@
     },
     "colorSchemeName_New": {
         "message": "New color scheme"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "message": "Your local settings storage already contains some data.\nDo you want to override it with data from the sync (cloud) storage\nand lose the overridden data?"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "message": "Your sync (cloud) settings storage already contains some data.\nDo you want to override it with data from the local storage\nand lose the overridden data?"
     }
 }
