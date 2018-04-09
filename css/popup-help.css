@@ -44,9 +44,9 @@
 
 .ml-fotter-icon-container[tooltip]:before
 {
-    top: -44px;
+    bottom: 45px;
     padding: 10px;
-    white-space: nowrap;
+    white-space: pre;
 }
 
 .ml-fotter-icon-container[tooltip]:after
@@ -83,7 +83,7 @@
 }
 
 #host-name:before {
-    left: -12px;
+    left: -20px;
     top: 38px;
     white-space: pre-line;
     width: 225px;
@@ -106,6 +106,7 @@
 .ml-fotter-icon-container.left[tooltip]:after {/* margin-left: -11px; */left: 15px;}
 .ml-fotter-icon-container.right[tooltip]:before {
     right: 10px;
+    text-align: right;
 }
 .ml-fotter-icon-container.right[tooltip]:after {
     right: 18px;

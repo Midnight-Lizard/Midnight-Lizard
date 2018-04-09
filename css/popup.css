@@ -148,9 +148,12 @@ body {
 }
 
 .ml-replace-all-hues-label {
-    position: absolute;
-    right: 24px;
-    top: -4.5px;
+    
+position: absolute;
+    
+right: 24px;
+    
+top: -4.5px;
 }
 
 .ml-dialog-label {
@@ -540,7 +543,7 @@ body {
 }
 
 .intro-edit-schemes:after {
-    width: 134px;
+    width: 142px;
     height: 32px;
     top: 42px;
     right: -152px;
@@ -551,9 +554,9 @@ body {
     width: 5px;
     border-bottom-right-radius: 10px;
     border-style: dashed;
-    right: -2px;
+    right: 1px;
     top: 74px;
-    transform: skew(-7deg);
+    transform: skew(-5deg);
     border-width: 0px 1px 1px 0px;
 }
 
@@ -572,7 +575,7 @@ body {
 }
 
 .intro-tabs:after {
-    width: 138px;
+    width: 151px;
     height: 415px;
     top: 47px;
     left: -160px;
@@ -581,17 +584,17 @@ body {
 @supports (-moz-appearance: none)
 {
     .intro-tabs:before {
-        height: 21px;
-        left: -17px;
+        height: 14px;
+        left: -10px;
         top: 170px;
-        transform: skew(62deg);
+        transform: skew(63deg);
     }
 }
 @supports not (-moz-appearance: none)
 {
     .intro-tabs:before {
-        height: 19px;
-        left: -2px;
+        height: 12px;
+        left: 5px;
         top: 170px;
         transform: skew(63deg);
     }
