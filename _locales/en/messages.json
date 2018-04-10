@@ -626,7 +626,7 @@
         "message": "Your sync (cloud) settings storage already contains some data.\nDo you want to override it with data from the local storage\nand lose the overridden data?"
     },
     "backgroundExample_text_label": {
-        "message": "Background example"
+        "message": "Background examples"
     },
     "backgroundExample_@title": {
         "message": "Example of different background colors processing"
@@ -644,7 +644,7 @@
         "message": "Example of styled scrollbars"
     },
     "buttonExample_text_label": {
-        "message": "Buttons example"
+        "message": "Button examples"
     },
     "buttonExample_@title": {
         "message": "Example of different buttons colors processing"
@@ -653,6 +653,15 @@
         "message": "Example of different border colors processing"
     },
     "borderExample_text_label": {
-        "message": "Border example"
+        "message": "Border examples"
+    },
+    "backgroundExampleOriginal_@title": {
+        "message": "Original background colors being processed above"
+    },
+    "borderExampleOriginal_@title": {
+        "message": "Original border colors being processed on the right"
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "message": "Original small background images being processed above"
     }
 }
