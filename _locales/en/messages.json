@@ -204,10 +204,10 @@
         "message": "Limit of maximum link brightness"
     },
     "linkDefaultSaturation_text_label": {
-        "message": "Gray links saturation"
+        "message": "Default links saturation"
     },
     "linkDefaultSaturation_@title": {
-        "message": "Saturation of the links with default link color and for visited links after applying selected hues"
+        "message": "Saturation of the links with normal link color and for visited links after applying selected hues"
     },
     "linkHueGravity_text_label": {
         "message": "Default hue gravity"
@@ -225,7 +225,7 @@
         "message": "Replace all"
     },
     "linkReplaceAllHues_@title": {
-        "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
+        "message": "Replace all original hues with a selected one.\nOtherwise only normal for this page link hue will be replaced.\nDefault saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "linkVisitedHue_text_label": {
         "message": "Visited link hue"
