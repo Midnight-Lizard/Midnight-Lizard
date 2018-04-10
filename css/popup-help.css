@@ -169,3 +169,15 @@
     60% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.ml-input-container.percent .ml-dialog-label:before {
+    /* content: "?"; */
+    position: absolute;
+    text-align: center;
+    background-color: var(--main-background-color);
+    width: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--light-thin-border-color);
+    right: calc((100% - 267px)/2);
+    cursor: help;
+}

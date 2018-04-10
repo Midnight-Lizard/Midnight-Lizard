@@ -214,8 +214,7 @@ L 14.5 12 z" />
                     </label>
                 </div>
                 <br>
-                <div id="scheduleStartHourContainer"
-                     class="ml-input-container time">
+                <div id="scheduleStartHourContainer" class="ml-input-container time">
                     <label class="ml-dialog-label time" for="scheduleStartHour"
                            i18n="scheduleStartHour" i18n-attr="title" i18n-text="label">Activation time</label>
                     <input class="ml-input-range setting time reverse"
@@ -246,8 +245,7 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
-                <div id="scheduleFinishHourContainer"
-                     class="ml-input-container time">
+                <div id="scheduleFinishHourContainer" class="ml-input-container time">
                     <label class="ml-dialog-label time" for="scheduleFinishHour"
                            i18n="scheduleFinishHour" i18n-attr="title" i18n-text="label">Deactivation time</label>
                     <input class="ml-input-range setting time direct"
@@ -482,7 +480,7 @@ L 14.5 12 z" />
                     <label class="ml-dialog-label"
                            i18n="backgroundExample" i18n-attr="title" i18n-text="label">Background example</label>
                     <table class="ml-bg-example">
-                        <tr>
+                        <tr i18n="backgroundExample" i18n-attr="title">
                             <td>g</td>
                             <td>r</td>
                             <td>y</td>
@@ -491,6 +489,16 @@ L 14.5 12 z" />
                             <td>b</td>
                             <td>i</td>
                             <td>p</td>
+                        </tr>
+                        <tr class="ml-ignore" i18n="backgroundExampleOriginal" i18n-attr="title">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
@@ -1592,14 +1600,30 @@ L 14.5 12 z" />
                     <label class="ml-dialog-label"
                            i18n="borderExample" i18n-attr="title" i18n-text="label">Border example</label>
                     <div class="ml-border-example">
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
+                        <div i18n="borderExample" i18n-attr="title">
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                        </div>
+                        <div class="ml-ignore" i18n="borderExampleOriginal" i18n-attr="title">
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1760,7 +1784,22 @@ L 14.5 12 z" />
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
                            i18n="smallBackgroundImageExample" i18n-attr="title" i18n-text="label">Small background images example</label>
-                    <div class="ml-small-bg-image-example">
+                    <div class="ml-small-bg-image-example" i18n="smallBackgroundImageExample" i18n-attr="title">
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                    <div class="ml-small-bg-image-example ml-ignore"
+                         i18n="smallBackgroundImageExampleOriginal" i18n-attr="title">
                         <span>&nbsp;</span>
                         <span>&nbsp;</span>
                         <span>&nbsp;</span>

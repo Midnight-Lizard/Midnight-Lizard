@@ -148,16 +148,15 @@ body {
 }
 
 .ml-replace-all-hues-label {
-    
-position: absolute;
-    
-right: 24px;
-    
-top: -4.5px;
+    position: absolute;
+    right: 24px;
+    top: -4.5px;
+    cursor: help;
 }
 
 .ml-dialog-label {
     margin-left: calc((100% - 267px)/2);
+    cursor: help;
 }
 
 .ml-dialog-label:after {
@@ -232,7 +231,7 @@ top: -4.5px;
     font: normal 12px/normal Arial, Helvetica, sans-serif;
     font-size: 14px;
     height: 17px;
-    color: rgb(80, 80, 80);
+    color: var(--main-color);
     text-overflow: clip;
     background: var(--main-background-color);
     box-shadow: 1px 1px 1px 0 var(--main-input-shadow-color) inset;
@@ -484,6 +483,8 @@ top: -4.5px;
 .ml-bg-example td {
     width: calc(100% / 8);
     text-align: center;
+    font: 400 13px Arial;
+    line-height: 22px;
 }
 
 .ml-bg-example td:nth-of-type(1) {
@@ -591,9 +592,20 @@ top: -4.5px;
     width: calc(100% / 9);
     height: 30px;
     text-align: center;
-    border: 1px solid black;
-    /* margin: 0px; */
+    border: 1px solid var(--main-border-color);
     border-radius: 4px;
+    position: relative;
+}
+
+.ml-button-example button:after {
+    --ml-ignore:true;
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: -8px;
+    border-radius: 2px;
+    height: 4px;
 }
 
 .ml-button-example button:nth-of-type(1) {
@@ -628,47 +640,99 @@ top: -4.5px;
     background-color: purple;
 }
 
+.ml-button-example button:nth-of-type(1):after {
+    background-color: gray;
+}
+
+.ml-button-example button:nth-of-type(2):after {
+    background-color: red;
+}
+
+.ml-button-example button:nth-of-type(3):after {
+    background-color: yellow;
+}
+
+.ml-button-example button:nth-of-type(4):after {
+    background-color: green;
+}
+
+.ml-button-example button:nth-of-type(5):after {
+    background-color: cyan;
+}
+
+.ml-button-example button:nth-of-type(6):after {
+    background-color: blue;
+}
+
+.ml-button-example button:nth-of-type(7):after {
+    background-color: indigo;
+}
+
+.ml-button-example button:nth-of-type(8):after {
+    background-color: purple;
+}
+
 .ml-border-example {
     width: 264px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
 }
 
+.ml-border-example div {
+    float: left;
+}
+
+.ml-border-example div:nth-of-type(1) {
+    width: 90%;
+}
+
+.ml-border-example div:nth-of-type(2) {
+    width: 10%;
+}
+
 .ml-border-example hr {
     border-width: 1px;
     border-style: solid;
-    font-size: 7px;
+    font-size: 6px;
+}
+
+.ml-border-example hr:nth-of-type(10) {
+    border-color: white;
 }
 
 .ml-border-example hr:nth-of-type(1) {
-    border-color: gray;
-}
-
-.ml-border-example hr:nth-of-type(2) {
     border-color: red;
 }
 
-.ml-border-example hr:nth-of-type(3) {
+.ml-border-example hr:nth-of-type(2) {
     border-color: yellow;
 }
 
-.ml-border-example hr:nth-of-type(4) {
+.ml-border-example hr:nth-of-type(3) {
     border-color: green;
 }
 
-.ml-border-example hr:nth-of-type(5) {
+.ml-border-example hr:nth-of-type(4) {
     border-color: cyan;
 }
 
-.ml-border-example hr:nth-of-type(6) {
+.ml-border-example hr:nth-of-type(5) {
     border-color: blue;
 }
 
-.ml-border-example hr:nth-of-type(7) {
+.ml-border-example hr:nth-of-type(6) {
     border-color: indigo;
 }
 
-.ml-border-example hr:nth-of-type(8) {
+.ml-border-example hr:nth-of-type(7) {
     border-color: purple;
+}
+
+.ml-border-example hr:nth-of-type(9) {
+    border-color: gray;
+}
+
+.ml-border-example hr:nth-of-type(8) {
+    border-color: black;
 }
 
 .ml-bg-image-example {
