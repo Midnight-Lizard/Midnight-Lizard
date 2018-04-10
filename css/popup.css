@@ -1029,3 +1029,10 @@ height: 148px;
     overflow: hidden;
     vertical-align: top;
 }
+
+.error-message
+{
+    color: red;
+    text-shadow: 0px 0px 2px #ffd1d9;
+    font-size: 14px;
+}
