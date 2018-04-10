@@ -15,7 +15,7 @@ body {
 
 @supports not (zoom: 1)
 {
-    body
+    body:not([style*="--popup-scale:1"])
     {
         transform: scale(var(--popup-scale, 1));
         transform-origin: 0 0;
@@ -148,10 +148,14 @@ body {
 }
 
 .ml-replace-all-hues-label {
-    position: absolute;
-    right: 24px;
-    top: -4.5px;
-    cursor: help;
+    
+position: absolute;
+    
+right: 24px;
+    
+top: -4.5px;
+    
+cursor: help;
 }
 
 .ml-dialog-label {
@@ -178,6 +182,10 @@ body {
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+
+.ml-input-container:last-of-type {
+    margin-bottom: 0px;
 }
 
 .ml-input-container.example
@@ -465,9 +473,14 @@ body {
     --ml-text-color:HighlightedText;
 }
 
+img.ml-image-example {
+    
+height: 148px;
+}
+
 .ml-image-example {
     width: 264px;
-    height: 148px;
+    height: 120px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
 }
 
@@ -481,7 +494,7 @@ body {
 }
 
 .ml-bg-example td {
-    width: calc(100% / 8);
+    width: 12.5%;
     text-align: center;
     font: 400 13px Arial;
     line-height: 22px;
@@ -674,7 +687,7 @@ body {
 
 .ml-border-example {
     width: 264px;
-    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    margin: 2px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
 }
 
 .ml-border-example div {
@@ -692,7 +705,7 @@ body {
 .ml-border-example hr {
     border-width: 1px;
     border-style: solid;
-    font-size: 6px;
+    font-size: 7px;
 }
 
 .ml-border-example hr:nth-of-type(10) {

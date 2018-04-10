@@ -142,9 +142,12 @@ namespace MidnightLizard.Popup
 
             this._forgetAllSitesButton.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied as any, this);
-            let range = document.querySelector(".ml-input-range") as HTMLInputElement;
+            const range = doc.querySelector(".ml-input-range") as HTMLInputElement;
             range.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             range.onRoomRulesApplied.addListener(this.onRangeRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, range);
+            const tabItemSep = doc.querySelector(".ml-tab-item-separator") as HTMLLIElement;
+            tabItemSep.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
+            range.onRoomRulesApplied.addListener(this.onTabItemSeparatorRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, tabItemSep);
 
             this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
             this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
@@ -309,7 +312,7 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
                 .then(x => alert(this._i18n.getMessage("syncChangeSuccessMessage")))
-                .then(x=> this.updateColorSchemeListsFromDefaultSettings())
+                .then(x => this.updateColorSchemeListsFromDefaultSettings())
                 .catch(ex => alert(this._i18n.getMessage("syncChangeFailureMessage") + (ex.message || ex)));
         }
 
@@ -651,6 +654,24 @@ namespace MidnightLizard.Popup
                     color: { color: currentStyle.color },
                     borderColor: { color: currentStyle.borderColor },
                     textShadow: { value: shadowColor.color }
+                });
+            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+        }
+
+        protected onTabItemSeparatorRoomRulesApplied(tag: HTMLLIElement, roomRules: ContentScript.RoomRules)
+        {
+            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let props = Object.assign({}, ContentScript.USP.htm);
+            props.css =
+                {
+                    bgrColor: "",
+                    brdColor: "--tab-item-border-color",
+                    fntColor: "",
+                    shdColor: ""
+                };
+            let newRules = Object.assign(new ContentScript.RoomRules(),
+                {
+                    borderColor: { color: currentStyle.borderRightColor }
                 });
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
