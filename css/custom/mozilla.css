@@ -1,0 +1,14 @@
+.logo {
+    filter: drop-shadow(0 0 2px rgba(255,255,255,var(--ml-text-lightness-limit,0)));
+}
+
+.nav-main-item>a:focus,.nav-main-item>a:hover,.login>a:focus,.login>a:hover {
+    --h:var(--ml-button-background-gray-hue,0);
+    --s:calc(100% * var(--ml-button-background-gray-saturation,0));
+    --l:calc(100% * var(--ml-button-background-lightness-limit,0.93));
+    background-color: hsla(var(--h),var(--s),var(--l),1)!important;
+}
+
+.home-masthead {
+    --ml-backgroundimage:Background;
+}

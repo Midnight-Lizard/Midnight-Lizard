@@ -265,6 +265,16 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
+                "https://developer.mozilla.org/*"
+            ],
+            "css": [
+                "css/custom/mozilla.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
                 "https://*/*"
             ],
             "include_globs": [
