@@ -27,7 +27,7 @@
         "message": "Менять тему браузера"
     },
     "changeBrowserTheme_@title": {
-        "message": "Приводить тему браузера в соответствие с цветовой схемой сайта на текущей вкладке.\nПоддерживается только на Firefox."
+        "message": "Приводить тему браузера в соответствие с цветовой схемой сайта на текущей вкладке.\nПоддерживается только на Firefox 60+."
     },
     "useDefaultSchedule_text_label": {
         "message": "Использовать базовое расписание"
@@ -663,5 +663,8 @@
     },
     "smallBackgroundImageExampleOriginal_@title": {
         "message": "Первоначальные маленькие фоновые изображения, обрабатываемые в примере выше"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "message": "Стилизация полос прокрутки <br/> не поддерживается в Firefox <br/><br/>"
     }
 }
