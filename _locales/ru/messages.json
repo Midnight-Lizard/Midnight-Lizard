@@ -203,10 +203,10 @@
     "linkLightnessLimit_@title": {
         "message": "Предел яркости ссылок"
     },
-    "linkGraySaturation_text_label": {
+    "linkDefaultSaturation_text_label": {
         "message": "Насыщенность замены серого"
     },
-    "linkGraySaturation_@title": {
+    "linkDefaultSaturation_@title": {
         "message": "Насыщенность цветом ссылок после замены серого, белого и черного на базовый оттенок ссылок."
     },
     "linkHueGravity_text_label": {
