@@ -203,10 +203,10 @@
     "linkLightnessLimit_@title": {
         "message": "Limit of maximum link brightness"
     },
-    "linkGraySaturation_text_label": {
+    "linkDefaultSaturation_text_label": {
         "message": "Gray links saturation"
     },
-    "linkGraySaturation_@title": {
+    "linkDefaultSaturation_@title": {
         "message": "Saturation of the links with default link color and for visited links after applying selected hues"
     },
     "linkHueGravity_text_label": {
@@ -659,7 +659,7 @@
         "message": "Original background colors being processed above"
     },
     "borderExampleOriginal_@title": {
-        "message": "Original border colors being processed on the right"
+        "message": "Original border colors being processed on the left"
     },
     "smallBackgroundImageExampleOriginal_@title": {
         "message": "Original small background images being processed above"
