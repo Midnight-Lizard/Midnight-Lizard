@@ -27,7 +27,7 @@
         "message": "Change browser theme"
     },
     "changeBrowserTheme_@title": {
-        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox"
+        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox 60+"
     },
     "useDefaultSchedule_text_label": {
         "message": "Use default schedule"
@@ -663,5 +663,8 @@
     },
     "smallBackgroundImageExampleOriginal_@title": {
         "message": "Original small background images being processed above"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "message": "Scrollbar's styling <br/> is not supported by Firefox <br/><br/>"
     }
 }
