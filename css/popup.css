@@ -634,7 +634,7 @@ height: 148px;
     width: calc(100% / 9);
     height: 30px;
     text-align: center;
-    border: 1px solid var(--main-border-color);
+    border: 1px solid var(--thin-border-color);
     border-radius: 4px;
     position: relative;
 }
