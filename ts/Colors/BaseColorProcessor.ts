@@ -11,7 +11,6 @@ namespace MidnightLizard.Colors
     export abstract class BaseColorProcessor
     {
         protected _colorShift!: ColorShift;
-        protected readonly _colors = new Map<string, ColorEntry>();
         protected _component!: Component;
 
         constructor(
@@ -30,7 +29,6 @@ namespace MidnightLizard.Colors
         protected onSettingsChanged(response: SchemeResponse, newSettings?: ComponentShift): void
         {
             this._colorShift = this._settingsManager.shift[Component[this._component] as keyof Colors.ComponentShift];
-            this._colors.clear();
         }
 
         protected scaleValue(currentValue: number, scaleLimit: number)

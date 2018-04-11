@@ -1495,7 +1495,7 @@ namespace MidnightLizard.ContentScript
                             roomRules.backgroundColor.color = null;
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
-                                tag instanceof HTMLEmbedElement ? `url("#pdf-bg-filter")` : "",
+                                tag instanceof HTMLEmbedElement ? 'url("#pdf-bg-filter")' : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
                                 `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
                                 `hue-rotate(180deg) invert(1)`,
@@ -1621,6 +1621,9 @@ namespace MidnightLizard.ContentScript
                 {
                     case cc.Background:
                         return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+
+                    case cc.BackgroundNoContrast:
+                        return this._backgroundColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
 
                     case cc.ButtonBackground:
                         bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;

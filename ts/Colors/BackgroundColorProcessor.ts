@@ -21,6 +21,7 @@ namespace MidnightLizard.Colors
     @DI.injectable(IBackgroundColorProcessor)
     class BackgroundColorProcessor extends BaseColorProcessor implements IBackgroundColorProcessor
     {
+        protected readonly _colors = new Map<string, ColorEntry>();
         protected readonly _lights = new Map<number, number>();
         protected readonly _lightAreas = new Map<number, number>();
         protected readonly _lightCounts = new Map<number, number>();
@@ -37,8 +38,10 @@ namespace MidnightLizard.Colors
         protected onSettingsChanged(response: SchemeResponse, newSettings: ComponentShift): void
         {
             super.onSettingsChanged(response, newSettings);
+            this._colors.clear();
             this._lights.clear();
             this._lightAreas.clear();
+            this._lightCounts.clear();
         }
 
         protected tryGetTagArea(tag: Element)
@@ -46,10 +49,14 @@ namespace MidnightLizard.Colors
             if (tag.area === undefined)
             {
                 tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
-                let width = parseInt(tag.computedStyle.width!), height = parseInt(tag.computedStyle.height!);
-                if (!isNaN(width) && !isNaN(height))
+                if (tag.computedStyle.width && tag.computedStyle.width.endsWith("px") &&
+                    tag.computedStyle.height && tag.computedStyle.height.endsWith("px"))
                 {
-                    tag.area = width * height;
+                    let width = parseInt(tag.computedStyle.width), height = parseInt(tag.computedStyle.height);
+                    if (!isNaN(width) && !isNaN(height))
+                    {
+                        tag.area = width * height;
+                    }
                 }
             }
             return tag.area;
@@ -185,7 +192,7 @@ namespace MidnightLizard.Colors
                 if (rgba.alpha === 0 && getParentBackground)
                 {
                     let parentBgColor = getParentBackground(tag);
-                    this.tryUpdateLightArea(tag, parentBgColor.originalLight);
+                    increaseContrast && this.tryUpdateLightArea(tag, parentBgColor.originalLight);
                     let newColor = Object.assign({}, parentBgColor);
                     newColor.color = null;
                     newColor.reason = ColorReason.Parent;

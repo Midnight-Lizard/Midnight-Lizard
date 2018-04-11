@@ -4,6 +4,7 @@ namespace MidnightLizard.Colors
     export enum Component
     {
         Background,
+        BackgroundNoContrast,
         Text,
         TextSelection,
         HighlightedText,

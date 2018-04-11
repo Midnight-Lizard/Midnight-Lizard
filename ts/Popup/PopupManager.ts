@@ -58,6 +58,7 @@ namespace MidnightLizard.Popup
             protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
             protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
+            dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
             dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
@@ -72,6 +73,12 @@ namespace MidnightLizard.Popup
         //         .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
         //         .catch(error => this._app.isDebug && console.error(error));
         // }
+
+        protected popupContentloaded()
+        {
+            this._documentTranslator.translateDocument(this._popup);
+
+        }
 
         protected setPopupScale()
         {
@@ -96,7 +103,6 @@ namespace MidnightLizard.Popup
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
         {
-            this._documentTranslator.translateDocument(doc);
             // doc.documentElement.style.setProperty("--popup-scale", (doc.defaultView.innerWidth / 680.0).toString());
             this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime as any, this);
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;

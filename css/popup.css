@@ -506,18 +506,26 @@ height: 148px;
 
 .ml-bg-example
 {
-    height: 35px;
+    height: 40px;
     width: 264px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
     border-width: 0px;
     border-spacing: 0px;
+    cursor: help;
 }
 
-.ml-bg-example td {
-    width: 12.5%;
+.ml-bg-example tr:nth-of-type(1) td,
+.ml-bg-example tr:nth-of-type(2) td 
+{
+    width: 33px;
     text-align: center;
-    font: 400 13px Arial;
-    line-height: 22px;
+    font: 400 11px Arial;
+    height: 17px;
+}
+
+.ml-bg-example tr:nth-of-type(2) td 
+{
+    --ml-background-background-color:BackgroundNoContrast;
 }
 
 .ml-bg-example td:nth-of-type(1) {
@@ -557,6 +565,7 @@ height: 148px;
     width: 264px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
     text-align: justify;
+    cursor: help;
 }
 
 .ml-small-bg-image-example span {
@@ -708,6 +717,7 @@ height: 148px;
 .ml-border-example {
     width: 264px;
     margin: 2px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    cursor: help;
 }
 
 .ml-border-example div {
