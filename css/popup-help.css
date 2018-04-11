@@ -93,27 +93,32 @@
 #isEnabledSwitch:before {right: 0px;top: 42px;white-space: pre;}
 #isEnabledSwitch:after {right: 20px;bottom: -16px;}
 
-#rate-link:before {/* right: 15px; */}
-#rate-link:after {/* right: 140px; */right: 20px;}
-#email-link:before {/* right: 81px; */}
-#email-link:after {/* right: 18px; */}
-#bug-report-link:before {/* right: 43px; */}
-#bug-report-link:after {/* right: 18px; */}
-#change-log-link:before {/* right: 6px; */}
-#change-log-link:after {/* right: 18px; */}
+#rate-link:before {}
+#rate-link:after {right: 14px;}
+#translate-link:before {
+    text-align: center;
+}
+#translate-link:after {right: 14px;}
+#email-link:before {}
+#email-link:after {}
+#bug-report-link:before {}
+#bug-report-link:after {}
+#change-log-link:before {}
+#change-log-link:after {}
 
-.ml-fotter-icon-container.left[tooltip]:before {/* margin-left: -10px; */left: 5px;}
-.ml-fotter-icon-container.left[tooltip]:after {/* margin-left: -11px; */left: 15px;}
+.ml-fotter-icon-container.left[tooltip]:before {left: 3px;}
+.ml-fotter-icon-container.left[tooltip]:after {left: 9px;}
 .ml-fotter-icon-container.right[tooltip]:before {
-    right: 10px;
+    right: 6px;
     text-align: right;
 }
 .ml-fotter-icon-container.right[tooltip]:after {
-    right: 18px;
+    right: 12px;
 }
-#facebook-link:after {/* margin-left: -9px; */}
-#google-plus-link:after {/* margin-left: -14px; */left: 17px;}
-#instagram-link:after {/* margin-left: -14px; */left: 18px;}
+#facebook-link:after {}
+#google-plus-link:after {left: 12px;}
+#instagram-link:after {left: 12px;}
+#pinterest-link:after {left: 10px;}
 
 .ml-tab-item[tooltip]:before
 {

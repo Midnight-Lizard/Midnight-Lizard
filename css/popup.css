@@ -379,11 +379,11 @@ cursor: help;
 }
 
 .ml-fotter-icon-container.left {
-    padding-left: 16px;
+    padding-left: 10px;
 }
 
 .ml-fotter-icon-container.right {
-    padding-right: 16px;
+    padding-right: 10px;
 }
 
 .ml-fotter-separator {
@@ -393,6 +393,10 @@ cursor: help;
 
 .instagram-icon {
     width: 26px;
+}
+
+.pinterest-icon {
+    width: 20px;
 }
 
 .twitter-icon {
@@ -409,6 +413,10 @@ cursor: help;
 
 .instagram-icon:hover {
     fill: rgb(200, 55, 171);
+}
+
+.pinterest-icon:hover {
+    fill: #BD081C;
 }
 
 .twitter-icon:hover {
@@ -436,6 +444,14 @@ cursor: help;
 }
 
 .rate-icon:hover {
+    fill: #F57F17;
+}
+
+.translate-icon {
+    width: 22px;
+}
+
+.translate-icon:hover {
     fill: #F57F17;
 }
 

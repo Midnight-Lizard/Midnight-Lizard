@@ -196,6 +196,16 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
+                "https://poeditor.com/*"
+            ],
+            "css": [
+                "css/custom/poeditor.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
                 "https://*/*"
             ],
             "include_globs": [
