@@ -666,5 +666,8 @@
     },
     "firefoxNoSupportScrollbar_html_error_message": {
         "message": "Стилизация полос прокрутки <br/> не поддерживается в Firefox <br/><br/>"
+    },
+    "translateLink_@tooltip": {
+        "message": "Помочь с переводом Midnight Lizard\nна другие языки"
     }
 }
