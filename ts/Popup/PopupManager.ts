@@ -77,7 +77,6 @@ namespace MidnightLizard.Popup
         protected popupContentloaded()
         {
             this._documentTranslator.translateDocument(this._popup);
-
         }
 
         protected setPopupScale()
@@ -103,7 +102,6 @@ namespace MidnightLizard.Popup
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
         {
-            // doc.documentElement.style.setProperty("--popup-scale", (doc.defaultView.innerWidth / 680.0).toString());
             this._documentProcessor.onRootDocumentProcessing.removeListener(this.beforeRootDocumentProcessedFirstTime as any, this);
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;
             this._colorSchemeSelect = doc.getElementById("colorScheme") as HTMLSelectElement;
@@ -132,6 +130,10 @@ namespace MidnightLizard.Popup
             });
 
             doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}\n${this._i18n.getMessage("changeLogLink_@tooltip")}`);
+            (doc.querySelector("#rate-link a") as HTMLAnchorElement).href =
+                this._app.browserName === MidnightLizard.Settings.BrowserName.Chrome
+                    ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
+                    : "https://addons.mozilla.org/en-US/firefox/addon/midnight-lizard-quantum/reviews/";
 
             this._commandManager.getCommands()
                 .then(commands =>
