@@ -309,7 +309,11 @@ cursor: help;
     text-align: center;
     font-size: 20pt;
     text-shadow: 0 0 3px rgb(0, 0, 0);
-    padding-top: 38px;
+    padding: 20px;
+}
+.ml-dialog-error h1 {
+    font-size: 20pt;
+    line-height: 5pt;
 }
 
 .ml-dialog-error hr {
