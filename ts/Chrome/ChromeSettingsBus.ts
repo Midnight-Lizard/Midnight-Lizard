@@ -140,7 +140,9 @@ namespace Chrome
 
         public toggleIsEnabled(isEnabled: boolean)
         {
-            return this.sendMessageToAllTabs<null>(new MidnightLizard.Settings.IsEnabledToggleRequestMessage(isEnabled));
+            const msg = new MidnightLizard.Settings.IsEnabledToggleRequestMessage(isEnabled);
+            return this.sendMessage(msg).then(() =>
+                this.sendMessageToAllTabs<null>(msg));
         }
 
         public setTabZoom(tabId: number, zoom: number)

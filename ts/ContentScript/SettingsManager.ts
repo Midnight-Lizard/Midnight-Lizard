@@ -42,6 +42,11 @@ namespace MidnightLizard.ContentScript
         protected initCurSet()
         {
             super.initCurSet();
+            this.notifySettingsApplied();
+        }
+
+        protected notifySettingsApplied()
+        {
             this._settingsBus.notifySettingsApplied(this._currentSettings)
                 .catch(ex => this._app.isDebug && console.error(ex));
         }
@@ -91,6 +96,7 @@ namespace MidnightLizard.ContentScript
         {
             this._currentSettings.isEnabled = isEnabled;
             this._onSettingsChanged.raise(response, this._shift);
+            this.notifySettingsApplied();
         }
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
