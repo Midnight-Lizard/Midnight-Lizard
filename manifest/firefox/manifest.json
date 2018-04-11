@@ -196,6 +196,16 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
+                "https://poeditor.com/*"
+            ],
+            "css": [
+                "css/custom/poeditor.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
                 "https://*/*"
             ],
             "include_globs": [
@@ -212,7 +222,8 @@
                 "https://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/maps/*"
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
             ],
             "css": [
                 "css/custom/google-maps.css"
@@ -225,10 +236,49 @@
                 "https://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/maps/*"
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
             ],
             "js": [
                 "js/custom/google-maps.js"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.bing.*/maps/*",
+                "https://www.bing.*/maps?*"
+            ],
+            "js": [
+                "js/custom/bing-maps.js"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.bing.*/maps/*",
+                "https://www.bing.*/maps?*"
+            ],
+            "css": [
+                "css/custom/bing-maps.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://developer.mozilla.org/*"
+            ],
+            "css": [
+                "css/custom/mozilla.css"
             ]
         },
         {
