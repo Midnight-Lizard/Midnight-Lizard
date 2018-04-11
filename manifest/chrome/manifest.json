@@ -4,7 +4,7 @@
     "short_name": "Mid.Lizard",
     "description": "__MSG_appDesc__",
     "default_locale": "en",
-    "version": "8.8.5",
+    "version": "8.8.6",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
