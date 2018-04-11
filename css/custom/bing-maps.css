@@ -1,0 +1,12 @@
+#MicrosoftNav .NavBar_MapTypeButtonContainer {
+    --ml-no-invert:true;
+    --ml-backgroundimage:Background;
+}
+
+.icon, a.menu {
+    --ml-no-invert:true;
+}
+
+.catIcon {
+    --ml-ignore:true;
+}

@@ -1,10 +1,8 @@
 {
     "appDesc": {
-        "message": "Esta extensão altera as cores, o brilho e o contraste da página para aumentar a legibilidade e traz o modo noturno escuro para todos os sites.",
-        "description": "The description of the application, displayed in the web store."
+        "message": "Esta extensão altera as cores, o brilho e o contraste da página para aumentar a legibilidade e traz o modo noturno escuro para todos os sites."
     },
     "globalToggleKey": {
-        "message": "Alternância de extensão global",
-        "description": "Global extension toggle key description"
+        "message": "Alternância de extensão global"
     }
 }

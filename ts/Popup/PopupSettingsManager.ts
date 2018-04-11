@@ -42,11 +42,11 @@ namespace MidnightLizard.Popup
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
-        isActive: boolean;
-        shift: Colors.ComponentShift;
-        currentSettings: Settings.ColorScheme;
-        onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
-        onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
+        // isActive: boolean;
+        // shift: Colors.ComponentShift;
+        // currentSettings: Settings.ColorScheme;
+        // onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
+        // onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
 
         constructor(rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
@@ -76,19 +76,6 @@ namespace MidnightLizard.Popup
         public getCurrentSorage()
         {
             return this._storageManager.getCurrentStorage().then(storType => storType === "sync");
-        }
-
-        public async getDefaultSettings()
-        {
-            const defaultSettings = await this._storageManager.get({
-                ...Settings.ColorSchemes.default,
-                ...Settings.ColorSchemes.dimmedDust
-            });
-            this.applyUserColorSchemes(defaultSettings);
-            this.assignSettings(this._defaultSettings, defaultSettings);
-            this._defaultSettings.colorSchemeId = "default";
-            this._defaultSettings.colorSchemeName = "Default";
-            return this._defaultSettings;
         }
 
         public getDefaultSettingsCache(): Settings.ColorScheme

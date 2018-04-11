@@ -1,10 +1,8 @@
 {
     "appDesc": {
-        "message": "這個擴展改變了頁面的顏色，亮度和對比度，提高了可讀性。夜間模式為所有網站開啟。",
-        "description": "The description of the application, displayed in the web store."
+        "message": "這個擴展改變了頁面的顏色，亮度和對比度，提高了可讀性。夜間模式為所有網站開啟。"
     },
     "globalToggleKey": {
-        "message": "全局擴展程序切換",
-        "description": "Global extension toggle key description"
+        "message": "全局擴展程序切換"
     }
 }

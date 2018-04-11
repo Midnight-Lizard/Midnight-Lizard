@@ -4,7 +4,7 @@ namespace MidnightLizard.Settings
 {
 
     export type MessageTypes = CurrentSettingsRequestMessage | NewSettingsApplicationRequestMessage |
-        SettingsDeletionRequestMessage | IsEnabledToggleRequestMessage | ZoomChangedMessage;
+        SettingsDeletionRequestMessage | IsEnabledToggleRequestMessage | ZoomChangedMessage | SettingsAppliedMessage;
 
     export enum SettingsMessageAction
     {
@@ -12,7 +12,8 @@ namespace MidnightLizard.Settings
         ApplyNewSettings,
         DeleteSettings,
         ToggleIsEnabled,
-        ZoomChanged
+        ZoomChanged,
+        SettingsApplied
     }
 
     export class CurrentSettingsRequestMessage 
@@ -37,6 +38,12 @@ namespace MidnightLizard.Settings
     {
         action: SettingsMessageAction.ZoomChanged = SettingsMessageAction.ZoomChanged;
         constructor(readonly zoom: number) { }
+    }
+
+    export class SettingsAppliedMessage 
+    {
+        action: SettingsMessageAction.SettingsApplied = SettingsMessageAction.SettingsApplied;
+        constructor(readonly settings: MidnightLizard.Settings.ColorScheme) { }
     }
 
     export class NewSettingsApplicationRequestMessage 

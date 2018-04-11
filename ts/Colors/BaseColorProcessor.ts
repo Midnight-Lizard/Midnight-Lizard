@@ -10,9 +10,8 @@ namespace MidnightLizard.Colors
     export type SchemeResponse = (scheme: Settings.ColorScheme) => void;
     export abstract class BaseColorProcessor
     {
-        protected _colorShift: ColorShift;
-        protected readonly _colors = new Map<string, ColorEntry>();
-        protected _component: Component;
+        protected _colorShift!: ColorShift;
+        protected _component!: Component;
 
         constructor(
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
@@ -30,12 +29,19 @@ namespace MidnightLizard.Colors
         protected onSettingsChanged(response: SchemeResponse, newSettings?: ComponentShift): void
         {
             this._colorShift = this._settingsManager.shift[Component[this._component] as keyof Colors.ComponentShift];
-            this._colors.clear();
         }
 
         protected scaleValue(currentValue: number, scaleLimit: number)
         {
             return Math.min(Math.min(currentValue, scaleLimit * Math.atan(currentValue * Math.PI / 2)), scaleLimit);
+        }
+
+        protected shiftHue(originalHue: number, targetHue: number, gravity: number)
+        {
+            let delta = (targetHue - originalHue + 180) % 360 - 180;
+            delta = delta < -180 ? delta + 360 : delta;
+            // const compression = Math.PI / 2 - Math.atan(Math.abs(180 / delta * Math.PI / 2));
+            return originalHue + Math.round(delta * gravity);// * compression);
         }
 
         protected applyBlueFilter(rgba: Colors.RgbaColor)

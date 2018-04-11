@@ -28,7 +28,7 @@ namespace MidnightLizard.ContentScript
         constructor() { }
         public get cssText()
         {
-            return ([...this._props] as [string, [string, string]][])
+            return Array.from(this._props)
                 .map(([key, [value, priority]]) => `${key}:${value}${priority}`)
                 .join(";");
         }
@@ -65,7 +65,7 @@ namespace MidnightLizard.ContentScript
         parentElement: Element;
         computedStyle: CSSStyleDeclaration;
         rect: ClientRect | null | undefined;
-        area: number;
+        area?: number;
         path: string | null | undefined;
         bgColor = "";
         style: PseudoElementStyle & CSSStyleDeclarationKeys;
@@ -73,7 +73,7 @@ namespace MidnightLizard.ContentScript
         selectors = "";
         selectorText: string;
         stylePromise: Promise<string>;
-        protected resolveCss: (css: string) => void;
+        protected resolveCss!: (css: string) => void;
         getBoundingClientRect()
         {
             this.rect = this.parentElement.rect = this.parentElement.rect || this.parentElement.getBoundingClientRect();

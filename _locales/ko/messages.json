@@ -1,10 +1,8 @@
 {
     "appDesc": {
-        "message": "가독성을 높이기 위해 페이지 색상, 밝기, 대비를 변경합니다. 모든 페이지에 야간 모드를 적용합니다.",
-        "description": "The description of the application, displayed in the web store."
+        "message": "가독성을 높이기 위해 페이지 색상, 밝기, 대비를 변경합니다. 모든 페이지에 야간 모드를 적용합니다."
     },
     "globalToggleKey": {
-        "message": "확장 프로그램 전역 스위치",
-        "description": "Global extension toggle key description"
+        "message": "확장 프로그램 전역 스위치"
     }
 }

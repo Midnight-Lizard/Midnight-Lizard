@@ -5,10 +5,12 @@
 /// <reference path="../Controls/-Controls.ts" />
 /// <reference path="../Events/-Events.ts" />
 /// <reference path="ICommandManager.ts" />
-/// <reference path="../SocialMedia/Facebook/FacebookService.ts" />
+// /// <reference path="../SocialMedia/Facebook/FacebookService.ts" />
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Settings/SettingsExporter.ts" />
 /// <reference path="../Settings/SettingsImporter.ts" />
+/// <reference path="../i18n/DocumentTranslator.ts" />
+
 
 namespace MidnightLizard.Popup
 {
@@ -19,26 +21,26 @@ namespace MidnightLizard.Popup
     @DI.injectable(IPopupManager)
     class PopupManager
     {
-        protected _currentSiteSettings: Settings.ColorScheme;
-        protected _colorSchemeSelect: HTMLSelectElement;
-        protected _applyButton: HTMLButtonElement;
-        protected _closeButton: HTMLButtonElement;
-        protected _setAsDefaultButton: HTMLButtonElement;
-        protected _hostName: HTMLAnchorElement;
-        protected _hostState: HTMLElement;
-        protected _facebookLink: HTMLAnchorElement;
-        protected _isEnabledToggle: HTMLInputElement;
-        protected _runOnThisSiteCheckBox: HTMLInputElement;
-        protected _useDefaultScheduleCheckBox: HTMLInputElement;
-        protected _forgetAllSitesButton: HTMLButtonElement;
-        protected _forgetThisSiteButton: HTMLButtonElement;
-        protected _deleteColorSchemeButton: HTMLButtonElement;
-        protected _saveColorSchemeButton: HTMLButtonElement;
-        protected _exportColorSchemeButton: HTMLButtonElement;
-        protected _newColorSchemeName: HTMLInputElement;
-        protected _colorSchemeForEdit: HTMLSelectElement;
-        protected _importColorSchemeFileInput: HTMLInputElement;
-        protected _syncSettingsCheckBox: HTMLInputElement;
+        protected _currentSiteSettings!: Settings.ColorScheme;
+        protected _colorSchemeSelect!: HTMLSelectElement;
+        protected _applyButton!: HTMLButtonElement;
+        protected _closeButton!: HTMLButtonElement;
+        protected _setAsDefaultButton!: HTMLButtonElement;
+        protected _hostName!: HTMLAnchorElement;
+        protected _hostState!: HTMLElement;
+        protected _facebookLink!: HTMLAnchorElement;
+        protected _isEnabledToggle!: HTMLInputElement;
+        protected _runOnThisSiteCheckBox!: HTMLInputElement;
+        protected _useDefaultScheduleCheckBox!: HTMLInputElement;
+        protected _forgetAllSitesButton!: HTMLButtonElement;
+        protected _forgetThisSiteButton!: HTMLButtonElement;
+        protected _deleteColorSchemeButton!: HTMLButtonElement;
+        protected _saveColorSchemeButton!: HTMLButtonElement;
+        protected _exportColorSchemeButton!: HTMLButtonElement;
+        protected _newColorSchemeName!: HTMLInputElement;
+        protected _colorSchemeForEdit!: HTMLSelectElement;
+        protected _importColorSchemeFileInput!: HTMLInputElement;
+        protected _syncSettingsCheckBox!: HTMLInputElement;
 
         constructor(
             protected readonly _popup: Document,
@@ -50,22 +52,40 @@ namespace MidnightLizard.Popup
             protected readonly _dynamicSettingsManager: MidnightLizard.Settings.IDynamicSettingsManager,
             protected readonly _dynamicTextColorProcessor: MidnightLizard.Colors.IDynamicTextColorProcessor,
             protected readonly _dynamicBackgroundColorProcessor: MidnightLizard.Colors.IDynamicBackgroundColorProcessor,
-            protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
+            // protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
-            protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter)
+            protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter,
+            protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
+            dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
+            dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
             _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime as any, this, Events.EventHandlerPriority.High);
-            _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
+            // _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
         }
 
-        protected onFacebookServiceInitialized()
+        // protected onFacebookServiceInitialized()
+        // {
+        //     this._facebookService.getFanCount()
+        //         .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
+        //         .catch(error => this._app.isDebug && console.error(error));
+        // }
+
+        protected popupContentloaded()
         {
-            this._facebookService.getFanCount()
-                .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
-                .catch(error => this._app.isDebug && console.error(error));
+            this._documentTranslator.translateDocument(this._popup);
+        }
+
+        protected setPopupScale()
+        {
+            this._popup.documentElement.style
+                .setProperty("--popup-scale", Math.min(
+                    this._popup.defaultView.innerWidth / 680.0,
+                    this._popup.defaultView.innerHeight / 600.0,
+                ).toString());
         }
 
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
@@ -109,7 +129,11 @@ namespace MidnightLizard.Popup
                 this._syncSettingsCheckBox.onchange = this.onSettingsSyncChanged.bind(this);
             });
 
-            doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}  Changelog`);
+            doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}\n${this._i18n.getMessage("changeLogLink_@tooltip")}`);
+            (doc.querySelector("#rate-link a") as HTMLAnchorElement).href =
+                this._app.browserName === MidnightLizard.Settings.BrowserName.Chrome
+                    ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
+                    : `https://addons.mozilla.org/${this._app.currentLocale}/firefox/addon/midnight-lizard-quantum/reviews/`;
 
             this._commandManager.getCommands()
                 .then(commands =>
@@ -118,16 +142,20 @@ namespace MidnightLizard.Popup
                     if (globalToggleCommand && globalToggleCommand.shortcut)
                     {
                         const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
-                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") + `\nShortcut: ${globalToggleCommand.shortcut}`);
+                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
+                            `\n${this._i18n.getMessage("shortcut_text_lable")}: ${globalToggleCommand.shortcut}`);
                     }
                 })
                 .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));
 
             this._forgetAllSitesButton.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied as any, this);
-            let range = document.querySelector(".ml-input-range") as HTMLInputElement;
+            const range = doc.querySelector(".ml-input-range") as HTMLInputElement;
             range.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             range.onRoomRulesApplied.addListener(this.onRangeRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, range);
+            const tabItemSep = doc.querySelector(".ml-tab-item-separator") as HTMLLIElement;
+            tabItemSep.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
+            range.onRoomRulesApplied.addListener(this.onTabItemSeparatorRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, tabItemSep);
 
             this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
             this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
@@ -172,6 +200,7 @@ namespace MidnightLizard.Popup
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
             this._popup.documentElement.style.cssText = "";
+            this.setPopupScale();
             this.updateButtonStates();
             this.toggleSchedule();
         }
@@ -185,7 +214,7 @@ namespace MidnightLizard.Popup
 
         protected getSettingsFromPopup()
         {
-            let settings = new Settings.ColorScheme(), value: string | number | boolean;
+            let settings: Settings.ColorScheme = {} as any, value: string | number | boolean;
             settings.isEnabled = this._isEnabledToggle.checked;
             for (let setting of Array.prototype.slice.call(document.querySelectorAll(".setting")))
             {
@@ -220,7 +249,7 @@ namespace MidnightLizard.Popup
                 .applySettings()
                 .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
                 .then(x => this.updateButtonStates())
-                .catch(ex => alert("Settings application failed. Refresh the page and try again.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("applyOnPageFailureMessage") + (ex.message || ex)));
         }
 
         protected toggleRunOnThisSite()
@@ -228,10 +257,6 @@ namespace MidnightLizard.Popup
             this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
             this.onInputFieldChanged();
             this.applySettingsOnPage();
-            // this._settingsManager.toggleRunOnThisSite()
-            //     .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
-            //     .then(x => this.updateButtonStates())
-            //     .catch(ex => alert("Current website toggle failed. Refresh the page and try again.\n" + (ex.message || ex)));
         }
 
         protected toggleIsEnabled()
@@ -239,16 +264,16 @@ namespace MidnightLizard.Popup
             this._currentSiteSettings.isEnabled = this._isEnabledToggle.checked;
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
-                .catch(ex => alert("Extension toggle switching failed. Refresh the page and try again.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("toggleExtensionFailureMessage") + (ex.message || ex)));
         }
 
         protected fillColorSchemesSelectLists()
         {
             const customScheme = Object.assign({}, this._settingsManager.currentSettings);
             customScheme.colorSchemeId = "custom" as Settings.ColorSchemeName;
-            customScheme.colorSchemeName = "Custom";
+            customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_Custom");
             this.addColorSchemeOption(this._colorSchemeSelect, customScheme);
-            customScheme.colorSchemeName = "New color scheme";
+            customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_New");
             this.addColorSchemeOption(this._colorSchemeForEdit, customScheme);
             let schemeName: Settings.ColorSchemeName;
 
@@ -294,8 +319,9 @@ namespace MidnightLizard.Popup
         protected onSettingsSyncChanged()
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
-                .then(x => alert("Changes have been successfully applied."))
-                .catch(ex => alert("Failed to change settings sync option.\n" + (ex.message || ex)));
+                .then(x => alert(this._i18n.getMessage("syncChangeSuccessMessage")))
+                .then(x => this.updateColorSchemeListsFromDefaultSettings())
+                .catch(ex => alert(this._i18n.getMessage("syncChangeFailureMessage") + (ex.message || ex)));
         }
 
         protected updateColorSchemeButtons()
@@ -307,10 +333,11 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value as Settings.ColorSchemeName;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
 
-            this._exportColorSchemeButton.title =
-                `Export to file current color scheme [${(this._colorSchemeSelect.selectedOptions[0] as HTMLOptionElement).text
-                }] as color scheme for edit [${(this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text
-                }] with name [${this._newColorSchemeName.value}]`;
+            this._exportColorSchemeButton.title = this._i18n.getMessage("exportColorSchemeBtn_@title",
+                this._colorSchemeSelect.selectedOptions[0].text,
+                this._colorSchemeForEdit.selectedOptions[0].text,
+                this._newColorSchemeName.value
+            );
         }
 
         protected exportColorScheme()
@@ -332,7 +359,7 @@ namespace MidnightLizard.Popup
                 Promise.all(this._settingsImporter.import(this._importColorSchemeFileInput.files))
                     .then(colorSchemes =>
                     {
-                        const importedColorSchemes = new Settings.ColorScheme();
+                        const importedColorSchemes: Settings.ColorScheme = {} as any;
                         importedColorSchemes.userColorSchemes = new Array<Settings.ColorScheme>();
                         colorSchemes.forEach(arr => importedColorSchemes.userColorSchemes!.push(...arr));
                         if (importedColorSchemes.userColorSchemes && importedColorSchemes.userColorSchemes.length > 0)
@@ -341,9 +368,10 @@ namespace MidnightLizard.Popup
                             this.updateColorSchemeLists(importedColorSchemes);
                             this._colorSchemeSelect.value = importedColorSchemes.userColorSchemes[0].colorSchemeId;
                             this.onColorSchemeChanged();
-                            alert(`${importedColorSchemes.userColorSchemes.length} color schemes have been successfully imported from the files.
-Imported color schemes are marked with a ${editMark}symbol and will be deleted with the popup closure unless you save each of them.
-To save imported color scheme select it in the [Current color scheme] dropdown list and press [Save] button.`)
+                            const msg = this._i18n.getMessage("colorSchemeImportSuccessMessage",
+                                importedColorSchemes.userColorSchemes.length.toString(),
+                                editMark);
+                            alert(msg);
                         }
                     })
                     .catch(error => alert(error));
@@ -355,8 +383,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
                 ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName : "";
             if (this._colorSchemeForEdit.value === "custom" ||
-                confirm(`You are about to update color scheme [${colorSchemeForEditName}] with current popup settings and ${
-                    colorSchemeForEditName === this._newColorSchemeName.value ? "a" : "the new"} name [${this._newColorSchemeName.value}]. Are you sure want to continue?`))
+                confirm(this._i18n.getMessage("colorSchemeSaveConfirmationMessage",
+                    colorSchemeForEditName, this._newColorSchemeName.value)))
             {
                 const newScheme = Object.assign({}, this._settingsManager.currentSettings);
                 newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
@@ -370,25 +398,24 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     {
                         this._settingsManager.changeSettings(newScheme);
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert("Done. It will take effect after page refresh.");
+                        alert(this._i18n.getMessage("colorSchemeSaveSuccessMessage"));
                     })
-                    .catch(ex => alert("Color scheme update failed.\n" + (ex.message || ex)));
+                    .catch(ex => alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + (ex.message || ex)));
             }
         }
 
         protected deleteUserColorScheme()
         {
-            if (confirm(`You are about to delete color scheme [${
-                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName
-                }]. Deleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?`))
+            if (confirm(this._i18n.getMessage("colorSchemeDeleteConfirmationMessage",
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName)))
             {
                 this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
                     .then(async (x) =>
                     {
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert("Done. It will take effect after page refresh.");
+                        alert(this._i18n.getMessage("colorSchemeDeleteSuccessMessage"));
                     })
-                    .catch(ex => alert("Color scheme deletion failed.\n" + (ex.message || ex)));
+                    .catch(ex => alert(this._i18n.getMessage("colorSchemeDeleteFailureMessage") + (ex.message || ex)));
             }
         }
 
@@ -407,8 +434,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             }
             dom.removeAllEventListeners(this._colorSchemeSelect);
             dom.removeAllEventListeners(this._colorSchemeForEdit);
-            this._colorSchemeSelect.innerHTML = "";
-            this._colorSchemeForEdit.innerHTML = "";
+            this._colorSchemeSelect.textContent = "";
+            this._colorSchemeForEdit.textContent = "";
             this.fillColorSchemesSelectLists();
             const settings = this._settingsManager.currentSettings;
             this.setUpColorSchemeSelectValue(settings);
@@ -444,13 +471,13 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
 
         protected forgetAllSitesSettings()
         {
-            if (confirm("All the settings and custom color schemes you have ever made will be deleted! Are you sure want to continue?"))
+            if (confirm(this._i18n.getMessage("forgetAllConfirmationMessage")))
             {
                 this._settingsManager
                     .deleteAllSettings()
                     .then(x => this.updateButtonStates())
-                    .then(x => alert("Done. It will take effect after page refresh."))
-                    .catch(ex => alert("All sites settings deletion failed.\n" + (ex.message || ex)));
+                    .then(x => alert(this._i18n.getMessage("forgetAllSuccessMessage")))
+                    .catch(ex => alert(this._i18n.getMessage("forgetAllFailureMessage") + (ex.message || ex)));
             }
         }
 
@@ -458,8 +485,8 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
         {
             this._settingsManager
                 .deleteCurrentSiteSettings()
-                .then(x => alert("Done. It will take effect after page refresh."))
-                .catch(ex => alert("Current site settings deletion failed.\n" + (ex.message || ex)));
+                .then(x => alert(this._i18n.getMessage("forgetThisSuccessMessage")))
+                .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
         }
 
         protected setAsDefaultSettings()
@@ -467,7 +494,7 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             this._settingsManager
                 .setAsDefaultSettings()
                 .then(x => this.updateButtonStates())
-                .catch(ex => alert("Default settings setup failed.\n" + (ex.message || ex)));
+                .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
         }
 
         protected setUpInputFields(settings: Settings.ColorScheme)
@@ -605,11 +632,11 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
             let newRules = Object.assign(new ContentScript.RoomRules(),
                 {
                     textShadow:
-                    {
-                        value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
-                            ? roomRules.textShadow.color.color
-                            : "black"
-                    }
+                        {
+                            value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
+                                ? roomRules.textShadow.color.color
+                                : "black"
+                        }
                 });
             this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props);
         }
@@ -635,6 +662,24 @@ To save imported color scheme select it in the [Current color scheme] dropdown l
                     color: { color: currentStyle.color },
                     borderColor: { color: currentStyle.borderColor },
                     textShadow: { value: shadowColor.color }
+                });
+            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+        }
+
+        protected onTabItemSeparatorRoomRulesApplied(tag: HTMLLIElement, roomRules: ContentScript.RoomRules)
+        {
+            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let props = Object.assign({}, ContentScript.USP.htm);
+            props.css =
+                {
+                    bgrColor: "",
+                    brdColor: "--tab-item-border-color",
+                    fntColor: "",
+                    shdColor: ""
+                };
+            let newRules = Object.assign(new ContentScript.RoomRules(),
+                {
+                    borderColor: { color: currentStyle.borderRightColor }
                 });
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }

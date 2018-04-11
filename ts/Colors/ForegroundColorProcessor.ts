@@ -15,9 +15,12 @@ namespace MidnightLizard.Colors
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
     export abstract class ILinkColorProcessor extends ITextColorProcessor { }
-    export abstract class IVisitedLinkColorProcessor extends ITextColorProcessor { }
+    export abstract class IVisitedLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IHoverVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IActiveVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IHoverLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IActiveLinkColorProcessor extends ILinkColorProcessor { }
     export abstract class IHighlightedTextColorProcessor extends ITextColorProcessor { }
-    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
 
     export abstract class ITextShadowColorProcessor
     {
@@ -30,6 +33,10 @@ namespace MidnightLizard.Colors
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
     export abstract class IButtonBorderColorProcessor extends IBorderColorProcessor { }
+    export abstract class IButtonBackgroundColorProcessor
+    {
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+    }
 
     export abstract class IScrollbarHoverColorProcessor
     {
@@ -45,6 +52,12 @@ namespace MidnightLizard.Colors
     {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
     }
+
+    export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
+    export abstract class IDynamicLinkColorProcessor extends ILinkColorProcessor { }
+    export abstract class IDynamicVisitedLinkColorProcessor extends IVisitedLinkColorProcessor { }
+    export abstract class IDynamicBorderColorProcessor extends IBorderColorProcessor { }
+    export abstract class IDynamicButtonBackgroundColorProcessor extends IButtonBackgroundColorProcessor { }
 
     abstract class ForegroundColorProcessor extends BaseColorProcessor
     {
@@ -62,7 +75,7 @@ namespace MidnightLizard.Colors
 
         protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, grayShift: Colors.ColorShift, customContrast?: number)
         {
-            let shift = this._colorShift, shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
+            let shift = this._colorShift;
             if (isGray)
             {
                 shift = grayShift;
@@ -71,12 +84,17 @@ namespace MidnightLizard.Colors
             }
             else
             {
+                if (shift.hueGravity)
+                {
+                    hsla.hue = this.shiftHue(hsla.hue, shift.grayHue, shift.hueGravity);
+                }
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
             hsla.lightness = this.scaleValue(hsla.lightness, shift.lightnessLimit);
-            let currentContrast = hsla.lightness - backgroundLightness,
-                down = Math.max(backgroundLightness - Math.min(Math.max(backgroundLightness - shiftContrast, 0), shift.lightnessLimit), 0),
-                up = Math.max(Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit) - backgroundLightness, 0);
+            const shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
+            const currentContrast = hsla.lightness - backgroundLightness,
+                down = Math.max(backgroundLightness - Math.min(Math.max(backgroundLightness - shiftContrast, 0), shift.lightnessLimit), 0).toFixed(2),
+                up = Math.max(Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit) - backgroundLightness, 0).toFixed(2);
             if (currentContrast < 0) // background is lighter
             {
                 if (down >= up)
@@ -122,37 +140,10 @@ namespace MidnightLizard.Colors
                     rgbaString = inheritedColor.originalColor;
                 }
             }
-
-            // let key = `${rgbaString}-${backgroundLightness}`, prevColor = this._colors.get(key);
-            // if (prevColor && prevColor !== undefined)
-            // {
-            //     let newColor = Object.assign({}, prevColor);
-            //     newColor.reason = ColorReason.Previous;
-            //     newColor.originalColor = rgbaString;
-            //     newColor.inheritedColor = inheritedColorValue;
-            //     newColor.owner = this._app.isDebug ? tag : null;
-            //     newColor.base = this._app.isDebug ? prevColor : null;
-            //     return newColor;
-            // }
-            // else
-            // {
             let rgba = RgbaColor.parse(rgbaString!), result: ColorEntry;
             if (rgba.alpha === 0)
             {
-                result = {
-                    role: this._component,
-                    color: null,
-                    light: 0,
-                    backgroundLight: backgroundLightness,
-                    originalLight: 0,
-                    originalColor: rgbaString,
-                    inheritedColor: inheritedColorValue,
-                    alpha: 0,
-                    isUpToDate: true,
-                    reason: ColorReason.Transparent,
-                    owner: this._app.isDebug ? tag : null,
-                };
-                // this._colors.set(key, result);
+                result = this.processTransparentColor(rgbaString, backgroundLightness, inheritedColorValue, tag);
                 return result;
             }
             else
@@ -174,15 +165,30 @@ namespace MidnightLizard.Colors
                     reason: ColorReason.Ok,
                     owner: this._app.isDebug ? tag : null,
                 };
-                // this._colors.set(key, result);
                 return result;
             }
-            // }
+        }
+
+        protected processTransparentColor(rgbaString: string, backgroundLightness: number, inheritedColorValue: string | undefined, tag: any)
+        {
+            return {
+                role: this._component,
+                color: null,
+                light: 0,
+                backgroundLight: backgroundLightness,
+                originalLight: 0,
+                originalColor: rgbaString,
+                inheritedColor: inheritedColorValue,
+                alpha: 0,
+                isUpToDate: true,
+                reason: ColorReason.Transparent,
+                owner: this._app.isDebug ? tag : null,
+            } as ColorEntry;
         }
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
+            return this._colorShift.replaceAllHues || hsla.saturation < 0.1 && this._colorShift.grayHue !== 0;
         }
 
         protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
@@ -249,7 +255,7 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
+            return this._colorShift.replaceAllHues || (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0;
         }
 
         public getDefaultColor(doc: Document): string | undefined
@@ -342,10 +348,15 @@ namespace MidnightLizard.Colors
     {
         protected readonly _tagName = "a";
 
+        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        {
+            return null;
+        }
+
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
             // если серый или равен дефолтному цвету текста то считать текстом
-            return (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
+            return this._colorShift.replaceAllHues || (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
                 (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) &&
                 this._settingsManager.shift.Text.grayHue !== 0;
         }
@@ -387,6 +398,66 @@ namespace MidnightLizard.Colors
         }
     }
 
+    @DI.injectable(IActiveLinkColorProcessor)
+    class ActiveLinkColorProcessor extends LinkColorProcessor implements IActiveLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.Link$Active;
+        }
+    }
+
+    @DI.injectable(IHoverLinkColorProcessor)
+    class HoverLinkColorProcessor extends LinkColorProcessor implements IHoverLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.Link$Hover;
+        }
+    }
+
+    @DI.injectable(IActiveVisitedLinkColorProcessor)
+    class ActiveVisitedLinkColorProcessor extends LinkColorProcessor implements IActiveVisitedLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.VisitedLink$Active;
+        }
+    }
+
+    @DI.injectable(IHoverVisitedLinkColorProcessor)
+    class HoverVisitedLinkColorProcessor extends LinkColorProcessor implements IHoverVisitedLinkColorProcessor
+    {
+        protected readonly _tagName = "a";
+
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            textColorProcessor: MidnightLizard.Colors.ITextColorProcessor)
+        {
+            super(app, settingsManager, textColorProcessor);
+            this._component = Component.VisitedLink$Hover;
+        }
+    }
+
     @DI.injectable(IBorderColorProcessor)
     class BorderColorProcessor extends ForegroundColorProcessor implements IBorderColorProcessor
     {
@@ -396,6 +467,35 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Border;
+        }
+    }
+
+    @DI.injectable(IButtonBackgroundColorProcessor)
+    class ButtonBackgroundColorProcessor extends ForegroundColorProcessor implements IButtonBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.ButtonBackground;
+        }
+
+        protected processTransparentColor(rgbaString: string, backgroundLightness: number, inheritedColorValue: string | undefined, tag: any)
+        {
+            return {
+                role: this._component,
+                color: null,
+                reason: ColorReason.Parent,
+                originalColor: rgbaString,
+                owner: this._app.isDebug ? tag : null,
+                light: backgroundLightness,
+                backgroundLight: backgroundLightness,
+                originalLight: 1, // since i don't know the real value
+                inheritedColor: inheritedColorValue,
+                alpha: 1, // since i don't know the real value
+                isUpToDate: true
+            } as ColorEntry;
         }
     }
 
@@ -456,6 +556,74 @@ namespace MidnightLizard.Colors
         {
             super(app, settingsManager);
             this._component = Component.Text;
+        }
+    }
+
+    @DI.injectable(IDynamicLinkColorProcessor)
+    class DynamicLinkColorProcessor extends LinkColorProcessor implements IDynamicLinkColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager, null as any);
+            this._component = Component.Link;
+        }
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return true;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
+        }
+    }
+
+    @DI.injectable(IDynamicVisitedLinkColorProcessor)
+    class DynamicVisitedLinkColorProcessor extends VisitedLinkColorProcessor implements IDynamicVisitedLinkColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager, null as any);
+            this._component = Component.VisitedLink;
+        }
+
+        protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
+        {
+            return true;
+        }
+
+        protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
+        {
+            return this._colorShift;
+        }
+    }
+
+    @DI.injectable(IDynamicBorderColorProcessor)
+    class DynamicBorderColorProcessor extends BorderColorProcessor implements IDynamicBorderColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.Border;
+        }
+    }
+
+    @DI.injectable(IDynamicButtonBackgroundColorProcessor)
+    class DynamicButtonBackgroundColorProcessor extends ButtonBackgroundColorProcessor implements IDynamicButtonBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.ButtonBackground;
         }
     }
 }

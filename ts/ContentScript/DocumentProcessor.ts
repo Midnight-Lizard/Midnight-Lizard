@@ -9,6 +9,8 @@
 /// <reference path="../Colors/BackgroundColorProcessor.ts" />
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
+/// <reference path="./SvgFilters.ts" />
+/// <reference path="./PreloadManager.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -39,10 +41,13 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(IDocumentProcessor)
     class DocumentProcessor implements IDocumentProcessor
     {
-        protected _rootDocumentLoaded: boolean = false;
+        protected _rootDocumentContentLoaded: boolean = false;
+        protected readonly _rootImageUrl: string;
+        protected readonly _isPdf: boolean;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
+        protected readonly _anchors = new WeakMap<Document, HTMLAnchorElement>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
@@ -68,6 +73,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _rootDocument: Document,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            protected readonly _preloadManager: MidnightLizard.ContentScript.IPreloadManager,
             protected readonly _documentObserver: MidnightLizard.ContentScript.IDocumentObserver,
             protected readonly _styleSheetProcessor: MidnightLizard.ContentScript.IStyleSheetProcessor,
             protected readonly _backgroundColorProcessor: MidnightLizard.Colors.IBackgroundColorProcessor,
@@ -81,13 +87,20 @@ namespace MidnightLizard.ContentScript
             protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _visitedLinkColorProcessor: MidnightLizard.Colors.IVisitedLinkColorProcessor,
+            protected readonly _activeVisitedLinkColorProcessor: MidnightLizard.Colors.IActiveVisitedLinkColorProcessor,
+            protected readonly _hoverVisitedLinkColorProcessor: MidnightLizard.Colors.IHoverVisitedLinkColorProcessor,
+            protected readonly _activeLinkColorProcessor: MidnightLizard.Colors.IActiveLinkColorProcessor,
+            protected readonly _hoverLinkColorProcessor: MidnightLizard.Colors.IHoverLinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter,
-            protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver)
+            protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
+            protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
         {
             _rootDocument.documentElement.setAttribute("preload", "");
+            this._rootImageUrl = `url("${_rootDocument.location.href}")`;
+            this._isPdf = /.+\.pdf(#.*)?/i.test(_rootDocument.location.href);
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
                 [
@@ -161,7 +174,7 @@ namespace MidnightLizard.ContentScript
                 this.createStandardPseudoCssTexts();
                 this.createDynamicStyle(this._rootDocument);
             }
-            if (this._rootDocumentLoaded)
+            if (this._rootDocumentContentLoaded)
             {
                 this.processRootDocument();
             }
@@ -174,7 +187,7 @@ namespace MidnightLizard.ContentScript
         protected onDocumentContentLoaded()
         {
             dom.removeEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded);
-            this._rootDocumentLoaded = true;
+            this._rootDocumentContentLoaded = true;
             if (this._settingsManager.isActive)
             {
                 this.processRootDocument();
@@ -199,13 +212,31 @@ namespace MidnightLizard.ContentScript
                 {
                     dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
                 }
+                if (this._settingsManager.currentSettings.restoreColorsOnPrint)
+                {
+                    const printMedia = doc.defaultView.matchMedia("print");
+                    printMedia.addListener(mql =>
+                    {
+                        if (mql.matches)
+                        {
+                            this.restoreDocumentColors(doc);
+                        }
+                        else
+                        {
+                            this.createDynamicStyle(doc);
+                            this.processDocument(doc);
+                        }
+                    });
+                }
                 //this.applyLoadingShadow(doc.documentElement);
                 this.removeLoadingStyles(doc);
                 this.createPseudoStyles(doc);
-                this.createSvgFilters(doc);
+                this._svgFilters.createSvgFilters(doc);
                 this.createPageScript(doc);
                 const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
                 this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+                this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+                this._hoverLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
                 this._textColorProcessor.calculateDefaultColor(doc);
                 doc.body.isChecked = true;
                 DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
@@ -253,15 +284,14 @@ namespace MidnightLizard.ContentScript
             }
             if (checked)
             {
-                if (tag instanceof HTMLInputElement || tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
+                if (tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
                 {
                     dom.addEventListener(tag, "input", this._boundUserActionHandler);
                     dom.addEventListener(tag, "change", this._boundUserActionHandler);
                 }
-                else if ((tag instanceof HTMLLabelElement || tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement)
-                    && (tag as HTMLLabelElement).htmlFor)
+                else if (tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement && tag.htmlFor)
                 {
-                    const checkBox = tag.ownerDocument.getElementById((tag as HTMLLabelElement).htmlFor) as HTMLInputElement;
+                    const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
                     if (checkBox)
                     {
                         checkBox.labelElement = tag as any;
@@ -284,11 +314,13 @@ namespace MidnightLizard.ContentScript
         protected onUserHover(eArg: Event)
         {
             const tag = eArg.currentTarget as HTMLElement;
-            const eventTargets = tag instanceof HTMLTableCellElement || tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
-                ? Array.from(tag.parentElement!.children) : [tag];
+            const eventTargets = tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
+                ? tag.parentElement!.children : [tag];
             for (let target of eventTargets)
             {
-                this.onUserAction({ currentTarget: target } as any);
+                // setTimeout(this._boundUserActionHandler, 0, { currentTarget: target });
+                tag.ownerDocument.defaultView.requestAnimationFrame(
+                    () => this.onUserAction({ currentTarget: target } as any));
             }
         }
 
@@ -378,7 +410,7 @@ namespace MidnightLizard.ContentScript
             changedElements.forEach(tag =>
             {
                 let needReCalculation = false, value: string | null | undefined;
-                const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 value = tag.style.getPropertyValue(ns.css.bgrColor);
                 if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
@@ -529,14 +561,14 @@ namespace MidnightLizard.ContentScript
                 for (let tag of allTags)
                 {
                     tag.rowNumber = rowNumber++;
-                    isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
+                    isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        isLink = tag instanceof HTMLAnchorElement || tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
-                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== "rgba(0, 0, 0, 0)";
+                        isLink = tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
+                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                         hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
                     }
 
@@ -614,39 +646,68 @@ namespace MidnightLizard.ContentScript
 
         protected static fixColorInheritance(allTags: HTMLElement[], docProc: DocumentProcessor, results: Promise<any>)
         {
-            Promise.all([allTags, docProc, results])
-                .then(([tags, dp]) =>
+            const waitResults = Promise.all([allTags, docProc, results]);
+            waitResults.then(([tags, dp]) =>
+            {
+                if (tags && tags.length > 0)
                 {
-                    if (tags && tags.length > 0)
+                    tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
                     {
-                        tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                        const brokenColorTags = t.filter(tag =>
+                            !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
+                            tag.mlColor.reason === Colors.ColorReason.Inherited &&
+                            tag.mlColor.intendedColor && tag.computedStyle &&
+                            tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
+                                ? tag.computedStyle!.color
+                                : tag!.computedStyle!.fill));
+
+                        if (brokenColorTags.length > 0)
                         {
-                            const brokenTags = t.filter(tag => !tag.isPseudo && tag.mlColor
-                                && tag.mlColor.reason === Colors.ColorReason.Inherited
-                                && tag.mlColor.color === null
-                                && tag.mlColor.intendedColor && tag.computedStyle
-                                && tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
-                                    ? tag.computedStyle!.color
-                                    : tag!.computedStyle!.fill));
-                            if (brokenTags.length > 0)
+                            dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
+                            brokenColorTags.forEach(tag =>
                             {
-                                dProc._documentObserver.stopDocumentObservation(brokenTags[0].ownerDocument);
-                                brokenTags.forEach(tag =>
-                                {
-                                    const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
-                                    const newColor = Object.assign({}, tag.mlColor!);
-                                    newColor.base = dProc._app.isDebug ? tag.mlColor : null
-                                    newColor.reason = Colors.ColorReason.FixedInheritance;
-                                    newColor.color = newColor.intendedColor!;
-                                    tag.mlColor = newColor;
-                                    tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                                    tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
-                                });
-                                docProc._documentObserver.startDocumentObservation(brokenTags[0].ownerDocument);
-                            }
-                        }).bind(null, tags, dp));
-                    }
-                });
+                                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                                const newColor = Object.assign({}, tag.mlColor!);
+                                newColor.base = dProc._app.isDebug ? tag.mlColor : null
+                                newColor.reason = Colors.ColorReason.FixedInheritance;
+                                newColor.color = newColor.intendedColor!;
+                                tag.mlColor = newColor;
+                                tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
+                                tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
+                            });
+                            docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
+                        }
+                    }).bind(null, tags, dp));
+                }
+            });
+            waitResults.then(([tags, dp]) =>
+            {
+                if (tags && tags.length > 0)
+                {
+                    setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                    {
+                        const brokenTransparentTags = t.filter(tag =>
+                            tag.ownerDocument.defaultView && tag.mlBgColor &&
+                            !tag.mlBgColor.color && tag.computedStyle &&
+                            tag.mlBgColor.reason === Colors.ColorReason.Parent &&
+                            tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                            tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
+                            !tag.hasAttribute("fixed")
+                        );
+                        if (brokenTransparentTags.length > 0)
+                        {
+                            dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                            brokenTransparentTags.forEach(tag =>
+                            {
+                                dProc.restoreElementColors(tag, true);
+                                tag.setAttribute("fixed", "bgcolor");
+                            });
+                            dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                            DocumentProcessor.processAllElements(brokenTransparentTags, null, dProc, bigReCalculationDelays);
+                        }
+                    }).bind(null, tags, dp), 1);
+                }
+            });
         }
 
         protected static processOrderedElements(tags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays)
@@ -687,8 +748,7 @@ namespace MidnightLizard.ContentScript
 
         protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
         {
-            const paramsForPromiseAll: [HTMLElement[] | Document | number | Promise<PromiseResult<string>>] =
-                [chunk, chunk[0].ownerDocument, delay];
+            const paramsForPromiseAll: any[] = [chunk, chunk[0].ownerDocument, delay];
             const results = chunk.map(tag => { return { tag: tag, result: docProc.calculateRoomRules(tag) } });
             docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
             results
@@ -821,6 +881,10 @@ namespace MidnightLizard.ContentScript
                     {
                         tag.path += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
                     }
+                    else if (attr.name === "disabled")
+                    {
+                        tag.path += "X";
+                    }
                 }
             }
             return tag.path;
@@ -835,14 +899,14 @@ namespace MidnightLizard.ContentScript
 
         protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
         {
-            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.ColorEntry.NotFound);
+            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.NotFound);
             result.reason = Colors.ColorReason.NotFound;
             if (tag.parentElement)
             {
                 let bgColor;
                 let doc = tag.ownerDocument;
-                let isSvg = (tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement) &&
-                    (tag.parentElement instanceof SVGElement || tag.parentElement instanceof doc.defaultView.SVGElement);
+                let isSvg = tag instanceof doc.defaultView.SVGElement &&
+                    tag.parentElement instanceof doc.defaultView.SVGElement;
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
                 if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
@@ -972,7 +1036,7 @@ namespace MidnightLizard.ContentScript
         {
             if (tag.mlBgColor)
             {
-                let ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
                 tag.mlBgColor = null;
                 tag.mlColor = null;
@@ -1003,6 +1067,10 @@ namespace MidnightLizard.ContentScript
                     tag.style.removeProperty(this._css.originalColor);
                     tag.style.removeProperty(this._css.linkColor);
                     tag.style.removeProperty(this._css.visitedColor);
+                    tag.style.removeProperty(this._css.linkColorActive);
+                    tag.style.removeProperty(this._css.visitedColorActive);
+                    tag.style.removeProperty(this._css.linkColorHover);
+                    tag.style.removeProperty(this._css.visitedColorHover);
                 }
                 if (tag.originalTextShadow !== undefined && tag.style.textShadow !== tag.originalTextShadow)
                 {
@@ -1056,8 +1124,12 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.removeAttribute("after-style")
                 }
+                if (tag.hasAttribute("fixed"))
+                {
+                    tag.removeAttribute("fixed");
+                }
 
-                if (tag instanceof HTMLIFrameElement || tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
+                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
                 {
                     try
                     {
@@ -1089,20 +1161,34 @@ namespace MidnightLizard.ContentScript
                 let doc = tag.ownerDocument;
                 let isSmall, bgInverted;
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
-                let isSvg = tag instanceof SVGElement || tag instanceof doc.defaultView.SVGElement,
-                    isSvgText = tag instanceof SVGTextContentElement || tag instanceof doc.defaultView.SVGTextContentElement,
-                    isLink = tag instanceof HTMLAnchorElement || tag instanceof doc.defaultView.HTMLAnchorElement,
-                    isButton = tag instanceof HTMLButtonElement || tag instanceof doc.defaultView.HTMLButtonElement ||
-                        (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
+                let isSvg = tag instanceof doc.defaultView.SVGElement,
+                    isSvgText = tag instanceof doc.defaultView.SVGTextContentElement,
+                    isLink = tag instanceof doc.defaultView.HTMLAnchorElement,
+                    isButton = tag instanceof doc.defaultView.HTMLButtonElement ||
+                        tag instanceof doc.defaultView.HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
                         isRealElement(tag) && tag.getAttribute("role") === "button",
                     isTable =
-                        tag instanceof HTMLTableElement || tag instanceof doc.defaultView.HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
-                        tag instanceof HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof HTMLTableSectionElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
+                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
+                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
                 let ns = isSvg ? USP.svg : USP.htm;
                 let beforePseudoElement: PseudoElement | undefined, afterPseudoElement: PseudoElement | undefined;
 
-                if (tag instanceof HTMLIFrameElement || tag instanceof doc.defaultView.HTMLIFrameElement)
+                if (!isButton && tag instanceof doc.defaultView.HTMLLabelElement && tag.htmlFor)
+                {
+                    const labeledElement = doc.getElementById(tag.htmlFor);
+                    isButton = labeledElement instanceof doc.defaultView.HTMLInputElement &&
+                        labeledElement.type === "file";
+                }
+
+                if (isLink && !isButton && !isSvg &&
+                    tag.className && tag.className && tag.className &&
+                    (tag.className.includes("button") || tag.className.includes("btn")))
+                {
+                    isButton = true;
+                }
+
+                if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
                     setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
                 }
@@ -1123,14 +1209,18 @@ namespace MidnightLizard.ContentScript
                         let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
                         let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
                         let roomId = "";
-                        if (beforeStyle && beforeStyle.content && beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (beforeStyle && beforeStyle.content &&
+                            beforeStyle.content !== this._css.none &&
+                            beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
                             roomRules.attributes = roomRules.attributes || new Map<string, string>();
                             roomRules.attributes.set("before-style", roomId);
                         }
-                        if (afterStyle && afterStyle.content && afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        if (afterStyle && afterStyle.content &&
+                            afterStyle.content !== this._css.none &&
+                            afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
                             roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
                             afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
@@ -1157,12 +1247,13 @@ namespace MidnightLizard.ContentScript
                     }
                     if (!isSvgText)
                     {
-                        if (isSvg)
+                        if (tag instanceof doc.defaultView.SVGElement)
                         {
                             if (this.tagIsSmall(tag) && tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                             {
                                 isSvgText = true;
-                                roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
+                                roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
+                                    tag.ownerSVGElement || tag));
                                 roomRules.backgroundColor.reason = Colors.ColorReason.SvgText;
                                 roomRules.backgroundColor.color = null;
                             }
@@ -1189,9 +1280,13 @@ namespace MidnightLizard.ContentScript
                         roomRules.backgroundColor.color = null;
                     }
 
-                    if ((tag.tagName == ns.img || (tag instanceof HTMLInputElement || tag instanceof doc.defaultView.HTMLInputElement) &&
-                        (tag.type == "checkbox" || tag.type == "radio") && tag.computedStyle!.webkitAppearance !== this._css.none) &&
-                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || this._settingsManager.currentSettings.blueFilter !== 0))
+                    if ((tag.tagName == ns.img || tag instanceof doc.defaultView.HTMLInputElement &&
+                        (tag.type == "checkbox" || tag.type == "radio") &&
+                        (tag.computedStyle!.webkitAppearance && tag.computedStyle!.webkitAppearance !== this._css.none ||
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") &&
+                            tag.computedStyle!.getPropertyValue("-moz-appearance") !== this._css.none)) &&
+                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
+                            this._settingsManager.currentSettings.blueFilter !== 0))
                     {
                         const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                         let imgSet = this.shift[customImageRole] || this.shift.Image;
@@ -1213,7 +1308,10 @@ namespace MidnightLizard.ContentScript
                     }
                     const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                    if (tag.computedStyle!.content!.substr(0, 3) == "url")
+                    if (tag.computedStyle!.content!.startsWith("url") &&
+                        (this._app.browserName === Settings.BrowserName.Chrome ||
+                            !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
+                            !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
                     {
                         let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
                             (
@@ -1243,7 +1341,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none)
+                    if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
+                        tag.computedStyle!.backgroundImage !== this._rootImageUrl)
                     {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                         let backgroundImage = tag.computedStyle!.backgroundImage!;
                         let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
@@ -1263,7 +1362,7 @@ namespace MidnightLizard.ContentScript
                             const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                             let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
-                            doInvert = (!isTable) && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
+                            doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
                                 tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                                 (
                                     this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
@@ -1298,8 +1397,8 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else isInput = true;
 
-                                haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || isPseudoContent ||
-                                    !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
+                                haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
+                                    isPseudoContent || !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
                             }
                         }
                         if (haveToProcBgImg || haveToProcBgGrad)
@@ -1308,7 +1407,7 @@ namespace MidnightLizard.ContentScript
                             {
                                 gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
                                 let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
-                                if (haveToProcBgImg && bgImg.substr(0, 3) == "url")
+                                if (haveToProcBgImg && bgImg.startsWith("url"))
                                 {
                                     return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
                                 }
@@ -1327,14 +1426,21 @@ namespace MidnightLizard.ContentScript
                     let bgLight = roomRules.backgroundColor.light;
                     if (!isSvg || isSvgText)
                     {
-                        const textRole = isLink || tag.isPseudo
-                            && (tag.parentElement instanceof HTMLAnchorElement || tag.parentElement instanceof doc.defaultView.HTMLAnchorElement)
-                            ? cc.Link
-                            : cc.Text;
-                        roomRules.color = this.changeColor({ role: textRole, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                        if (textRole === cc.Link)
+                        if (isLink || !isSvg && ( //tag.isPseudo &&
+                            tag.parentElement instanceof doc.defaultView.HTMLAnchorElement ||
+                            tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
                         {
+                            roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+
                             roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                        }
+                        else
+                        {
+                            roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                         }
                         if (roomRules.color)
                         {
@@ -1375,7 +1481,9 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof HTMLCanvasElement || tag instanceof doc.defaultView.HTMLCanvasElement)
+                    if (tag instanceof doc.defaultView.HTMLCanvasElement ||
+                        tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
+                        this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         let filterValue: Array<string>;
                         const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
@@ -1387,11 +1495,12 @@ namespace MidnightLizard.ContentScript
                             roomRules.backgroundColor.color = null;
                             filterValue = [
                                 tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                                tag instanceof HTMLEmbedElement ? 'url("#pdf-bg-filter")' : "",
                                 bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                `brightness(${float.format(1 - bgrSet.lightnessLimit)})`,
+                                `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
                                 `hue-rotate(180deg) invert(1)`,
                                 this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                `brightness(${txtSet.lightnessLimit})`
+                                `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
                             ];
                         }
                         else
@@ -1406,11 +1515,22 @@ namespace MidnightLizard.ContentScript
                         roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
                     }
 
-                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && tag.computedStyle!.borderStyle !== this._css.none)
+                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
+                        tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
+                        !tag.computedStyle!.borderStyle && (
+                            tag.computedStyle!.borderTopStyle !== this._css.none ||
+                            tag.computedStyle!.borderRightStyle !== this._css.none ||
+                            tag.computedStyle!.borderBottomStyle !== this._css.none ||
+                            tag.computedStyle!.borderLeftStyle !== this._css.none)))
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        if (brdColor.indexOf(" r") == -1)
+                        let brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
+                            tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
+                            tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
+                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor
+                        if (brdColorIsSingle)
                         {
+                            brdColor = brdColor || tag.computedStyle!.borderTopColor!;
                             if (brdColor === tag.computedStyle!.getPropertyValue(ns.css.bgrColor))
                             {
                                 let result = Object.assign({}, roomRules.backgroundColor);
@@ -1418,7 +1538,7 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight });
+                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight, propVal: brdColor });
                             }
                         }
                         else if (!isSvg)
@@ -1484,58 +1604,76 @@ namespace MidnightLizard.ContentScript
 
         protected changeColor(
             {
-            role: component, property: property, tag: tag, bgLight: bgLight
-        }:
+                role: component, property: property, tag: tag, bgLight: bgLight, propVal: propVal
+            }:
                 {
-                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number
+                    role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number, propVal?: string
                 }): Colors.ColorEntry | undefined
         {
             if (tag.computedStyle)
             {
                 const propRole = (cc as any as { [p: string]: Colors.Component })
-                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].toLowerCase()}-${property}`)];
-                if (propRole !== undefined)
+                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)]
+                    || component;
+                propVal = propVal || tag.computedStyle!.getPropertyValue(property);
+                let bgLightVal = 1;
+                switch (propRole)
                 {
-                    const propVal = tag.computedStyle!.getPropertyValue(property);
-                    let bgLightVal = 1;
-                    switch (propRole)
-                    {
-                        case cc.Background:
-                            return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+                    case cc.Background:
+                        return this._backgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
 
-                        case cc.ButtonBackground:
-                            return this._buttonBackgroundColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+                    case cc.BackgroundNoContrast:
+                        return this._backgroundColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
 
-                        case cc.Text:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.ButtonBackground:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._buttonBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.HighlightedText:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Text:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Link:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.HighlightedText:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.VisitedLink:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._linkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.Border:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link$Active:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._activeLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.ButtonBorder:
-                            bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
-                            return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
+                    case cc.Link$Hover:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._hoverLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.SvgBackground:
-                            return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
+                    case cc.VisitedLink:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._visitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
 
-                        case cc.TextSelection:
-                            return this._textSelectionColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
-                    }
+                    case cc.VisitedLink$Active:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._activeVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                    case cc.VisitedLink$Hover:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._hoverVisitedLinkColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                    case cc.Border:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                    case cc.ButtonBorder:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                    case cc.SvgBackground:
+                        return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
+
+                    case cc.TextSelection:
+                        return this._textSelectionColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
                 }
             }
             return undefined;
@@ -1557,16 +1695,23 @@ namespace MidnightLizard.ContentScript
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                .replace(/webkit|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
+                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
                 {
                     let prevColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
-                    let newColor = isButton
-                        ? this._buttonBackgroundColorProcessor.changeColor(prevColor, false, tag)
-                        : this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                    let newColor: Colors.ColorEntry;
+                    if (isButton)
+                    {
+                        newColor = this._buttonBackgroundColorProcessor
+                            .changeColor(prevColor, roomRules.backgroundColor!.backgroundLight!, tag);
+                    }
+                    else
+                    {
+                        newColor = this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                    }
                     lightSum += newColor.light;
                     if (newColor.color)
                     {
@@ -1581,6 +1726,18 @@ namespace MidnightLizard.ContentScript
                 mainColor && (mainColor!.light = lightSum / uniqColors.size);
             }
             return new BackgroundImage(size, gradient, BackgroundImageType.Gradient);
+        }
+
+        protected getAbsoluteUrl(doc: Document, relativeUrl: string): string
+        {
+            let anchor = this._anchors.get(doc);
+            if (!anchor)
+            {
+                anchor = doc.createElement("a");
+                this._anchors.set(doc, anchor);
+            }
+            anchor.href = relativeUrl;
+            return anchor.href;
         }
 
         protected processBackgroundImage(tag: HTMLElement | PseudoElement, index: number, url: string,
@@ -1601,7 +1758,7 @@ namespace MidnightLizard.ContentScript
                 roomRules.hasBackgroundImagePromises = true;
                 return prevPromise;
             }
-            url = Util.trim(url.substr(3), "()'\"");
+            url = this.getAbsoluteUrl(tag.ownerDocument, Util.trim(url.substr(3), "()'\""));
             let dataPromise = fetch(url, { cache: "force-cache" })
                 .then(resp => resp.blob())
                 .then(blob => new Promise<string>((resolve, reject) =>
@@ -1662,6 +1819,11 @@ namespace MidnightLizard.ContentScript
             }
             catch (ex)
             {
+                iframe.mlInaccessible = true;
+                this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
+                this.restoreElementColors(iframe, true);
+                iframe.setAttribute("fixed", "access");
+                DocumentProcessor.processElementsChunk([iframe], this, null, 0);
                 //docProc._app.isDebug && console.error(ex);
             }
         }
@@ -1737,10 +1899,32 @@ namespace MidnightLizard.ContentScript
             }
             globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
             globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
-            const selection = `:not(imp)::selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
-            const linkColors =
-                "[style*=--link]:link:not(imp),a[style*=--link]:not(:visited) { color: var(--link-color)!important; }" +
-                "[style*=--visited]:visited:not(imp) { color: var(--visited-color)!important; }";
+            let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
+            const mozSelection = selection.replace("{x}", "-moz-");
+            selection = selection.replace("{x}", "");
+            const linkColors = `
+                [style*=--link]:not(imp), a[style*=--link]:not(:visited) {
+                    color: var(--link-color)!important;
+                }
+                [style*=--link]:not(imp):hover, a[style*=--link]:not(:visited):hover {
+                    color: var(--link-color-hover)!important;
+                }
+                [style*=--link]:not(imp):active, a[style*=--link]:not(:visited):active {
+                    color: var(--link-color-active)!important;
+                }
+                a:visited [style*=--visited]:not(imp), [style*=--visited]:visited:not(imp) {
+                    color: var(--visited-color)!important;
+                }
+                a:visited:active [style*=--visited]:not(imp),
+                [style*=--visited]:visited:not(imp):active,
+                a:visited:active [style*=--visited]:not(imp):hover,
+                a:visited:active:hover [style*=--visited]:not(imp),
+                [style*=--visited]:visited:not(imp):active:hover {
+                    color: var(--visited-color-active)!important;
+                }
+                a:visited [style*=--visited]:not(imp):hover, [style*=--visited]:visited:not(imp):hover {
+                    color: var(--visited-color-hover)!important;
+                }`;
             let scrollbars = "";
             if (sbSize)
             {
@@ -1798,21 +1982,9 @@ namespace MidnightLizard.ContentScript
                 scrollbar-corner { background: ${thumbNormalColor}!important; }`
                     .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
             }
-            sheet.innerHTML = `:root { ${globalVars} }\n${selection}\n${linkColors}\n${scrollbars}`
+            sheet.textContent = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
                 .replace(/\s{16}(?=\S)/g, "");
             (doc.head || doc.documentElement).appendChild(sheet);
-        }
-
-        protected createSvgFilters(doc: Document)
-        {
-            const svgFilter = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
-                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
-                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
-            svgFilter.id = "midnight-lizard-filters"
-            svgFilter.mlIgnore = true;
-            svgFilter.style.display = this._css.none;
-            svgFilter.innerHTML = `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="${redShiftMatrix}"/></filter>`;
-            doc.body.appendChild(svgFilter);
         }
 
         protected createPseudoStyles(doc: Document)
@@ -1822,7 +1994,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles = doc.createElement('style');
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
                 (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
             }
         }
@@ -1850,7 +2022,7 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.mlPseudoStyles)
             {
-                doc.mlPseudoStyles.innerHTML = this.getStandardPseudoStyles();
+                doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
             }
         }
 
@@ -1859,7 +2031,7 @@ namespace MidnightLizard.ContentScript
             let noTrans = doc.createElement('style');
             noTrans.id = "midnight-lizard-no-trans-style";
             noTrans.mlIgnore = true;
-            noTrans.innerHTML = ":not([transition]) { transition: all 0s ease 0s !important; }";
+            noTrans.textContent = ":not([transition]) { transition: all 0s ease 0s !important; }";
             (doc.head || doc.documentElement).appendChild(noTrans);
 
             let bgrLight = this.shift.Background.lightnessLimit,
@@ -1871,7 +2043,7 @@ namespace MidnightLizard.ContentScript
                 style = doc.createElement('style');
             style.id = "midnight-lizard-loading-style";
             style.mlIgnore = true;
-            style.innerHTML =
+            style.textContent =
                 `img[src]:not(impt),iframe:not(impt){filter:brightness(${imgLight}) saturate(${imgSatrt})!important}` +
                 `:not(impt),:not(impt):before,:not(impt):after` +
                 `{` +
@@ -1887,7 +2059,7 @@ namespace MidnightLizard.ContentScript
         {
             let style = doc.getElementById("midnight-lizard-loading-style");
             style && style.remove();
-            const removeNoTrans = ((d: Document) => 
+            const removeNoTrans = ((d: Document) =>
             {
                 let noTrans = d.getElementById("midnight-lizard-no-trans-style");
                 noTrans && noTrans.remove();
@@ -1919,7 +2091,7 @@ namespace MidnightLizard.ContentScript
 
         public applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, _ns?: any)
         {
-            let isSvg = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement;
+            let isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
             let applyBgPromise;
             let ns = USP.htm;
             ns = _ns || (isSvg ? USP.svg : USP.htm);
@@ -1968,7 +2140,7 @@ namespace MidnightLizard.ContentScript
                         });
                     Promise
                         .all([tag, Util.handlePromise(applyBgPromise)])
-                        .then(([tag, result]) => 
+                        .then(([tag, result]) =>
                         {
                             if (result && result.status === Util.PromiseStatus.Failure)
                             {
@@ -2007,7 +2179,7 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                 if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    (tag.parentElement instanceof HTMLElement || tag.parentElement && (tag.parentElement as any) instanceof tag.ownerDocument.defaultView.HTMLElement) &&
+                    tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty(this._css.originalColor, tag.originalColor!);
@@ -2015,7 +2187,12 @@ namespace MidnightLizard.ContentScript
                 if (roomRules.visitedColor && roomRules.visitedColor.color)
                 {
                     tag.style.setProperty(this._css.linkColor, roomRules.color.color, this._css.important);
+                    tag.style.setProperty(this._css.linkColorHover, roomRules.color$Hover!.color, this._css.important);
+                    tag.style.setProperty(this._css.linkColorActive, roomRules.color$Avtive!.color, this._css.important);
+
                     tag.style.setProperty(this._css.visitedColor, roomRules.visitedColor.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorHover, roomRules.visitedColor$Hover!.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorActive, roomRules.visitedColor$Active!.color, this._css.important);
                 }
                 else
                 {
@@ -2059,12 +2236,6 @@ namespace MidnightLizard.ContentScript
                 }
             }
 
-            if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.path || ""))
-            {
-                console.log(roomRules);
-                console.log(tag.style.cssText);
-            }
-
             if (isPseudoElement(tag))
             {
                 if (applyBgPromise)
@@ -2083,6 +2254,10 @@ namespace MidnightLizard.ContentScript
                             {
                                 const attrName = `${tag.tagName}-style`,
                                     attrValue = PseudoStyleStandard[standardType];
+                                if (!tag.parentRoomRules.attributes)
+                                {
+                                    tag.parentRoomRules.attributes = new Map<string, string>();
+                                }
                                 tag.parentRoomRules.attributes.set(attrName, attrValue);
                                 tag.parentElement.setAttribute(attrName, attrValue);
                                 cssText = "";

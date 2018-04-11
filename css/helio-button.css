@@ -2,6 +2,7 @@
 {
     display: inline-block;
     user-select: none;
+    -moz-user-select: none;
     --button-border-radius: 3px;
     position: relative;
     border-radius: var(--button-border-radius);
@@ -9,15 +10,24 @@
     border: none;
     font: normal normal bold 14px Arial, Helvetica, sans-serif;
     text-shadow: 0 0 1px rgba(0,0,0,1);
-    padding: 1px 6px;
+    padding: 1px 0px;
     vertical-align: middle;
     color: rgb(255, 255, 255);
 }
 
+.ml-helio-button.icon-button{padding: 1px 0px 1px 20px;}
+
+label.ml-helio-button.icon-button
+{
+    padding: 0px;
+    line-height: 30px;
+    text-indent: 20px;
+}
+
 label.ml-helio-button
 {
-    padding: 0px;
-    line-height: 30px;
+    padding: 0px;
+    line-height: 30px;
 }
 
 .ml-helio-button:not(:disabled)
@@ -72,10 +82,10 @@ label.ml-helio-button
 }
 
 .ml-helio-button.orange, .ml-helio-button.orange:disabled:hover {
-    background: #cc4700 linear-gradient(rgb(240, 144, 0),rgb(214, 75, 0));
+    background: hsla(32, 100%, 35%, 1) linear-gradient(hsla(36, 100%, 47%, 1),hsla(32, 100%, 35%, 1));
 }
 .ml-helio-button.orange:not(:disabled):hover {
-    background: rgb(240, 144, 0) linear-gradient(rgb(214, 75, 0),rgb(240, 144, 0));
+    background: hsla(36, 100%, 47%, 1) linear-gradient(hsla(32, 100%, 35%, 1),hsla(36, 100%, 47%, 1));
 }
 
 .ml-helio-button.cyan, .ml-helio-button.cyan:disabled:hover {
@@ -86,15 +96,15 @@ label.ml-helio-button
 }
 
 .ml-helio-button.green, .ml-helio-button.green:disabled:hover {
-    background: #1b5e20 linear-gradient(#4caf50,#1b5e20);
+    background: hsla(124, 55%, 30%, 1) linear-gradient(hsl(122, 39%, 49%),hsla(124, 55%, 30%, 1));
 }
 .ml-helio-button.green:not(:disabled):hover {
     background: #4caf50 linear-gradient(#1b5e20,#4caf50);
 }
 
 .ml-helio-button.blue, .ml-helio-button.blue:disabled:hover {
-    background: #0D47A1 linear-gradient(#2196F3,#0D47A1);
+    background: hsl(216, 85%, 34%) linear-gradient(hsla(210, 90%, 52%, 1),hsl(216, 85%, 34%));
 }
 .ml-helio-button.blue:not(:disabled):hover {
-    background: #2196F3 linear-gradient(#0D47A1,#2196F3);
+    background: hsla(210, 90%, 52%, 1) linear-gradient(#0D47A1,hsla(210, 90%, 52%, 1));
 }

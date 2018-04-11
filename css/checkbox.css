@@ -1,6 +1,7 @@
 .ml-checkbox
 {
     -webkit-appearance: none;
+    -moz-appearance: none;
     border: 1px solid var(--main-border-color);
     width: 1.2em;
     height: 1.25em;

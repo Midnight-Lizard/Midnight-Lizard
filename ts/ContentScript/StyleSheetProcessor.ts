@@ -26,7 +26,7 @@ namespace MidnightLizard.ContentScript
         abstract canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean;
         abstract getSelectorsCount(doc: Document): number;
         abstract getSelectorsQuality(doc: Document): number | undefined;
-        abstract getCssPromises(doc: Document): IterableIterator<CssPromise>;
+        abstract getCssPromises(doc: Document): CssPromise[];
     }
 
     @DI.injectable(IStyleSheetProcessor)
@@ -50,10 +50,10 @@ namespace MidnightLizard.ContentScript
         protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
 
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
-        getCssPromises(doc: Document): IterableIterator<Promise<Util.HandledPromiseResult<void>>>
+        getCssPromises(doc: Document): Promise<Util.HandledPromiseResult<void>>[]
         {
             let promises = this._externalCssPromises.get(doc);
-            return promises ? promises.values() : [] as any;
+            return promises ? Array.from(promises.values()) : [] as any;
         }
 
         protected readonly _selectors = new WeakMap<Document, string[]>();
@@ -64,7 +64,7 @@ namespace MidnightLizard.ContentScript
 
         protected readonly _preFilteredSelectors = new WeakMap<Document, Map<string, string[]>>();
 
-        protected readonly _excludeStylesRegExp: string;
+        // protected readonly _excludeStylesRegExp: string;
         protected readonly _includeStylesRegExp: string;
 
         /** StyleSheetProcessor constructor
@@ -185,7 +185,7 @@ namespace MidnightLizard.ContentScript
                                 if (rule instanceof doc.defaultView.CSSStyleRule)
                                 {
                                     let style = rule.style;
-                                    if (this._styleProps.some(p => this.checkPropertyIsValuable(style, p.prop)))
+                                    if (this._styleProps.some(p => !!style.getPropertyValue(p.prop)))
                                     {
                                         styleRules.push(rule);
                                     }
@@ -212,8 +212,8 @@ namespace MidnightLizard.ContentScript
                             cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
                             externalCssPromises.set(
                                 sheet.href,
-                                Util.handlePromise(Promise.all([doc, cssPromise, externalCssPromises!, sheet.href])
-                                    .then(([d, css, extCss, href]) => 
+                                Util.handlePromise(Promise.all([doc, cssPromise, sheet.href])
+                                    .then(([d, css, href]) =>
                                     {
                                         let style = d.createElement('style');
                                         style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
@@ -236,7 +236,7 @@ namespace MidnightLizard.ContentScript
             {
                 selectorsQuality--;
                 styleProps = styleProps.filter(p => p.priority <= maxPriority);
-                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => this.checkPropertyIsValuable(r.style, p.prop)));
+                filteredStyleRules = filteredStyleRules.filter(r => styleProps.some(p => !!r.style.getPropertyValue(p.prop)));
             }
 
             if (filteredStyleRules.length > this._stylesLimit)
@@ -310,7 +310,7 @@ namespace MidnightLizard.ContentScript
                     className = x.forget((Array.prototype.map.call(tag.classList, (c: string) => x.escape(c)) as string[]).join(x.Or));
                 }
                 let vars = new Map<string, string>();
-                vars.set(Var[Var.id], tag.id);
+                vars.set(Var[Var.id], x.escape(tag.id));
                 vars.set(Var[Var.tagName], tag.tagName);
                 vars.set(Var[Var.className], className);
                 //vars.set(Var[Var.notThisTagId], tag.id ? x.notFollowedBy(tag.id + x.WordBoundary) : "");

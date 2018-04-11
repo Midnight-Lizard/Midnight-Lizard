@@ -15,6 +15,7 @@
     display: block;
     position: absolute;
     z-index: 1;
+    top: 0px;
 }
 
 .ml-tab-item-icon
@@ -38,7 +39,7 @@
 
 .ml-tab-item
 {
-    padding: 15px 12px 15px 15px;
+    padding: 14px 12px 14px 15px;
     margin-left: 10px;
     text-align: left;
     display: block;
@@ -47,20 +48,29 @@
     border-radius: 5px 0px 0px 5px;
     font-size: 16px;
     white-space: nowrap;
-    border-right: solid 1px var(--thin-border-color);
+    border: solid 1px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: var(--thin-border-color);
+    border-image: linear-gradient(90deg, transparent 99.5%, var(--tab-item-border-color, var(--thin-border-color)) 99.5%) 1;
     user-select: none;
+    -moz-user-select: none;
 }
 
 .right .ml-tab-item
 {
-    padding: 13px 13px 13px 12px;
+    padding: 12px 13px 12px 12px;
     margin-left: 0;
     margin-right: 10px;
     text-align: right;
     font-size: 15px;
     border-radius: 0px 5px 5px 0px;
-    border-right: none;
-    border-left: solid 1px var(--thin-border-color);
+    border: solid 1px;
+    border-left-color: var(--thin-border-color);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
 }
 
 .ml-tab-item:hover
@@ -72,7 +82,15 @@
 {
     margin-left: 10px;
     border-right: solid 1px var(--thin-border-color);
-    height: 39px;
+    height: 46px;
+}
+
+@supports (-moz-appearance: button)
+{
+    .ml-tab-item-separator
+    {
+        height: 50px;
+    }
 }
 
 .right .ml-tab-item-separator
@@ -81,17 +99,17 @@
     margin-right: 10px;
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
-    height: 31px;
+    height: 40px;
 }
 
 .active
 {
     background-color: var(--content-background-color) !important;
     border: solid 1px var(--thin-border-color);
-    border-right: solid 1px rgba(0, 0, 0, 0);
-    margin-left: 9px;
+    border-right: solid 1px transparent;
+    /* margin-left: 9px; */
     --ml-text-color: HighlightedText;
-    padding: 14px 12px 14px 15px;
+    /*padding: 14px 12px 14px 15px;*/
     cursor: default!important;
 }
 
@@ -99,7 +117,7 @@
 {
     border: solid 1px var(--thin-border-color);
     border-left: solid 1px rgba(0, 0, 0, 0);
-    padding: 12px;
+    /*padding: 12px;*/
 }
 
 .ml-tab-content

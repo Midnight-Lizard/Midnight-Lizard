@@ -2,7 +2,7 @@
 
 namespace MidnightLizard.Settings
 {
-    export class SettingsFile
+    export interface SettingsFile
     {
         description: "Midnight Lizard Color Scheme File";
         version: string | undefined;

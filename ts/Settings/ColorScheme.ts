@@ -11,7 +11,7 @@ namespace MidnightLizard.Settings
     /**
      * ColorScheme - MidnightLizard Settings
      */
-    export class ColorScheme
+    export interface ColorScheme
     {
         userColorSchemes?: Array<ColorScheme>;
         colorSchemeId: ColorSchemeName;
@@ -27,12 +27,24 @@ namespace MidnightLizard.Settings
 
         runOnThisSite: boolean;
         restoreColorsOnCopy: boolean;
+        restoreColorsOnPrint: boolean;
+        changeBrowserTheme: boolean;
 
         backgroundSaturationLimit: number;
         backgroundContrast: number;
         backgroundLightnessLimit: number;
         backgroundGraySaturation: number;
         backgroundGrayHue: number;
+        backgroundReplaceAllHues: boolean;
+        backgroundHueGravity: number;
+
+        buttonSaturationLimit: number;
+        buttonContrast: number;
+        buttonLightnessLimit: number;
+        buttonGraySaturation: number;
+        buttonGrayHue: number;
+        buttonReplaceAllHues: boolean;
+        buttonHueGravity: number;
 
         textSaturationLimit: number;
         textContrast: number;
@@ -40,6 +52,8 @@ namespace MidnightLizard.Settings
         textGraySaturation: number;
         textGrayHue: number;
         textSelectionHue: number;
+        textReplaceAllHues: boolean;
+        textHueGravity: number;
 
         linkSaturationLimit: number;
         linkContrast: number;
@@ -47,12 +61,16 @@ namespace MidnightLizard.Settings
         linkDefaultSaturation: number;
         linkDefaultHue: number;
         linkVisitedHue: number;
+        linkReplaceAllHues: boolean;
+        linkHueGravity: number;
 
         borderSaturationLimit: number;
         borderContrast: number;
         borderLightnessLimit: number;
         borderGraySaturation: number;
         borderGrayHue: number;
+        borderReplaceAllHues: boolean;
+        borderHueGravity: number;
 
         imageLightnessLimit: number;
         imageSaturationLimit: number;
@@ -66,7 +84,5 @@ namespace MidnightLizard.Settings
         scrollbarLightnessLimit: number;
         scrollbarGrayHue: number;
         scrollbarSize: number;
-
-        constructor() { }
     }
 }

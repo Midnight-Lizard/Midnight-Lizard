@@ -1,0 +1,73 @@
+#p-logo {
+    position: relative;
+}
+
+#p-logo:before {
+    content: "";
+    background-color: #f0f0f0;
+    position: absolute;
+    bottom: 12px;
+    left: 0px;
+    right: 0px;
+    height: 30px;
+    z-index: 999;
+}
+
+#p-logo:after {
+    --ml-ignore:true;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-image: url(/static/images/project-logos/enwikibooks.png);
+    position: absolute;
+    bottom: 12px;
+    left: 0px;
+    right: 0px;
+    height: 30px;
+    z-index: 999;
+    --hue-rotate: calc(var(--ml-invert) * 180deg);
+    filter: hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min--moz-device-pixel-ratio:1.5),
+(min-resolution:1.5dppx),
+(min-resolution:144dpi) {
+    #p-logo:after {
+        background-image: url(/static/images/project-logos/enwikibooks-1.5x.png);
+        background-size: 135px auto
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min--moz-device-pixel-ratio:2),
+(min-resolution:2dppx),
+(min-resolution:192dpi) {
+    #p-logo:after {
+        background-image: url(/static/images/project-logos/enwikibooks-2x.png);
+        background-size: 135px auto
+    }
+}
+
+div.vectorTabs li.selected:not(imp) {
+    background-image: none;
+    background-color: white;
+}
+
+div.vectorTabs ul li:not(imp) {
+    background-image: -webkit-linear-gradient(white 0%, #eaf2f8 98%, #a7d7f9 99%);
+}
+
+#mw-page-base:not(imp) {
+    background-image: linear-gradient(#ffffff 50%, #f2f2f2 100%);
+}
+
+body:not(imp) {
+    background-color: #f0f0f0;
+}
+
+.mwe-math-fallback-image-inline {
+    --ml-ignore:true;
+    /* background-color: #E0E0E0; */
+    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+}

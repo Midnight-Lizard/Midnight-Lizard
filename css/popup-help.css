@@ -2,7 +2,7 @@
 {
     content: attr(tooltip);
     pointer-events: none;
-    position: fixed;
+    position: absolute;
     padding: 15px;
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.9);
     background-color: var(--dark-background-color);
@@ -14,8 +14,8 @@
     font-size: 15px;
     font-weight: normal;
     z-index: 999;
-    word-wrap: normal;
-    white-space: pre-wrap;
+    /* word-wrap: normal; */
+    white-space: pre-line;
     text-align: justify;
     opacity: 0;
     transition-property: opacity;
@@ -27,17 +27,14 @@
 {
     content: "";
     pointer-events: none;
-
     opacity: 0;
     transition-property: opacity;
     transition-duration: 100ms;
     transition-timing-function: ease-out;
-
-    position: fixed;
+    position: absolute;
     z-index: 1000;
     width: 0;
     height: 0;
-
     border: 10px solid transparent;
     /*--ml-border-border-left-color:Background;
     --ml-border-border-right-color:Background;
@@ -45,57 +42,90 @@
     --ml-border-border-bottom-color:Background;*/
 }
 
-.ml-fotter-icon-container [tooltip]:before
+.ml-fotter-icon-container[tooltip]:before
 {
-    bottom: 41px;
+    bottom: 45px;
     padding: 10px;
+    white-space: pre;
 }
 
-.ml-fotter-icon-container [tooltip]:after
+.ml-fotter-icon-container[tooltip]:after
 {
-    bottom: 22px;
+    top: -7px;
     filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
     border-top-color: var(--dark-background-color);
 }
 
 .ml-dialog-title [tooltip]:after
 {
-    top: 31px;
     filter: drop-shadow(0px -1px 0px var(--light-thin-border-color)) drop-shadow(0px -2px 1px rgba(0,0,0,0.8));
     border-bottom-color: var(--dark-background-color);
 }
 
 .ml-dialog-title [tooltip]:before
 {
-    top: 49px;
     padding: 10px;
 }
 
-#help:after {margin-left: -10px;}
-#help:before {margin-left: -8px;}
+#help:after {left: 2px;bottom: -19px;}
+#help:before {left: -5px;white-space: nowrap;top: 41px;}
 
-#isEnabledSwitch:before {right: 7px;}
-#isEnabledSwitch:after {right: 28px;}
+.ml-host-state:after {left: 4px;bottom: -19px;}
+.ml-host-state:before {left: -105px;white-space: pre;top: 37px;}
 
-#rate-link:before {right: 125px;}
-#rate-link:after {right: 140px;}
-#email-link:before {right: 81px;}
-#email-link:after {right: 98px;}
-#bug-report-link:before {right: 43px;}
-#bug-report-link:after {right: 58px;}
-#change-log-link:before {right: 6px;}
-#change-log-link:after {right: 18px;}
+#host-name {
+    position: relative;
+}
 
-.ml-fotter-icon-container.left [tooltip]:before { margin-left: -10px; }
-.ml-fotter-icon-container.left [tooltip]:after { margin-left: -11px; }
-#facebook-link:before, #facebook-link:after { margin-left: -9px; }
-#google-plus-link:before, #google-plus-link:after {margin-left: -14px;}
+#host-name:after {
+    bottom: -20px;
+    left: 50px;
+}
+
+#host-name:before {
+    left: -20px;
+    top: 38px;
+    white-space: pre-line;
+    width: 225px;
+    text-align: justify;
+}
+
+#isEnabledSwitch:before {right: 0px;top: 42px;white-space: pre;}
+#isEnabledSwitch:after {right: 20px;bottom: -16px;}
+
+#rate-link:before {}
+#rate-link:after {right: 14px;}
+#translate-link:before {
+    text-align: center;
+}
+#translate-link:after {right: 14px;}
+#email-link:before {}
+#email-link:after {}
+#bug-report-link:before {}
+#bug-report-link:after {}
+#change-log-link:before {}
+#change-log-link:after {}
+
+.ml-fotter-icon-container.left[tooltip]:before {left: 3px;}
+.ml-fotter-icon-container.left[tooltip]:after {left: 9px;}
+.ml-fotter-icon-container.right[tooltip]:before {
+    right: 6px;
+    text-align: right;
+}
+.ml-fotter-icon-container.right[tooltip]:after {
+    right: 12px;
+}
+#facebook-link:after {}
+#google-plus-link:after {left: 12px;}
+#instagram-link:after {left: 12px;}
+#pinterest-link:after {left: 10px;}
 
 .ml-tab-item[tooltip]:before
 {
     width: 286px;
     left: 180px;
     margin-top: -35px;
+    position: fixed;
 }
 
 .ml-tab-item[tooltip]:after
@@ -115,6 +145,7 @@
     filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px rgba(0,0,0,0.8));
     border-left-color: var(--dark-background-color);
     right: 164px;
+    position: fixed;
 }
 
 [tooltip]:hover:before, [tooltip]:hover:after
@@ -142,4 +173,16 @@
     0% { opacity: 0; }
     60% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+.ml-input-container.percent .ml-dialog-label:before {
+    /* content: "?"; */
+    position: absolute;
+    text-align: center;
+    background-color: var(--main-background-color);
+    width: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--light-thin-border-color);
+    right: calc((100% - 267px)/2);
+    cursor: help;
 }

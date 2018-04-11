@@ -1,0 +1,350 @@
+{
+    "manifest_version": 2,
+    "name": "Midnight Lizard",
+    "short_name": "Mid.Lizard",
+    "description": "__MSG_appDesc__",
+    "default_locale": "en",
+    "version": "8.8.6",
+    "author": "Pavel Agarkov",
+    "icons": {
+        "128": "img/ml-icon-128+.png",
+        "48": "img/ml-icon-48++.png",
+        "32": "img/ml-icon-32.png",
+        "16": "img/ml-icon-16.png"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "offline_enabled": true,
+    "commands": {
+        "global-toggle": {
+            "description": "__MSG_globalToggleKey__",
+            "suggested_key": {
+                "default": "Alt+Shift+M"
+            }
+        }
+    },
+    "browser_action": {
+        "default_title": "Midnight Lizard",
+        "default_icon": {
+            "38": "img/ml-toolbar-icon-38.png"
+        },
+        "default_popup": "ui/popup.html"
+    },
+    "background": {
+        "scripts": [
+            "js/background-page.js"
+        ]
+    },
+    "web_accessible_resources": [
+        "js/page-script.js"
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "match_about_blank": true,
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "css/preload.css",
+                "css/content-vars.css",
+                "css/custom/bookmark-sidebar.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "match_about_blank": true,
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "js/content-script.js"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://*/*/chrome/newtab*"
+            ],
+            "css": [
+                "css/custom/chrome-new-tab.css"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "match_about_blank": true,
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "css/content-idle.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.youtube.com/*"
+            ],
+            "css": [
+                "css/custom/youtube.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://mail.google.*/*"
+            ],
+            "css": [
+                "css/custom/google-mail.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.google.*/*"
+            ],
+            "css": [
+                "css/custom/google.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://plus.google.*/*"
+            ],
+            "css": [
+                "css/custom/google-plus.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/forms/*"
+            ],
+            "css": [
+                "css/custom/google-forms.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/*"
+            ],
+            "css": [
+                "css/custom/google-docs.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/document/*"
+            ],
+            "css": [
+                "css/custom/google-documents.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://docs.google.*/spreadsheets/*"
+            ],
+            "css": [
+                "css/custom/google-spreadsheets.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://docs.google.com/document/*",
+                "https://docs.google.com/presentation/*",
+                "https://docs.google.com/drawings/*"
+            ],
+            "css": [
+                "css/custom/google-slides.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://poeditor.com/*"
+            ],
+            "css": [
+                "css/custom/poeditor.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://accounts.google.*/*"
+            ],
+            "css": [
+                "css/custom/google-accounts.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
+            ],
+            "css": [
+                "css/custom/google-maps.css"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.google.*/maps/*",
+                "https://www.google.*/maps?*"
+            ],
+            "js": [
+                "js/custom/google-maps.js"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.bing.*/maps/*",
+                "https://www.bing.*/maps?*"
+            ],
+            "js": [
+                "js/custom/bing-maps.js"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://www.bing.*/maps/*",
+                "https://www.bing.*/maps?*"
+            ],
+            "css": [
+                "css/custom/bing-maps.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://developer.mozilla.org/*"
+            ],
+            "css": [
+                "css/custom/mozilla.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://*.wikipedia.org/*"
+            ],
+            "css": [
+                "css/custom/wikipedia.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://*.wikibooks.org/*"
+            ],
+            "css": [
+                "css/custom/wikibooks.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.facebook.com/*"
+            ],
+            "css": [
+                "css/custom/facebook.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.medium.com/*",
+                "https://medium.com/*"
+            ],
+            "css": [
+                "css/custom/medium.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "https://www.quora.com/*"
+            ],
+            "css": [
+                "css/custom/quora.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.twitter.com/*",
+                "https://twitter.com/*"
+            ],
+            "css": [
+                "css/custom/twitter.css"
+            ]
+        }
+    ]
+}

@@ -9,13 +9,17 @@ namespace Chrome
     export class ChromePromise
     {
         [anyProperty: string]: any;
-        storage: typeof Storage;
-        runtime: typeof Runtime;
-        tabs: typeof Tabs;
-        commands: typeof Commands;
+        storage!: typeof Storage;
+        runtime!: typeof Runtime;
+        tabs!: typeof Tabs;
+        commands!: typeof Commands;
 
         constructor()
         {
+            if (typeof browser === "object")
+            {
+                return browser as any;
+            }
             this.fillProperties(chrome, this);
         }
 
@@ -93,7 +97,7 @@ namespace Chrome
 
     namespace Runtime
     {
-        export declare function sendMessage(message: any): Promise<any>;
+        export declare function sendMessage<TResult>(message: any): Promise<TResult>;
     }
 
     namespace Storage

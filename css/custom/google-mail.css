@@ -1,7 +1,7 @@
-a[href="#inbox"][title="Gmail"]
+/* a[href="#inbox"][title="Gmail"]
 {
     filter: invert(var(--ml-invert));
-}
+} */
 
 div[role="tab"] > div:nth-child(2), .nL.aig
 {
