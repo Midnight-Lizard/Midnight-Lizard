@@ -27,7 +27,7 @@
         "message": "Change browser theme"
     },
     "changeBrowserTheme_@title": {
-        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox 60+"
+        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox."
     },
     "useDefaultSchedule_text_label": {
         "message": "Use default schedule"
@@ -63,7 +63,7 @@
         "message": "Contrast"
     },
     "backgroundContrast_@title": {
-        "message": "Minimal difference in brightness between similar backgrounds.\nDepends on element size and order so results might be quite random."
+        "message": "Minimal difference in brightness between similar backgrounds.\nDepends on elements size and order so results might be quite random."
     },
     "backgroundLightnessLimit_text_label": {
         "message": "Brightness limit"
