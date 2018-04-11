@@ -666,5 +666,8 @@
     },
     "firefoxNoSupportScrollbar_html_error_message": {
         "message": "Scrollbar's styling <br/> is not supported by Firefox <br/><br/>"
+    },
+    "translateLink_@tooltip": {
+        "message": "Help translate Midnight Lizard\ninto other languages"
     }
 }
