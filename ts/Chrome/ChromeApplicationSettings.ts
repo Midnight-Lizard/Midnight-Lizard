@@ -9,6 +9,11 @@ namespace Chrome
         protected readonly _isDebug: boolean;
         get isDebug() { return this._isDebug }
 
+        get currentLocale()
+        {
+            return chrome.runtime.getManifest().current_locale || "en";
+        }
+
         get browserName()
         {
             return typeof browser === "object"

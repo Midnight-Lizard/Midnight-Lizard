@@ -8,6 +8,9 @@ namespace MidnightLizard.Settings
 
     export abstract class IApplicationSettings
     {
+        /** Returns current extension locale or "en" */
+        abstract get currentLocale(): string;
+
         /** Returns current browser name */
         abstract get browserName(): BrowserName;
 

@@ -133,7 +133,7 @@ namespace MidnightLizard.Popup
             (doc.querySelector("#rate-link a") as HTMLAnchorElement).href =
                 this._app.browserName === MidnightLizard.Settings.BrowserName.Chrome
                     ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
-                    : "https://addons.mozilla.org/en-US/firefox/addon/midnight-lizard-quantum/reviews/";
+                    : `https://addons.mozilla.org/${this._app.currentLocale}/firefox/addon/midnight-lizard-quantum/reviews/`;
 
             this._commandManager.getCommands()
                 .then(commands =>
