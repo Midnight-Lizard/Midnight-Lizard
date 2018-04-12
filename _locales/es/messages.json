@@ -1,8 +1,682 @@
 {
     "appDesc": {
-        "message": "Esta extensión cambia los colores de la página, el brillo y el contraste para aumentar la legibilidad y trae el modo nocturno oscuro a todos los sitios web."
+        "message": ""
     },
     "globalToggleKey": {
-        "message": "Alternar la extensión global"
+        "message": ""
+    },
+    "runOnThisSite_text_label": {
+        "message": "Procesar el sitio web actual"
+    },
+    "runOnThisSite_@title": {
+        "message": ""
+    },
+    "restoreColorsOnCopy_text_label": {
+        "message": "Restaurar los colores originales al copiar"
+    },
+    "restoreColorsOnCopy_@title": {
+        "message": ""
+    },
+    "restoreColorsOnPrint_text_label": {
+        "message": "Restaurar los colores originales al imprimir"
+    },
+    "restoreColorsOnPrint_@title": {
+        "message": ""
+    },
+    "changeBrowserTheme_text_label": {
+        "message": "Cambiar el tema del navegador"
+    },
+    "changeBrowserTheme_@title": {
+        "message": ""
+    },
+    "useDefaultSchedule_text_label": {
+        "message": "Usar el cronograma predeterminado"
+    },
+    "useDefaultSchedule_@title": {
+        "message": ""
+    },
+    "scheduleStartHour_text_label": {
+        "message": "Tiempo de activación"
+    },
+    "scheduleStartHour_@title": {
+        "message": ""
+    },
+    "scheduleFinishHour_text_label": {
+        "message": "Tiempo de desactivación"
+    },
+    "scheduleFinishHour_@title": {
+        "message": ""
+    },
+    "blueFilter_text_label": {
+        "message": "Intensidad del filtro azul"
+    },
+    "blueFilter_@title": {
+        "message": ""
+    },
+    "backgroundSaturationLimit_text_label": {
+        "message": "Límite de saturación"
+    },
+    "backgroundSaturationLimit_@title": {
+        "message": ""
+    },
+    "backgroundContrast_text_label": {
+        "message": "Contraste"
+    },
+    "backgroundContrast_@title": {
+        "message": ""
+    },
+    "backgroundLightnessLimit_text_label": {
+        "message": "Límite de brillo"
+    },
+    "backgroundLightnessLimit_@title": {
+        "message": ""
+    },
+    "backgroundGraySaturation_text_label": {
+        "message": "Saturación de fondo gris"
+    },
+    "backgroundGraySaturation_@title": {
+        "message": ""
+    },
+    "backgroundHueGravity_text_label": {
+        "message": "Gravedad de tono predeterminada"
+    },
+    "backgroundHueGravity_@title": {
+        "message": ""
+    },
+    "backgroundGrayHue_text_label": {
+        "message": "Tono predeterminada"
+    },
+    "backgroundGrayHue_@title": {
+        "message": ""
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "message": "Reemplaza todo"
+    },
+    "backgroundReplaceAllHues_@title": {
+        "message": ""
+    },
+    "buttonSaturationLimit_text_label": {
+        "message": "Límite de saturación"
+    },
+    "buttonSaturationLimit_@title": {
+        "message": ""
+    },
+    "buttonContrast_text_label": {
+        "message": "Contraste"
+    },
+    "buttonContrast_@title": {
+        "message": ""
+    },
+    "buttonLightnessLimit_text_label": {
+        "message": "Límite de brillo"
+    },
+    "buttonLightnessLimit_@title": {
+        "message": ""
+    },
+    "buttonGraySaturation_text_label": {
+        "message": "Saturación de botones gris"
+    },
+    "buttonGraySaturation_@title": {
+        "message": ""
+    },
+    "buttonHueGravity_text_label": {
+        "message": "Gravedad de tono predeterminada"
+    },
+    "buttonHueGravity_@title": {
+        "message": ""
+    },
+    "buttonGrayHue_text_label": {
+        "message": "Tono predeterminada"
+    },
+    "buttonGrayHue_@title": {
+        "message": ""
+    },
+    "buttonReplaceAllHues_text_label": {
+        "message": "Reemplaza todo"
+    },
+    "buttonReplaceAllHues_@title": {
+        "message": ""
+    },
+    "textSaturationLimit_text_label": {
+        "message": "Límite de saturación"
+    },
+    "textSaturationLimit_@title": {
+        "message": ""
+    },
+    "textContrast_text_label": {
+        "message": "Contraste"
+    },
+    "textContrast_@title": {
+        "message": ""
+    },
+    "textLightnessLimit_text_label": {
+        "message": "Límite de brillo"
+    },
+    "textLightnessLimit_@title": {
+        "message": ""
+    },
+    "textGraySaturation_text_label": {
+        "message": "Saturación de texto gris"
+    },
+    "textGraySaturation_@title": {
+        "message": ""
+    },
+    "textHueGravity_text_label": {
+        "message": "Gravedad de tono predeterminada"
+    },
+    "textHueGravity_@title": {
+        "message": ""
+    },
+    "textGrayHue_text_label": {
+        "message": "Tono predeterminada"
+    },
+    "textGrayHue_@title": {
+        "message": ""
+    },
+    "textReplaceAllHues_text_label": {
+        "message": "Reemplaza todo"
+    },
+    "textReplaceAllHues_@title": {
+        "message": ""
+    },
+    "textSelectionHue_html_label": {
+        "message": ""
+    },
+    "textSelectionHue_@title": {
+        "message": ""
+    },
+    "linkSaturationLimit_text_label": {
+        "message": "Límite de saturación"
+    },
+    "linkSaturationLimit_@title": {
+        "message": ""
+    },
+    "linkContrast_text_label": {
+        "message": "Contraste"
+    },
+    "linkContrast_@title": {
+        "message": ""
+    },
+    "linkLightnessLimit_text_label": {
+        "message": "Límite de brillo"
+    },
+    "linkLightnessLimit_@title": {
+        "message": ""
+    },
+    "linkDefaultSaturation_text_label": {
+        "message": "Saturación de enlaces normal"
+    },
+    "linkDefaultSaturation_@title": {
+        "message": ""
+    },
+    "linkHueGravity_text_label": {
+        "message": "Gravedad de tono predeterminada"
+    },
+    "linkHueGravity_@title": {
+        "message": ""
+    },
+    "linkDefaultHue_text_label": {
+        "message": "Tono predeterminada"
+    },
+    "linkDefaultHue_@title": {
+        "message": ""
+    },
+    "linkReplaceAllHues_text_label": {
+        "message": "Reemplaza todo"
+    },
+    "linkReplaceAllHues_@title": {
+        "message": ""
+    },
+    "linkVisitedHue_text_label": {
+        "message": "Tono de enlace visitado"
+    },
+    "linkVisitedHue_@title": {
+        "message": ""
+    },
+    "borderSaturationLimit_text_label": {
+        "message": "Límite de saturación"
+    },
+    "borderSaturationLimit_@title": {
+        "message": ""
+    },
+    "borderContrast_text_label": {
+        "message": "Contraste"
+    },
+    "borderContrast_@title": {
+        "message": ""
+    },
+    "borderLightnessLimit_text_label": {
+        "message": "Límite de brillo"
+    },
+    "borderLightnessLimit_@title": {
+        "message": ""
+    },
+    "borderGraySaturation_text_label": {
+        "message": "Saturación de bordes gris"
+    },
+    "borderGraySaturation_@title": {
+        "message": ""
+    },
+    "borderHueGravity_text_label": {
+        "message": "Gravedad de tono predeterminada"
+    },
+    "borderHueGravity_@title": {
+        "message": ""
+    },
+    "borderGrayHue_text_label": {
+        "message": "Tono predeterminada"
+    },
+    "borderGrayHue_@title": {
+        "message": ""
+    },
+    "borderReplaceAllHues_text_label": {
+        "message": "Reemplaza todo"
+    },
+    "borderReplaceAllHues_@title": {
+        "message": ""
+    },
+    "imageSaturationLimit_text_label": {
+        "message": "Saturación"
+    },
+    "imageSaturationLimit_@title": {
+        "message": ""
+    },
+    "imageLightnessLimit_text_label": {
+        "message": "Brillo"
+    },
+    "imageLightnessLimit_@title": {
+        "message": ""
+    },
+    "imageExample_text_label": {
+        "message": "Ejemplo de la imagen"
+    },
+    "imageExample_@title": {
+        "message": ""
+    },
+    "useImageHoverAnimation_text_label": {
+        "message": "Restaurar imágenes destacadas"
+    },
+    "useImageHoverAnimation_@title": {
+        "message": ""
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "message": "Saturación"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "message": ""
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "message": "Brillo"
+    },
+    "backgroundImageLightnessLimit_@title": {
+        "message": ""
+    },
+    "backgroundImageExample_text_label": {
+        "message": "Ejemplo de la imagen de fondo"
+    },
+    "backgroundImageExample_@title": {
+        "message": ""
+    },
+    "backgroundImageExampleText_text_label": {
+        "message": "Ejemplo"
+    },
+    "backgroundImageExampleText_@title": {
+        "message": ""
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "message": "Saturación"
+    },
+    "scrollbarSaturationLimit_@title": {
+        "message": ""
+    },
+    "scrollbarContrast_text_label": {
+        "message": "Contraste"
+    },
+    "scrollbarContrast_@title": {
+        "message": ""
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "message": "Brillo"
+    },
+    "scrollbarLightnessLimit_@title": {
+        "message": ""
+    },
+    "scrollbarSize_text_label": {
+        "message": "Anchura"
+    },
+    "scrollbarSize_@title": {
+        "message": ""
+    },
+    "scrollbarGrayHue_text_label": {
+        "message": "Tono de scrollbar"
+    },
+    "scrollbarGrayHue_@title": {
+        "message": ""
+    },
+    "commonTab_text_label": {
+        "message": "Común"
+    },
+    "commonTab_@tooltip": {
+        "message": ""
+    },
+    "backgroundTab_text_label": {
+        "message": "Fondos"
+    },
+    "backgroundTab_@tooltip": {
+        "message": ""
+    },
+    "buttonsTab_text_label": {
+        "message": "Botones"
+    },
+    "buttonsTab_@tooltip": {
+        "message": ""
+    },
+    "textTab_text_label": {
+        "message": "Texto"
+    },
+    "textTab_@tooltip": {
+        "message": ""
+    },
+    "linkTab_text_label": {
+        "message": "Enlaces"
+    },
+    "linkTab_@tooltip": {
+        "message": ""
+    },
+    "borderTab_text_label": {
+        "message": "Bordes"
+    },
+    "borderTab_@tooltip": {
+        "message": ""
+    },
+    "imagesTab_text_label": {
+        "message": "Imágenes"
+    },
+    "imagesTab_@tooltip": {
+        "message": ""
+    },
+    "backgroundImagesTab_text_label": {
+        "message": "Imágenes de fondo"
+    },
+    "backgroundImagesTab_@tooltip": {
+        "message": ""
+    },
+    "scrollbarsTab_text_label": {
+        "message": "Scrollbars"
+    },
+    "scrollbarsTab_@tooltip": {
+        "message": ""
+    },
+    "settingsHeader_text_label": {
+        "message": " – ajustes para"
+    },
+    "hostState_@tooltip": {
+        "message": ""
+    },
+    "hostName_@tooltip": {
+        "message": ""
+    },
+    "helpLink_@tooltip": {
+        "message": ""
+    },
+    "isEnabledSwitch_@tooltip": {
+        "message": ""
+    },
+    "isEnabledOn_text_label": {
+        "message": "Act"
+    },
+    "isEnabledOff_text_label": {
+        "message": "Des"
+    },
+    "syncSettings_text_label": {
+        "message": "Sincronice la configuración en sus dispositivos"
+    },
+    "syncSettings_@title": {
+        "message": ""
+    },
+    "colorSchemeForEdit_text_label": {
+        "message": "Esquema de color para editar"
+    },
+    "colorSchemeForEdit_@title": {
+        "message": ""
+    },
+    "colorSchemeName_text_label": {
+        "message": "Nombre del esquema de colores"
+    },
+    "colorSchemeName_@title": {
+        "message": ""
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "message": "Eliminar"
+    },
+    "deleteColorSchemeBtn_@title": {
+        "message": ""
+    },
+    "saveColorSchemeBtn_text_label": {
+        "message": "Guardar"
+    },
+    "saveColorSchemeBtn_@title": {
+        "message": ""
+    },
+    "exportColorSchemeBtn_text_label": {
+        "message": "Exportar"
+    },
+    "exportColorSchemeBtn_@title": {
+        "message": "",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": ""
+            },
+            "color_scheme_for_edit": {
+                "content": ""
+            },
+            "color_scheme_name": {
+                "content": ""
+            }
+        }
+    },
+    "importColorSchemeBtn_text_label": {
+        "message": "Importar"
+    },
+    "importColorSchemeBtn_@title": {
+        "message": ""
+    },
+    "editSchemesTab_text_label": {
+        "message": "Esquemas del color"
+    },
+    "editSchemesTab_@tooltip": {
+        "message": ""
+    },
+    "currentColorScheme_text_label": {
+        "message": "Esquema de color actual"
+    },
+    "currentColorScheme_@title": {
+        "message": ""
+    },
+    "forgetThisSiteBtn_text_label": {
+        "message": "Esto"
+    },
+    "forgetThisSiteBtn_@title": {
+        "message": ""
+    },
+    "forgetAllSitesBtn_text_label": {
+        "message": "Todos"
+    },
+    "forgetAllSitesBtn_@title": {
+        "message": ""
+    },
+    "setAsDefaultBtn_text_label": {
+        "message": "Predeterminar"
+    },
+    "setAsDefaultBtn_@title": {
+        "message": ""
+    },
+    "applyBtn_text_label": {
+        "message": "Aplicar"
+    },
+    "applyBtn_@title": {
+        "message": ""
+    },
+    "closeBtn_text_label": {
+        "message": "Cerrar"
+    },
+    "closeBtn_@title": {
+        "message": ""
+    },
+    "rateLink_@tooltip": {
+        "message": ""
+    },
+    "emailLink_@tooltip": {
+        "message": ""
+    },
+    "bugReportLink_@tooltip": {
+        "message": ""
+    },
+    "changeLogLink_@tooltip": {
+        "message": ""
+    },
+    "colorSchemeImportSuccessMessage": {
+        "message": "",
+        "placeholders": {
+            "imported_color_schemes_count": {
+                "content": ""
+            },
+            "edit_mark": {
+                "content": ""
+            }
+        }
+    },
+    "colorSchemeSaveConfirmationMessage": {
+        "message": "",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": ""
+            },
+            "color_scheme_name": {
+                "content": ""
+            }
+        }
+    },
+    "colorSchemeSaveSuccessMessage": {
+        "message": ""
+    },
+    "colorSchemeSaveFailureMessage": {
+        "message": ""
+    },
+    "colorSchemeDeleteConfirmationMessage": {
+        "message": "",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": ""
+            }
+        }
+    },
+    "colorSchemeDeleteSuccessMessage": {
+        "message": ""
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "message": ""
+    },
+    "forgetAllConfirmationMessage": {
+        "message": ""
+    },
+    "forgetAllSuccessMessage": {
+        "message": ""
+    },
+    "forgetAllFailureMessage": {
+        "message": ""
+    },
+    "forgetThisSuccessMessage": {
+        "message": ""
+    },
+    "forgetThisFailureMessage": {
+        "message": ""
+    },
+    "setAsDefaultFailureMessage": {
+        "message": ""
+    },
+    "applyOnPageFailureMessage": {
+        "message": ""
+    },
+    "toggleExtensionFailureMessage": {
+        "message": ""
+    },
+    "syncChangeSuccessMessage": {
+        "message": ""
+    },
+    "syncChangeFailureMessage": {
+        "message": ""
+    },
+    "introduction_html_content": {
+        "message": ""
+    },
+    "shortcut_text_lable": {
+        "message": ""
+    },
+    "colorSchemeName_Custom": {
+        "message": "Costumbre"
+    },
+    "colorSchemeName_New": {
+        "message": "Nuevo esquema de colores"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "message": ""
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "message": ""
+    },
+    "backgroundExample_text_label": {
+        "message": "Ejemplos de los fondos"
+    },
+    "backgroundExample_@title": {
+        "message": ""
+    },
+    "smallBackgroundImageExample_@title": {
+        "message": ""
+    },
+    "smallBackgroundImageExample_text_label": {
+        "message": "Ejemplo de las imágenes pequeño de fondo"
+    },
+    "scrollbarExample_text_label": {
+        "message": "Ejemplo de la scrollbarra"
+    },
+    "scrollbarExample_@title": {
+        "message": ""
+    },
+    "buttonExample_text_label": {
+        "message": "Ejemplo de los botones"
+    },
+    "buttonExample_@title": {
+        "message": ""
+    },
+    "borderExample_@title": {
+        "message": ""
+    },
+    "borderExample_text_label": {
+        "message": "Ejemplo de los bordes"
+    },
+    "backgroundExampleOriginal_@title": {
+        "message": ""
+    },
+    "borderExampleOriginal_@title": {
+        "message": ""
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "message": ""
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "message": ""
+    },
+    "translateLink_@tooltip": {
+        "message": ""
+    },
+    "popupDisconnected_html_error_message": {
+        "message": ""
+    },
+    "backgroundExampleWithContrast_@title": {
+        "message": ""
+    },
+    "backgroundExampleWithoutContrast_@title": {
+        "message": ""
     }
 }
