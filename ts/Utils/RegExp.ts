@@ -63,7 +63,7 @@ namespace MidnightLizard.Util.RegExpBuilder
     /** Excapes reserved symbols from the input string */
     export function escape(str: string)
     {
-        return str.replace(/[\[\](){}?*+\^\$\\\.|\-]/g, "\\$&");
+        return str ? str.replace(/[\[\](){}?*+\^\$\\\.|\-]/g, "\\$&") : "";
     }
 
     /** Removes extra white spaces and trims the input string */
