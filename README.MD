@@ -19,6 +19,7 @@
   ✔ Essential at night time or in low light environment
   ✔ Also useful during the daytime with light and contrast themes
   ✔ Has options to schedule extension activation and deactivation
+  ✔ All colors can be changed with hue gravity option
   ✔ File export and import for color schemes
   ✔ Completely customizable
   ✔ All settings synchronized across devices by default
