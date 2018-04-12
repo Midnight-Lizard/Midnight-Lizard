@@ -16,10 +16,21 @@ namespace MidnightLizard.ContentScript
         constructor(doc: Document,
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
+            let localStorageIsAccessable = true;
+            try
+            {
+                localStorage.getItem("test");
+            }
+            catch{
+                localStorageIsAccessable = false;
+            }
             this._html = doc.documentElement as HTMLHtmlElement;
-            this.applyCachedSettings();
-            _settingsManager.onSettingsInitialized.addListener(
-                this.onSettingsInitialized, this, Events.EventHandlerPriority.After);
+            if (localStorageIsAccessable)
+            {
+                this.applyCachedSettings();
+                _settingsManager.onSettingsInitialized.addListener(
+                    this.onSettingsInitialized, this, Events.EventHandlerPriority.After);
+            }
         }
 
         protected applyCachedSettings()
