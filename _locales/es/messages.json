@@ -234,10 +234,10 @@
         "message": "Importar"
     },
     "editSchemesTab_text_label": {
-        "message": "Esquemas del color"
+        "message": "Esquemas de colores"
     },
     "currentColorScheme_text_label": {
-        "message": "Esquema de color actual"
+        "message": "El esquema de colores"
     },
     "forgetThisSiteBtn_text_label": {
         "message": "Esto"
