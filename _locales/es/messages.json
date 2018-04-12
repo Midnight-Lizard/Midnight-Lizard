@@ -174,7 +174,7 @@
         "message": "Anchura"
     },
     "scrollbarGrayHue_text_label": {
-        "message": "Tono de scrollbarra"
+        "message": "Tono de la barra de desplazamiento"
     },
     "commonTab_text_label": {
         "message": "Común"
@@ -201,7 +201,7 @@
         "message": "Imágenes de fondo"
     },
     "scrollbarsTab_text_label": {
-        "message": "Scrollbarras"
+        "message": "Barra de desplazamiento"
     },
     "settingsHeader_text_label": {
         "message": " – ajustes para"
@@ -243,7 +243,7 @@
         "message": "Esto"
     },
     "forgetAllSitesBtn_text_label": {
-        "message": "Todos"
+        "message": "Todo"
     },
     "setAsDefaultBtn_text_label": {
         "message": "Predeterminar"
@@ -267,7 +267,7 @@
         "message": "Ejemplo de las imágenes pequeño de fondo"
     },
     "scrollbarExample_text_label": {
-        "message": "Ejemplo de la scrollbarra"
+        "message": "Ejemplo de la barra de desplazamiento"
     },
     "buttonExample_text_label": {
         "message": "Ejemplo de los botones"
