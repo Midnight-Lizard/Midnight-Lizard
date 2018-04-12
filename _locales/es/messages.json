@@ -174,7 +174,7 @@
         "message": "Anchura"
     },
     "scrollbarGrayHue_text_label": {
-        "message": "Tono de scrollbar"
+        "message": "Tono de scrollbarra"
     },
     "commonTab_text_label": {
         "message": "Común"
@@ -201,7 +201,7 @@
         "message": "Imágenes de fondo"
     },
     "scrollbarsTab_text_label": {
-        "message": "Scrollbars"
+        "message": "Scrollbarras"
     },
     "settingsHeader_text_label": {
         "message": " – ajustes para"
@@ -213,7 +213,7 @@
         "message": "Des"
     },
     "syncSettings_text_label": {
-        "message": "Sincronice la configuración en sus dispositivos"
+        "message": "Sincronice la configuración"
     },
     "colorSchemeForEdit_text_label": {
         "message": "Esquema de color para editar"
