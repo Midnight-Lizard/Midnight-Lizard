@@ -63,13 +63,13 @@ namespace MidnightLizard.Util.RegExpBuilder
     /** Excapes reserved symbols from the input string */
     export function escape(str: string)
     {
-        return str ? str.replace(/[\[\](){}?*+\^\$\\\.|\-]/g, "\\$&") : "";
+        return str && str.replace ? str.replace(/[\[\](){}?*+\^\$\\\.|\-]/g, "\\$&") : "";
     }
 
     /** Removes extra white spaces and trims the input string */
     export function shrink(str: string)
     {
-        return str ? str.replace(/\s(?=(\s+))/g, "").trim() : "";
+        return str && str.replace ? str.replace(/\s(?=(\s+))/g, "").trim() : "";
     }
 
     /** Returns: _exp1_|_exp2_|...|_expN_ */
