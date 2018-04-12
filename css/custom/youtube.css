@@ -120,3 +120,12 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
 {
     box-shadow: none!important;
 }
+
+#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:not(imp) {
+    --ml-link-color:Text;
+    --ml-visitedlink-color:Text;
+    --ml-link-active-color:Text;
+    --ml-visitedlink-active-color:Text;
+    --ml-link-hover-color:Text;
+    --ml-visitedlink-hover-color:Text;
+}
