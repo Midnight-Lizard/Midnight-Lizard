@@ -4,6 +4,7 @@ namespace MidnightLizard.ContentScript
 {
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
+    const mutationDebounceTime = 1000;
 
     export enum ObservationState
     {
@@ -24,7 +25,7 @@ namespace MidnightLizard.ContentScript
     class DocumentObserver implements IDocumentObserver
     {
         protected readonly _bodyObserverConfig: MutationObserverInit =
-        { attributes: true, subtree: true, childList: true, /*attributeOldValue: true,*/ attributeFilter: ["class", "style", "fill", "stroke"] };
+            { attributes: true, subtree: true, childList: true, /*attributeOldValue: true,*/ attributeFilter: ["class", "style", "fill", "stroke"] };
         protected readonly _headObserverConfig: MutationObserverInit = { childList: true };
         protected readonly _bodyObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _headObservers = new WeakMap<Document, MutationObserver>();
@@ -118,12 +119,15 @@ namespace MidnightLizard.ContentScript
             let classChanges = new Set<Element>(),
                 childListChanges = new Set<Element>(),
                 styleChanges = new Set<Element>();
+            const now = Date.now();
             mutations.forEach(mutation =>
             {
                 switch (mutation.type)
                 {
                     case "attributes":
-                        if (mutation.target.isChecked || mutation.target instanceof HTMLBodyElement)
+                        if ((!mutation.target.mlTimestamp ||
+                            now - mutation.target.mlTimestamp > mutationDebounceTime) &&
+                            (mutation.target.isChecked || mutation.target instanceof HTMLBodyElement))
                         {
                             switch (mutation.attributeName)
                             {
