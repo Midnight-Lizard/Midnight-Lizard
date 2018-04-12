@@ -1,9 +1,9 @@
 {
     "appDesc": {
-        "message": ""
+        "message": "Esta extensión cambia los colores de la página, el brillo y el contraste para aumentar la legibilidad y trae el modo nocturno oscuro a todos los sitios web."
     },
     "globalToggleKey": {
-        "message": ""
+        "message": "Alternar la extensión global"
     },
     "runOnThisSite_text_label": {
         "message": "Procesar el sitio web actual"
