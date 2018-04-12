@@ -30,7 +30,7 @@ namespace Firefox
                 browser.runtime.getBrowserInfo().then(info =>
                 {
                     const mainVersion = parseInt(info.version.split('.')[0]);
-                    const applySettingsOnTheme = (set: MidnightLizard.Settings.ColorScheme) =>
+                    const applySettingsOnTheme = ([set, wnd]: [MidnightLizard.Settings.ColorScheme, browser.windows.Window]) =>
                     {
                         if (set.isEnabled && set.runOnThisSite && set.changeBrowserTheme)
                         {
@@ -80,14 +80,7 @@ namespace Firefox
                             const theme: browser._manifest.ThemeType = {
                                 colors: {
                                     accentcolor: darkBgColor.color!,
-                                    textcolor: darkTextColor.color!,
-                                    toolbar: lightBgColor.color!,
-                                    toolbar_text: lightTextColor.color!,
-                                    toolbar_bottom_separator: lightBorderColor.color!,
-                                    toolbar_top_separator: darkBorderColor.color!,
-                                    toolbar_field: midBgColor.color!,
-                                    toolbar_field_text: midTextColor.color!,
-                                    toolbar_vertical_separator: darkBorderColor.color!
+                                    textcolor: darkTextColor.color!
                                 }
                             };
                             if (mainVersion < 60)
@@ -96,32 +89,64 @@ namespace Firefox
                                     "headerURL": "img/none.svg"
                                 };
                             }
-                            else
+                            if (mainVersion >= 57)
+                            {
+                                Object.assign(theme.colors, {
+                                    toolbar: lightBgColor.color,
+                                    toolbar_text: lightTextColor.color,
+                                    toolbar_field: midBgColor.color,
+                                    toolbar_field_text: midTextColor.color
+                                });
+                            }
+                            if (mainVersion >= 58)
+                            {
+                                Object.assign(theme.colors, {
+                                    toolbar_bottom_separator: lightBorderColor.color,
+                                    toolbar_top_separator: darkBorderColor.color,
+                                    toolbar_vertical_separator: darkBorderColor.color
+                                });
+                            }
+                            if (mainVersion >= 59)
+                            {
+                                Object.assign(theme.colors, {
+                                    toolbar_field_border: midBorderColor.color,
+                                    toolbar_field_separator: darkBorderColor.color
+                                });
+                            }
+                            if (mainVersion >= 60)
                             {
                                 Object.assign(theme.colors, {
                                     button_background_hover: buttonHoverColor.color,
                                     button_background_active: buttonColor.color,
-                                    toolbar_field_border: midBorderColor.color,
-                                    toolbar_field_separator: darkBorderColor.color,
+
                                     tab_line: linkColor.color,
                                     tab_loading: linkColor.color,
+
                                     icons_attention: visitedLinkColor.color,
+
                                     popup: midBgColor.color,
                                     popup_text: midTextColor.color,
                                     popup_border: midBorderColor.color
                                 });
                             }
-                            browser.theme.update(theme);
+                            if (wnd.id !== undefined)
+                            {
+                                browser.theme.update(wnd.id, theme);
+                            }
+                            else
+                            {
+                                browser.theme.update(theme);
+                            }
                         }
                     };
+                    const getCurrentWindow = () => browser.windows.getCurrent({ windowTypes: ["normal" as browser.windows.WindowType.normal] });
                     const updateTheme = () =>
                     {
-                        settingsBus.getCurrentSettings()
+                        Promise.all([settingsBus.getCurrentSettings(), getCurrentWindow()])
                             .then(applySettingsOnTheme)
                             .catch(ex =>
                             {
-                                settingsManager
-                                    .getDefaultSettings()
+                                Promise.all([settingsManager.getDefaultSettings(), getCurrentWindow()])
                                     .then(applySettingsOnTheme)
                                     .catch(exx => browser.theme.reset());
                             });
@@ -144,11 +169,11 @@ namespace Firefox
                     settingsBus.onIsEnabledToggleRequested
                         .addListener((resp, isEnabled) =>
                         {
+                            resp(isEnabled);
                             if (!isEnabled)
                             {
                                 browser.theme.reset();
                             }
-                            resp(isEnabled);
                         }, null);
                 });
             }
