@@ -130,7 +130,9 @@ body {
 }
 
 .ml-dialog-commands>.ml-dialog-label {
-    margin: 15px;
+    margin: 0px auto;
+    text-align: center;
+    display: block;
 }
 
 .ml-dialog-commands>button,

@@ -39,28 +39,32 @@
 
 .ml-tab-item
 {
-    padding: 14px 12px 14px 15px;
-    margin-left: 10px;
-    text-align: left;
-    display: block;
     cursor: pointer;
-    text-decoration: none;
-    border-radius: 5px 0px 0px 5px;
     font-size: 16px;
-    white-space: nowrap;
     border: solid 1px;
+    user-select: none;
+    -moz-user-select: none;
+    white-space: nowrap;
+}
+
+.left .ml-tab-item {
+    padding: 14px 2px 14px 15px;
+    margin-left: 10px;
+    width: 140px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    border-radius: 5px 0px 0px 5px;
     border-left-color: transparent;
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-right-color: var(--thin-border-color);
     border-image: linear-gradient(90deg, transparent 99.5%, var(--tab-item-border-color, var(--thin-border-color)) 99.5%) 1;
-    user-select: none;
-    -moz-user-select: none;
 }
 
 .right .ml-tab-item
 {
-    padding: 12px 13px 12px 12px;
+    padding: 12px 13px 12px 2px;
     margin-left: 0;
     margin-right: 10px;
     text-align: right;
@@ -71,6 +75,16 @@
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-right-color: transparent;
+    border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
+}
+
+.right .ml-tab-item span {
+    display: inline-block;
+    max-width: 132px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
 }
 
 .ml-tab-item:hover
@@ -106,18 +120,18 @@
 {
     background-color: var(--content-background-color) !important;
     border: solid 1px var(--thin-border-color);
-    border-right: solid 1px transparent;
-    /* margin-left: 9px; */
     --ml-text-color: HighlightedText;
-    /*padding: 14px 12px 14px 15px;*/
     cursor: default!important;
+    border-image: unset!important;
+}
+
+.left .active {
+    border-right: solid 1px transparent;    
 }
 
 .right .active
 {
-    border: solid 1px var(--thin-border-color);
     border-left: solid 1px rgba(0, 0, 0, 0);
-    /*padding: 12px;*/
 }
 
 .ml-tab-content
