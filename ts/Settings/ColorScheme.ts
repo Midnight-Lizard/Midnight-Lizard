@@ -29,6 +29,7 @@ namespace MidnightLizard.Settings
         restoreColorsOnCopy: boolean;
         restoreColorsOnPrint: boolean;
         changeBrowserTheme: boolean;
+        applyEffectsOnInaccessibleExternalContent: boolean;
 
         backgroundSaturationLimit: number;
         backgroundContrast: number;

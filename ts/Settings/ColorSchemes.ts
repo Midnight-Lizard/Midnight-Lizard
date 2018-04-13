@@ -43,6 +43,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -113,6 +114,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: false,
                     changeBrowserTheme: false,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -183,6 +185,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -253,6 +256,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -323,6 +327,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -393,6 +398,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
 
                     useDefaultSchedule: true,
@@ -463,6 +469,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 30,
 
                     useDefaultSchedule: true,
@@ -533,6 +540,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 80,
 
                     useDefaultSchedule: true,
@@ -603,6 +611,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -673,6 +682,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
 
                     useDefaultSchedule: true,
@@ -743,6 +753,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -813,6 +824,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -883,6 +895,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -953,6 +966,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -1023,6 +1037,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,
@@ -1093,6 +1108,7 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: true,
+                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
 
                     useDefaultSchedule: true,

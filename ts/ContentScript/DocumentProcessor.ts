@@ -1819,12 +1819,15 @@ namespace MidnightLizard.ContentScript
             }
             catch (ex)
             {
-                iframe.mlInaccessible = true;
-                this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
-                this.restoreElementColors(iframe, true);
-                iframe.setAttribute("fixed", "access");
-                DocumentProcessor.processElementsChunk([iframe], this, null, 0);
-                //docProc._app.isDebug && console.error(ex);
+                if (this._settingsManager.currentSettings.applyEffectsOnInaccessibleExternalContent)
+                {
+                    iframe.mlInaccessible = true;
+                    this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
+                    this.restoreElementColors(iframe, true);
+                    iframe.setAttribute("fixed", "access");
+                    DocumentProcessor.processElementsChunk([iframe], this, null, 0);
+                    //docProc._app.isDebug && console.error(ex);
+                }
             }
         }
 
@@ -2059,12 +2062,11 @@ namespace MidnightLizard.ContentScript
         {
             let style = doc.getElementById("midnight-lizard-loading-style");
             style && style.remove();
-            const removeNoTrans = ((d: Document) =>
+            setTimeout((d: Document) =>
             {
                 let noTrans = d.getElementById("midnight-lizard-no-trans-style");
                 noTrans && noTrans.remove();
-            }).bind(null, doc);
-            setTimeout(requestAnimationFrame.bind(doc.defaultView, removeNoTrans), 100);
+            }, 100, doc);
         }
 
         protected createPageScript(doc: Document)
