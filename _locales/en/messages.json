@@ -678,5 +678,11 @@
     },
     "backgroundExampleWithoutContrast_@title": {
         "message": "Example of different background colors processing with no contrast changes."
+    },
+    "applyEffectsOnInaccessibleExternalContent_@title": {
+        "message": "Apply effects on external content if it can't be accessed for proper processing.\nEmbedded videos, news feeds, comments and other parts from different websites included in the current page are examples of an external content.\nIf you are using a dark color scheme then external content will be inverted."
+    },
+    "applyEffectsOnInaccessibleExternalContent_text_lable": {
+        "message": "Apply effects on inaccessible content"
     }
 }
