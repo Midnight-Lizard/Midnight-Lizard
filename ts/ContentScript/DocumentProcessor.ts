@@ -233,17 +233,24 @@ namespace MidnightLizard.ContentScript
                 this.createPseudoStyles(doc);
                 this._svgFilters.createSvgFilters(doc);
                 this.createPageScript(doc);
-                const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
-                this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
-                this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
-                this._hoverLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
-                this._textColorProcessor.calculateDefaultColor(doc);
+                this.calculateDefaultColors(doc);
                 doc.body.isChecked = true;
                 DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.getElementsByTagName("*")).filter((tag) => this.checkElement(tag)) as HTMLElement[];
                 DocumentProcessor.processAllElements(allTags, /*doc.documentElement*/null, this);
             }
+        }
+
+        private calculateDefaultColors(doc: Document)
+        {
+            const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
+            this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+            this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+            this._hoverLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+            this._activeVisitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+            this._hoverVisitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
+            this._textColorProcessor.calculateDefaultColor(doc);
         }
 
         protected hasPseudoClassOverrided(tag: HTMLElement, pseudo: PseudoClass)
