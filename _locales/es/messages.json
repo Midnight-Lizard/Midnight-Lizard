@@ -274,5 +274,8 @@
     },
     "borderExample_text_label": {
         "message": "Ejemplo de los bordes"
+    },
+    "applyEffectsOnInaccessibleExternalContent_text_lable": {
+        "message": "Aplicar efectos sobre contenido inaccesible"
     }
 }
