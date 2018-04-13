@@ -4,7 +4,7 @@ namespace MidnightLizard.ContentScript
 {
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const mutationDebounceTime = 1000;
+    const mutationThrottleTime = 30, maxMutationsCount = 300;
 
     export enum ObservationState
     {
@@ -125,8 +125,14 @@ namespace MidnightLizard.ContentScript
                 switch (mutation.type)
                 {
                     case "attributes":
-                        if ((!mutation.target.mlTimestamp ||
-                            now - mutation.target.mlTimestamp > mutationDebounceTime) &&
+                        if ((mutation.target.mlTimestamp &&
+                            now - mutation.target.mlTimestamp < mutationThrottleTime))
+                        {
+                            mutation.target.mlMutationThrottledCount =
+                                (mutation.target.mlMutationThrottledCount || 0) + 1;
+                        }
+                        if ((!mutation.target.mlMutationThrottledCount ||
+                            mutation.target.mlMutationThrottledCount < maxMutationsCount) &&
                             (mutation.target.isChecked || mutation.target instanceof HTMLBodyElement))
                         {
                             switch (mutation.attributeName)
