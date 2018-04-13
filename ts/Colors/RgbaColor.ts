@@ -88,7 +88,7 @@ namespace MidnightLizard.Colors
                     s = (max - min) / (2 - max - min);
                 }
             }
-            return new HslaColor(h, s, l, rgba.alpha);
+            return new HslaColor(Math.round(h), s, l, rgba.alpha);
         }
     }
 }

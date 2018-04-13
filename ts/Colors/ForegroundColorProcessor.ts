@@ -355,15 +355,20 @@ namespace MidnightLizard.Colors
 
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
-            // если серый или равен дефолтному цвету текста то считать текстом
-            return this._colorShift.replaceAllHues || (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
-                (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) &&
-                this._settingsManager.shift.Text.grayHue !== 0;
+            // если практически серый 
+            // или равен нормальному цвету текста 
+            // или близок к дефолтному оттенку текста (значит унаследован) то считать текстом
+            return this._colorShift.replaceAllHues ||
+                (Math.abs(hsla.hue - this._settingsManager.shift.Text.grayHue) < 2) ||
+                (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.grayHue !== 0 ||
+                (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) && this._settingsManager.shift.Text.grayHue !== 0;
         }
 
         protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
         {
-            if ((hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)))
+            if ((hsla.saturation < 0.1 ||
+                Math.abs(hsla.hue - this._settingsManager.shift.Text.grayHue) < 2 ||
+                rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)))
             {
                 return this._settingsManager.shift.Text;
             }
