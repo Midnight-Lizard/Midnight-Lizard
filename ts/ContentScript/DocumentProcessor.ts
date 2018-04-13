@@ -1115,9 +1115,20 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.filter = tag.originalFilter;
                 }
-                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration && tag.style.transitionDuration !== tag.originalTransitionDuration)
+                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration &&
+                    tag.style.transitionDuration !== tag.originalTransitionDuration)
                 {
                     tag.style.transitionDuration = tag.originalTransitionDuration;
+                }
+                if (keepTransitionDuration && !tag.originalTransitionDuration &&
+                    tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
+                {
+                    const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
+                    if (hasForbiddenTransition)
+                    {
+                        tag.originalTransitionDuration = tag.style.transitionDuration;
+                        tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important)
+                    }
                 }
                 if (tag.hasAttribute(this._css.transition))
                 {
@@ -1237,16 +1248,7 @@ namespace MidnightLizard.ContentScript
                     }
                     if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
                     {
-                        let hasForbiddenTransition = false;
-                        let durations = tag.computedStyle.transitionDuration!.split(", ");
-                        tag.computedStyle.transitionProperty!.split(", ").forEach((prop, index) =>
-                        {
-                            if (this._transitionForbiddenProperties.has(prop))
-                            {
-                                durations[index] = this._css._0s;
-                                hasForbiddenTransition = true;
-                            }
-                        });
+                        let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
                         if (hasForbiddenTransition)
                         {
                             roomRules.transitionDuration = { value: durations.join(", ") };
@@ -1607,6 +1609,21 @@ namespace MidnightLizard.ContentScript
                 return { roomRules: roomRules, before: beforePseudoElement, after: afterPseudoElement };
             }
             return undefined;
+        }
+
+        private calculateTransitionDuration(tag: HTMLElement | PseudoElement)
+        {
+            let hasForbiddenTransition = false;
+            let durations = tag.computedStyle!.transitionDuration!.split(", ");
+            tag.computedStyle!.transitionProperty!.split(", ").forEach((prop, index) =>
+            {
+                if (this._transitionForbiddenProperties.has(prop))
+                {
+                    durations[index] = this._css._0s;
+                    hasForbiddenTransition = true;
+                }
+            });
+            return { hasForbiddenTransition, durations };
         }
 
         protected changeColor(
