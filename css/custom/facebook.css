@@ -63,3 +63,8 @@ h1[data-click="bluebar_logo"]
 {
     --ml-background-background-color:Border;
 }
+
+._1otk._3t1r._4ubd
+{
+    --ml-ignore:true;
+}
