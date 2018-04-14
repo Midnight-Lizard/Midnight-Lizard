@@ -1924,8 +1924,8 @@ namespace MidnightLizard.ContentScript
                         };`.toLowerCase();
                 }
             }
-            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0};`;
-            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0};`;
+            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}!important;`;
+            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
             let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
             const mozSelection = selection.replace("{x}", "-moz-");
             selection = selection.replace("{x}", "");

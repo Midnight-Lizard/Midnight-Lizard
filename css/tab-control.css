@@ -49,7 +49,7 @@
 
 .left .ml-tab-item {
     padding: 14px 2px 14px 15px;
-    margin-left: 10px;
+    margin-left: auto;
     width: 140px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -70,7 +70,6 @@
     text-align: right;
     font-size: 15px;
     border-radius: 0px 5px 5px 0px;
-    border: solid 1px;
     border-left-color: var(--thin-border-color);
     border-top-color: transparent;
     border-bottom-color: transparent;
@@ -94,8 +93,8 @@
 
 .ml-tab-item-separator
 {
-    margin-left: 10px;
     border-right: solid 1px var(--thin-border-color);
+    border-image: linear-gradient(90deg, transparent 99.5%, var(--tab-item-border-color, var(--thin-border-color)) 99.5%) 1;
     height: 46px;
 }
 
@@ -113,25 +112,26 @@
     margin-right: 10px;
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
+    border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
     height: 40px;
 }
 
-.active
+.ml-tab-item.active
 {
     background-color: var(--content-background-color) !important;
-    border: solid 1px var(--thin-border-color);
+    border: solid 1px var(--thin-border-color) !important;
     --ml-text-color: HighlightedText;
     cursor: default!important;
     border-image: unset!important;
 }
 
-.left .active {
-    border-right: solid 1px transparent;    
+.left .ml-tab-item.active {
+    border-right: solid 1px transparent !important;
 }
 
-.right .active
+.right .ml-tab-item.active
 {
-    border-left: solid 1px rgba(0, 0, 0, 0);
+    border-left: solid 1px rgba(0, 0, 0, 0) !important;
 }
 
 .ml-tab-content

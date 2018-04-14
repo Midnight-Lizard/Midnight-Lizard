@@ -2,3 +2,7 @@
     --ml-ignore:true;
     filter: brightness(calc(1 - (var(--ml-background-lightness-limit,0) * var(--ml-invert, 0)))) hue-rotate(calc(180deg * var(--ml-invert, 0))) invert(var(--ml-invert, 0));
 }
+
+.navbar-default .navbar-toggle .icon-bar {
+    --ml-background-background-color:Text;
+}
