@@ -345,6 +345,16 @@
             "css": [
                 "css/custom/twitter.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.producthunt.com/*"
+            ],
+            "css": [
+                "css/custom/producthunt.css"
+            ]
         }
     ]
 }

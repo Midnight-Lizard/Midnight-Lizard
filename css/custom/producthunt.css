@@ -1,0 +1,55 @@
+a[class*="logo"] > svg path:nth-of-type(1)
+{
+    --ml-text-fill:Border;
+}
+
+button[class*="orange"] > span > div[class*="icon"]
+{
+    --ml-no-invert:true;
+}
+
+/* span[class*="badge"] path[fill="#FFF"], */
+path[fill="#DC5324"],
+path[fill="#FFC07A"],
+path[fill="#FFF2B5"]
+{
+    --ml-text-fill:Background;
+}
+
+span[class*="badge"] path[fill="#FFF"]
+{
+    --ml-text-fill:HighlightedText;
+}
+
+span[class*="badge"] use[fill]
+{
+    --ml-text-fill:Border;
+}
+
+span[class*="badge"] circle[stroke]
+{
+    --ml-border-stroke:Text;
+}
+
+span[class*="notice"],
+a[class*="notice"]
+{
+    --ml-background-background-color:Border;
+}
+
+button[class*="close"], button[class*="close"] path {
+    --ml-ignore:true;
+}
+
+button[class*="close"] * {
+    --ml-ignore:false;
+}
+
+div[class*="item"] > div[class*="image"]
+{
+    --ml-backgroundimage:Image;
+}
+
+svg[width="10"], svg[height="10"] {
+    --ml-svgbackground-fill:Text;
+}
