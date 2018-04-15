@@ -1636,9 +1636,9 @@ namespace MidnightLizard.ContentScript
         {
             if (tag.computedStyle)
             {
-                const propRole = (cc as any as { [p: string]: Colors.Component })
-                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)]
-                    || component;
+                let propRole = (cc as any as { [p: string]: Colors.Component })
+                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)];
+                propRole = propRole !== undefined ? propRole : component;
                 propVal = propVal || tag.computedStyle!.getPropertyValue(property);
                 let bgLightVal = 1;
                 switch (propRole)
