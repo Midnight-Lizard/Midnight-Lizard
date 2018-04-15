@@ -206,7 +206,12 @@ namespace MidnightLizard.ContentScript
                     }
                     else if (sheet instanceof doc.defaultView.CSSStyleSheet && sheet.href) // external css
                     {
-                        if (!externalCssPromises!.has(sheet.href))
+                        if (this._app.browserName === Settings.BrowserName.Firefox &&
+                            sheet.ownerNode && sheet.ownerNode instanceof doc.defaultView.HTMLElement)
+                        {
+                            sheet.ownerNode.setAttribute("ml-external", sheet.href);
+                        }
+                        else if (!externalCssPromises!.has(sheet.href))
                         {
                             let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
                             cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
