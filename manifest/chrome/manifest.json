@@ -350,10 +350,22 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://www.producthunt.com/*"
+                "https://www.producthunt.com/*",
+                "https://producthunt.com/*"
             ],
             "css": [
                 "css/custom/producthunt.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.trello.com/*",
+                "https://trello.com/*"
+            ],
+            "css": [
+                "css/custom/trello.css"
             ]
         }
     ]
