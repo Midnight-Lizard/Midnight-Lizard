@@ -15,6 +15,7 @@ namespace Chrome
     class ChromeSettingsBus implements MidnightLizard.Settings.ISettingsBus
     {
         constructor(
+            protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _chromePromise: Chrome.ChromePromise,
             protected readonly _document: Document)
         {
@@ -27,22 +28,27 @@ namespace Chrome
                         {
                             case Action.GetCurrentSettings:
                                 this._onCurrentSettingsRequested.raise(sendResponse);
+                                sendResponse(null);
                                 break;
 
                             case Action.ApplyNewSettings:
                                 this._onNewSettingsApplicationRequested.raise(sendResponse, request.settings);
+                                sendResponse(null);
                                 break;
 
                             case Action.DeleteSettings:
                                 this._onSettingsDeletionRequested.raise(sendResponse);
+                                sendResponse(null);
                                 break;
 
                             case Action.ToggleIsEnabled:
                                 this._onIsEnabledToggleRequested.raise(sendResponse, request.isEnabled);
+                                sendResponse(null);
                                 break;
 
                             case Action.ZoomChanged:
                                 this._onZoomChanged.raise(sendResponse, request.zoom);
+                                sendResponse(null);
                                 break;
 
                             default:
@@ -55,6 +61,7 @@ namespace Chrome
                         {
                             case Action.SettingsApplied:
                                 this._onSettingsApplied.raise(sendResponse, request.settings);
+                                sendResponse(null);
                                 break;
 
                             default:
@@ -141,8 +148,9 @@ namespace Chrome
         public toggleIsEnabled(isEnabled: boolean)
         {
             const msg = new MidnightLizard.Settings.IsEnabledToggleRequestMessage(isEnabled);
-            return this.sendMessage(msg).then(() =>
-                this.sendMessageToAllTabs<null>(msg));
+            return this.sendMessage(msg)
+                .catch(ex => this._app.isDebug ? console.error(ex.message || ex) : null)
+                .then(() => this.sendMessageToAllTabs<null>(msg));
         }
 
         public setTabZoom(tabId: number, zoom: number)
