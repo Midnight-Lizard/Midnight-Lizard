@@ -1730,7 +1730,9 @@ namespace MidnightLizard.ContentScript
                     if (isButton)
                     {
                         newColor = this._buttonBackgroundColorProcessor
-                            .changeColor(prevColor, roomRules.backgroundColor!.backgroundLight!, tag);
+                            .changeColor(prevColor, tag.parentElement && tag.parentElement.mlBgColor
+                                ? tag.parentElement.mlBgColor.light
+                                : roomRules.backgroundColor!.light!, tag);
                     }
                     else
                     {
