@@ -1721,6 +1721,7 @@ namespace MidnightLizard.ContentScript
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                 .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
+            const bgLight = isButton ? this.getParentBackground(tag).light : 0;
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
@@ -1730,9 +1731,7 @@ namespace MidnightLizard.ContentScript
                     if (isButton)
                     {
                         newColor = this._buttonBackgroundColorProcessor
-                            .changeColor(prevColor, tag.parentElement && tag.parentElement.mlBgColor
-                                ? tag.parentElement.mlBgColor.light
-                                : roomRules.backgroundColor!.light!, tag);
+                            .changeColor(prevColor, bgLight, tag);
                     }
                     else
                     {
