@@ -821,7 +821,7 @@ height: 148px;
     animation: hideEffect 0.3s ease-out forwards;
 }
 
-.intro:before {
+.intro:not(.no-lines):before {
     content: "";
     position: absolute;
     z-index: 999;
