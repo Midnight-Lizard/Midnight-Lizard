@@ -4,7 +4,8 @@
     filter: saturate(var(--ml-image-saturation-limit, 1)) hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit, 1));
 }
 
-.morelink, .subscribe-button {
+.morelink,
+.subscribe-button {
     --ml-backgroundimage:Background;
 }
 
@@ -13,7 +14,7 @@
 }
 
 input[type="text"]::placeholder {
-    color: rgba(64,64,64,0.6)!important;
+    color: rgba(64, 64, 64, 0.6) !important;
 }
 
 .entry .tagline *[style*=--link]:not(imp),
@@ -80,4 +81,9 @@ input[type="text"]::placeholder {
 .link:hover>.entry .flat-list li a[style*=--link]:not(imp):not(.comments),
 .link:hover>.entry .flatlist li .redditSingleClick[style*=--link]:not(imp):after {
     color: var(--link-color-hover) !important;
+}
+
+.flair:before {
+    --ml-no-invert:true;
+    --ml-backgroundimage:Image;
 }
