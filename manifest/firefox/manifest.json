@@ -85,6 +85,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://www.youtube.com/*"
             ],
@@ -94,6 +95,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://*/*"
             ],
@@ -106,6 +108,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://*/*"
             ],
@@ -118,6 +121,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://*/*"
             ],
@@ -309,6 +313,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://www.facebook.com/*"
             ],
@@ -318,6 +323,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://www.medium.com/*",
                 "https://medium.com/*"
@@ -328,6 +334,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "matches": [
                 "https://www.quora.com/*"
             ],
@@ -366,6 +373,16 @@
             ],
             "css": [
                 "css/custom/trello.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.reddit.com/*"
+            ],
+            "css": [
+                "css/custom/reddit.css"
             ]
         }
     ]
