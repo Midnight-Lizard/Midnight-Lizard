@@ -1,24 +1,28 @@
-/* a[href="#inbox"][title="Gmail"]
-{
-    filter: invert(var(--ml-invert));
-} */
-
-div[role="tab"] > div:nth-child(2), .nL.aig
-{
-    --ml-background-background-color:Border;
+a[href="#inbox"][title="Gmail"] span {
+    --ml-ignore:true;
+    --hue-rotate: calc(var(--ml-invert) * 180deg);
+    filter: saturate(var(--ml-image-saturation-limit, 1)) hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit, 1));
 }
 
-div[role="search"] button[aria-label], .ZC
-{
+td[class]:empty:first-child {
     --ml-no-invert:true;
 }
 
-div.T-Kw-Jt
-{
-    --ml-ignore:true;
+div[role="tab"]>div:nth-child(2),
+.nL.aig {
+    --ml-background-background-color:Border;
 }
 
-.J-N-JT .J-N-Jz, .J-N-JW .J-N-Jz
-{
-    color: rgb(50, 50, 50)!important;
+div[role="search"] button[aria-label],
+.ZC {
+    --ml-no-invert: true;
+}
+
+div.T-Kw-Jt {
+    --ml-ignore: true;
+}
+
+.J-N-JT .J-N-Jz,
+.J-N-JW .J-N-Jz {
+    color: rgb(50, 50, 50) !important;
 }
