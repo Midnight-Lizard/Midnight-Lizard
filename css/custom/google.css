@@ -21,3 +21,10 @@ button.ab_button > span > img
 {
     --ml-ignore:true;
 }
+
+color-palette,
+.goog-slider-thumb,
+div[class*="slider-background"],
+div[style="display:table-row"]>div.rnt3Ze[data-ved] {
+    --ml-ignore:true;
+}
