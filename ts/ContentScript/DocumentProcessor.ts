@@ -1537,17 +1537,22 @@ namespace MidnightLizard.ContentScript
                             tag.computedStyle!.borderLeftStyle !== this._css.none)))
                     {
                         let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        let brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
+                        const brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
                             tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
                             tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
-                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor
+                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor;
+                        const bgrColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor);
+
                         if (brdColorIsSingle)
                         {
                             brdColor = brdColor || tag.computedStyle!.borderTopColor!;
-                            if (brdColor === tag.computedStyle!.getPropertyValue(ns.css.bgrColor))
+                            if (brdColor === bgrColor)
                             {
-                                let result = Object.assign({}, roomRules.backgroundColor);
-                                roomRules.borderColor = Object.assign(result, { reason: Colors.ColorReason.SameAsBackground, owner: this._app.isDebug ? tag : null });
+                                roomRules.borderColor = Object.assign(Object.assign({},
+                                    roomRules.backgroundColor), {
+                                        reason: Colors.ColorReason.SameAsBackground,
+                                        owner: this._app.isDebug ? tag : null
+                                    });
                             }
                             else
                             {
@@ -1573,17 +1578,61 @@ namespace MidnightLizard.ContentScript
                             {
                                 borderRole = cc.Background;
                             }
-                            roomRules.borderTopColor = this.changeColor(
-                                { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
+                            if (tag.computedStyle!.borderTopColor === bgrColor)
+                            {
+                                roomRules.borderTopColor = Object.assign(Object.assign({},
+                                    roomRules.backgroundColor), {
+                                        reason: Colors.ColorReason.SameAsBackground,
+                                        owner: this._app.isDebug ? tag : null
+                                    });
+                            }
+                            else
+                            {
+                                roomRules.borderTopColor = this.changeColor(
+                                    { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
+                            }
 
-                            roomRules.borderRightColor = this.changeColor(
-                                { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
+                            if (tag.computedStyle!.borderRightColor === bgrColor)
+                            {
+                                roomRules.borderRightColor = Object.assign(Object.assign({},
+                                    roomRules.backgroundColor), {
+                                        reason: Colors.ColorReason.SameAsBackground,
+                                        owner: this._app.isDebug ? tag : null
+                                    });
+                            }
+                            else
+                            {
+                                roomRules.borderRightColor = this.changeColor(
+                                    { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
+                            }
 
-                            roomRules.borderBottomColor = this.changeColor(
-                                { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
+                            if (tag.computedStyle!.borderBottomColor === bgrColor)
+                            {
+                                roomRules.borderBottomColor = Object.assign(Object.assign({},
+                                    roomRules.backgroundColor), {
+                                        reason: Colors.ColorReason.SameAsBackground,
+                                        owner: this._app.isDebug ? tag : null
+                                    });
+                            }
+                            else
+                            {
+                                roomRules.borderBottomColor = this.changeColor(
+                                    { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
+                            }
 
-                            roomRules.borderLeftColor = this.changeColor(
-                                { role: borderRole, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
+                            if (tag.computedStyle!.borderLeftColor === bgrColor)
+                            {
+                                roomRules.borderLeftColor = Object.assign(Object.assign({},
+                                    roomRules.backgroundColor), {
+                                        reason: Colors.ColorReason.SameAsBackground,
+                                        owner: this._app.isDebug ? tag : null
+                                    });
+                            }
+                            else
+                            {
+                                roomRules.borderLeftColor = this.changeColor(
+                                    { role: borderRole, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
+                            }
                         }
                     }
                 }
