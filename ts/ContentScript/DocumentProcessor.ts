@@ -1045,13 +1045,17 @@ namespace MidnightLizard.ContentScript
             {
                 let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
-                tag.mlBgColor = null;
-                tag.mlColor = null;
-                tag.mlTextShadow = null;
-                tag.mlParentBgColor = null;
-                tag.rect = null;
-                tag.selectors = null;
-                tag.path = null;
+                delete tag.mlBgColor;
+                delete tag.mlColor;
+                delete tag.mlTextShadow;
+                delete tag.mlParentBgColor;
+                delete tag.rect;
+                delete tag.selectors;
+                delete tag.path;
+                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
+                {
+                    delete tag.mlInaccessible;
+                }
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
