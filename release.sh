@@ -13,4 +13,4 @@ rm -r -f $ArchPath;
     -ir!img/* \
     -ir!js/* \
     -ir!ui/* \
-    -ir!_locales
+    -ir!_locales/*
