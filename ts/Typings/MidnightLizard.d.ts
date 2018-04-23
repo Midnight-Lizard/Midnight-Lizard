@@ -92,6 +92,7 @@ interface Window
     Element: typeof Element;
     HTMLElement: typeof HTMLElement;
     HTMLAnchorElement: typeof HTMLAnchorElement;
+    HTMLFontElement: typeof HTMLFontElement;
     HTMLLabelElement: typeof HTMLLabelElement;
     HTMLButtonElement: typeof HTMLButtonElement;
     HTMLInputElement: typeof HTMLInputElement;
