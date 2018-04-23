@@ -104,16 +104,16 @@ namespace MidnightLizard.Settings
                 },
                 ButtonBackground: {
                     saturationLimit: isNaN(set.buttonSaturationLimit)
-                        ? Math.min(set.backgroundSaturationLimit * 1.1, 1)
+                        ? Math.min(Number((set.backgroundSaturationLimit * 1.1).toFixed(2)), 1)
                         : set.buttonSaturationLimit,
                     contrast: isNaN(set.buttonContrast)
                         ? set.backgroundContrast
                         : set.buttonContrast,
                     lightnessLimit: isNaN(set.buttonLightnessLimit)
-                        ? set.backgroundLightnessLimit * 0.8
+                        ? Number((set.backgroundLightnessLimit * 0.8).toFixed(2))
                         : set.buttonLightnessLimit,
                     graySaturation: isNaN(set.buttonGraySaturation)
-                        ? Math.min(set.backgroundGraySaturation * 1.1, 1)
+                        ? Math.min(Number((set.backgroundGraySaturation * 1.1).toFixed(2)), 1)
                         : set.buttonGraySaturation,
                     grayHue: set.buttonGrayHue === undefined
                         ? set.backgroundGrayHue
@@ -140,9 +140,9 @@ namespace MidnightLizard.Settings
                     hueGravity: set.textHueGravity || 0
                 },
                 HighlightedText: {
-                    saturationLimit: Math.min(set.textSaturationLimit * 1.2, 1),
-                    contrast: Math.min(set.textContrast * 1.2, 1),
-                    lightnessLimit: Math.min(set.textLightnessLimit * 1.25, 1),
+                    saturationLimit: Math.min(Number((set.textSaturationLimit * 1.2).toFixed(2)), 1),
+                    contrast: Math.min(Number((set.textContrast * 1.2).toFixed(2)), 1),
+                    lightnessLimit: Math.min(Number((set.textLightnessLimit * 1.25).toFixed(2)), 1),
                     graySaturation: set.textGraySaturation,
                     grayHue: set.textGrayHue,
                     replaceAllHues: set.textReplaceAllHues || false,
@@ -160,7 +160,7 @@ namespace MidnightLizard.Settings
                 Link$Active: {
                     saturationLimit: set.linkSaturationLimit,
                     contrast: set.linkContrast,
-                    lightnessLimit: set.linkLightnessLimit * 0.9,
+                    lightnessLimit: Number((set.linkLightnessLimit * 0.9).toFixed(2)),
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkDefaultHue,
                     replaceAllHues: set.linkReplaceAllHues || false,
@@ -168,8 +168,8 @@ namespace MidnightLizard.Settings
                 },
                 Link$Hover: {
                     saturationLimit: set.linkSaturationLimit,
-                    contrast: Math.min(set.linkContrast * 1.1, 1),
-                    lightnessLimit: Math.min(set.linkLightnessLimit * 1.1, 1),
+                    contrast: Math.min(Number((set.linkContrast * 1.1).toFixed(2)), 1),
+                    lightnessLimit: Math.min(Number((set.linkLightnessLimit * 1.1).toFixed(2)), 1),
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkDefaultHue,
                     replaceAllHues: set.linkReplaceAllHues || false,
@@ -186,8 +186,8 @@ namespace MidnightLizard.Settings
                 },
                 VisitedLink$Hover: {
                     saturationLimit: set.linkSaturationLimit,
-                    contrast: Math.min(set.linkContrast * 1.1, 1),
-                    lightnessLimit: Math.min(set.linkLightnessLimit * 1.1, 1),
+                    contrast: Math.min(Number((set.linkContrast * 1.1).toFixed(2)), 1),
+                    lightnessLimit: Math.min(Number((set.linkLightnessLimit * 1.1).toFixed(2)), 1),
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkVisitedHue,
                     replaceAllHues: true,
@@ -196,7 +196,7 @@ namespace MidnightLizard.Settings
                 VisitedLink$Active: {
                     saturationLimit: set.linkSaturationLimit,
                     contrast: set.linkContrast,
-                    lightnessLimit: set.linkLightnessLimit * 0.9,
+                    lightnessLimit: Number((set.linkLightnessLimit * 0.9).toFixed(2)),
                     graySaturation: set.linkDefaultSaturation,
                     grayHue: set.linkVisitedHue,
                     replaceAllHues: true,
@@ -206,7 +206,7 @@ namespace MidnightLizard.Settings
                     saturationLimit: set.borderSaturationLimit,
                     contrast: set.textContrast,
                     lightnessLimit: set.textLightnessLimit,
-                    graySaturation: Math.min(set.borderGraySaturation * 1.25, 1),
+                    graySaturation: Math.min(Number((set.borderGraySaturation * 1.25).toFixed(2)), 1),
                     grayHue: set.borderGrayHue,
                     replaceAllHues: set.borderReplaceAllHues || false,
                     hueGravity: set.borderHueGravity || 0
@@ -221,9 +221,9 @@ namespace MidnightLizard.Settings
                     hueGravity: set.borderHueGravity || 0
                 },
                 ButtonBorder: {
-                    saturationLimit: set.borderSaturationLimit * 0.8,
-                    contrast: set.borderContrast * 0.5,
-                    lightnessLimit: set.borderLightnessLimit * 0.8,
+                    saturationLimit: Number((set.borderSaturationLimit * 0.8).toFixed(2)),
+                    contrast: Number((set.borderContrast * 0.5).toFixed(2)),
+                    lightnessLimit: Number((set.borderLightnessLimit * 0.8).toFixed(2)),
                     graySaturation: set.borderGraySaturation,
                     grayHue: set.borderGrayHue,
                     replaceAllHues: set.borderReplaceAllHues || false,
@@ -232,7 +232,7 @@ namespace MidnightLizard.Settings
                 Scrollbar$Hover: {
                     saturationLimit: set.scrollbarSaturationLimit,
                     contrast: set.scrollbarContrast,
-                    lightnessLimit: set.scrollbarLightnessLimit * 1,
+                    lightnessLimit: set.scrollbarLightnessLimit,
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
                     replaceAllHues: false,
@@ -241,7 +241,7 @@ namespace MidnightLizard.Settings
                 Scrollbar$Normal: {
                     saturationLimit: set.scrollbarSaturationLimit,
                     contrast: set.scrollbarContrast,
-                    lightnessLimit: set.scrollbarLightnessLimit * 0.8,
+                    lightnessLimit: Number((set.scrollbarLightnessLimit * 0.8).toFixed(2)),
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
                     replaceAllHues: false,
@@ -250,7 +250,7 @@ namespace MidnightLizard.Settings
                 Scrollbar$Active: {
                     saturationLimit: set.scrollbarSaturationLimit,
                     contrast: set.scrollbarContrast,
-                    lightnessLimit: set.scrollbarLightnessLimit * 0.7,
+                    lightnessLimit: Number((set.scrollbarLightnessLimit * 0.7).toFixed(2)),
                     graySaturation: set.scrollbarSaturationLimit,
                     grayHue: set.scrollbarGrayHue,
                     replaceAllHues: false,
@@ -268,7 +268,7 @@ namespace MidnightLizard.Settings
                 SvgBackground: {
                     saturationLimit: set.backgroundSaturationLimit,
                     contrast: set.backgroundContrast,
-                    lightnessLimit: Math.min(set.backgroundLightnessLimit * 1.2, 1),
+                    lightnessLimit: Math.min(Number((set.backgroundLightnessLimit * 1.2).toFixed(2)), 1),
                     graySaturation: set.backgroundGraySaturation,
                     grayHue: set.backgroundGrayHue,
                     replaceAllHues: false,
