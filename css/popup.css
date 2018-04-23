@@ -829,7 +829,10 @@ height: 148px;
 }
 
 .intro:not(.no-lines):before {
-    content: "";
+   content: "";
+}
+
+.intro:before { 
     position: absolute;
     z-index: 999;
     border: dotted var(--outline-color);
@@ -1077,5 +1080,6 @@ height: 148px;
 }
 
 .ml-input-container.last {
-    margin-top: -8px!important;
+    
+margin-top: -8px!important;
 }
