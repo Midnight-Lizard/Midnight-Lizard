@@ -209,7 +209,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 0,
 
                     textSaturationLimit: 90,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 85,
                     textGraySaturation: 20,
                     textGrayHue: 16,
@@ -422,7 +422,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 80,
 
                     textSaturationLimit: 60,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 85,
                     textGraySaturation: 10,
                     textGrayHue: 88,
@@ -493,7 +493,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 20,
 
                     textSaturationLimit: 90,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 90,
                     textGraySaturation: 20,
                     textGrayHue: 45,
@@ -564,7 +564,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 20,
 
                     textSaturationLimit: 90,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 90,
                     textGraySaturation: 80,
                     textGrayHue: 14,
@@ -636,7 +636,7 @@ namespace MidnightLizard.Settings
 
                     textSaturationLimit: 90,
                     textContrast: 60,
-                    textLightnessLimit: 95,
+                    textLightnessLimit: 98,
                     textGraySaturation: 20,
                     textGrayHue: 199,
                     textSelectionHue: 231,
@@ -654,7 +654,7 @@ namespace MidnightLizard.Settings
 
                     borderSaturationLimit: 90,
                     borderContrast: 40,
-                    borderLightnessLimit: 95,
+                    borderLightnessLimit: 98,
                     borderGraySaturation: 20,
                     borderGrayHue: 200,
                     borderReplaceAllHues: false,
@@ -919,7 +919,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 0,
 
                     textSaturationLimit: 90,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 85,
                     textGraySaturation: 0,
                     textGrayHue: 0,
@@ -990,7 +990,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 0,
 
                     textSaturationLimit: 10,
-                    textContrast: 62,
+                    textContrast: 64,
                     textLightnessLimit: 85,
                     textGraySaturation: 0,
                     textGrayHue: 0,
@@ -1067,7 +1067,7 @@ namespace MidnightLizard.Settings
                     textGrayHue: 54,
                     textSelectionHue: 231,
                     textReplaceAllHues: false,
-                    textHueGravity: 80,
+                    textHueGravity: 60,
 
                     linkSaturationLimit: 80,
                     linkContrast: 50,
@@ -1138,7 +1138,7 @@ namespace MidnightLizard.Settings
                     textGrayHue: 122,
                     textSelectionHue: 231,
                     textReplaceAllHues: false,
-                    textHueGravity: 80,
+                    textHueGravity: 60,
 
                     linkSaturationLimit: 80,
                     linkContrast: 50,
