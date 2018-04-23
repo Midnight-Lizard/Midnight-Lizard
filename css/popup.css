@@ -508,7 +508,7 @@ height: 148px;
 
 .ml-bg-example
 {
-    height: 40px;
+    height: 45px;
     width: 264px;
     margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
     border-width: 0px;
@@ -522,7 +522,7 @@ height: 148px;
     width: 33px;
     text-align: center;
     font: 400 11px Arial;
-    height: 17px;
+    height: 20px;
 }
 
 .ml-bg-example tr:nth-of-type(2) td 
@@ -627,14 +627,17 @@ height: 148px;
 
 .ml-button-example
 {
-    width: 264px;
-    margin: 7px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    width: 260px;
+    margin: 7px auto 0px auto;
     text-align: justify;
+    background-color: var(--main-background-color);
+    padding: 2px;
+    outline: solid 1px var(--thin-border-color);
 }
 
 .ml-button-example button {
     width: calc(100% / 9);
-    height: 30px;
+    height: 29px;
     text-align: center;
     border: 1px solid var(--thin-border-color);
     border-radius: 4px;
@@ -647,7 +650,7 @@ height: 148px;
     position: absolute;
     left: 1px;
     right: 1px;
-    bottom: -8px;
+    bottom: -10px;
     border-radius: 2px;
     height: 4px;
 }
@@ -717,9 +720,13 @@ height: 148px;
 }
 
 .ml-border-example {
-    width: 264px;
-    margin: 2px calc((100% - 264px)/2) 0px calc((100% - 264px)/2);
+    width: 258px;
+    margin: 2px auto 0px auto;
     cursor: help;
+    outline: solid 1px var(--thin-border-color);
+    padding: 1px 4px;
+    height: 58px;
+    background-color: var(--main-background-color);
 }
 
 .ml-border-example div {
@@ -799,7 +806,7 @@ height: 148px;
     overflow-y: scroll;
     white-space: nowrap;
     background: var(--main-background-color);
-    margin: 7px calc((100% - 266px)/2) 0px calc((100% - 266px)/2);
+    margin: 7px auto 0px auto;
     outline: solid 1px var(--thin-border-color);
     padding: 2px;
 }
@@ -1067,4 +1074,8 @@ height: 148px;
     color: red;
     text-shadow: 0px 0px 2px #ffd1d9;
     font-size: 14px;
+}
+
+.ml-input-container.last {
+    margin-top: -8px!important;
 }
