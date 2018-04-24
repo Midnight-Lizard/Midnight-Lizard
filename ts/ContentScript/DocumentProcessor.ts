@@ -238,7 +238,7 @@ namespace MidnightLizard.ContentScript
                 DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.getElementsByTagName("*")).filter((tag) => this.checkElement(tag)) as HTMLElement[];
-                DocumentProcessor.processAllElements(allTags, /*doc.documentElement*/null, this);
+                DocumentProcessor.processAllElements(allTags, this);
             }
         }
 
@@ -381,17 +381,10 @@ namespace MidnightLizard.ContentScript
                     filteredTags.splice(0, 0, rootElem);
                     if (filteredTags.length < 100 || full)
                     {
-                        const useShadow = false;//filteredTags.length > 50;
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        DocumentProcessor.processAllElements(filteredTags, useShadow ? rootElem : null, this, bigReCalculationDelays);
-                        if (useShadow)
-                        {
-                            this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                            this.applyLoadingShadow(rootElem);
-                            this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        }
+                        DocumentProcessor.processAllElements(filteredTags, this, bigReCalculationDelays);
                     }
                     else
                     {
@@ -537,7 +530,7 @@ namespace MidnightLizard.ContentScript
             addedElements.forEach(tag => this.restoreElementColors(tag));
             let allNewTags = Array.from(addedElements.values())
                 .filter(tag => this.checkElement(tag) && tag.parentElement);
-            DocumentProcessor.processAllElements(allNewTags, null, this, bigReCalculationDelays);
+            DocumentProcessor.processAllElements(allNewTags, this, bigReCalculationDelays);
             let allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
             {
@@ -553,10 +546,10 @@ namespace MidnightLizard.ContentScript
                     }
                 });
             });
-            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), null, this, bigReCalculationDelays);
+            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), this, bigReCalculationDelays);
         }
 
-        protected static processAllElements(allTags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor,
+        protected static processAllElements(allTags: HTMLElement[], docProc: DocumentProcessor,
             delays = normalDelays, delayInvisibleElements = true): void
         {
             if (allTags.length > 0)
@@ -635,19 +628,15 @@ namespace MidnightLizard.ContentScript
                             : a.rowNumber! - b.rowNumber!);
                 allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
 
-                const results = Util.handlePromise(DocumentProcessor.processOrderedElements(allTags, shadowElement, docProc, delays)!);
+                const results = Util.handlePromise(DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
 
                 if (otherInvisTags.length > 0)
                 {
                     Promise.all([otherInvisTags, docProc, delays, results])
-                        .then(([otherTags, dp, dl]) => DocumentProcessor.processAllElements(otherTags, null, dp, dl, false));
+                        .then(([otherTags, dp, dl]) => DocumentProcessor.processAllElements(otherTags, dp, dl, false));
                 }
 
                 DocumentProcessor.fixColorInheritance(allTags, docProc, results);
-            }
-            else if (shadowElement)
-            {
-                DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
             }
         }
 
@@ -710,14 +699,14 @@ namespace MidnightLizard.ContentScript
                                 tag.setAttribute("fixed", "bgcolor");
                             });
                             dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
-                            DocumentProcessor.processAllElements(brokenTransparentTags, null, dProc, bigReCalculationDelays);
+                            DocumentProcessor.processAllElements(brokenTransparentTags, dProc, bigReCalculationDelays);
                         }
                     }), 0, tags, dp);
                 }
             });
         }
 
-        protected static processOrderedElements(tags: HTMLElement[], shadowElement: HTMLElement | null, docProc: DocumentProcessor, delays = normalDelays)
+        protected static processOrderedElements(tags: HTMLElement[], docProc: DocumentProcessor, delays = normalDelays)
         {
             if (tags.length > 0)
             {
@@ -726,19 +715,12 @@ namespace MidnightLizard.ContentScript
                 if (tags.length < chunkLength)
                 {
                     result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].order || po.viewColorTags)! / density);
-                    shadowElement && DocumentProcessor.removeLoadingShadow(shadowElement, docProc);
                 }
                 else
                 {
                     const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
                         _delays.get(chunk[0].order || po.viewColorTags) / _density)
                         .bind(null, delays, density);
-                    if (shadowElement)
-                    {
-                        let firstOrder = tags[0].order, firstOrderLenght = 0;
-                        while (++firstOrderLenght < tags.length && tags[firstOrderLenght].order === firstOrder);
-                        tags[firstOrderLenght].shadowElement = shadowElement;
-                    }
                     result = Util.forEachPromise(
                         Util.sliceIntoChunks(tags, chunkLength).map(chunk => [chunk, docProc]),
                         DocumentProcessor.processElementsChunk, 0, getNextDelay);
@@ -769,8 +751,6 @@ namespace MidnightLizard.ContentScript
                 })
                 .map(tr =>
                 {
-                    tr.tag.shadowElement && DocumentProcessor.removeLoadingShadow(tr.tag.shadowElement, docProc);
-                    tr.tag.shadowElement = undefined;
                     docProc.applyRoomRules(tr.tag, tr.result!.roomRules);
                     if (tr.beforeRoomRules)
                     {
@@ -991,40 +971,6 @@ namespace MidnightLizard.ContentScript
             {
                 return tag;
             }
-        }
-
-        protected applyLoadingShadow(tag: HTMLElement)
-        {
-            if (tag.tagName != USP.htm.img)
-            {
-                tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
-                let filter = [
-                    this.shift.Background.lightnessLimit < 1 ? "brightness(" + this.shift.Background.lightnessLimit + ")" : "",
-                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                    tag.computedStyle.filter != this._css.none ? tag.computedStyle.filter : ""
-                ].filter(f => f).join(" ").trim();
-                if (!tag.originalFilter)
-                {
-                    tag.originalFilter = tag.style.filter;
-                }
-                tag.currentFilter = filter;
-                tag.style.setProperty(this._css.filter, filter);
-            }
-            return tag;
-        }
-
-        protected static removeLoadingShadow(tag: HTMLElement, docProc: DocumentProcessor)
-        {
-            docProc._rootDocument.defaultView.requestAnimationFrame(((_tag: HTMLElement, _docProc: DocumentProcessor) =>
-            {
-                let originalState = _docProc._documentObserver.stopDocumentObservation(_tag.ownerDocument);
-                _tag.setAttribute(_docProc._css.transition, _docProc._css.filter);
-                _tag.style.filter = _tag.originalFilter!;
-                _tag.originalFilter = undefined;
-                setTimeout((tg: HTMLElement, dp: DocumentProcessor) =>
-                    dp._rootDocument.defaultView.requestAnimationFrame(tg.removeAttribute.bind(tg, dp._css.transition)), 200, _tag, _docProc);
-                _docProc._documentObserver.startDocumentObservation(_tag.ownerDocument, originalState)
-            }).bind(null, tag, docProc));
         }
 
         protected restoreDocumentColors(doc: Document)

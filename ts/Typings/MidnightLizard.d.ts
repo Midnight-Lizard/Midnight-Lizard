@@ -14,8 +14,6 @@ interface Node
     mlTimestamp: number | undefined;
     /** number of times when element has been mutated faster than mutation trottle timeout */
     mlMutationThrottledCount: number | undefined;
-    /** --- */
-    shadowElement: HTMLElement | undefined;
     /** Processing order */
     order: MidnightLizard.ContentScript.ProcessingOrder | undefined;
     rowNumber: number | undefined;
