@@ -28,7 +28,8 @@
 }
 
 .scb-private-icon-white, .scb-invalid-icon-white,
-.scb-unlisted-icon-white, .docs-icon-close-white
+.scb-unlisted-icon-white, .docs-icon-close-white,
+[class*="icon-white"]
 {
     --ml-no-invert:true;
 }

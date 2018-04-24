@@ -22,3 +22,14 @@
     --ml-border-border-right-color:TextSelection;
     --ml-border-border-top-color:TextSelection;
 }
+
+.docs-explore-icon svg {
+    --ml-small-svg-is-text:true!important;
+    --ml-svgbackground-fill:SvgBackground!important;
+}
+
+.docs-squarehandleselectionbox-handle,
+.docs-rotationhandle-circle,
+.docs-rotationhandle-stick {
+    --ml-background-background-color:Border;
+}
