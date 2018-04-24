@@ -339,10 +339,9 @@ namespace MidnightLizard.ContentScript
          **/
         public canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean
         {
-            let pseudoClassName = PseudoClass[pseudoClass],
-                pseudoRegExp = new RegExp(
+            let pseudoRegExp = new RegExp(
                     x.remember(x.outOfSet(x.LeftParenthesis, x.WhiteSpace)) +
-                    x.Colon + pseudoClassName + x.WordBoundary,
+                    x.Colon + PseudoClass[pseudoClass] + x.WordBoundary,
                     "gi");
             return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 && tag.matches(s.replace(pseudoRegExp, "$1")));
         }
