@@ -658,7 +658,7 @@ namespace MidnightLizard.ContentScript
             {
                 if (tags && tags.length > 0)
                 {
-                    tags[0].ownerDocument.defaultView.requestAnimationFrame(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                    setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
                     {
                         const brokenColorTags = t.filter(tag =>
                             !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
@@ -684,7 +684,7 @@ namespace MidnightLizard.ContentScript
                             });
                             docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
                         }
-                    }).bind(null, tags, dp));
+                    }), 0, tags, dp);
                 }
             });
             waitResults.then(([tags, dp]) =>
@@ -712,7 +712,7 @@ namespace MidnightLizard.ContentScript
                             dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
                             DocumentProcessor.processAllElements(brokenTransparentTags, null, dProc, bigReCalculationDelays);
                         }
-                    }).bind(null, tags, dp), 1);
+                    }), 0, tags, dp);
                 }
             });
         }
@@ -746,7 +746,7 @@ namespace MidnightLizard.ContentScript
                 if (needObservation)
                 {
                     Promise.all([tags as any, docProc, Util.handlePromise(result), ...docProc._styleSheetProcessor.getCssPromises(tags[0].ownerDocument)!])
-                        .then(([t, dp]) => dp._rootDocument.defaultView.requestAnimationFrame(() => DocumentProcessor.startObservation(t, dp)));
+                        .then(([t, dp]) => DocumentProcessor.startObservation(t, dp));
                 }
                 return result;
             }
@@ -1828,7 +1828,7 @@ namespace MidnightLizard.ContentScript
             BackgroundImage | Promise<BackgroundImage>
         {
             let imageKey = [url, size, doInvert].join("-");
-            roomRules.backgroundImageKeys = roomRules.backgroundImageKeys || {};
+            roomRules.backgroundImageKeys = roomRules.backgroundImageKeys || [];
             roomRules.backgroundImageKeys[index] = imageKey;
             let prevImage = this._images.get(imageKey);
             if (prevImage)
@@ -2220,17 +2220,21 @@ namespace MidnightLizard.ContentScript
                             rr.hasBackgroundImagePromises = false;
                             (bgImgs as BackgroundImage[]).forEach((img: BackgroundImage, index) =>
                             {
-                                this._images.set(rr.backgroundImageKeys[index], img);
+                                if (rr.backgroundImageKeys)
+                                    this._images.set(rr.backgroundImageKeys[index], img);
                             });
                             return this.applyBackgroundImages(t, bgImgs as BackgroundImage[]);
                         });
                     Promise
-                        .all([tag, Util.handlePromise(applyBgPromise)])
-                        .then(([tag, result]) =>
+                        .all([tag, Util.handlePromise(applyBgPromise), roomRules])
+                        .then(([tag, result, rr]) =>
                         {
                             if (result && result.status === Util.PromiseStatus.Failure)
                             {
-                                this._app.isDebug && console.error("Can not fetch background image: " + result.data);
+                                this._app.isDebug &&
+                                    console.error(`Can not fetch background image\n${rr.backgroundImageKeys &&
+                                        rr.backgroundImageKeys.join("\n")}: ` +
+                                        result.data);
                                 let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
                                 this.removeTemporaryFilter(tag);
                                 this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);

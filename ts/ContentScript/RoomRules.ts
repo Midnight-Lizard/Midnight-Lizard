@@ -25,7 +25,7 @@ namespace MidnightLizard.ContentScript
         transitionDuration: { value: string } | null | undefined;
         display: string | null | undefined;
         attributes?: Map<string, string>;
-        backgroundImageKeys: any;
+        backgroundImageKeys: string[] | null | undefined;
         backgroundImages?: Array<Promise<BackgroundImage> | BackgroundImage>;
         hasBackgroundImagePromises: boolean = false;
     }
