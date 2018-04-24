@@ -1326,7 +1326,9 @@ namespace MidnightLizard.ContentScript
                             !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
                             !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
                     {
-                        let doInvert = (!isTable) && bgInverted && (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
+                        let doInvert = (!isTable) && bgInverted &&
+                            (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
+                            tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                             (
                                 this.tagIsSmall(tag)
 
