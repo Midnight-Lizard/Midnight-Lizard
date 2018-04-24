@@ -39,7 +39,7 @@ namespace MidnightLizard.ContentScript
                     fntColor: "fill",
                     shdColor: "text-shadow"
                 },
-                img: "IMAGE"
+                img: "image"
             }
         };
 
