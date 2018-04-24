@@ -14,9 +14,8 @@ namespace MidnightLizard.PageScript
 
         public beginExternalCssObservation()
         {
-            if (document.defaultView
-                .getComputedStyle(document.documentElement, undefined)
-                .getPropertyValue("--ml-browser") === "Firefox")
+            const cs = document.defaultView.getComputedStyle(document.documentElement, undefined);
+            if (cs && cs.getPropertyValue("--ml-browser") === "Firefox")
             {
                 this._externalObserver.observe(document.head, this._externalObserverConfig);
                 for (const link of document.head.querySelectorAll(`[${externalAttribute}]`))
