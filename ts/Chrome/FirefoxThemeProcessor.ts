@@ -32,9 +32,9 @@ namespace Firefox
                     const mainVersion = parseInt(info.version.split('.')[0]);
                     const applySettingsOnTheme = ([set, wnd]: [MidnightLizard.Settings.ColorScheme, browser.windows.Window]) =>
                     {
-                        if (set.isEnabled && set.runOnThisSite && set.changeBrowserTheme)
+                        settingsManager.changeSettings(set, true);
+                        if (set.isEnabled && set.runOnThisSite && set.changeBrowserTheme && settingsManager.isActive)
                         {
-                            settingsManager.changeSettings(set);
                             const
                                 darkGray = new cx.RgbaColor(80, 80, 80, 1).toString(),
                                 lightGray = new cx.RgbaColor(240, 240, 240, 1).toString();
@@ -142,14 +142,17 @@ namespace Firefox
                     const getCurrentWindow = () => browser.windows.getCurrent({ windowTypes: ["normal" as browser.windows.WindowType.normal] });
                     const updateTheme = () =>
                     {
-                        Promise.all([settingsBus.getCurrentSettings(), getCurrentWindow()])
-                            .then(applySettingsOnTheme)
-                            .catch(ex =>
-                            {
-                                Promise.all([settingsManager.getDefaultSettings(), getCurrentWindow()])
-                                    .then(applySettingsOnTheme)
-                                    .catch(exx => browser.theme.reset());
-                            });
+                        settingsManager.getDefaultSettings().then(defaultSettings =>
+                        {
+                            Promise.all([settingsBus.getCurrentSettings(), getCurrentWindow()])
+                                .then(applySettingsOnTheme)
+                                .catch(ex =>
+                                {
+                                    Promise.all([defaultSettings, getCurrentWindow()])
+                                        .then(applySettingsOnTheme)
+                                        .catch(exx => browser.theme.reset());
+                                });
+                        });
                     };
 
                     chrome.tabs.onActivated
