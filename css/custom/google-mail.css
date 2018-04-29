@@ -32,7 +32,7 @@ img[src*="add_black"]:not(#imp):not(.imp):not(imp) {
     background-color: transparent!important;
 }
 
-html[ml-stage="loading"] div[role="button"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):after {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div[role="button"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):after {
     filter: invert(var(--ml-invert, 0))!important;
     background-color: transparent!important;
 }

@@ -19,7 +19,7 @@
     --pseudo-text-shadow-color: darkgray;
 }
 
-html[ml-stage="loading"]:root {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):root {
     --pseudo-background-color: var(--ml-main-background-color);
     --pseudo-color: var(--ml-main-text-color);
     --pseudo-border-color: var(--ml-main-border-color);

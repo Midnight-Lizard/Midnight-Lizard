@@ -215,6 +215,7 @@ namespace MidnightLizard.ContentScript
             {
                 doc.documentElement.removeAttribute("ml-stage");
                 doc.documentElement.removeAttribute("ml-mode");
+                doc.documentElement.removeAttribute("ml-stage-mode");
             }
             else
             {
@@ -222,6 +223,8 @@ namespace MidnightLizard.ContentScript
                 if (this._settingsManager.isActive)
                 {
                     doc.documentElement.setAttribute("ml-mode", this._settingsManager.currentSettings.mode);
+                    doc.documentElement.setAttribute("ml-stage-mode",
+                        stage + "-" + this._settingsManager.currentSettings.mode);
                 }
             }
         }
@@ -244,9 +247,9 @@ namespace MidnightLizard.ContentScript
                 this._zoomObserver.addDocument(doc);
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
                 this._dorm.set(doc, new Map<string, RoomRules>());
+                this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
                 if (this._settingsManager.currentSettings.mode === Settings.ProcessingMode.Complex)
                 {
-                    this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
                     this._styleSheetProcessor.processDocumentStyleSheets(doc);
                     if (this._settingsManager.currentSettings.restoreColorsOnCopy)
                     {
@@ -282,7 +285,6 @@ namespace MidnightLizard.ContentScript
                 }
                 else
                 {
-                    this.setDocumentProcessingStage(doc, ProcessingStage.Loading);
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.getElementsByTagName("*"))
                         .filter(this.getFilterOfElementsForSimplifiedProcessing()) as HTMLElement[];
@@ -1098,7 +1100,9 @@ namespace MidnightLizard.ContentScript
 
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
-            if (tag.mlBgColor || lastProcMode === Settings.ProcessingMode.Simplified)
+            if (tag.mlBgColor || tag instanceof tag.ownerDocument.defaultView.Element && (
+                lastProcMode === Settings.ProcessingMode.Simplified ||
+                this._settingsManager.isSimple))
             {
                 let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
@@ -1207,6 +1211,10 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.removeAttribute("fixed");
                 }
+                if (tag.hasAttribute("ml-no-bg-image"))
+                {
+                    tag.removeAttribute("ml-no-bg-image");
+                }
 
                 if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
                 {
@@ -1253,7 +1261,7 @@ namespace MidnightLizard.ContentScript
                 }
                 if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
-                    setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
+                    dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
                 if (tag instanceof doc.defaultView.HTMLCanvasElement ||
                     tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
@@ -1306,7 +1314,7 @@ namespace MidnightLizard.ContentScript
 
                 if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
-                    setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
+                    dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
                 if (isRealElement(tag) && tag.contentEditable == true.toString()) this.overrideInnerHtml(tag);
 
@@ -1812,7 +1820,7 @@ namespace MidnightLizard.ContentScript
             let backgroundSizes = tag.computedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
             let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
-                haveToProcBgGrad = /gradient/gi.test(backgroundImage), isInput = false;
+                haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
             if (/\burl\(/gi.test(backgroundImage))
             {
                 const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
@@ -1847,15 +1855,27 @@ namespace MidnightLizard.ContentScript
                         this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                     ].filter(f => f).join(" ").trim();
 
-                    if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA")
+                    if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA" &&
+                        tag.tagName !== "BODY" && tag !== doc.documentElement)
                     {
                         roomRules.filter = { value: bgFilter };
                     }
-                    else isInput = true;
+                    else
+                    {
+                        roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                        roomRules.attributes.set("ml-no-bg-image", "");
+                        noFilters = true;
+                    }
 
                     haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
                         isPseudoContent || roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
-                        haveToProcBgGrad || isInput;
+                        haveToProcBgGrad || noFilters;
+
+                    if (tag.tagName === USP.htm.img)
+                    {
+                        roomRules.keepFilter = true;
+                        haveToProcBgImg = false;
+                    }
                 }
             }
             if (haveToProcBgImg || haveToProcBgGrad)
@@ -2005,7 +2025,7 @@ namespace MidnightLizard.ContentScript
             try
             {
                 let childDoc = iframe.contentDocument || iframe.contentWindow.document;
-                setTimeout(dom.addEventListener(childDoc, "DOMContentLoaded", this.onIFrameDocumentLaoded, this, false, childDoc), 1);
+                dom.addEventListener(childDoc, "DOMContentLoaded", this.onIFrameDocumentLaoded, this, false, childDoc)();
             }
             catch (ex)
             {
@@ -2023,11 +2043,17 @@ namespace MidnightLizard.ContentScript
 
         protected onIFrameDocumentLaoded(doc: Document)
         {
-            if (doc.readyState != "loading" && doc.readyState != "uninitialized" &&
-                doc.body && !doc.body.mlBgColor && doc.defaultView)
+            if (doc.defaultView && this._settingsManager.isActive)
             {
                 this.injectDynamicValues(doc);
-                this.processDocument(doc);
+                if (doc.readyState != "loading" && doc.readyState != "uninitialized")
+                {
+                    this.processDocument(doc);
+                }
+                else
+                {
+                    this.setDocumentProcessingStage(doc, ProcessingStage.Loading);
+                }
             }
         }
 

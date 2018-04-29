@@ -1,141 +1,139 @@
-html[ml-stage="loading"] {}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
 
 @media screen {
-    html[ml-stage="loading"] [style*="filter"]:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] [style*="filter"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp)>[style*="filter"]:not(#imp):not(.imp):not(imp) {
-        background-color: transparent !important;
-    }
-    html[ml-stage="loading"][ml-mode="complex"] :not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"][ml-mode="complex"] :not(#imp):not(.imp):not(imp):before,
-    html[ml-stage="loading"][ml-mode="complex"] :not(#imp):not(.imp):not(imp):after {
+    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
+    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
+    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after {
         background-image: none !important;
     }
-    html[ml-stage="loading"] [style*="image"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] [style*="filter"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] img:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter"]:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>[style*="filter"]:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="image"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) img:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
         background-color: transparent !important;
     }
-    html[ml-stage="loading"] *:not([transition]) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not([transition]) {
         transition: all 0s ease 0s !important;
     }
-    html[ml-stage="loading"] img[src]:not(impt):not([style*="filter"]):not([style*="image"]) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter"]):not([style*="image"]) {
         filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
     }
-    html[ml-stage="loading"] [role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage="loading"] :not(.ml-ignore):not(#imp)>[role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage="loading"] [class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage="loading"] [class*="modal"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage="loading"] :not(.ml-ignore):not(#imp)>[class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage="loading"] select:not(#colorScheme)>option:not(impt):not(.impt),
-    html[ml-stage="loading"]>*:not(svg):not(.ml-ignore),
-    html[ml-stage="loading"]>*>*:not(svg):not(.ml-ignore),
-    html[ml-stage="loading"]>*>*>*:not(svg):not(.ml-ignore),
-    html[ml-stage="loading"]>*>*>*:not(svg):not(.ml-ignore) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="modal"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) select:not(#colorScheme)>option:not(impt):not(.impt),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(svg):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*:not(svg):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore) {
         background-color: var(--ml-main-background-color) !important;
     }
-    html[ml-stage="loading"]>*>* *:not(.ml-ignore)>*:not(svg):not(.ml-ignore):not(.ml-dialog-hue-select):not(option) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>* *:not(.ml-ignore)>*:not(svg):not(.ml-ignore):not(.ml-dialog-hue-select):not(option) {
         background-color: var(--ml-main-trans-background-color) !important;
     }
-    html[ml-stage="loading"]>[class*="header"]:not(svg):not(.ml):not(#imp),
-    html[ml-stage="loading"]>[class*="footer"]:not(svg):not(.ml):not(#imp),
-    html[ml-stage="loading"]>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage="loading"]>[class*="current"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>[class*="header"]:not(svg):not(#imp):not(.ml),
-    html[ml-stage="loading"]>*>[class*="footer"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>*>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>*>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage="loading"]>*>[class*="current"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>*>[class*="header"]:not(svg):not(#imp):not(.ml),
-    html[ml-stage="loading"]>*>*>[class*="footer"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>*>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>*>*>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage="loading"]>*>*>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage="loading"]>*>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage="loading"]>*>*>[class*="current"]:not(svg):not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="header"]:not(svg):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="footer"]:not(svg):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>footer:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="current"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="header"]:not(svg):not(#imp):not(.ml),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="footer"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>header:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>footer:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="current"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="header"]:not(svg):not(#imp):not(.ml),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="footer"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>header:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>footer:not(imp):not(.ml):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="current"]:not(svg):not(#imp) {
         background-color: var(--ml-main-alt-background-color) !important;
     }
-    html[ml-stage="loading"] [class*="header"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage="loading"] [class*="footer"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage="loading"] header:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage="loading"] footer:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage="loading"] [class*="hover"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage="loading"] [class*="selected"]:not(svg):not([class="js-selected-navigation-item reponav-item"]) *:not(#imp):not(svg),
-    html[ml-stage="loading"] [class*="active"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
-    html[ml-stage="loading"] [class*="current"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
-    html[ml-stage="loading"]>*>*>* [class*="header"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"]>*>*>* [class*="footer"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"]>*>*>* header:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"]>*>*>* footer:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"]>*>*>* [class*="hover"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"]>*>*>* [class*="selected"]:not(svg):not(.ml-ignore):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage="loading"]>*>*>* [class*="current"]:not(svg):not(.ml-ignore):not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="header"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="footer"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) header:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) footer:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="hover"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="selected"]:not(svg):not([class="js-selected-navigation-item reponav-item"]) *:not(#imp):not(svg),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="active"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="current"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="header"]:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="footer"]:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* header:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* footer:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="hover"]:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="selected"]:not(svg):not(.ml-ignore):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="current"]:not(svg):not(.ml-ignore):not(#imp) {
         background-color: var(--ml-main-trans-alt-background-color) !important;
     }
-    html[ml-stage="loading"] button:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] input[type="button"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] input[type="submit"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp):not(#imp),
-    html[ml-stage="loading"] input[type="reset"]:not(.ml):not(impt) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] a[role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [class*="button"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] a[class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp) {
         background-color: transparent !important;
     }
-    html[ml-stage="loading"] button:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] input[type="button"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] input[type="submit"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] input[type="reset"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] a[role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [class*="button"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] [class*="btn"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage="loading"] a[class*="btn"]:not(svg):not(.ml-ignore):not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg):not(.ml-ignore):not(#imp) {
         background-color: var(--ml-main-button-background-color) !important;
         border-color: var(--ml-main-button-border-color) !important;
     }
-    html[ml-stage="loading"]>*:not(impt):not(.ml-ignore),
-    html[ml-stage="loading"] :not(.ml-ignore):not(#colorScheme)>*:not(impt):not(.ml-ignore),
-    html[ml-stage="loading"] *:not(.ml-ignore):not(impt):before,
-    html[ml-stage="loading"] *:not(.ml-ignore):not(impt):after {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(impt):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#colorScheme)>*:not(impt):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):after {
         color: var(--ml-main-text-color) !important;
         border-color: var(--ml-main-border-color) !important;
         text-shadow: none !important;
     }
-    html[ml-stage="loading"] svg *:not([fill="none"]) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) svg *:not([fill="none"]) {
         fill: var(--ml-main-text-color) !important;
     }
-    html[ml-stage="loading"] a:not(:visited):not(#imp):not(.imp),
-    html[ml-stage="loading"] a:not(:visited) *:not(#imp):not(.imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp) {
         color: var(--ml-main-link-color) !important;
     }
-    html[ml-stage="loading"] a:not(:visited):not(#imp):hover,
-    html[ml-stage="loading"] a:not(:visited):not(#imp):hover * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover * {
         color: var(--ml-main-link-color-hover) !important;
     }
-    html[ml-stage="complete"] a:not(:visited):not(#imp):active,
-    html[ml-stage="complete"] a:not(:visited):not(#imp):active * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active * {
         color: var(--ml-main-link-color-active) !important;
     }
-    html[ml-stage="loading"] a:visited:not(#imp):not(.imp),
-    html[ml-stage="loading"] a:visited:not(#imp):not(.imp) * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) * {
         color: var(--ml-main-visited-color) !important;
     }
-    html[ml-stage="loading"] a:visited:active:not(imp):not(#imp),
-    html[ml-stage="loading"] a:visited:active:hover:not(imp):not(#imp),
-    html[ml-stage="loading"] a:visited:active:not(imp) *:not(#imp),
-    html[ml-stage="loading"] a:visited:active:hover:not(imp) *:not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp) {
         color: var(--ml-main-visited-color-active) !important;
     }
-    html[ml-stage="loading"] a:visited:hover:not(imp):not(#imp),
-    html[ml-stage="loading"] a:visited:hover:not(imp) *:not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp) {
         color: var(--ml-main-visited-color-hover) !important;
     }
 }

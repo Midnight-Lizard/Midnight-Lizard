@@ -156,7 +156,7 @@ body {
     top: -4.5px;
     cursor: help;
 }
-html[ml-stage="loading"] .ml-replace-all-hues-label:not(#imp) {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-replace-all-hues-label:not(#imp) {
     background-color: transparent!important;
 }
 
@@ -164,7 +164,7 @@ html[ml-stage="loading"] .ml-replace-all-hues-label:not(#imp) {
     margin-left: calc((100% - 267px)/2);
     cursor: help;
 }
-html[ml-stage="loading"] .ml-dialog-label:not(#imp) {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not(#imp) {
     background-color: transparent!important;
 }
 
@@ -188,7 +188,7 @@ html[ml-stage="loading"] .ml-dialog-label:not(#imp) {
     margin-bottom: 15px;
     margin-top: 10px;
 }
-html[ml-stage="loading"] .ml-input-container:not(#imp) {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:not(#imp) {
     background-color: transparent!important;
 }
 

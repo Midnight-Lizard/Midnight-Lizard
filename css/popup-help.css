@@ -22,7 +22,7 @@
     transition-duration: 200ms;
     transition-timing-function: ease-out;
 }
-html[ml-stage="loading"] [tooltip]:not(#imp):before {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):before {
     background-color: var(--ml-main-alt-background-color) !important;
 }
 
@@ -79,8 +79,8 @@ html[ml-stage="loading"] [tooltip]:not(#imp):before {
 #help:after {left: 2px;bottom: -18px;}
 #help:before {left: -5px;white-space: nowrap;top: 41px;}
 
-.ml-host-state:after {left: 4px;bottom: -19px;}
-.ml-host-state:before {left: -105px;white-space: pre;top: 37px;}
+.ml-host-state:after {left: 8px;bottom: -19px;}
+.ml-host-state:before {left: -100px;white-space: pre;top: 37px;}
 
 #host-name {
     position: relative;
