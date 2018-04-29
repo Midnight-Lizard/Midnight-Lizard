@@ -1,4 +1,4 @@
-html[preload][ml-is-active]
+html[ml-is-active][ml-stage="preload"]
 {
     background: white;
     filter: brightness(var(--ml-background-lightness-limit));

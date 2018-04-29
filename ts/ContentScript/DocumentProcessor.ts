@@ -9,6 +9,7 @@
 /// <reference path="../Colors/BackgroundColorProcessor.ts" />
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
+/// <reference path="../Colors/RangeFillColorProcessor.ts" />
 /// <reference path="./SvgFilters.ts" />
 /// <reference path="./PreloadManager.ts" />
 
@@ -23,13 +24,21 @@ namespace MidnightLizard.ContentScript
     type PromiseResult<T> = Util.HandledPromiseResult<T>;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const doNotInvertRegExp = /user|account|photo|importan|grey|gray|flag/gi;
+    const doNotInvertRegExp = /user|account|photo(?!.+black)|white|grey|gray|flag/gi;
     const maxAttrLen = 100;
     /** 2 fraction digits number format */
     const float = new Intl.NumberFormat('en-US', {
         useGrouping: false,
         maximumFractionDigits: 2
     });
+
+    enum ProcessingStage
+    {
+        None = "none",
+        Preload = "preload",
+        Loading = "loading",
+        Complete = "complete"
+    }
 
     export abstract class IDocumentProcessor
     {
@@ -92,13 +101,14 @@ namespace MidnightLizard.ContentScript
             protected readonly _activeLinkColorProcessor: MidnightLizard.Colors.IActiveLinkColorProcessor,
             protected readonly _hoverLinkColorProcessor: MidnightLizard.Colors.IHoverLinkColorProcessor,
             protected readonly _textShadowColorProcessor: MidnightLizard.Colors.ITextShadowColorProcessor,
+            protected readonly _rangeFillColorProcessor: MidnightLizard.Colors.IRangeFillColorProcessor,
             protected readonly _borderColorProcessor: MidnightLizard.Colors.IBorderColorProcessor,
             protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter,
             protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
             protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
         {
-            _rootDocument.documentElement.setAttribute("preload", "");
+            this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload);
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
             this._isPdf = /.+\.pdf(#.*)?/i.test(_rootDocument.location.href);
             this._css = css as any;
@@ -140,12 +150,12 @@ namespace MidnightLizard.ContentScript
                 invertedBackgroundImageFilter = [
                     this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
                     `brightness(${float.format(1 - this.shift.Background.lightnessLimit)}) hue-rotate(180deg) invert(1)`,
-                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                 ].filter(f => f).join(" ").trim(),
                 backgroundImageFilter = [
                     this.shift.BackgroundImage.saturationLimit < 1 ? `saturate(${this.shift.BackgroundImage.saturationLimit})` : "",
                     this.shift.BackgroundImage.lightnessLimit < 1 ? `brightness(${this.shift.BackgroundImage.lightnessLimit})` : "",
-                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                 ].filter(f => f).join(" ").trim();
 
             this._standardPseudoCssTexts.set(PseudoStyleStandard.InvertedBackgroundImage, `${this._css.filter}:${invertedBackgroundImageFilter}!${this._css.important}`);
@@ -160,7 +170,8 @@ namespace MidnightLizard.ContentScript
             this.restoreDocumentColors(this._rootDocument);
             if (this._settingsManager.isActive)
             {
-                this.createDynamicStyle(this._rootDocument);
+                void (this._rootDocument.documentElement.offsetHeight);
+                this.injectDynamicValues(this._rootDocument);
                 this.processRootDocument();
             }
             response(this._settingsManager.currentSettings);
@@ -168,19 +179,23 @@ namespace MidnightLizard.ContentScript
 
         protected onSettingsInitialized(shift?: Colors.ComponentShift): void
         {
-            this._rootDocument.documentElement.removeAttribute("preload");
             if (this._settingsManager.isActive)
             {
                 this.createStandardPseudoCssTexts();
-                this.createDynamicStyle(this._rootDocument);
+                this.injectDynamicValues(this._rootDocument);
+                if (this._rootDocumentContentLoaded)
+                {
+                    this.processRootDocument();
+                }
+                else
+                {
+                    this.setDocumentProcessingStage(this._rootDocument, ProcessingStage.Loading);
+                    // this.createLoadingStyles(this._rootDocument);
+                }
             }
-            if (this._rootDocumentContentLoaded)
+            else
             {
-                this.processRootDocument();
-            }
-            else if (this._settingsManager.isActive)
-            {
-                this.createLoadingStyles(this._rootDocument);
+                this.setDocumentProcessingStage(this._rootDocument, ProcessingStage.None);
             }
         }
 
@@ -194,6 +209,28 @@ namespace MidnightLizard.ContentScript
             }
         }
 
+        protected setDocumentProcessingStage(doc: Document, stage: ProcessingStage)
+        {
+            if (stage === ProcessingStage.None)
+            {
+                doc.documentElement.removeAttribute("ml-stage");
+                doc.documentElement.removeAttribute("ml-mode");
+            }
+            else
+            {
+                doc.documentElement.setAttribute("ml-stage", stage);
+                if (this._settingsManager.isActive)
+                {
+                    doc.documentElement.setAttribute("ml-mode", this._settingsManager.currentSettings.mode);
+                }
+            }
+        }
+
+        protected getLastDoccumentProcessingMode(doc: Document)
+        {
+            return doc.documentElement.getAttribute("ml-mode") as Settings.ProcessingMode || Settings.ProcessingMode.Complex;
+        }
+
         protected processRootDocument()
         {
             this._onRootDocumentProcessing.raise(this._rootDocument);
@@ -205,52 +242,97 @@ namespace MidnightLizard.ContentScript
             if (doc.body && doc.defaultView && this._settingsManager.isActive)
             {
                 this._zoomObserver.addDocument(doc);
-                this._styleSheetProcessor.processDocumentStyleSheets(doc);
-                this._dorm.set(doc, new Map<string, RoomRules>());
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
-                if (this._settingsManager.currentSettings.restoreColorsOnCopy)
+                this._dorm.set(doc, new Map<string, RoomRules>());
+                if (this._settingsManager.currentSettings.mode === Settings.ProcessingMode.Complex)
                 {
-                    dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
-                }
-                if (this._settingsManager.currentSettings.restoreColorsOnPrint)
-                {
-                    const printMedia = doc.defaultView.matchMedia("print");
-                    printMedia.addListener(mql =>
+                    this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
+                    this._styleSheetProcessor.processDocumentStyleSheets(doc);
+                    if (this._settingsManager.currentSettings.restoreColorsOnCopy)
                     {
-                        if (mql.matches)
+                        dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
+                    }
+                    if (this._settingsManager.currentSettings.restoreColorsOnPrint)
+                    {
+                        const printMedia = doc.defaultView.matchMedia("print");
+                        printMedia.addListener(mql =>
                         {
-                            this.restoreDocumentColors(doc);
-                        }
-                        else
-                        {
-                            this.createDynamicStyle(doc);
-                            this.processDocument(doc);
-                        }
-                    });
+                            if (mql.matches)
+                            {
+                                this.restoreDocumentColors(doc);
+                            }
+                            else
+                            {
+                                this.injectDynamicValues(doc);
+                                this.processDocument(doc);
+                            }
+                        });
+                    }
+                    //this.applyLoadingShadow(doc.documentElement);
+                    // this.removeLoadingStyles(doc);
+                    this.createPseudoStyles(doc);
+                    this.createPageScript(doc);
+                    this.calculateDefaultColors(doc);
+                    doc.body.isChecked = true;
+                    DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
+                    this._documentObserver.startDocumentObservation(doc);
+                    let allTags = Array.from(doc.getElementsByTagName("*"))
+                        .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
+                    DocumentProcessor.processAllElements(allTags, this);
                 }
-                //this.applyLoadingShadow(doc.documentElement);
-                this.removeLoadingStyles(doc);
-                this.createPseudoStyles(doc);
-                this._svgFilters.createSvgFilters(doc);
-                this.createPageScript(doc);
-                this.calculateDefaultColors(doc);
-                doc.body.isChecked = true;
-                DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
-                this._documentObserver.startDocumentObservation(doc);
-                let allTags = Array.from(doc.getElementsByTagName("*")).filter((tag) => this.checkElement(tag)) as HTMLElement[];
-                DocumentProcessor.processAllElements(allTags, this);
+                else
+                {
+                    this.setDocumentProcessingStage(doc, ProcessingStage.Loading);
+                    this._documentObserver.startDocumentObservation(doc);
+                    let allTags = Array.from(doc.getElementsByTagName("*"))
+                        .filter(this.getFilterOfElementsForSimplifiedProcessing()) as HTMLElement[];
+                    DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays, false);
+                }
             }
         }
 
-        private calculateDefaultColors(doc: Document)
+        private getFilterOfElements()
         {
-            const defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc);
+            if (this._settingsManager.isComplex)
+            {
+                return this.getFilterOfElementsForComplexProcessing();
+            }
+            return this.getFilterOfElementsForSimplifiedProcessing();
+        }
+
+        private getFilterOfElementsForComplexProcessing(): (value: Element) => boolean
+        {
+            return (tag) => this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument.documentElement);
+        }
+
+        private getFilterOfElementsForSimplifiedProcessing(): (value: Element) => boolean
+        {
+            return (tag) =>
+            {
+                if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
+                {
+                    if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement ||
+                        tag instanceof tag.ownerDocument.defaultView.HTMLCanvasElement ||
+                        this._isPdf && tag instanceof HTMLEmbedElement)
+                    {
+                        return true;
+                    }
+                    tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+                    return tag.computedStyle.backgroundImage !== this._css.none;
+                }
+                return false;
+            };
+        }
+
+        private calculateDefaultColors(doc: Document, defaultLinkColor?: string, defaultTextColor?: string)
+        {
+            defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._hoverLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._activeVisitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._hoverVisitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
-            this._textColorProcessor.calculateDefaultColor(doc);
+            this._textColorProcessor.calculateDefaultColor(doc, defaultTextColor);
         }
 
         protected hasPseudoClassOverrided(tag: HTMLElement, pseudo: PseudoClass)
@@ -334,8 +416,8 @@ namespace MidnightLizard.ContentScript
         protected onUserAction(eArg: Event)
         {
             const target = eArg.currentTarget as HTMLElement;
-            if (this._settingsManager.isActive && target.selectors !==
-                this._styleSheetProcessor.getElementMatchedSelectors(target))
+            if (this._settingsManager.isActive && this._settingsManager.isComplex &&
+                target.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(target))
             {
                 this.reCalcRootElement(target, false, true);
             }
@@ -365,8 +447,12 @@ namespace MidnightLizard.ContentScript
                 let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
                 if (allTags && allTags.length > 0)
                 {
-                    let skipSelectors = full || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
+                    let skipSelectors = this._settingsManager.isSimple || full || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
                     let filteredTags = allTags.filter(el => el.isChecked && el.mlBgColor && (skipSelectors || el.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(el)));
+                    if (this._settingsManager.isSimple)
+                    {
+                        filteredTags = filteredTags.filter(this.getFilterOfElementsForSimplifiedProcessing());
+                    }
                     if (!skipSelectors && clearParentBgColors)
                     {
                         allTags.forEach(tag =>
@@ -379,7 +465,7 @@ namespace MidnightLizard.ContentScript
                         });
                     }
                     filteredTags.splice(0, 0, rootElem);
-                    if (filteredTags.length < 100 || full)
+                    if (filteredTags.length < 100 || full || this._settingsManager.isSimple)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         filteredTags.forEach(tag => this.restoreElementColors(tag, true));
@@ -394,7 +480,8 @@ namespace MidnightLizard.ContentScript
                         DocumentProcessor.fixColorInheritance([rootElem], this, results);
                     }
                 }
-                else
+                else if (this._settingsManager.isComplex ||
+                    this.getFilterOfElementsForSimplifiedProcessing()(rootElem))
                 {
                     this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                     this.restoreElementColors(rootElem, true);
@@ -527,26 +614,35 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
+            const filter = this.getFilterOfElements();
             addedElements.forEach(tag => this.restoreElementColors(tag));
-            let allNewTags = Array.from(addedElements.values())
-                .filter(tag => this.checkElement(tag) && tag.parentElement);
-            DocumentProcessor.processAllElements(allNewTags, this, bigReCalculationDelays);
-            let allChildTags = new Set<HTMLElement>();
-            allNewTags.forEach(newTag =>
-            {
-                Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
+            const
+                allAddedElements = Array.from(addedElements.values()),
+                allNewTags = allAddedElements.filter(filter);
+            DocumentProcessor.processAllElements(allNewTags, this,
+                this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
+            const allChildTags = new Set<HTMLElement>();
+            (this._settingsManager.isComplex ? allNewTags :
+                allAddedElements.filter(this.getFilterOfElementsForComplexProcessing()))
+                .forEach(newTag =>
                 {
-                    if (addedElements!.has(childTag) === false)
+                    if (newTag.getElementsByTagName)
                     {
-                        this.restoreElementColors(childTag);
-                        if (this.checkElement(childTag))
+                        Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                         {
-                            allChildTags.add(childTag);
-                        }
+                            if (addedElements!.has(childTag) === false)
+                            {
+                                this.restoreElementColors(childTag);
+                                if (filter(childTag))
+                                {
+                                    allChildTags.add(childTag);
+                                }
+                            }
+                        });
                     }
                 });
-            });
-            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), this, bigReCalculationDelays);
+            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), this,
+                this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
         }
 
         protected static processAllElements(allTags: HTMLElement[], docProc: DocumentProcessor,
@@ -569,7 +665,8 @@ namespace MidnightLizard.ContentScript
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
                         isLink = tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
+                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img) ||
+                            tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement;
                     }
 
                     if (isVisible)
@@ -642,68 +739,72 @@ namespace MidnightLizard.ContentScript
 
         protected static fixColorInheritance(allTags: HTMLElement[], docProc: DocumentProcessor, results: Promise<any>)
         {
-            const waitResults = Promise.all([allTags, docProc, results]);
-            waitResults.then(([tags, dp]) =>
+            if (docProc._settingsManager.isComplex)
             {
-                if (tags && tags.length > 0)
+                const waitResults = Promise.all([allTags, docProc, results]);
+                waitResults.then(([tags, dp]) =>
                 {
-                    setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                    if (tags && tags.length > 0)
                     {
-                        const brokenColorTags = t.filter(tag =>
-                            !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
-                            tag.mlColor.reason === Colors.ColorReason.Inherited &&
-                            tag.mlColor.intendedColor && tag.computedStyle &&
-                            tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
-                                ? tag.computedStyle!.color
-                                : tag!.computedStyle!.fill));
+                        setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                        {
+                            const brokenColorTags = t.filter(tag =>
+                                tag.ownerDocument.defaultView &&
+                                !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
+                                tag.mlColor.reason === Colors.ColorReason.Inherited &&
+                                tag.mlColor.intendedColor && tag.computedStyle &&
+                                tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
+                                    ? tag.computedStyle!.color
+                                    : tag!.computedStyle!.fill));
 
-                        if (brokenColorTags.length > 0)
-                        {
-                            dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
-                            brokenColorTags.forEach(tag =>
+                            if (brokenColorTags.length > 0)
                             {
-                                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
-                                const newColor = Object.assign({}, tag.mlColor!);
-                                newColor.base = dProc._app.isDebug ? tag.mlColor : null
-                                newColor.reason = Colors.ColorReason.FixedInheritance;
-                                newColor.color = newColor.intendedColor!;
-                                tag.mlColor = newColor;
-                                tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                                tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
-                            });
-                            docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
-                        }
-                    }), 0, tags, dp);
-                }
-            });
-            waitResults.then(([tags, dp]) =>
-            {
-                if (tags && tags.length > 0)
+                                dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
+                                brokenColorTags.forEach(tag =>
+                                {
+                                    const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                                    const newColor = Object.assign({}, tag.mlColor!);
+                                    newColor.base = dProc._app.isDebug ? tag.mlColor : null
+                                    newColor.reason = Colors.ColorReason.FixedInheritance;
+                                    newColor.color = newColor.intendedColor!;
+                                    tag.mlColor = newColor;
+                                    tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
+                                    tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
+                                });
+                                docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
+                            }
+                        }), 0, tags, dp);
+                    }
+                });
+                waitResults.then(([tags, dp]) =>
                 {
-                    setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
+                    if (tags && tags.length > 0)
                     {
-                        const brokenTransparentTags = t.filter(tag =>
-                            tag.ownerDocument.defaultView && tag.mlBgColor &&
-                            !tag.mlBgColor.color && tag.computedStyle &&
-                            tag.mlBgColor.reason === Colors.ColorReason.Parent &&
-                            tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
-                            tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
-                            !tag.hasAttribute("fixed")
-                        );
-                        if (brokenTransparentTags.length > 0)
+                        setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
                         {
-                            dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument);
-                            brokenTransparentTags.forEach(tag =>
+                            const brokenTransparentTags = t.filter(tag =>
+                                tag.ownerDocument.defaultView && tag.mlBgColor &&
+                                !tag.mlBgColor.color && tag.computedStyle &&
+                                tag.mlBgColor.reason === Colors.ColorReason.Parent &&
+                                tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                                tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
+                                !tag.hasAttribute("fixed")
+                            );
+                            if (brokenTransparentTags.length > 0)
                             {
-                                dProc.restoreElementColors(tag, true);
-                                tag.setAttribute("fixed", "bgcolor");
-                            });
-                            dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
-                            DocumentProcessor.processAllElements(brokenTransparentTags, dProc, bigReCalculationDelays);
-                        }
-                    }), 0, tags, dp);
-                }
-            });
+                                dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                                brokenTransparentTags.forEach(tag =>
+                                {
+                                    dProc.restoreElementColors(tag, true);
+                                    tag.setAttribute("fixed", "bgcolor");
+                                });
+                                dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                                DocumentProcessor.processAllElements(brokenTransparentTags, dProc, bigReCalculationDelays);
+                            }
+                        }), 0, tags, dp);
+                    }
+                });
+            }
         }
 
         protected static processOrderedElements(tags: HTMLElement[], docProc: DocumentProcessor, delays = normalDelays)
@@ -711,7 +812,8 @@ namespace MidnightLizard.ContentScript
             if (tags.length > 0)
             {
                 const density = 2000 / tags.length
-                let result: Promise<HTMLElement[]>, needObservation = docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
+                let result: Promise<HTMLElement[]>, needObservation = docProc._settingsManager.isComplex &&
+                    docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
                 if (tags.length < chunkLength)
                 {
                     result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].order || po.viewColorTags)! / density);
@@ -738,7 +840,14 @@ namespace MidnightLizard.ContentScript
         protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
         {
             const paramsForPromiseAll: any[] = [chunk, chunk[0].ownerDocument, delay];
-            const results = chunk.map(tag => { return { tag: tag, result: docProc.calculateRoomRules(tag) } });
+            const results = chunk.map(tag =>
+            {
+                return {
+                    tag: tag, result: docProc._settingsManager.isComplex
+                        ? docProc.calculateRoomRules(tag)
+                        : docProc.caclulateSimplifiedRoomRules(tag)
+                }
+            });
             docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
             results
                 .filter(r => r.result)
@@ -976,18 +1085,20 @@ namespace MidnightLizard.ContentScript
         protected restoreDocumentColors(doc: Document)
         {
             this._documentObserver.stopDocumentObservation(doc);
-            this.removeDynamicStyle(doc);
+            this.removeDynamicValuesStyle(doc);
             this.removePageScript(doc);
             this.clearPseudoStyles(doc);
+            const lastProcMode = this.getLastDoccumentProcessingMode(doc);
+            this.setDocumentProcessingStage(doc, ProcessingStage.None);
             for (let tag of doc.getElementsByTagName("*"))
             {
-                this.restoreElementColors(tag as HTMLElement);
+                this.restoreElementColors(tag as HTMLElement, false, lastProcMode);
             }
         }
 
-        protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean)
+        protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
-            if (tag.mlBgColor)
+            if (tag.mlBgColor || lastProcMode === Settings.ProcessingMode.Simplified)
             {
                 let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
 
@@ -1118,6 +1229,43 @@ namespace MidnightLizard.ContentScript
                 !tag.mlBgColor && !!tag.tagName && !tag.mlIgnore && !!(tag as HTMLElement).style;
         }
 
+        protected caclulateSimplifiedRoomRules(tag: HTMLElement)
+        {
+            if (tag && tag.ownerDocument.defaultView &&
+                (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
+            {
+                const doc = tag.ownerDocument, roomRules = new RoomRules(),
+                    bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
+                    isButton = tag instanceof doc.defaultView.HTMLButtonElement ||
+                        tag instanceof doc.defaultView.HTMLInputElement &&
+                        (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
+                        isRealElement(tag) && tag.getAttribute("role") === "button",
+                    isTable =
+                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
+                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;;
+
+                tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+
+                if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
+                    tag.computedStyle!.backgroundImage !== this._rootImageUrl)
+                {
+                    this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
+                }
+                if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
+                {
+                    setTimeout(dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag), 1);
+                }
+                if (tag instanceof doc.defaultView.HTMLCanvasElement ||
+                    tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
+                    this._isPdf && tag instanceof HTMLEmbedElement)
+                {
+                    this.processInaccessibleTextContent(tag, roomRules);
+                }
+                return { roomRules, before: undefined, after: undefined };
+            }
+            return undefined;
+        }
+
         protected calculateRoomRules(tag: HTMLElement | PseudoElement):
             {
                 roomRules: RoomRules, before?: PseudoElement, after?: PseudoElement
@@ -1239,11 +1387,7 @@ namespace MidnightLizard.ContentScript
                         roomRules.backgroundColor.color = null;
                     }
 
-                    if ((tag.tagName == ns.img || tag instanceof doc.defaultView.HTMLInputElement &&
-                        (tag.type == "checkbox" || tag.type == "radio") &&
-                        (tag.computedStyle!.webkitAppearance && tag.computedStyle!.webkitAppearance !== this._css.none ||
-                            tag.computedStyle!.getPropertyValue("-moz-appearance") &&
-                            tag.computedStyle!.getPropertyValue("-moz-appearance") !== this._css.none)) &&
+                    if (tag.tagName == ns.img &&
                         (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
                             this._settingsManager.currentSettings.blueFilter !== 0))
                     {
@@ -1254,7 +1398,7 @@ namespace MidnightLizard.ContentScript
                                 value: [
                                     tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
                                     imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
-                                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
+                                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
                                     imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
                                 ].filter(f => f).join(" ").trim()
                             };
@@ -1296,7 +1440,7 @@ namespace MidnightLizard.ContentScript
                                         imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                         doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
                                         doInvert ? "hue-rotate(180deg) invert(1)" : "",
-                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
+                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
                         }
@@ -1304,84 +1448,8 @@ namespace MidnightLizard.ContentScript
 
                     if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
                         tag.computedStyle!.backgroundImage !== this._rootImageUrl)
-                    {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                        let backgroundImage = tag.computedStyle!.backgroundImage!;
-                        let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
-                        let gradientColors = new Map<string, string>();
-                        if (gradientColorMatches)
-                        {
-                            gradientColorMatches.forEach(color => gradientColors.set(color, Math.random().toString()));
-                            gradientColors.forEach((id, color) => backgroundImage =
-                                backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
-                        }
-                        let backgroundSizes = tag.computedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
-                        let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
-                        let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
-                            haveToProcBgGrad = /gradient/gi.test(backgroundImage), isInput = false;
-                        if (/\burl\(/gi.test(backgroundImage))
-                        {
-                            const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
-                            let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
-
-                            doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
-                                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
-                                (
-                                    this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
-                                    this.tagIsSmall(tag.parentElement.parentElement) &&
-                                    (tag.parentElement.parentElement.computedStyle!.overflow === this._css.hidden)
-                                );
-
-                            if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
-                            {
-                                isPseudoContent = tag.isPseudo && tag.computedStyle.content !== "''" && tag.computedStyle!.content !== '""';
-
-                                if (bgImgSet.lightnessLimit < 1 && !doInvert)
-                                {
-                                    this.calcTagArea(tag);
-                                    let area = 1 - Math.min(Math.max(tag.area!, 1) / doc.viewArea!, 1),
-                                        lim = bgImgSet.lightnessLimit,
-                                        txtLim = this.shift.Text.lightnessLimit;
-                                    bgImgLight = Math.min(((lim ** (1 / 2) - lim) ** (1 / 3) * area) ** 3 + lim, Math.max(lim, txtLim));
-                                }
-
-                                bgFilter = [
-                                    bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
-                                    bgImgLight < 1 && !doInvert ? `brightness(${float.format(bgImgLight)})` : "",
-                                    doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
-                                    doInvert ? "hue-rotate(180deg) invert(1)" : "",
-                                    this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : ""
-                                ].filter(f => f).join(" ").trim();
-
-                                if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA")
-                                {
-                                    roomRules.filter = { value: bgFilter };
-                                }
-                                else isInput = true;
-
-                                haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
-                                    isPseudoContent || !!roomRules.backgroundColor.color || haveToProcBgGrad || isInput;
-                            }
-                        }
-                        if (haveToProcBgImg || haveToProcBgGrad)
-                        {
-                            roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
-                            {
-                                gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
-                                let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
-                                if (haveToProcBgImg && bgImg.startsWith("url"))
-                                {
-                                    return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
-                                }
-                                else if (/gradient/gi.test(bgImg))
-                                {
-                                    return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules!);
-                                }
-                                else
-                                {
-                                    return new BackgroundImage(size, bgImg, BackgroundImageType.Image);
-                                }
-                            });
-                        }
+                    {
+                        this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                     }
 
                     let bgLight = roomRules.backgroundColor.light;
@@ -1413,7 +1481,8 @@ namespace MidnightLizard.ContentScript
                             if (currentTextContrast != originalTextContrast && roomRules.color.originalLight != roomRules.color.light &&
                                 tag.computedStyle!.textShadow && tag.computedStyle!.textShadow !== this._css.none)
                             {
-                                let newTextShadow = tag.computedStyle!.textShadow!, newColor: Colors.ColorEntry | null = null, prevColor: string | null,
+                                let newTextShadow = tag.computedStyle!.textShadow!,
+                                    newColor: Colors.ColorEntry | undefined = undefined, currentTextShadowColor: string | null,
                                     prevHslColor: Colors.HslaColor, shadowContrast: number, inheritedShadowColor;
                                 let uniqColors = new Set<string>(newTextShadow
                                     .replace(/([\.\d]+px)/gi, '')
@@ -1422,15 +1491,15 @@ namespace MidnightLizard.ContentScript
                                 {
                                     uniqColors.forEach(c =>
                                     {
-                                        prevColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
-                                        if (prevColor)
+                                        currentTextShadowColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
+                                        if (currentTextShadowColor)
                                         {
-                                            inheritedShadowColor = this._textShadowColorProcessor.getInheritedColor(tag as HTMLElement, prevColor);
-                                            inheritedShadowColor && (prevColor = inheritedShadowColor.originalColor);
-                                            prevHslColor = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(prevColor));
-                                            shadowContrast = Math.abs(prevHslColor.lightness - roomRules!.color!.originalLight) / originalTextContrast * currentTextContrast;
-                                            newColor = this._textShadowColorProcessor.changeColor(prevColor, roomRules!.color!.light, tag, shadowContrast);
-                                            if (newColor.color)
+                                            newColor = this.changeColor({
+                                                role: cc.TextShadow, property: ns.css.shdColor,
+                                                bgLight: roomRules!.color!.light,
+                                                propVal: currentTextShadowColor, tag
+                                            });
+                                            if (newColor && newColor.color)
                                             {
                                                 newTextShadow = newTextShadow.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
                                             }
@@ -1438,7 +1507,7 @@ namespace MidnightLizard.ContentScript
                                     });
                                     if (newTextShadow !== tag.computedStyle!.textShadow)
                                     {
-                                        roomRules.textShadow = { value: newTextShadow, color: newColor };
+                                        roomRules.textShadow = { value: newTextShadow, color: newColor || null };
                                     }
                                 }
                             }
@@ -1449,34 +1518,7 @@ namespace MidnightLizard.ContentScript
                         tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
                         this._isPdf && tag instanceof HTMLEmbedElement)
                     {
-                        let filterValue: Array<string>;
-                        const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
-                        let bgrSet = this.shift[customCanvasRole] || this.shift.Background,
-                            txtSet = this.shift.Text;
-
-                        if (this.shift.Background.lightnessLimit < 0.3 && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
-                        {
-                            roomRules.backgroundColor.color = null;
-                            filterValue = [
-                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
-                                tag instanceof HTMLEmbedElement ? 'url("#pdf-bg-filter")' : "",
-                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
-                                `hue-rotate(180deg) invert(1)`,
-                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
-                            ];
-                        }
-                        else
-                        {
-                            filterValue = [
-                                tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
-                                bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                                this._settingsManager.currentSettings.blueFilter !== 0 ? `url("#ml-blue-filter")` : "",
-                                bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : ""
-                            ];
-                        }
-                        roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
+                        this.processInaccessibleTextContent(tag, roomRules);
                     }
 
                     if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
@@ -1615,6 +1657,38 @@ namespace MidnightLizard.ContentScript
             return undefined;
         }
 
+        private processInaccessibleTextContent(
+            tag: HTMLIFrameElement | HTMLCanvasElement | HTMLEmbedElement,
+            roomRules: RoomRules)
+        {
+            let filterValue: Array<string>;
+            const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
+            let bgrSet = this.shift[customCanvasRole] || this.shift.Background, txtSet = this.shift.Text;
+            if (this.shift.Background.lightnessLimit < 0.3 && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+            {
+                roomRules.backgroundColor && (roomRules.backgroundColor.color = null);
+                filterValue = [
+                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                    tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
+                    bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                    `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
+                    `hue-rotate(180deg) invert(1)`,
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
+                ];
+            }
+            else
+            {
+                filterValue = [
+                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                    bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : ""
+                ];
+            }
+            roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
+        }
+
         private calculateTransitionDuration(tag: HTMLElement | PseudoElement)
         {
             let hasForbiddenTransition = false;
@@ -1661,6 +1735,9 @@ namespace MidnightLizard.ContentScript
                         bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                         return this._textColorProcessor.changeColor(propVal, bgLightVal, tag);
 
+                    case cc.TextShadow:
+                        return this._textShadowColorProcessor.changeColor(propVal, bgLight!, tag);
+
                     case cc.HighlightedText:
                         bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                         return this._highlightedTextColorProcessor.changeColor(propVal, bgLightVal, tag);
@@ -1694,7 +1771,7 @@ namespace MidnightLizard.ContentScript
                         return this._borderColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                     case cc.ButtonBorder:
-                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        bgLightVal = /*bgLight !== undefined ? bgLight :*/ this.getParentBackground(tag).light;
                         return this._buttonBorderColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                     case cc.SvgBackground:
@@ -1716,6 +1793,90 @@ namespace MidnightLizard.ContentScript
                     tag.style.setProperty(this._css.filter, tag.originalFilter)
                 }
                 isRealElement(tag) && tag.removeAttribute(this._css.transition);
+            }
+        }
+
+        protected processBackgroundImagesAndGradients(
+            tag: HTMLElement | PseudoElement, doc: Document, roomRules: RoomRules,
+            isButton: boolean, isTable: boolean, bgInverted: boolean)
+        {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
+            let backgroundImage = tag.computedStyle!.backgroundImage!;
+            let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
+            let gradientColors = new Map<string, string>();
+            if (gradientColorMatches)
+            {
+                gradientColorMatches.forEach(color => gradientColors.set(color, Math.random().toString()));
+                gradientColors.forEach((id, color) => backgroundImage =
+                    backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
+            }
+            let backgroundSizes = tag.computedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
+            let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
+            let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
+                haveToProcBgGrad = /gradient/gi.test(backgroundImage), isInput = false;
+            if (/\burl\(/gi.test(backgroundImage))
+            {
+                const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
+                let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
+
+                doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
+                    tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
+                    (
+                        this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
+                        this.tagIsSmall(tag.parentElement.parentElement) &&
+                        (tag.parentElement.parentElement.computedStyle!.overflow === this._css.hidden)
+                    );
+
+                if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
+                {
+                    isPseudoContent = tag.isPseudo && tag.computedStyle.content !== "''" && tag.computedStyle!.content !== '""';
+
+                    if (bgImgSet.lightnessLimit < 1 && !doInvert)
+                    {
+                        this.calcTagArea(tag);
+                        let area = 1 - Math.min(Math.max(tag.area!, 1) / doc.viewArea!, 1),
+                            lim = bgImgSet.lightnessLimit,
+                            txtLim = this.shift.Text.lightnessLimit;
+                        bgImgLight = Math.min(((lim ** (1 / 2) - lim) ** (1 / 3) * area) ** 3 + lim, Math.max(lim, txtLim));
+                    }
+
+                    bgFilter = [
+                        bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
+                        bgImgLight < 1 && !doInvert ? `brightness(${float.format(bgImgLight)})` : "",
+                        doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
+                        doInvert ? "hue-rotate(180deg) invert(1)" : "",
+                        this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
+                    ].filter(f => f).join(" ").trim();
+
+                    if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA")
+                    {
+                        roomRules.filter = { value: bgFilter };
+                    }
+                    else isInput = true;
+
+                    haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
+                        isPseudoContent || roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
+                        haveToProcBgGrad || isInput;
+                }
+            }
+            if (haveToProcBgImg || haveToProcBgGrad)
+            {
+                roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
+                {
+                    gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
+                    let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
+                    if (haveToProcBgImg && bgImg.startsWith("url"))
+                    {
+                        return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
+                    }
+                    else if (/gradient/gi.test(bgImg))
+                    {
+                        return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules!);
+                    }
+                    else
+                    {
+                        return new BackgroundImage(size, bgImg, BackgroundImageType.Image);
+                    }
+                });
             }
         }
 
@@ -1807,7 +1968,7 @@ namespace MidnightLizard.ContentScript
                     img.src = dataUrl;
                 }));
 
-            const bgFltr = bgFilter.replace('"#ml-blue-filter"', '#ml-blue-filter');
+            const bgFltr = bgFilter.replace(`var(--${FilterType.BlueFilter})`, `url(#${FilterType.BlueFilter})`);
             let result = Promise.all([dataPromise, size, bgFltr, this._settingsManager.currentSettings.blueFilter / 100]).then(
                 ([img, bgSize, fltr, blueFltr]) =>
                 {
@@ -1817,7 +1978,7 @@ namespace MidnightLizard.ContentScript
                         "url(data:image/svg+xml," + encodeURIComponent
                             (
                             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${img.width} ${img.height}" filter="${fltr}">` +
-                            `<filter id="ml-blue-filter"><feColorMatrix type="matrix" values="` +
+                            `<filter id="${FilterType.BlueFilter}"><feColorMatrix type="matrix" values="` +
                             `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0"/></filter>` +
                             `<image width="${imgWidth}" height="${imgHeight}" href="${img.data}"/></svg>`
                             ).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")",
@@ -1862,9 +2023,10 @@ namespace MidnightLizard.ContentScript
 
         protected onIFrameDocumentLaoded(doc: Document)
         {
-            if (doc.readyState != "loading" && doc.readyState != "uninitialized" && doc.body && !doc.body.mlBgColor)
+            if (doc.readyState != "loading" && doc.readyState != "uninitialized" &&
+                doc.body && !doc.body.mlBgColor && doc.defaultView)
             {
-                this.createDynamicStyle(doc);
+                this.injectDynamicValues(doc);
                 this.processDocument(doc);
             }
         }
@@ -1893,131 +2055,11 @@ namespace MidnightLizard.ContentScript
             return tag.innerHtmlCache.value;
         }
 
-        protected removeDynamicStyle(doc: Document)
+        protected removeDynamicValuesStyle(doc: Document)
         {
-            const dynamicStyle = doc.getElementById("midnight-lizard-dynamic-style");
+            const dynamicStyle = doc.getElementById("midnight-lizard-dynamic-values");
             dynamicStyle && dynamicStyle.remove();
-            const svgFilters = doc.getElementById("midnight-lizard-filters");
-            svgFilters && svgFilters.remove();
-        }
-
-        protected createDynamicStyle(doc: Document)
-        {
-            const sheet = doc.createElement('style');
-            sheet.id = "midnight-lizard-dynamic-style";
-            sheet.mlIgnore = true;
-            const sbSize = this._settingsManager.currentSettings.scrollbarSize;
-            const selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc).color;
-            const bgLight = this.shift.Background.lightnessLimit;
-            const thumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color;
-            const thumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color;
-            const thumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color;
-            const trackColor = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color;
-            let globalVars = "";
-            let component: keyof Colors.ComponentShift,
-                property: keyof Colors.ColorShift;
-            for (component in this.shift)
-            {
-                for (property in this.shift[component])
-                {
-                    globalVars += `\n--ml${
-                        component.replace("$", "").replace(/([A-Z])/g, "-$1")
-                        }-${
-                        property.replace(/([A-Z])/g, "-$1")
-                        }:${
-                        this.shift[component][property]
-                        };`.toLowerCase();
-                }
-            }
-            globalVars += `\n--ml-browser:${this._app.browserName}!important;`;
-            globalVars += `\n--ml-invert:${bgLight < 0.3 ? 1 : 0}!important;`;
-            globalVars += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
-            let selection = `:not(imp)::{x}selection{ background-color: ${selectionColor}!important; color: white!important; text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px!important; border:solid 1px red!important; }`;
-            const mozSelection = selection.replace("{x}", "-moz-");
-            selection = selection.replace("{x}", "");
-            const linkColors = `
-                [style*=--link]:not(imp), a[style*=--link]:not(:visited) {
-                    color: var(--link-color)!important;
-                }
-                [style*=--link]:not(imp):hover, a[style*=--link]:not(:visited):hover {
-                    color: var(--link-color-hover)!important;
-                }
-                [style*=--link]:not(imp):active, a[style*=--link]:not(:visited):active {
-                    color: var(--link-color-active)!important;
-                }
-                a:visited [style*=--visited]:not(imp), [style*=--visited]:visited:not(imp) {
-                    color: var(--visited-color)!important;
-                }
-                a:visited:active [style*=--visited]:not(imp),
-                [style*=--visited]:visited:not(imp):active,
-                a:visited:active [style*=--visited]:not(imp):hover,
-                a:visited:active:hover [style*=--visited]:not(imp),
-                [style*=--visited]:visited:not(imp):active:hover {
-                    color: var(--visited-color-active)!important;
-                }
-                a:visited [style*=--visited]:not(imp):hover, [style*=--visited]:visited:not(imp):hover {
-                    color: var(--visited-color-hover)!important;
-                }`;
-            let scrollbars = "";
-            if (sbSize)
-            {
-                scrollbars = `
-                scrollbar { width: calc(${sbSize}px / var(--ml-zoom))!important; height: calc(${sbSize}px / var(--ml-zoom))!important; background: ${thumbNormalColor}!important; }
-                scrollbar-button:hover { --bg-color: ${thumbHoverColor}; }
-                scrollbar-button:active { --bg-color: ${thumbActiveColor}; }
-                scrollbar-button
-                {
-                    --bg-color: ${thumbNormalColor};
-                    width:calc(${sbSize}px / var(--ml-zoom))!important; height:calc(${sbSize}px / var(--ml-zoom))!important;
-                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
-                    background:
-                        linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%),
-                        linear-gradient(var(--deg-two), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%),
-                        linear-gradient(var(--deg-one), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%),
-                        linear-gradient(var(--deg-two), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%),
-                        var(--bg-color)!important;
-                }
-                scrollbar-button:vertical:decrement { --deg-one: 45deg; --deg-two: -45deg; }
-                scrollbar-button:vertical:increment { --deg-one: 135deg; --deg-two: -135deg; }
-                scrollbar-button:horizontal:decrement { --deg-one: -135deg; --deg-two: -45deg; }
-                scrollbar-button:horizontal:increment { --deg-one: 45deg; --deg-two: 135deg; }
-                scrollbar-thumb:hover { --bg-color: ${thumbHoverColor}; }
-                scrollbar-thumb:active { --bg-color: ${thumbActiveColor}; }
-                scrollbar-thumb:horizontal { --deg-one: 90deg; --deg-two: 0deg; min-width: calc(${sbSize * 2}px / var(--ml-zoom))!important; }
-                scrollbar-thumb:vertical { --deg-one: 0deg; --deg-two: 90deg; min-height: calc(${sbSize * 2}px / var(--ml-zoom))!important; }
-                scrollbar-thumb
-                {
-                    --bg-color: ${thumbNormalColor};
-                    border-radius: calc(${sbSize / 10}px / var(--ml-zoom))!important; border: none!important;
-                    box-shadow: inset 0 0 1px rgba(0,0,0,0.3)!important;
-                    background:
-                        linear-gradient(var(--deg-two),
-                            var(--bg-color) 30%,
-                            transparent 30%, transparent 70%,
-                            var(--bg-color) 70%),
-                        linear-gradient(var(--deg-one),
-                            transparent 9%,
-                            currentColor 10%, currentColor 15%,
-                            transparent 16%, transparent 34%,
-                            currentColor 35%, currentColor 40%,
-                            transparent 41%, transparent 59%,
-                            currentColor 60%, currentColor 65%,
-                            transparent 66%, transparent 84%,
-                            currentColor 85%, currentColor 90%,
-                            transparent 91%),
-                        var(--bg-color)!important;
-                    background-size: calc(${sbSize}px / var(--ml-zoom)) calc(${sbSize}px / var(--ml-zoom))!important;
-                    background-repeat: no-repeat!important;
-                    background-position: center!important;
-                }
-                scrollbar-track { background: ${trackColor}!important; box-shadow: inset 0 0 calc(${sbSize * 0.6}px / var(--ml-zoom)) rgba(0,0,0,0.3)!important; border-radius: 0px!important; border: none!important; }
-                scrollbar-track-piece { background: transparent!important; border: none!important; box-shadow: none!important; }
-                scrollbar-corner { background: ${thumbNormalColor}!important; }`
-                    .replace(/\sscrollbar/g, " :not(impt)::-webkit-scrollbar");
-            }
-            sheet.textContent = `:root { ${globalVars} }\n${selection}\n${mozSelection}\n${linkColors}\n${scrollbars}`
-                .replace(/\s{16}(?=\S)/g, "");
-            (doc.head || doc.documentElement).appendChild(sheet);
+            this._svgFilters.remodeSvgFilters(doc);
         }
 
         protected createPseudoStyles(doc: Document)
@@ -2059,44 +2101,93 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected createLoadingStyles(doc: Document)
+        protected calculateMainColors(doc: Document)
         {
-            let noTrans = doc.createElement('style');
-            noTrans.id = "midnight-lizard-no-trans-style";
-            noTrans.mlIgnore = true;
-            noTrans.textContent = ":not([transition]) { transition: all 0s ease 0s !important; }";
-            (doc.head || doc.documentElement).appendChild(noTrans);
+            this.calculateDefaultColors(doc, cx.Link, cx.Black);
+            const bgLight = this.shift.Background.lightnessLimit,
+                textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
+            const
+                backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
+                altBackgroundColor = this._backgroundColorProcessor.changeColor("grb(250,250,250)", true, doc.documentElement).color!,
+                transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
+                transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
+                textColor = textColorEntry.color!,
+                borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
+                selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
+                rangeFillColor = this._rangeFillColorProcessor.changeColor(
+                    this._settingsManager.shift, textColorEntry.light, bgLight).color!,
 
-            let bgrLight = this.shift.Background.lightnessLimit,
-                imgLight = this.shift.Image.lightnessLimit,
-                imgSatrt = this.shift.Image.saturationLimit,
-                bgrColor = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color,
-                txtColor = this._textColorProcessor.changeColor(cx.Black, bgrLight, doc.documentElement).color,
-                brdColor = this._borderColorProcessor.changeColor(cx.Black, bgrLight, doc.documentElement).color,
-                style = doc.createElement('style');
-            style.id = "midnight-lizard-loading-style";
-            style.mlIgnore = true;
-            style.textContent =
-                `img[src]:not(impt),iframe:not(impt){filter:brightness(${imgLight}) saturate(${imgSatrt})!important}` +
-                `:not(impt),:not(impt):before,:not(impt):after` +
-                `{` +
-                ` background-image:none!important;` +
-                ` background-color:${bgrColor}!important;` +
-                ` color:${txtColor}!important;` +
-                ` border-color:${brdColor}!important` +
-                `}`;
-            (doc.head || doc.documentElement).appendChild(style);
+                buttonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                buttonBorderColor = this._buttonBorderColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+
+                scrollbarThumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color!,
+                scrollbarThumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color!,
+                scrollbarThumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color!,
+                scrollbarTrackColor = backgroundColor,
+                scrollbarSize = `${this._settingsManager.currentSettings.scrollbarSize}px`,
+
+                linkColor = this._linkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
+                linkColorHover = this._hoverLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
+                linkColorActive = this._activeLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
+                visitedColor = this._visitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
+                visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
+                visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!;
+
+            this._backgroundColorProcessor.clear();
+
+            return {
+                backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
+                textColor, borderColor, selectionColor, rangeFillColor,
+                buttonBackgroundColor, buttonBorderColor,
+                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
+                linkColor, linkColorHover, linkColorActive,
+                visitedColor, visitedColorHover, visitedColorActive
+            };
         }
 
-        protected removeLoadingStyles(doc: Document)
+        protected injectDynamicValues(doc: Document)
         {
-            let style = doc.getElementById("midnight-lizard-loading-style");
-            style && style.remove();
-            setTimeout((d: Document) =>
+            this._svgFilters.createSvgFilters(doc);
+            const mainColors = this.calculateMainColors(doc);
+            let cssText = "";
+            for (const color in mainColors)
             {
-                let noTrans = d.getElementById("midnight-lizard-no-trans-style");
-                noTrans && noTrans.remove();
-            }, 100, doc);
+                const colorValue = mainColors[color as keyof typeof mainColors];
+                cssText += `\n--ml-main-${
+                    color.replace(/([A-Z])/g, "-$1").toLowerCase()
+                    }:${(mainColors as any)[color]};`;
+            }
+            let component: keyof Colors.ComponentShift,
+                property: keyof Colors.ColorShift;
+            for (component in this.shift)
+            {
+                for (property in this.shift[component])
+                {
+                    cssText += `\n--ml${
+                        component.replace("$", "").replace(/([A-Z])/g, "-$1")
+                        }-${
+                        property.replace(/([A-Z])/g, "-$1")
+                        }:${
+                        this.shift[component][property]
+                        };`.toLowerCase();
+                }
+            }
+            cssText += `\n--ml-browser:${this._app.browserName}!important;`;
+            cssText += `\n--${FilterType.BlueFilter}:url("#${FilterType.BlueFilter}");`;
+            cssText += `\n--${FilterType.PdfFilter}:url("#${FilterType.PdfFilter}");`;
+            cssText += `\n--ml-invert:${this.shift.Background.lightnessLimit < 0.3 ? 1 : 0}!important;`;
+            cssText += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
+
+            const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules = new RoomRules;
+            fakeCanvas.computedStyle = fakeCanvas.style;
+            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
+            cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value}`;
+
+            const mainColorsStyle = doc.createElement('style');
+            mainColorsStyle.id = "midnight-lizard-dynamic-values";
+            mainColorsStyle.mlIgnore = true;
+            mainColorsStyle.textContent = `:root { ${cssText} }`;
+            (doc.head || doc.documentElement).appendChild(mainColorsStyle);
         }
 
         protected createPageScript(doc: Document)

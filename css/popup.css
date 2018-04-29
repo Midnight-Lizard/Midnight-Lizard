@@ -53,13 +53,13 @@ body {
     --ml-svgbackground-fill:Text;
 }
 
-.ml-dialog-title-text {
+.ml-dialog-header-text {
     display: inline-block;
     margin-top: 13px;
     vertical-align: top;
 }
 
-.ml-dialog-title {
+.ml-dialog-header {
     font: normal 18px Arial, Helvetica, sans-serif;
     text-align: center;
     border-bottom: solid 1px var(--thin-border-color);
@@ -69,7 +69,7 @@ body {
     height: 47px;
 }
 
-.ml-dialog-fotter {
+.ml-dialog-footer {
     font: normal 18px Arial, Helvetica, sans-serif;
     border-top: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
@@ -79,13 +79,13 @@ body {
     text-align: center;
 }
 
-.ml-dialog-title span {
+.ml-dialog-header span {
     color: var(--logo-text-color);
     text-shadow: 0 0 1px hsla(94, 100%, 70%, 0.8);
 }
 
 
-/*.ml-dialog-title a {
+/*.ml-dialog-header a {
      color: hsl(282, 100%, 50%);
     text-shadow: rgba(255, 255, 255, 0.8) 0px 0px 1px;
 }*/
@@ -97,6 +97,7 @@ body {
 
 .ml-dialog-commands {
     border-left: solid 1px var(--thin-border-color);
+    border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
     position: absolute;
     top: 120px;
     bottom: 0px;
@@ -108,7 +109,7 @@ body {
 .ml-dialog-settings {
     display: table;
     width: 100%;
-    min-height: 380px;
+    min-height: 500px;
 }
 
 .ml-dialog-settings-left {
@@ -150,19 +151,21 @@ body {
 }
 
 .ml-replace-all-hues-label {
-    
-position: absolute;
-    
-right: 24px;
-    
-top: -4.5px;
-    
-cursor: help;
+    position: absolute;
+    right: 24px;
+    top: -4.5px;
+    cursor: help;
+}
+html[ml-stage="loading"] .ml-replace-all-hues-label:not(#imp) {
+    background-color: transparent!important;
 }
 
 .ml-dialog-label {
     margin-left: calc((100% - 267px)/2);
     cursor: help;
+}
+html[ml-stage="loading"] .ml-dialog-label:not(#imp) {
+    background-color: transparent!important;
 }
 
 .ml-dialog-label:after {
@@ -184,6 +187,9 @@ cursor: help;
     position: relative;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+html[ml-stage="loading"] .ml-input-container:not(#imp) {
+    background-color: transparent!important;
 }
 
 .ml-input-container:last-of-type {
@@ -378,21 +384,21 @@ cursor: help;
     width: 2px;
 }
 
-.ml-fotter-icon-container {
+.ml-footer-icon-container {
     display: table-cell;
     vertical-align: middle;
     position: relative;
 }
 
-.ml-fotter-icon-container.left {
+.ml-footer-icon-container.left {
     padding-left: 10px;
 }
 
-.ml-fotter-icon-container.right {
+.ml-footer-icon-container.right {
     padding-right: 10px;
 }
 
-.ml-fotter-separator {
+.ml-footer-separator {
     display: table-cell;
     width: 100%;
 }
@@ -894,8 +900,8 @@ height: 148px;
 
 .intro-tabs:after {
     width: 151px;
-    height: 415px;
-    top: 47px;
+    height: 454px;
+    top: 25px;
     left: -160px;
 }
 
@@ -1080,6 +1086,14 @@ height: 148px;
 }
 
 .ml-input-container.last {
-    
-margin-top: -8px!important;
+    margin-top: -8px!important;
 }
+
+.ml-mode-container {
+    
+margin-bottom: -9px;
+    
+margin-top: 7px;
+}
+
+

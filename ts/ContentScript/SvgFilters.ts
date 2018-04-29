@@ -4,11 +4,18 @@
 
 namespace MidnightLizard.ContentScript
 {
-    const svgNs = "http://www.w3.org/2000/svg";
+    const svgNs = "http://www.w3.org/2000/svg", svgElementId = "midnight-lizard-filters";
 
     export abstract class ISvgFilters
     {
         public abstract createSvgFilters(doc: Document): void
+        public abstract remodeSvgFilters(doc: Document): void
+    }
+
+    export enum FilterType
+    {
+        BlueFilter = "ml-blue-filter",
+        PdfFilter = "pdf-bg-filter"
     }
 
     @DI.injectable(ISvgFilters)
@@ -19,25 +26,31 @@ namespace MidnightLizard.ContentScript
         {
         }
 
+        public remodeSvgFilters(doc: Document): void
+        {
+            const svgFilters = doc.getElementById(svgElementId);
+            svgFilters && svgFilters.remove();
+        }
+
         public createSvgFilters(doc: Document): void
         {
             const svg = doc.createElementNS(svgNs, "svg");
-            svg.id = "midnight-lizard-filters"
+            svg.id = svgElementId
             svg.mlIgnore = true;
             svg.style.height = "0px";
             svg.style.position = "absolute";
 
             svg.appendChild(this.createBlueFilter(doc));
 
-            if (/.+\.pdf(#.*)?/i.test(doc.location.href))
+            if (doc.location && /.+\.pdf(#.*)?/i.test(doc.location.href))
             {
                 svg.appendChild(this.createColorReplacementFilter(
-                    doc, "pdf-bg-filter",
+                    doc, FilterType.PdfFilter,
                     new Colors.RgbaColor(82, 86, 89, 1),
                     new Colors.RgbaColor(240, 240, 240, 1)));
             }
 
-            doc.body.appendChild(svg);
+            (doc.head || doc.documentElement).appendChild(svg);
         }
 
         private createBlueFilter(doc: Document)
@@ -48,7 +61,8 @@ namespace MidnightLizard.ContentScript
                 blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
                 redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
 
-            filter.id = "ml-blue-filter";
+            filter.id = FilterType.BlueFilter;
+            filter.setAttribute("color-interpolation-filters", "sRGB");
             filter.appendChild(feColorMatrix);
 
             feColorMatrix.setAttribute("type", "matrix");

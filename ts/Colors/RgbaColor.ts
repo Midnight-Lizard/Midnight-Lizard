@@ -22,6 +22,8 @@ namespace MidnightLizard.Colors
         public static readonly Gray = new RgbaColor(127, 127, 127, 1).toString();
         /** Transparent color rgba string */
         public static readonly Transparent = new RgbaColor(0, 0, 0, 0).toString();
+        /** Default link color */
+        public static readonly Link = new RgbaColor(0, 0, 238, 1).toString();
         static parse(str: string): RgbaColor
         {
             let hasAlfa = str[3] == "a";

@@ -10,7 +10,7 @@
 /// <reference path="../Settings/SettingsExporter.ts" />
 /// <reference path="../Settings/SettingsImporter.ts" />
 /// <reference path="../i18n/DocumentTranslator.ts" />
-
+/// <reference path="../Colors/RangeFillColorProcessor.ts" />
 
 namespace MidnightLizard.Popup
 {
@@ -56,7 +56,8 @@ namespace MidnightLizard.Popup
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter,
             protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
-            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor,
+            protected readonly _rangeFillColorProcessor: MidnightLizard.Colors.IRangeFillColorProcessor)
         {
             dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
             dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
@@ -91,6 +92,10 @@ namespace MidnightLizard.Popup
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
         {
             this._currentSiteSettings = { ...this._settingsManager.currentSettings };
+            if (!this._settingsManager.isActive)
+            {
+                this.beforeRootDocumentProcessedFirstTime(this._popup);
+            }
         }
 
         protected onSettingsInitializationFailed(ex: any): void
@@ -218,18 +223,18 @@ namespace MidnightLizard.Popup
             settings.isEnabled = this._isEnabledToggle.checked;
             for (let setting of Array.prototype.slice.call(document.querySelectorAll(".setting")))
             {
-                switch (setting.type)
+                switch (typeof Settings.ColorSchemes.default[setting.id as Settings.ColorSchemePropertyName])
                 {
-                    case "hidden":
-                        value = setting.value as string;
-                        break;
-
-                    case "checkbox":
+                    case "boolean":
                         value = setting.checked as boolean;
                         break;
 
+                    case "number":
+                        value = parseInt(setting.value);
+                        break;
+
                     default:
-                        value = setting.valueAsNumber ? setting.valueAsNumber : parseInt(setting.value);
+                        value = setting.value;
                         break;
                 }
                 settings[setting.id as Settings.ColorSchemePropertyName] = value;
@@ -537,7 +542,10 @@ namespace MidnightLizard.Popup
 
                         case "select-one":
                             input.value = settingValue!.toString();
-                            dom.addEventListener(input, "change", PopupManager.onHueChanged, input)();
+                            if (input.classList.contains("ml-dialog-hue-select"))
+                            {
+                                dom.addEventListener(input, "change", PopupManager.onHueChanged, input)();
+                            }
                             break;
 
                         default: break;
@@ -653,15 +661,16 @@ namespace MidnightLizard.Popup
                     shdColor: "--pseudo-text-shadow-color"
                 };
 
-            let shadowColor = this._textShadowColorProcessor.changeColor(
-                Colors.RgbaColor.Gray, roomRules.color!.light, tag,
-                Math.abs(roomRules.color!.light - roomRules.backgroundColor!.light) / 1.4);
-            let newRules = Object.assign(new ContentScript.RoomRules(),
+            const rangeFillColor = this._rangeFillColorProcessor.changeColor(
+                this._settingsManager.shift,
+                roomRules.color!.light,
+                roomRules.backgroundColor!.light);
+            const newRules = Object.assign(new ContentScript.RoomRules(),
                 {
                     backgroundColor: { color: currentStyle.backgroundColor },
                     color: { color: currentStyle.color },
                     borderColor: { color: currentStyle.borderColor },
-                    textShadow: { value: shadowColor.color }
+                    textShadow: { value: rangeFillColor.color }
                 });
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }

@@ -8,21 +8,49 @@ td[class]:empty:first-child {
     --ml-no-invert:true;
 }
 
-div[role="tab"]>div:nth-child(2),
-.nL.aig {
+div[role="tab"]>div:nth-child(2) {
     --ml-background-background-color:Border;
 }
 
 div[role="search"] button[aria-label],
 .ZC {
-    --ml-no-invert: true;
+    --ml-no-invert:true;
 }
 
 div.T-Kw-Jt {
-    --ml-ignore: true;
+    --ml-ignore:true;
 }
 
 .J-N-JT .J-N-Jz,
 .J-N-JW .J-N-Jz {
     color: rgb(50, 50, 50) !important;
+}
+
+img[src*="add_black"]:not(#imp):not(.imp):not(imp) {
+    --ml-ignore:true;
+    filter: invert(var(--ml-invert, 0))!important;
+    background-color: transparent!important;
+}
+
+html[ml-stage="loading"] div[role="button"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):after {
+    filter: invert(var(--ml-invert, 0))!important;
+    background-color: transparent!important;
+}
+
+div[tabid="chat"][role="tab"]:not(#imp):not(.imp):not(imp)>div[aria-hidden="true"]:not(#imp):not(.imp):not(imp) {
+    --ml-ignore:true;
+    filter: invert(var(--ml-invert, 0))!important;
+    background-color: transparent!important;
+}
+
+div[role="tab"][aria-selected="true"]:before {
+    --ml-background-background-color:Border;
+}
+
+div[role="navigation"] .qj:after {
+    --ml-background-border-color:Border;
+    --ml-background-border-bottom-color:Border;
+    --ml-background-border-left-color:Border;
+    --ml-background-border-right-color:Border;
+    --ml-background-border-top-color:Border;
 }

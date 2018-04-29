@@ -2,7 +2,7 @@
     position: relative;
 }
 
-#p-logo:before {
+/* #p-logo:before {
     content: "";
     background-color: #f0f0f0;
     position: absolute;
@@ -11,7 +11,7 @@
     right: 0px;
     height: 45px;
     z-index: 999;
-}
+} */
 
 #p-logo:after {
     --ml-ignore:true;

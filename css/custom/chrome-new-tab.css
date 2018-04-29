@@ -1,7 +1,7 @@
 #mv-single
 {
     --ml-ignore:true;
-    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) url("#ml-blue-filter")
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter)
 }
 
 #fkbx_crt

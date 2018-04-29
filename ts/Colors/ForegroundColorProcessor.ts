@@ -24,8 +24,7 @@ namespace MidnightLizard.Colors
 
     export abstract class ITextShadowColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, customContrast?: number): ColorEntry;
-        abstract getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
 
     export abstract class IBorderColorProcessor
@@ -73,7 +72,7 @@ namespace MidnightLizard.Colors
             return null;
         }
 
-        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, grayShift: Colors.ColorShift, customContrast?: number)
+        protected changeHslaColor(hsla: HslaColor, backgroundLightness: number, isGray: boolean, grayShift: Colors.ColorShift)
         {
             let shift = this._colorShift;
             if (isGray)
@@ -91,35 +90,35 @@ namespace MidnightLizard.Colors
                 hsla.saturation = this.scaleValue(hsla.saturation, shift.saturationLimit);
             }
             hsla.lightness = this.scaleValue(hsla.lightness, shift.lightnessLimit);
-            const shiftContrast = (customContrast !== undefined ? customContrast : shift.contrast) / hsla.alpha;
+            const shiftContrast = shift.contrast / hsla.alpha;
             const currentContrast = hsla.lightness - backgroundLightness,
                 down = Number(Math.max(backgroundLightness - Math.min(Math.max(backgroundLightness - shiftContrast, 0), shift.lightnessLimit), 0).toFixed(2)),
                 up = Number(Math.max(Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit) - backgroundLightness, 0).toFixed(2));
-            if (currentContrast < 0) // background is lighter
+            if (currentContrast < 0) // background is lighter than foreground
             {
-                if (down >= up)
+                if (down >= up) // make foreground even darker
                 {
                     hsla.lightness = Math.max(backgroundLightness + Math.min(currentContrast, -shiftContrast), 0);
                 }
-                else // invert
+                else // invert and make foreground lighter than background
                 {
                     hsla.lightness = Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit);
                 }
             }
-            else // background is darker
+            else // background is darker than foreground
             {
-                if (up >= down)
+                if (up >= down) // make foreground even more lighter
                 {
                     hsla.lightness = Math.min(backgroundLightness + Math.max(currentContrast, shiftContrast), shift.lightnessLimit);
                 }
-                else // invert
+                else // invert and make foreground darker than background
                 {
                     hsla.lightness = Math.max(backgroundLightness - shiftContrast, 0);
                 }
             }
         }
 
-        public changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, customContrast?: number): ColorEntry
+        public changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry
         {
             rgbaString = rgbaString || RgbaColor.Black;
             rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
@@ -150,7 +149,7 @@ namespace MidnightLizard.Colors
             {
                 const hsla = RgbaColor.toHslaColor(rgba);
                 const originalLight = hsla.lightness, isGray = this.isGray(tag, rgbaString, hsla);
-                this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift, customContrast);
+                this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift);
                 let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                 result = {
                     role: this._component,
@@ -200,10 +199,9 @@ namespace MidnightLizard.Colors
     @DI.injectable(ITextShadowColorProcessor)
     class TextShadowColorProcessor extends ForegroundColorProcessor implements ITextShadowColorProcessor
     {
-        public getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null
+        protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null
         {
-            const type = tag.ownerDocument.defaultView.HTMLElement;
-            if (tag.parentElement && tag.parentElement instanceof type === tag instanceof type)
+            if (tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement === tag instanceof tag.ownerDocument.defaultView.HTMLElement)
             {
                 if (tag.parentElement.mlTextShadow)
                 {
@@ -282,9 +280,12 @@ namespace MidnightLizard.Colors
 
         protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null 
         {
-            const type = tag.ownerDocument.defaultView.HTMLElement;
-            if (tag.parentElement && (tag.isPseudo || tag.parentElement instanceof type === tag instanceof type) &&
-                !(tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement || tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement))
+            if (tag.parentElement && (tag.isPseudo ||
+                tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement === tag instanceof tag.ownerDocument.defaultView.HTMLElement) &&
+                !(tag instanceof tag.ownerDocument.defaultView.HTMLTableElement ||
+                    tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement ||
+                    tag instanceof tag.ownerDocument.defaultView.HTMLTableRowElement ||
+                    tag instanceof tag.ownerDocument.defaultView.HTMLTableSectionElement))
             {
                 if (tag.parentElement!.mlColor)
                 {

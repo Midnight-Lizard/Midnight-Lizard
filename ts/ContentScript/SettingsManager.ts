@@ -13,6 +13,8 @@ namespace MidnightLizard.ContentScript
     {
         /** MidnightLizard should be running on this page */
         abstract get isActive(): boolean;
+        /** Complex processing mode is in use now */
+        abstract get isComplex(): boolean;
         /** Current settings for calculations */
         abstract get shift(): Colors.ComponentShift;
         /** Current settings for communication */

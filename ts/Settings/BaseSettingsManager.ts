@@ -19,6 +19,10 @@ namespace MidnightLizard.Settings
     {
         /** MidnightLizard should be running on this page */
         abstract get isActive(): boolean;
+        /** Complex processing mode is in use now */
+        abstract get isComplex(): boolean;
+        /** Simplified processing mode is in use now */
+        abstract get isSimple(): boolean;
         /** Current settings for calculations */
         abstract get shift(): Colors.ComponentShift;
         /** Current settings for communication */
@@ -56,6 +60,8 @@ namespace MidnightLizard.Settings
 
         /** MidnightLizard should be running on this page */
         public get isActive() { return this.isInit && this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
+        public get isComplex() { return this._currentSettings.mode === Settings.ProcessingMode.Complex }
+        public get isSimple() { return this._currentSettings.mode === Settings.ProcessingMode.Simplified }
         protected isInit = false;
 
         /** SettingsManager constructor
@@ -204,9 +210,9 @@ namespace MidnightLizard.Settings
                 },
                 TextShadow: {
                     saturationLimit: set.borderSaturationLimit,
-                    contrast: set.textContrast,
-                    lightnessLimit: set.textLightnessLimit,
-                    graySaturation: Math.min(Number((set.borderGraySaturation * 1.25).toFixed(2)), 1),
+                    contrast: 0.8,
+                    lightnessLimit: 1,
+                    graySaturation: set.borderGraySaturation,
                     grayHue: set.borderGrayHue,
                     replaceAllHues: set.borderReplaceAllHues || false,
                     hueGravity: set.borderHueGravity || 0

@@ -3,18 +3,18 @@
     display: none !important;
 }
 
-[transition="filter"][style*="#ml-blue-filter"]:hover
+[transition="filter"][style*="var(--ml-blue-filter)"]:hover
 {
     filter: none!important;
 }
 
-[transition="filter"]:not([style*="#ml-blue-filter"]):hover
+[transition="filter"]:not([style*="var(--ml-blue-filter)"]):hover
 {
     animation-name: transition-filter-none;
     animation-fill-mode: forwards;
 }
 
-[transition="filter"]:not([style*="#ml-blue-filter"])
+[transition="filter"]:not([style*="var(--ml-blue-filter)"])
 {
     animation-name: transition-filter-original;
     animation-timing-function: ease-out;

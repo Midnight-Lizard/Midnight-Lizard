@@ -50,6 +50,9 @@
             "css": [
                 "css/preload.css",
                 "css/content-vars.css",
+                "css/dynamic-loading.css",
+                "css/dynamic-complete.css",
+                "css/dynamic-universal.css",
                 "css/custom/bookmark-sidebar.css"
             ]
         },

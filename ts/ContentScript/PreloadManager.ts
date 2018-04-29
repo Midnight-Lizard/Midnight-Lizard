@@ -21,7 +21,8 @@ namespace MidnightLizard.ContentScript
             {
                 localStorage.getItem("test");
             }
-            catch{
+            catch
+            {
                 localStorageIsAccessable = false;
             }
             this._html = doc.documentElement as HTMLHtmlElement;

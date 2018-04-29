@@ -9,6 +9,7 @@ namespace MidnightLizard.Colors
 {
     export abstract class IBackgroundColorProcessor
     {
+        abstract clear(): void;
         abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry;
     }
     export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
@@ -38,6 +39,10 @@ namespace MidnightLizard.Colors
         protected onSettingsChanged(response: SchemeResponse, newSettings: ComponentShift): void
         {
             super.onSettingsChanged(response, newSettings);
+            this.clear();
+        }
+        public clear(): void
+        {
             this._colors.clear();
             this._lights.clear();
             this._lightAreas.clear();

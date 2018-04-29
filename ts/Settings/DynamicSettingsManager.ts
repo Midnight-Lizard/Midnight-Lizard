@@ -7,7 +7,7 @@ namespace MidnightLizard.Settings
 {
     export abstract class IDynamicSettingsManager extends IBaseSettingsManager
     {
-        abstract changeSettings(newSettings: Settings.ColorScheme): void;
+        abstract changeSettings(newSettings: Settings.ColorScheme, updateSchedule?: boolean): void;
     }
 
     @DI.injectable(IDynamicSettingsManager)
@@ -31,9 +31,13 @@ namespace MidnightLizard.Settings
             return super.getDefaultSettings();
         }
 
-        changeSettings(newSettings: ColorScheme): void
+        changeSettings(newSettings: ColorScheme, updateSchedule?: boolean): void
         {
             Object.assign(this._currentSettings, newSettings);
+            if (updateSchedule)
+            {
+                this.updateSchedule();
+            }
             this.initCurSet();
             this._onSettingsChanged.raise(x => { }, this._shift);
         }

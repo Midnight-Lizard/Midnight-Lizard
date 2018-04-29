@@ -1,5 +1,11 @@
 namespace MidnightLizard.Settings
 {
+    export enum ProcessingMode
+    {
+        Simplified = "simple",
+        Complex = "complex"
+    }
+
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
@@ -20,6 +26,7 @@ namespace MidnightLizard.Settings
         hostName?: string;
         isEnabled?: boolean;
         blueFilter: number;
+        mode: ProcessingMode;
 
         useDefaultSchedule: boolean;
         scheduleStartHour: number;

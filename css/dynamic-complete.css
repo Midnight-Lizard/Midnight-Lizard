@@ -1,0 +1,34 @@
+html[ml-stage="complete"] {}
+
+@media screen {
+    html[ml-stage="complete"]:not([style*="color"]) *:not([transition]) {
+        transition: all 0s ease 0s !important;
+    }
+    html[ml-stage="complete"] [style*=--link]:not(imp),
+    html[ml-stage="complete"] a[style*=--link]:not(:visited) {
+        color: var(--link-color) !important;
+    }
+    html[ml-stage="complete"] [style*=--link]:not(imp):hover,
+    html[ml-stage="complete"] a[style*=--link]:not(:visited):hover {
+        color: var(--link-color-hover) !important;
+    }
+    html[ml-stage="complete"] [style*=--link]:not(imp):active,
+    html[ml-stage="complete"] a[style*=--link]:not(:visited):active {
+        color: var(--link-color-active) !important;
+    }
+    html[ml-stage="complete"] a:visited [style*=--visited]:not(imp),
+    html[ml-stage="complete"] [style*=--visited]:visited:not(imp) {
+        color: var(--visited-color) !important;
+    }
+    html[ml-stage="complete"] a:visited:active [style*=--visited]:not(imp),
+    html[ml-stage="complete"] [style*=--visited]:visited:not(imp):active,
+    html[ml-stage="complete"] a:visited:active [style*=--visited]:not(imp):hover,
+    html[ml-stage="complete"] a:visited:active:hover [style*=--visited]:not(imp),
+    html[ml-stage="complete"] [style*=--visited]:visited:not(imp):active:hover {
+        color: var(--visited-color-active) !important;
+    }
+    html[ml-stage="complete"] a:visited [style*=--visited]:not(imp):hover,
+    html[ml-stage="complete"] [style*=--visited]:visited:not(imp):hover {
+        color: var(--visited-color-hover) !important;
+    }
+}

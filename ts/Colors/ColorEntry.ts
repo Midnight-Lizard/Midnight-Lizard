@@ -17,7 +17,9 @@ namespace MidnightLizard.Colors
 
     export enum ColorInheritance
     {
+        /** Original value is inherited */
         Original,
+        /** Processed value has been inherited */
         Afterwards
     }
 

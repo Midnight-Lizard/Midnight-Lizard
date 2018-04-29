@@ -45,6 +45,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -116,6 +117,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: false,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -187,6 +189,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -222,7 +225,7 @@ namespace MidnightLizard.Settings
                     linkLightnessLimit: 66,
                     linkDefaultSaturation: 74,
                     linkDefaultHue: 207,
-                    linkVisitedHue: 231,
+                    linkVisitedHue: 262,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -258,6 +261,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -291,9 +295,9 @@ namespace MidnightLizard.Settings
                     linkSaturationLimit: 60,
                     linkContrast: 60,
                     linkLightnessLimit: 80,
-                    linkDefaultSaturation: 50,
+                    linkDefaultSaturation: 60,
                     linkDefaultHue: 88,
-                    linkVisitedHue: 122,
+                    linkVisitedHue: 16,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -329,6 +333,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -364,7 +369,7 @@ namespace MidnightLizard.Settings
                     linkLightnessLimit: 80,
                     linkDefaultSaturation: 70,
                     linkDefaultHue: 66,
-                    linkVisitedHue: 88,
+                    linkVisitedHue: 36,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -435,7 +440,7 @@ namespace MidnightLizard.Settings
                     linkLightnessLimit: 70,
                     linkDefaultSaturation: 60,
                     linkDefaultHue: 88,
-                    linkVisitedHue: 122,
+                    linkVisitedHue: 36,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -613,6 +618,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -755,6 +761,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -826,6 +833,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -897,6 +905,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -968,6 +977,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -1039,6 +1049,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -1110,6 +1121,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,

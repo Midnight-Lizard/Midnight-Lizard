@@ -25,7 +25,9 @@ namespace MidnightLizard.ContentScript
     class DocumentObserver implements IDocumentObserver
     {
         protected readonly _bodyObserverConfig: MutationObserverInit =
-            { attributes: true, subtree: true, childList: true, /*attributeOldValue: true,*/ attributeFilter: ["class", "style", "fill", "stroke"] };
+            { subtree: true, childList: true, /*attributeOldValue: true,*/ attributes: true, attributeFilter: ["class", "style", "fill", "stroke"] };
+        protected readonly _simpleBodyObserverConfig: MutationObserverInit =
+            { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] };
         protected readonly _headObserverConfig: MutationObserverInit = { childList: true };
         protected readonly _bodyObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _headObservers = new WeakMap<Document, MutationObserver>();
@@ -73,10 +75,11 @@ namespace MidnightLizard.ContentScript
                 {
                     this._bodyObservers.set(doc, bodyObserver = new MutationObserver(this.bodyObserverCallback.bind(this)));
                 }
-                bodyObserver.observe(doc.body, this._bodyObserverConfig);
+                bodyObserver.observe(doc.body, this._settingsManager.isComplex
+                    ? this._bodyObserverConfig : this._simpleBodyObserverConfig);
                 bodyObserver.state = ObservationState.Active;
 
-                if (doc.head)
+                if (doc.head && this._settingsManager.isComplex)
                 {
                     let headObserver = this._headObservers.get(doc);
                     if (headObserver === undefined)
@@ -108,7 +111,10 @@ namespace MidnightLizard.ContentScript
                     let mutations = headObserver.takeRecords();
                     headObserver.disconnect();
                     headObserver.state = ObservationState.Stopped;
-                    setTimeout(() => this.headObserverCallback(mutations, headObserver!), 1);
+                    if (this._settingsManager.isComplex)
+                    {
+                        setTimeout(() => this.headObserverCallback(mutations, headObserver!), 1);
+                    }
                 }
             }
             return originalState;
@@ -144,7 +150,10 @@ namespace MidnightLizard.ContentScript
                                 case "style":
                                 case "fill":
                                 case "stroke":
-                                    styleChanges.add(mutation.target as Element);
+                                    if (this._settingsManager.isComplex)
+                                    {
+                                        styleChanges.add(mutation.target as Element);
+                                    }
                                     break;
 
                                 default:
