@@ -128,13 +128,13 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:
     background-color: var(--ml-main-trans-alt-background-color) !important;
 }
 
-.left .ml-tab-item.active:not(.imp):not(#imp) {
+.left:not(.imp):not(#imp):not(imp) .ml-tab-item.active:not(.imp):not(#imp):not(imp) {
     border-right: solid 1px transparent !important;
 }
 
-.right .ml-tab-item.active:not(.imp):not(#imp)
+.right:not(.imp):not(#imp):not(imp) .ml-tab-item.active:not(.imp):not(#imp):not(imp)
 {
-    border-left: solid 1px rgba(0, 0, 0, 0) !important;
+    border-left: solid 1px transparent !important;
 }
 
 .ml-tab-content

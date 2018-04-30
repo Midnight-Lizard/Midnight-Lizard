@@ -28,3 +28,28 @@ div[class*="slider-background"],
 div[style="display:table-row"]>div.rnt3Ze[data-ved] {
     --ml-ignore:true;
 }
+
+[role="button"]>.gb_Rc.gb_Sc.gb_hc {
+    --ml-no-invert:true;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div.sfbg>div.sfbgg:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #hdtb[role="navigation"]>#hdtbSum:not(#imp):not(imp):not(.imp) {
+    background-color: var(--ml-main-alt-background-color)!important;
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div.sfbg>div.sfbgg:not(#imp):not(imp):not(.imp) *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #hdtb[role="navigation"]>#hdtbSum:not(#imp):not(imp):not(.imp) *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #logocont:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .tsf-p:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .sfibbbc:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) form.tsf:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button.sbico-c:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .lst-c:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #searchform,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #gb *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #logocont * {
+    background-color:transparent!important;
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #gbwa [role="region"]:not(#imp):not(imp):not(.imp) {
+    background-color: var(--ml-main-background-color)!important;
+}

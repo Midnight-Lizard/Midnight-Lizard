@@ -170,7 +170,6 @@ namespace MidnightLizard.ContentScript
             this.restoreDocumentColors(this._rootDocument);
             if (this._settingsManager.isActive)
             {
-                void (this._rootDocument.documentElement.offsetHeight);
                 this.injectDynamicValues(this._rootDocument);
                 this.processRootDocument();
             }
@@ -1094,7 +1093,7 @@ namespace MidnightLizard.ContentScript
             this.setDocumentProcessingStage(doc, ProcessingStage.None);
             for (let tag of doc.getElementsByTagName("*"))
             {
-                this.restoreElementColors(tag as HTMLElement, false, lastProcMode);
+                this.restoreElementColors(tag as HTMLElement, this._settingsManager.isActive, lastProcMode);
             }
         }
 
@@ -1254,21 +1253,33 @@ namespace MidnightLizard.ContentScript
 
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
+                if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
+                {
+                    let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
+                    if (hasForbiddenTransition)
+                    {
+                        roomRules.transitionDuration = { value: durations.join(", ") };
+                    }
+                }
+
                 if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
                     tag.computedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
+
                 if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
-                    dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
+                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
+
                 if (tag instanceof doc.defaultView.HTMLCanvasElement ||
                     tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
                     this._isPdf && tag instanceof HTMLEmbedElement)
                 {
                     this.processInaccessibleTextContent(tag, roomRules);
                 }
+
                 return { roomRules, before: undefined, after: undefined };
             }
             return undefined;
@@ -1314,7 +1325,7 @@ namespace MidnightLizard.ContentScript
 
                 if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
                 {
-                    dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
+                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
                 if (isRealElement(tag) && tag.contentEditable == true.toString()) this.overrideInnerHtml(tag);
 
@@ -1637,11 +1648,6 @@ namespace MidnightLizard.ContentScript
                         }
                     }
                 }
-
-                //this.applyRoomRules(tag, roomRules, ns);
-
-                // beforePseudoElement && this.processElement(beforePseudoElement);
-                // afterPseudoElement && this.processElement(afterPseudoElement);
 
                 if (room)
                 {

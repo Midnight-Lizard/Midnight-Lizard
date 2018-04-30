@@ -28,27 +28,27 @@ namespace Chrome
                         {
                             case Action.GetCurrentSettings:
                                 this._onCurrentSettingsRequested.raise(sendResponse);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             case Action.ApplyNewSettings:
                                 this._onNewSettingsApplicationRequested.raise(sendResponse, request.settings);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             case Action.DeleteSettings:
                                 this._onSettingsDeletionRequested.raise(sendResponse);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             case Action.ToggleIsEnabled:
                                 this._onIsEnabledToggleRequested.raise(sendResponse, request.isEnabled);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             case Action.ZoomChanged:
                                 this._onZoomChanged.raise(sendResponse, request.zoom);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             default:
@@ -61,7 +61,7 @@ namespace Chrome
                         {
                             case Action.SettingsApplied:
                                 this._onSettingsApplied.raise(sendResponse, request.settings);
-                                sendResponse(null);
+                                sendResponse(true);
                                 break;
 
                             default:

@@ -1,7 +1,7 @@
 html[ml-stage="complete"] {}
 
 @media screen {
-    html[ml-stage-mode="complete-complex"]:not([style*="color"]) *:not([transition]) {
+    html[ml-stage-mode="complete-complex"] body:not([style*="color"]) *:not([transition]) {
         transition: all 0s ease 0s !important;
     }
     html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp),
