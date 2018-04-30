@@ -50,7 +50,8 @@ namespace MidnightLizard.ContentScript
         protected notifySettingsApplied()
         {
             this._settingsBus.notifySettingsApplied(this._currentSettings)
-                .catch(ex => this._app.isDebug && console.error(ex));
+                .catch(ex => this._app.isDebug &&
+                    console.error(`Error in ${window.top === window.self ? "top" : "child"} frame:\n${ex.message || ex}`));
         }
 
         protected initCurrentSettings()

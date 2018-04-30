@@ -4,11 +4,20 @@
 /// <reference path="./IZoomService.ts" />
 /// <reference path="./IUninstallUrlSetter.ts" />
 /// <reference path="./IThemeProcessor.ts" />
+/// <reference path="../Settings/ExtensionModule.ts" />
 
 
 namespace MidnightLizard.BackgroundPage
 {
     DI.Container.register(Document, class { constructor() { return document } });
+    DI.Container.register(Settings.CurrentExtensionModule, class
+    {
+        constructor()
+        {
+            return new Settings.CurrentExtensionModule(
+                Settings.ExtensionModule.BackgroundPage);
+        }
+    });
     DI.Container.resolve(ICommandProcessor);
     DI.Container.resolve(IZoomService);
     DI.Container.resolve(IUninstallUrlSetter);

@@ -1,5 +1,6 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
+/// <reference path="./ChromePromise.ts" />
 
 namespace Chrome
 {
@@ -21,12 +22,14 @@ namespace Chrome
                 : MidnightLizard.Settings.BrowserName.Chrome
         }
 
-        protected readonly _preserveDisplay: boolean;
+        protected readonly _preserveDisplay: boolean = false;
         get preserveDisplay() { return this._preserveDisplay }
 
         get version() { return chrome.runtime.getManifest().version }
 
-        constructor(protected readonly _rootDocument: Document)
+        constructor(
+            protected readonly _rootDocument: Document,
+            protected readonly _chrome: Chrome.ChromePromise)
         {
             if (chrome.runtime.id === "pbnndmlekkboofhnbonilimejonapojg" || // chrome
                 chrome.runtime.id === "{8fbc7259-8015-4172-9af1-20e1edfbbd3a}") // firefox
@@ -40,7 +43,7 @@ namespace Chrome
 
             // console.log(`Midnight Lizard ${this._isDebug ? "Development" : "Production"}-${chrome.runtime.id}`);
 
-            this._preserveDisplay = /facebook/gi.test(_rootDocument.defaultView.location.hostname);
+            this._preserveDisplay = /facebook/gi.test(_rootDocument.location.hostname);
         }
 
         public getFullPath(relativePath: string)

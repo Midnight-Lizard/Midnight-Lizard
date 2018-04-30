@@ -405,6 +405,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -476,6 +477,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 30,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -547,6 +549,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 80,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -690,6 +693,7 @@ namespace MidnightLizard.Settings
                     changeBrowserTheme: true,
                     applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
+                    mode: ProcessingMode.Complex,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,

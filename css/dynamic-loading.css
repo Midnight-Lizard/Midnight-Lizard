@@ -1,6 +1,9 @@
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
 
 @media screen {
+    html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp) {
+        filter: brightness(var(--ml-background-lightness-limit))!important;
+    }
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after {
@@ -9,7 +12,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>[style*="filter:"]:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="image"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="d-image"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) img:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
@@ -18,7 +21,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not([transition]) {
         transition: all 0s ease 0s !important;
     }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter:"]):not([style*="image"]) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter:"]):not([style*="d-image"]) {
         filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),

@@ -38,7 +38,7 @@ namespace MidnightLizard.Settings
     {
         protected _scheduleStartHour = 0;
         protected _scheduleFinishHour = 24;
-        protected readonly _settingsKey: string;
+        protected _settingsKey: string;
         protected get isScheduled(): boolean
         {
             let curHour = new Date().getHours();
@@ -74,7 +74,16 @@ namespace MidnightLizard.Settings
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
-            this._settingsKey = `ws:${rootDocument.location.hostname}`;
+            let hostName: string;
+            try
+            {
+                hostName = window.top.location.hostname;
+            }
+            catch
+            {
+                hostName = rootDocument.location.hostname;
+            }
+            this._settingsKey = `ws:${hostName}`;
             this.initDefaultColorSchemes();
             this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
             this._defaultSettings.colorSchemeId = "default";
@@ -88,6 +97,10 @@ namespace MidnightLizard.Settings
 
         protected initCurSet()
         {
+            if (!this._currentSettings.mode)
+            {
+                this._currentSettings.mode = ProcessingMode.Complex;
+            }
             let set = Object.assign({}, this._currentSettings);
             for (let setting in set)
             {

@@ -1,3 +1,4 @@
+/// <reference path="../Settings/ExtensionModule.ts" />
 /// <reference path="../Settings/ColorScheme.ts" />
 
 namespace MidnightLizard.Settings
@@ -8,47 +9,53 @@ namespace MidnightLizard.Settings
 
     export enum SettingsMessageAction
     {
-        GetCurrentSettings,
-        ApplyNewSettings,
-        DeleteSettings,
-        ToggleIsEnabled,
-        ZoomChanged,
-        SettingsApplied
+        GetCurrentSettings = "GetCurrentSettings",
+        ApplyNewSettings = "ApplyNewSettings",
+        DeleteSettings = "DeleteSettings",
+        ToggleIsEnabled = "ToggleIsEnabled",
+        ZoomChanged = "ZoomChanged",
+        SettingsApplied = "SettingsApplied"
     }
 
     export class CurrentSettingsRequestMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.GetCurrentSettings = SettingsMessageAction.GetCurrentSettings;
-        constructor() { }
+        constructor(readonly sender: ExtensionModule) { }
     }
 
     export class SettingsDeletionRequestMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.DeleteSettings = SettingsMessageAction.DeleteSettings;
-        constructor() { }
+        constructor(readonly sender: ExtensionModule) { }
     }
 
     export class IsEnabledToggleRequestMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.ToggleIsEnabled = SettingsMessageAction.ToggleIsEnabled;
-        constructor(readonly isEnabled: boolean) { }
+        constructor(readonly sender: ExtensionModule, readonly isEnabled: boolean) { }
     }
 
     export class ZoomChangedMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.ZoomChanged = SettingsMessageAction.ZoomChanged;
-        constructor(readonly zoom: number) { }
+        constructor(readonly sender: ExtensionModule, readonly zoom: number) { }
     }
 
     export class SettingsAppliedMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.SettingsApplied = SettingsMessageAction.SettingsApplied;
-        constructor(readonly settings: MidnightLizard.Settings.ColorScheme) { }
+        constructor(readonly sender: ExtensionModule, readonly settings: MidnightLizard.Settings.ColorScheme) { }
     }
 
     export class NewSettingsApplicationRequestMessage 
     {
+        receiver?: string;
         action: SettingsMessageAction.ApplyNewSettings = SettingsMessageAction.ApplyNewSettings;
-        constructor(readonly settings: MidnightLizard.Settings.ColorScheme) { }
+        constructor(readonly sender: ExtensionModule, readonly settings: MidnightLizard.Settings.ColorScheme) { }
     }
 }

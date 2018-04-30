@@ -173,7 +173,10 @@ namespace MidnightLizard.ContentScript
                 this.injectDynamicValues(this._rootDocument);
                 this.processRootDocument();
             }
-            response(this._settingsManager.currentSettings);
+            if (window.top === window.self)
+            {
+                response(this._settingsManager.currentSettings);
+            }
         }
 
         protected onSettingsInitialized(shift?: Colors.ComponentShift): void
@@ -243,7 +246,6 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.body && doc.defaultView && this._settingsManager.isActive)
             {
-                this._zoomObserver.addDocument(doc);
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
                 this._dorm.set(doc, new Map<string, RoomRules>());
                 this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
@@ -1213,18 +1215,6 @@ namespace MidnightLizard.ContentScript
                 if (tag.hasAttribute("ml-no-bg-image"))
                 {
                     tag.removeAttribute("ml-no-bg-image");
-                }
-
-                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
-                {
-                    try
-                    {
-                        this.restoreDocumentColors(tag.contentDocument || tag.contentWindow.document);
-                    }
-                    catch (ex)
-                    {
-                        //this._app.isDebug && console.error(ex);
-                    }
                 }
             }
         }
