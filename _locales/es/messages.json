@@ -1,468 +1,468 @@
 {
     "appDesc": {
-        "message": "Esta extensión cambia los colores de la página, el brillo y el contraste para aumentar la legibilidad y trae el modo nocturno oscuro a todos los sitios web."
+        "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
     },
     "globalToggleKey": {
-        "message": "Alternar la extensión global"
+        "message": "Global extension toggle"
     },
     "runOnThisSite_text_label": {
-        "message": "Ejecutar en el sitio web actual"
+        "message": "Run on this website"
     },
     "runOnThisSite_@title": {
-        "message": "Ejecutar [Midnight Lizard] en el sitio web actual."
+        "message": "Run [Midnight Lizard] on this website."
     },
     "restoreColorsOnCopy_text_label": {
-        "message": "Restaurar los colores originales al copiar"
+        "message": "Restore original colors on copy"
     },
     "restoreColorsOnCopy_@title": {
-        "message": "Restaurar los colores originales antes de copiar contenido de la página"
+        "message": "Restore original colors before copying content from the page"
     },
     "restoreColorsOnPrint_text_label": {
-        "message": "Restaurar los colores originales al imprimir"
+        "message": "Restore original colors on print"
     },
     "restoreColorsOnPrint_@title": {
-        "message": "Restaurar los colores originales antes de imprimir contenido de la página"
+        "message": "Restore original colors before printing content of the page"
     },
     "changeBrowserTheme_text_label": {
-        "message": "Cambiar el tema del navegador"
+        "message": "Change browser theme"
     },
     "changeBrowserTheme_@title": {
-        "message": "Ajustar el tema del navegador al esquema de color actual. Solo compatible con Firefox."
+        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox."
     },
     "useDefaultSchedule_text_label": {
-        "message": "Usar el cronograma predeterminado"
+        "message": "Use default schedule"
     },
     "useDefaultSchedule_@title": {
-        "message": "Usar la configuración de los ajustes predeterminados\nSi quiere utilizar una sola configuración para todos los sitios web tiene que especificarlo en los ajustes predeterminados."
+        "message": "Use schedule from default settings\nIf you want to use single schedule for all websites then you need to specify it in the default settings."
     },
     "scheduleStartHour_text_label": {
-        "message": "Tiempo de activación"
+        "message": "Activation time"
     },
     "scheduleStartHour_@title": {
-        "message": "La extensión estará activa a partir de este momento en el sitio web actual\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto"
+        "message": "Extension will be active on the current website only starting from this time\nPage should be refreshed during the specified time lapse in order for schedule to take effect"
     },
     "scheduleFinishHour_text_label": {
-        "message": "Tiempo de desactivación"
+        "message": "Deactivation time"
     },
     "scheduleFinishHour_@title": {
-        "message": "La extensión estará activa solo hasta este momento en el sitio web actual\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto"
+        "message": "Extension will be active on the current website only until this time\nPage should be refreshed during the specified time lapse in order for schedule to take effect"
     },
     "blueFilter_text_label": {
-        "message": "Intensidad del filtro azul"
+        "message": "Blue filter intensity"
     },
     "blueFilter_@title": {
-        "message": "Intensidad del filtro azul\nElimina la luz azul de la página y la reemplaza por luz roja"
+        "message": "Blue filter intensity\nRemoves blue light from the page and replces it with red light"
     },
     "backgroundSaturationLimit_text_label": {
-        "message": "Límite de saturación"
+        "message": "Saturation limit"
     },
     "backgroundSaturationLimit_@title": {
-        "message": "Límite de saturación del fondo"
+        "message": "Background saturation limit"
     },
     "backgroundContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "backgroundContrast_@title": {
-        "message": "Diferencia de brillo mínima entre fondos similares\nDepende del tamaño y orden de los elementos, por lo que los resultados pueden ser completamente aleatorios."
+        "message": "Minimal difference in brightness between similar backgrounds.\nDepends on elements size and order so results might be quite random."
     },
     "backgroundLightnessLimit_text_label": {
-        "message": "Límite de brillo"
+        "message": "Brightness limit"
     },
     "backgroundLightnessLimit_@title": {
-        "message": "Límite del brillo de fondo"
+        "message": "Background brightness limit"
     },
     "backgroundGraySaturation_text_label": {
-        "message": "Saturación de fondo gris"
+        "message": "Gray background saturation"
     },
     "backgroundGraySaturation_@title": {
-        "message": "Saturación de los fondos grises después de aplicar el tono predeterminado seleccionado"
+        "message": "Saturation of the gray backgrounds after applying selected default hue"
     },
     "backgroundHueGravity_text_label": {
-        "message": "Gravedad de tono predeterminada"
+        "message": "Default hue gravity"
     },
     "backgroundHueGravity_@title": {
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "backgroundGrayHue_text_label": {
-        "message": "Tono predeterminado"
+        "message": "Default hue"
     },
     "backgroundGrayHue_@title": {
-        "message": "Tono usado para incrementar la saturación de los colores de fondo gris"
+        "message": "Hue to be used to increase saturation of the gray background colors"
     },
     "backgroundReplaceAllHues_text_label": {
-        "message": "Reemplazar todo"
+        "message": "Replace all"
     },
     "backgroundReplaceAllHues_@title": {
-        "message": "Reemplazar todos los tonos originales por uno seleccionado.\nEn caso contrario solo los tonos grises, negros y blancos serán reemplazados.\nLa saturación gris se usará para los tonos reemplazados.\nAnula completamente la gravedad de tono predeterminada."
+        "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "buttonSaturationLimit_text_label": {
-        "message": "Límite de saturación"
+        "message": "Saturation limit"
     },
     "buttonSaturationLimit_@title": {
-        "message": "Límite de saturación del fondo de los botones"
+        "message": "Button background saturation limit"
     },
     "buttonContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "buttonContrast_@title": {
-        "message": "Diferencia de brillo mínima entre los botones y el fondo a su alrededor."
+        "message": "Minimal difference in brightness between buttons and background around them"
     },
     "buttonLightnessLimit_text_label": {
-        "message": "Límite de brillo"
+        "message": "Brightness limit"
     },
     "buttonLightnessLimit_@title": {
-        "message": "Límite de brillo del fondo de los botones"
+        "message": "Button background brightness limit"
     },
     "buttonGraySaturation_text_label": {
-        "message": "Saturación de botón gris"
+        "message": "Gray button saturation"
     },
     "buttonGraySaturation_@title": {
-        "message": "Saturación de los fondos de botón gris después de aplicar el tono predeterminado seleccionado"
+        "message": "Saturation of the gray button backgrounds after applying selected default hue"
     },
     "buttonHueGravity_text_label": {
-        "message": "Gravedad de tono predeterminada"
+        "message": "Default hue gravity"
     },
     "buttonHueGravity_@title": {
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "buttonGrayHue_text_label": {
-        "message": "Tono predeterminado"
+        "message": "Default hue"
     },
     "buttonGrayHue_@title": {
-        "message": "Tono usado para incrementar la saturación de los colores de fondo del botón gris"
+        "message": "Hue to be used to increase saturation of the gray button background colors"
     },
     "buttonReplaceAllHues_text_label": {
-        "message": "Reemplazar todo"
+        "message": "Replace all"
     },
     "buttonReplaceAllHues_@title": {
-        "message": "Reemplazar todos los tonos originales por uno seleccionado.\nEn caso contrario solo los tonos grises, negros y blancos serán reemplazados.\nLa saturación gris se usará para los tonos reemplazados.\nAnula completamente la gravedad de tono predeterminada."
+        "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "textSaturationLimit_text_label": {
-        "message": "Límite de saturación"
+        "message": "Saturation limit"
     },
     "textSaturationLimit_@title": {
-        "message": "Límite de saturación del texto"
+        "message": "Text saturation limit"
     },
     "textContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "textContrast_@title": {
-        "message": "Diferencia mínima de brillo entre el texto y su fondo"
+        "message": "Minimal difference in brightness between text and its background"
     },
     "textLightnessLimit_text_label": {
-        "message": "Límite de brillo"
+        "message": "Brightness limit"
     },
     "textLightnessLimit_@title": {
-        "message": "Límite del brillo máximo del texto"
+        "message": "Limit of a maximum text brightness"
     },
     "textGraySaturation_text_label": {
-        "message": "Saturación de texto gris"
+        "message": "Gray text saturation"
     },
     "textGraySaturation_@title": {
-        "message": "Saturación del texto gris después de aplicar el tono predeterminado seleccionado"
+        "message": "Saturation of the gray text after applying selected default hue"
     },
     "textHueGravity_text_label": {
-        "message": "Gravedad de tono predeterminada"
+        "message": "Default hue gravity"
     },
     "textHueGravity_@title": {
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "textGrayHue_text_label": {
-        "message": "Tono predeterminada"
+        "message": "Default hue"
     },
     "textGrayHue_@title": {
-        "message": "Tono usado para incrementar la saturación de los colores del texto gris"
+        "message": "Hue to be used to increase saturation of the gray text colors"
     },
     "textReplaceAllHues_text_label": {
-        "message": "Reemplazar todo"
+        "message": "Replace all"
     },
     "textReplaceAllHues_@title": {
-        "message": "Reemplazar todos los tonos originales por uno seleccionado.\nEn caso contrario solo los tonos grises, negros y blancos serán reemplazados.\nLa saturación gris se usará para los tonos reemplazados.\nAnula completamente la gravedad de tono predeterminada."
+        "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "textSelectionHue_html_label": {
-        "message": "Tono del texto <span id=\"selection\">seleccionado</span>"
+        "message": "Text <span id=\"selection\">selection<\/span> hue"
     },
     "textSelectionHue_@title": {
-        "message": "Tono del texto seleccionado"
+        "message": "Text selection hue"
     },
     "linkSaturationLimit_text_label": {
-        "message": "Límite de saturación"
+        "message": "Saturation limit"
     },
     "linkSaturationLimit_@title": {
-        "message": "Límite de saturación de los enlaces"
+        "message": "Links saturation limit"
     },
     "linkContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "linkContrast_@title": {
-        "message": "Diferencia mínima entre los enlaces y el brillo de fondo"
+        "message": "Minimal difference between links and background brightness"
     },
     "linkLightnessLimit_text_label": {
-        "message": "Límite de brillo"
+        "message": "Brightness limit"
     },
     "linkLightnessLimit_@title": {
-        "message": "Límite del brillo máximo de los enlaces"
+        "message": "Limit of maximum link brightness"
     },
     "linkDefaultSaturation_text_label": {
-        "message": "Saturación predeterminada de enlaces"
+        "message": "Default links saturation"
     },
     "linkDefaultSaturation_@title": {
-        "message": "Saturación de los enlaces con color normal y de los enlaces visitados después de aplicar los tonos seleccionados"
+        "message": "Saturation of the links with normal link color and for visited links after applying selected hues"
     },
     "linkHueGravity_text_label": {
-        "message": "Gravedad de tono predeterminada"
+        "message": "Default hue gravity"
     },
     "linkHueGravity_@title": {
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "linkDefaultHue_text_label": {
-        "message": "Tono predeterminada"
+        "message": "Default hue"
     },
     "linkDefaultHue_@title": {
-        "message": "Tono usado para reemplazar el tono de un enlace normal"
+        "message": "Hue to be used to replace a normal link hue"
     },
     "linkReplaceAllHues_text_label": {
-        "message": "Reemplazar todo"
+        "message": "Replace all"
     },
     "linkReplaceAllHues_@title": {
-        "message": "Reemplazar todos los tonos originales por uno seleccionado.\nEn caso contrario solo el tono de los links normales será reemplazado en esta página.\nLa saturación predeterminada se usará para los tonos reemplazados.\nAnula completamente la gravedad de tono predeterminada."
+        "message": "Replace all original hues with a selected one.\nOtherwise only normal for this page link hue will be replaced.\nDefault saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "linkVisitedHue_text_label": {
-        "message": "Tono de enlace visitado"
+        "message": "Visited link hue"
     },
     "linkVisitedHue_@title": {
-        "message": "Tono de enlace visitado"
+        "message": "Visited link hue"
     },
     "borderSaturationLimit_text_label": {
-        "message": "Límite de saturación"
+        "message": "Saturation limit"
     },
     "borderSaturationLimit_@title": {
-        "message": "Límite de saturación de los bordes"
+        "message": "Border saturation limit"
     },
     "borderContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "borderContrast_@title": {
-        "message": "Diferencia mínima entre el borde y el brillo de fondo"
+        "message": "Minimal difference between border and background brightness"
     },
     "borderLightnessLimit_text_label": {
-        "message": "Límite de brillo"
+        "message": "Brightness limit"
     },
     "borderLightnessLimit_@title": {
-        "message": "Límite del brillo máximo de los bordes"
+        "message": "Limit of maximum border brightness"
     },
     "borderGraySaturation_text_label": {
-        "message": "Saturación de bordes gris"
+        "message": "Gray borders saturation"
     },
     "borderGraySaturation_@title": {
-        "message": "Saturación de los bordes grises después de aplicar el tono predeterminado seleccionado"
+        "message": "Saturation of the gray borders after applying selected default hue"
     },
     "borderHueGravity_text_label": {
-        "message": "Gravedad de tono predeterminada"
+        "message": "Default hue gravity"
     },
     "borderHueGravity_@title": {
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "borderGrayHue_text_label": {
-        "message": "Tono predeterminado"
+        "message": "Default hue"
     },
     "borderGrayHue_@title": {
-        "message": "Tono usado para incrementar la saturacion de los colores de los bordes grises"
+        "message": "Hue to be used to increase saturation of the gray borders colors"
     },
     "borderReplaceAllHues_text_label": {
-        "message": "Reemplazar todo"
+        "message": "Replace all"
     },
     "borderReplaceAllHues_@title": {
-        "message": "Reemplazar todos los tonos originales por uno seleccionado.\nEn caso contrario solo los tonos grises, negros y blancos serán reemplazados.\nLa saturación gris se usará para los tonos reemplazados.\nAnula completamente la gravedad de tono predeterminada."
+        "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "imageSaturationLimit_text_label": {
-        "message": "Saturación"
+        "message": "Saturation"
     },
     "imageSaturationLimit_@title": {
-        "message": "Establecer saturación de imágenes a este valor"
+        "message": "Set saturation of all images to this value"
     },
     "imageLightnessLimit_text_label": {
-        "message": "Brillo"
+        "message": "Brightness"
     },
     "imageLightnessLimit_@title": {
-        "message": "Establecer brillo de imágenes a este valor"
+        "message": "Set brightness of all images to this value"
     },
     "imageExample_text_label": {
-        "message": "Ejemplo de imagen"
+        "message": "Image example"
     },
     "imageExample_@title": {
-        "message": "Ejemplo de imagen"
+        "message": "Image example"
     },
     "useImageHoverAnimation_text_label": {
-        "message": "Restaurar imágenes destacadas"
+        "message": "Use image hover animation"
     },
     "useImageHoverAnimation_@title": {
-        "message": "Eliminar todos los efectos de la imagen cuando colocas el ratón encima"
+        "message": "Remove all efects from image when you hover mouse on it"
     },
     "backgroundImageSaturationLimit_text_label": {
-        "message": "Saturación"
+        "message": "Saturation"
     },
     "backgroundImageSaturationLimit_@title": {
-        "message": "Saturación de imágenes de fondo"
+        "message": "Saturation of background images"
     },
     "backgroundImageLightnessLimit_text_label": {
-        "message": "Brillo"
+        "message": "Brightness"
     },
     "backgroundImageLightnessLimit_@title": {
-        "message": "Límite del brillo de fondo de las imágenes. Cuanto más pequeña sea la imagen, mayor brillo tendrá."
+        "message": "Limit of background images brightness. The smaller image, the brighter it is."
     },
     "backgroundImageExample_text_label": {
-        "message": "Ejemplo de la imagen de fondo"
+        "message": "Background image example"
     },
     "backgroundImageExample_@title": {
-        "message": "Ejemplo de imagen de fondo"
+        "message": "Background image example"
     },
     "backgroundImageExampleText_text_label": {
-        "message": "Ejemplo"
+        "message": "Example"
     },
     "backgroundImageExampleText_@title": {
-        "message": "Si la página tiene imágenes de fondo detrás del texto, deberías ajustar el nivel de brillo de las imágenes de fondo hasta que seas capaz de ver el texto encima de la imagen con facilidad."
+        "message": "If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly."
     },
     "scrollbarSaturationLimit_text_label": {
-        "message": "Saturación"
+        "message": "Saturation"
     },
     "scrollbarSaturationLimit_@title": {
-        "message": "Saturación del control y los botones de la barra de desplazamiento"
+        "message": "Scrollbar thumb and buttons saturation"
     },
     "scrollbarContrast_text_label": {
-        "message": "Contraste"
+        "message": "Contrast"
     },
     "scrollbarContrast_@title": {
-        "message": "Diferencia mínima entre el brillo del control de la barra de desplazamiento y el fondo.\nSolo aplicable con fondos brillantes."
+        "message": "Minimal difference between brightness of scrollbar thumb and background.\nApplicable only with bright backgrounds."
     },
     "scrollbarLightnessLimit_text_label": {
-        "message": "Brillo"
+        "message": "Brightness"
     },
     "scrollbarLightnessLimit_@title": {
-        "message": "Límite de brillo del control y los botones de la barra de desplazamiento"
+        "message": "Scrollbar thumb and buttons brightness limit"
     },
     "scrollbarSize_text_label": {
-        "message": "Anchura"
+        "message": "Size"
     },
     "scrollbarSize_@title": {
-        "message": "Tamaño de la barra de desplazamiento."
+        "message": "Scrollbar size"
     },
     "scrollbarGrayHue_text_label": {
-        "message": "Tono de la barra de desplazamiento"
+        "message": "Scrollbar hue"
     },
     "scrollbarGrayHue_@title": {
-        "message": "Tono del control y los botones de la barra de desplazamiento"
+        "message": "Scrollbar thumb and buttons hue"
     },
     "commonTab_text_label": {
-        "message": "Común"
+        "message": "Common"
     },
     "commonTab_@tooltip": {
-        "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar [Midnight Lizard] automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
+        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when [Midnight Lizard] should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
     "backgroundTab_text_label": {
-        "message": "Fondos"
+        "message": "Background"
     },
     "backgroundTab_@tooltip": {
-        "message": "    Ajustes de color de fondo\n―――――――――――――――――――\n Esta pestaña contiene los ajustes para determinar como se rellenarán los elementos de la página con color."
+        "message": "    Background color settings\n―――――――――――――――――――\n This tab contains settings that define how elements on the page would be filled with color."
     },
     "buttonsTab_text_label": {
-        "message": "Botones"
+        "message": "Buttons"
     },
     "buttonsTab_@tooltip": {
-        "message": "    Ajustes de color del fondo del botón\n―――――――――――――――――――\n Esta pestaña contiene los ajustes para determinar como se rellenarán los botones y elementos similares de la página con color."
+        "message": "  Button background color settings\n―――――――――――――――――――\n This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color."
     },
     "textTab_text_label": {
-        "message": "Texto"
+        "message": "Text"
     },
     "textTab_@tooltip": {
-        "message": "    Ajustes de color de texto\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los elementos de texto de la página."
+        "message": "     Text color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all text elements on the page."
     },
     "linkTab_text_label": {
-        "message": "Enlaces"
+        "message": "Links"
     },
     "linkTab_@tooltip": {
-        "message": "    Ajustes de color de enlaces\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los enlaces de la página."
+        "message": "    Hyperlinks color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all hyperlinks on the page."
     },
     "borderTab_text_label": {
-        "message": "Bordes"
+        "message": "Borders"
     },
     "borderTab_@tooltip": {
-        "message": "     Ajustes de color de bordes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los bordes y líneas de la página."
+        "message": "     Borders color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all borders and lines on the page."
     },
     "imagesTab_text_label": {
-        "message": "Imágenes"
+        "message": "Images"
     },
     "imagesTab_@tooltip": {
-        "message": "       Ajustes de imágenes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de saturación y brillo de imágenes y fotografías."
+        "message": "    Images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the saturation and brightness adjustment of the images and pictures."
     },
     "backgroundImagesTab_text_label": {
-        "message": "Imágenes de fondo"
+        "message": "Fond images"
     },
     "backgroundImagesTab_@tooltip": {
-        "message": "     Ajustes de imágenes de fondo\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de saturación y brillo de imágenes de fondo.\nLas imágenes de fondo son un tipo especial de elemento de relleno de fondo. Estas imágenes suelen estar dentro o detrás del texto."
+        "message": " Background images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the background images saturation and brightness adjustment.\n Background images are a special type of an element background fill. Such images are usually inside or behind the text."
     },
     "scrollbarsTab_text_label": {
-        "message": "Barra de desplazamiento"
+        "message": "Scrollbars"
     },
     "scrollbarsTab_@tooltip": {
-        "message": "    Ajustes de color de texto\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
+        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
     },
     "settingsHeader_text_label": {
-        "message": " – ajustes para"
+        "message": " settings for"
     },
     "hostState_@tooltip": {
-        "message": "Cambiar la página web actual\nentre lista blanca y lista negra."
+        "message": "Toggle current website between\nwhitelist and blacklist"
     },
     "hostName_@tooltip": {
-        "message": "    Página web actual\n―――――――――――――――\n Pulsa para cambiar la página actual entre lista blanca y lista negra.\n Para poner en lista negra todas las páginas web por defecto, pon en lista negra una y pulsa el botón 'Predeterminar'."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default blacklist one and then press 'Set as default' button."
     },
     "helpLink_@tooltip": {
-        "message": "Foro de soporte"
+        "message": "Support forum"
     },
     "isEnabledSwitch_@tooltip": {
-        "message": "Activar o desactivar la extensión"
+        "message": "Enable or disable entire extension"
     },
     "isEnabledOn_text_label": {
-        "message": "Act"
+        "message": "ON"
     },
     "isEnabledOff_text_label": {
-        "message": "Des"
+        "message": "OFF"
     },
     "syncSettings_text_label": {
-        "message": "Sincronice la configuración"
+        "message": "Sync settings across your devices"
     },
     "syncSettings_@title": {
-        "message": "Sincronizar los ajustes de [Midnight Lizard] en todos los dispositivos con esta opción activada.\nCuando esté activada los ajustes personalizados de cada página web serán unidos desde todos los dispositivos pero la lista de esquemas de color personalizados será sobrescrita con la última disponible. Por tanto, asegúrese de estar en línea cuando edite esquemas personalizados.\nNecesita activar [Sync] en los ajustes del navegador para que la sincronización de los ajustes de [Midnight Lizard] funcione."
+        "message": "Sync [Midnight Lizard] settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable [Sync] in the browser settings in order for [Midnight Lizard] settings synchronization to work."
     },
     "colorSchemeForEdit_text_label": {
-        "message": "El esquema de colores para editar"
+        "message": "Color scheme for edit"
     },
     "colorSchemeForEdit_@title": {
-        "message": "Selecciona el esquema de color para editar.\nPuede crear un esquema nuevo y cambiar o borrar un esquema de color existente."
+        "message": "Choose color scheme for edit.\nYou can create a new scheme and update or delete existing color scheme."
     },
     "colorSchemeName_text_label": {
-        "message": "Nombre del esquema de colores"
+        "message": "Color scheme name"
     },
     "colorSchemeName_@title": {
-        "message": "Puede editar el nombre del esquema de color antes de guardar"
+        "message": "You can edit color scheme name before to save"
     },
     "deleteColorSchemeBtn_text_label": {
-        "message": "Eliminar"
+        "message": "Delete"
     },
     "deleteColorSchemeBtn_@title": {
-        "message": "Borrar esquema de color seleccionado para editar."
+        "message": "Delete color scheme selected for edit"
     },
     "saveColorSchemeBtn_text_label": {
-        "message": "Guardar"
+        "message": "Save"
     },
     "saveColorSchemeBtn_@title": {
-        "message": "Actualizar esquema de color seleccionado con los ajustes actuales de la ventana emergente"
+        "message": "Update selected color scheme with current popup settings"
     },
     "exportColorSchemeBtn_text_label": {
-        "message": "Exportar"
+        "message": "Export"
     },
     "exportColorSchemeBtn_@title": {
-        "message": "Exportar a archivo el esquema de color seleccionado para editar [$color_scheme_for_edit$] con nombre [$color_scheme_name$] y reemplazar todos sus ajustes con los ajustes aplicados actualmente a la ventana emergente de [$current_color_scheme$].",
+        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with current applied on the popup settings from [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -476,67 +476,67 @@
         }
     },
     "importColorSchemeBtn_text_label": {
-        "message": "Importar"
+        "message": "Import"
     },
     "importColorSchemeBtn_@title": {
-        "message": "Importar esquema de color desde archivo"
+        "message": "Import color schemes from file"
     },
     "editSchemesTab_text_label": {
-        "message": "Esquemas de colores"
+        "message": "Color schemes"
     },
     "editSchemesTab_@tooltip": {
-        "message": "  Edición de los esquemas de color\n―――――――――――――――――――\n Los ajustes aplicados actualmente en la ventana emergente pueden ser usados para crear un nuevo esquema de color o para actualizar uno existente. Si crea un esquema de color nuevo, este estará disponible en los otros sitios web.\n Incluso después de crear su esquema de color puede ajustarlo, actualizarlo y los cambios serán aplicados automaticamente a todos los sitios web donde esté utilizando este esquema de color. También puede borrar su esquema de color en cualquier momento.\n De la misma forma puede anular los esquemas de color predefinidos con nuevos nombres y ajustes. El borrado de los esquemas de color pedefinidos solo eliminará los anulados y restaurará su estado original.\n Encuentre más ejemplos bajo el signo de interrogación en la ventana emergente de la esquina superior izquierda."
+        "message": "    Color schemes editing\n―――――――――――――――――――\n Settings currently applied on the popup can be used to create a new color scheme or update an existing one. If you create a new color scheme it will be available on all other websites.\n Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.\n The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.\n Find more examples under the question mark in the popup top-left corner."
     },
     "currentColorScheme_text_label": {
-        "message": "Esquema de color actual"
+        "message": "Current color scheme"
     },
     "currentColorScheme_@title": {
-        "message": "Selecciona tu esquema de color favorito"
+        "message": "Choose your favorite color scheme"
     },
     "forgetThisSiteBtn_text_label": {
-        "message": "Esto"
+        "message": "This"
     },
     "forgetThisSiteBtn_@title": {
-        "message": "Olvidar los ajustes de la página web actual"
+        "message": "Forget current website settings"
     },
     "forgetAllSitesBtn_text_label": {
-        "message": "Todo"
+        "message": "All"
     },
     "forgetAllSitesBtn_@title": {
-        "message": "Olvidar todas la personalizaciones para todas las páginas web"
+        "message": "Forget all customizations for all websites"
     },
     "setAsDefaultBtn_text_label": {
-        "message": "Predeterminar"
+        "message": "Set as default"
     },
     "setAsDefaultBtn_@title": {
-        "message": "Establecer los ajustes actuales como predeterminados para todos los sitios web sin ajustes personalizados"
+        "message": "Set current settings as a default for all websites w\/o custom settings"
     },
     "applyBtn_text_label": {
-        "message": "Aplicar"
+        "message": "Apply"
     },
     "applyBtn_@title": {
-        "message": "Aplicar y guardar ajustes actuales para esta página web"
+        "message": "Apply and save current settings for this website"
     },
     "closeBtn_text_label": {
-        "message": "Cerrar"
+        "message": "Close"
     },
     "closeBtn_@title": {
-        "message": "Cerrar ventana emergente y descartar todos los cambios no guardados"
+        "message": "Close popup and discard all unsaved changes"
     },
     "rateLink_@tooltip": {
-        "message": "Puntuar esta extensión"
+        "message": "Rate this extension"
     },
     "emailLink_@tooltip": {
-        "message": "Enviar email al desarrollador"
+        "message": "Send email to the developer"
     },
     "bugReportLink_@tooltip": {
-        "message": "Reportar error"
+        "message": "Report a bug"
     },
     "changeLogLink_@tooltip": {
-        "message": "Lista de cambios"
+        "message": "Changelog"
     },
     "colorSchemeImportSuccessMessage": {
-        "message": "$imported_color_schemes_count$ esquemas de color han sido importados con éxito desde archivos.\nLos esquemas de color importados están marcados con el símbolo $edit_mark$ y serán eliminados con el cierre de la ventana emergente a no ser que guarde cada uno.\nPara guardar el esquema de color importado selecciónelo en la lista desplegable [Esquema de color actual] y pulse el botón [Guardar].",
+        "message": "$imported_color_schemes_count$ color schemes have been successfully imported from the files.\nImported color schemes are marked with a $edit_mark$ symbol and will be deleted with the popup closure unless you save each of them.\nTo save imported color scheme select it in the [Current color scheme] dropdown list and press [Save] button.",
         "placeholders": {
             "imported_color_schemes_count": {
                 "content": "$1"
@@ -547,7 +547,7 @@
         }
     },
     "colorSchemeSaveConfirmationMessage": {
-        "message": "Está a punto de actualizar el esquema de color [$color_scheme_for_edit_name$] con los ajustes actuales de la ventana emergente y el nombre [$color_scheme_name$]. ¿Está seguro que quiere continuar?",
+        "message": "You are about to update color scheme [$color_scheme_for_edit_name$] with current popup settings and a name [$color_scheme_name$]. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -558,13 +558,13 @@
         }
     },
     "colorSchemeSaveSuccessMessage": {
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
+        "message": "Done. It will take effect after page refresh."
     },
     "colorSchemeSaveFailureMessage": {
-        "message": "Error al actualizar el esquema de color.\n"
+        "message": "Color scheme update failed.\n"
     },
     "colorSchemeDeleteConfirmationMessage": {
-        "message": "Está a punto de eliminar el esquema de color [$color_scheme_for_edit_name$].\nBorrar esquemas de color del sistema solo eliminará los cambios del esquema de color especificado. No hay forma de eliminar completamente ningún esquema de color del sistema. ¿Estás seguro que quieres continuar?",
+        "message": "You are about to delete color scheme [$color_scheme_for_edit_name$].\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -572,117 +572,117 @@
         }
     },
     "colorSchemeDeleteSuccessMessage": {
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
+        "message": "Done. It will take effect after page refresh."
     },
     "colorSchemeDeleteFailureMessage": {
-        "message": "Error al borrar el esquema de color.\n"
+        "message": "Color scheme deletion failed.\n"
     },
     "forgetAllConfirmationMessage": {
-        "message": "Todos los ajustes y esquemas de color personalizados que haya realizado serán borrados! ¿Seguro que quiere continuar?"
+        "message": "All the settings and custom color schemes you have ever made will be deleted! Are you sure want to continue?"
     },
     "forgetAllSuccessMessage": {
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
+        "message": "Done. It will take effect after page refresh."
     },
     "forgetAllFailureMessage": {
-        "message": "Error al borrar los ajustes de los sitios web.\n"
+        "message": "All websites settings deletion failed.\n"
     },
     "forgetThisSuccessMessage": {
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
+        "message": "Done. It will take effect after page refresh."
     },
     "forgetThisFailureMessage": {
-        "message": "Error al borrar los ajustes del sitio actual.\n"
+        "message": "Current site settings deletion failed.\n"
     },
     "setAsDefaultFailureMessage": {
-        "message": "Error al aplicar los ajustes predeterminados.\n"
+        "message": "Default settings application failed.\n"
     },
     "applyOnPageFailureMessage": {
-        "message": "Error al aplicar los ajustes. Refresca la página y intentalo de nuevo.\n"
+        "message": "Settings application failed. Refresh the page and try again.\n"
     },
     "toggleExtensionFailureMessage": {
-        "message": "Interruptor de extensión falló. Reinicie todas las ventanas del navegador y vuelva a intentarlo.\n"
+        "message": "Extension toggle switching failed. Restart all browser windows and try again.\n"
     },
     "syncChangeSuccessMessage": {
-        "message": "Los cambios se han aplicado con éxito.\nEs posible que deba refrescar la página para ver los cambios."
+        "message": "Changes have been successfully applied.\nYou might need to refresh the page to see the changes."
     },
     "syncChangeFailureMessage": {
-        "message": "Error al cambiar los ajustes de sincronización.\n"
+        "message": "Failed to change settings sync option.\n"
     },
     "introduction_html_content": {
-        "message": "<h3>Introducción</h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Para\n        <span>activar</span> o\n        <span>desactivar</span> una extensión completamente pulse el interruptor en la esquina superior derecha.\n    </run>\n    <run class=\"intro intro-host\">\n        Puede cambiar una página web en particular entre\n        <span>lista negra</span> y\n        <span>lista blanca</span>\n        pulsando en su etiqueta en la barra de la cabecera.\n    </run>\n</p>\n<p class=\"intro intro-select-scheme no-lines\">\n    Puede elegir uno de los\n    <span>esquemas de color predefinidos</span> desde la lista desplegable en el panel derecho y usarlo fuera de la extensión.\n</p>\n<p class=\"intro intro-tabs no-lines\">\n    Además de esto, puede\n    <span>ajustar</span> su esquema elegido como desee. Para ello tiene todos los ajustes en las pestañas del panel izquierdo.\n    Cualquier cambio que haya hecho será aplicado inmediatamente pero solo en la ventana emergente para que pueda probar tranquilamente.\n</p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        Para asignar los ajustes elegidos a la\n        <span>página web actual</span> pulse el botón\n        <q>Aplicar</q>\n        en el panel derecho.\n    </run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        También puede\n        <span>añadir su esquema</span> a la lista de esquemas de color predefinidos para usarlos en cualquier otra página web.\n    </run>\n</p>\n<p class=\"intro intro-default no-lines\">\n    Si quiere establecer los ajustes actuales como\n    <span>ajustes por defecto</span> para todas las páginas web pulse el botón\n    <q>Predeterminar</q> en el panel derecho.\n</p>\n<p class=\"intro intro-help no-lines\">\n    Puede encontrar\n    <span>más ayuda</span> en el foro de soporte, leer tutoriales o realizar preguntas.\n</p>"
+        "message": "<h3>Introduction<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        To\n        <span>enable<\/span> or\n        <span>disable<\/span> an entire extension switch the toggle button in the top-right corner.\n    <\/run>\n    <run class=\"intro intro-host\">\n        You also can toggle any particular website between\n        <span>blacklist<\/span> and\n        <span>whitelist<\/span>\n        by clicking on its label on the popup header bar.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    You can choose one of the\n    <span>predefined color schemes<\/span> from the drop-down list on the right pane and use it off the shelf.\n<\/p>\n<p class=\"intro intro-tabs\">\n    Apart from that you can\n    <span>adjust<\/span> your chosen scheme as you wish. For this purpose you have all the settings in the tabs on the left pane.\n    Any changes you would have made will be immediately applied but only on the popup so you can safely play with it.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        To assign the settings of your preference to the\n        <span>current website<\/span> press\n        <q>Apply<\/q>\n        button on the right pane.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Or you can\n        <span>add your scheme<\/span> to the list of the predefined color schemes for futher use on any other website.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    If you want to set up current settings as a\n    <span>default settings<\/span> for all websites press\n    <q>Set as default<\/q> button on the right pane.\n<\/p>\n<p class=\"intro intro-help\">\n    You can find\n    <span>more help<\/span> on the support forum, read existing tutorials or ask a new question.\n<\/p>"
     },
     "shortcut_text_lable": {
-        "message": "Atajo"
+        "message": "Shortcut"
     },
     "colorSchemeName_Custom": {
-        "message": "Personalizado"
+        "message": "Custom"
     },
     "colorSchemeName_New": {
-        "message": "Nuevo esquema de colores"
+        "message": "New color scheme"
     },
     "localStorageOverrideConfirmationMessage": {
-        "message": "Tu almacenamiento de ajustes local ya contiene datos.\n¿Quieres sobrescribirlos con los datos del almacenamiento (nube) sincronizado y perder los datos sobrescritos?"
+        "message": "Your local settings storage already contains some data.\nDo you want to override it with data from the sync (cloud) storage\nand lose the overridden data?"
     },
     "syncStorageOverrideConfirmationMessage": {
-        "message": "Tu almacenamiento (nube) de ajustes sincronizado ya contiene datos.\n¿Quieres sobrescribirlos con los datos del almacenamiento local y perder los datos sobrescritos?"
+        "message": "Your sync (cloud) settings storage already contains some data.\nDo you want to override it with data from the local storage\nand lose the overridden data?"
     },
     "backgroundExample_text_label": {
-        "message": "Ejemplos de los fondos"
+        "message": "Background examples"
     },
     "backgroundExample_@title": {
-        "message": "Ejemplo de procesado de diferentes colores de fondo"
+        "message": "Example of different background colors processing"
     },
     "smallBackgroundImageExample_@title": {
-        "message": "Ejemplo de procesado de imágenes de fondo pequeñas.\nSi el fondo principal es muy oscuro las imágenes de fondo pequeñas son invertidas.\nEn este caso [Brillo] de las imágenes de fondo no les está afectando."
+        "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case [Brightness] of background images is not affecting them."
     },
     "smallBackgroundImageExample_text_label": {
-        "message": "Ejemplo de las imágenes pequeño de fondo"
+        "message": "Small background images example"
     },
     "scrollbarExample_text_label": {
-        "message": "Ejemplo de la barra de desplazamiento"
+        "message": "Scrollbar example"
     },
     "scrollbarExample_@title": {
-        "message": "Ejemplo de barra de desplazamiento estilizada"
+        "message": "Example of styled scrollbars"
     },
     "buttonExample_text_label": {
-        "message": "Ejemplo de los botones"
+        "message": "Button examples"
     },
     "buttonExample_@title": {
-        "message": "Ejemplo de procesado de diferentes colores de botones"
+        "message": "Example of different buttons colors processing"
     },
     "borderExample_@title": {
-        "message": "Ejemplo de procesado de diferentes colores de bordes"
+        "message": "Example of different border colors processing"
     },
     "borderExample_text_label": {
-        "message": "Ejemplo de los bordes"
+        "message": "Border examples"
     },
     "backgroundExampleOriginal_@title": {
-        "message": "Colores de fondo originales procesados encima"
+        "message": "Original background colors being processed above"
     },
     "borderExampleOriginal_@title": {
-        "message": "Colores de borde originales procesados a la izquierda"
+        "message": "Original border colors being processed on the left"
     },
     "smallBackgroundImageExampleOriginal_@title": {
-        "message": "Colores de imágenes de fondo originales procesados encima"
+        "message": "Original small background images being processed above"
     },
     "firefoxNoSupportScrollbar_html_error_message": {
-        "message": "El estilizado de la barra de desplazamiento <br/> no es compatible con Firefox <br/><br/>"
+        "message": "Scrollbar's styling <br\/> is not supported by Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
-        "message": "Ayuda a traducir Midnight Lizard a otros idiomas"
+        "message": "Help translate Midnight Lizard\ninto other languages"
     },
     "popupDisconnected_html_error_message": {
-        "message": "<h1>Midnight Lizard no puede conectar a esta página</h1>\n<span>por alguna de las siguientes razones</span>\n<br/>\n<ul>\n    <li>\n        El navegador no permite ejecutar extensiones en esta página<br/>\n        (p. ej. Web Store, Ajustes, Nueva Pestaña)\n    </li><br/>\n    <li>\n        [Midnight Lizard] ha sido actualizado o acaba de instalarse<br/>\n        por tanto es necesario actualizar la página\n    </li><br/>\n    <li>\n        La página actual representa un archivo local,<br/>\n        pero no has dado permiso a [Midnight Lizard] para procesar archivos locales\n    </li><br/>\n</ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    AVISO<br/>\n    Midnight Lizard es una extensión por tanto no puede cambiar el color de la pestañas y de las barras de herramientas.\n    Para ello necesitas instalar/cambiar un tema del navegador personalizado.\n</em>"
+        "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br\/>\n        (e.g. Web Store, Settings, New Tab)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page is represented by a local file,<br\/>\n        but you have not allowed [Midnight Lizard] to process local files\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install\/change a custom browser theme.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
-        "message": "Ejemplo de procesado de diferentes colores de fondo con contraste incrementado.\nEl contraste depende del tamaño del elemento, por tanto en la página puede verse diferente."
+        "message": "Example of different background colors processing with increased contrast.\nContrast depends on an element size so on the real page it might look different."
     },
     "backgroundExampleWithoutContrast_@title": {
-        "message": "Ejemplo de procesado de diferentes colores de fondo sin cambios de contraste."
+        "message": "Example of different background colors processing with no contrast changes."
     },
     "applyEffectsOnInaccessibleExternalContent_@title": {
-        "message": "Aplicar efectos en contenido externo si no son accesibles para el procesado correspondiente.\nVídeos embebidos, noticias, comentarios y otras partes de diferentes páginas web incluidas en la página actual son ejemplos de contenido externo.\nSi está usando un esquema de color oscuro, el contenido externo será invertido."
+        "message": "Apply effects on external content if it can't be accessed for proper processing.\nEmbedded videos, news feeds, comments and other parts from different websites included in the current page are examples of an external content.\nIf you are using a dark color scheme then external content will be inverted."
     },
     "applyEffectsOnInaccessibleExternalContent_text_label": {
-        "message": "Aplicar efectos a contenido inaccesible"
+        "message": "Apply effects on inaccessible content"
     }
 }
