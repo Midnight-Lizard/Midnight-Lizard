@@ -25,6 +25,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter:"]):not([style*="d-image"]) {
         filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
     }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.ml-ignore),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
@@ -98,6 +99,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="option"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg):not(.ml-ignore):not(#imp),
