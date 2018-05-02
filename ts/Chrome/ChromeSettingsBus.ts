@@ -43,10 +43,6 @@ namespace Chrome
                                     this._onCurrentSettingsRequested.raise(sendResponse);
                                     break;
 
-                                case Action.DeleteSettings:
-                                    this._onSettingsDeletionRequested.raise(sendResponse);
-                                    break;
-
                                 default:
                                     break;
                             }
@@ -64,6 +60,10 @@ namespace Chrome
 
                             case Action.ZoomChanged:
                                 this._onZoomChanged.raise(sendResponse, request.zoom);
+                                break;
+
+                            case Action.DeleteSettings:
+                                this._onSettingsDeletionRequested.raise(sendResponse);
                                 break;
 
                             default:
