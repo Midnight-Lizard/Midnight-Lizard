@@ -201,7 +201,7 @@ namespace MidnightLizard.Colors
     {
         protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null
         {
-            if (tag.parentElement && tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement === tag instanceof tag.ownerDocument.defaultView.HTMLElement)
+            if (tag.parentElement && tag.parentElement instanceof HTMLElement === tag instanceof HTMLElement)
             {
                 if (tag.parentElement.mlTextShadow)
                 {
@@ -281,11 +281,11 @@ namespace MidnightLizard.Colors
         protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null 
         {
             if (tag.parentElement && (tag.isPseudo ||
-                tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement === tag instanceof tag.ownerDocument.defaultView.HTMLElement) &&
-                !(tag instanceof tag.ownerDocument.defaultView.HTMLTableElement ||
-                    tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement ||
-                    tag instanceof tag.ownerDocument.defaultView.HTMLTableRowElement ||
-                    tag instanceof tag.ownerDocument.defaultView.HTMLTableSectionElement))
+                tag.parentElement instanceof HTMLElement === tag instanceof HTMLElement) &&
+                !(tag instanceof HTMLTableElement ||
+                    tag instanceof HTMLTableCellElement ||
+                    tag instanceof HTMLTableRowElement ||
+                    tag instanceof HTMLTableSectionElement))
             {
                 if (tag.parentElement!.mlColor)
                 {
@@ -299,7 +299,7 @@ namespace MidnightLizard.Colors
                         tag.parentElement!.mlColor!.inheritedColor === rgbStr ||
                         tag.parentElement!.mlColor!.intendedColor === rgbStr)
                     {
-                        const ns = tag instanceof SVGElement || tag instanceof tag.ownerDocument.defaultView.SVGElement ? ContentScript.USP.svg : ContentScript.USP.htm;
+                        const ns = tag instanceof SVGElement ? ContentScript.USP.svg : ContentScript.USP.htm;
                         if (!tag.style.getPropertyValue(ns.css.fntColor))
                         {
                             inheritedColor = Object.assign({}, tag.parentElement!.mlColor!);

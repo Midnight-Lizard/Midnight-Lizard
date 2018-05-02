@@ -314,8 +314,8 @@ namespace MidnightLizard.ContentScript
             {
                 if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
                 {
-                    if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement ||
-                        tag instanceof tag.ownerDocument.defaultView.HTMLCanvasElement ||
+                    if (tag instanceof HTMLIFrameElement ||
+                        tag instanceof HTMLCanvasElement ||
                         this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         return true;
@@ -376,12 +376,12 @@ namespace MidnightLizard.ContentScript
             }
             if (checked)
             {
-                if (tag instanceof tag.ownerDocument.defaultView.HTMLInputElement)
+                if (tag instanceof HTMLInputElement)
                 {
                     dom.addEventListener(tag, "input", this._boundUserActionHandler);
                     dom.addEventListener(tag, "change", this._boundUserActionHandler);
                 }
-                else if (tag instanceof tag.ownerDocument.defaultView.HTMLLabelElement && tag.htmlFor)
+                else if (tag instanceof HTMLLabelElement && tag.htmlFor)
                 {
                     const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
                     if (checkBox)
@@ -406,7 +406,7 @@ namespace MidnightLizard.ContentScript
         protected onUserHover(eArg: Event)
         {
             const tag = eArg.currentTarget as HTMLElement;
-            const eventTargets = tag instanceof tag.ownerDocument.defaultView.HTMLTableCellElement
+            const eventTargets = tag instanceof HTMLTableCellElement
                 ? tag.parentElement!.children : [tag];
             for (let target of eventTargets)
             {
@@ -500,7 +500,7 @@ namespace MidnightLizard.ContentScript
             changedElements.forEach(tag =>
             {
                 let needReCalculation = false, value: string | null | undefined;
-                const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
                 value = tag.style.getPropertyValue(ns.css.bgrColor);
                 if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
@@ -660,16 +660,16 @@ namespace MidnightLizard.ContentScript
                 for (let tag of allTags)
                 {
                     tag.rowNumber = rowNumber++;
-                    isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
+                    isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        isLink = tag instanceof tag.ownerDocument.defaultView.HTMLAnchorElement;
+                        isLink = tag instanceof HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                         hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img) ||
-                            tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement;
+                            tag instanceof HTMLIFrameElement;
                     }
 
                     if (isVisible)
@@ -756,7 +756,7 @@ namespace MidnightLizard.ContentScript
                                 !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
                                 tag.mlColor.reason === Colors.ColorReason.Inherited &&
                                 tag.mlColor.intendedColor && tag.computedStyle &&
-                                tag.mlColor.intendedColor !== (tag instanceof tag.ownerDocument.defaultView.HTMLElement
+                                tag.mlColor.intendedColor !== (tag instanceof HTMLElement
                                     ? tag.computedStyle!.color
                                     : tag!.computedStyle!.fill));
 
@@ -765,7 +765,7 @@ namespace MidnightLizard.ContentScript
                                 dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
                                 brokenColorTags.forEach(tag =>
                                 {
-                                    const ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                                    const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
                                     const newColor = Object.assign({}, tag.mlColor!);
                                     newColor.base = dProc._app.isDebug ? tag.mlColor : null
                                     newColor.reason = Colors.ColorReason.FixedInheritance;
@@ -789,7 +789,7 @@ namespace MidnightLizard.ContentScript
                                 tag.ownerDocument.defaultView && tag.mlBgColor &&
                                 !tag.mlBgColor.color && tag.computedStyle &&
                                 tag.mlBgColor.reason === Colors.ColorReason.Parent &&
-                                tag instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                                tag instanceof HTMLElement &&
                                 tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
                                 !tag.hasAttribute("fixed")
                             );
@@ -1004,8 +1004,8 @@ namespace MidnightLizard.ContentScript
             {
                 let bgColor;
                 let doc = tag.ownerDocument;
-                let isSvg = tag instanceof doc.defaultView.SVGElement &&
-                    tag.parentElement instanceof doc.defaultView.SVGElement;
+                let isSvg = tag instanceof SVGElement &&
+                    tag.parentElement instanceof SVGElement;
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
                 if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
@@ -1101,11 +1101,11 @@ namespace MidnightLizard.ContentScript
 
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
-            if (tag.mlBgColor || tag instanceof tag.ownerDocument.defaultView.Element && (
+            if (tag.mlBgColor || tag instanceof Element && (
                 lastProcMode === Settings.ProcessingMode.Simplified ||
                 this._settingsManager.isSimple))
             {
-                let ns = tag instanceof tag.ownerDocument.defaultView.SVGElement ? USP.svg : USP.htm;
+                let ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
                 delete tag.mlBgColor;
                 delete tag.mlColor;
@@ -1114,7 +1114,7 @@ namespace MidnightLizard.ContentScript
                 delete tag.rect;
                 delete tag.selectors;
                 delete tag.path;
-                if (tag instanceof tag.ownerDocument.defaultView.HTMLIFrameElement)
+                if (tag instanceof HTMLIFrameElement)
                 {
                     delete tag.mlInaccessible;
                 }
@@ -1222,7 +1222,7 @@ namespace MidnightLizard.ContentScript
         protected checkElement(tag: any)
         {
             return tag.isChecked =
-                (tag instanceof Element || tag!.ownerDocument && tag!.ownerDocument.defaultView && tag instanceof tag!.ownerDocument.defaultView.Element) &&
+                (tag instanceof Element || tag!.ownerDocument && tag!.ownerDocument.defaultView && tag instanceof Element) &&
                 !tag.mlBgColor && !!tag.tagName && !tag.mlIgnore && !!(tag as HTMLElement).style;
         }
 
@@ -1233,13 +1233,13 @@ namespace MidnightLizard.ContentScript
             {
                 const doc = tag.ownerDocument, roomRules = new RoomRules(),
                     bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
-                    isButton = tag instanceof doc.defaultView.HTMLButtonElement ||
-                        tag instanceof doc.defaultView.HTMLInputElement &&
+                    isButton = tag instanceof HTMLButtonElement ||
+                        tag instanceof HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
                         isRealElement(tag) && tag.getAttribute("role") === "button",
                     isTable =
-                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
-                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;;
+                        tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
+                        tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;;
 
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
@@ -1258,13 +1258,13 @@ namespace MidnightLizard.ContentScript
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
 
-                if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
+                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
                 {
                     //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
 
-                if (tag instanceof doc.defaultView.HTMLCanvasElement ||
-                    tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
+                if (tag instanceof HTMLCanvasElement ||
+                    tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
                     this._isPdf && tag instanceof HTMLEmbedElement)
                 {
                     this.processInaccessibleTextContent(tag, roomRules);
@@ -1286,23 +1286,23 @@ namespace MidnightLizard.ContentScript
                 let doc = tag.ownerDocument;
                 let isSmall, bgInverted;
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
-                let isSvg = tag instanceof doc.defaultView.SVGElement,
-                    isSvgText = tag instanceof doc.defaultView.SVGTextContentElement,
-                    isLink = tag instanceof doc.defaultView.HTMLAnchorElement,
-                    isButton = tag instanceof doc.defaultView.HTMLButtonElement ||
-                        tag instanceof doc.defaultView.HTMLInputElement &&
+                let isSvg = tag instanceof SVGElement,
+                    isSvgText = tag instanceof SVGTextContentElement,
+                    isLink = tag instanceof HTMLAnchorElement,
+                    isButton = tag instanceof HTMLButtonElement ||
+                        tag instanceof HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
                         isRealElement(tag) && tag.getAttribute("role") === "button",
                     isTable =
-                        tag instanceof doc.defaultView.HTMLTableElement || tag instanceof doc.defaultView.HTMLTableCellElement ||
-                        tag instanceof doc.defaultView.HTMLTableRowElement || tag instanceof doc.defaultView.HTMLTableSectionElement;
+                        tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
+                        tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;
                 let ns = isSvg ? USP.svg : USP.htm;
                 let beforePseudoElement: PseudoElement | undefined, afterPseudoElement: PseudoElement | undefined;
 
-                if (!isButton && tag instanceof doc.defaultView.HTMLLabelElement && tag.htmlFor)
+                if (!isButton && tag instanceof HTMLLabelElement && tag.htmlFor)
                 {
                     const labeledElement = doc.getElementById(tag.htmlFor);
-                    isButton = labeledElement instanceof doc.defaultView.HTMLInputElement &&
+                    isButton = labeledElement instanceof HTMLInputElement &&
                         labeledElement.type === "file";
                 }
 
@@ -1313,7 +1313,7 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                if (tag instanceof doc.defaultView.HTMLIFrameElement && !tag.mlInaccessible)
+                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
                 {
                     //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
                 }
@@ -1466,11 +1466,11 @@ namespace MidnightLizard.ContentScript
                     if (!isSvg || isSvgText)
                     {
                         if (isLink || !isSvg && ( //tag.isPseudo &&
-                            tag.parentElement instanceof doc.defaultView.HTMLAnchorElement ||
+                            tag.parentElement instanceof HTMLAnchorElement ||
                             tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
                         {
                             roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                            if (!(tag instanceof doc.defaultView.HTMLFontElement))
+                            if (!(tag instanceof HTMLFontElement))
                             {
                                 roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                                 roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
@@ -1524,8 +1524,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof doc.defaultView.HTMLCanvasElement ||
-                        tag instanceof doc.defaultView.HTMLIFrameElement && tag.mlInaccessible ||
+                    if (tag instanceof HTMLCanvasElement ||
+                        tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
                         this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         this.processInaccessibleTextContent(tag, roomRules);
@@ -2237,7 +2237,7 @@ namespace MidnightLizard.ContentScript
 
         public applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, _ns?: any)
         {
-            let isSvg = tag instanceof tag.ownerDocument.defaultView.SVGElement;
+            let isSvg = tag instanceof SVGElement;
             let applyBgPromise;
             let ns = USP.htm;
             ns = _ns || (isSvg ? USP.svg : USP.htm);
@@ -2329,7 +2329,7 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                 if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    tag.parentElement instanceof tag.ownerDocument.defaultView.HTMLElement &&
+                    tag.parentElement instanceof HTMLElement &&
                     tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
                 {
                     tag.style.setProperty(this._css.originalColor, tag.originalColor!);

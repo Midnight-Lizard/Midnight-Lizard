@@ -178,11 +178,11 @@ namespace MidnightLizard.ContentScript
                     }
                     if (cssRules)
                     {
-                        if (cssRules.length > 0 && (sheet instanceof doc.defaultView.CSSMediaRule || !sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
+                        if (cssRules.length > 0 && (sheet instanceof CSSMediaRule || !sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
                             for (let rule of Array.from(cssRules) as CSSRule[])
                             {
-                                if (rule instanceof doc.defaultView.CSSStyleRule)
+                                if (rule instanceof CSSStyleRule)
                                 {
                                     let style = rule.style;
                                     if (this._styleProps.some(p => !!style.getPropertyValue(p.prop)))
@@ -190,11 +190,11 @@ namespace MidnightLizard.ContentScript
                                         styleRules.push(rule);
                                     }
                                 }
-                                else if (rule instanceof doc.defaultView.CSSImportRule)
+                                else if (rule instanceof CSSImportRule)
                                 {
                                     styleSheets.push(rule.styleSheet);
                                 }
-                                else if (rule instanceof doc.defaultView.CSSMediaRule)
+                                else if (rule instanceof CSSMediaRule)
                                 {
                                     if (this.validateMediaQuery(doc, rule.conditionText))
                                     {
@@ -204,10 +204,10 @@ namespace MidnightLizard.ContentScript
                             }
                         }
                     }
-                    else if (sheet instanceof doc.defaultView.CSSStyleSheet && sheet.href) // external css
+                    else if (sheet instanceof CSSStyleSheet && sheet.href) // external css
                     {
                         if (this._app.browserName === Settings.BrowserName.Firefox &&
-                            sheet.ownerNode && sheet.ownerNode instanceof doc.defaultView.HTMLElement)
+                            sheet.ownerNode && sheet.ownerNode instanceof HTMLElement)
                         {
                             sheet.ownerNode.setAttribute("ml-external", sheet.href);
                         }

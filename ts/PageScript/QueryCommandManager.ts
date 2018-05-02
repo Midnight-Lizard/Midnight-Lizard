@@ -22,7 +22,7 @@ namespace MidnightLizard.PageScript
                     let range = selection.getRangeAt(0);
                     if (range && range.commonAncestorContainer)
                     {
-                        let curPosElement: HTMLElement | null = range.commonAncestorContainer instanceof (doc.defaultView as any).HTMLElement
+                        let curPosElement: HTMLElement | null = range.commonAncestorContainer instanceof HTMLElement
                             ? range.commonAncestorContainer as HTMLElement
                             : range.commonAncestorContainer.parentElement
                         if (curPosElement)

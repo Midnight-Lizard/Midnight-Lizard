@@ -193,7 +193,7 @@ namespace MidnightLizard.ContentScript
         {
             let mutation = mutations
                 .find(m => Array.prototype.slice.call(m.addedNodes)
-                    .find((x: Node) => x instanceof x.ownerDocument.defaultView.HTMLStyleElement && !x.mlIgnore));
+                    .find((x: Node) => x instanceof HTMLStyleElement && !x.mlIgnore));
             if (mutation)
             {
                 this._styleSheetProcessor.processDocumentStyleSheets(mutation.target.ownerDocument);
