@@ -10,6 +10,8 @@ namespace Chrome
         protected readonly _isDebug: boolean;
         get isDebug() { return this._isDebug }
 
+        get isInIncognitoMode() { return chrome.extension.inIncognitoContext }
+
         get currentLocale()
         {
             return chrome.runtime.getManifest().current_locale || "en";

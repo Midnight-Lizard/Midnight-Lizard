@@ -14,7 +14,8 @@ namespace MidnightLizard.ContentScript
     {
         protected readonly _html: HTMLHtmlElement;
         constructor(doc: Document,
-            protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+            protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            protected readonly _app: MidnightLizard.Settings.IApplicationSettings)
         {
             let localStorageIsAccessable = true;
             try
@@ -26,7 +27,7 @@ namespace MidnightLizard.ContentScript
                 localStorageIsAccessable = false;
             }
             this._html = doc.documentElement as HTMLHtmlElement;
-            if (localStorageIsAccessable)
+            if (localStorageIsAccessable && !this._app.isInIncognitoMode)
             {
                 this.applyCachedSettings();
                 _settingsManager.onSettingsInitialized.addListener(
