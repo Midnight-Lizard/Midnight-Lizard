@@ -87,3 +87,7 @@ input[type="text"]::placeholder {
     --ml-no-invert:true;
     --ml-backgroundimage:Image;
 }
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .hdtAEI:not(imp):not(.ml):not(#imp):before {
+    background-color: transparent!important;
+}
