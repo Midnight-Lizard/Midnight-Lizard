@@ -1363,9 +1363,10 @@ namespace MidnightLizard.ContentScript
                     }
                     if (!isSvgText)
                     {
-                        if (tag instanceof doc.defaultView.SVGElement)
+                        if (tag instanceof SVGElement)
                         {
-                            if (this.tagIsSmall(tag) && tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
+                            if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement) &&
+                                tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                             {
                                 isSvgText = true;
                                 roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
