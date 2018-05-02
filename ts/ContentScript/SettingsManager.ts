@@ -82,8 +82,14 @@ namespace MidnightLizard.ContentScript
 
         protected async onSettingsDeletionRequested(response: AnyResponse)
         {
-            response(null);
-            await this._storageManager.remove(this._settingsKey);
+            if (window.top === window.self)
+            {
+                response(null);
+            }
+            if (this.isSelfMaintainable)
+            {
+                await this._storageManager.remove(this._settingsKey);
+            }
         }
 
         protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings?: Settings.ColorScheme): void
@@ -108,38 +114,50 @@ namespace MidnightLizard.ContentScript
             response(this._currentSettings);
         }
 
+        /** it is main frame or child frame w/o access to the main frame */
+        protected get isSelfMaintainable()
+        {
+            let hasAccessToMainFrame: boolean = true;
+            try { const test = window.top.location.hostname }
+            catch { hasAccessToMainFrame = false; }
+            return window.top === window.self || !hasAccessToMainFrame;
+        }
+
         protected saveCurrentSettings()
         {
-            if (this._currentSettings.colorSchemeId === "default")
+            if (this.isSelfMaintainable)
             {
-                this._storageManager.remove(this._settingsKey);
-                this._storageManager.set({
-                    [this._settingsKey]: {
-                        runOnThisSite: this._currentSettings.runOnThisSite
-                    }
-                });
-            }
-            else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
-            {
-                this._storageManager.set({
-                    [this._settingsKey]: {
-                        colorSchemeId: this._currentSettings.colorSchemeId,
-                        runOnThisSite: this._currentSettings.runOnThisSite
-                    }
-                });
-            }
-            else
-            {
-                let setting: Settings.ColorSchemePropertyName;
-                const forSave: Settings.ColorScheme = {} as any;
-                for (setting in this._currentSettings)
+                if (this._currentSettings.colorSchemeId === "default")
                 {
-                    if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
-                    {
-                        forSave[setting] = this._currentSettings[setting];
-                    }
+                    this._storageManager.remove(this._settingsKey);
+                    this._storageManager.set({
+                        [this._settingsKey]: {
+                            runOnThisSite: this._currentSettings.runOnThisSite
+                        }
+                    });
                 }
-                this._storageManager.set({ [this._settingsKey]: forSave });
+                else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
+                {
+                    this._storageManager.set({
+                        [this._settingsKey]: {
+                            colorSchemeId: this._currentSettings.colorSchemeId,
+                            runOnThisSite: this._currentSettings.runOnThisSite
+                        }
+                    });
+                }
+                else
+                {
+                    let setting: Settings.ColorSchemePropertyName;
+                    const forSave: Settings.ColorScheme = {} as any;
+                    for (setting in this._currentSettings)
+                    {
+                        if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
+                        {
+                            forSave[setting] = this._currentSettings[setting];
+                        }
+                    }
+                    this._storageManager.set({ [this._settingsKey]: forSave });
+                }
             }
         }
 
