@@ -180,7 +180,7 @@
         "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "textSelectionHue_html_label": {
-        "message": "Text <span id=\"selection\">selection</span> hue"
+        "message": "Text <span id=\"selection\">selection<\/span> hue"
     },
     "textSelectionHue_@title": {
         "message": "Text selection hue"
@@ -509,7 +509,7 @@
         "message": "Set as default"
     },
     "setAsDefaultBtn_@title": {
-        "message": "Set current settings as a default for all websites w/o custom settings"
+        "message": "Set current settings as a default for all websites w\/o custom settings"
     },
     "applyBtn_text_label": {
         "message": "Apply"
@@ -608,7 +608,7 @@
         "message": "Failed to change settings sync option.\n"
     },
     "introduction_html_content": {
-        "message": "<h3>Introduction</h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        To\n        <span>enable</span> or\n        <span>disable</span> an entire extension switch the toggle button in the top-right corner.\n    </run>\n    <run class=\"intro intro-host\">\n        You also can toggle any particular website between\n        <span>blacklist</span> and\n        <span>whitelist</span>\n        by clicking on its label on the popup header bar.\n    </run>\n</p>\n<p class=\"intro intro-select-scheme\">\n    You can choose one of the\n    <span>predefined color schemes</span> from the drop-down list on the right pane and use it off the shelf.\n</p>\n<p class=\"intro intro-tabs\">\n    Apart from that you can\n    <span>adjust</span> your chosen scheme as you wish. For this purpose you have all the settings in the tabs on the left pane.\n    Any changes you would have made will be immediately applied but only on the popup so you can safely play with it.\n</p>\n<p>\n    <run class=\"intro intro-apply\">\n        To assign the settings of your preference to the\n        <span>current website</span> press\n        <q>Apply</q>\n        button on the right pane.\n    </run>\n    <run class=\"intro intro-edit-schemes\">\n        Or you can\n        <span>add your scheme</span> to the list of the predefined color schemes for futher use on any other website.\n    </run>\n</p>\n<p class=\"intro intro-default\">\n    If you want to set up current settings as a\n    <span>default settings</span> for all websites press\n    <q>Set as default</q> button on the right pane.\n</p>\n<p class=\"intro intro-help\">\n    You can find\n    <span>more help</span> on the support forum, read existing tutorials or ask a new question.\n</p>"
+        "message": "<h3>Introduction<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        To\n        <span>enable<\/span> or\n        <span>disable<\/span> an entire extension switch the toggle button in the top-right corner.\n    <\/run>\n    <run class=\"intro intro-host\">\n        You also can toggle any particular website between\n        <span>blacklist<\/span> and\n        <span>whitelist<\/span>\n        by clicking on its label on the popup header bar.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    You can choose one of the\n    <span>predefined color schemes<\/span> from the drop-down list on the right pane and use it off the shelf.\n<\/p>\n<p class=\"intro intro-tabs\">\n    Apart from that you can\n    <span>adjust<\/span> your chosen scheme as you wish. For this purpose you have all the settings in the tabs on the left pane.\n    Any changes you would have made will be immediately applied but only on the popup so you can safely play with it.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        To assign the settings of your preference to the\n        <span>current website<\/span> press\n        <q>Apply<\/q>\n        button on the right pane.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Or you can\n        <span>add your scheme<\/span> to the list of the predefined color schemes for futher use on any other website.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    If you want to set up current settings as a\n    <span>default settings<\/span> for all websites press\n    <q>Set as default<\/q> button on the right pane.\n<\/p>\n<p class=\"intro intro-help\">\n    You can find\n    <span>more help<\/span> on the support forum, read existing tutorials or ask a new question.\n<\/p>"
     },
     "shortcut_text_lable": {
         "message": "Shortcut"
@@ -665,13 +665,13 @@
         "message": "Original small background images being processed above"
     },
     "firefoxNoSupportScrollbar_html_error_message": {
-        "message": "Scrollbar's styling <br/> is not supported by Firefox <br/><br/>"
+        "message": "Scrollbar's styling <br\/> is not supported by Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
         "message": "Help translate Midnight Lizard\ninto other languages"
     },
     "popupDisconnected_html_error_message": {
-        "message": "<h1>Midnight Lizard cannot connect to this page</h1>\n<span>because of one of the following reasons</span>\n<br/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br/>\n        (e.g. Web Store, Settings, New Tab)\n    </li><br/>\n    <li>\n        [Midnight Lizard] has been updated or just installed<br/>\n        so page needs to be refreshed\n    </li><br/>\n    <li>\n        Current page is represented by a local file,<br/>\n        but you have not allowed [Midnight Lizard] to process local files\n    </li><br/>\n</ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install/change a custom browser theme.\n</em>"
+        "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br\/>\n        (e.g. Web Store, Settings, New Tab)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page is represented by a local file,<br\/>\n        but you have not allowed [Midnight Lizard] to process local files\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install\/change a custom browser theme.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "message": "Example of different background colors processing with increased contrast.\nContrast depends on an element size so on the real page it might look different."
