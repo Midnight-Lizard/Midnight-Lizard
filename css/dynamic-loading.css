@@ -20,7 +20,9 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
         background-color: transparent !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not([transition]) {
-        transition: all 0s ease 0s !important;
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        transition: none !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter:"]):not([style*="d-image"]) {
         filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important

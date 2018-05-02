@@ -1095,15 +1095,16 @@ namespace MidnightLizard.ContentScript
             this.setDocumentProcessingStage(doc, ProcessingStage.None);
             for (let tag of doc.getElementsByTagName("*"))
             {
-                this.restoreElementColors(tag as HTMLElement, this._settingsManager.isActive, lastProcMode);
+                this.restoreElementColors(tag as HTMLElement,
+                    this._settingsManager.isActive && this._settingsManager.isComplex,
+                    lastProcMode);
             }
         }
 
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
-            if (tag.mlBgColor || tag instanceof Element && (
-                lastProcMode === Settings.ProcessingMode.Simplified ||
-                this._settingsManager.isSimple))
+            if (tag.mlBgColor || tag instanceof Element &&
+                lastProcMode === Settings.ProcessingMode.Simplified)
             {
                 let ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
@@ -1193,7 +1194,7 @@ namespace MidnightLizard.ContentScript
                     if (hasForbiddenTransition)
                     {
                         tag.originalTransitionDuration = tag.style.transitionDuration;
-                        tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important)
+                        tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important);
                     }
                 }
                 if (tag.hasAttribute(this._css.transition))
