@@ -1,7 +1,7 @@
 {
     "empty": {
         "description": "keep it empty",
-        "message": ""
+        "message": "empty"
     },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
