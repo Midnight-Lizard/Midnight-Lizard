@@ -134,6 +134,14 @@
         "description": "text on the label",
         "message": "Paski przewijania"
     },
+    "isEnabledOn_text_label": {
+        "description": "text on the label",
+        "message": "WŁ"
+    },
+    "isEnabledOff_text_label": {
+        "description": "text on the label",
+        "message": "WYŁ"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
         "message": "Ten"
@@ -153,5 +161,8 @@
     "closeBtn_text_label": {
         "description": "text on the label",
         "message": "Zamknij"
+    },
+    "colorSchemeName_Custom": {
+        "message": "Własne"
     }
 }
