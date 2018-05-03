@@ -138,6 +138,10 @@
         "description": "text on the label",
         "message": "WŁ"
     },
+    "isEnabledOff_text_label": {
+        "description": "text on the label",
+        "message": "WYŁ"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
         "message": "Ten"
