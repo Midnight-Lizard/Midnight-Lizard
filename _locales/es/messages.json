@@ -6,6 +6,7 @@
         "message": "Alternar la extensión global"
     },
     "runOnThisSite_text_label": {
+        "description": "label",
         "message": "Ejecutar en el sitio web actual"
     },
     "runOnThisSite_@title": {
