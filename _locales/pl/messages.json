@@ -126,6 +126,14 @@
         "description": "text on the label",
         "message": "Obrazki"
     },
+    "backgroundImagesTab_text_label": {
+        "description": "text on the label",
+        "message": "Obrazki tła"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "text on the label",
+        "message": "Paski przewijania"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
         "message": "Ten"
