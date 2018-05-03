@@ -13,12 +13,15 @@
         "message": "Run [Midnight Lizard] on this website."
     },
     "restoreColorsOnCopy_text_label": {
+        "description": "text on the label",
         "message": "Restore original colors on copy"
     },
     "restoreColorsOnCopy_@title": {
+        "description": "text on the tooltip",
         "message": "Restore original colors before copying content from the page"
     },
     "restoreColorsOnPrint_text_label": {
+        "description": "text on the label",
         "message": "Restore original colors on print"
     },
     "restoreColorsOnPrint_@title": {
