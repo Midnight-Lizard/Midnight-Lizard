@@ -114,6 +114,18 @@
         "description": "text on the label",
         "message": "Tekst"
     },
+    "linkTab_text_label": {
+        "description": "text on the label",
+        "message": "Odnośniki"
+    },
+    "borderTab_text_label": {
+        "description": "text on the label",
+        "message": "Obramowanie"
+    },
+    "imagesTab_text_label": {
+        "description": "text on the label",
+        "message": "Obrazki"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
         "message": "Ten"
