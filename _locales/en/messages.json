@@ -569,10 +569,6 @@
         "description": "text on the label",
         "message": "ON"
     },
-    "isEnabledOff_text_label": {
-        "description": "text on the label",
-        "message": "OFFX"
-    },
     "syncSettings_text_label": {
         "description": "text on the label",
         "message": "Sync settings across your devices"
