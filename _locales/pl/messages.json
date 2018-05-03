@@ -14,32 +14,96 @@
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
     },
+    "backgroundContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
+    },
+    "buttonContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
     },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
     },
+    "textContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
     "linkSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
+    },
+    "linkContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
     },
     "borderSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
     },
+    "borderContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
     },
     "backgroundImageSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
     },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
+    },
     "scrollbarSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
+    },
+    "applyBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zastosuj"
+    },
+    "closeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zamknij"
     }
 }
