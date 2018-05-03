@@ -13,12 +13,15 @@
         "message": "Ejecutar [Midnight Lizard] en el sitio web actual."
     },
     "restoreColorsOnCopy_text_label": {
+        "description": "text on the label",
         "message": "Restaurar los colores originales al copiar"
     },
     "restoreColorsOnCopy_@title": {
+        "description": "text on the tooltip",
         "message": "Restaurar los colores originales antes de copiar contenido de la página"
     },
     "restoreColorsOnPrint_text_label": {
+        "description": "text on the label",
         "message": "Restaurar los colores originales al imprimir"
     },
     "restoreColorsOnPrint_@title": {
