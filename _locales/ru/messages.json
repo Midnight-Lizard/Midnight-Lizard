@@ -13,12 +13,15 @@
         "message": "Следует ли [Midnight Lizard] обрабатывать текущий сайт"
     },
     "restoreColorsOnCopy_text_label": {
+        "description": "text on the label",
         "message": "Восстановить цвета при копировании"
     },
     "restoreColorsOnCopy_@title": {
+        "description": "text on the tooltip",
         "message": "Восстанавливать первоначальные цвета перед копированием содержимого со страниц текущего сайта"
     },
     "restoreColorsOnPrint_text_label": {
+        "description": "text on the label",
         "message": "Восстановить цвета при печати"
     },
     "restoreColorsOnPrint_@title": {
