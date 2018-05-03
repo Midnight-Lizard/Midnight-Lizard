@@ -1,8 +1,168 @@
 {
+    "empty": {
+        "description": "keep it empty",
+        "message": "empty"
+    },
     "appDesc": {
+        "description": "extension description displayed in the Web Store",
         "message": "Dostosuje kontrast, jasność i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny."
     },
     "globalToggleKey": {
         "message": "Globalny przełącznik rozszerzenia"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "backgroundContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "buttonContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
+    "textSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "textContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "linkContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "borderContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica jasności"
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "text on the label",
+        "message": "Kontrast"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "text on the label",
+        "message": "Jasność"
+    },
+    "commonTab_text_label": {
+        "description": "text on the label",
+        "message": "Ogólne"
+    },
+    "backgroundTab_text_label": {
+        "description": "text on the label",
+        "message": "Tło"
+    },
+    "buttonsTab_text_label": {
+        "description": "text on the label",
+        "message": "Przyciski"
+    },
+    "textTab_text_label": {
+        "description": "text on the label",
+        "message": "Tekst"
+    },
+    "linkTab_text_label": {
+        "description": "text on the label",
+        "message": "Odnośniki"
+    },
+    "borderTab_text_label": {
+        "description": "text on the label",
+        "message": "Obramowanie"
+    },
+    "imagesTab_text_label": {
+        "description": "text on the label",
+        "message": "Obrazki"
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "text on the label",
+        "message": "Obrazki tła"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "text on the label",
+        "message": "Paski przewijania"
+    },
+    "isEnabledOn_text_label": {
+        "description": "text on the label",
+        "message": "WŁ"
+    },
+    "isEnabledOff_text_label": {
+        "description": "text on the label",
+        "message": "WYŁ"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "text on the label",
+        "message": "Ten"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "text on the label",
+        "message": "Cały"
+    },
+    "setAsDefaultBtn_text_label": {
+        "description": "text on the label",
+        "message": "Ustaw domyślną"
+    },
+    "applyBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zastosuj"
+    },
+    "closeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zamknij"
+    },
+    "colorSchemeName_Custom": {
+        "message": "Własny"
     }
 }
