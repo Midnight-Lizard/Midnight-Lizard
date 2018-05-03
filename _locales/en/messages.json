@@ -54,17 +54,9 @@
         "description": "text on the label",
         "message": "Activation time"
     },
-    "scheduleStartHour_@title": {
-        "description": "text on the tooltip\/hint",
-        "message": "Extension will be active on the current website only starting from this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
-    },
     "scheduleFinishHour_text_label": {
         "description": "text on the label",
         "message": "Deactivation time"
-    },
-    "scheduleFinishHour_@title": {
-        "description": "text on the tooltip\/hint",
-        "message": "Extension will be active on the current website only until this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "blueFilter_text_label": {
         "description": "text on the label",
