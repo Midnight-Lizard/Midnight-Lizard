@@ -1,5 +1,6 @@
 {
     "appDesc": {
+        "description": "extension description displayed in the Web Store",
         "message": "Настраивает контрастность, яркость и цвета на всех сайтах. Переводит страницы в ночной режим или режим слабой освещенности."
     },
     "globalToggleKey": {
@@ -10,6 +11,7 @@
         "message": "Обрабатывать этот веб-сайт"
     },
     "runOnThisSite_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Следует ли [Midnight Lizard] обрабатывать текущий сайт"
     },
     "restoreColorsOnCopy_text_label": {
@@ -25,447 +27,594 @@
         "message": "Восстановить цвета при печати"
     },
     "restoreColorsOnPrint_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Восстанавливать первоначальные цвета перед печатью содержимого страниц текущего сайта"
     },
     "changeBrowserTheme_text_label": {
+        "description": "text on the label",
         "message": "Менять тему браузера"
     },
     "changeBrowserTheme_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Приводить тему браузера в соответствие с цветовой схемой сайта на текущей вкладке.\nПоддерживается только на Firefox."
     },
     "useDefaultSchedule_text_label": {
+        "description": "text on the label",
         "message": "Использовать базовое расписание"
     },
     "useDefaultSchedule_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Базовым является расписание из настроек по умолчанию.\nЕсли Вы хотите использовать одно расписание на всех сайтах, то необходимо выбрать цветовую схему [Default], поменять расписание в ней и затем нажать кнопку [В умолчания], чтобы обновить цветовую схему по умолчанию."
     },
     "scheduleStartHour_text_label": {
+        "description": "text on the label",
         "message": "Время включения"
     },
     "scheduleStartHour_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Расширение будет обрабатывать текущий сайт, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
     },
     "scheduleFinishHour_text_label": {
+        "description": "text on the label",
         "message": "Время отключения"
     },
     "scheduleFinishHour_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Расширение будет обрабатывать текущий сайт только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
     },
     "blueFilter_text_label": {
+        "description": "text on the label",
         "message": "Плотность фильтра синего цвета"
     },
     "blueFilter_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет интенсивность фильтра синего цвета.\nФильтр синего цвета заменяет синий цвет на красный.\nФильтр синего цвета способствует плавному переходу человека\nиз фазы бодрствования в фазу сна, поэтому рекомендован\nв вечернее время."
     },
     "backgroundSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел насыщенности цветом"
     },
     "backgroundSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел насыщенности цветом фона страницы"
     },
     "backgroundContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "backgroundContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет интенсивность распределения цветов фона по яркости.\nЧем выше контраст, тем сильнее будет изменена яркость у схожих фоновых цветов, чтобы добиться большего отличия между ними.\nПри расчете контраста учитывается размер элементов и порядок их появления на странице, поэтому результат во многом носит случайных характер."
     },
     "backgroundLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел яркости"
     },
     "backgroundLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости фона страницы"
     },
     "backgroundGraySaturation_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность замены серого"
     },
     "backgroundGraySaturation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом фона после замены серого, белого и черного на базовый оттенок фона."
     },
     "backgroundHueGravity_text_label": {
+        "description": "text on the label",
         "message": "Притяжение базового оттенка"
     },
     "backgroundHueGravity_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет как сильно базовый оттенок фона будет притягивать к себе все остальные оттенки.\nЧем сильнее притяжение, тем более похожими будут другие оттенки на базовый.\nНа подверженные притяжению оттенки будет влиять предел насыщенности цветом.\nЕсли установлена опция [Заменять все], то притяжение действовать не будет."
     },
     "backgroundGrayHue_text_label": {
+        "description": "text on the label",
         "message": "Базовый оттенок"
     },
     "backgroundGrayHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок, который будет использован, чтобы заменить серый, белый и черный оттенки фона.\nЕсли установлена опция [Заменять все], то все оттенки фона будут заменены на базовый.\nПри увеличении притяжения базового оттенка, он будет оказывать все большее влияние на все остальные оттенки фона."
     },
     "backgroundReplaceAllHues_text_label": {
+        "description": "text on the label",
         "message": "Заменять все"
     },
     "backgroundReplaceAllHues_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Заменять все оттенки фона на выбранный базовый оттенок.\nИначе только белый, серый и черный оттенки будут заменены.\nНасыщенность замены серого будет использована, если выбрана замена всех оттенков.\nПолностью отменяет притяжение базового оттенка."
     },
     "buttonSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел насыщенности цветом"
     },
     "buttonSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел насыщенности цветом фона кнопок"
     },
     "buttonContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "buttonContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Минимальное отличие по яркости между фоном кнопок и фоном вокруг них."
     },
     "buttonLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел яркости"
     },
     "buttonLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости фона кнопок"
     },
     "buttonGraySaturation_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность замены серого"
     },
     "buttonGraySaturation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом фона кнопок после замены серого, белого и черного на базовый оттенок фона кнопок."
     },
     "buttonHueGravity_text_label": {
+        "description": "text on the label",
         "message": "Притяжение базового оттенка"
     },
     "buttonHueGravity_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет как сильно базовый оттенок фона кнопок будет притягивать к себе все остальные оттенки.\nЧем сильнее притяжение, тем более похожими будут другие оттенки на базовый.\nНа подверженные притяжению оттенки будет влиять предел насыщенности цветом.\nЕсли установлена опция [Заменять все], то притяжение действовать не будет."
     },
     "buttonGrayHue_text_label": {
+        "description": "text on the label",
         "message": "Базовый оттенок"
     },
     "buttonGrayHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок, который будет использован, чтобы заменить серый, белый и черный оттенки фона кнопок.\nЕсли установлена опция [Заменять все], то все оттенки фона кнопок будут заменены на базовый.\nПри увеличении притяжения базового оттенка, он будет оказывать все большее влияние на все остальные оттенки фона кнопок."
     },
     "buttonReplaceAllHues_text_label": {
+        "description": "text on the label",
         "message": "Заменять все"
     },
     "buttonReplaceAllHues_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Заменять все оттенки фона кнопок на выбранный базовый оттенок.\nИначе только белый, серый и черный оттенки будут заменены.\nНасыщенность замены серого будет использована, если выбрана замена всех оттенков.\nПолностью отменяет притяжение базового оттенка."
     },
     "textSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел насыщенности цветом"
     },
     "textSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел насыщенности цветом текста"
     },
     "textContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "textContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Минимальное отличие по яркости между текстом и его фоном."
     },
     "textLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел яркости"
     },
     "textLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости текста"
     },
     "textGraySaturation_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность замены серого"
     },
     "textGraySaturation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом текста после замены серого, белого и черного на базовый оттенок текста."
     },
     "textHueGravity_text_label": {
+        "description": "text on the label",
         "message": "Притяжение базового оттенка"
     },
     "textHueGravity_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет как сильно базовый оттенок текста будет притягивать к себе все остальные оттенки.\nЧем сильнее притяжение, тем более похожими будут другие оттенки на базовый.\nНа подверженные притяжению оттенки будет влиять предел насыщенности цветом.\nЕсли установлена опция [Заменять все], то притяжение действовать не будет."
     },
     "textGrayHue_text_label": {
+        "description": "text on the label",
         "message": "Базовый оттенок"
     },
     "textGrayHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок, который будет использован, чтобы заменить серый, белый и черный оттенки текста.\nЕсли установлена опция [Заменять все], то все оттенки текста будут заменены на базовый.\nПри увеличении притяжения базового оттенка, он будет оказывать все большее влияние на все остальные оттенки текста."
     },
     "textReplaceAllHues_text_label": {
+        "description": "text on the label",
         "message": "Заменить все"
     },
     "textReplaceAllHues_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Заменять все оттенки текста на выбранный базовый оттенок.\nИначе только белый, серый и черный оттенки будут заменены.\nНасыщенность замены серого будет использована, если выбрана замена всех оттенков.\nПолностью отменяет притяжение базового оттенка."
     },
     "textSelectionHue_html_label": {
         "message": "Оттенок <span id=\"selection\">выделения<\/span> текста"
     },
     "textSelectionHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок фона выделенного текста"
     },
     "linkSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел насыщенности цветом"
     },
     "linkSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел насыщенности цветом ссылок"
     },
     "linkContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "linkContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Минимальное отличие по яркости между ссылками и фоном вокруг них."
     },
     "linkLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел яркости"
     },
     "linkLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости ссылок"
     },
     "linkDefaultSaturation_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность базовой замены"
     },
     "linkDefaultSaturation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом ссылок после замены нормального для данной страницы оттенка ссылок на базовый оттенок."
     },
     "linkHueGravity_text_label": {
+        "description": "text on the label",
         "message": "Притяжение базового оттенка"
     },
     "linkHueGravity_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет как сильно базовый оттенок ссылок будет притягивать к себе все остальные оттенки.\nЧем сильнее притяжение, тем более похожими будут другие оттенки на базовый.\nНа подверженные притяжению оттенки будет влиять предел насыщенности цветом.\nЕсли установлена опция [Заменять все], то притяжение действовать не будет."
     },
     "linkDefaultHue_text_label": {
+        "description": "text on the label",
         "message": "Базовый оттенок"
     },
     "linkDefaultHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок, который будет использован, чтобы заменить нормальный для данной страницы оттенок ссылок.\nЕсли ссылки имеют серый, белый или черный оттенки, то они будут обрабатываться по правилам обычного текста.\nЕсли установлена опция [Заменять все], то все оттенки ссылок будут заменены на базовый.\nПри увеличении притяжения базового оттенка, он будет оказывать все большее влияние на все остальные оттенки ссылок."
     },
     "linkReplaceAllHues_text_label": {
+        "description": "text on the label",
         "message": "Заменить все"
     },
     "linkReplaceAllHues_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Заменять все оттенки ссылок на выбранный базовый оттенок.\nИначе только нормальный для данной страницы оттенок будет заменен.\nНасыщенность базовой замены будет использована, если выбрана замена всех оттенков.\nПолностью отменяет притяжение базового оттенка."
     },
     "linkVisitedHue_text_label": {
+        "description": "text on the label",
         "message": "Оттенок посещенных ссылок"
     },
     "linkVisitedHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок посещенных ссылок.\nВсе первоначальные оттенки посещенных ссылок заменяются на указанный оттенок."
     },
     "borderSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел насыщенности цветом"
     },
     "borderSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел насыщенности цветом границ и линий"
     },
     "borderContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "borderContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Минимальное отличие по яркости между границами и фоном внутри них."
     },
     "borderLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Предел яркости"
     },
     "borderLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости границ и линий"
     },
     "borderGraySaturation_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность замены серого"
     },
     "borderGraySaturation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом границ и линий после замены серого, белого и черного на базовый оттенок границ и линий."
     },
     "borderHueGravity_text_label": {
+        "description": "text on the label",
         "message": "Притяжение базового оттенка"
     },
     "borderHueGravity_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет как сильно базовый оттенок границ и линий будет притягивать к себе все остальные оттенки.\nЧем сильнее притяжение, тем более похожими будут другие оттенки на базовый.\nНа подверженные притяжению оттенки будет влиять предел насыщенности цветом.\nЕсли установлена опция [Заменять все], то притяжение действовать не будет."
     },
     "borderGrayHue_text_label": {
+        "description": "text on the label",
         "message": "Базовый оттенок"
     },
     "borderGrayHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок, который будет использован, чтобы заменить серый, белый и черный оттенки границ и линий.\nЕсли установлена опция [Заменять все], то все оттенки границ и линий будут заменены на базовый.\nПри увеличении притяжения базового оттенка, он будет оказывать все большее влияние на все остальные оттенки границ и линий."
     },
     "borderReplaceAllHues_text_label": {
+        "description": "text on the label",
         "message": "Заменить все"
     },
     "borderReplaceAllHues_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Заменять все оттенки границ и линий на выбранный базовый оттенок.\nИначе только белый, серый и черный оттенки будут заменены.\nНасыщенность замены серого будет использована, если выбрана замена всех оттенков.\nПолностью отменяет притяжение базового оттенка."
     },
     "imageSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность цветом"
     },
     "imageSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Устанавливает насыщенность цветом для всех изображений на странице"
     },
     "imageLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Яркость"
     },
     "imageLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Устанавливает яркость всех изображений на странице"
     },
     "imageExample_text_label": {
+        "description": "text on the label",
         "message": "Пример изображения"
     },
     "imageExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример изображения, подверженного установленным эффектам."
     },
     "useImageHoverAnimation_text_label": {
+        "description": "text on the label",
         "message": "Восстановить при наведении мыши"
     },
     "useImageHoverAnimation_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Восстановить первоначальное состояние изображения при наведении мыши на него"
     },
     "backgroundImageSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность цветом"
     },
     "backgroundImageSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом фоновых изображений"
     },
     "backgroundImageLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Яркость"
     },
     "backgroundImageLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Предел яркости фоновых изображений.\nЧем меньше изображение - тем оно ярче."
     },
     "backgroundImageExample_text_label": {
+        "description": "text on the label",
         "message": "Пример фонового изображения"
     },
     "backgroundImageExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример фонового изображения под воздействием установленных эффектов"
     },
     "backgroundImageExampleText_text_label": {
+        "description": "text on the label",
         "message": "Пример"
     },
     "backgroundImageExampleText_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Если на сайте есть фоновые изображения с текстом поверх них, то текст может быть плохо виден.\nПонизьте яркость фоновых изображений так, чтобы текст можно было легко прочесть."
     },
     "scrollbarSaturationLimit_text_label": {
+        "description": "text on the label",
         "message": "Насыщенность цветом"
     },
     "scrollbarSaturationLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Насыщенность цветом бегунка и кнопок полосы прокрутки"
     },
     "scrollbarContrast_text_label": {
+        "description": "text on the label",
         "message": "Контраст"
     },
     "scrollbarContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Минимальное отличие по яркости между бегунком полосы прокрутки и основным фоном страницы"
     },
     "scrollbarLightnessLimit_text_label": {
+        "description": "text on the label",
         "message": "Яркость"
     },
     "scrollbarLightnessLimit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Яркость бегунка и кнопок полосы прокрутки"
     },
     "scrollbarSize_text_label": {
+        "description": "text on the label",
         "message": "Ширина"
     },
     "scrollbarSize_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Ширина полосы прокрутки"
     },
     "scrollbarGrayHue_text_label": {
+        "description": "text on the label",
         "message": "Основной оттенок"
     },
     "scrollbarGrayHue_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Оттенок бегунка и кнопок полосы прокрутки"
     },
     "commonTab_text_label": {
+        "description": "text on the label",
         "message": "Общие"
     },
     "commonTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "     Общие настройки\n―――――――――――――――――――\n На данной вкладке находятся общие для всей страницы настройки."
     },
     "backgroundTab_text_label": {
+        "description": "text on the label",
         "message": "Фон"
     },
     "backgroundTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "    Настройки цвета фона\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие как будут обрабатываться цвета фонов на странице."
     },
     "buttonsTab_text_label": {
+        "description": "text on the label",
         "message": "Кнопки"
     },
     "buttonsTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "    Настройки фона кнопок\n―――――――――――――――――――\n На этой вкладке находятся настройки фонов кнопок и других элементов, играющих эту роль."
     },
     "textTab_text_label": {
+        "description": "text on the label",
         "message": "Текст"
     },
     "textTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "    Настройки цвета текста\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех текстовых элементов, приравненных к тексту маленьких фоновых изображений и ссылок, имеющих белый, серый, черный или совпадающий с текстом оттенок."
     },
     "linkTab_text_label": {
+        "description": "text on the label",
         "message": "Ссылки"
     },
     "linkTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "   Настройки цвета гиперссылок\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех гиперссылок на странице, кроме ссылок, имеющих белый, серый, черный или совпадающий с текстом оттенок."
     },
     "borderTab_text_label": {
+        "description": "text on the label",
         "message": "Границы"
     },
     "borderTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "    Настройки цвета границ\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех границ и линий на странице."
     },
     "imagesTab_text_label": {
+        "description": "text on the label",
         "message": "Изображения"
     },
     "imagesTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": " Настройки обработки изображений\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие, как будут обрабатываться все изображения на странице."
     },
     "backgroundImagesTab_text_label": {
+        "description": "text on the label",
         "message": "Картинки фона"
     },
     "backgroundImagesTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "  Настройки фоновых изображений\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие, как будут обрабатываться все фоновые изображения на странице.\n Фоновые изображения являются особым видом заливки фона элементов. Зачастую поверх фоновых изображений располагается текст."
     },
     "scrollbarsTab_text_label": {
+        "description": "text on the label",
         "message": "Прокрутки"
     },
     "scrollbarsTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "   Настройки полос прокрутки\n―――――――――――――――――――\n На этой вкладке находятся настройки отображения полос прокрутки.\nНастройка вида полос прокрутки не поддерживается в Firefox."
     },
     "settingsHeader_text_label": {
+        "description": "text on the label",
         "message": " – настройки для"
     },
     "hostState_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Переключатель между черным\nи белым списками"
     },
     "hostName_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "    Текущий сайт\n―――――――――――――――\n Кликните на название сайта, чтобы переключить его между черным и белым списками.\n Чтобы все сайты были в черном списке по умолчанию, добавьте один сайт в черный список, а затем нажмите [В умолчания], чтобы это стало умолчанием для всех новых сайтов."
     },
     "helpLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Форум поддержки"
     },
     "isEnabledSwitch_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Полностью включить или отключить расширение"
     },
     "isEnabledOn_text_label": {
+        "description": "text on the label",
         "message": "Вкл"
     },
     "isEnabledOff_text_label": {
+        "description": "text on the label",
         "message": "Вык"
     },
     "syncSettings_text_label": {
+        "description": "text on the label",
         "message": "Синхронизировать настройки"
     },
     "syncSettings_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Определяет необходимость синхронизации настроек расширения между всеми Вашими устройствами.\nЕсли синхронизация включена, то настройки для разных сайтов будут объединяться вместе, однако список созданных Вами цветовых схем будет перезаписываться каждым обновлением. Поэтому не стоит создавать новые цветовые схемы, когда устройство отключено от сети.\nДля того, чтобы использовать синхронизацию настроек расширения, необходимо ещё включить синхронизацию в настройках браузера."
     },
     "colorSchemeForEdit_text_label": {
+        "description": "text on the label",
         "message": "Редактируемая цветовая схема"
     },
     "colorSchemeForEdit_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Выберите цветовую схему для редактирования.\nВы можете как создавать новые, так и обновлять и удалять существующие цветовые схемы."
     },
     "colorSchemeName_text_label": {
+        "description": "text on the label",
         "message": "Название цветовой схемы"
     },
     "colorSchemeName_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Вы можете отредактировать название цветовой схемы."
     },
     "deleteColorSchemeBtn_text_label": {
+        "description": "text on the label",
         "message": "Удалить"
     },
     "deleteColorSchemeBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Удалить выбранную для редактирования цветовую схему."
     },
     "saveColorSchemeBtn_text_label": {
+        "description": "text on the label",
         "message": "Сохранить"
     },
     "saveColorSchemeBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Обновить выбранную для редактирования цветовую схему, используя текущие примененные на окно настроек параметры."
     },
     "exportColorSchemeBtn_text_label": {
+        "description": "text on the label",
         "message": "Выгрузить"
     },
     "exportColorSchemeBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Выгрузить в файл выбранную для редактирования цветовую схему [$color_scheme_for_edit$] под именем [$color_scheme_name$], заменив её настройки параметрами текущей примененной на окно настроек цветовой схемы [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
@@ -480,66 +629,87 @@
         }
     },
     "importColorSchemeBtn_text_label": {
+        "description": "text on the label",
         "message": "Загрузить"
     },
     "importColorSchemeBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Загрузить цветовую схему из файла"
     },
     "editSchemesTab_text_label": {
+        "description": "text on the label",
         "message": "Цветовые схемы"
     },
     "editSchemesTab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "  Редактирование цветовых схем\n―――――――――――――――――――\n На этой вкладке Вы можете как создавать новые, так и обновлять или удалять существующие цветовые схемы, используя параметры из цветовой схемы, примененной в данный момент на окне настроек.\n Вы можете отредактировать существующую цветовую схему в любой момент и изменения автоматически применятся на всех сайтах, где она используется, во время следующей перезагрузки страницы.\n Вы можете переопределить даже встроенные цветовые схемы. Однако их нельзя удалить - удаляется лишь информация о переопределении."
     },
     "currentColorScheme_text_label": {
+        "description": "text on the label",
         "message": "Текущая цвет. схема"
     },
     "currentColorScheme_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Выберите подходящую Вам цветовую схему"
     },
     "forgetThisSiteBtn_text_label": {
+        "description": "text on the label",
         "message": "Эту"
     },
     "forgetThisSiteBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Удалить настройки текущего сайта"
     },
     "forgetAllSitesBtn_text_label": {
+        "description": "text on the label",
         "message": "Все"
     },
     "forgetAllSitesBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Удалить все настройки и восстановить \"заводские\" параметры расширения"
     },
     "setAsDefaultBtn_text_label": {
+        "description": "text on the label",
         "message": "В умолчания"
     },
     "setAsDefaultBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Установить текущую цветовую схему, примененную на окне настроек, в качестве схемы по умолчанию для всех сайтов, у которых еще нет своей цветовой схемы."
     },
     "applyBtn_text_label": {
+        "description": "text on the label",
         "message": "Применить"
     },
     "applyBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Применить текущую цветовую схему на текущем сайте, переопределив для него схему по умолчанию."
     },
     "closeBtn_text_label": {
+        "description": "text on the label",
         "message": "Закрыть"
     },
     "closeBtn_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Закрыть окно настроек, отменив все несохраненные изменения."
     },
     "rateLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Оценить данное расширение"
     },
     "emailLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Отправить письмо разработчику"
     },
     "bugReportLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Зарегистрировать неисправность"
     },
     "changeLogLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Журнал изменений"
     },
     "colorSchemeImportSuccessMessage": {
+        "description": "text on the message box",
         "message": "Загружено $imported_color_schemes_count$ цветовых схем.\nВсе они помечены символом $edit_mark$ и будут удалены, если Вы не сохраните их.\nЧтобы сохранить загруженную цветовую схему, выберите её в списке [Текущая цвет. схема] и нажмите [Сохранить].",
         "placeholders": {
             "imported_color_schemes_count": {
@@ -551,6 +721,7 @@
         }
     },
     "colorSchemeSaveConfirmationMessage": {
+        "description": "text on the message box",
         "message": "Вы уверены, что хотите обновить цветовую схему [$color_scheme_for_edit_name$], используя параметры из примененной в данный момент на окне настроек схемы и название [$color_scheme_name$]?",
         "placeholders": {
             "color_scheme_for_edit_name": {
@@ -562,12 +733,15 @@
         }
     },
     "colorSchemeSaveSuccessMessage": {
+        "description": "text on the message box",
         "message": "Цветовая схема успешно сохранена. Изменения вступят в силу при следующем обновлении страницы, где предполагается использование этой схемы."
     },
     "colorSchemeSaveFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось сохранить цветовую схему.\n"
     },
     "colorSchemeDeleteConfirmationMessage": {
+        "description": "text on the message box",
         "message": "Вы уверены, что хотите удалить цветовую схему [$color_scheme_for_edit_name$]?\nЕсли это встроенная схема, то её нельзя полностью удалить - удалится только информация о переопределении.",
         "placeholders": {
             "color_scheme_for_edit_name": {
@@ -576,39 +750,51 @@
         }
     },
     "colorSchemeDeleteSuccessMessage": {
+        "description": "text on the message box",
         "message": "Цветовая схема успешно удалена. Изменения вступят в силу при следующем обновлении страницы, на которой ранее использовалась эта схема."
     },
     "colorSchemeDeleteFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось удалить цветовую схему.\n"
     },
     "forgetAllConfirmationMessage": {
+        "description": "text on the message box",
         "message": "Вы уверены, что хотите удалить все настройки всех сайтов и все цветовые схемы и восстановить \"заводские\" параметры расширения?"
     },
     "forgetAllSuccessMessage": {
+        "description": "text on the message box",
         "message": "Все настройки и цветовые схемы были удалены.\nВосстановлены \"заводские\" параметры расширения.\nИзменения вступят в силу при следующем обновлении страниц."
     },
     "forgetAllFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось удалить все настройки и вернуть \"заводские\" параметры расширения.\n"
     },
     "forgetThisSuccessMessage": {
+        "description": "text on the message box",
         "message": "Удаление настроек текущего сайта успешно завершено.\nИзменения вступят в силу при следующем обновлении страницы этого сайта."
     },
     "forgetThisFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось удалить настройки текущего сайта.\n"
     },
     "setAsDefaultFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось применить текущую схему в качестве схемы по умолчанию.\n"
     },
     "applyOnPageFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось применить цветовую схему на текущем сайте.\nОбновите страницу и повторите попытку.\nПожалуйста учтите, что при закрытии окна настроек будут удалены все несохраненные изменения.\nПодробности ошибки:\n"
     },
     "toggleExtensionFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось переключить расширение между состояниями включено и выключено.\nПопробуйте перезапустить все окна браузера и повторить попытку снова.\nПодробности ошибки:\n"
     },
     "syncChangeSuccessMessage": {
+        "description": "text on the message box",
         "message": "Изменение параметров синхронизации успешно завершено.\nВам может понадобится перезагрузить страницу, чтобы изменения вступили в силу."
     },
     "syncChangeFailureMessage": {
+        "description": "text on the message box",
         "message": "Не удалось изменить параметры синхронизации.\n"
     },
     "introduction_html_content": {
@@ -624,69 +810,91 @@
         "message": "Новая цветовая схема"
     },
     "localStorageOverrideConfirmationMessage": {
+        "description": "text on the message box",
         "message": "Ваше локальное хранилище настроек уже содержит некоторую информацию.\nХотите ли Вы перезаписать эту информацию данными из внешнего хранилища для синхронизации и потерять перезаписанные данные?"
     },
     "syncStorageOverrideConfirmationMessage": {
+        "description": "text on the message box",
         "message": "Ваше внешнее хранилище для синхронизации уже содержит некоторую информацию.\nХотите ли Вы перезаписать эту информацию данными из локального хранилища и потерять перезаписанные данные?"
     },
     "backgroundExample_text_label": {
+        "description": "text on the label",
         "message": "Пример цветных фонов"
     },
     "backgroundExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки фонов разного цвета"
     },
     "smallBackgroundImageExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки маленьких фоновых изображений.\nЕсли основной фон достаточно темный, то маленькие фоновые изображения инвертируются.\nВ этом случае на них не будет влиять [Яркость] фоновых изображений."
     },
     "smallBackgroundImageExample_text_label": {
+        "description": "text on the label",
         "message": "Пример маленьких фоновых картинок"
     },
     "scrollbarExample_text_label": {
+        "description": "text on the label",
         "message": "Пример полос прокрутки"
     },
     "scrollbarExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример результата обработки полос прокрутки"
     },
     "buttonExample_text_label": {
+        "description": "text on the label",
         "message": "Пример цветных кнопок"
     },
     "buttonExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки кнопок разного цвета"
     },
     "borderExample_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки линий разного цвета"
     },
     "borderExample_text_label": {
+        "description": "text on the label",
         "message": "Пример цветных линий"
     },
     "backgroundExampleOriginal_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Первоначальные фоновые цвета, обрабатываемые в примере выше"
     },
     "borderExampleOriginal_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Первоначальные цвета линий, обрабатываемые в примере слева"
     },
     "smallBackgroundImageExampleOriginal_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Первоначальные маленькие фоновые изображения, обрабатываемые в примере выше"
     },
     "firefoxNoSupportScrollbar_html_error_message": {
+        "description": "text on the message box",
         "message": "Стилизация полос прокрутки <br\/> не поддерживается в Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
         "message": "Помочь с переводом Midnight Lizard\nна другие языки"
     },
     "popupDisconnected_html_error_message": {
+        "description": "text on the message box",
         "message": "<h1>Midnight Lizard не подключен к этой странице<\/h1>\n<span>по одной из следующих причин:<\/span>\n<br\/>\n<ul>\n    <li>\n        Браузер запрещает запуск расширений на этой странице<br\/>\n        (Интернет-магазин расширений, Настройки, Новая вкладка...)\n    <\/li><br\/>\n    <li>\n        Midnight Lizard был обновлен или только что установлен,<br\/>\n        поэтому необходимо обновить страницу\n    <\/li><br\/>\n    <li>\n        Текущая страница является локальным файлом,<br\/>\n        но Вы не разрешили Midnight Lizard обрабатывать локальные файлы\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    ВНИМАНИЕ<br\/>\n    Midnight Lizard является расширением, поэтому не может менять цвета вкладок и панелей браузера.\n    Для этих целей Вам необходимо отдельно установить\/поменять тему браузера.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки фонов разного цвета с увеличением контрастности.\nКонтрастность зависит от размера элементов, поэтому в реальности результат может сильно отличаться."
     },
     "backgroundExampleWithoutContrast_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Пример обработки фонов разного цвета без увеличения контрастности."
     },
     "applyEffectsOnInaccessibleExternalContent_@title": {
+        "description": "text on the tooltip\/hint",
         "message": "Применить эффекты на внешнем содержимом, которое недоступно для полноценной обработки.\nПримерами внешнего содержимого являются встроенные видео, новостные ленты, комментарии и другие части, полученные не с текущего сайта.\nЕсли вы используете темную цветовую схему, то внешнее содержимое будет инвертировано."
     },
     "applyEffectsOnInaccessibleExternalContent_text_label": {
+        "description": "text on the label",
         "message": "Применить эффекты на недоступном"
     }
 }
