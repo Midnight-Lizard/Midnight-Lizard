@@ -1,4 +1,8 @@
 {
+    "empty": {
+        "description": "keep it empty",
+        "message": "empty"
+    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
