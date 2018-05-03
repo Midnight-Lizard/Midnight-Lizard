@@ -6,6 +6,7 @@
         "message": "Глобальный переключатель расширения"
     },
     "runOnThisSite_text_label": {
+        "description": "label",
         "message": "Обрабатывать этот веб-сайт"
     },
     "runOnThisSite_@title": {
