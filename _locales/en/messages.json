@@ -6,7 +6,7 @@
         "message": "Global extension toggle"
     },
     "runOnThisSite_text_label": {
-        "description": "label",
+        "description": "text on the label",
         "message": "Run on this website"
     },
     "runOnThisSite_@title": {
