@@ -98,6 +98,34 @@
         "description": "text on the label",
         "message": "Jasność"
     },
+    "commonTab_text_label": {
+        "description": "text on the label",
+        "message": "Ogólne"
+    },
+    "backgroundTab_text_label": {
+        "description": "text on the label",
+        "message": "Tło"
+    },
+    "buttonsTab_text_label": {
+        "description": "text on the label",
+        "message": "Przyciski"
+    },
+    "textTab_text_label": {
+        "description": "text on the label",
+        "message": "Tekst"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "text on the label",
+        "message": "Ten"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "text on the label",
+        "message": "Cały"
+    },
+    "setAsDefaultBtn_text_label": {
+        "description": "text on the label",
+        "message": "Ustaw domyślną"
+    },
     "applyBtn_text_label": {
         "description": "text on the label",
         "message": "Zastosuj"
