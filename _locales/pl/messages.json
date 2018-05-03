@@ -9,5 +9,37 @@
     },
     "globalToggleKey": {
         "message": "Globalny przełącznik rozszerzenia"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "textSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Granica nasycenia koloru"
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie koloru"
     }
 }
