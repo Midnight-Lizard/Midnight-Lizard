@@ -569,6 +569,10 @@
         "description": "text on the label",
         "message": "Act"
     },
+    "isEnabledOff_text_label": {
+        "description": "text on the label",
+        "message": "Des"
+    },
     "syncSettings_text_label": {
         "description": "text on the label",
         "message": "Sincronice la configuración"

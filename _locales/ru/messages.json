@@ -569,6 +569,10 @@
         "description": "text on the label",
         "message": "Вкл"
     },
+    "isEnabledOff_text_label": {
+        "description": "text on the label",
+        "message": "Вык"
+    },
     "syncSettings_text_label": {
         "description": "text on the label",
         "message": "Синхронизировать настройки"
