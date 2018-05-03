@@ -26,10 +26,6 @@
         "description": "text on the label",
         "message": "啟用時刻"
     },
-    "scheduleStartHour_@title": {
-        "description": "text on the tooltip\/hint",
-        "message": "擴展只會從此時刻啟用於當前的網站\n頁面應該在指定的時間間隔內重新載入以便日程安排生效"
-    },
     "scheduleFinishHour_text_label": {
         "description": "text on the label",
         "message": "停用時刻"
