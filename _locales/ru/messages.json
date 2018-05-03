@@ -54,6 +54,10 @@
         "description": "text on the label",
         "message": "Время включения"
     },
+    "scheduleStartHour_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Расширение будет обрабатывать текущий сайт, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
+    },
     "scheduleFinishHour_text_label": {
         "description": "text on the label",
         "message": "Время отключения"
