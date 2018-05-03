@@ -39,13 +39,13 @@
         "message": "Activation time"
     },
     "scheduleStartHour_@title": {
-        "message": "Extension will be active on the current website only starting from this time\nPage should be refreshed during the specified time lapse in order for schedule to take effect"
+        "message": "Extension will be active on the current website only starting from this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "scheduleFinishHour_text_label": {
         "message": "Deactivation time"
     },
     "scheduleFinishHour_@title": {
-        "message": "Extension will be active on the current website only until this time\nPage should be refreshed during the specified time lapse in order for schedule to take effect"
+        "message": "Extension will be active on the current website only until this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "blueFilter_text_label": {
         "message": "Blue filter intensity"
