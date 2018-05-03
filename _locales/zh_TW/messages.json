@@ -4,5 +4,24 @@
     },
     "globalToggleKey": {
         "message": "全局擴展程序切換"
+    },
+    "runOnThisSite_text_label": {
+        "description": "text on the label",
+        "message": "在此網頁作用"
+    },
+    "changeBrowserTheme_text_label": {
+        "message": "改變瀏覽器主題"
+    },
+    "changeBrowserTheme_@title": {
+        "message": "將瀏覽器主題調整為當前的配色方案。\n僅受 Firefox 支持。"
+    },
+    "scheduleStartHour_text_label": {
+        "message": "啟用時刻"
+    },
+    "scheduleStartHour_@title": {
+        "message": "擴展只會從此時刻啟用於當前的網站\n頁面應該在指定的時間間隔內重新載入以便日程安排生效"
+    },
+    "scheduleFinishHour_text_label": {
+        "message": "停用時刻"
     }
 }
