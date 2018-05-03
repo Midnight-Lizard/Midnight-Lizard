@@ -571,7 +571,7 @@
     },
     "isEnabledOff_text_label": {
         "description": "text on the label",
-        "message": "OFF"
+        "message": "OFFX"
     },
     "syncSettings_text_label": {
         "description": "text on the label",
