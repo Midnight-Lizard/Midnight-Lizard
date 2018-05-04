@@ -892,13 +892,5 @@
     "backgroundExampleWithoutContrast_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Ejemplo de procesado de diferentes colores de fondo sin cambios de contraste."
-    },
-    "applyEffectsOnInaccessibleExternalContent_@title": {
-        "description": "text on the tooltip\/hint",
-        "message": "Aplicar efectos en contenido externo si no son accesibles para el procesado correspondiente.\nVídeos embebidos, noticias, comentarios y otras partes de diferentes páginas web incluidas en la página actual son ejemplos de contenido externo.\nSi está usando un esquema de color oscuro, el contenido externo será invertido."
-    },
-    "applyEffectsOnInaccessibleExternalContent_text_label": {
-        "description": "text on the label",
-        "message": "Aplicar efectos a contenido inaccesible"
     }
 }
