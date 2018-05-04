@@ -892,5 +892,21 @@
     "backgroundExampleWithoutContrast_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Ejemplo de procesado de diferentes colores de fondo sin cambios de contraste."
+    },
+    "mode_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Modo de procesamiento de páginas"
+    },
+    "mode_text_label": {
+        "description": "text on the label",
+        "message": "Modo de procesamiento"
+    },
+    "mode_simplified_text_label": {
+        "description": "text on the label",
+        "message": "Simplificado"
+    },
+    "mode_complex_text_label": {
+        "description": "text on the label",
+        "message": "Complejo"
     }
 }
