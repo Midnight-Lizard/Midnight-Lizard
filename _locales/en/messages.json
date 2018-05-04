@@ -112,7 +112,7 @@
     },
     "backgroundHueGravity_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "backgroundGrayHue_text_label": {
         "description": "text on the label",
@@ -168,7 +168,7 @@
     },
     "buttonHueGravity_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "buttonGrayHue_text_label": {
         "description": "text on the label",
@@ -224,7 +224,7 @@
     },
     "textHueGravity_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "textGrayHue_text_label": {
         "description": "text on the label",
@@ -351,7 +351,7 @@
     },
     "borderHueGravity_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "borderGrayHue_text_label": {
         "description": "text on the label",
