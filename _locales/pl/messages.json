@@ -286,6 +286,10 @@
         "description": "text on the label",
         "message": "Schemat kolorów do edycji"
     },
+    "colorSchemeName_text_label": {
+        "description": "text on the label",
+        "message": "Nazwa schematu kolorów"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "text on the label",
         "message": "Usuń"
@@ -332,6 +336,9 @@
     },
     "colorSchemeName_Custom": {
         "message": "Własny"
+    },
+    "colorSchemeName_New": {
+        "message": "Nowy schemat kolorów"
     },
     "backgroundExample_text_label": {
         "description": "text on the label",
