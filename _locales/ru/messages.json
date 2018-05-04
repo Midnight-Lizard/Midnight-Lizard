@@ -892,13 +892,5 @@
     "backgroundExampleWithoutContrast_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Пример обработки фонов разного цвета без увеличения контрастности."
-    },
-    "applyEffectsOnInaccessibleExternalContent_@title": {
-        "description": "text on the tooltip\/hint",
-        "message": "Применить эффекты на внешнем содержимом, которое недоступно для полноценной обработки.\nПримерами внешнего содержимого являются встроенные видео, новостные ленты, комментарии и другие части, полученные не с текущего сайта.\nЕсли вы используете темную цветовую схему, то внешнее содержимое будет инвертировано."
-    },
-    "applyEffectsOnInaccessibleExternalContent_text_label": {
-        "description": "text on the label",
-        "message": "Применить эффекты на недоступном"
     }
 }
