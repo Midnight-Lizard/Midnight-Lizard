@@ -134,13 +134,25 @@
         "description": "text on the label",
         "message": "Paski przewijania"
     },
+    "settingsHeader_text_label": {
+        "description": "text on the label",
+        "message": " – ustawienia dla"
+    },
     "isEnabledOn_text_label": {
         "description": "text on the label",
-        "message": "WŁ"
+        "message": "Wł"
     },
     "isEnabledOff_text_label": {
         "description": "text on the label",
-        "message": "WYŁ"
+        "message": "Wył"
+    },
+    "editSchemesTab_text_label": {
+        "description": "text on the label",
+        "message": "Schematy kolorów"
+    },
+    "currentColorScheme_text_label": {
+        "description": "text on the label",
+        "message": "Obecny schemat kolorów"
     },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
