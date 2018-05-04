@@ -68,7 +68,7 @@
     },
     "backgroundReplaceAllHues_text_label": {
         "description": "text on the label",
-        "message": "Zamień wszystkie"
+        "message": "Zmieniać każdy"
     },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
@@ -96,7 +96,7 @@
     },
     "buttonReplaceAllHues_text_label": {
         "description": "text on the label",
-        "message": "Zamień wszystkie"
+        "message": "Zmieniać każdy"
     },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
@@ -124,7 +124,7 @@
     },
     "textReplaceAllHues_text_label": {
         "description": "text on the label",
-        "message": "Zamień wszystkie"
+        "message": "Zmieniać każdy"
     },
     "linkSaturationLimit_text_label": {
         "description": "text on the label",
@@ -152,7 +152,7 @@
     },
     "linkReplaceAllHues_text_label": {
         "description": "text on the label",
-        "message": "Zamień wszystkie"
+        "message": "Zmieniać każdy"
     },
     "linkVisitedHue_text_label": {
         "description": "text on the label",
@@ -188,7 +188,7 @@
     },
     "borderReplaceAllHues_text_label": {
         "description": "text on the label",
-        "message": "Zamień wszystkie"
+        "message": "Zmieniać każdy"
     },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
