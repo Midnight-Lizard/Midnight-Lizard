@@ -26,6 +26,22 @@
         "description": "text on the label",
         "message": "Zmieniać motyw przeglądarki"
     },
+    "useDefaultSchedule_text_label": {
+        "description": "text on the label",
+        "message": "Używać domyślny rozkład"
+    },
+    "scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Czas aktywacji"
+    },
+    "scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Czas deaktywacji"
+    },
+    "blueFilter_text_label": {
+        "description": "text on the label",
+        "message": "Intensywność niebieskiego filtra"
+    },
     "backgroundSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -261,6 +277,14 @@
     "isEnabledOff_text_label": {
         "description": "text on the label",
         "message": "Wył"
+    },
+    "syncSettings_text_label": {
+        "description": "text on the label",
+        "message": "Synchronizować ustawienia"
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "text on the label",
+        "message": "Schemat kolorów do edycji"
     },
     "deleteColorSchemeBtn_text_label": {
         "description": "text on the label",
