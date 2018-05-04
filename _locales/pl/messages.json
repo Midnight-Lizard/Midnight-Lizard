@@ -22,6 +22,18 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "backgroundGraySaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie szarego tła"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "text on the label",
+        "message": "Grawitacja podstawowego odcieniu"
+    },
+    "backgroundGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
+    },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -33,6 +45,18 @@
     "buttonLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Granica jasności"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie szarych przycisków"
+    },
+    "buttonHueGravity_text_label": {
+        "description": "text on the label",
+        "message": "Grawitacja podstawowego odcieniu"
+    },
+    "buttonGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
     },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
@@ -46,6 +70,18 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "textGraySaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie szarego tekstu"
+    },
+    "textHueGravity_text_label": {
+        "description": "text on the label",
+        "message": "Grawitacja podstawowego odcieniu"
+    },
+    "textGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
+    },
     "linkSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -58,6 +94,22 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "linkHueGravity_text_label": {
+        "description": "text on the label",
+        "message": "Grawitacja podstawowego odcieniu"
+    },
+    "linkDefaultHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
+    },
+    "linkVisitedHue_text_label": {
+        "description": "text on the label",
+        "message": "Odcień odnośników odwiedzonych"
+    },
+    "linkVisitedHue_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Odcień odnośników odwiedzonych"
+    },
     "borderSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -69,6 +121,18 @@
     "borderLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Granica jasności"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie szarego obramowania"
+    },
+    "borderHueGravity_text_label": {
+        "description": "text on the label",
+        "message": "Grawitacja podstawowego odcieniu"
+    },
+    "borderGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
     },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
@@ -134,13 +198,25 @@
         "description": "text on the label",
         "message": "Paski przewijania"
     },
+    "settingsHeader_text_label": {
+        "description": "text on the label",
+        "message": " – ustawienia dla"
+    },
     "isEnabledOn_text_label": {
         "description": "text on the label",
-        "message": "WŁ"
+        "message": "Wł"
     },
     "isEnabledOff_text_label": {
         "description": "text on the label",
-        "message": "WYŁ"
+        "message": "Wył"
+    },
+    "editSchemesTab_text_label": {
+        "description": "text on the label",
+        "message": "Schematy kolorów"
+    },
+    "currentColorScheme_text_label": {
+        "description": "text on the label",
+        "message": "Obecny schemat kolorów"
     },
     "forgetThisSiteBtn_text_label": {
         "description": "text on the label",
