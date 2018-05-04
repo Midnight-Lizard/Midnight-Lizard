@@ -22,6 +22,10 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "backgroundGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
+    },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -33,6 +37,10 @@
     "buttonLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Granica jasności"
+    },
+    "buttonGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
     },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
@@ -58,6 +66,10 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "linkDefaultHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
+    },
     "borderSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -69,6 +81,10 @@
     "borderLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Granica jasności"
+    },
+    "borderGrayHue_text_label": {
+        "description": "text on the label",
+        "message": "Podstawowy odcień"
     },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
