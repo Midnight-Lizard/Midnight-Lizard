@@ -1090,10 +1090,10 @@ height: 148px;
 }
 
 .ml-mode-container {
-    
-margin-bottom: -9px;
-    
-margin-top: 7px;
+    margin-bottom: -9px;
+    /* margin-top: 7px; */
 }
 
-
+#mode {
+    cursor: help;
+}
