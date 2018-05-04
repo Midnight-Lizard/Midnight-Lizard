@@ -312,5 +312,17 @@
     "borderExample_text_label": {
         "description": "text on the label",
         "message": "Przykład obramowań"
+    },
+    "mode_text_label": {
+        "description": "text on the label",
+        "message": "Tryb przetwarzania"
+    },
+    "mode_simplified_text_label": {
+        "description": "text on the label",
+        "message": "Uproszczony"
+    },
+    "mode_complex_text_label": {
+        "description": "text on the label",
+        "message": "Wartościowy"
     }
 }
