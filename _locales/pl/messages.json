@@ -94,6 +94,10 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "linkDefaultSaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie podstawowych odnośników"
+    },
     "linkHueGravity_text_label": {
         "description": "text on the label",
         "message": "Grawitacja podstawowego odcieniu"
