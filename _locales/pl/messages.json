@@ -10,6 +10,38 @@
     "globalToggleKey": {
         "message": "Globalny przełącznik rozszerzenia"
     },
+    "runOnThisSite_text_label": {
+        "description": "text on the label",
+        "message": "Wykonać na tej stronie"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "text on the label",
+        "message": "Wrócać oryginalne kolory przy kopiowanie"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "text on the label",
+        "message": "Wrócać oryginalne kolory przy drukowanie"
+    },
+    "changeBrowserTheme_text_label": {
+        "description": "text on the label",
+        "message": "Zmieniać motyw przeglądarki"
+    },
+    "useDefaultSchedule_text_label": {
+        "description": "text on the label",
+        "message": "Używać domyślny rozkład"
+    },
+    "scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Czas aktywacji"
+    },
+    "scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Czas deaktywacji"
+    },
+    "blueFilter_text_label": {
+        "description": "text on the label",
+        "message": "Intensywność niebieskiego filtra"
+    },
     "backgroundSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -33,6 +65,10 @@
     "backgroundGrayHue_text_label": {
         "description": "text on the label",
         "message": "Podstawowy odcień"
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
     },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
@@ -58,6 +94,10 @@
         "description": "text on the label",
         "message": "Podstawowy odcień"
     },
+    "buttonReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
+    },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -82,6 +122,10 @@
         "description": "text on the label",
         "message": "Podstawowy odcień"
     },
+    "textReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
+    },
     "linkSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -94,6 +138,10 @@
         "description": "text on the label",
         "message": "Granica jasności"
     },
+    "linkDefaultSaturation_text_label": {
+        "description": "text on the label",
+        "message": "Nasycenie podstawowych odnośników"
+    },
     "linkHueGravity_text_label": {
         "description": "text on the label",
         "message": "Grawitacja podstawowego odcieniu"
@@ -101,6 +149,10 @@
     "linkDefaultHue_text_label": {
         "description": "text on the label",
         "message": "Podstawowy odcień"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
     },
     "linkVisitedHue_text_label": {
         "description": "text on the label",
@@ -134,6 +186,10 @@
         "description": "text on the label",
         "message": "Podstawowy odcień"
     },
+    "borderReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
+    },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
@@ -142,6 +198,10 @@
         "description": "text on the label",
         "message": "Jasność"
     },
+    "imageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obrazu"
+    },
     "backgroundImageSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
@@ -149,6 +209,14 @@
     "backgroundImageLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Jasność"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obrazu tła"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "text on the label",
+        "message": "Przykład"
     },
     "scrollbarSaturationLimit_text_label": {
         "description": "text on the label",
@@ -184,15 +252,15 @@
     },
     "borderTab_text_label": {
         "description": "text on the label",
-        "message": "Obramowanie"
+        "message": "Obramowania"
     },
     "imagesTab_text_label": {
         "description": "text on the label",
-        "message": "Obrazki"
+        "message": "Obrazy"
     },
     "backgroundImagesTab_text_label": {
         "description": "text on the label",
-        "message": "Obrazki tła"
+        "message": "Obrazy tła"
     },
     "scrollbarsTab_text_label": {
         "description": "text on the label",
@@ -209,6 +277,34 @@
     "isEnabledOff_text_label": {
         "description": "text on the label",
         "message": "Wył"
+    },
+    "syncSettings_text_label": {
+        "description": "text on the label",
+        "message": "Synchronizować ustawienia"
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "text on the label",
+        "message": "Schemat kolorów do edycji"
+    },
+    "colorSchemeName_text_label": {
+        "description": "text on the label",
+        "message": "Nazwa schematu kolorów"
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Usuń"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zapisz"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Eksportuj"
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Importuj"
     },
     "editSchemesTab_text_label": {
         "description": "text on the label",
@@ -228,7 +324,7 @@
     },
     "setAsDefaultBtn_text_label": {
         "description": "text on the label",
-        "message": "Ustaw domyślną"
+        "message": "Ustaw domyślne"
     },
     "applyBtn_text_label": {
         "description": "text on the label",
@@ -240,5 +336,40 @@
     },
     "colorSchemeName_Custom": {
         "message": "Własny"
+    },
+    "colorSchemeName_New": {
+        "message": "Nowy schemat kolorów"
+    },
+    "backgroundExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład tła"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład małych obrazów tła"
+    },
+    "scrollbarExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład pasków przewijania"
+    },
+    "buttonExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład przycisków"
+    },
+    "borderExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obramowań"
+    },
+    "mode_text_label": {
+        "description": "text on the label",
+        "message": "Tryb przetwarzania"
+    },
+    "mode_simplified_text_label": {
+        "description": "text on the label",
+        "message": "Uproszczony"
+    },
+    "mode_complex_text_label": {
+        "description": "text on the label",
+        "message": "Wartościowy"
     }
 }
