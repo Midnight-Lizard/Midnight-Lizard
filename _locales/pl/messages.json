@@ -234,6 +234,22 @@
         "description": "text on the label",
         "message": "Wył"
     },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Usuń"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Zapisz"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Eksportuj"
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "text on the label",
+        "message": "Importuj"
+    },
     "editSchemesTab_text_label": {
         "description": "text on the label",
         "message": "Schematy kolorów"
@@ -264,5 +280,17 @@
     },
     "colorSchemeName_Custom": {
         "message": "Własny"
+    },
+    "backgroundExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład tła"
+    },
+    "scrollbarExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład pasków przewijania"
+    },
+    "buttonExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład przycisków"
     }
 }
