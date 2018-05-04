@@ -34,6 +34,10 @@
         "description": "text on the label",
         "message": "Podstawowy odcień"
     },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
+    },
     "buttonSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -57,6 +61,10 @@
     "buttonGrayHue_text_label": {
         "description": "text on the label",
         "message": "Podstawowy odcień"
+    },
+    "buttonReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
     },
     "textSaturationLimit_text_label": {
         "description": "text on the label",
@@ -82,6 +90,10 @@
         "description": "text on the label",
         "message": "Podstawowy odcień"
     },
+    "textReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
+    },
     "linkSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
@@ -105,6 +117,10 @@
     "linkDefaultHue_text_label": {
         "description": "text on the label",
         "message": "Podstawowy odcień"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
     },
     "linkVisitedHue_text_label": {
         "description": "text on the label",
@@ -137,6 +153,10 @@
     "borderGrayHue_text_label": {
         "description": "text on the label",
         "message": "Podstawowy odcień"
+    },
+    "borderReplaceAllHues_text_label": {
+        "description": "text on the label",
+        "message": "Zamień wszystkie"
     },
     "imageSaturationLimit_text_label": {
         "description": "text on the label",
