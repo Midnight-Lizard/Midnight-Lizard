@@ -917,7 +917,7 @@
         "description": "text on the label",
         "message": "Complex"
     },
-    "mode_options_@title":{
+    "mode_options_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Hover each option to see its description"
     }
