@@ -314,9 +314,7 @@ namespace MidnightLizard.ContentScript
             {
                 if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
                 {
-                    if (tag instanceof HTMLIFrameElement ||
-                        tag instanceof HTMLCanvasElement ||
-                        this._isPdf && tag instanceof HTMLEmbedElement)
+                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         return true;
                     }
@@ -668,8 +666,7 @@ namespace MidnightLizard.ContentScript
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
                         isLink = tag instanceof HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img) ||
-                            tag instanceof HTMLIFrameElement;
+                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
                     }
 
                     if (isVisible)
@@ -1116,10 +1113,6 @@ namespace MidnightLizard.ContentScript
                 delete tag.rect;
                 delete tag.selectors;
                 delete tag.path;
-                if (tag instanceof HTMLIFrameElement)
-                {
-                    delete tag.mlInaccessible;
-                }
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
@@ -1299,11 +1292,10 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
+                if (isRealElement(tag) && tag.contentEditable == true.toString())
                 {
-                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
+                    this.overrideInnerHtml(tag);
                 }
-                if (isRealElement(tag) && tag.contentEditable == true.toString()) this.overrideInnerHtml(tag);
 
                 this.calcElementPath(tag);
                 tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
@@ -1510,9 +1502,7 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof HTMLCanvasElement ||
-                        tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
-                        this._isPdf && tag instanceof HTMLEmbedElement)
+                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         this.processInaccessibleTextContent(tag, roomRules);
                     }
@@ -1649,7 +1639,7 @@ namespace MidnightLizard.ContentScript
         }
 
         private processInaccessibleTextContent(
-            tag: HTMLIFrameElement | HTMLCanvasElement | HTMLEmbedElement,
+            tag: HTMLCanvasElement | HTMLEmbedElement,
             roomRules: RoomRules)
         {
             let filterValue: Array<string>;
@@ -2005,43 +1995,6 @@ namespace MidnightLizard.ContentScript
             tag.style.setProperty(this._css.backgroundSize, backgroundImages.map(bgImg => bgImg.size).join(","), this._css.important);
             this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
             return tag;
-        }
-
-        protected onIFrameLoaded(iframe: HTMLIFrameElement)
-        {
-            try
-            {
-                let childDoc = iframe.contentDocument || iframe.contentWindow.document;
-                dom.addEventListener(childDoc, "DOMContentLoaded", this.onIFrameDocumentLaoded, this, false, childDoc)();
-            }
-            catch (ex)
-            {
-                if (this._settingsManager.currentSettings.applyEffectsOnInaccessibleExternalContent)
-                {
-                    iframe.mlInaccessible = true;
-                    this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
-                    this.restoreElementColors(iframe, true);
-                    iframe.setAttribute("fixed", "access");
-                    DocumentProcessor.processElementsChunk([iframe], this, null, 0);
-                    //docProc._app.isDebug && console.error(ex);
-                }
-            }
-        }
-
-        protected onIFrameDocumentLaoded(doc: Document)
-        {
-            if (doc.defaultView && this._settingsManager.isActive)
-            {
-                this.injectDynamicValues(doc);
-                if (doc.readyState != "loading" && doc.readyState != "uninitialized")
-                {
-                    this.processDocument(doc);
-                }
-                else
-                {
-                    this.setDocumentProcessingStage(doc, ProcessingStage.Loading);
-                }
-            }
         }
 
         protected overrideInnerHtml(tag: HTMLElement)
