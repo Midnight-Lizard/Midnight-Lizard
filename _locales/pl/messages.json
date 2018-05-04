@@ -14,6 +14,18 @@
         "description": "text on the label",
         "message": "Wykonać na tej stronie"
     },
+    "restoreColorsOnCopy_text_label": {
+        "description": "text on the label",
+        "message": "Wrócać oryginalne kolory przy kopiowanie"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "text on the label",
+        "message": "Wrócać oryginalne kolory przy drukowanie"
+    },
+    "changeBrowserTheme_text_label": {
+        "description": "text on the label",
+        "message": "Zmieniać motyw przeglądarki"
+    },
     "backgroundSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Granica nasycenia koloru"
