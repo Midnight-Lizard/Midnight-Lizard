@@ -892,5 +892,33 @@
     "backgroundExampleWithoutContrast_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Пример обработки фонов разного цвета без увеличения контрастности."
+    },
+    "mode_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Режим обработки страниц"
+    },
+    "mode_text_label": {
+        "description": "text on the label",
+        "message": "Режим обработки"
+    },
+    "mode_simplified_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Упрощенный режим обработки страниц не так аккуратен, но работает очень быстро."
+    },
+    "mode_simplified_text_label": {
+        "description": "text on the label",
+        "message": "Упрощенный"
+    },
+    "mode_complex_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Полноценный режим обработки страниц не так быстр, но выглядит гораздо лучше."
+    },
+    "mode_complex_text_label": {
+        "description": "text on the label",
+        "message": "Полноценный"
+    },
+    "mode_options_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Наведите мышь на опцию в списке, чтобы посмотреть её описание."
     }
 }
