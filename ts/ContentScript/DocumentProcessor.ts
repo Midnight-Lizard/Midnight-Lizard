@@ -1104,7 +1104,8 @@ namespace MidnightLizard.ContentScript
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
             if (tag.mlBgColor || tag instanceof Element &&
-                lastProcMode === Settings.ProcessingMode.Simplified)
+                (lastProcMode === Settings.ProcessingMode.Simplified ||
+                    this._settingsManager.isSimple))
             {
                 let ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
@@ -1244,29 +1245,13 @@ namespace MidnightLizard.ContentScript
 
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
-                {
-                    let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
-                    if (hasForbiddenTransition)
-                    {
-                        roomRules.transitionDuration = { value: durations.join(", ") };
-                    }
-                }
-
                 if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
                     tag.computedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
 
-                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
-                {
-                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
-                }
-
-                if (tag instanceof HTMLCanvasElement ||
-                    tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
-                    this._isPdf && tag instanceof HTMLEmbedElement)
+                if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                 {
                     this.processInaccessibleTextContent(tag, roomRules);
                 }
@@ -1904,7 +1889,11 @@ namespace MidnightLizard.ContentScript
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
                 .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
-            const bgLight = isButton ? this.getParentBackground(tag).light : 0;
+            const bgLight = isButton
+                ? this._settingsManager.isComplex
+                    ? this.getParentBackground(tag).light
+                    : this._settingsManager.shift.Background.lightnessLimit
+                : 0;
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
