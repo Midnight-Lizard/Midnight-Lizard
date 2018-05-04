@@ -166,6 +166,10 @@
         "description": "text on the label",
         "message": "Jasność"
     },
+    "imageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obrazu"
+    },
     "backgroundImageSaturationLimit_text_label": {
         "description": "text on the label",
         "message": "Nasycenie koloru"
@@ -173,6 +177,14 @@
     "backgroundImageLightnessLimit_text_label": {
         "description": "text on the label",
         "message": "Jasność"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obrazu tła"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "text on the label",
+        "message": "Przykład"
     },
     "scrollbarSaturationLimit_text_label": {
         "description": "text on the label",
@@ -208,15 +220,15 @@
     },
     "borderTab_text_label": {
         "description": "text on the label",
-        "message": "Obramowanie"
+        "message": "Obramowania"
     },
     "imagesTab_text_label": {
         "description": "text on the label",
-        "message": "Obrazki"
+        "message": "Obrazy"
     },
     "backgroundImagesTab_text_label": {
         "description": "text on the label",
-        "message": "Obrazki tła"
+        "message": "Obrazy tła"
     },
     "scrollbarsTab_text_label": {
         "description": "text on the label",
@@ -285,6 +297,10 @@
         "description": "text on the label",
         "message": "Przykład tła"
     },
+    "smallBackgroundImageExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład małych obrazów tła"
+    },
     "scrollbarExample_text_label": {
         "description": "text on the label",
         "message": "Przykład pasków przewijania"
@@ -292,5 +308,9 @@
     "buttonExample_text_label": {
         "description": "text on the label",
         "message": "Przykład przycisków"
+    },
+    "borderExample_text_label": {
+        "description": "text on the label",
+        "message": "Przykład obramowań"
     }
 }
