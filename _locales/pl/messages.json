@@ -334,6 +334,9 @@
         "description": "text on the label",
         "message": "Zamknij"
     },
+    "shortcut_text_lable": {
+        "message": "Skrót"
+    },
     "colorSchemeName_Custom": {
         "message": "Własny"
     },
