@@ -1892,12 +1892,17 @@ namespace MidnightLizard.ContentScript
                     let newColor: Colors.ColorEntry;
                     if (isButton)
                     {
-                        newColor = this._buttonBackgroundColorProcessor
-                            .changeColor(prevColor, bgLight, tag);
+                        newColor = this.changeColor({
+                            role: cc.ButtonBackground, property: this._css.backgroundColor,
+                             tag: tag, propVal: prevColor!, bgLight: bgLight
+                        })!;
                     }
                     else
                     {
-                        newColor = this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                        newColor = this.changeColor({
+                            role: cc.BackgroundNoContrast, property: this._css.backgroundColor,
+                            tag: tag, propVal: prevColor!
+                        })!;
                     }
                     lightSum += newColor.light;
                     if (newColor.color)
