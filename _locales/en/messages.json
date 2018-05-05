@@ -927,7 +927,7 @@
     },
     "default_runOnThisSite_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Run [Midnight Lizard] on all websites w/o custom settings."
+        "message": "Run [Midnight Lizard] on all websites w\/o custom settings."
     },
     "default_scheduleStartHour_text_label": {
         "description": "text on the label",

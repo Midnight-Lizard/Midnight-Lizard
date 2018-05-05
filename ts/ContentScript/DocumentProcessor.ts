@@ -1894,7 +1894,7 @@ namespace MidnightLizard.ContentScript
                     {
                         newColor = this.changeColor({
                             role: cc.ButtonBackground, property: this._css.backgroundColor,
-                             tag: tag, propVal: prevColor!, bgLight: bgLight
+                            tag: tag, propVal: prevColor!, bgLight: bgLight
                         })!;
                     }
                     else
@@ -2083,6 +2083,7 @@ namespace MidnightLizard.ContentScript
                 transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
                 transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
                 textColor = textColorEntry.color!,
+                transTextColor = this._textColorProcessor.changeColor("grba(0,0,0,0.7)", bgLight, doc.documentElement).color!,
                 borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(
@@ -2108,7 +2109,7 @@ namespace MidnightLizard.ContentScript
 
             return {
                 backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
-                textColor, borderColor, selectionColor, rangeFillColor,
+                textColor, transTextColor, borderColor, selectionColor, rangeFillColor,
                 buttonBackgroundColor, buttonBorderColor,
                 scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
                 linkColor, linkColorHover, linkColorActive,

@@ -1,5 +1,5 @@
 img.jsoc-shr-logo,
-body:not(.dark-theme) i[class]:not(.white),
+body:not(.dark-theme) i[class]:not(.white):not(.static-icon-download),
 body.dark-theme #close-search-box,
 body.dark-theme i.static-icon-apps,
 body.dark-theme i.static-icon-filter {
@@ -16,12 +16,29 @@ body.dark-theme i.static-icon-filter {
     --ml-no-invert:true;
 }
 
-.bar {
+.progress {
     --ml-backgroundnocontrast-background-color:Border;
     --ml-background-background-color:Border;
+    background-color: rgba(0,0,0,.15)!important;
 }
 
 .navbar .nav>li>a:focus,
 .navbar .nav>li>a:hover {
-    background-color: var(--ml-main-trans-background-color)!important;
+    background-color: var(--ml-main-trans-background-color) !important;
+}
+.dropdown-menu li>a:hover,
+.dropdown-menu li>a:focus,
+.dropdown-submenu:hover>a,
+.drop-down-icon:hover+a,
+.general_activity_item:not(.opened):hover {
+    background-color: var(--ml-main-alt-background-color) !important;
+}
+
+.sortable:after, .sortable:before {
+    --ml-background-border-top-color:Border;
+    --ml-background-border-bottom-color:Border;
+}
+.sortable.az:before, .sortable.za:after {
+    --ml-background-border-top-color:HighlightedText;
+    --ml-background-border-bottom-color:HighlightedText;
 }
