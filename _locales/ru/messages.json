@@ -931,7 +931,7 @@
     },
     "default_scheduleStartHour_text_label": {
         "description": "text on the label",
-        "message": "Время запуска по умолчанию"
+        "message": "Время включения по умолчанию"
     },
     "default_scheduleStartHour_@title": {
         "description": "text on the tooltip\/hint",
@@ -940,5 +940,17 @@
     "default_scheduleFinishHour_text_label": {
         "description": "text on the label",
         "message": "Время отключения по умолчанию"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Расширение будет обрабатывать все сайты, использующие расписание по умолчанию, только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
+    },
+    "globalstab_text_label": {
+        "description": "text on the label",
+        "message": "Глобальные опции"
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "text on the message box",
+        "message": "Хотите ли сбросить текущую тему браузера на схему по умолчанию?\nТема может сброситься к первоначальной теме Firefox, а не к той теме, которая была установлена вами ранее."
     }
 }
