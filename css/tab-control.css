@@ -79,13 +79,14 @@
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
 }
 
-.right .ml-tab-item span {
+.right:not(.imp):not(#imp):not(imp) .ml-tab-item:not(.imp):not(#imp):not(imp)>span:not(.imp):not(#imp):not(imp) {
     display: inline-block;
     max-width: 132px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     vertical-align: bottom;
+    background-color: transparent!important;
 }
 
 .ml-tab-item:hover
