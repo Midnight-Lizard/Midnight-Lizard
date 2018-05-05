@@ -1,4 +1,8 @@
 {
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "pl"
+    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "Dostosuje kontrast, jasność i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny."
