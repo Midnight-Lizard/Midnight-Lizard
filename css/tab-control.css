@@ -151,6 +151,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-content:not(
 
 #default-tab-content.ml-tab-content
 {
+    animation: none;
     display: table-cell;
     font-size: 14px;
     text-align: justify;
