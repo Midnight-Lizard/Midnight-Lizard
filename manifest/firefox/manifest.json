@@ -387,6 +387,18 @@
             "css": [
                 "css/custom/reddit.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.crowdin.com/*",
+                "https://crowdin.com/*",
+                "https://translate.midnight-lizard.online/"
+            ],
+            "css": [
+                "css/custom/crowdin.css"
+            ]
         }
     ]
 }

@@ -1,0 +1,27 @@
+img.jsoc-shr-logo,
+body:not(.dark-theme) i[class]:not(.white),
+body.dark-theme #close-search-box,
+body.dark-theme i.static-icon-apps,
+body.dark-theme i.static-icon-filter {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter) brightness(calc(2 * var(--ml-invert)));
+}
+
+.folder-toggler {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter);
+}
+
+#texts_list {
+    --ml-no-invert:true;
+}
+
+.bar {
+    --ml-backgroundnocontrast-background-color:Border;
+    --ml-background-background-color:Border;
+}
+
+.navbar .nav>li>a:focus,
+.navbar .nav>li>a:hover {
+    background-color: var(--ml-main-trans-background-color)!important;
+}
