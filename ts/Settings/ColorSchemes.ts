@@ -42,8 +42,7 @@ namespace MidnightLizard.Settings
                     isEnabled: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
+                    changeBrowserTheme: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -114,8 +113,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: false,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: false,
-                    changeBrowserTheme: false,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -186,8 +183,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -258,8 +253,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -330,8 +323,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -402,8 +393,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
                     mode: ProcessingMode.Complex,
 
@@ -474,8 +463,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 30,
                     mode: ProcessingMode.Complex,
 
@@ -546,8 +533,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 80,
                     mode: ProcessingMode.Complex,
 
@@ -618,8 +603,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -690,8 +673,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 5,
                     mode: ProcessingMode.Complex,
 
@@ -762,8 +743,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -834,8 +813,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -906,8 +883,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -978,8 +953,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -1050,8 +1023,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 
@@ -1122,8 +1093,6 @@ namespace MidnightLizard.Settings
                     runOnThisSite: true,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    changeBrowserTheme: true,
-                    applyEffectsOnInaccessibleExternalContent: false,
                     blueFilter: 0,
                     mode: ProcessingMode.Complex,
 

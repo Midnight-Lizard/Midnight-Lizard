@@ -197,6 +197,7 @@ namespace MidnightLizard.Popup
             this.fillColorSchemesSelectLists();
             this.setUpInputFields(this._currentSiteSettings);
             this.setUpColorSchemeSelectValue(this._currentSiteSettings);
+            this.setUpDefaultInputFields();
             this.updateButtonStates();
             this.toggleSchedule();
             this.onColorSchemeForEditChanged();
@@ -215,6 +216,64 @@ namespace MidnightLizard.Popup
             let settings = this.getSettingsFromPopup();
             this.setUpColorSchemeSelectValue(settings);
             this._settingsManager.changeSettings(settings);
+        }
+
+        protected onDefaultInputFieldChanged()
+        {
+            this._settingsManager.getDefaultSettings()
+                .then(defSet =>
+                {
+                    let newDefSet = this.getDefaultSettingsFromPopup();
+                    if (defSet.changeBrowserTheme && !newDefSet.changeBrowserTheme &&
+                        this._app.browserName === Settings.BrowserName.Firefox &&
+                        confirm(this._i18n.getMessage("resetThemeConfirmationMessage")))
+                    {
+                        browser.theme.reset();
+                    }
+                    return this._settingsManager.changeDefaultSettings(newDefSet);
+                })
+                .then(newDefSet =>
+                {
+                    if (this._settingsManager.currentSettings.colorSchemeId ===
+                        Settings.ColorSchemes.default.colorSchemeId)
+                    {
+                        this.setUpInputFields(this._settingsManager.currentSettings);
+                    }
+                    if (this._currentSiteSettings.colorSchemeId ===
+                        Settings.ColorSchemes.default.colorSchemeId)
+                    {
+                        this._currentSiteSettings = newDefSet;
+                        this.updateButtonStates();
+                    }
+                })
+                .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
+
+        }
+
+        protected getDefaultSettingsFromPopup()
+        {
+            let settings: Settings.ColorScheme = {} as any, value: string | number | boolean,
+                propName: Settings.ColorSchemePropertyName;
+            for (let setting of Array.from(document.querySelectorAll(".default-setting")) as HTMLInputElement[])
+            {
+                propName = setting.id.replace("default_", "") as any;
+                switch (typeof Settings.ColorSchemes.default[propName])
+                {
+                    case "boolean":
+                        value = setting.checked as boolean;
+                        break;
+
+                    case "number":
+                        value = parseInt(setting.value);
+                        break;
+
+                    default:
+                        value = setting.value;
+                        break;
+                }
+                settings[propName] = value;
+            }
+            return settings;
         }
 
         protected getSettingsFromPopup()
@@ -498,25 +557,68 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager
                 .setAsDefaultSettings()
-                .then(x => this.updateButtonStates())
+                .then(x =>
+                {
+                    this.setUpDefaultInputFields();
+                    this.updateButtonStates();
+                })
                 .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
+        }
+
+        protected setUpDefaultInputFields()
+        {
+            const settings = this._settingsManager.getDefaultSettingsCache();
+            let setting: Settings.ColorSchemePropertyName;
+            for (setting in settings)
+            {
+                let input = this._popup.getElementById(`default_${setting}`) as HTMLInputElement | HTMLSelectElement;
+                if (input)
+                {
+                    dom.removeAllEventListeners(input);
+                    let settingValue = settings[setting];
+                    switch (input.type)
+                    {
+                        case "checkbox":
+                            (input as any).checked = settingValue;
+                            break;
+
+                        case "range":
+                            input.value = settingValue!.toString();
+                            dom.addEventListener(input, "input", MidnightLizard.Controls.Slider.onRangeChanged, input)();
+                            break;
+
+                        case "select-one":
+                            input.value = settingValue!.toString();
+                            if (input.classList.contains("ml-dialog-hue-select"))
+                            {
+                                dom.addEventListener(input, "change", PopupManager.onHueChanged, input)();
+                            }
+                            break;
+
+                        default: break;
+                    }
+                    dom.addEventListener(input, "change", this.onDefaultInputFieldChanged, this);
+                }
+            }
         }
 
         protected setUpInputFields(settings: Settings.ColorScheme)
         {
-            if (settings.colorSchemeId &&
-                settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
-                settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
-                settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
-                Settings.ColorSchemes[settings.colorSchemeId])
+            if (settings.colorSchemeId)
             {
-                this._colorSchemeForEdit.value = settings.colorSchemeId;
+                if (settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                    settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
+                    settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
+                    Settings.ColorSchemes[settings.colorSchemeId])
+                {
+                    this._colorSchemeForEdit.value = settings.colorSchemeId;
+                }
+                else
+                {
+                    this._colorSchemeForEdit.value = "custom";
+                }
+                this.onColorSchemeForEditChanged();
             }
-            else
-            {
-                this._colorSchemeForEdit.value = "custom";
-            }
-            this.onColorSchemeForEditChanged();
             let setting: Settings.ColorSchemePropertyName;
             for (setting in settings)
             {
@@ -568,7 +670,9 @@ namespace MidnightLizard.Popup
                 .all([this._settingsManager.currentSettings, this._settingsManager.getDefaultSettings()])
                 .then(([currentSettings, defaultSettings]) =>
                 {
-                    this._setAsDefaultButton.disabled = this._settingsManager.settingsAreEqual(currentSettings, defaultSettings) &&
+                    this._setAsDefaultButton.disabled =
+                        currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId ||
+                        this._settingsManager.settingsAreEqual(currentSettings, defaultSettings) &&
                         currentSettings.runOnThisSite === defaultSettings.runOnThisSite;
                 });
         }

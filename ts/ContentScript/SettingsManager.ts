@@ -47,13 +47,6 @@ namespace MidnightLizard.ContentScript
             this.notifySettingsApplied();
         }
 
-        protected notifySettingsApplied()
-        {
-            this._settingsBus.notifySettingsApplied(this._currentSettings)
-                .catch(ex => this._app.isDebug &&
-                    console.error(`Error in ${window.top === window.self ? "top" : "child"} frame:\n${ex.message || ex}`));
-        }
-
         protected initCurrentSettings()
         {
             const storage = {
@@ -65,10 +58,7 @@ namespace MidnightLizard.ContentScript
             {
                 const settings = (defaultSettings as any)[this._settingsKey] as Settings.ColorScheme;
                 delete (defaultSettings as any)[this._settingsKey];
-                this.applyUserColorSchemes(defaultSettings);
-                this.assignSettings(this._defaultSettings, defaultSettings);
-                this._defaultSettings.colorSchemeId = "default";
-                this._defaultSettings.colorSchemeName = "Default";
+                this.processDefaultSettings(defaultSettings, true);
                 Object.assign(this._currentSettings, this._defaultSettings);
                 if (settings)
                 {

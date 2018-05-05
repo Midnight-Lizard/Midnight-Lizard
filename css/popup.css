@@ -99,7 +99,7 @@ body {
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
     position: absolute;
-    top: 120px;
+    top: 145px;
     bottom: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
@@ -855,31 +855,31 @@ height: 148px;
 .intro-select-scheme:after {
     width: 135px;
     height: 32px;
-    top: 135px;
+    top: 160px;
     right: -154px;
 }
 
 .intro-select-scheme:before {
-    height: 12px;
+    height: 25px;
     right: 0px;
-    top: 139px;
-    transform: skew(-108deg);
+    top: 147px;
+    transform: skew(-127deg);
 }
 
 .intro-edit-schemes:after {
     width: 142px;
     height: 32px;
-    top: 42px;
+    top: 34px;
     right: -152px;
 }
 
 .intro-edit-schemes:before {
-    height: 239px;
+    height: 242px;
     width: 5px;
     border-bottom-right-radius: 10px;
     border-style: dashed;
     right: 1px;
-    top: 74px;
+    top: 67px;
     transform: skew(-5deg);
     border-width: 0px 1px 1px 0px;
 }
@@ -887,15 +887,15 @@ height: 148px;
 .intro-apply:after {
     width: 136px;
     height: 34px;
-    top: 336px;
+    top: 361px;
     right: -155px;
 }
 
 .intro-apply:before {
-    height: 50px;
+    height: 75px;
     right: 0px;
     top: 286px;
-    transform: skew(36deg);
+    transform: skew(26deg);
 }
 
 .intro-tabs:after {
@@ -961,18 +961,18 @@ height: 148px;
 .intro-default:after {
     width: 136px;
     height: 34px;
-    top: 268px;
+    top: 293px;
     right: -155px;
 }
 
 .intro-default:before {
-    height: 68px;
+    height: 59px;
     width: 7px;
-    right: -4px;
-    top: 303px;
-    transform: skew(-22deg);
-    border-style: dashed;
-    border-bottom-right-radius: 10px;
+    right: 0px;
+    top: 310px;
+    transform: skew(-31deg);
+    /* border-style: dashed; */
+    /* border-bottom-right-radius: 10px; */
 }
 
 .intro-help:after {

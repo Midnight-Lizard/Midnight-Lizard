@@ -70,9 +70,8 @@ namespace Chrome
                                 break;
                         }
                     }
-                    // requests from content scripts to background page
-                    else if (request.sender === MidnightLizard.Settings.ExtensionModule.ContentScript &&
-                        this._module.name === MidnightLizard.Settings.ExtensionModule.BackgroundPage)
+                    // requests to background page
+                    if (this._module.name === MidnightLizard.Settings.ExtensionModule.BackgroundPage)
                     {
                         switch (request.action)
                         {

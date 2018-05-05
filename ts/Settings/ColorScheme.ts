@@ -9,10 +9,14 @@ namespace MidnightLizard.Settings
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "exist", "hostName", "userColorSchemes"];
+        ["isEnabled", "hostName", "userColorSchemes", "changeBrowserTheme"];
 
     export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "exist", "hostName", "colorSchemeName", "userColorSchemes"];
+        ["isEnabled", "hostName", "colorSchemeName", "userColorSchemes", "changeBrowserTheme"];
+
+    export const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
+        ["isEnabled", "hostName", "colorSchemeId", "colorSchemeName",
+            "userColorSchemes", "runOnThisSite", "changeBrowserTheme"];
 
     /**
      * ColorScheme - MidnightLizard Settings
@@ -22,7 +26,6 @@ namespace MidnightLizard.Settings
         userColorSchemes?: Array<ColorScheme>;
         colorSchemeId: ColorSchemeName;
         colorSchemeName: string;
-        exist?: boolean;
         hostName?: string;
         isEnabled?: boolean;
         blueFilter: number;
@@ -36,7 +39,6 @@ namespace MidnightLizard.Settings
         restoreColorsOnCopy: boolean;
         restoreColorsOnPrint: boolean;
         changeBrowserTheme: boolean;
-        applyEffectsOnInaccessibleExternalContent: boolean;
 
         backgroundSaturationLimit: number;
         backgroundContrast: number;

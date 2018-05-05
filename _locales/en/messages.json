@@ -1,7 +1,7 @@
 {
-    "empty": {
-        "description": "keep it empty",
-        "message": "empty"
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "en"
     },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
@@ -40,7 +40,7 @@
     },
     "changeBrowserTheme_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox.\nIf you want to completely disable this option you need to change default settings as well."
+        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox."
     },
     "useDefaultSchedule_text_label": {
         "description": "text on the label",
@@ -920,5 +920,41 @@
     "mode_options_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Hover each option to see its description"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "text on the label",
+        "message": "Run on all websites by default"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Run [Midnight Lizard] on all websites w/o custom settings."
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Default activation time"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Extension will be active only starting from this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Default deactivation time"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Extension will be active only until this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+    },
+    "globalstab_text_label": {
+        "description": "text on the label",
+        "message": "Global settings"
+    },
+    "globalstab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
+        "message": ""
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "text on the message box",
+        "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
     }
 }

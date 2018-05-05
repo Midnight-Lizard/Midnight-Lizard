@@ -16,6 +16,7 @@
     position: absolute;
     z-index: 1;
     top: 0px;
+    width: 100%;
 }
 
 .ml-tab-item-icon
@@ -64,11 +65,12 @@
 
 .right .ml-tab-item
 {
-    padding: 12px 13px 12px 2px;
+    padding: 14px 13px 14px 2px;
     margin-left: 0;
     margin-right: 10px;
     text-align: right;
     font-size: 15px;
+    line-height: 16px;
     border-radius: 0px 5px 5px 0px;
     border-left-color: var(--thin-border-color);
     border-top-color: transparent;
@@ -113,7 +115,7 @@
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
-    height: 40px;
+    height: 27px;
 }
 
 .ml-tab-item.active:not(imp)
