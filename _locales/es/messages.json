@@ -1,4 +1,8 @@
 {
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "es"
+    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "Esta extensión cambia los colores de la página, el brillo y el contraste para aumentar la legibilidad y trae el modo nocturno oscuro a todos los sitios web."
