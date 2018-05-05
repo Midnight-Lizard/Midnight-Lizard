@@ -1,4 +1,8 @@
 {
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "ru"
+    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "Настраивает контрастность, яркость и цвета на всех сайтах. Переводит страницы в ночной режим или режим слабой освещенности."
@@ -916,5 +920,25 @@
     "mode_options_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Наведите мышь на опцию в списке, чтобы посмотреть её описание."
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "text on the label",
+        "message": "Запускать на всех сайтах по умолчанию"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Запускать [Midnight Lizard] на всех сайтах, на которых ещё нет других настроек."
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Время запуска по умолчанию"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Расширение будет обрабатывать все сайты, использующие расписание по умолчанию, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Время отключения по умолчанию"
     }
 }
