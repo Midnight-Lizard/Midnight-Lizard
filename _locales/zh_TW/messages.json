@@ -1,8 +1,4 @@
 {
-    "empty": {
-        "description": "keep it empty",
-        "message": "empty"
-    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "這個擴展改變了頁面的顏色，亮度和對比度以提高可讀性，並且為所有網站開啟夜間模式。"
