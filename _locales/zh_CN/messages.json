@@ -1,4 +1,8 @@
 {
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "zh"
+    },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
         "message": "这个扩展改变了页面的颜色，亮度和对比度，提高了可读性。夜间模式为所有网站开启。"
