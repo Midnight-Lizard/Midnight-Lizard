@@ -1,3 +1,6 @@
-[
-
-]
+{
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "gu"
+    }
+}
