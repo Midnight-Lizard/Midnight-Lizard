@@ -374,5 +374,17 @@
     "mode_complex_text_label": {
         "description": "text on the label",
         "message": "Wartościowy"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Domyślny czas aktywacji"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Domyślny czas dezaktywacji"
+    },
+    "globalstab_text_label": {
+        "description": "text on the label",
+        "message": "Ustawienia ogólne"
     }
 }
