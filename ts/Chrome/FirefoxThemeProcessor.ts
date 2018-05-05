@@ -173,10 +173,14 @@ namespace Firefox
                         .addListener((resp, isEnabled) =>
                         {
                             resp(isEnabled);
-                            if (!isEnabled)
-                            {
-                                browser.theme.reset();
-                            }
+                            settingsManager.getDefaultSettings()
+                                .then(defaultSettings =>
+                                {
+                                    if (!isEnabled && defaultSettings.changeBrowserTheme)
+                                    {
+                                        browser.theme.reset();
+                                    }
+                                });
                         }, null);
                 });
             }
