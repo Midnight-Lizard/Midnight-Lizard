@@ -1,7 +1,7 @@
 {
-    "empty": {
-        "description": "keep it empty",
-        "message": "empty"
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "ko"
     },
     "appDesc": {
         "description": "extension description displayed in the Web Store",

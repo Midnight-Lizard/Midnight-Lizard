@@ -1,7 +1,7 @@
 {
-    "empty": {
-        "description": "keep it empty",
-        "message": "empty"
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "es"
     },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
@@ -56,7 +56,7 @@
     },
     "scheduleStartHour_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "La extensión estará activa a partir de este momento en el sitio web actual\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto."
+        "message": "La extensión estará activa a partir de este momento en el sitio web actual.\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto."
     },
     "scheduleFinishHour_text_label": {
         "description": "text on the label",
@@ -64,7 +64,7 @@
     },
     "scheduleFinishHour_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "La extensión estará activa solo hasta este momento en el sitio web actual\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto."
+        "message": "La extensión estará activa solo hasta este momento en el sitio web actual.\nLa página debe refrescarse durante el periodo de tiempo especificado para que la configuración surta efecto."
     },
     "blueFilter_text_label": {
         "description": "text on the label",

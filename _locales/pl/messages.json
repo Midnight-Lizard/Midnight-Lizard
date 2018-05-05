@@ -1,7 +1,7 @@
 {
-    "empty": {
-        "description": "keep it empty",
-        "message": "empty"
+    "short_locale": {
+        "description": "two letters of current locale such as en for English",
+        "message": "pl"
     },
     "appDesc": {
         "description": "extension description displayed in the Web Store",
@@ -374,5 +374,21 @@
     "mode_complex_text_label": {
         "description": "text on the label",
         "message": "Wartościowy"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "text on the label",
+        "message": "Wykonać na każdej stronie domyślnie"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "text on the label",
+        "message": "Domyślny czas aktywacji"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "text on the label",
+        "message": "Domyślny czas dezaktywacji"
+    },
+    "globalstab_text_label": {
+        "description": "text on the label",
+        "message": "Ustawienia ogólne"
     }
 }
