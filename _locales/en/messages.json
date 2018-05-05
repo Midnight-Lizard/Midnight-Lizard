@@ -949,6 +949,10 @@
         "description": "text on the label",
         "message": "Global settings"
     },
+    "globalstab_@tooltip": {
+        "description": "text on the tooltip\/hint with custom style",
+        "message": "      Global settings\n―――――――――――――――――――\n This tab contains global settings and shortcuts to default settings.\n Here you can change settings sync, toggle black\/white list mode and browser theme adjustment, edit default schedule."
+    },
     "resetThemeConfirmationMessage": {
         "description": "text on the message box",
         "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
