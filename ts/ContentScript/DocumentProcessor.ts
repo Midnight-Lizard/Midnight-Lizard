@@ -1877,13 +1877,15 @@ namespace MidnightLizard.ContentScript
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
+                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|current|color|transparent|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
             const bgLight = isButton
                 ? this._settingsManager.isComplex
                     ? this.getParentBackground(tag).light
                     : this._settingsManager.shift.Background.lightnessLimit
-                : 0;
+                : roomRules.backgroundColor
+                    ? roomRules.backgroundColor.light
+                    : this._settingsManager.shift.Background.lightnessLimit;
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
@@ -1901,7 +1903,7 @@ namespace MidnightLizard.ContentScript
                     {
                         newColor = this.changeColor({
                             role: cc.BackgroundNoContrast, property: this._css.backgroundColor,
-                            tag: tag, propVal: prevColor!
+                            tag: tag, propVal: prevColor!, bgLight: bgLight
                         })!;
                     }
                     lightSum += newColor.light;
@@ -1909,7 +1911,8 @@ namespace MidnightLizard.ContentScript
                     {
                         gradient = gradient.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
                     }
-                    if (!mainColor && newColor.alpha > 0.5 && roomRules.backgroundColor)
+                    if (!mainColor && newColor.alpha > 0.5 && roomRules.backgroundColor &&
+                        newColor.role === (isButton ? cc.ButtonBackground : cc.BackgroundNoContrast))
                     {
                         mainColor = roomRules.backgroundColor = Object.assign({}, roomRules.backgroundColor);
                         mainColor.light = newColor.light;
