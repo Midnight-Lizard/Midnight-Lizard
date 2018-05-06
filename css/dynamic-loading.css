@@ -35,7 +35,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="modal"]:not(img):not(.ml-ignore):not(#imp):not(#else),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) select:not(#colorScheme)>option:not(impt):not(.impt),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) select:not(#colorScheme):not(#colorSchemeForEdit)>option:not(impt):not(.impt),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(svg):not(.ml-ignore),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*:not(svg):not(.ml-ignore),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore),
@@ -110,7 +110,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
         border-color: var(--ml-main-button-border-color) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(impt):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#colorScheme)>*:not(impt):not(.ml-ignore),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#colorScheme):not(#colorSchemeForEdit)>*:not(impt):not(.ml-ignore),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):before,
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):after {
         color: var(--ml-main-text-color) !important;
