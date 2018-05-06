@@ -260,6 +260,21 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     box-shadow: 1px 1px 1px 0 var(--main-input-shadow-color) inset;
 }
 
+select.ml-dialog-input-text {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image:
+        linear-gradient(135deg, transparent 64%, currentColor 65%, currentColor 75%, transparent 76%),
+        linear-gradient(-135deg, transparent 64%, currentColor 65%, currentColor 75%, transparent 76%);
+    background-size: 7px 10px;
+    background-repeat: no-repeat;
+    background-position:
+        calc(100% - 5px) calc(100% / 2 - 2px),
+        calc(100% - 8px) calc(100% / 2 - 2px);
+    --ml-backgroundnocontrast-background-color:Text;
+}
+
 .ml-dialog-input-text option {
     font-size: 16px;
 }
