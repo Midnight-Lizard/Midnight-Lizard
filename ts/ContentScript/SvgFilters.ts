@@ -1,5 +1,6 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Settings/BaseSettingsManager.ts" />
+/// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../Colors/RgbaColor.ts" />
 
 namespace MidnightLizard.ContentScript
@@ -22,6 +23,7 @@ namespace MidnightLizard.ContentScript
     class SvgFilters implements ISvgFilters
     {
         constructor(
+            protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
         }
@@ -39,6 +41,7 @@ namespace MidnightLizard.ContentScript
             svg.mlIgnore = true;
             svg.style.height = "0px";
             svg.style.position = "absolute";
+            svg.style.setProperty("--ml-ignore", "true");
 
             svg.appendChild(this.createBlueFilter(doc));
 
@@ -50,7 +53,9 @@ namespace MidnightLizard.ContentScript
                     new Colors.RgbaColor(240, 240, 240, 1)));
             }
 
-            (doc.head || doc.documentElement).appendChild(svg);
+            (this._app.browserName === Settings.BrowserName.Chrome
+                ? doc.head || doc.documentElement
+                : doc.documentElement).appendChild(svg);
         }
 
         private createBlueFilter(doc: Document)

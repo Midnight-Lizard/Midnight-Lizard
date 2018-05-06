@@ -42,6 +42,9 @@ body {
     color: var(--main-color);
     text-shadow: 0 0 1px var(--main-text-shadow-color);
     --ml-svgbackground-fill:Text;
+    height: 99%;
+    border: solid 1px var(--thin-border-color);
+    /* border: solid 1px red; */
 }
 
 .ml-dialog-logo {
@@ -72,6 +75,7 @@ body {
 .ml-dialog-footer {
     font: normal 18px Arial, Helvetica, sans-serif;
     border-top: solid 1px var(--thin-border-color);
+    border-bottom: solid 1px var(--thin-border-color);
     background: var(--alt-background-color);
     height: 40px;
     display: table;
@@ -101,9 +105,11 @@ body {
     position: absolute;
     top: 145px;
     bottom: 0px;
+    right: 0px;
+    left: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
-    width: 170px;
+    /* width: 170px; */
 }
 
 .ml-dialog-settings {

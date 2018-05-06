@@ -271,7 +271,15 @@ namespace MidnightLizard.Colors
                 (element as any).href = "#";
                 element.style.display = "none";
                 doc.body.appendChild(element);
-                elementColor = doc.defaultView.getComputedStyle(element, "").color!;
+                const style = doc.defaultView.getComputedStyle(element, "");
+                if (style)
+                {
+                    elementColor = style.color!;
+                }
+                else
+                {
+                    elementColor = Colors.RgbaColor.Black;
+                }
                 element.remove();
             }
             this._defaultColors.set(doc, elementColor);

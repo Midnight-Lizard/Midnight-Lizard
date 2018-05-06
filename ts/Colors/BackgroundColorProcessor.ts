@@ -54,7 +54,7 @@ namespace MidnightLizard.Colors
             if (tag.area === undefined)
             {
                 tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
-                if (tag.computedStyle.width && tag.computedStyle.width.endsWith("px") &&
+                if (tag.computedStyle && tag.computedStyle.width && tag.computedStyle.width.endsWith("px") &&
                     tag.computedStyle.height && tag.computedStyle.height.endsWith("px"))
                 {
                     let width = parseInt(tag.computedStyle.width), height = parseInt(tag.computedStyle.height);
