@@ -43,8 +43,6 @@ body {
     text-shadow: 0 0 1px var(--main-text-shadow-color);
     --ml-svgbackground-fill:Text;
     height: 99%;
-    border: solid 1px var(--thin-border-color);
-    /* border: solid 1px red; */
     border: 1px solid var(--main-border-color);
 }
 
