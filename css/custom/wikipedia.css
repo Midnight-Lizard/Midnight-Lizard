@@ -2,7 +2,7 @@
     position: relative;
 }
 
-/* #p-logo:before {
+#p-logo:before {
     content: "";
     background-color: #f0f0f0;
     position: absolute;
@@ -11,7 +11,10 @@
     right: 0px;
     height: 45px;
     z-index: 999;
-} */
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #p-logo:not(#imp):not(.imp):not(imp):before{
+    background-color: var(--ml-main-background-color)!important;
+}
 
 #p-logo:after {
     --ml-ignore:true;
