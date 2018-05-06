@@ -6,7 +6,11 @@
     height: 28px;
 }
 
-.ml-switch input { -webkit-appearance: none; }
+.ml-switch input {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+ }
 
 .ml-slider {
     border-radius: 14px;
