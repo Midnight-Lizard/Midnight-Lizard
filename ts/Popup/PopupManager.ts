@@ -364,8 +364,16 @@ namespace MidnightLizard.Popup
             option.text = colorScheme.colorSchemeName;
 
             this._dynamicSettingsManager.changeSettings(colorScheme);
-            option.style.color = this._dynamicTextColorProcessor.changeColor(Colors.RgbaColor.Black, colorScheme.backgroundLightnessLimit / 100, option).color;
-            option.style.backgroundColor = this._dynamicBackgroundColorProcessor.changeColor(Colors.RgbaColor.White, false, option).color;
+            option.style.setProperty("color",
+                this._dynamicTextColorProcessor.changeColor(
+                    Colors.RgbaColor.Black,
+                    colorScheme.backgroundLightnessLimit / 100,
+                    option).color, "important");
+            option.style.setProperty("background-color",
+                this._dynamicBackgroundColorProcessor.changeColor(
+                    Colors.RgbaColor.White,
+                    false,
+                    option).color, "important");
 
             select.appendChild(option);
             return option;
