@@ -45,6 +45,7 @@ body {
     height: 99%;
     border: solid 1px var(--thin-border-color);
     /* border: solid 1px red; */
+    border: 1px solid var(--main-border-color);
 }
 
 .ml-dialog-logo {
@@ -75,7 +76,7 @@ body {
 .ml-dialog-footer {
     font: normal 18px Arial, Helvetica, sans-serif;
     border-top: solid 1px var(--thin-border-color);
-    border-bottom: solid 1px var(--thin-border-color);
+    border-bottom: solid 1px var(--main-border-color);
     background: var(--alt-background-color);
     height: 40px;
     display: table;
