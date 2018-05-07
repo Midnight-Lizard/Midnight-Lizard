@@ -2,8 +2,14 @@ html[ml-stage]:not([ml-stage="preload"]) {}
 
 @media screen {
     html[ml-stage]:not([ml-stage="preload"]):not(imp)::selection,
-    html[ml-stage]:not([ml-stage="preload"]):not(imp)::-moz-selection {
-        background-color: var(--ml-selection-color) !important;
+    html[ml-stage]:not([ml-stage="preload"]) :not(imp)::selection {
+        background-color: var(--ml-main-selection-color) !important;
+        color: white !important;
+        text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
+    }
+    html[ml-stage]:not([ml-stage="preload"]):not(imp)::-moz-selection,
+    html[ml-stage]:not([ml-stage="preload"]) :not(imp)::-moz-selection {
+        background-color: var(--ml-main-selection-color) !important;
         color: white !important;
         text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
     }
