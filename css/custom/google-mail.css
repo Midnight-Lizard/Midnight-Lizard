@@ -1,6 +1,7 @@
-a[href="#inbox"][title="Gmail"] span {
+a[href="#inbox"][title="Gmail"]:not(#imp):not(.imp):not(imp) span[class]:not(#imp):not(.imp):not(imp) {
     --ml-ignore:true;
     --hue-rotate: calc(var(--ml-invert) * 180deg);
+    background-color: transparent!important;
     filter: saturate(var(--ml-image-saturation-limit, 1)) hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit, 1));
 }
 
