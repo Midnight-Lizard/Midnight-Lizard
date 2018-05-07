@@ -390,5 +390,9 @@
     "globalstab_text_label": {
         "description": "text on the label",
         "message": "Ustawienia ogólne"
+    },
+    "globals_tab_snack_bar_text_content": {
+        "description": "text on the snack-bar",
+        "message": "Wszystkie zmiany na tej karcie będą zapisywane automatycznie, ale może być trzeba odświeżyć stronę, aby zmiany zaczęły obowiązywać."
     }
 }

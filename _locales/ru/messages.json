@@ -956,5 +956,9 @@
     "resetThemeConfirmationMessage": {
         "description": "text on the message box",
         "message": "Хотите ли сбросить текущую тему браузера на схему по умолчанию?\nТема может сброситься к первоначальной теме Firefox, а не к той теме, которая была установлена вами ранее."
+    },
+    "globals_tab_snack_bar_text_content": {
+        "description": "text on the snack-bar",
+        "message": "Все изменения на этой вкладке будут сохранены автоматически, но может потребоваться обновить страницу, чтобы изменения вступили в силу."
     }
 }
