@@ -956,5 +956,9 @@
     "resetThemeConfirmationMessage": {
         "description": "text on the message box",
         "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
+    },
+    "globals_tab_snack_bar_text_content": {
+        "description": "text on the snack-bar",
+        "message": "All the changes on this tab will be saved automatically, but you may need to refresh the page in order for changes to take effect."
     }
 }
