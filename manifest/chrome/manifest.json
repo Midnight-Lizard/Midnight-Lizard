@@ -400,6 +400,16 @@
             "css": [
                 "css/custom/crowdin.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://photos.google.com/*"
+            ],
+            "css": [
+                "css/custom/google-photos.css"
+            ]
         }
     ]
 }
