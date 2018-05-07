@@ -190,8 +190,25 @@ namespace MidnightLizard.Colors
 
                 if (tag.tagName == "BODY" && rgba.alpha === 0)
                 {
-                    rgbaString = "bodyTrans";
-                    rgba = { red: 255, green: 255, blue: 255, alpha: 1 };
+                    rgbaString = "bodyTrans"; 
+                    if (window.top === window.self)
+                    {
+                        rgba = { red: 255, green: 255, blue: 255, alpha: 1 };
+                    }
+                    else
+                    {
+                        return {
+                            role: this._component,
+                            color: null,
+                            light: this._colorShift.lightnessLimit,
+                            originalLight: 1,
+                            originalColor: rgbaString,
+                            alpha: 0,
+                            isUpToDate: true,
+                            reason: ColorReason.Transparent,
+                            owner: this._app.isDebug ? tag : null,
+                        } as ColorEntry;
+                    }
                 }
 
                 if (rgba.alpha === 0 && getParentBackground)
