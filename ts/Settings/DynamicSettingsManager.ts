@@ -19,6 +19,7 @@ namespace MidnightLizard.Settings
             settingsBus: MidnightLizard.Settings.ISettingsBus)
         {
             super(rootDocument, app, storageManager, settingsBus);
+            this.isInit = true
         }
 
         public initDefaultColorSchemes() { }

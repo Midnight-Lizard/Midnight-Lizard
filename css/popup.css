@@ -42,6 +42,8 @@ body {
     color: var(--main-color);
     text-shadow: 0 0 1px var(--main-text-shadow-color);
     --ml-svgbackground-fill:Text;
+    height: 99%;
+    border: 1px solid var(--main-border-color);
 }
 
 .ml-dialog-logo {
@@ -67,16 +69,20 @@ body {
     position: relative;
     vertical-align: baseline;
     height: 47px;
+    z-index: 100;
+    /* box-shadow: 0 0 3px var(--main-shadow-color); */
 }
 
 .ml-dialog-footer {
     font: normal 18px Arial, Helvetica, sans-serif;
     border-top: solid 1px var(--thin-border-color);
+    border-bottom: solid 1px var(--main-border-color);
     background: var(--alt-background-color);
     height: 40px;
     display: table;
     width: 100%;
     text-align: center;
+    z-index: 100;
 }
 
 .ml-dialog-header span {
@@ -99,11 +105,13 @@ body {
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
     position: absolute;
-    top: 120px;
+    top: 145px;
     bottom: 0px;
+    right: 0px;
+    left: 0px;
     vertical-align: bottom;
     background-color: var(--main-background-color);
-    width: 170px;
+    /* width: 170px; */
 }
 
 .ml-dialog-settings {
@@ -251,6 +259,21 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     text-overflow: clip;
     background: var(--main-background-color);
     box-shadow: 1px 1px 1px 0 var(--main-input-shadow-color) inset;
+}
+
+select.ml-dialog-input-text {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image:
+        linear-gradient(135deg, transparent 64%, currentColor 65%, currentColor 75%, transparent 76%),
+        linear-gradient(-135deg, transparent 64%, currentColor 65%, currentColor 75%, transparent 76%);
+    background-size: 7px 10px;
+    background-repeat: no-repeat;
+    background-position:
+        calc(100% - 5px) calc(100% / 2 - 2px),
+        calc(100% - 8px) calc(100% / 2 - 2px);
+    --ml-backgroundnocontrast-background-color:Text;
 }
 
 .ml-dialog-input-text option {
@@ -855,31 +878,31 @@ height: 148px;
 .intro-select-scheme:after {
     width: 135px;
     height: 32px;
-    top: 135px;
+    top: 160px;
     right: -154px;
 }
 
 .intro-select-scheme:before {
-    height: 12px;
+    height: 25px;
     right: 0px;
-    top: 139px;
-    transform: skew(-108deg);
+    top: 147px;
+    transform: skew(-127deg);
 }
 
 .intro-edit-schemes:after {
     width: 142px;
     height: 32px;
-    top: 42px;
+    top: 34px;
     right: -152px;
 }
 
 .intro-edit-schemes:before {
-    height: 239px;
+    height: 242px;
     width: 5px;
     border-bottom-right-radius: 10px;
     border-style: dashed;
     right: 1px;
-    top: 74px;
+    top: 67px;
     transform: skew(-5deg);
     border-width: 0px 1px 1px 0px;
 }
@@ -887,15 +910,15 @@ height: 148px;
 .intro-apply:after {
     width: 136px;
     height: 34px;
-    top: 336px;
+    top: 361px;
     right: -155px;
 }
 
 .intro-apply:before {
-    height: 50px;
+    height: 75px;
     right: 0px;
     top: 286px;
-    transform: skew(36deg);
+    transform: skew(26deg);
 }
 
 .intro-tabs:after {
@@ -961,18 +984,18 @@ height: 148px;
 .intro-default:after {
     width: 136px;
     height: 34px;
-    top: 268px;
+    top: 293px;
     right: -155px;
 }
 
 .intro-default:before {
-    height: 68px;
+    height: 59px;
     width: 7px;
-    right: -4px;
-    top: 303px;
-    transform: skew(-22deg);
-    border-style: dashed;
-    border-bottom-right-radius: 10px;
+    right: 0px;
+    top: 310px;
+    transform: skew(-31deg);
+    /* border-style: dashed; */
+    /* border-bottom-right-radius: 10px; */
 }
 
 .intro-help:after {
@@ -1090,10 +1113,40 @@ height: 148px;
 }
 
 .ml-mode-container {
-    
-margin-bottom: -9px;
-    
-margin-top: 7px;
+    margin-bottom: -9px;
+    /* margin-top: 7px; */
 }
 
+#mode {
+    cursor: help;
+}
 
+.ml-snack-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 10px 10px 10px 46px;
+    text-align: justify;
+    text-indent: 10px;
+    font-size: 12px;
+    background: #FFFDE7;
+    border-radius: 4px;
+    /*border: solid 1px var(--thin-border-color);*/
+    --border-color: var(--tab-item-border-color, var(--thin-border-color));
+    /*border-image: linear-gradient(90deg, var(--border-color) 0%, var(--border-color) 100%) 1;*/
+    box-shadow:
+        0 0 3px var(--main-shadow-color),
+        inset 0 0 0 1px var(--white-thin-border-color);
+}
+
+.ml-snack-bar:before {
+    font-size: 30px;
+    position: absolute;
+    left: 0px;
+    top: calc(100% / 2 - 15px);
+}
+
+.ml-snack-bar.warn:before {
+    content: "\26A0";
+}

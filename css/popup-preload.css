@@ -1,0 +1,4 @@
+html[ml-is-active][ml-stage]:not([ml-stage="complete"])
+{
+    filter: brightness(0.2);
+}

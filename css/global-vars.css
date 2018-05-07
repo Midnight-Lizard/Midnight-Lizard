@@ -8,9 +8,11 @@
     --main-border-color: #bebebe;
     --thin-border-color: rgba(140, 140, 140, 0.15);
     --light-thin-border-color: rgba(220, 220, 220, 0.3);
+    --white-thin-border-color: rgba(255, 255, 255, 0.1);
     --main-text-shadow-color: rgba(255, 255, 255, 0.8);
     --logo-text-color: hsla(120, 100%, 10%, 1);
     --main-input-shadow-color: rgba(0, 0, 0, 0.1);
+    --main-shadow-color: rgba(0, 0, 0, 0.6);
     --outline-color: #2196F3;
     --icon-shadow-color: black;
     --pseudo-background-color: var(--main-background-color);

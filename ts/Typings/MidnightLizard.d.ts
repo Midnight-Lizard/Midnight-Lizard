@@ -80,11 +80,6 @@ interface HTMLInputElement
     labelElement: HTMLLabelElement | undefined;
 }
 
-interface HTMLIFrameElement
-{
-    mlInaccessible?: boolean | null;
-}
-
 interface Window
 {
     Element: typeof Element;

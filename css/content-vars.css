@@ -30,6 +30,14 @@
     --ml-background-border-right-color:Background;
     --ml-background-border-top-color:Background;
 
+    --ml-backgroundnocontrast-background-color:BackgroundNoContrast;
+    --ml-backgroundnocontrast-fill:BackgroundNoContrast;
+    --ml-backgroundnocontrast-border-color:BackgroundNoContrast;
+    --ml-backgroundnocontrast-border-bottom-color:BackgroundNoContrast;
+    --ml-backgroundnocontrast-border-left-color:BackgroundNoContrast;
+    --ml-backgroundnocontrast-border-right-color:BackgroundNoContrast;
+    --ml-backgroundnocontrast-border-top-color:BackgroundNoContrast;
+
     --ml-buttonbackground-background-color:ButtonBackground;
     --ml-buttonbackground-fill:ButtonBackground;
 

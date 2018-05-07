@@ -314,9 +314,7 @@ namespace MidnightLizard.ContentScript
             {
                 if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
                 {
-                    if (tag instanceof HTMLIFrameElement ||
-                        tag instanceof HTMLCanvasElement ||
-                        this._isPdf && tag instanceof HTMLEmbedElement)
+                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         return true;
                     }
@@ -668,8 +666,7 @@ namespace MidnightLizard.ContentScript
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
                         isLink = tag instanceof HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img) ||
-                            tag instanceof HTMLIFrameElement;
+                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
                     }
 
                     if (isVisible)
@@ -1104,7 +1101,8 @@ namespace MidnightLizard.ContentScript
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
             if (tag.mlBgColor || tag instanceof Element &&
-                lastProcMode === Settings.ProcessingMode.Simplified)
+                (lastProcMode === Settings.ProcessingMode.Simplified ||
+                    this._settingsManager.isSimple))
             {
                 let ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
@@ -1115,10 +1113,6 @@ namespace MidnightLizard.ContentScript
                 delete tag.rect;
                 delete tag.selectors;
                 delete tag.path;
-                if (tag instanceof HTMLIFrameElement)
-                {
-                    delete tag.mlInaccessible;
-                }
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
@@ -1244,29 +1238,13 @@ namespace MidnightLizard.ContentScript
 
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
-                {
-                    let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
-                    if (hasForbiddenTransition)
-                    {
-                        roomRules.transitionDuration = { value: durations.join(", ") };
-                    }
-                }
-
                 if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
                     tag.computedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
 
-                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
-                {
-                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
-                }
-
-                if (tag instanceof HTMLCanvasElement ||
-                    tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
-                    this._isPdf && tag instanceof HTMLEmbedElement)
+                if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                 {
                     this.processInaccessibleTextContent(tag, roomRules);
                 }
@@ -1314,11 +1292,10 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                if (tag instanceof HTMLIFrameElement && !tag.mlInaccessible)
+                if (isRealElement(tag) && tag.contentEditable == true.toString())
                 {
-                    //dom.addEventListener(tag, "load", this.onIFrameLoaded, this, false, tag)();
+                    this.overrideInnerHtml(tag);
                 }
-                if (isRealElement(tag) && tag.contentEditable == true.toString()) this.overrideInnerHtml(tag);
 
                 this.calcElementPath(tag);
                 tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
@@ -1525,9 +1502,7 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag instanceof HTMLCanvasElement ||
-                        tag instanceof HTMLIFrameElement && tag.mlInaccessible ||
-                        this._isPdf && tag instanceof HTMLEmbedElement)
+                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                     {
                         this.processInaccessibleTextContent(tag, roomRules);
                     }
@@ -1664,7 +1639,7 @@ namespace MidnightLizard.ContentScript
         }
 
         private processInaccessibleTextContent(
-            tag: HTMLIFrameElement | HTMLCanvasElement | HTMLEmbedElement,
+            tag: HTMLCanvasElement | HTMLEmbedElement,
             roomRules: RoomRules)
         {
             let filterValue: Array<string>;
@@ -1902,9 +1877,15 @@ namespace MidnightLizard.ContentScript
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|color|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
+                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|current|color|transparent|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
-            const bgLight = isButton ? this.getParentBackground(tag).light : 0;
+            const bgLight = isButton
+                ? this._settingsManager.isComplex
+                    ? this.getParentBackground(tag).light
+                    : this._settingsManager.shift.Background.lightnessLimit
+                : roomRules.backgroundColor
+                    ? roomRules.backgroundColor.light
+                    : this._settingsManager.shift.Background.lightnessLimit;
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
@@ -1913,19 +1894,25 @@ namespace MidnightLizard.ContentScript
                     let newColor: Colors.ColorEntry;
                     if (isButton)
                     {
-                        newColor = this._buttonBackgroundColorProcessor
-                            .changeColor(prevColor, bgLight, tag);
+                        newColor = this.changeColor({
+                            role: cc.ButtonBackground, property: this._css.backgroundColor,
+                            tag: tag, propVal: prevColor!, bgLight: bgLight
+                        })!;
                     }
                     else
                     {
-                        newColor = this._backgroundColorProcessor.changeColor(prevColor, false, tag);
+                        newColor = this.changeColor({
+                            role: cc.BackgroundNoContrast, property: this._css.backgroundColor,
+                            tag: tag, propVal: prevColor!, bgLight: bgLight
+                        })!;
                     }
                     lightSum += newColor.light;
                     if (newColor.color)
                     {
                         gradient = gradient.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
                     }
-                    if (!mainColor && newColor.alpha > 0.5 && roomRules.backgroundColor)
+                    if (!mainColor && newColor.alpha > 0.5 && roomRules.backgroundColor &&
+                        newColor.role === (isButton ? cc.ButtonBackground : cc.BackgroundNoContrast))
                     {
                         mainColor = roomRules.backgroundColor = Object.assign({}, roomRules.backgroundColor);
                         mainColor.light = newColor.light;
@@ -2018,43 +2005,6 @@ namespace MidnightLizard.ContentScript
             return tag;
         }
 
-        protected onIFrameLoaded(iframe: HTMLIFrameElement)
-        {
-            try
-            {
-                let childDoc = iframe.contentDocument || iframe.contentWindow.document;
-                dom.addEventListener(childDoc, "DOMContentLoaded", this.onIFrameDocumentLaoded, this, false, childDoc)();
-            }
-            catch (ex)
-            {
-                if (this._settingsManager.currentSettings.applyEffectsOnInaccessibleExternalContent)
-                {
-                    iframe.mlInaccessible = true;
-                    this._documentObserver.stopDocumentObservation(iframe.ownerDocument);
-                    this.restoreElementColors(iframe, true);
-                    iframe.setAttribute("fixed", "access");
-                    DocumentProcessor.processElementsChunk([iframe], this, null, 0);
-                    //docProc._app.isDebug && console.error(ex);
-                }
-            }
-        }
-
-        protected onIFrameDocumentLaoded(doc: Document)
-        {
-            if (doc.defaultView && this._settingsManager.isActive)
-            {
-                this.injectDynamicValues(doc);
-                if (doc.readyState != "loading" && doc.readyState != "uninitialized")
-                {
-                    this.processDocument(doc);
-                }
-                else
-                {
-                    this.setDocumentProcessingStage(doc, ProcessingStage.Loading);
-                }
-            }
-        }
-
         protected overrideInnerHtml(tag: HTMLElement)
         {
             if (!tag.innerHtmlGetter)
@@ -2136,6 +2086,7 @@ namespace MidnightLizard.ContentScript
                 transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
                 transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
                 textColor = textColorEntry.color!,
+                transTextColor = this._textColorProcessor.changeColor("grba(0,0,0,0.7)", bgLight, doc.documentElement).color!,
                 borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(
@@ -2161,7 +2112,7 @@ namespace MidnightLizard.ContentScript
 
             return {
                 backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
-                textColor, borderColor, selectionColor, rangeFillColor,
+                textColor, transTextColor, borderColor, selectionColor, rangeFillColor,
                 buttonBackgroundColor, buttonBorderColor,
                 scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
                 linkColor, linkColorHover, linkColorActive,

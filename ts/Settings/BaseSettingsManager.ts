@@ -29,7 +29,7 @@ namespace MidnightLizard.Settings
         abstract get currentSettings(): Settings.ColorScheme;
         abstract get onSettingsInitialized(): ArgEvent<Colors.ComponentShift>;
         abstract get onSettingsChanged(): RespEvent<(scheme: ColorScheme) => void, Colors.ComponentShift>;
-        abstract getDefaultSettings(): Promise<Settings.ColorScheme>;
+        abstract getDefaultSettings(renameToDefault?: boolean): Promise<Settings.ColorScheme>;
     }
     /**
      * Base Settings Manager
@@ -319,6 +319,13 @@ namespace MidnightLizard.Settings
             }
         }
 
+        protected notifySettingsApplied()
+        {
+            this._settingsBus.notifySettingsApplied(this._currentSettings)
+                .catch(ex => this._app.isDebug &&
+                    console.error((`Error in ${window.top === window.self ? "top" : "child"} frame:\n${ex.message || ex}`)));
+        }
+
         protected _onSettingsInitialized = new ArgEventDispatcher<Colors.ComponentShift>();
         public get onSettingsInitialized()
         {
@@ -341,17 +348,35 @@ namespace MidnightLizard.Settings
             this.applyUserColorSchemes(DefaultColorSchemes);
         }
 
-        public async getDefaultSettings()
+        public async getDefaultSettings(renameToDefault: boolean = true)
         {
             const defaultSettings = await this._storageManager.get({
                 ...Settings.ColorSchemes.default,
                 ...Settings.ColorSchemes.dimmedDust
             });
+            this.processDefaultSettings(defaultSettings, renameToDefault);
+            return this._defaultSettings;
+        }
+
+        protected processDefaultSettings(defaultSettings: ColorScheme, renameToDefault: boolean)
+        {
             this.applyUserColorSchemes(defaultSettings);
             this.assignSettings(this._defaultSettings, defaultSettings);
+            Object.assign(this._defaultSettings, {
+                scheduleStartHour: defaultSettings.scheduleStartHour,
+                scheduleFinishHour: defaultSettings.scheduleFinishHour,
+                changeBrowserTheme: defaultSettings.changeBrowserTheme
+            });
+            if (renameToDefault)
+            {
+                this.renameDefaultSettingsToDefault();
+            }
+        }
+
+        protected renameDefaultSettingsToDefault()
+        {
             this._defaultSettings.colorSchemeId = "default";
             this._defaultSettings.colorSchemeName = "Default";
-            return this._defaultSettings;
         }
 
         public applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
@@ -391,9 +416,6 @@ namespace MidnightLizard.Settings
 
         public settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean
         {
-            const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
-                ["isEnabled", "exist", "hostName", "colorSchemeId", "colorSchemeName",
-                    "userColorSchemes", "runOnThisSite"];
             for (let setting in first)
             {
                 let prop = setting as Settings.ColorSchemePropertyName;

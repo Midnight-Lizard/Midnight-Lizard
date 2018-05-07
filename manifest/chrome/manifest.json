@@ -4,7 +4,7 @@
     "short_name": "Mid.Lizard",
     "description": "__MSG_appDesc__",
     "default_locale": "en",
-    "version": "9.1.0",
+    "version": "9.1.1",
     "author": "Pavel Agarkov",
     "icons": {
         "128": "img/ml-icon-128+.png",
@@ -58,6 +58,7 @@
         },
         {
             "run_at": "document_start",
+            "all_frames": true,
             "match_about_blank": true,
             "matches": [
                 "<all_urls>"
@@ -386,6 +387,28 @@
             ],
             "css": [
                 "css/custom/reddit.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.crowdin.com/*",
+                "https://crowdin.com/*",
+                "https://translate.midnight-lizard.online/"
+            ],
+            "css": [
+                "css/custom/crowdin.css"
+            ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://photos.google.com/*"
+            ],
+            "css": [
+                "css/custom/google-photos.css"
             ]
         }
     ]

@@ -2,7 +2,7 @@
     position: relative;
 }
 
-/* #p-logo:before {
+#p-logo:before {
     content: "";
     background-color: #f0f0f0;
     position: absolute;
@@ -11,14 +11,17 @@
     right: 0px;
     height: 45px;
     z-index: 999;
-} */
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #p-logo:not(#imp):not(.imp):not(imp):before{
+    background-color: var(--ml-main-background-color)!important;
+}
 
 #p-logo:after {
     --ml-ignore:true;
     content: "";
     background-repeat: no-repeat;
     background-position: bottom;
-    background-image: url(/static/images/project-logos/enwiki.png);
+    background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki.png);
     position: absolute;
     bottom: 3px;
     left: 0px;
@@ -33,7 +36,7 @@
 (min-resolution:1.5dppx),
 (min-resolution:144dpi) {
     #p-logo:after {
-        background-image: url(/static/images/project-logos/enwiki-1.5x.png);
+        background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-1.5x.png);
         background-size: 135px auto
     }
 }
@@ -43,7 +46,7 @@
 (min-resolution:2dppx),
 (min-resolution:192dpi) {
     #p-logo:after {
-        background-image: url(/static/images/project-logos/enwiki-2x.png);
+        background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-2x.png);
         background-size: 135px auto
     }
 }

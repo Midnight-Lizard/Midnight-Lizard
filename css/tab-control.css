@@ -16,6 +16,7 @@
     position: absolute;
     z-index: 1;
     top: 0px;
+    width: 100%;
 }
 
 .ml-tab-item-icon
@@ -64,11 +65,12 @@
 
 .right .ml-tab-item
 {
-    padding: 12px 13px 12px 2px;
+    padding: 14px 13px 14px 2px;
     margin-left: 0;
     margin-right: 10px;
     text-align: right;
     font-size: 15px;
+    line-height: 17px;
     border-radius: 0px 5px 5px 0px;
     border-left-color: var(--thin-border-color);
     border-top-color: transparent;
@@ -77,13 +79,14 @@
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
 }
 
-.right .ml-tab-item span {
+.right:not(.imp):not(#imp):not(imp) .ml-tab-item:not(.imp):not(#imp):not(imp)>span:not(.imp):not(#imp):not(imp) {
     display: inline-block;
     max-width: 132px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     vertical-align: bottom;
+    background-color: transparent!important;
 }
 
 .ml-tab-item:hover
@@ -113,7 +116,7 @@
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
-    height: 40px;
+    height: 26px;
 }
 
 .ml-tab-item.active:not(imp)
@@ -123,6 +126,7 @@
     --ml-text-color: HighlightedText;
     cursor: default!important;
     border-image: unset!important;
+    z-index: 100;
 }
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:not(#imp) {
     background-color: var(--ml-main-trans-alt-background-color) !important;
@@ -151,6 +155,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-content:not(
 
 #default-tab-content.ml-tab-content
 {
+    animation: none;
     display: table-cell;
     font-size: 14px;
     text-align: justify;

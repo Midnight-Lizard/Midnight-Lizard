@@ -25,7 +25,8 @@ namespace MidnightLizard.Popup
         abstract applyUserColorSchemes(defaultSettings: Settings.ColorScheme): void;
         abstract getDefaultSettings(): Promise<Settings.ColorScheme>;
         abstract getDefaultSettingsCache(): Settings.ColorScheme;
-        abstract setAsDefaultSettings(): Promise<null>;
+        abstract setAsDefaultSettings(): Promise<Settings.ColorScheme>;
+        abstract changeDefaultSettings(settings: Settings.ColorScheme): Promise<Settings.ColorScheme>;
         abstract toggleIsEnabled(isEnabled: boolean): Promise<null>;
         abstract changeSettings(newSettings: Settings.ColorScheme): void;
         abstract applySettings(): Promise<Settings.ColorScheme>;
@@ -100,12 +101,25 @@ namespace MidnightLizard.Popup
             return this._storageManager.set({ isEnabled: isEnabled });
         }
 
-        public setAsDefaultSettings()
+        public async setAsDefaultSettings()
         {
-            this._defaultSettings = Object.assign({}, this._currentSettings);
-            this._defaultSettings.colorSchemeId = "default";
-            this._defaultSettings.colorSchemeName = "Default";
-            return this._storageManager.set(this._currentSettings);
+            return await this.changeDefaultSettings(this._currentSettings);
+        }
+
+        public async changeDefaultSettings(settings: Settings.ColorScheme)
+        {
+            await this.getDefaultSettings(false);
+            this._defaultSettings = Object.assign(this._defaultSettings, settings);
+            await this._storageManager.set(this._defaultSettings);
+            this.renameDefaultSettingsToDefault();
+            Object.assign(Settings.ColorSchemes.default, this._defaultSettings);
+            if (this.currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId)
+            {
+                Object.assign(this._currentSettings, this._defaultSettings);
+            }
+            this.changeSettings(this.currentSettings);
+            this.notifySettingsApplied();
+            return this._defaultSettings;
         }
 
         public async saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>
