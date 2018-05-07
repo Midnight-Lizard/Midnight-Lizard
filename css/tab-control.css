@@ -126,6 +126,7 @@
     --ml-text-color: HighlightedText;
     cursor: default!important;
     border-image: unset!important;
+    z-index: 100;
 }
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:not(#imp) {
     background-color: var(--ml-main-trans-alt-background-color) !important;

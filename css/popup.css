@@ -69,6 +69,8 @@ body {
     position: relative;
     vertical-align: baseline;
     height: 47px;
+    z-index: 100;
+    /* box-shadow: 0 0 3px var(--main-shadow-color); */
 }
 
 .ml-dialog-footer {
@@ -80,6 +82,7 @@ body {
     display: table;
     width: 100%;
     text-align: center;
+    z-index: 100;
 }
 
 .ml-dialog-header span {
@@ -1116,4 +1119,34 @@ height: 148px;
 
 #mode {
     cursor: help;
+}
+
+.ml-snack-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 10px 10px 10px 46px;
+    text-align: justify;
+    text-indent: 10px;
+    font-size: 12px;
+    background: #FFFDE7;
+    border-radius: 4px;
+    /*border: solid 1px var(--thin-border-color);*/
+    --border-color: var(--tab-item-border-color, var(--thin-border-color));
+    /*border-image: linear-gradient(90deg, var(--border-color) 0%, var(--border-color) 100%) 1;*/
+    box-shadow:
+        0 0 3px var(--main-shadow-color),
+        inset 0 0 0 1px var(--white-thin-border-color);
+}
+
+.ml-snack-bar:before {
+    font-size: 30px;
+    position: absolute;
+    left: 0px;
+    top: calc(100% / 2 - 15px);
+}
+
+.ml-snack-bar.warn:before {
+    content: "\26A0";
 }
