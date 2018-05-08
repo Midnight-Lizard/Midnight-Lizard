@@ -13,6 +13,9 @@ html[ml-stage]:not([ml-stage="preload"]) {}
         color: white !important;
         text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
     }
+    html[ml-stage]:not([ml-stage="preload"]) :not(imp)::placeholder {
+        color: var(--ml-main-trans-text-color) !important;
+    }
     html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
         width: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         height: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
