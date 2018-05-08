@@ -54,7 +54,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 
 .ml-footer-icon-container[tooltip]:not(#imp):after
 {
-    top: -6px;
+    top: -6.4px;
     filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
     border-top-color: var(--dark-background-color);
     border-bottom-color: transparent!important;

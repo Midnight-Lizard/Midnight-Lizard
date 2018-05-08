@@ -13,7 +13,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>[style*="filter:"]:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="d-image"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="d-image"]:not([style*="gradient"]):not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) img:not(#imp):not(.imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
