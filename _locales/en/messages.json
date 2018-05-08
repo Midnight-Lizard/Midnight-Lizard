@@ -1,624 +1,624 @@
 {
     "short_locale": {
-        "description": "two letters of current locale such as en for English",
+        "description": "short_locale: two letters of current locale such as en for English",
         "message": "en"
     },
     "appDesc": {
-        "description": "extension description displayed in the Web Store",
+        "description": "appDesc: extension description displayed in the Web Store",
         "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
     },
     "globalToggleKey": {
         "message": "Global extension toggle"
     },
     "runOnThisSite_text_label": {
-        "description": "text on the label",
+        "description": "runOnThisSite_text_label: text on the label",
         "message": "Run on this website"
     },
     "runOnThisSite_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "runOnThisSite_@title: text on the tooltip\/hint",
         "message": "Run [Midnight Lizard] on this website."
     },
     "restoreColorsOnCopy_text_label": {
-        "description": "text on the label",
+        "description": "restoreColorsOnCopy_text_label: text on the label",
         "message": "Restore original colors on copy"
     },
     "restoreColorsOnCopy_@title": {
-        "description": "text on the tooltip",
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
         "message": "Restore original colors before copying content from the page"
     },
     "restoreColorsOnPrint_text_label": {
-        "description": "text on the label",
+        "description": "restoreColorsOnPrint_text_label: text on the label",
         "message": "Restore original colors on print"
     },
     "restoreColorsOnPrint_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
         "message": "Restore original colors before printing content of the page"
     },
     "changeBrowserTheme_text_label": {
-        "description": "text on the label",
+        "description": "changeBrowserTheme_text_label: text on the label",
         "message": "Change browser theme"
     },
     "changeBrowserTheme_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
         "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox."
     },
     "useDefaultSchedule_text_label": {
-        "description": "text on the label",
+        "description": "useDefaultSchedule_text_label: text on the label",
         "message": "Use default schedule"
     },
     "useDefaultSchedule_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
         "message": "Use schedule from default settings\nIf you want to use single schedule for all websites then you need to specify it in the default settings."
     },
     "scheduleStartHour_text_label": {
-        "description": "text on the label",
+        "description": "scheduleStartHour_text_label: text on the label",
         "message": "Activation time"
     },
     "scheduleStartHour_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scheduleStartHour_@title: text on the tooltip\/hint",
         "message": "Extension will be active on the current website only starting from this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "scheduleFinishHour_text_label": {
-        "description": "text on the label",
+        "description": "scheduleFinishHour_text_label: text on the label",
         "message": "Deactivation time"
     },
     "scheduleFinishHour_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
         "message": "Extension will be active on the current website only until this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "blueFilter_text_label": {
-        "description": "text on the label",
+        "description": "blueFilter_text_label: text on the label",
         "message": "Blue filter intensity"
     },
     "blueFilter_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "blueFilter_@title: text on the tooltip\/hint",
         "message": "Blue filter intensity\nRemoves blue light from the page and replces it with red light"
     },
     "backgroundSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "backgroundSaturationLimit_text_label: text on the label",
         "message": "Saturation limit"
     },
     "backgroundSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Background saturation limit"
     },
     "backgroundContrast_text_label": {
-        "description": "text on the label",
+        "description": "backgroundContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "backgroundContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference in brightness between similar backgrounds.\nDepends on elements size and order so results might be quite random."
     },
     "backgroundLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "backgroundLightnessLimit_text_label: text on the label",
         "message": "Brightness limit"
     },
     "backgroundLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Background brightness limit"
     },
     "backgroundGraySaturation_text_label": {
-        "description": "text on the label",
+        "description": "backgroundGraySaturation_text_label: text on the label",
         "message": "Gray background saturation"
     },
     "backgroundGraySaturation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
         "message": "Saturation of the gray backgrounds after applying selected default hue"
     },
     "backgroundHueGravity_text_label": {
-        "description": "text on the label",
+        "description": "backgroundHueGravity_text_label: text on the label",
         "message": "Default hue gravity"
     },
     "backgroundHueGravity_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
         "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "backgroundGrayHue_text_label": {
-        "description": "text on the label",
+        "description": "backgroundGrayHue_text_label: text on the label",
         "message": "Default hue"
     },
     "backgroundGrayHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
         "message": "Hue to be used to increase saturation of the gray background colors"
     },
     "backgroundReplaceAllHues_text_label": {
-        "description": "text on the label",
+        "description": "backgroundReplaceAllHues_text_label: text on the label",
         "message": "Replace all"
     },
     "backgroundReplaceAllHues_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "buttonSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "buttonSaturationLimit_text_label: text on the label",
         "message": "Saturation limit"
     },
     "buttonSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Button background saturation limit"
     },
     "buttonContrast_text_label": {
-        "description": "text on the label",
+        "description": "buttonContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "buttonContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference in brightness between buttons and background around them"
     },
     "buttonLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "buttonLightnessLimit_text_label: text on the label",
         "message": "Brightness limit"
     },
     "buttonLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Button background brightness limit"
     },
     "buttonGraySaturation_text_label": {
-        "description": "text on the label",
+        "description": "buttonGraySaturation_text_label: text on the label",
         "message": "Gray button saturation"
     },
     "buttonGraySaturation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
         "message": "Saturation of the gray button backgrounds after applying selected default hue"
     },
     "buttonHueGravity_text_label": {
-        "description": "text on the label",
+        "description": "buttonHueGravity_text_label: text on the label",
         "message": "Default hue gravity"
     },
     "buttonHueGravity_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonHueGravity_@title: text on the tooltip\/hint",
         "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "buttonGrayHue_text_label": {
-        "description": "text on the label",
+        "description": "buttonGrayHue_text_label: text on the label",
         "message": "Default hue"
     },
     "buttonGrayHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonGrayHue_@title: text on the tooltip\/hint",
         "message": "Hue to be used to increase saturation of the gray button background colors"
     },
     "buttonReplaceAllHues_text_label": {
-        "description": "text on the label",
+        "description": "buttonReplaceAllHues_text_label: text on the label",
         "message": "Replace all"
     },
     "buttonReplaceAllHues_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "textSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "textSaturationLimit_text_label: text on the label",
         "message": "Saturation limit"
     },
     "textSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Text saturation limit"
     },
     "textContrast_text_label": {
-        "description": "text on the label",
+        "description": "textContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "textContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference in brightness between text and its background"
     },
     "textLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "textLightnessLimit_text_label: text on the label",
         "message": "Brightness limit"
     },
     "textLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limit of a maximum text brightness"
     },
     "textGraySaturation_text_label": {
-        "description": "text on the label",
+        "description": "textGraySaturation_text_label: text on the label",
         "message": "Gray text saturation"
     },
     "textGraySaturation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
         "message": "Saturation of the gray text after applying selected default hue"
     },
     "textHueGravity_text_label": {
-        "description": "text on the label",
+        "description": "textHueGravity_text_label: text on the label",
         "message": "Default hue gravity"
     },
     "textHueGravity_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
         "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "textGrayHue_text_label": {
-        "description": "text on the label",
+        "description": "textGrayHue_text_label: text on the label",
         "message": "Default hue"
     },
     "textGrayHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
         "message": "Hue to be used to increase saturation of the gray text colors"
     },
     "textReplaceAllHues_text_label": {
-        "description": "text on the label",
+        "description": "textReplaceAllHues_text_label: text on the label",
         "message": "Replace all"
     },
     "textReplaceAllHues_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "textSelectionHue_html_label": {
         "message": "Text <span id=\"selection\">selection<\/span> hue"
     },
     "textSelectionHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
         "message": "Text selection hue"
     },
     "linkSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "linkSaturationLimit_text_label: text on the label",
         "message": "Saturation limit"
     },
     "linkSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Links saturation limit"
     },
     "linkContrast_text_label": {
-        "description": "text on the label",
+        "description": "linkContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "linkContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference between links and background brightness"
     },
     "linkLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "linkLightnessLimit_text_label: text on the label",
         "message": "Brightness limit"
     },
     "linkLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limit of maximum link brightness"
     },
     "linkDefaultSaturation_text_label": {
-        "description": "text on the label",
+        "description": "linkDefaultSaturation_text_label: text on the label",
         "message": "Default links saturation"
     },
     "linkDefaultSaturation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
         "message": "Saturation of the links with normal link color and for visited links after applying selected hues"
     },
     "linkHueGravity_text_label": {
-        "description": "text on the label",
+        "description": "linkHueGravity_text_label: text on the label",
         "message": "Default hue gravity"
     },
     "linkHueGravity_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
         "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
     },
     "linkDefaultHue_text_label": {
-        "description": "text on the label",
+        "description": "linkDefaultHue_text_label: text on the label",
         "message": "Default hue"
     },
     "linkDefaultHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
         "message": "Hue to be used to replace a normal link hue"
     },
     "linkReplaceAllHues_text_label": {
-        "description": "text on the label",
+        "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "Replace all"
     },
     "linkReplaceAllHues_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "Replace all original hues with a selected one.\nOtherwise only normal for this page link hue will be replaced.\nDefault saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "linkVisitedHue_text_label": {
-        "description": "text on the label",
+        "description": "linkVisitedHue_text_label: text on the label",
         "message": "Visited link hue"
     },
     "linkVisitedHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
         "message": "Visited link hue"
     },
     "borderSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "borderSaturationLimit_text_label: text on the label",
         "message": "Saturation limit"
     },
     "borderSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Border saturation limit"
     },
     "borderContrast_text_label": {
-        "description": "text on the label",
+        "description": "borderContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "borderContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference between border and background brightness"
     },
     "borderLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "borderLightnessLimit_text_label: text on the label",
         "message": "Brightness limit"
     },
     "borderLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limit of maximum border brightness"
     },
     "borderGraySaturation_text_label": {
-        "description": "text on the label",
+        "description": "borderGraySaturation_text_label: text on the label",
         "message": "Gray borders saturation"
     },
     "borderGraySaturation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
         "message": "Saturation of the gray borders after applying selected default hue"
     },
     "borderHueGravity_text_label": {
-        "description": "text on the label",
+        "description": "borderHueGravity_text_label: text on the label",
         "message": "Default hue gravity"
     },
     "borderHueGravity_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderHueGravity_@title: text on the tooltip\/hint",
         "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "borderGrayHue_text_label": {
-        "description": "text on the label",
+        "description": "borderGrayHue_text_label: text on the label",
         "message": "Default hue"
     },
     "borderGrayHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
         "message": "Hue to be used to increase saturation of the gray borders colors"
     },
     "borderReplaceAllHues_text_label": {
-        "description": "text on the label",
+        "description": "borderReplaceAllHues_text_label: text on the label",
         "message": "Replace all"
     },
     "borderReplaceAllHues_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "Replace all original hues with a selected one.\nOtherwise only gray, black and white hues will be replaced.\nGray saturation will be used for replaced hues.\nCompletely overrides default hue gravity."
     },
     "imageSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "imageSaturationLimit_text_label: text on the label",
         "message": "Saturation"
     },
     "imageSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Set saturation of all images to this value"
     },
     "imageLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "imageLightnessLimit_text_label: text on the label",
         "message": "Brightness"
     },
     "imageLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Set brightness of all images to this value"
     },
     "imageExample_text_label": {
-        "description": "text on the label",
+        "description": "imageExample_text_label: text on the label",
         "message": "Image example"
     },
     "imageExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "imageExample_@title: text on the tooltip\/hint",
         "message": "Image example"
     },
     "useImageHoverAnimation_text_label": {
-        "description": "text on the label",
+        "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Use image hover animation"
     },
     "useImageHoverAnimation_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
         "message": "Remove all efects from image when you hover mouse on it"
     },
     "backgroundImageSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
         "message": "Saturation"
     },
     "backgroundImageSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Saturation of background images"
     },
     "backgroundImageLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
         "message": "Brightness"
     },
     "backgroundImageLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limit of background images brightness. The smaller image, the brighter it is."
     },
     "backgroundImageExample_text_label": {
-        "description": "text on the label",
+        "description": "backgroundImageExample_text_label: text on the label",
         "message": "Background image example"
     },
     "backgroundImageExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
         "message": "Background image example"
     },
     "backgroundImageExampleText_text_label": {
-        "description": "text on the label",
+        "description": "backgroundImageExampleText_text_label: text on the label",
         "message": "Example"
     },
     "backgroundImageExampleText_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
         "message": "If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly."
     },
     "scrollbarSaturationLimit_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
         "message": "Saturation"
     },
     "scrollbarSaturationLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
         "message": "Scrollbar thumb and buttons saturation"
     },
     "scrollbarContrast_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarContrast_text_label: text on the label",
         "message": "Contrast"
     },
     "scrollbarContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
         "message": "Minimal difference between brightness of scrollbar thumb and background.\nApplicable only with bright backgrounds."
     },
     "scrollbarLightnessLimit_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
         "message": "Brightness"
     },
     "scrollbarLightnessLimit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Scrollbar thumb and buttons brightness limit"
     },
     "scrollbarSize_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarSize_text_label: text on the label",
         "message": "Size"
     },
     "scrollbarSize_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
         "message": "Scrollbar size"
     },
     "scrollbarGrayHue_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarGrayHue_text_label: text on the label",
         "message": "Scrollbar hue"
     },
     "scrollbarGrayHue_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
         "message": "Scrollbar thumb and buttons hue"
     },
     "commonTab_text_label": {
-        "description": "text on the label",
+        "description": "commonTab_text_label: text on the label",
         "message": "Common"
     },
     "commonTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when [Midnight Lizard] should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
     "backgroundTab_text_label": {
-        "description": "text on the label",
+        "description": "backgroundTab_text_label: text on the label",
         "message": "Background"
     },
     "backgroundTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "    Background color settings\n―――――――――――――――――――\n This tab contains settings that define how elements on the page would be filled with color."
     },
     "buttonsTab_text_label": {
-        "description": "text on the label",
+        "description": "buttonsTab_text_label: text on the label",
         "message": "Buttons"
     },
     "buttonsTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "  Button background color settings\n―――――――――――――――――――\n This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color."
     },
     "textTab_text_label": {
-        "description": "text on the label",
+        "description": "textTab_text_label: text on the label",
         "message": "Text"
     },
     "textTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Text color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all text elements on the page."
     },
     "linkTab_text_label": {
-        "description": "text on the label",
+        "description": "linkTab_text_label: text on the label",
         "message": "Links"
     },
     "linkTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "    Hyperlinks color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all hyperlinks on the page."
     },
     "borderTab_text_label": {
-        "description": "text on the label",
+        "description": "borderTab_text_label: text on the label",
         "message": "Borders"
     },
     "borderTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Borders color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all borders and lines on the page."
     },
     "imagesTab_text_label": {
-        "description": "text on the label",
+        "description": "imagesTab_text_label: text on the label",
         "message": "Images"
     },
     "imagesTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "    Images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the saturation and brightness adjustment of the images and pictures."
     },
     "backgroundImagesTab_text_label": {
-        "description": "text on the label",
+        "description": "backgroundImagesTab_text_label: text on the label",
         "message": "Fond images"
     },
     "backgroundImagesTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": " Background images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the background images saturation and brightness adjustment.\n Background images are a special type of an element background fill. Such images are usually inside or behind the text."
     },
     "scrollbarsTab_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarsTab_text_label: text on the label",
         "message": "Scrollbars"
     },
     "scrollbarsTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
     },
     "settingsHeader_text_label": {
-        "description": "text on the label",
+        "description": "settingsHeader_text_label: text on the label",
         "message": " settings for"
     },
     "hostState_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Toggle current website between\nwhitelist and blacklist"
     },
     "hostName_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
         "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default blacklist one and then press 'Set as default' button."
     },
     "helpLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Support forum"
     },
     "isEnabledSwitch_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Enable or disable entire extension"
     },
     "isEnabledOn_text_label": {
-        "description": "text on the label",
+        "description": "isEnabledOn_text_label: text on the label",
         "message": "ON"
     },
     "isEnabledOff_text_label": {
-        "description": "text on the label",
+        "description": "isEnabledOff_text_label: text on the label",
         "message": "OFF"
     },
     "syncSettings_text_label": {
-        "description": "text on the label",
+        "description": "syncSettings_text_label: text on the label",
         "message": "Sync settings across your devices"
     },
     "syncSettings_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "syncSettings_@title: text on the tooltip\/hint",
         "message": "Sync [Midnight Lizard] settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable [Sync] in the browser settings in order for [Midnight Lizard] settings synchronization to work."
     },
     "colorSchemeForEdit_text_label": {
-        "description": "text on the label",
+        "description": "colorSchemeForEdit_text_label: text on the label",
         "message": "Color scheme for edit"
     },
     "colorSchemeForEdit_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
         "message": "Choose color scheme for edit.\nYou can create a new scheme and update or delete existing color scheme."
     },
     "colorSchemeName_text_label": {
-        "description": "text on the label",
+        "description": "colorSchemeName_text_label: text on the label",
         "message": "Color scheme name"
     },
     "colorSchemeName_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
         "message": "You can edit color scheme name before to save"
     },
     "deleteColorSchemeBtn_text_label": {
-        "description": "text on the label",
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "Delete"
     },
     "deleteColorSchemeBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Delete color scheme selected for edit"
     },
     "saveColorSchemeBtn_text_label": {
-        "description": "text on the label",
+        "description": "saveColorSchemeBtn_text_label: text on the label",
         "message": "Save"
     },
     "saveColorSchemeBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Update selected color scheme with current popup settings"
     },
     "exportColorSchemeBtn_text_label": {
-        "description": "text on the label",
+        "description": "exportColorSchemeBtn_text_label: text on the label",
         "message": "Export"
     },
     "exportColorSchemeBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with current applied on the popup settings from [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
@@ -633,87 +633,87 @@
         }
     },
     "importColorSchemeBtn_text_label": {
-        "description": "text on the label",
+        "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "Import"
     },
     "importColorSchemeBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Import color schemes from file"
     },
     "editSchemesTab_text_label": {
-        "description": "text on the label",
+        "description": "editSchemesTab_text_label: text on the label",
         "message": "Color schemes"
     },
     "editSchemesTab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "    Color schemes editing\n―――――――――――――――――――\n Settings currently applied on the popup can be used to create a new color scheme or update an existing one. If you create a new color scheme it will be available on all other websites.\n Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.\n The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.\n Find more examples under the question mark in the popup top-left corner."
     },
     "currentColorScheme_text_label": {
-        "description": "text on the label",
+        "description": "currentColorScheme_text_label: text on the label",
         "message": "Current color scheme"
     },
     "currentColorScheme_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
         "message": "Choose your favorite color scheme"
     },
     "forgetThisSiteBtn_text_label": {
-        "description": "text on the label",
+        "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "This"
     },
     "forgetThisSiteBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "Forget current website settings"
     },
     "forgetAllSitesBtn_text_label": {
-        "description": "text on the label",
+        "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "All"
     },
     "forgetAllSitesBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
         "message": "Forget all customizations for all websites"
     },
     "setAsDefaultBtn_text_label": {
-        "description": "text on the label",
+        "description": "setAsDefaultBtn_text_label: text on the label",
         "message": "Set as default"
     },
     "setAsDefaultBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
         "message": "Set current settings as a default for all websites w\/o custom settings"
     },
     "applyBtn_text_label": {
-        "description": "text on the label",
+        "description": "applyBtn_text_label: text on the label",
         "message": "Apply"
     },
     "applyBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "applyBtn_@title: text on the tooltip\/hint",
         "message": "Apply and save current settings for this website"
     },
     "closeBtn_text_label": {
-        "description": "text on the label",
+        "description": "closeBtn_text_label: text on the label",
         "message": "Close"
     },
     "closeBtn_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Close popup and discard all unsaved changes"
     },
     "rateLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Rate this extension"
     },
     "emailLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Send email to the developer"
     },
     "bugReportLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Report a bug"
     },
     "changeLogLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Changelog"
     },
     "colorSchemeImportSuccessMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeImportSuccessMessage: text on the message box",
         "message": "$imported_color_schemes_count$ color schemes have been successfully imported from the files.\nImported color schemes are marked with a $edit_mark$ symbol and will be deleted with the popup closure unless you save each of them.\nTo save imported color scheme select it in the [Current color scheme] dropdown list and press [Save] button.",
         "placeholders": {
             "imported_color_schemes_count": {
@@ -725,7 +725,7 @@
         }
     },
     "colorSchemeSaveConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeSaveConfirmationMessage: text on the message box",
         "message": "You are about to update color scheme [$color_scheme_for_edit_name$] with current popup settings and a name [$color_scheme_name$]. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
@@ -737,15 +737,15 @@
         }
     },
     "colorSchemeSaveSuccessMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeSaveSuccessMessage: text on the message box",
         "message": "Done. It will take effect after page refresh."
     },
     "colorSchemeSaveFailureMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
         "message": "Color scheme update failed.\n"
     },
     "colorSchemeDeleteConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
         "message": "You are about to delete color scheme [$color_scheme_for_edit_name$].\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
@@ -754,51 +754,51 @@
         }
     },
     "colorSchemeDeleteSuccessMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeDeleteSuccessMessage: text on the message box",
         "message": "Done. It will take effect after page refresh."
     },
     "colorSchemeDeleteFailureMessage": {
-        "description": "text on the message box",
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
         "message": "Color scheme deletion failed.\n"
     },
     "forgetAllConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "forgetAllConfirmationMessage: text on the message box",
         "message": "All the settings and custom color schemes you have ever made will be deleted! Are you sure want to continue?"
     },
     "forgetAllSuccessMessage": {
-        "description": "text on the message box",
+        "description": "forgetAllSuccessMessage: text on the message box",
         "message": "Done. It will take effect after page refresh."
     },
     "forgetAllFailureMessage": {
-        "description": "text on the message box",
+        "description": "forgetAllFailureMessage: text on the message box",
         "message": "All websites settings deletion failed.\n"
     },
     "forgetThisSuccessMessage": {
-        "description": "text on the message box",
+        "description": "forgetThisSuccessMessage: text on the message box",
         "message": "Done. It will take effect after page refresh."
     },
     "forgetThisFailureMessage": {
-        "description": "text on the message box",
+        "description": "forgetThisFailureMessage: text on the message box",
         "message": "Current site settings deletion failed.\n"
     },
     "setAsDefaultFailureMessage": {
-        "description": "text on the message box",
+        "description": "setAsDefaultFailureMessage: text on the message box",
         "message": "Default settings application failed.\n"
     },
     "applyOnPageFailureMessage": {
-        "description": "text on the message box",
+        "description": "applyOnPageFailureMessage: text on the message box",
         "message": "Settings application failed. Refresh the page and try again.\n"
     },
     "toggleExtensionFailureMessage": {
-        "description": "text on the message box",
+        "description": "toggleExtensionFailureMessage: text on the message box",
         "message": "Extension toggle switching failed. Restart all browser windows and try again.\n"
     },
     "syncChangeSuccessMessage": {
-        "description": "text on the message box",
+        "description": "syncChangeSuccessMessage: text on the message box",
         "message": "Changes have been successfully applied.\nYou might need to refresh the page to see the changes."
     },
     "syncChangeFailureMessage": {
-        "description": "text on the message box",
+        "description": "syncChangeFailureMessage: text on the message box",
         "message": "Failed to change settings sync option.\n"
     },
     "introduction_html_content": {
@@ -814,151 +814,151 @@
         "message": "New color scheme"
     },
     "localStorageOverrideConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Your local settings storage already contains some data.\nDo you want to override it with data from the sync (cloud) storage\nand lose the overridden data?"
     },
     "syncStorageOverrideConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
         "message": "Your sync (cloud) settings storage already contains some data.\nDo you want to override it with data from the local storage\nand lose the overridden data?"
     },
     "backgroundExample_text_label": {
-        "description": "text on the label",
+        "description": "backgroundExample_text_label: text on the label",
         "message": "Background examples"
     },
     "backgroundExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
         "message": "Example of different background colors processing"
     },
     "smallBackgroundImageExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
         "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case [Brightness] of background images is not affecting them."
     },
     "smallBackgroundImageExample_text_label": {
-        "description": "text on the label",
+        "description": "smallBackgroundImageExample_text_label: text on the label",
         "message": "Small background images example"
     },
     "scrollbarExample_text_label": {
-        "description": "text on the label",
+        "description": "scrollbarExample_text_label: text on the label",
         "message": "Scrollbar example"
     },
     "scrollbarExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "scrollbarExample_@title: text on the tooltip\/hint",
         "message": "Example of styled scrollbars"
     },
     "buttonExample_text_label": {
-        "description": "text on the label",
+        "description": "buttonExample_text_label: text on the label",
         "message": "Button examples"
     },
     "buttonExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "buttonExample_@title: text on the tooltip\/hint",
         "message": "Example of different buttons colors processing"
     },
     "borderExample_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderExample_@title: text on the tooltip\/hint",
         "message": "Example of different border colors processing"
     },
     "borderExample_text_label": {
-        "description": "text on the label",
+        "description": "borderExample_text_label: text on the label",
         "message": "Border examples"
     },
     "backgroundExampleOriginal_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
         "message": "Original background colors being processed above"
     },
     "borderExampleOriginal_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "borderExampleOriginal_@title: text on the tooltip\/hint",
         "message": "Original border colors being processed on the left"
     },
     "smallBackgroundImageExampleOriginal_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
         "message": "Original small background images being processed above"
     },
     "firefoxNoSupportScrollbar_html_error_message": {
-        "description": "text on the message box",
+        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
         "message": "Scrollbar's styling <br\/> is not supported by Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Help translate Midnight Lizard\ninto other languages"
     },
     "popupDisconnected_html_error_message": {
-        "description": "text on the message box",
+        "description": "popupDisconnected_html_error_message: text on the message box",
         "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br\/>\n        (e.g. Web Store, Settings, New Tab)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page is represented by a local file,<br\/>\n        but you have not allowed [Midnight Lizard] to process local files\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install\/change a custom browser theme.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
         "message": "Example of different background colors processing with increased contrast.\nContrast depends on an element size so on the real page it might look different."
     },
     "backgroundExampleWithoutContrast_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
         "message": "Example of different background colors processing with no contrast changes."
     },
     "mode_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "mode_@title: text on the tooltip\/hint",
         "message": "Page processing mode"
     },
     "mode_text_label": {
-        "description": "text on the label",
+        "description": "mode_text_label: text on the label",
         "message": "Processing mode"
     },
     "mode_simplified_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
         "message": "Simplified page processing mode is not accurate but works very fast"
     },
     "mode_simplified_text_label": {
-        "description": "text on the label",
+        "description": "mode_simplified_text_label: text on the label",
         "message": "Simplified"
     },
     "mode_complex_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "mode_complex_@title: text on the tooltip\/hint",
         "message": "Complex page processing mode is not fast but looks very good"
     },
     "mode_complex_text_label": {
-        "description": "text on the label",
+        "description": "mode_complex_text_label: text on the label",
         "message": "Complex"
     },
     "mode_options_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "mode_options_@title: text on the tooltip\/hint",
         "message": "Hover each option to see its description"
     },
     "default_runOnThisSite_text_label": {
-        "description": "text on the label",
+        "description": "default_runOnThisSite_text_label: text on the label",
         "message": "Run on all websites by default"
     },
     "default_runOnThisSite_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
         "message": "Run [Midnight Lizard] on all websites w\/o custom settings."
     },
     "default_scheduleStartHour_text_label": {
-        "description": "text on the label",
+        "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "Default activation time"
     },
     "default_scheduleStartHour_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
         "message": "Extension will be active only starting from this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "default_scheduleFinishHour_text_label": {
-        "description": "text on the label",
+        "description": "default_scheduleFinishHour_text_label: text on the label",
         "message": "Default deactivation time"
     },
     "default_scheduleFinishHour_@title": {
-        "description": "text on the tooltip\/hint",
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
         "message": "Extension will be active only until this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
     },
     "globalstab_text_label": {
-        "description": "text on the label",
+        "description": "globalstab_text_label: text on the label",
         "message": "Global settings"
     },
     "globalstab_@tooltip": {
-        "description": "text on the tooltip\/hint with custom style",
+        "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "      Global settings\n―――――――――――――――――――\n This tab contains global settings and shortcuts to default settings.\n Here you can change settings sync, toggle black\/white list mode and browser theme adjustment, edit default schedule."
     },
     "resetThemeConfirmationMessage": {
-        "description": "text on the message box",
+        "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
     },
     "globals_tab_snack_bar_text_content": {
-        "description": "text on the snack-bar",
+        "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
         "message": "All the changes on this tab will be saved automatically, but you may need to refresh the page in order for changes to take effect."
     }
 }
