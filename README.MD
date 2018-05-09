@@ -1,4 +1,5 @@
-# Midnight Lizard 
+# Midnight Lizard
+![Wikipedia example](/img/screenshots/wikipedia-orion-nebula.png?raw=true "Wikipedia example")
 Midnight Lizard is a Google Chrome™ and Mozilla Firefox™ extension that changes web page colors, brightness and contrast to increase readability and brings dark night mode to all websites.
 
 Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
