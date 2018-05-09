@@ -101,8 +101,7 @@ namespace MidnightLizard.Popup
         protected onSettingsInitializationFailed(ex: any): void
         {
             this._popup.getElementById("dialogError")!.style.display = "block";
-            this._closeButton = this._popup.getElementById("closeBtn") as HTMLButtonElement;
-            this._closeButton.onclick = this._popup.defaultView.close.bind(this._popup.defaultView);
+            this._popup.documentElement.removeAttribute("ml-stage");
         }
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
