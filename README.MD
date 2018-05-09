@@ -31,5 +31,5 @@ Choose from the predefined schemes or create your own. Number of user color sche
   ✔ Free forever  
 
 ## CONTRIBUTING
-  🌍 [Help translate Midnight Lizard into other languages](https://crowdin.com/project/midnight-lizard)
-  🐛 [Found a bug or has a new feature proposal?](/issues/new)
+  🌍 [Help translate Midnight Lizard into other languages](https://crowdin.com/project/midnight-lizard)  
+  🐛 [Found a bug or has a new feature proposal?](/issues/new)  
