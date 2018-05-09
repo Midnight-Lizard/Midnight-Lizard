@@ -1172,3 +1172,16 @@ height: 148px;
 .ml-snack-bar.warn:before {
     content: "\26A0";
 }
+
+.ml-ad {
+    font-size: 13px;
+    line-height: 39px;
+    position: relative;
+}
+
+.ml-ad:before {
+    content: "\21D0";
+    font-size: 20px;
+    position: absolute;
+    left: -21px;
+}
