@@ -7,6 +7,8 @@ Midnight Lizard will help you to customize an appearance of the entire internet 
 You can set up different color schemes for each favorite website and one default theme for all other sites.
 Choose from the predefined schemes or create your own. Number of user color schemes is unlimited.
 
+![Settings menu example](/img/screenshots/popup-example.png?raw=true "Settings menu example")
+
 ## ADVANTAGES
 
   ✔ Intelligent dark themes  
