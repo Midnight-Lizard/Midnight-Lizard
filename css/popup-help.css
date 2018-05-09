@@ -128,6 +128,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 #google-plus-link:after {left: 12px;}
 #instagram-link:after {left: 12px;}
 #pinterest-link:after {left: 10px;}
+#github-link:after {left: 10px;}
 
 .ml-tab-item[tooltip]:before
 {

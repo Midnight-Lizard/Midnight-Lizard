@@ -434,6 +434,10 @@ select.ml-dialog-input-text {
     width: 20px;
 }
 
+.github-icon {
+    width: 21px;
+}
+
 .twitter-icon {
     width: 19px;
 }
@@ -452,6 +456,10 @@ select.ml-dialog-input-text {
 
 .pinterest-icon:hover {
     fill: #BD081C;
+}
+
+.github-icon:hover {
+    fill: #0361cc;
 }
 
 .twitter-icon:hover {
@@ -970,7 +978,7 @@ height: 148px;
     width: 62px;
     height: 34px;
     top: -42px;
-    right: -165px;
+    right: -163px;
     border-radius: 15px;
 }
 
@@ -994,8 +1002,6 @@ height: 148px;
     right: 0px;
     top: 310px;
     transform: skew(-31deg);
-    /* border-style: dashed; */
-    /* border-bottom-right-radius: 10px; */
 }
 
 .intro-help:after {
@@ -1040,6 +1046,22 @@ height: 148px;
     left: -160px;
     border-style: dashed;
 } */
+
+
+.intro-social:after {
+    width: 172px;
+    height: 34px;
+    left: -166px;
+    bottom: -39px;
+}
+
+.intro-social:before {
+    height: 50px;
+    width: 7px;
+    bottom: -2px;
+    left: -40px;
+    transform: skew(116deg);
+}
 
 #edit-schemes p {
     font-size: 14px;
