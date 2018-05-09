@@ -1,8 +1,9 @@
-# Midnight Lizard is a Google Chrome™ extension that changes web page colors, brightness and contrast to increase readability and brings dark night mode to the world wide web
+# Midnight Lizard 
+Midnight Lizard is a Google Chrome™ and Mozilla Firefox™ extension that changes web page colors, brightness and contrast to increase readability and brings dark night mode to all websites.
 
-    Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
-    You can set up different color schemes for each favorite website and one default theme for all other sites.
-    Choose from the predefined schemes or create your own. Number of user color schemes is unlimited.
+Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
+You can set up different color schemes for each favorite website and one default theme for all other sites.
+Choose from the predefined schemes or create your own. Number of user color schemes is unlimited.
 
 ━━━━ ADVANTAGES ━━━━
 
