@@ -8,6 +8,8 @@ namespace MidnightLizard.ContentScript
 
     type CssPromise = Promise<Util.HandledPromiseResult<void>>;
     const x = Util.RegExpBuilder;
+    type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
+    const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
 
     enum Var
     {
@@ -27,6 +29,7 @@ namespace MidnightLizard.ContentScript
         abstract getSelectorsCount(doc: Document): number;
         abstract getSelectorsQuality(doc: Document): number | undefined;
         abstract getCssPromises(doc: Document): CssPromise[];
+        abstract get onElementsForUserActionObservationFound(): ArgEvent<[PseudoClass, NodeListOf<Element>]>;
     }
 
     @DI.injectable(IStyleSheetProcessor)
@@ -66,6 +69,12 @@ namespace MidnightLizard.ContentScript
 
         // protected readonly _excludeStylesRegExp: string;
         protected readonly _includeStylesRegExp: string;
+
+        protected _onElementsForUserActionObservationFound = new ArgEventDispatcher<[PseudoClass, NodeListOf<Element>]>();
+        public get onElementsForUserActionObservationFound()
+        {
+            return this._onElementsForUserActionObservationFound.event;
+        }
 
         /** StyleSheetProcessor constructor
          * @param _app - application settings
@@ -234,6 +243,7 @@ namespace MidnightLizard.ContentScript
 
             let maxPriority = 1;
             let filteredStyleRules = styleRules;
+            this.findElementsForUserActionObservation(doc, styleRules);
             this._styleProps.forEach(p => maxPriority = p.priority > maxPriority ? p.priority : maxPriority);
             let styleProps = this._styleProps;
             let selectorsQuality = maxPriority;
@@ -248,8 +258,7 @@ namespace MidnightLizard.ContentScript
             {
                 selectorsQuality = 0;
                 let trimmer = (x: CSSStyleRule) =>
-                    /active|hover|disable|check|visit|link|focus|select|enable/gi.test(x.selectorText) &&
-                    !/::scrollbar/gi.test(x.selectorText);
+                    /active|hover|disable|check|visit|link|focus|select|enable/gi.test(x.selectorText);
                 let trimmedStyleRules = styleRules.filter(trimmer);
                 if (trimmedStyleRules.length > this._trimmedStylesLimit)
                 {
@@ -263,6 +272,33 @@ namespace MidnightLizard.ContentScript
 
             this._selectorsQuality.set(doc, selectorsQuality);
             this._selectors.set(doc, filteredStyleRules.map(sr => sr.selectorText));
+        }
+
+        findElementsForUserActionObservation(doc: Document, rules: Array<CSSStyleRule>)
+        {
+            for (const pseudoClass of Util.getEnumValues<PseudoClass>(PseudoClass))
+            {
+                const pseudoClassRegExp = this.getPseudoClassRegExp(pseudoClass);
+                const selector = Array.from(new Set(rules
+                    .filter(rule => rule.selectorText.search(pseudoClassRegExp) !== -1)
+                    .map(rule => rule.selectorText.replace(pseudoClassRegExp, "$1"))))
+                    .join(",");
+                if (selector)
+                {
+                    try
+                    {
+                        const elements = doc.body.querySelectorAll(selector);
+                        if (elements.length > 0)
+                        {
+                            this._onElementsForUserActionObservationFound.raise([pseudoClass, elements]);
+                        }
+                    }
+                    catch (ex)
+                    {
+                        this._app.isDebug && console.error(ex);
+                    }
+                }
+            }
         }
 
         public getElementMatchedSelectors(tag: Element | PseudoElement): string
@@ -334,16 +370,19 @@ namespace MidnightLizard.ContentScript
         }
 
         /**
-         * Checks whether there are some rulles in the style sheets with the specified {pseudoClass}
+         * Checks whether there are some rules in the style sheets with the specified {pseudoClass}
          * which might be valid for the specified {tag} at some time.
          **/
         public canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean
         {
-            let pseudoRegExp = new RegExp(
-                    x.remember(x.outOfSet(x.LeftParenthesis, x.WhiteSpace)) +
-                    x.Colon + PseudoClass[pseudoClass] + x.WordBoundary,
-                    "gi");
+            let pseudoRegExp = this.getPseudoClassRegExp(pseudoClass);
             return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 && tag.matches(s.replace(pseudoRegExp, "$1")));
+        }
+
+        private getPseudoClassRegExp(pseudoClass: PseudoClass)
+        {
+            return new RegExp(x.remember(x.outOfSet(x.LeftParenthesis, x.WhiteSpace)) +
+                x.Colon + PseudoClass[pseudoClass] + x.WordBoundary, "gi");
         }
 
         protected validateMediaQuery(doc: Document, mediaQuery: string)

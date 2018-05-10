@@ -32,6 +32,7 @@ interface Node
     isPseudo: false;
     /** Determinse whether element is observed or not*/
     isObserved: boolean | undefined;
+    alwaysRecalculateStyles?: boolean;
     /** Occurs when IDocumentProcessor applies RoomRules on this element */
     onRoomRulesApplied: MidnightLizard.Events.ArgumentedEventDispatcher<MidnightLizard.ContentScript.RoomRules>;
     /** cache of getBoundingClientRect call results */

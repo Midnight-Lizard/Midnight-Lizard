@@ -22,18 +22,6 @@ body.dark-theme i.static-icon-filter {
     background-color: rgba(0,0,0,.15)!important;
 }
 
-.navbar .nav>li>a:focus,
-.navbar .nav>li>a:hover {
-    background-color: var(--ml-main-trans-background-color) !important;
-}
-.dropdown-menu li>a:hover,
-.dropdown-menu li>a:focus,
-.dropdown-submenu:hover>a,
-.drop-down-icon:hover+a,
-.general_activity_item:not(.opened):hover {
-    background-color: var(--ml-main-alt-background-color) !important;
-}
-
 .sortable:after, .sortable:before {
     --ml-background-border-top-color:Border;
     --ml-background-border-bottom-color:Border;

@@ -6,7 +6,7 @@ namespace MidnightLizard.Events
         resize: void
     };
     type Listener = (...args: any[]) => any;
-    const _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();
+    export const _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();
 
     export abstract class HtmlEvent
     {

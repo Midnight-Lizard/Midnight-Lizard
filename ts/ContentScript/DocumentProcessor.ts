@@ -141,6 +141,8 @@ namespace MidnightLizard.ContentScript
             _documentObserver.onElementsAdded.addListener(this.onElementsAdded as any, this);
             _documentObserver.onClassChanged.addListener(this.onClassChanged as any, this);
             _documentObserver.onStyleChanged.addListener(this.onStyleChanged as any, this);
+            _styleSheetProcessor.onElementsForUserActionObservationFound
+                .addListener(this.onElementsForUserActionObservationFound as any, this);
             this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
         }
 
@@ -341,12 +343,44 @@ namespace MidnightLizard.ContentScript
             return !!tag.computedStyle && tag.computedStyle.getPropertyValue(`--ml-pseudo-${PseudoClass[pseudo].toLowerCase()}`) === true.toString()
         }
 
+        protected onElementsForUserActionObservationFound([pseudoClass, tags]: [PseudoClass, NodeListOf<Element>])
+        {
+            Array.prototype.forEach.call(tags, (tag: HTMLElement) =>
+            {
+                if (tag instanceof Element)
+                {
+                    tag.isObserved = true;
+                    tag.alwaysRecalculateStyles = true;
+                    switch (pseudoClass)
+                    {
+                        case PseudoClass.Active:
+                            dom.addEventListener(tag, "mousedown", this._boundUserActionHandler);
+                            dom.addEventListener(tag, "mouseup", this._boundUserActionHandler);
+                            break;
+
+                        case PseudoClass.Checked:
+                            this.observeCheckedUserAction(tag);
+                            break;
+
+                        case PseudoClass.Focus:
+
+                            dom.addEventListener(tag, "focus", this._boundUserActionHandler);
+                            dom.addEventListener(tag, "blur", this._boundUserActionHandler);
+                            break;
+
+                        case PseudoClass.Hover:
+                            dom.addEventListener(tag, "mouseenter", this._boundUserHoverHandler);
+                            dom.addEventListener(tag, "mouseleave", this._boundUserHoverHandler);
+                            break;
+                    }
+                }
+            });
+        }
+
         protected observeUserActions(tag: HTMLElement)
         {
-            let hover = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Hover),
-                focus = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Focus),
-                active = false, // this.hasPseudoClassOverrided(tag, PseudoClass.Active),
-                checked = false; // this.hasPseudoClassOverrided(tag, PseudoClass.Checked);
+            let hover = false, focus = false, active = false, checked = false;
+            tag.isObserved = true;
 
             const preFilteredSelectors = this._styleSheetProcessor.getPreFilteredSelectors(tag);
             if (preFilteredSelectors.length > 0)
@@ -374,20 +408,25 @@ namespace MidnightLizard.ContentScript
             }
             if (checked)
             {
-                if (tag instanceof HTMLInputElement)
+                this.observeCheckedUserAction(tag);
+            }
+        }
+
+        protected observeCheckedUserAction(tag: Element)
+        {
+            if (tag instanceof HTMLInputElement)
+            {
+                dom.addEventListener(tag, "input", this._boundUserActionHandler);
+                dom.addEventListener(tag, "change", this._boundUserActionHandler);
+            }
+            else if (tag instanceof HTMLLabelElement && tag.htmlFor)
+            {
+                const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
+                if (checkBox)
                 {
-                    dom.addEventListener(tag, "input", this._boundUserActionHandler);
-                    dom.addEventListener(tag, "change", this._boundUserActionHandler);
-                }
-                else if (tag instanceof HTMLLabelElement && tag.htmlFor)
-                {
-                    const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
-                    if (checkBox)
-                    {
-                        checkBox.labelElement = tag as any;
-                        dom.addEventListener(checkBox, "input", this._boundCheckedLabelHandler);
-                        dom.addEventListener(checkBox, "change", this._boundCheckedLabelHandler);
-                    }
+                    checkBox.labelElement = tag as any;
+                    dom.addEventListener(checkBox, "input", this._boundCheckedLabelHandler);
+                    dom.addEventListener(checkBox, "change", this._boundCheckedLabelHandler);
                 }
             }
         }
@@ -418,7 +457,9 @@ namespace MidnightLizard.ContentScript
         {
             const target = eArg.currentTarget as HTMLElement;
             if (this._settingsManager.isActive && this._settingsManager.isComplex &&
-                target.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(target))
+                (target.alwaysRecalculateStyles ||
+                    target.selectors !== this._styleSheetProcessor
+                        .getElementMatchedSelectors(target)))
             {
                 this.reCalcRootElement(target, false, true);
             }
@@ -664,6 +705,10 @@ namespace MidnightLizard.ContentScript
                     if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
+                        if(!tag.computedStyle)
+                        {
+                            break;
+                        }
                         isLink = tag instanceof HTMLAnchorElement;
                         hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                         hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
@@ -902,7 +947,6 @@ namespace MidnightLizard.ContentScript
                 if (!tag.isObserved)
                 {
                     docProc.observeUserActions(tag);
-                    tag.isObserved = true;
                 }
             });
         }
@@ -1005,7 +1049,7 @@ namespace MidnightLizard.ContentScript
                     tag.parentElement instanceof SVGElement;
                 tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
+                if (tag.computedStyle && isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
                 {
                     tag.zIndex = isSvg ? this.getElementIndex(tag) : parseInt(tag.computedStyle!.zIndex || "0");
                     tag.zIndex = isNaN(tag.zIndex!) ? -999 : tag.zIndex;
@@ -1304,313 +1348,316 @@ namespace MidnightLizard.ContentScript
 
                 if (!roomRules)
                 {
-                    roomRules = new RoomRules();
-                    this._app.isDebug && (roomRules.owner = tag);
                     tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
-                    if (isRealElement(tag))
+                    roomRules = new RoomRules();
+                    if (tag.computedStyle)
                     {
-                        let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
-                        let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
-                        let roomId = "";
-                        if (beforeStyle && beforeStyle.content &&
-                            beforeStyle.content !== this._css.none &&
-                            beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        this._app.isDebug && (roomRules.owner = tag);
+                        if (isRealElement(tag))
                         {
-                            roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
-                            beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
-                            roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                            roomRules.attributes.set("before-style", roomId);
-                        }
-                        if (afterStyle && afterStyle.content &&
-                            afterStyle.content !== this._css.none &&
-                            afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
-                        {
-                            roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
-                            afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
-                            roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                            roomRules.attributes.set("after-style", roomId);
-                        }
-                    }
-                    if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
-                    {
-                        let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
-                        if (hasForbiddenTransition)
-                        {
-                            roomRules.transitionDuration = { value: durations.join(", ") };
-                        }
-                    }
-                    if (!isSvgText)
-                    {
-                        if (tag instanceof SVGElement)
-                        {
-                            if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement) &&
-                                tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
+                            let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
+                            let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
+                            let roomId = "";
+                            if (beforeStyle && beforeStyle.content &&
+                                beforeStyle.content !== this._css.none &&
+                                beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                             {
-                                isSvgText = true;
-                                roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
-                                    tag.ownerSVGElement || tag));
-                                roomRules.backgroundColor.reason = Colors.ColorReason.SvgText;
-                                roomRules.backgroundColor.color = null;
+                                roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
+                                beforePseudoElement = new PseudoElement(PseudoType.Before, tag, roomId, beforeStyle, roomRules);
+                                roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                                roomRules.attributes.set("before-style", roomId);
+                            }
+                            if (afterStyle && afterStyle.content &&
+                                afterStyle.content !== this._css.none &&
+                                afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                            {
+                                roomId = roomId || (room ? Util.hashCode(room).toString() : Util.guid());
+                                afterPseudoElement = new PseudoElement(PseudoType.After, tag, roomId, afterStyle, roomRules);
+                                roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                                roomRules.attributes.set("after-style", roomId);
+                            }
+                        }
+                        if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
+                        {
+                            let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
+                            if (hasForbiddenTransition)
+                            {
+                                roomRules.transitionDuration = { value: durations.join(", ") };
+                            }
+                        }
+                        if (!isSvgText)
+                        {
+                            if (tag instanceof SVGElement)
+                            {
+                                if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement) &&
+                                    tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
+                                {
+                                    isSvgText = true;
+                                    roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
+                                        tag.ownerSVGElement || tag));
+                                    roomRules.backgroundColor.reason = Colors.ColorReason.SvgText;
+                                    roomRules.backgroundColor.color = null;
+                                }
+                                else
+                                {
+                                    roomRules.backgroundColor = this.changeColor({ role: cc.SvgBackground, property: ns.css.bgrColor, tag: tag });
+                                }
                             }
                             else
                             {
-                                roomRules.backgroundColor = this.changeColor({ role: cc.SvgBackground, property: ns.css.bgrColor, tag: tag });
+                                roomRules.backgroundColor = this.changeColor(
+                                    { role: isButton ? cc.ButtonBackground : cc.Background, property: ns.css.bgrColor, tag: tag });
+                            }
+
+                            if (this._app.preserveDisplay && roomRules.backgroundColor && roomRules.backgroundColor.color && tag.id && tag.className)
+                            {
+                                roomRules.display = tag.computedStyle!.display;
                             }
                         }
-                        else
+
+                        if (!roomRules.backgroundColor)
                         {
-                            roomRules.backgroundColor = this.changeColor(
-                                { role: isButton ? cc.ButtonBackground : cc.Background, property: ns.css.bgrColor, tag: tag });
+                            roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
+                            roomRules.backgroundColor.color = null;
                         }
 
-                        if (this._app.preserveDisplay && roomRules.backgroundColor && roomRules.backgroundColor.color && tag.id && tag.className)
+                        if (tag.tagName == ns.img &&
+                            (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
+                                this._settingsManager.currentSettings.blueFilter !== 0))
                         {
-                            roomRules.display = tag.computedStyle!.display;
-                        }
-                    }
-
-                    if (!roomRules.backgroundColor)
-                    {
-                        roomRules.backgroundColor = Object.assign({}, this.getParentBackground(tag));
-                        roomRules.backgroundColor.color = null;
-                    }
-
-                    if (tag.tagName == ns.img &&
-                        (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
-                            this._settingsManager.currentSettings.blueFilter !== 0))
-                    {
-                        const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
-                        let imgSet = this.shift[customImageRole] || this.shift.Image;
-                        roomRules.filter =
-                            {
-                                value: [
-                                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
-                                    imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
-                                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                                    imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
-                                ].filter(f => f).join(" ").trim()
-                            };
-                        roomRules.keepFilter = true;
-                        roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                        if (this._settingsManager.currentSettings.useImageHoverAnimation)
-                        {
-                            roomRules.attributes.set(this._css.transition, this._css.filter);
-                        }
-                    }
-                    const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
-
-                    if (tag.computedStyle!.content!.startsWith("url") &&
-                        (this._app.browserName === Settings.BrowserName.Chrome ||
-                            !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
-                            !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
-                    {
-                        let doInvert = (!isTable) && bgInverted &&
-                            (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
-                            tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
-                            (
-                                this.tagIsSmall(tag)
-
-                                || tag.isPseudo && tag.parentElement!.parentElement &&
-                                this.tagIsSmall(tag.parentElement!.parentElement!) &&
-                                tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden
-
-                                || !tag.isPseudo && this.tagIsSmall(tag.parentElement!) &&
-                                tag.parentElement!.computedStyle!.overflow === this._css.hidden
-                            );
-                        if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
-                        {
-                            let imgSet = this.shift.Image;
+                            const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
+                            let imgSet = this.shift[customImageRole] || this.shift.Image;
                             roomRules.filter =
                                 {
                                     value: [
                                         tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
-                                        imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
-                                        doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
-                                        doInvert ? "hue-rotate(180deg) invert(1)" : "",
-                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
+                                        this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                                        imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
-                        }
-                    }
-
-                    if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
-                        tag.computedStyle!.backgroundImage !== this._rootImageUrl)
-                    {
-                        this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
-                    }
-
-                    let bgLight = roomRules.backgroundColor.light;
-                    if (!isSvg || isSvgText)
-                    {
-                        if (isLink || !isSvg && ( //tag.isPseudo &&
-                            tag.parentElement instanceof HTMLAnchorElement ||
-                            tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
-                        {
-                            roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                            if (!(tag instanceof HTMLFontElement))
+                            roomRules.keepFilter = true;
+                            roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                            if (this._settingsManager.currentSettings.useImageHoverAnimation)
                             {
-                                roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-
-                                roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.attributes.set(this._css.transition, this._css.filter);
                             }
                         }
-                        else
+                        const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
+
+                        if (tag.computedStyle!.content!.startsWith("url") &&
+                            (this._app.browserName === Settings.BrowserName.Chrome ||
+                                !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
+                                !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
                         {
-                            roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                        }
-                        if (roomRules.color)
-                        {
-                            let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
-                            let currentTextContrast = Math.abs(roomRules.backgroundColor.light - roomRules.color.light);
-                            if (currentTextContrast != originalTextContrast && roomRules.color.originalLight != roomRules.color.light &&
-                                tag.computedStyle!.textShadow && tag.computedStyle!.textShadow !== this._css.none)
+                            let doInvert = (!isTable) && bgInverted &&
+                                (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
+                                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
+                                (
+                                    this.tagIsSmall(tag)
+
+                                    || tag.isPseudo && tag.parentElement!.parentElement &&
+                                    this.tagIsSmall(tag.parentElement!.parentElement!) &&
+                                    tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden
+
+                                    || !tag.isPseudo && this.tagIsSmall(tag.parentElement!) &&
+                                    tag.parentElement!.computedStyle!.overflow === this._css.hidden
+                                );
+                            if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                             {
-                                let newTextShadow = tag.computedStyle!.textShadow!,
-                                    newColor: Colors.ColorEntry | undefined = undefined, currentTextShadowColor: string | null,
-                                    prevHslColor: Colors.HslaColor, shadowContrast: number, inheritedShadowColor;
-                                let uniqColors = new Set<string>(newTextShadow
-                                    .replace(/([\.\d]+px)/gi, '')
-                                    .match(/(rgba?\([^\)]+\)|#[a-z\d]+|[a-z]+)/gi) || []);
-                                if (uniqColors.size > 0)
+                                let imgSet = this.shift.Image;
+                                roomRules.filter =
+                                    {
+                                        value: [
+                                            tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
+                                            imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
+                                            imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
+                                            doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
+                                            doInvert ? "hue-rotate(180deg) invert(1)" : "",
+                                            this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
+                                        ].filter(f => f).join(" ").trim()
+                                    };
+                            }
+                        }
+
+                        if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
+                            tag.computedStyle!.backgroundImage !== this._rootImageUrl)
+                        {
+                            this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
+                        }
+
+                        let bgLight = roomRules.backgroundColor.light;
+                        if (!isSvg || isSvgText)
+                        {
+                            if (isLink || !isSvg && ( //tag.isPseudo &&
+                                tag.parentElement instanceof HTMLAnchorElement ||
+                                tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
+                            {
+                                roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                if (!(tag instanceof HTMLFontElement))
                                 {
-                                    uniqColors.forEach(c =>
+                                    roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                    roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+
+                                    roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                    roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                    roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                }
+                            }
+                            else
+                            {
+                                roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                            }
+                            if (roomRules.color)
+                            {
+                                let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
+                                let currentTextContrast = Math.abs(roomRules.backgroundColor.light - roomRules.color.light);
+                                if (currentTextContrast != originalTextContrast && roomRules.color.originalLight != roomRules.color.light &&
+                                    tag.computedStyle!.textShadow && tag.computedStyle!.textShadow !== this._css.none)
+                                {
+                                    let newTextShadow = tag.computedStyle!.textShadow!,
+                                        newColor: Colors.ColorEntry | undefined = undefined, currentTextShadowColor: string | null,
+                                        prevHslColor: Colors.HslaColor, shadowContrast: number, inheritedShadowColor;
+                                    let uniqColors = new Set<string>(newTextShadow
+                                        .replace(/([\.\d]+px)/gi, '')
+                                        .match(/(rgba?\([^\)]+\)|#[a-z\d]+|[a-z]+)/gi) || []);
+                                    if (uniqColors.size > 0)
                                     {
-                                        currentTextShadowColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
-                                        if (currentTextShadowColor)
+                                        uniqColors.forEach(c =>
                                         {
-                                            newColor = this.changeColor({
-                                                role: cc.TextShadow, property: ns.css.shdColor,
-                                                bgLight: roomRules!.color!.light,
-                                                propVal: currentTextShadowColor, tag
-                                            });
-                                            if (newColor && newColor.color)
+                                            currentTextShadowColor = /rgb/gi.test(c) ? c : this._colorConverter.convert(c);
+                                            if (currentTextShadowColor)
                                             {
-                                                newTextShadow = newTextShadow.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
+                                                newColor = this.changeColor({
+                                                    role: cc.TextShadow, property: ns.css.shdColor,
+                                                    bgLight: roomRules!.color!.light,
+                                                    propVal: currentTextShadowColor, tag
+                                                });
+                                                if (newColor && newColor.color)
+                                                {
+                                                    newTextShadow = newTextShadow.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
+                                                }
                                             }
+                                        });
+                                        if (newTextShadow !== tag.computedStyle!.textShadow)
+                                        {
+                                            roomRules.textShadow = { value: newTextShadow, color: newColor || null };
                                         }
-                                    });
-                                    if (newTextShadow !== tag.computedStyle!.textShadow)
-                                    {
-                                        roomRules.textShadow = { value: newTextShadow, color: newColor || null };
                                     }
                                 }
                             }
                         }
-                    }
 
-                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
-                    {
-                        this.processInaccessibleTextContent(tag, roomRules);
-                    }
-
-                    if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
-                        tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
-                        !tag.computedStyle!.borderStyle && (
-                            tag.computedStyle!.borderTopStyle !== this._css.none ||
-                            tag.computedStyle!.borderRightStyle !== this._css.none ||
-                            tag.computedStyle!.borderBottomStyle !== this._css.none ||
-                            tag.computedStyle!.borderLeftStyle !== this._css.none)))
-                    {
-                        let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
-                        const brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
-                            tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
-                            tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
-                            tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor;
-                        const bgrColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor);
-
-                        if (brdColorIsSingle)
+                        if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
                         {
-                            brdColor = brdColor || tag.computedStyle!.borderTopColor!;
-                            if (brdColor === bgrColor)
-                            {
-                                roomRules.borderColor = Object.assign(Object.assign({},
-                                    roomRules.backgroundColor), {
-                                        reason: Colors.ColorReason.SameAsBackground,
-                                        owner: this._app.isDebug ? tag : null
-                                    });
-                            }
-                            else
-                            {
-                                roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight, propVal: brdColor });
-                            }
+                            this.processInaccessibleTextContent(tag, roomRules);
                         }
-                        else if (!isSvg)
+
+                        if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
+                            tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
+                            !tag.computedStyle!.borderStyle && (
+                                tag.computedStyle!.borderTopStyle !== this._css.none ||
+                                tag.computedStyle!.borderRightStyle !== this._css.none ||
+                                tag.computedStyle!.borderBottomStyle !== this._css.none ||
+                                tag.computedStyle!.borderLeftStyle !== this._css.none)))
                         {
-                            let borderRole = isButton ? cc.ButtonBorder : cc.Border, transBordersCount = 0;
-                            if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
-                                ((transBordersCount = [
-                                    tag.computedStyle!.borderTopColor,
-                                    tag.computedStyle!.borderRightColor,
-                                    tag.computedStyle!.borderBottomColor,
-                                    tag.computedStyle!.borderLeftColor
-                                ].filter(c => c === Colors.RgbaColor.Transparent).length) === 3 ||
-                                    transBordersCount === 2 && [
-                                        tag.computedStyle!.borderTopWidth,
-                                        tag.computedStyle!.borderRightWidth,
-                                        tag.computedStyle!.borderBottomWidth,
-                                        tag.computedStyle!.borderLeftWidth
-                                    ].filter(c => c === this._css._0px).length === 1))
-                            {
-                                borderRole = cc.Background;
-                            }
-                            if (tag.computedStyle!.borderTopColor === bgrColor)
-                            {
-                                roomRules.borderTopColor = Object.assign(Object.assign({},
-                                    roomRules.backgroundColor), {
-                                        reason: Colors.ColorReason.SameAsBackground,
-                                        owner: this._app.isDebug ? tag : null
-                                    });
-                            }
-                            else
-                            {
-                                roomRules.borderTopColor = this.changeColor(
-                                    { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
-                            }
+                            let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
+                            const brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
+                                tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
+                                tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
+                                tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor;
+                            const bgrColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor);
 
-                            if (tag.computedStyle!.borderRightColor === bgrColor)
+                            if (brdColorIsSingle)
                             {
-                                roomRules.borderRightColor = Object.assign(Object.assign({},
-                                    roomRules.backgroundColor), {
-                                        reason: Colors.ColorReason.SameAsBackground,
-                                        owner: this._app.isDebug ? tag : null
-                                    });
+                                brdColor = brdColor || tag.computedStyle!.borderTopColor!;
+                                if (brdColor === bgrColor)
+                                {
+                                    roomRules.borderColor = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.borderColor = this.changeColor({ role: isButton ? cc.ButtonBorder : cc.Border, property: ns.css.brdColor, tag: tag, bgLight: bgLight, propVal: brdColor });
+                                }
                             }
-                            else
+                            else if (!isSvg)
                             {
-                                roomRules.borderRightColor = this.changeColor(
-                                    { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
-                            }
+                                let borderRole = isButton ? cc.ButtonBorder : cc.Border, transBordersCount = 0;
+                                if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
+                                    ((transBordersCount = [
+                                        tag.computedStyle!.borderTopColor,
+                                        tag.computedStyle!.borderRightColor,
+                                        tag.computedStyle!.borderBottomColor,
+                                        tag.computedStyle!.borderLeftColor
+                                    ].filter(c => c === Colors.RgbaColor.Transparent).length) === 3 ||
+                                        transBordersCount === 2 && [
+                                            tag.computedStyle!.borderTopWidth,
+                                            tag.computedStyle!.borderRightWidth,
+                                            tag.computedStyle!.borderBottomWidth,
+                                            tag.computedStyle!.borderLeftWidth
+                                        ].filter(c => c === this._css._0px).length === 1))
+                                {
+                                    borderRole = cc.Background;
+                                }
+                                if (tag.computedStyle!.borderTopColor === bgrColor)
+                                {
+                                    roomRules.borderTopColor = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.borderTopColor = this.changeColor(
+                                        { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
+                                }
 
-                            if (tag.computedStyle!.borderBottomColor === bgrColor)
-                            {
-                                roomRules.borderBottomColor = Object.assign(Object.assign({},
-                                    roomRules.backgroundColor), {
-                                        reason: Colors.ColorReason.SameAsBackground,
-                                        owner: this._app.isDebug ? tag : null
-                                    });
-                            }
-                            else
-                            {
-                                roomRules.borderBottomColor = this.changeColor(
-                                    { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
-                            }
+                                if (tag.computedStyle!.borderRightColor === bgrColor)
+                                {
+                                    roomRules.borderRightColor = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.borderRightColor = this.changeColor(
+                                        { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
+                                }
 
-                            if (tag.computedStyle!.borderLeftColor === bgrColor)
-                            {
-                                roomRules.borderLeftColor = Object.assign(Object.assign({},
-                                    roomRules.backgroundColor), {
-                                        reason: Colors.ColorReason.SameAsBackground,
-                                        owner: this._app.isDebug ? tag : null
-                                    });
-                            }
-                            else
-                            {
-                                roomRules.borderLeftColor = this.changeColor(
-                                    { role: borderRole, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
+                                if (tag.computedStyle!.borderBottomColor === bgrColor)
+                                {
+                                    roomRules.borderBottomColor = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.borderBottomColor = this.changeColor(
+                                        { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
+                                }
+
+                                if (tag.computedStyle!.borderLeftColor === bgrColor)
+                                {
+                                    roomRules.borderLeftColor = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.borderLeftColor = this.changeColor(
+                                        { role: borderRole, property: this._css.borderLeftColor, tag: tag, bgLight: bgLight });
+                                }
                             }
                         }
                     }
