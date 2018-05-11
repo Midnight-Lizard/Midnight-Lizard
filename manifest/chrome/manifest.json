@@ -395,7 +395,7 @@
             "matches": [
                 "https://www.crowdin.com/*",
                 "https://crowdin.com/*",
-                "https://translate.midnight-lizard.online/"
+                "https://translate.midnight-lizard.online/*"
             ],
             "css": [
                 "css/custom/crowdin.css"
