@@ -1,7 +1,10 @@
-html[ml-is-active][ml-stage="preload"]
-{
-    background: white;
+html[ml-is-active][ml-stage="preload"] {
     filter: brightness(var(--ml-background-lightness-limit));
+}
+
+html[ml-is-active][ml-stage="preload"],
+html[ml-is-active][ml-stage="preload"]>body {
+    background: white;
     position: fixed;
     top: 0px;
     bottom: 0px;
