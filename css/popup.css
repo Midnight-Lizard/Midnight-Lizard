@@ -1177,6 +1177,7 @@ height: 148px;
     font-size: 13px;
     line-height: 39px;
     position: relative;
+    display: inline-block;
 }
 
 .ml-ad:before {
