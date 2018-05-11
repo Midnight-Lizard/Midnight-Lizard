@@ -1954,9 +1954,11 @@ namespace MidnightLizard.ContentScript
                         })!;
                     }
                     lightSum += newColor.light;
-                    if (newColor.color)
+                    if (newColor.color ||
+                        newColor.reason === Colors.ColorReason.Inherited && newColor.intendedColor)
                     {
-                        gradient = gradient.replace(new RegExp(Util.escapeRegex(c), "gi"), newColor.color);
+                        gradient = gradient.replace(new RegExp(Util.escapeRegex(c), "gi"),
+                            newColor.color || newColor.intendedColor!);
                     }
                     if (!mainColor && newColor.alpha > 0.5 && roomRules.backgroundColor &&
                         newColor.role === (isButton ? cc.ButtonBackground : cc.BackgroundNoContrast))
