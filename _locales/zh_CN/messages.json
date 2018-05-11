@@ -49,5 +49,21 @@
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
         "message": "激活时间"
+    },
+    "scheduleFinishHour_text_label": {
+        "description": "scheduleFinishHour_text_label: text on the label",
+        "message": "禁用时间"
+    },
+    "blueFilter_text_label": {
+        "description": "blueFilter_text_label: text on the label",
+        "message": "蓝光过滤强度"
+    },
+    "blueFilter_@title": {
+        "description": "blueFilter_@title: text on the tooltip\/hint",
+        "message": "蓝光过滤强度\n从页面中移除蓝光并使用红光替换"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "backgroundSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
     }
 }
