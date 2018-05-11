@@ -83,7 +83,7 @@ namespace MidnightLizard.Settings
             {
                 hostName = rootDocument.location.hostname;
             }
-            this._settingsKey = `ws:${hostName}`;
+            this._settingsKey = `ws:${hostName}`; //`
             this.initDefaultColorSchemes();
             this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
             this._defaultSettings.colorSchemeId = "default";
@@ -97,18 +97,22 @@ namespace MidnightLizard.Settings
 
         protected initCurSet()
         {
-            if (!this._currentSettings.mode)
+            this.applyBackwardCompatibility(this._currentSettings);
+            const set = Object.assign({}, this._currentSettings);
+            for (const setting in set)
             {
-                this._currentSettings.mode = ProcessingMode.Complex;
-            }
-            let set = Object.assign({}, this._currentSettings);
-            for (let setting in set)
-            {
-                let prop = setting as ColorSchemePropertyName;
-                let val = set[prop];
-                if (!/Hue$|Width/g.test(prop) && Util.isNum(val))
+                if (setting in ColorSchemes.dimmedDust)
                 {
-                    set[prop] = val / 100;
+                    const prop = setting as ColorSchemePropertyName;
+                    const val = set[prop];
+                    if (!/Hue$|Width/g.test(prop) && Util.isNum(val))
+                    {
+                        set[prop] = val / 100;
+                    }
+                }
+                else
+                {
+                    delete (set as any)[setting];
                 }
             }
             this._shift = {
@@ -122,21 +126,11 @@ namespace MidnightLizard.Settings
                     hueGravity: set.backgroundHueGravity || 0
                 },
                 ButtonBackground: {
-                    saturationLimit: isNaN(set.buttonSaturationLimit)
-                        ? Math.min(Number((set.backgroundSaturationLimit * 1.1).toFixed(2)), 1)
-                        : set.buttonSaturationLimit,
-                    contrast: isNaN(set.buttonContrast)
-                        ? set.backgroundContrast
-                        : set.buttonContrast,
-                    lightnessLimit: isNaN(set.buttonLightnessLimit)
-                        ? Number((set.backgroundLightnessLimit * 0.8).toFixed(2))
-                        : set.buttonLightnessLimit,
-                    graySaturation: isNaN(set.buttonGraySaturation)
-                        ? Math.min(Number((set.backgroundGraySaturation * 1.1).toFixed(2)), 1)
-                        : set.buttonGraySaturation,
-                    grayHue: set.buttonGrayHue === undefined
-                        ? set.backgroundGrayHue
-                        : set.buttonGrayHue,
+                    saturationLimit: set.buttonSaturationLimit,
+                    contrast: set.buttonContrast,
+                    lightnessLimit: set.buttonLightnessLimit,
+                    graySaturation: set.buttonGraySaturation,
+                    grayHue: set.buttonGrayHue,
                     replaceAllHues: set.buttonReplaceAllHues || false,
                     hueGravity: set.buttonHueGravity || 0
                 },
@@ -305,6 +299,57 @@ namespace MidnightLizard.Settings
             };
         }
 
+        protected applyBackwardCompatibility(settings: ColorScheme)
+        {
+            if (!settings.mode)
+            {
+                settings.mode = ProcessingMode.Complex;
+            }
+
+            if (settings.buttonSaturationLimit === undefined ||
+                isNaN(settings.buttonSaturationLimit))
+            {
+                settings.buttonSaturationLimit = Math.min(Math.round(
+                    settings.backgroundSaturationLimit * 1.1), 100);
+            }
+
+            if (settings.buttonContrast === undefined ||
+                isNaN(settings.buttonContrast))
+            {
+                settings.buttonContrast = Math.round(
+                    settings.borderContrast / 3);
+            }
+
+            if (settings.buttonLightnessLimit === undefined ||
+                isNaN(settings.buttonLightnessLimit))
+            {
+                settings.buttonLightnessLimit = Math.round(
+                    settings.backgroundLightnessLimit * 0.8);
+            }
+
+            if (settings.buttonGraySaturation === undefined ||
+                isNaN(settings.buttonGraySaturation))
+            {
+                settings.buttonGraySaturation = Math.min(Math.round(
+                    settings.backgroundGraySaturation * 1.1), 100)
+            }
+
+            if (settings.buttonGrayHue === undefined)
+            {
+                settings.buttonGrayHue =
+                    settings.backgroundGrayHue
+            }
+
+            settings.buttonReplaceAllHues =
+                settings.buttonReplaceAllHues || false;
+
+            settings.backgroundHueGravity = settings.backgroundHueGravity || 0;
+            settings.buttonHueGravity = settings.buttonHueGravity || 0;
+            settings.borderHueGravity = settings.borderHueGravity || 0;
+            settings.textHueGravity = settings.textHueGravity || 0;
+            settings.linkHueGravity = settings.linkHueGravity || 0;
+        }
+
         protected updateSchedule()
         {
             if (this._currentSettings.useDefaultSchedule)
@@ -354,13 +399,13 @@ namespace MidnightLizard.Settings
                 ...Settings.ColorSchemes.default,
                 ...Settings.ColorSchemes.dimmedDust
             });
-            this.processDefaultSettings(defaultSettings, renameToDefault);
+            await this.processDefaultSettings(defaultSettings, renameToDefault);
             return this._defaultSettings;
         }
 
-        protected processDefaultSettings(defaultSettings: ColorScheme, renameToDefault: boolean)
+        protected async processDefaultSettings(defaultSettings: ColorScheme, renameToDefault: boolean)
         {
-            this.applyUserColorSchemes(defaultSettings);
+            await this.applyUserColorSchemes(defaultSettings);
             this.assignSettings(this._defaultSettings, defaultSettings);
             Object.assign(this._defaultSettings, {
                 scheduleStartHour: defaultSettings.scheduleStartHour,
@@ -379,15 +424,40 @@ namespace MidnightLizard.Settings
             this._defaultSettings.colorSchemeName = "Default";
         }
 
-        public applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
+        public async applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
         {
             if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
             {
-                for (let userColorScheme of defaultSettings.userColorSchemes)
+                for (const userColorScheme of defaultSettings.userColorSchemes)
                 {
-                    Settings.ColorSchemes[userColorScheme.colorSchemeId] = Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
+                    this.applyBackwardCompatibility(userColorScheme);
+                    Settings.ColorSchemes[userColorScheme.colorSchemeId] =
+                        Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
                 }
             }
+
+            if (defaultSettings.userColorSchemeIds && defaultSettings.userColorSchemeIds.length > 0)
+            {
+                const userColorSchemeIds = defaultSettings.userColorSchemeIds.reduce((all, id) =>
+                {
+                    all[`cs:${id}`] = { colorSchemeId: "none" };
+                    return all;
+                }, {} as any);
+
+                const userColorSchemesStore = await this._storageManager.get(userColorSchemeIds);
+
+                for (const key in userColorSchemesStore)
+                {
+                    const userColorScheme: ColorScheme = userColorSchemesStore[key];
+                    if (userColorScheme && userColorScheme.colorSchemeId !== "none" as any)
+                    {
+                        this.applyBackwardCompatibility(userColorScheme);
+                        Settings.ColorSchemes[userColorScheme.colorSchemeId] =
+                            Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
+                    }
+                }
+            }
+
             Object.assign(Settings.ColorSchemes.default, defaultSettings.colorSchemeId ? defaultSettings : Settings.ColorSchemes.dimmedDust);
             Settings.ColorSchemes.default.colorSchemeId = "default";
             Settings.ColorSchemes.default.colorSchemeName = "Default";

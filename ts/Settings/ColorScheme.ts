@@ -9,21 +9,24 @@ namespace MidnightLizard.Settings
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "hostName", "userColorSchemes", "changeBrowserTheme"];
+        ["isEnabled", "hostName", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
 
     export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "hostName", "colorSchemeName", "userColorSchemes", "changeBrowserTheme"];
+        ["isEnabled", "hostName", "colorSchemeName", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
 
     export const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
         ["isEnabled", "hostName", "colorSchemeId", "colorSchemeName",
-            "userColorSchemes", "runOnThisSite", "changeBrowserTheme"];
+            "userColorSchemes", "userColorSchemeIds", "runOnThisSite", "changeBrowserTheme"];
 
+
+    export type PartialColorScheme = {[k in keyof Settings.ColorScheme]?: Settings.ColorScheme[k]};
     /**
      * ColorScheme - MidnightLizard Settings
      */
     export interface ColorScheme
     {
         userColorSchemes?: Array<ColorScheme>;
+        userColorSchemeIds?: Array<ColorSchemeName>;
         colorSchemeId: ColorSchemeName;
         colorSchemeName: string;
         hostName?: string;

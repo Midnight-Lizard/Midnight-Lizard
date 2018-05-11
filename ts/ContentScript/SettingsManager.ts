@@ -47,18 +47,20 @@ namespace MidnightLizard.ContentScript
             this.notifySettingsApplied();
         }
 
-        protected initCurrentSettings()
+        protected async initCurrentSettings()
         {
             const storage = {
                 ...Settings.ColorSchemes.default,
                 ...Settings.ColorSchemes.dimmedDust,
                 ...{ [this._settingsKey]: {} }
             };
-            this._storageManager.get(storage).then(defaultSettings =>
+
+            try
             {
+                const defaultSettings = await this._storageManager.get(storage);
                 const settings = (defaultSettings as any)[this._settingsKey] as Settings.ColorScheme;
                 delete (defaultSettings as any)[this._settingsKey];
-                this.processDefaultSettings(defaultSettings, true);
+                await this.processDefaultSettings(defaultSettings, true);
                 Object.assign(this._currentSettings, this._defaultSettings);
                 if (settings)
                 {
@@ -67,7 +69,11 @@ namespace MidnightLizard.ContentScript
                 this.updateSchedule();
                 this.initCurSet();
                 this._onSettingsInitialized.raise(this._shift);
-            }).catch(ex => this._app.isDebug && console.error(ex));
+            }
+            catch (ex)
+            {
+                this._app.isDebug && console.error(ex);
+            }
         }
 
         protected async onSettingsDeletionRequested(response: AnyResponse)

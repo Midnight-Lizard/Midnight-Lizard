@@ -36,6 +36,7 @@ namespace MidnightLizard.Settings
                 // Default
                 {
                     userColorSchemes: [],
+                    userColorSchemeIds: [],
                     colorSchemeId: "default",
                     colorSchemeName: "Default",
                     runOnThisSite: true,

@@ -80,7 +80,9 @@ namespace MidnightLizard.Events
 
         protected executeHandler(contexts: AHIP<TArg>, eventArgs?: TArg)
         {
-            contexts.forEach(contexts => contexts.forEach(boundHandler => boundHandler(eventArgs)));
+            contexts.forEach(context =>
+                context.forEach(boundHandler =>
+                    boundHandler(eventArgs)));
         }
     }
 
@@ -159,7 +161,9 @@ namespace MidnightLizard.Events
 
         protected executeHandler(contexts: RHIP<TResponse, TArg>, response: TResponse, eventArgs?: TArg)
         {
-            contexts.forEach(context => context.forEach(boundHandler => boundHandler(response, eventArgs)));
+            contexts.forEach(context =>
+                context.forEach(boundHandler =>
+                    boundHandler(response, eventArgs)));
         }
     }
 

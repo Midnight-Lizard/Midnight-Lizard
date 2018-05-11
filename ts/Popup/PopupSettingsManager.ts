@@ -124,17 +124,33 @@ namespace MidnightLizard.Popup
 
         public async saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>
         {
-            const storage = await this._storageManager.get<Settings.ColorScheme>({ userColorSchemes: [] } as any);
-            let existingScheme = storage.userColorSchemes!.find(sch => sch.colorSchemeId === userColorScheme.colorSchemeId);
-            if (existingScheme)
+            const storage = await this._storageManager
+                .get<Settings.PartialColorScheme>({
+                    userColorSchemes: [],
+                    userColorSchemeIds: []
+                });
+
+            if (storage.userColorSchemes && storage.userColorSchemes.length > 0)
             {
-                Object.assign(existingScheme, userColorScheme)
+                for (const oldUserColorScheme of storage.userColorSchemes)
+                {
+                    this.putUserColorSchemeIntoStorage(storage, oldUserColorScheme);
+                }
+                storage.userColorSchemes = [];
             }
-            else
-            {
-                storage.userColorSchemes!.push(userColorScheme);
-            }
+
+            this.putUserColorSchemeIntoStorage(storage, userColorScheme);
             return this._storageManager.set(storage);
+        }
+
+        private putUserColorSchemeIntoStorage(storage: Settings.PartialColorScheme, userColorScheme: Settings.ColorScheme)
+        {
+            if (!storage.userColorSchemeIds!
+                .find(id => id === userColorScheme.colorSchemeId))
+            {
+                storage.userColorSchemeIds!.push(userColorScheme.colorSchemeId);
+            }
+            (storage as any)[`cs:${userColorScheme.colorSchemeId}`] = userColorScheme;
         }
 
         public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>
