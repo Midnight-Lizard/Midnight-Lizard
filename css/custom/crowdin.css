@@ -30,3 +30,16 @@ body.dark-theme i.static-icon-filter {
     --ml-background-border-top-color:HighlightedText;
     --ml-background-border-bottom-color:HighlightedText;
 }
+
+.navbar .nav>li>a:focus,
+.navbar .nav>li>a:hover {
+    background-color: var(--ml-main-trans-background-color) !important;
+}
+
+.dropdown-menu li>a:hover,
+.dropdown-menu li>a:focus,
+.dropdown-submenu:hover>a,
+.drop-down-icon:hover+a,
+.general_activity_item:not(.opened):hover {
+    background-color: var(--ml-main-alt-background-color) !important;
+}
