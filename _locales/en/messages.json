@@ -399,7 +399,7 @@
     },
     "useImageHoverAnimation_@title": {
         "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
-        "message": "Remove all efects from image when you hover mouse on it"
+        "message": "Remove all effects from image when you hover mouse on it"
     },
     "backgroundImageSaturationLimit_text_label": {
         "description": "backgroundImageSaturationLimit_text_label: text on the label",
