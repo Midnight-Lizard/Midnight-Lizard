@@ -9,5 +9,45 @@
     },
     "globalToggleKey": {
         "message": "全局扩展程序切换"
+    },
+    "runOnThisSite_text_label": {
+        "description": "runOnThisSite_text_label: text on the label",
+        "message": "在此网站上运行"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "restoreColorsOnCopy_text_label: text on the label",
+        "message": "在复制时恢复原始色彩"
+    },
+    "restoreColorsOnCopy_@title": {
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
+        "message": "从页面中复制内容前恢复原始色彩"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "restoreColorsOnPrint_text_label: text on the label",
+        "message": "在打印时恢复原始色彩"
+    },
+    "restoreColorsOnPrint_@title": {
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
+        "message": "打印页面内容前恢复原始色彩"
+    },
+    "changeBrowserTheme_text_label": {
+        "description": "changeBrowserTheme_text_label: text on the label",
+        "message": "更改浏览器主题"
+    },
+    "changeBrowserTheme_@title": {
+        "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
+        "message": "调整浏览器主题至当前配色方案。\n仅支持 Firefox 浏览器。"
+    },
+    "useDefaultSchedule_text_label": {
+        "description": "useDefaultSchedule_text_label: text on the label",
+        "message": "使用默认时间表"
+    },
+    "useDefaultSchedule_@title": {
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
+        "message": "使用来自默认设置的时间表\n若您想为所有网站使用单一时间表，您需要在默认设置中指定它。"
+    },
+    "scheduleStartHour_text_label": {
+        "description": "scheduleStartHour_text_label: text on the label",
+        "message": "激活时间"
     }
 }
