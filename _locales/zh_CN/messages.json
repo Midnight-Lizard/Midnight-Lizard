@@ -141,5 +141,100 @@
     "buttonGraySaturation_text_label": {
         "description": "buttonGraySaturation_text_label: text on the label",
         "message": "灰色按钮饱和度"
+    },
+    "buttonGraySaturation_@title": {
+        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色按钮背景饱和度"
+    },
+    "buttonHueGravity_text_label": {
+        "description": "buttonHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "buttonHueGravity_@title": {
+        "description": "buttonHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "buttonGrayHue_text_label": {
+        "description": "buttonGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "buttonGrayHue_@title": {
+        "description": "buttonGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色按钮背景色彩饱和度的色相"
+    },
+    "buttonReplaceAllHues_text_label": {
+        "description": "buttonReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "textSaturationLimit_text_label": {
+        "description": "textSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "文字饱和度限制"
+    },
+    "textContrast_text_label": {
+        "description": "textContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "textContrast_@title": {
+        "description": "textContrast_@title: text on the tooltip\/hint",
+        "message": "文本与其背景的最小亮度差"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "textLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "textLightnessLimit_@title": {
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大文本亮度限制"
+    },
+    "textGraySaturation_text_label": {
+        "description": "textGraySaturation_text_label: text on the label",
+        "message": "灰色文本饱和度"
+    },
+    "textGraySaturation_@title": {
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色文本饱和度"
+    },
+    "textReplaceAllHues_text_label": {
+        "description": "textReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "textSelectionHue_html_label": {
+        "message": "文本<span id=\"selection\">选中<\/span>色相"
+    },
+    "textSelectionHue_@title": {
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
+        "message": "文本选中色相"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "linkSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "linkSaturationLimit_@title": {
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "链接饱和度限制"
+    },
+    "linkContrast_text_label": {
+        "description": "linkContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "linkContrast_@title": {
+        "description": "linkContrast_@title: text on the tooltip\/hint",
+        "message": "链接与背景的最小亮度差"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "linkLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "linkReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "borderReplaceAllHues_text_label": {
+        "description": "borderReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
     }
 }
