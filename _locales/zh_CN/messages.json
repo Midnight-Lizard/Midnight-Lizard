@@ -65,5 +65,81 @@
     "backgroundSaturationLimit_text_label": {
         "description": "backgroundSaturationLimit_text_label: text on the label",
         "message": "饱和度限制"
+    },
+    "backgroundSaturationLimit_@title": {
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景饱和度限制"
+    },
+    "backgroundContrast_text_label": {
+        "description": "backgroundContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "backgroundContrast_@title": {
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
+        "message": "相似背景中的最小亮度差。\n基于元素尺寸及顺序故结果可能随机。"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "backgroundLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "backgroundLightnessLimit_@title": {
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景亮度限制"
+    },
+    "backgroundGraySaturation_text_label": {
+        "description": "backgroundGraySaturation_text_label: text on the label",
+        "message": "灰色背景饱和度"
+    },
+    "backgroundGraySaturation_@title": {
+        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色背景饱和度"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "backgroundHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "backgroundHueGravity_@title": {
+        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "backgroundGrayHue_text_label": {
+        "description": "backgroundGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "backgroundGrayHue_@title": {
+        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色背景色彩饱和度的色相"
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "backgroundReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "buttonSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "buttonSaturationLimit_@title": {
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "按钮背景饱和度限制"
+    },
+    "buttonContrast_text_label": {
+        "description": "buttonContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "buttonContrast_@title": {
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
+        "message": "按钮与其周围背景的最小亮度差"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "buttonLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "buttonLightnessLimit_@title": {
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "按钮背景亮度限制"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "buttonGraySaturation_text_label: text on the label",
+        "message": "灰色按钮饱和度"
     }
 }
