@@ -170,10 +170,6 @@
         "description": "textSaturationLimit_text_label: text on the label",
         "message": "饱和度限制"
     },
-    "textSaturationLimit_@title": {
-        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "文字饱和度限制"
-    },
     "textContrast_text_label": {
         "description": "textContrast_text_label: text on the label",
         "message": "对比度"
