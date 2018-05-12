@@ -9,5 +9,944 @@
     },
     "globalToggleKey": {
         "message": "全局扩展程序切换"
+    },
+    "runOnThisSite_text_label": {
+        "description": "runOnThisSite_text_label: text on the label",
+        "message": "在此网站上运行"
+    },
+    "runOnThisSite_@title": {
+        "description": "runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在此网站上运行 [Midnight Lizard] 。"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "restoreColorsOnCopy_text_label: text on the label",
+        "message": "在复制时恢复原始色彩"
+    },
+    "restoreColorsOnCopy_@title": {
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
+        "message": "从页面中复制内容前恢复原始色彩"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "restoreColorsOnPrint_text_label: text on the label",
+        "message": "在打印时恢复原始色彩"
+    },
+    "restoreColorsOnPrint_@title": {
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
+        "message": "打印页面内容前恢复原始色彩"
+    },
+    "changeBrowserTheme_text_label": {
+        "description": "changeBrowserTheme_text_label: text on the label",
+        "message": "更改浏览器主题"
+    },
+    "changeBrowserTheme_@title": {
+        "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
+        "message": "调整浏览器主题至当前配色方案。\n仅支持 Firefox 浏览器。"
+    },
+    "useDefaultSchedule_text_label": {
+        "description": "useDefaultSchedule_text_label: text on the label",
+        "message": "使用默认时间表"
+    },
+    "useDefaultSchedule_@title": {
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
+        "message": "使用来自默认设置的时间表\n若您想为所有网站使用单一时间表，您需要在默认设置中指定它。"
+    },
+    "scheduleStartHour_text_label": {
+        "description": "scheduleStartHour_text_label: text on the label",
+        "message": "激活时间"
+    },
+    "scheduleStartHour_@title": {
+        "description": "scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此时间启动后于此网站激活。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "scheduleFinishHour_text_label": {
+        "description": "scheduleFinishHour_text_label: text on the label",
+        "message": "禁用时间"
+    },
+    "scheduleFinishHour_@title": {
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此次应用于当前网页。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "blueFilter_text_label": {
+        "description": "blueFilter_text_label: text on the label",
+        "message": "蓝光过滤强度"
+    },
+    "blueFilter_@title": {
+        "description": "blueFilter_@title: text on the tooltip\/hint",
+        "message": "蓝光过滤强度\n从页面中移除蓝光并使用红光替换"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "backgroundSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "backgroundSaturationLimit_@title": {
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景饱和度限制"
+    },
+    "backgroundContrast_text_label": {
+        "description": "backgroundContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "backgroundContrast_@title": {
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
+        "message": "相似背景中的最小亮度差。\n基于元素尺寸及顺序故结果可能随机。"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "backgroundLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "backgroundLightnessLimit_@title": {
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景亮度限制"
+    },
+    "backgroundGraySaturation_text_label": {
+        "description": "backgroundGraySaturation_text_label: text on the label",
+        "message": "灰色背景饱和度"
+    },
+    "backgroundGraySaturation_@title": {
+        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色背景饱和度"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "backgroundHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "backgroundHueGravity_@title": {
+        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "backgroundGrayHue_text_label": {
+        "description": "backgroundGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "backgroundGrayHue_@title": {
+        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色背景色彩饱和度的色相"
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "backgroundReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "backgroundReplaceAllHues_@title": {
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "buttonSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "buttonSaturationLimit_@title": {
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "按钮背景饱和度限制"
+    },
+    "buttonContrast_text_label": {
+        "description": "buttonContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "buttonContrast_@title": {
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
+        "message": "按钮与其周围背景的最小亮度差"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "buttonLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "buttonLightnessLimit_@title": {
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "按钮背景亮度限制"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "buttonGraySaturation_text_label: text on the label",
+        "message": "灰色按钮饱和度"
+    },
+    "buttonGraySaturation_@title": {
+        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色按钮背景饱和度"
+    },
+    "buttonHueGravity_text_label": {
+        "description": "buttonHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "buttonHueGravity_@title": {
+        "description": "buttonHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "buttonGrayHue_text_label": {
+        "description": "buttonGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "buttonGrayHue_@title": {
+        "description": "buttonGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色按钮背景色彩饱和度的色相"
+    },
+    "buttonReplaceAllHues_text_label": {
+        "description": "buttonReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "buttonReplaceAllHues_@title": {
+        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "textSaturationLimit_text_label": {
+        "description": "textSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "文本饱和度限制"
+    },
+    "textContrast_text_label": {
+        "description": "textContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "textContrast_@title": {
+        "description": "textContrast_@title: text on the tooltip\/hint",
+        "message": "文本与其背景的最小亮度差"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "textLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "textLightnessLimit_@title": {
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大文本亮度限制"
+    },
+    "textGraySaturation_text_label": {
+        "description": "textGraySaturation_text_label: text on the label",
+        "message": "灰色文本饱和度"
+    },
+    "textGraySaturation_@title": {
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色文本饱和度"
+    },
+    "textHueGravity_text_label": {
+        "description": "textHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "textHueGravity_@title": {
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "textGrayHue_text_label": {
+        "description": "textGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "textGrayHue_@title": {
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色文本色彩饱和度的色相"
+    },
+    "textReplaceAllHues_text_label": {
+        "description": "textReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "textReplaceAllHues_@title": {
+        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "textSelectionHue_html_label": {
+        "message": "文本<span id=\"selection\">选中<\/span>色相"
+    },
+    "textSelectionHue_@title": {
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
+        "message": "文本选中色相"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "linkSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "linkSaturationLimit_@title": {
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "链接饱和度限制"
+    },
+    "linkContrast_text_label": {
+        "description": "linkContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "linkContrast_@title": {
+        "description": "linkContrast_@title: text on the tooltip\/hint",
+        "message": "链接与背景的最小亮度差"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "linkLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "linkLightnessLimit_@title": {
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大链接亮度限制"
+    },
+    "linkDefaultSaturation_text_label": {
+        "description": "linkDefaultSaturation_text_label: text on the label",
+        "message": "默认链接饱和度"
+    },
+    "linkDefaultSaturation_@title": {
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中色相后的正常链接和已访问链接颜色饱和度"
+    },
+    "linkHueGravity_text_label": {
+        "description": "linkHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "linkHueGravity_@title": {
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "linkDefaultHue_text_label": {
+        "description": "linkDefaultHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "linkDefaultHue_@title": {
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
+        "message": "用于替换普通链接色相的色相"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "linkReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "linkReplaceAllHues_@title": {
+        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换此页面链接的正常色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "linkVisitedHue_text_label": {
+        "description": "linkVisitedHue_text_label: text on the label",
+        "message": "已访问链接色相"
+    },
+    "linkVisitedHue_@title": {
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
+        "message": "已访问链接色相"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "borderSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "borderSaturationLimit_@title": {
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "边界饱和度限制"
+    },
+    "borderContrast_text_label": {
+        "description": "borderContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "borderContrast_@title": {
+        "description": "borderContrast_@title: text on the tooltip\/hint",
+        "message": "边界与背景的最小亮度差"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "borderLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "borderLightnessLimit_@title": {
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大边界亮度限制"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "borderGraySaturation_text_label: text on the label",
+        "message": "灰色边界饱和度"
+    },
+    "borderGraySaturation_@title": {
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色边界饱和度"
+    },
+    "borderHueGravity_text_label": {
+        "description": "borderHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "borderHueGravity_@title": {
+        "description": "borderHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "borderGrayHue_text_label": {
+        "description": "borderGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "borderGrayHue_@title": {
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色边界色彩饱和度的色相"
+    },
+    "borderReplaceAllHues_text_label": {
+        "description": "borderReplaceAllHues_text_label: text on the label",
+        "message": "全部替换"
+    },
+    "borderReplaceAllHues_@title": {
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "imageSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
+    },
+    "imageSaturationLimit_@title": {
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "设置所有图像的饱和度为此值"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "imageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "imageLightnessLimit_@title": {
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "设置所有图像的亮度为此值"
+    },
+    "imageExample_text_label": {
+        "description": "imageExample_text_label: text on the label",
+        "message": "图像示例"
+    },
+    "imageExample_@title": {
+        "description": "imageExample_@title: text on the tooltip\/hint",
+        "message": "图像示例"
+    },
+    "useImageHoverAnimation_text_label": {
+        "description": "useImageHoverAnimation_text_label: text on the label",
+        "message": "使用图像悬停动画"
+    },
+    "useImageHoverAnimation_@title": {
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
+        "message": "在鼠标悬停时从图像中移除所有特效"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像饱和度"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "backgroundImageLightnessLimit_@title": {
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像亮度限制。图像越小越亮。"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "backgroundImageExample_text_label: text on the label",
+        "message": "背景图片示例"
+    },
+    "backgroundImageExample_@title": {
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "背景图片示例"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "backgroundImageExampleText_text_label: text on the label",
+        "message": "示例"
+    },
+    "backgroundImageExampleText_@title": {
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
+        "message": "若此网站在文本后存在背景图像，您则应更改背景图亮度等级直到您得以清楚地看见文字背后的图像。"
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
+    },
+    "scrollbarSaturationLimit_@title": {
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮饱和度"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "scrollbarContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "scrollbarContrast_@title": {
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和背景的最小亮度差。\n仅应用于亮色背景。"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "scrollbarLightnessLimit_@title": {
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮亮度限制"
+    },
+    "scrollbarSize_text_label": {
+        "description": "scrollbarSize_text_label: text on the label",
+        "message": "尺寸"
+    },
+    "scrollbarSize_@title": {
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
+        "message": "滚动条尺寸"
+    },
+    "scrollbarGrayHue_text_label": {
+        "description": "scrollbarGrayHue_text_label: text on the label",
+        "message": "滚动条色相"
+    },
+    "scrollbarGrayHue_@title": {
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮色相"
+    },
+    "commonTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "常规"
+    },
+    "commonTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "       常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。\n • 当 [Midnight Lizard] 自动启用时激活时间表定义。\n • 蓝光过滤强度控制使用红光替换多少蓝光以减少夜时眼睛疲劳。"
+    },
+    "backgroundTab_text_label": {
+        "description": "backgroundTab_text_label: text on the label",
+        "message": "背景"
+    },
+    "backgroundTab_@tooltip": {
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      背景颜色设置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充设置。"
+    },
+    "buttonsTab_text_label": {
+        "description": "buttonsTab_text_label: text on the label",
+        "message": "按钮"
+    },
+    "buttonsTab_@tooltip": {
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      按钮背景颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充设置。"
+    },
+    "textTab_text_label": {
+        "description": "textTab_text_label: text on the label",
+        "message": "文本"
+    },
+    "textTab_@tooltip": {
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      文本颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整设置。"
+    },
+    "linkTab_text_label": {
+        "description": "linkTab_text_label: text on the label",
+        "message": "链接"
+    },
+    "linkTab_@tooltip": {
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      超链接颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整设置。"
+    },
+    "borderTab_text_label": {
+        "description": "borderTab_text_label: text on the label",
+        "message": "边界"
+    },
+    "borderTab_@tooltip": {
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      边界颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整设置。"
+    },
+    "imagesTab_text_label": {
+        "description": "imagesTab_text_label: text on the label",
+        "message": "图像"
+    },
+    "imagesTab_@tooltip": {
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "       图像调整设置\n―――――――――――――――――――\n 此选项卡包含图像及图片的饱和度与亮度调整设置。"
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "backgroundImagesTab_text_label: text on the label",
+        "message": "背景图像"
+    },
+    "backgroundImagesTab_@tooltip": {
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     背景图像调整设置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整设置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "scrollbarsTab_text_label: text on the label",
+        "message": "滚动条"
+    },
+    "scrollbarsTab_@tooltip": {
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
+    },
+    "settingsHeader_text_label": {
+        "description": "settingsHeader_text_label: text on the label",
+        "message": " 设置"
+    },
+    "hostState_@tooltip": {
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "在白名单和黑名单之间\n切换当前网站"
+    },
+    "hostName_@tooltip": {
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     当前网页\n―――――――――――――――\n 点击在白名单和黑名单间切换当前网站。"
+    },
+    "helpLink_@tooltip": {
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "支持论坛"
+    },
+    "isEnabledSwitch_@tooltip": {
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "启用或禁用整个扩展程序"
+    },
+    "isEnabledOn_text_label": {
+        "description": "isEnabledOn_text_label: text on the label",
+        "message": "开启"
+    },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "在您的设备间同步设置"
+    },
+    "syncSettings_@title": {
+        "description": "syncSettings_@title: text on the tooltip\/hint",
+        "message": "此选项勾选时将在您的设备间同步 [Midnight Lizard] 设置。\n当为每个网站勾选自定义设置时将从所有设备中合并设置但自定义配色方案将被最新配色方案所覆盖。所以请确保您编辑自定义方案时处于在线状态。\n您同时也需要在浏览器设置中启用 [同步] 使得 [Midnight Lizard] 设置同步正常工作。"
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "colorSchemeForEdit_text_label: text on the label",
+        "message": "所编辑的配色方案"
+    },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "选择要编辑的配色方案。\n您可以新建配色方案并更新或删除已有的配色方案。"
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "配色方案名"
+    },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "您可以在保存前编辑配色方案名"
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
+        "message": "删除"
+    },
+    "deleteColorSchemeBtn_@title": {
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "删除选中的所编辑的配色方案"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "saveColorSchemeBtn_text_label: text on the label",
+        "message": "保存"
+    },
+    "saveColorSchemeBtn_@title": {
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "使用当前的弹出设置更新选中的配色方案"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "exportColorSchemeBtn_text_label: text on the label",
+        "message": "导出"
+    },
+    "exportColorSchemeBtn_@title": {
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "将所编辑的 [$color_scheme_for_edit$] 选中配色方案 [$color_scheme_name$] 导出至文件并使用当前应用于 [$current_color_scheme$] 的弹出设置替换其所有设置。",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": "$1"
+            },
+            "color_scheme_for_edit": {
+                "content": "$2"
+            },
+            "color_scheme_name": {
+                "content": "$3"
+            }
+        }
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "importColorSchemeBtn_text_label: text on the label",
+        "message": "导入"
+    },
+    "importColorSchemeBtn_@title": {
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "从文件导入配色方案"
+    },
+    "editSchemesTab_text_label": {
+        "description": "editSchemesTab_text_label: text on the label",
+        "message": "配色方案"
+    },
+    "editSchemesTab_@tooltip": {
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 当前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
+    },
+    "currentColorScheme_text_label": {
+        "description": "currentColorScheme_text_label: text on the label",
+        "message": "当前配色方案"
+    },
+    "currentColorScheme_@title": {
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
+        "message": "选择您喜欢的配色方案"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "此项"
+    },
+    "forgetThisSiteBtn_@title": {
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
+        "message": "忘记当前网站设置"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "全部"
+    },
+    "forgetAllSitesBtn_@title": {
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
+        "message": "忘记所有网站的所有自定义项"
+    },
+    "setAsDefaultBtn_text_label": {
+        "description": "setAsDefaultBtn_text_label: text on the label",
+        "message": "设置为默认"
+    },
+    "setAsDefaultBtn_@title": {
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
+        "message": "设置当前设置为所有网站的默认设置"
+    },
+    "applyBtn_text_label": {
+        "description": "applyBtn_text_label: text on the label",
+        "message": "应用"
+    },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用并保存此网站的当前设置"
+    },
+    "closeBtn_@title": {
+        "description": "closeBtn_@title: text on the tooltip\/hint",
+        "message": "关闭弹出窗口并放弃所有未保存的更改"
+    },
+    "rateLink_@tooltip": {
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "为此扩展程序评分"
+    },
+    "emailLink_@tooltip": {
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "向开发者发送电子邮件"
+    },
+    "bugReportLink_@tooltip": {
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "报告错误"
+    },
+    "changeLogLink_@tooltip": {
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "更新日志"
+    },
+    "colorSchemeImportSuccessMessage": {
+        "description": "colorSchemeImportSuccessMessage: text on the message box",
+        "message": "$imported_color_schemes_count$ 配色方案已成功从文件中导入。\n已导入的配色方案使用 $edit_mark$ 符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在 [当前配色方案] 下拉窗口列表中选中配色方案并点击 [保存] 按钮。",
+        "placeholders": {
+            "imported_color_schemes_count": {
+                "content": "$1"
+            },
+            "edit_mark": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveConfirmationMessage": {
+        "description": "colorSchemeSaveConfirmationMessage: text on the message box",
+        "message": "您正要使用当前名为 [$color_scheme_name$] 的弹出设置更新配色方案 [$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            },
+            "color_scheme_name": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveSuccessMessage": {
+        "description": "colorSchemeSaveSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "colorSchemeSaveFailureMessage": {
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
+        "message": "配色方案更新失败。\n"
+    },
+    "colorSchemeDeleteConfirmationMessage": {
+        "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
+        "message": "您正要删除配色方案 [$color_scheme_for_edit_name$]。\n删除系统配色方案将移除所有从指定配色方案中的覆盖项。我们没有办法完全删除任意系统配色方案。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            }
+        }
+    },
+    "colorSchemeDeleteSuccessMessage": {
+        "description": "colorSchemeDeleteSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
+        "message": "配色方案检测失败。\n"
+    },
+    "forgetAllConfirmationMessage": {
+        "description": "forgetAllConfirmationMessage: text on the message box",
+        "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
+    },
+    "forgetAllSuccessMessage": {
+        "description": "forgetAllSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "forgetAllFailureMessage": {
+        "description": "forgetAllFailureMessage: text on the message box",
+        "message": "全部网页设置删除失败。\n"
+    },
+    "forgetThisSuccessMessage": {
+        "description": "forgetThisSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "forgetThisFailureMessage": {
+        "description": "forgetThisFailureMessage: text on the message box",
+        "message": "当前站点设置删除失败。\n"
+    },
+    "setAsDefaultFailureMessage": {
+        "description": "setAsDefaultFailureMessage: text on the message box",
+        "message": "默认设置应用失败。\n"
+    },
+    "applyOnPageFailureMessage": {
+        "description": "applyOnPageFailureMessage: text on the message box",
+        "message": "设置应用失败。请刷新页面并重试。\n"
+    },
+    "toggleExtensionFailureMessage": {
+        "description": "toggleExtensionFailureMessage: text on the message box",
+        "message": "扩展程序开关切换失败。请重启所有浏览器窗口并重试。\n"
+    },
+    "syncChangeSuccessMessage": {
+        "description": "syncChangeSuccessMessage: text on the message box",
+        "message": "更改已成功应用。\n您可能需要刷新页面以查看更改。"
+    },
+    "syncChangeFailureMessage": {
+        "description": "syncChangeFailureMessage: text on the message box",
+        "message": "无法更改设置同步选项。\n"
+    },
+    "introduction_html_content": {
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为\n        <span>启用<\/span> 或\n        <span>关闭<\/span> 整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host\">\n        您也通过点击其在弹出标题栏上的标签在\n        <span>黑名单<\/span> 和\n        <span>白名单<\/span>\n        之间开关特定网站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    您可以从右侧面板下拉菜单中选择其中一种\n    <span>预定义配色方案<\/span> 并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs\">\n    除此之外，您可以随意\n    <span>调整<\/span> 您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。\n    您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        要分配您的偏好设置至\n        <span>当前网站<\/span> ，请点击右侧面板的\n        <q>应用<\/q> 按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        或您可以\n        <span>添加您的配色方案<\/span> 至预定义配色方案用于未来应用于其他网站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    若您希望设置当前设置作为所有网站的\n    <span>默认设置<\/span> ，请点击右侧面板的\n    <q>设置为默认<\/q> 按钮。\n<\/p>\n<p class=\"intro intro-help\">\n    您可以在支持论坛上找到\n    <span>更多帮助<\/span> 、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social\">\n    请订阅暗夜蜥的社交频道以关注最新更新以及特性。\n<\/p>"
+    },
+    "shortcut_text_lable": {
+        "message": "快捷方式"
+    },
+    "colorSchemeName_Custom": {
+        "message": "自定义"
+    },
+    "colorSchemeName_New": {
+        "message": "新配色方案"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的本地设置存储已包含一些数据。\n您是否想使用同步（云）存储覆盖数据并丢失被覆盖的数据？"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的同步（云）设置存储已包含一些数据。\n您是否想使用本地存储覆盖数据并丢失被覆盖的数据？"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "背景示例"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "不同背景颜色处理示例"
+    },
+    "smallBackgroundImageExample_@title": {
+        "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "小背景图片处理示例。\n若主背景够黑则小背景图像将翻转颜色。\n此例中，背景图像的 [亮度] 不影响它们。"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "smallBackgroundImageExample_text_label: text on the label",
+        "message": "小背景图片示例"
+    },
+    "scrollbarExample_text_label": {
+        "description": "scrollbarExample_text_label: text on the label",
+        "message": "滚动条示例"
+    },
+    "scrollbarExample_@title": {
+        "description": "scrollbarExample_@title: text on the tooltip\/hint",
+        "message": "样式滚动条示例"
+    },
+    "buttonExample_text_label": {
+        "description": "buttonExample_text_label: text on the label",
+        "message": "按钮示例"
+    },
+    "buttonExample_@title": {
+        "description": "buttonExample_@title: text on the tooltip\/hint",
+        "message": "不同按钮颜色处理示例"
+    },
+    "borderExample_@title": {
+        "description": "borderExample_@title: text on the tooltip\/hint",
+        "message": "不同边界颜色处理示例"
+    },
+    "borderExample_text_label": {
+        "description": "borderExample_text_label: text on the label",
+        "message": "边界示例"
+    },
+    "backgroundExampleOriginal_@title": {
+        "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始背景颜色"
+    },
+    "borderExampleOriginal_@title": {
+        "description": "borderExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "左侧处理的原始边框颜色"
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始小背景图像"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
+        "message": "滚动条样式 <br\/> 不受 Firefox 支持 <br\/><br\/>"
+    },
+    "translateLink_@tooltip": {
+        "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "帮助翻译 Midnight Lizard\n至其他语言"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
+    },
+    "backgroundExampleWithContrast_@title": {
+        "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
+        "message": "增加对比度以处理不同背景颜色示例。\n对比度基于元素尺寸故在真实页面上可能看起来存在差异。"
+    },
+    "backgroundExampleWithoutContrast_@title": {
+        "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
+        "message": "无对比度更改以处理不同背景颜色示例。"
+    },
+    "mode_@title": {
+        "description": "mode_@title: text on the tooltip\/hint",
+        "message": "页面处理模式"
+    },
+    "mode_text_label": {
+        "description": "mode_text_label: text on the label",
+        "message": "处理模式"
+    },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "简化页面处理模式并不准确但工作速度非常快"
+    },
+    "mode_simplified_text_label": {
+        "description": "mode_simplified_text_label: text on the label",
+        "message": "简化"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "复合页面处理模式并不快速但观看体验非常好"
+    },
+    "mode_complex_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "复合"
+    },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "悬停在每个选项上预览其描述"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "默认在所有网站上运行"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在所有网页上使用自定义设置运行 [Midnight Lizard] 。"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "默认激活时间"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序将在之后应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "默认禁用时间"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此次应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "全局设置"
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "resetThemeConfirmationMessage: text on the message box",
+        "message": "您是否想重置当前的浏览器主题为默认？\n可能重置为原始的 Firefox 主题而非您先前的主题。"
+    },
+    "globals_tab_snack_bar_text_content": {
+        "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
+        "message": "在此选项卡中的所有更改将自动保存，但您可能需要刷新页面使更改生效。"
     }
 }

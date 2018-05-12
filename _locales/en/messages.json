@@ -287,7 +287,7 @@
     },
     "linkHueGravity_@title": {
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "linkDefaultHue_text_label": {
         "description": "linkDefaultHue_text_label: text on the label",
@@ -399,7 +399,7 @@
     },
     "useImageHoverAnimation_@title": {
         "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
-        "message": "Remove all efects from image when you hover mouse on it"
+        "message": "Remove all effects from image when you hover mouse on it"
     },
     "backgroundImageSaturationLimit_text_label": {
         "description": "backgroundImageSaturationLimit_text_label: text on the label",
@@ -555,7 +555,7 @@
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default blacklist one and then press 'Set as default' button."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to [Global settings] tab."
     },
     "helpLink_@tooltip": {
         "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -619,7 +619,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with current applied on the popup settings from [$current_color_scheme$].",
+        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with currently applied on the popup settings from [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
