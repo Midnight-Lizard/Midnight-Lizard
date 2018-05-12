@@ -281,9 +281,33 @@
         "description": "linkDefaultHue_text_label: text on the label",
         "message": "默认色相"
     },
+    "linkDefaultHue_@title": {
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
+        "message": "用于替换普通链接色相的色相"
+    },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
+    },
+    "linkReplaceAllHues_@title": {
+        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换此页面链接的正常色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "linkVisitedHue_text_label": {
+        "description": "linkVisitedHue_text_label: text on the label",
+        "message": "已访问链接色相"
+    },
+    "linkVisitedHue_@title": {
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
+        "message": "已访问链接色相"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "borderSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "borderSaturationLimit_@title": {
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "边界饱和度限制"
     },
     "borderReplaceAllHues_text_label": {
         "description": "borderReplaceAllHues_text_label: text on the label",
