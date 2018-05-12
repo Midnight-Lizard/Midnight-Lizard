@@ -619,7 +619,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with current applied on the popup settings from [$current_color_scheme$].",
+        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with currently applied on the popup settings from [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
