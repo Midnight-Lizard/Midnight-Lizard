@@ -555,7 +555,7 @@
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default blacklist one and then press 'Set as default' button."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to [Global settings] tab."
     },
     "helpLink_@tooltip": {
         "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
