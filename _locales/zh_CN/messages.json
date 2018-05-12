@@ -585,5 +585,30 @@
     "syncChangeFailureMessage": {
         "description": "syncChangeFailureMessage: text on the message box",
         "message": "无法更改设置同步选项。\n"
+    },
+    "shortcut_text_lable": {
+        "message": "快捷方式"
+    },
+    "colorSchemeName_Custom": {
+        "message": "自定义"
+    },
+    "colorSchemeName_New": {
+        "message": "新配色方案"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的本地设置存储已包含一些数据。\n您是否想使用同步（云）存储覆盖数据并丢失被覆盖的数据？"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的同步（云）设置存储已包含一些数据。\n您是否想使用本地存储覆盖数据并丢失被覆盖的数据？"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "背景示例"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "不同背景颜色处理示例"
     }
 }
