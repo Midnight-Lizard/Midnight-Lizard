@@ -114,6 +114,10 @@
         "description": "backgroundReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
     },
+    "backgroundReplaceAllHues_@title": {
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
     "buttonSaturationLimit_text_label": {
         "description": "buttonSaturationLimit_text_label: text on the label",
         "message": "饱和度限制"
@@ -166,9 +170,17 @@
         "description": "buttonReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
     },
+    "buttonReplaceAllHues_@title": {
+        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
     "textSaturationLimit_text_label": {
         "description": "textSaturationLimit_text_label: text on the label",
         "message": "饱和度限制"
+    },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "文本饱和度限制"
     },
     "textContrast_text_label": {
         "description": "textContrast_text_label: text on the label",
@@ -194,9 +206,29 @@
         "description": "textGraySaturation_@title: text on the tooltip\/hint",
         "message": "在应用选中默认色相后的灰色文本饱和度"
     },
+    "textHueGravity_text_label": {
+        "description": "textHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "textHueGravity_@title": {
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "textGrayHue_text_label": {
+        "description": "textGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "textGrayHue_@title": {
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色文本色彩饱和度的色相"
+    },
     "textReplaceAllHues_text_label": {
         "description": "textReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
+    },
+    "textReplaceAllHues_@title": {
+        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
     },
     "textSelectionHue_html_label": {
         "message": "文本<span id=\"selection\">选中<\/span>色相"
@@ -224,6 +256,22 @@
     "linkLightnessLimit_text_label": {
         "description": "linkLightnessLimit_text_label: text on the label",
         "message": "亮度限制"
+    },
+    "linkLightnessLimit_@title": {
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大链接亮度限制"
+    },
+    "linkDefaultSaturation_text_label": {
+        "description": "linkDefaultSaturation_text_label: text on the label",
+        "message": "默认链接饱和度"
+    },
+    "linkDefaultSaturation_@title": {
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中色相后的正常链接和已访问链接颜色饱和度"
+    },
+    "linkHueGravity_text_label": {
+        "description": "linkHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
     },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
