@@ -1190,14 +1190,18 @@ height: 148px;
 
 .ml-ad {
     font-size: 13px;
-    line-height: 39px;
     position: relative;
-    display: inline-block;
+    /* background-color: green; */
+    vertical-align: middle;
+    padding: 0px 23px;
+    /* text-align: left; */
 }
 
 .ml-ad:before {
     content: "\21D0";
     font-size: 20px;
     position: absolute;
-    left: -21px;
+    left: 3px;
+    top: 9px;
+    /* padding: 5px; */
 }
