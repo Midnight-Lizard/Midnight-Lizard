@@ -309,8 +309,88 @@
         "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
         "message": "边界饱和度限制"
     },
+    "borderContrast_text_label": {
+        "description": "borderContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "borderContrast_@title": {
+        "description": "borderContrast_@title: text on the tooltip\/hint",
+        "message": "边界与背景的最小亮度差"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "borderLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "borderLightnessLimit_@title": {
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大边界亮度限制"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "borderGraySaturation_text_label: text on the label",
+        "message": "灰色边界饱和度"
+    },
+    "borderGraySaturation_@title": {
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中默认色相后的灰色边界饱和度"
+    },
+    "borderHueGravity_text_label": {
+        "description": "borderHueGravity_text_label: text on the label",
+        "message": "默认色相重力"
+    },
+    "borderHueGravity_@title": {
+        "description": "borderHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "borderGrayHue_text_label": {
+        "description": "borderGrayHue_text_label: text on the label",
+        "message": "默认色相"
+    },
+    "borderGrayHue_@title": {
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
+        "message": "用于增加灰色边界色彩饱和度的色相"
+    },
     "borderReplaceAllHues_text_label": {
         "description": "borderReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
+    },
+    "borderReplaceAllHues_@title": {
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所选色相替换所有原始色相。\n否则将只替换灰、黑、白色相。\n灰色饱和度将用于替换色调。\n将完全覆盖默认色相重力。"
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "imageSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
+    },
+    "imageSaturationLimit_@title": {
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "设置所有图像的饱和度为此值"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "imageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "imageLightnessLimit_@title": {
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "设置所有图像的亮度为此值"
+    },
+    "imageExample_text_label": {
+        "description": "imageExample_text_label: text on the label",
+        "message": "图像示例"
+    },
+    "imageExample_@title": {
+        "description": "imageExample_@title: text on the tooltip\/hint",
+        "message": "图像示例"
+    },
+    "useImageHoverAnimation_text_label": {
+        "description": "useImageHoverAnimation_text_label: text on the label",
+        "message": "使用图像悬停动画"
+    },
+    "useImageHoverAnimation_@title": {
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
+        "message": "在鼠标悬停时从图像中移除所有特效"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
     }
 }
