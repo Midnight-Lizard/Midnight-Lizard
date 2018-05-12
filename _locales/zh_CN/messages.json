@@ -392,5 +392,65 @@
     "backgroundImageSaturationLimit_text_label": {
         "description": "backgroundImageSaturationLimit_text_label: text on the label",
         "message": "饱和度"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像饱和度"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "backgroundImageLightnessLimit_@title": {
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像亮度限制。图像越小越亮。"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "backgroundImageExample_text_label: text on the label",
+        "message": "背景图片示例"
+    },
+    "backgroundImageExample_@title": {
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "背景图片示例"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "backgroundImageExampleText_text_label: text on the label",
+        "message": "示例"
+    },
+    "backgroundImageExampleText_@title": {
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
+        "message": "若此网站在文本后存在背景图像，您则应更改背景图亮度等级直到您得以清楚地看见文字背后的图像。"
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "importColorSchemeBtn_text_label: text on the label",
+        "message": "导入"
+    },
+    "importColorSchemeBtn_@title": {
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "从文件导入配色方案"
+    },
+    "editSchemesTab_text_label": {
+        "description": "editSchemesTab_text_label: text on the label",
+        "message": "配色方案"
+    },
+    "editSchemesTab_@tooltip": {
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 当前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
+    },
+    "currentColorScheme_text_label": {
+        "description": "currentColorScheme_text_label: text on the label",
+        "message": "当前配色方案"
+    },
+    "currentColorScheme_@title": {
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
+        "message": "选择您喜欢的配色方案"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "此项"
+    },
+    "forgetThisSiteBtn_@title": {
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
+        "message": "忘记当前网站设置"
     }
 }
