@@ -960,5 +960,9 @@
     "globals_tab_snack_bar_text_content": {
         "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
         "message": "Все изменения на этой вкладке будут сохранены автоматически, но может потребоваться обновить страницу, чтобы изменения вступили в силу."
+    },
+    "github_stars_campaign_text_message": {
+        "description": "github_stars_campaign_text_message: text on the campaign ad message",
+        "message": "Помогите набрать 🌟на GitHub для запуска кампания по сбору средств"
     }
 }
