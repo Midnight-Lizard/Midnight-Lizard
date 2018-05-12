@@ -497,6 +497,42 @@
         "description": "linkTab_text_label: text on the label",
         "message": "链接"
     },
+    "linkTab_@tooltip": {
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      超链接颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整设置。"
+    },
+    "borderTab_text_label": {
+        "description": "borderTab_text_label: text on the label",
+        "message": "边界"
+    },
+    "borderTab_@tooltip": {
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      边界颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整设置。"
+    },
+    "imagesTab_text_label": {
+        "description": "imagesTab_text_label: text on the label",
+        "message": "图像"
+    },
+    "imagesTab_@tooltip": {
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "       图像调整设置\n―――――――――――――――――――\n 此选项卡包含图像及图片的饱和度与亮度调整设置。"
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "backgroundImagesTab_text_label: text on the label",
+        "message": "背景图像"
+    },
+    "backgroundImagesTab_@tooltip": {
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     背景图像调整设置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整设置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "scrollbarsTab_text_label: text on the label",
+        "message": "滚动条"
+    },
+    "scrollbarsTab_@tooltip": {
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "导入"
