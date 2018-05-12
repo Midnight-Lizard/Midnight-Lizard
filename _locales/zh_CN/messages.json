@@ -541,6 +541,26 @@
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
         "message": "在白名单和黑名单之间\n切换当前网站"
     },
+    "hostName_@tooltip": {
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     当前网页\n―――――――――――――――\n 点击在白名单和黑名单间切换当前网站。"
+    },
+    "helpLink_@tooltip": {
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "支持论坛"
+    },
+    "isEnabledSwitch_@tooltip": {
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "启用或禁用整个扩展程序"
+    },
+    "isEnabledOn_text_label": {
+        "description": "isEnabledOn_text_label: text on the label",
+        "message": "开启"
+    },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "在您的设备间同步设置"
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "导入"
