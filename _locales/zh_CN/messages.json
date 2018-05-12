@@ -452,5 +452,138 @@
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "忘记当前网站设置"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "全部"
+    },
+    "forgetAllSitesBtn_@title": {
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
+        "message": "忘记所有网站的所有自定义项"
+    },
+    "setAsDefaultBtn_text_label": {
+        "description": "setAsDefaultBtn_text_label: text on the label",
+        "message": "设置为默认"
+    },
+    "setAsDefaultBtn_@title": {
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
+        "message": "设置当前设置为所有网站的默认设置"
+    },
+    "applyBtn_text_label": {
+        "description": "applyBtn_text_label: text on the label",
+        "message": "应用"
+    },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用并保存此网站的当前设置"
+    },
+    "closeBtn_text_label": {
+        "description": "closeBtn_text_label: text on the label",
+        "message": "关闭"
+    },
+    "closeBtn_@title": {
+        "description": "closeBtn_@title: text on the tooltip\/hint",
+        "message": "关闭弹出窗口并放弃所有未保存的更改"
+    },
+    "rateLink_@tooltip": {
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "为此扩展程序评分"
+    },
+    "emailLink_@tooltip": {
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "向开发者发送电子邮件"
+    },
+    "bugReportLink_@tooltip": {
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "报告错误"
+    },
+    "changeLogLink_@tooltip": {
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "更新日志"
+    },
+    "colorSchemeImportSuccessMessage": {
+        "description": "colorSchemeImportSuccessMessage: text on the message box",
+        "message": "$imported_color_schemes_count$ 配色方案已成功从文件中导入。\n已导入的配色方案使用 $edit_mark$ 符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在 [当前配色方案] 下拉窗口列表中选中配色方案并点击 [保存] 按钮。",
+        "placeholders": {
+            "imported_color_schemes_count": {
+                "content": "$1"
+            },
+            "edit_mark": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveConfirmationMessage": {
+        "description": "colorSchemeSaveConfirmationMessage: text on the message box",
+        "message": "您正要使用当前名为 [$color_scheme_name$] 的弹出设置更新配色方案 [$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            },
+            "color_scheme_name": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveSuccessMessage": {
+        "description": "colorSchemeSaveSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "colorSchemeSaveFailureMessage": {
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
+        "message": "配色方案更新失败。\n"
+    },
+    "colorSchemeDeleteConfirmationMessage": {
+        "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
+        "message": "您正要删除配色方案 [$color_scheme_for_edit_name$]。\n删除系统配色方案将移除所有从指定配色方案中的覆盖项。我们没有办法完全删除任意系统配色方案。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            }
+        }
+    },
+    "colorSchemeDeleteSuccessMessage": {
+        "description": "colorSchemeDeleteSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
+        "message": "配色方案检测失败。\n"
+    },
+    "forgetAllConfirmationMessage": {
+        "description": "forgetAllConfirmationMessage: text on the message box",
+        "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
+    },
+    "forgetAllSuccessMessage": {
+        "description": "forgetAllSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "forgetAllFailureMessage": {
+        "description": "forgetAllFailureMessage: text on the message box",
+        "message": "全部网页设置删除失败。\n"
+    },
+    "forgetThisSuccessMessage": {
+        "description": "forgetThisSuccessMessage: text on the message box",
+        "message": "已完成。将在页面刷新后生效。"
+    },
+    "forgetThisFailureMessage": {
+        "description": "forgetThisFailureMessage: text on the message box",
+        "message": "当前站点设置删除失败。\n"
+    },
+    "setAsDefaultFailureMessage": {
+        "description": "setAsDefaultFailureMessage: text on the message box",
+        "message": "默认设置应用失败。\n"
+    },
+    "applyOnPageFailureMessage": {
+        "description": "applyOnPageFailureMessage: text on the message box",
+        "message": "设置应用失败。请刷新页面并重试。\n"
+    },
+    "toggleExtensionFailureMessage": {
+        "description": "toggleExtensionFailureMessage: text on the message box",
+        "message": "扩展程序开关切换失败。请重启所有浏览器窗口并重试。\n"
+    },
+    "syncChangeSuccessMessage": {
+        "description": "syncChangeSuccessMessage: text on the message box",
+        "message": "更改已成功应用。\n您可能需要刷新页面以查看更改。"
     }
 }
