@@ -421,6 +421,54 @@
         "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
         "message": "若此网站在文本后存在背景图像，您则应更改背景图亮度等级直到您得以清楚地看见文字背后的图像。"
     },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
+        "message": "饱和度"
+    },
+    "scrollbarSaturationLimit_@title": {
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮饱和度"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "scrollbarContrast_text_label: text on the label",
+        "message": "对比度"
+    },
+    "scrollbarContrast_@title": {
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和背景的最小亮度差。\n仅应用于亮色背景。"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "scrollbarLightnessLimit_@title": {
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮亮度限制"
+    },
+    "scrollbarSize_text_label": {
+        "description": "scrollbarSize_text_label: text on the label",
+        "message": "尺寸"
+    },
+    "scrollbarSize_@title": {
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
+        "message": "滚动条尺寸"
+    },
+    "scrollbarGrayHue_text_label": {
+        "description": "scrollbarGrayHue_text_label: text on the label",
+        "message": "滚动条色相"
+    },
+    "scrollbarGrayHue_@title": {
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮色相"
+    },
+    "commonTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "常规"
+    },
+    "commonTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。\n • 当 [Midnight Lizard] 自动启用时激活时间表定义。\n • 蓝光过滤强度控制使用红光替换多少蓝光以减少夜时眼睛疲劳。"
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "导入"
@@ -610,5 +658,25 @@
     "backgroundExample_@title": {
         "description": "backgroundExample_@title: text on the tooltip\/hint",
         "message": "不同背景颜色处理示例"
+    },
+    "smallBackgroundImageExample_@title": {
+        "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "小背景图片处理示例。\n若主背景够黑则小背景图像将翻转颜色。\n此例中，背景图像的 [亮度] 不影响它们。"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "smallBackgroundImageExample_text_label: text on the label",
+        "message": "小背景图片示例"
+    },
+    "scrollbarExample_text_label": {
+        "description": "scrollbarExample_text_label: text on the label",
+        "message": "滚动条示例"
+    },
+    "scrollbarExample_@title": {
+        "description": "scrollbarExample_@title: text on the tooltip\/hint",
+        "message": "样式滚动条示例"
+    },
+    "buttonExample_text_label": {
+        "description": "buttonExample_text_label: text on the label",
+        "message": "按钮示例"
     }
 }
