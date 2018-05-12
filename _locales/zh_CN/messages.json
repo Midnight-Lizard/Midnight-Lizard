@@ -569,6 +569,10 @@
         "description": "isEnabledOn_text_label: text on the label",
         "message": "开启"
     },
+    "isEnabledOff_text_label": {
+        "description": "isEnabledOff_text_label: text on the label",
+        "message": "关闭"
+    },
     "syncSettings_text_label": {
         "description": "syncSettings_text_label: text on the label",
         "message": "在您的设备间同步设置"
@@ -683,6 +687,10 @@
     "applyBtn_@title": {
         "description": "applyBtn_@title: text on the tooltip\/hint",
         "message": "应用并保存此网站的当前设置"
+    },
+    "closeBtn_text_label": {
+        "description": "closeBtn_text_label: text on the label",
+        "message": "出口"
     },
     "closeBtn_@title": {
         "description": "closeBtn_@title: text on the tooltip\/hint",
