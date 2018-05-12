@@ -877,8 +877,76 @@
         "description": "popupDisconnected_html_error_message: text on the message box",
         "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
     },
+    "backgroundExampleWithContrast_@title": {
+        "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
+        "message": "增加对比度以处理不同背景颜色示例。\n对比度基于元素尺寸故在真实页面上可能看起来存在差异。"
+    },
+    "backgroundExampleWithoutContrast_@title": {
+        "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
+        "message": "无对比度更改以处理不同背景颜色示例。"
+    },
+    "mode_@title": {
+        "description": "mode_@title: text on the tooltip\/hint",
+        "message": "页面处理模式"
+    },
+    "mode_text_label": {
+        "description": "mode_text_label: text on the label",
+        "message": "处理模式"
+    },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "简化页面处理模式并不准确但工作速度非常快"
+    },
+    "mode_simplified_text_label": {
+        "description": "mode_simplified_text_label: text on the label",
+        "message": "简化"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "复合页面处理模式并不快速但观看体验非常好"
+    },
+    "mode_complex_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "复合"
+    },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "悬停在每个选项上预览其描述"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "默认在所有网站上运行"
+    },
     "default_runOnThisSite_@title": {
         "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
         "message": "在所有网页上使用自定义设置运行 [Midnight Lizard] 。"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "默认激活时间"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序将在之后应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "默认禁用时间"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此次应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "全局设置"
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "resetThemeConfirmationMessage: text on the message box",
+        "message": "您是否想重置当前的浏览器主题为默认？\n可能重置为原始的 Firefox 主题而非您先前的主题。"
+    },
+    "globals_tab_snack_bar_text_content": {
+        "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
+        "message": "在此选项卡中的所有更改将自动保存，但您可能需要刷新页面使更改生效。"
     }
 }
