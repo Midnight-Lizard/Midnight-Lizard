@@ -467,7 +467,35 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "     常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。\n • 当 [Midnight Lizard] 自动启用时激活时间表定义。\n • 蓝光过滤强度控制使用红光替换多少蓝光以减少夜时眼睛疲劳。"
+        "message": "       常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。\n • 当 [Midnight Lizard] 自动启用时激活时间表定义。\n • 蓝光过滤强度控制使用红光替换多少蓝光以减少夜时眼睛疲劳。"
+    },
+    "backgroundTab_text_label": {
+        "description": "backgroundTab_text_label: text on the label",
+        "message": "背景"
+    },
+    "backgroundTab_@tooltip": {
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      背景颜色设置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充设置。"
+    },
+    "buttonsTab_text_label": {
+        "description": "buttonsTab_text_label: text on the label",
+        "message": "按钮"
+    },
+    "buttonsTab_@tooltip": {
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      按钮背景颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充设置。"
+    },
+    "textTab_text_label": {
+        "description": "textTab_text_label: text on the label",
+        "message": "文本"
+    },
+    "textTab_@tooltip": {
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "      文本颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整设置。"
+    },
+    "linkTab_text_label": {
+        "description": "linkTab_text_label: text on the label",
+        "message": "链接"
     },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
