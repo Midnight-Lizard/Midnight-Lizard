@@ -65,7 +65,8 @@ body {
 .ml-dialog-header-text {
     display: inline-block;
     margin-top: 13px;
-    vertical-align: top;
+    line-height: 18px;
+    /* vertical-align: top; */
 }
 
 .ml-dialog-header {
@@ -95,6 +96,12 @@ body {
 .ml-dialog-header span {
     color: var(--logo-text-color);
     text-shadow: 0 0 1px hsla(94, 100%, 70%, 0.8);
+    vertical-align: baseline;
+}
+
+#hostState {
+    vertical-align: baseline;
+    display: inline-block;
 }
 
 
