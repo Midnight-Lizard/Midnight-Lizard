@@ -705,7 +705,7 @@ namespace MidnightLizard.ContentScript
                     if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
                         tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        if(!tag.computedStyle)
+                        if (!tag.computedStyle)
                         {
                             break;
                         }
