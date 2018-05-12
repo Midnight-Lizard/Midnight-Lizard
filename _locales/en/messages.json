@@ -287,7 +287,7 @@
     },
     "linkHueGravity_@title": {
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be prefered over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
     },
     "linkDefaultHue_text_label": {
         "description": "linkDefaultHue_text_label: text on the label",
