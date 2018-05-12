@@ -1,8 +1,15 @@
+html:not(imp):not(#imp) {
+    background-color: rgb(32, 32, 32);
+    --ml-background-background-color:Border;
+}
+
 body {
     margin: 0;
     min-width: 680px;
     min-height: 600px;
     overflow: hidden!important;
+    background-color: var(--main-background-color);
+    --ml-background-background-color:Background;
 }
 
 @supports (zoom: 1)
@@ -1083,6 +1090,7 @@ height: 148px;
 }
 
 #hostState:before {
+    content: "\2002";
     display: inline-block;
     margin-right: -1px;
     margin-left: 5px;
