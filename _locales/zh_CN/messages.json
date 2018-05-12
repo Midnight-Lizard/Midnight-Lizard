@@ -533,6 +533,14 @@
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
     },
+    "settingsHeader_text_label": {
+        "description": "settingsHeader_text_label: text on the label",
+        "message": " 设置"
+    },
+    "hostState_@tooltip": {
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "在白名单和黑名单之间\n切换当前网站"
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "导入"
