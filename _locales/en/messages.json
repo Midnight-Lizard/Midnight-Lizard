@@ -960,5 +960,9 @@
     "globals_tab_snack_bar_text_content": {
         "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
         "message": "All the changes on this tab will be saved automatically, but you may need to refresh the page in order for changes to take effect."
+    },
+    "github_stars_campaign_text_message": {
+        "description": "github_stars_campaign_text_message: text on the campaign ad message",
+        "message": "Help us collect 🌟 on GitHub to start crowdfunding"
     }
 }
