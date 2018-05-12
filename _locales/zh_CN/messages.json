@@ -841,9 +841,41 @@
         "description": "buttonExample_text_label: text on the label",
         "message": "按钮示例"
     },
+    "buttonExample_@title": {
+        "description": "buttonExample_@title: text on the tooltip\/hint",
+        "message": "不同按钮颜色处理示例"
+    },
+    "borderExample_@title": {
+        "description": "borderExample_@title: text on the tooltip\/hint",
+        "message": "不同边界颜色处理示例"
+    },
+    "borderExample_text_label": {
+        "description": "borderExample_text_label: text on the label",
+        "message": "边界示例"
+    },
+    "backgroundExampleOriginal_@title": {
+        "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始背景颜色"
+    },
+    "borderExampleOriginal_@title": {
+        "description": "borderExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "左侧处理的原始边框颜色"
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始小背景图像"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
+        "message": "滚动条样式 <br\/> 不受 Firefox 支持 <br\/><br\/>"
+    },
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "帮助翻译 Midnight Lizard\n至其他语言"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
     },
     "default_runOnThisSite_@title": {
         "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
