@@ -477,10 +477,6 @@
         "description": "applyBtn_@title: text on the tooltip\/hint",
         "message": "应用并保存此网站的当前设置"
     },
-    "closeBtn_text_label": {
-        "description": "closeBtn_text_label: text on the label",
-        "message": "关闭"
-    },
     "closeBtn_@title": {
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "关闭弹出窗口并放弃所有未保存的更改"
