@@ -273,6 +273,14 @@
         "description": "linkHueGravity_text_label: text on the label",
         "message": "默认色相重力"
     },
+    "linkHueGravity_@title": {
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
+        "message": "决定其他所有的色相将如何被选中的默认色相所影响。\n重力越强，其他所有色相移动至离选择的默认色相越近。\n饱和度限制将用于受影响的色相。\n若勾选 [全部替换] 色相将不会工作。\n[全部替换] 色相更快且应在超过 100% 重力时首选。"
+    },
+    "linkDefaultHue_text_label": {
+        "description": "linkDefaultHue_text_label: text on the label",
+        "message": "默认色相"
+    },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "全部替换"
