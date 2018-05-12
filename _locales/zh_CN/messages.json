@@ -585,5 +585,9 @@
     "syncChangeSuccessMessage": {
         "description": "syncChangeSuccessMessage: text on the message box",
         "message": "更改已成功应用。\n您可能需要刷新页面以查看更改。"
+    },
+    "syncChangeFailureMessage": {
+        "description": "syncChangeFailureMessage: text on the message box",
+        "message": "无法更改设置同步选项。\n"
     }
 }
