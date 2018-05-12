@@ -14,6 +14,10 @@
         "description": "runOnThisSite_text_label: text on the label",
         "message": "在此网站上运行"
     },
+    "runOnThisSite_@title": {
+        "description": "runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在此网站上运行 [Midnight Lizard] 。"
+    },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
         "message": "在复制时恢复原始色彩"
@@ -50,9 +54,17 @@
         "description": "scheduleStartHour_text_label: text on the label",
         "message": "激活时间"
     },
+    "scheduleStartHour_@title": {
+        "description": "scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此时间启动后于此网站激活。\n页面将在指定时间区间内刷新使时间表生效。"
+    },
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
         "message": "禁用时间"
+    },
+    "scheduleFinishHour_@title": {
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "扩展程序仅在此次应用于当前网页。\n页面将在指定时间区间内刷新使时间表生效。"
     },
     "blueFilter_text_label": {
         "description": "blueFilter_text_label: text on the label",
@@ -569,6 +581,53 @@
         "description": "colorSchemeForEdit_text_label: text on the label",
         "message": "所编辑的配色方案"
     },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "选择要编辑的配色方案。\n您可以新建配色方案并更新或删除已有的配色方案。"
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "配色方案名"
+    },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "您可以在保存前编辑配色方案名"
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
+        "message": "删除"
+    },
+    "deleteColorSchemeBtn_@title": {
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "删除选中的所编辑的配色方案"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "saveColorSchemeBtn_text_label: text on the label",
+        "message": "保存"
+    },
+    "saveColorSchemeBtn_@title": {
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "使用当前的弹出设置更新选中的配色方案"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "exportColorSchemeBtn_text_label: text on the label",
+        "message": "导出"
+    },
+    "exportColorSchemeBtn_@title": {
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "将所编辑的 [$color_scheme_for_edit$] 选中配色方案 [$color_scheme_name$] 导出至文件并使用当前应用于 [$current_color_scheme$] 的弹出设置替换其所有设置。",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": "$1"
+            },
+            "color_scheme_for_edit": {
+                "content": "$2"
+            },
+            "color_scheme_name": {
+                "content": "$3"
+            }
+        }
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "导入"
@@ -734,6 +793,9 @@
         "description": "syncChangeFailureMessage: text on the message box",
         "message": "无法更改设置同步选项。\n"
     },
+    "introduction_html_content": {
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为\n        <span>启用<\/span> 或\n        <span>关闭<\/span> 整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host\">\n        您也通过点击其在弹出标题栏上的标签在\n        <span>黑名单<\/span> 和\n        <span>白名单<\/span>\n        之间开关特定网站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    您可以从右侧面板下拉菜单中选择其中一种\n    <span>预定义配色方案<\/span> 并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs\">\n    除此之外，您可以随意\n    <span>调整<\/span> 您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。\n    您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        要分配您的偏好设置至\n        <span>当前网站<\/span> ，请点击右侧面板的\n        <q>应用<\/q> 按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        或您可以\n        <span>添加您的配色方案<\/span> 至预定义配色方案用于未来应用于其他网站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    若您希望设置当前设置作为所有网站的\n    <span>默认设置<\/span> ，请点击右侧面板的\n    <q>设置为默认<\/q> 按钮。\n<\/p>\n<p class=\"intro intro-help\">\n    您可以在支持论坛上找到\n    <span>更多帮助<\/span> 、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social\">\n    请订阅暗夜蜥的社交频道以关注最新更新以及特性。\n<\/p>"
+    },
     "shortcut_text_lable": {
         "message": "快捷方式"
     },
@@ -778,5 +840,13 @@
     "buttonExample_text_label": {
         "description": "buttonExample_text_label: text on the label",
         "message": "按钮示例"
+    },
+    "translateLink_@tooltip": {
+        "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "帮助翻译 Midnight Lizard\n至其他语言"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在所有网页上使用自定义设置运行 [Midnight Lizard] 。"
     }
 }
