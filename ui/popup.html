@@ -195,6 +195,7 @@ L 14.5 12 z" />
                     <br>
                     <select id="mode" class="ml-dialog-input ml-dialog-input-text ml-dialog-mode-select setting"
                             i18n="mode_options" i18n-attr="title">
+                        <option value="auto" i18n="mode_automatic" i18n-attr="title" i18n-text="label">Automatic</option>
                         <option value="simple" i18n="mode_simplified" i18n-attr="title" i18n-text="label">Simplified</option>
                         <option value="complex" i18n="mode_complex" i18n-attr="title" i18n-text="label">Complex</option>
                     </select>
@@ -322,6 +323,22 @@ L 14.5 12 z" />
                               y="16">
                             B
                         </text>
+                    </svg>
+                </div>
+                <div class="ml-input-container elements">
+                    <label class="ml-dialog-label elements" for="modeAutoSwitchLimit"
+                           i18n="modeAutoSwitchLimit" i18n-attr="title" i18n-text="label">Automatic mode switch limit</label>
+                    <input class="ml-input-range setting elements" id="modeAutoSwitchLimit"
+                           type="range" min="0" max="10000" step="100" list="from-0-to-100-elements">
+                    <svg for="modeAutoSwitchLimit" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 19h6v-7H3v7zm7 0h12v-7H10v7zM3 5v6h19V5H3z"/>
+                    </svg>
+                    <svg for="modeAutoSwitchLimit" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 9h4V5H3v4zm0 5h4v-4H3v4zm5 0h4v-4H8v4zm5 0h4v-4h-4v4zM8 9h4V5H8v4zm5-4v4h4V5h-4zm5 9h4v-4h-4v4zM3 19h4v-4H3v4zm5 0h4v-4H8v4zm5 0h4v-4h-4v4zm5 0h4v-4h-4v4zm0-14v4h4V5h-4z"/>
                     </svg>
                 </div>
             </div>
@@ -2208,6 +2225,20 @@ L 14.5 12 z" />
         <option>80</option>
         <option>90</option>
         <option>100</option>
+    </datalist>
+
+    <datalist id="from-0-to-10000-elements">
+        <option>0</option>
+        <option>1000</option>
+        <option>2000</option>
+        <option>3000</option>
+        <option>4000</option>
+        <option>5000</option>
+        <option>6000</option>
+        <option>7000</option>
+        <option>8000</option>
+        <option>9000</option>
+        <option>10000</option>
     </datalist>
 
     <datalist id="scrollbar-size">

@@ -226,9 +226,9 @@ namespace MidnightLizard.ContentScript
                 doc.documentElement.setAttribute("ml-stage", stage);
                 if (this._settingsManager.isActive)
                 {
-                    doc.documentElement.setAttribute("ml-mode", this._settingsManager.currentSettings.mode);
+                    doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);
                     doc.documentElement.setAttribute("ml-stage-mode",
-                        stage + "-" + this._settingsManager.currentSettings.mode);
+                        stage + "-" + this._settingsManager.computedMode);
                 }
             }
         }
@@ -250,8 +250,9 @@ namespace MidnightLizard.ContentScript
             {
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
                 this._dorm.set(doc, new Map<string, RoomRules>());
+                this._settingsManager.computeProcessingMode(doc);
                 this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
-                if (this._settingsManager.currentSettings.mode === Settings.ProcessingMode.Complex)
+                if (this._settingsManager.isComplex)
                 {
                     this._styleSheetProcessor.processDocumentStyleSheets(doc);
                     if (this._settingsManager.currentSettings.restoreColorsOnCopy)

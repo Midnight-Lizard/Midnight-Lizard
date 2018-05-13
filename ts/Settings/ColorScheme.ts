@@ -2,6 +2,7 @@ namespace MidnightLizard.Settings
 {
     export enum ProcessingMode
     {
+        Automatic = "auto",
         Simplified = "simple",
         Complex = "complex"
     }
@@ -33,6 +34,7 @@ namespace MidnightLizard.Settings
         isEnabled?: boolean;
         blueFilter: number;
         mode: ProcessingMode;
+        modeAutoSwitchLimit: number;
 
         useDefaultSchedule: boolean;
         scheduleStartHour: number;

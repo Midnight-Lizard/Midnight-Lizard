@@ -116,7 +116,7 @@ input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-
     );
 }
 
-.percent
+.percent, .elements
 {
   --range-segment-width: 50px;
   --range-track-width: 251px;

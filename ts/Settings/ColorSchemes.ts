@@ -45,7 +45,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnPrint: true,
                     changeBrowserTheme: false,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -115,7 +116,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: false,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 0,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -185,7 +187,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -255,7 +258,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -325,7 +329,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -395,7 +400,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 5,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -465,7 +471,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 30,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -535,7 +542,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 80,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -605,7 +613,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -675,7 +684,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 5,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -745,7 +755,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -815,7 +826,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -885,7 +897,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -955,7 +968,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -1025,7 +1039,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
@@ -1095,7 +1110,8 @@ namespace MidnightLizard.Settings
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
                     blueFilter: 0,
-                    mode: ProcessingMode.Complex,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
 
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
