@@ -23,6 +23,8 @@ namespace MidnightLizard.Settings
         abstract get isComplex(): boolean;
         /** Simplified processing mode is in use now */
         abstract get isSimple(): boolean;
+        /** Current computed processing mode */
+        abstract get computedMode(): ProcessingMode;
         /** Current settings for calculations */
         abstract get shift(): Colors.ComponentShift;
         /** Current settings for communication */
@@ -30,6 +32,7 @@ namespace MidnightLizard.Settings
         abstract get onSettingsInitialized(): ArgEvent<Colors.ComponentShift>;
         abstract get onSettingsChanged(): RespEvent<(scheme: ColorScheme) => void, Colors.ComponentShift>;
         abstract getDefaultSettings(renameToDefault?: boolean): Promise<Settings.ColorScheme>;
+        abstract computeProcessingMode(doc: Document): void;
     }
     /**
      * Base Settings Manager
@@ -60,8 +63,10 @@ namespace MidnightLizard.Settings
 
         /** MidnightLizard should be running on this page */
         public get isActive() { return this.isInit && this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
-        public get isComplex() { return this._currentSettings.mode === Settings.ProcessingMode.Complex }
-        public get isSimple() { return this._currentSettings.mode === Settings.ProcessingMode.Simplified }
+        public get isComplex() { return this._computedMode === ProcessingMode.Complex }
+        public get isSimple() { return this._computedMode === ProcessingMode.Simplified }
+        public get computedMode() { return this._computedMode }
+        protected _computedMode: ProcessingMode = ProcessingMode.Complex;
         protected isInit = false;
 
         /** SettingsManager constructor
@@ -95,9 +100,25 @@ namespace MidnightLizard.Settings
 
         protected abstract initCurrentSettings(): void;
 
+        computeProcessingMode(doc: Document): void
+        {
+            if (this._currentSettings.mode === ProcessingMode.Automatic &&
+                doc.body &&
+                doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit)
+            {
+                this._computedMode = ProcessingMode.Simplified;
+            }
+            this._app.isDebug &&
+                console.log(`${this._computedMode}: ${doc.body && doc.body.getElementsByTagName("*").length}`);
+        }
+
         protected initCurSet()
         {
             this.applyBackwardCompatibility(this._currentSettings);
+            this._computedMode =
+                this._currentSettings.mode === ProcessingMode.Automatic
+                    ? Settings.ProcessingMode.Complex
+                    : this._currentSettings.mode;
             const set = Object.assign({}, this._currentSettings);
             for (const setting in set)
             {
@@ -304,6 +325,12 @@ namespace MidnightLizard.Settings
             if (!settings.mode)
             {
                 settings.mode = ProcessingMode.Complex;
+            }
+
+            if (settings.modeAutoSwitchLimit === undefined ||
+                isNaN(settings.modeAutoSwitchLimit))
+            {
+                settings.modeAutoSwitchLimit = 5000;
             }
 
             if (settings.buttonSaturationLimit === undefined ||

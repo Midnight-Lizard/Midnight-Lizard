@@ -197,12 +197,14 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not
 
 .ml-dialog-label.time:after {
     content: ": " var(--input-string) ":00";
-    font-weight: bold;
 }
 
 .ml-dialog-label.size:after {
     content: ": " var(--input-string) "px";
-    font-weight: bold;
+}
+
+.ml-dialog-label.elements:after {
+    content: ": " var(--input-string);
 }
 
 .ml-input-container {

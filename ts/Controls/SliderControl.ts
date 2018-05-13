@@ -38,6 +38,7 @@ namespace MidnightLizard.Controls.Slider
         host.style.setProperty("--input-value", this.value, "important");
         host.style.setProperty("--input-relative-value", `${relativeValue}`, "important");
         host.style.setProperty("--input-string", `'${this.value}'`, "important");
+        host.style.setProperty("--input-relative-string", `'${relativeValue}'`, "important");
         host.style.setProperty("--input-percent", `${this.value}%`, "important");
         host.style.setProperty("--input-relative-percent", `${relativeValue}%`, "important");
     }

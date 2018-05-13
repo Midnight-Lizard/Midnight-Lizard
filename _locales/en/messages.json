@@ -11,6 +11,10 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Global extension toggle"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "Current website toggle"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "Run on this website"
@@ -917,6 +921,14 @@
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Complex"
+    },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "Automatic page processing mode will switch from [Complex] mode to [Simplified]\nif current page has more then specified maximum amount of elements"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "Automatic"
     },
     "mode_options_@title": {
         "description": "mode_options_@title: text on the tooltip\/hint",
