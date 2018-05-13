@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run [Midnight Lizard] on this website."
+        "message": "Run 'Midnight Lizard' on this website."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
