@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run [Midnight Lizard] on this website."
+        "message": "Run 'Midnight Lizard' on this website."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
@@ -117,7 +117,7 @@
     },
     "backgroundHueGravity_@title": {
         "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if 'Replace all' hues is checked.\n'Replace all' hues works faster and should be preferred over 100% gravity."
     },
     "backgroundGrayHue_text_label": {
         "description": "backgroundGrayHue_text_label: text on the label",
@@ -173,7 +173,7 @@
     },
     "buttonHueGravity_@title": {
         "description": "buttonHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if 'Replace all' hues is checked.\n'Replace all' hues works faster and should be preferred over 100% gravity."
     },
     "buttonGrayHue_text_label": {
         "description": "buttonGrayHue_text_label: text on the label",
@@ -229,7 +229,7 @@
     },
     "textHueGravity_@title": {
         "description": "textHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if 'Replace all' hues is checked.\n'Replace all' hues works faster and should be preferred over 100% gravity."
     },
     "textGrayHue_text_label": {
         "description": "textGrayHue_text_label: text on the label",
@@ -292,7 +292,7 @@
     },
     "linkHueGravity_@title": {
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if 'Replace all' hues is checked.\n'Replace all' hues works faster and should be preferred over 100% gravity."
     },
     "linkDefaultHue_text_label": {
         "description": "linkDefaultHue_text_label: text on the label",
@@ -356,7 +356,7 @@
     },
     "borderHueGravity_@title": {
         "description": "borderHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if [Replace all] hues is checked.\n[Replace all] hues works faster and should be preferred over 100% gravity."
+        "message": "Determines how all other hues will be affected by the selected default hue.\nThe stronger gravity, the closer all other hues will be moved towards the selected default hue.\nSaturation limit will be used for affected hues.\nDoes not work if 'Replace all' hues is checked.\n'Replace all' hues works faster and should be preferred over 100% gravity."
     },
     "borderGrayHue_text_label": {
         "description": "borderGrayHue_text_label: text on the label",
@@ -484,7 +484,7 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when [Midnight Lizard] should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
+        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when 'Midnight Lizard' should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
@@ -560,7 +560,7 @@
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to [Global settings] tab."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to 'Global settings' tab."
     },
     "helpLink_@tooltip": {
         "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -584,7 +584,7 @@
     },
     "syncSettings_@title": {
         "description": "syncSettings_@title: text on the tooltip\/hint",
-        "message": "Sync [Midnight Lizard] settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable [Sync] in the browser settings in order for [Midnight Lizard] settings synchronization to work."
+        "message": "Sync 'Midnight Lizard' settings across all your devices where this option is also checked.\nWhen checked custom settings for each website will be merged from all devices but a list of custom color schemes will be overridden with the latest one. So make sure that you are online when you edit custom schemes.\nYou also need to enable 'Sync' in the browser settings in order for 'Midnight Lizard' settings synchronization to work."
     },
     "colorSchemeForEdit_text_label": {
         "description": "colorSchemeForEdit_text_label: text on the label",
@@ -624,7 +624,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Export to file selected color scheme for edit [$color_scheme_for_edit$] with name [$color_scheme_name$] and replace all its settings with currently applied on the popup settings from [$current_color_scheme$].",
+        "message": "Export to file selected color scheme for edit '$color_scheme_for_edit$' with name '$color_scheme_name$' and replace all its settings with currently applied on the popup settings from '$current_color_scheme$'.",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -719,7 +719,7 @@
     },
     "colorSchemeImportSuccessMessage": {
         "description": "colorSchemeImportSuccessMessage: text on the message box",
-        "message": "$imported_color_schemes_count$ color schemes have been successfully imported from the files.\nImported color schemes are marked with a $edit_mark$ symbol and will be deleted with the popup closure unless you save each of them.\nTo save imported color scheme select it in the [Current color scheme] dropdown list and press [Save] button.",
+        "message": "$imported_color_schemes_count$ color schemes have been successfully imported from the files.\nImported color schemes are marked with a $edit_mark$ symbol and will be deleted with the popup closure unless you save each of them.\nTo save imported color scheme select it in the 'Current color scheme' dropdown list and press 'Save' button.",
         "placeholders": {
             "imported_color_schemes_count": {
                 "content": "$1"
@@ -731,7 +731,7 @@
     },
     "colorSchemeSaveConfirmationMessage": {
         "description": "colorSchemeSaveConfirmationMessage: text on the message box",
-        "message": "You are about to update color scheme [$color_scheme_for_edit_name$] with current popup settings and a name [$color_scheme_name$]. Are you sure want to continue?",
+        "message": "You are about to update color scheme '$color_scheme_for_edit_name$' with current popup settings and a name '$color_scheme_name$'. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -751,7 +751,7 @@
     },
     "colorSchemeDeleteConfirmationMessage": {
         "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
-        "message": "You are about to delete color scheme [$color_scheme_for_edit_name$].\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
+        "message": "You are about to delete color scheme '$color_scheme_for_edit_name$'.\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -836,7 +836,7 @@
     },
     "smallBackgroundImageExample_@title": {
         "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
-        "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case [Brightness] of background images is not affecting them."
+        "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case 'Brightness' of background images is not affecting them."
     },
     "smallBackgroundImageExample_text_label": {
         "description": "smallBackgroundImageExample_text_label: text on the label",
@@ -888,7 +888,7 @@
     },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
-        "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br\/>\n        (e.g. Web Store, Settings, New Tab)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page is represented by a local file,<br\/>\n        but you have not allowed [Midnight Lizard] to process local files\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install\/change a custom browser theme.\n<\/em>"
+        "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser does not allow to run extensions on this page<br\/>\n        (e.g. Web Store, Settings, New Tab)\n    <\/li><br\/>\n    <li>\n        'Midnight Lizard' has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page is represented by a local file,<br\/>\n        but you have not allowed 'Midnight Lizard' to process local files\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    CAUTION<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install\/change a custom browser theme.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
@@ -924,11 +924,19 @@
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
-        "message": "Automatic page processing mode will switch from [Complex] mode to [Simplified]\nif current page has more then specified maximum amount of elements"
+        "message": "Automatic page processing mode will switch from 'Complex' mode to 'Simplified'\nif current page has more then specified maximum amount of elements"
     },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
         "message": "Automatic"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Automatic mode switch limit"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "If there are more elements on the page during its initial load\nthan the specified here limit and 'Automatic' mode is used\nthen the actual processing mode for this page will be switched\nfrom 'Complex' to 'Simplified'."
     },
     "mode_options_@title": {
         "description": "mode_options_@title: text on the tooltip\/hint",
@@ -940,7 +948,7 @@
     },
     "default_runOnThisSite_@title": {
         "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run [Midnight Lizard] on all websites w\/o custom settings."
+        "message": "Run 'Midnight Lizard' on all websites w\/o custom settings."
     },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
