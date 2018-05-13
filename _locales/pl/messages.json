@@ -11,6 +11,10 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Globalny przełącznik rozszerzenia"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "Przełącznik obecnej strony"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "Wykonać na tej stronie"
@@ -375,6 +379,14 @@
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Wartościowy"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "Automatyczny"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Granica auto-przełączenia tryba"
     },
     "default_runOnThisSite_text_label": {
         "description": "default_runOnThisSite_text_label: text on the label",
