@@ -11,10 +11,6 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Global extension toggle"
     },
-    "currentToggleKey": {
-        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
-        "message": "Current website toggle"
-    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "Run on this website"
