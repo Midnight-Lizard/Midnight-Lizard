@@ -133,7 +133,11 @@ namespace MidnightLizard.Popup
                 this._syncSettingsCheckBox.onchange = this.onSettingsSyncChanged.bind(this);
             });
 
-            doc.getElementById("change-log-link")!.setAttribute("tooltip", `✏ ${this._app.version}\n${this._i18n.getMessage("changeLogLink_@tooltip")}`);
+            const changeLogLink = doc.getElementById("change-log-link")!;
+            changeLogLink.setAttribute("tooltip",
+                `✏ ${this._app.version}\n${this._i18n.getMessage("changeLogLink_@tooltip")}`);
+            changeLogLink.firstElementChild!.setAttribute("href", `../ui/change-log.html#${this._app.version}`);
+
             (doc.querySelector("#rate-link a") as HTMLAnchorElement).href =
                 this._app.browserName === MidnightLizard.Settings.BrowserName.Chrome
                     ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
@@ -173,6 +177,9 @@ namespace MidnightLizard.Popup
             const tabItemSep = doc.querySelector(".ml-tab-item-separator") as HTMLLIElement;
             tabItemSep.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             range.onRoomRulesApplied.addListener(this.onTabItemSeparatorRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, tabItemSep);
+            const footer = doc.querySelector(".ml-dialog-footer") as HTMLLIElement;
+            footer.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
+            footer.onRoomRulesApplied.addListener(this.onFotterRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, footer);
 
             this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
             this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
@@ -814,6 +821,24 @@ namespace MidnightLizard.Popup
                 {
                     borderColor: { color: currentStyle.borderRightColor }
                 });
+            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+        }
+
+        protected onFotterRoomRulesApplied(tag: HTMLLIElement, roomRules: ContentScript.RoomRules)
+        {
+            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let props = Object.assign({}, ContentScript.USP.htm);
+            props.css =
+                {
+                    bgrColor: "--ml-footer-background-color",
+                    brdColor: "",
+                    fntColor: "",
+                    shdColor: ""
+                };
+            let newRules = Object.assign(new ContentScript.RoomRules(),
+                {
+                    backgroundColor: { color: currentStyle.backgroundColor }
+                } as Partial<ContentScript.RoomRules>);
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
     }

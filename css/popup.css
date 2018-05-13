@@ -429,6 +429,10 @@ select.ml-dialog-input-text {
     position: relative;
 }
 
+.ml-footer-icon-container>a>svg {
+    fill: var(--main-color);
+}
+
 .ml-footer-icon-container.left {
     padding-left: 10px;
 }
@@ -528,6 +532,25 @@ select.ml-dialog-input-text {
 
 .change-log-icon:hover {
     fill: #1B5E20;
+}
+
+#change-log-link>a:after {
+    position: absolute;
+    display: block;
+    right: -7px;
+    top: -17px;
+    content: "\1F899";
+}
+#change-log-link>a * {
+    --ml-ignore:false;
+}
+#change-log-link>a {
+    --ml-ignore:true;
+    position: relative;
+    text-shadow: none;
+}
+#change-log-link>a:visited {
+    color: var(--ml-footer-background-color);
 }
 
 #linkHue,

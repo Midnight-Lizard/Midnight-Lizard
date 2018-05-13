@@ -19,6 +19,7 @@
     --pseudo-color: var(--main-color);
     --pseudo-border-color: var(--main-border-color);
     --pseudo-text-shadow-color: darkgray;
+    --ml-footer-background-color: var(--alt-background-color);
 }
 
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):root {

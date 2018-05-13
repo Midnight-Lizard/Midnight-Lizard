@@ -1145,6 +1145,9 @@ namespace MidnightLizard.ContentScript
 
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
+            delete tag.mlParentBgColor;
+            delete tag.path;
+
             if (tag.mlBgColor || tag instanceof Element &&
                 (lastProcMode === Settings.ProcessingMode.Simplified ||
                     this._settingsManager.isSimple))
@@ -1154,10 +1157,8 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlBgColor;
                 delete tag.mlColor;
                 delete tag.mlTextShadow;
-                delete tag.mlParentBgColor;
                 delete tag.rect;
                 delete tag.selectors;
-                delete tag.path;
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
