@@ -11,6 +11,10 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Глобальный переключатель расширения"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "Переключатель текущего веб-сайта"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "Обрабатывать этот веб-сайт"
@@ -917,6 +921,22 @@
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Полноценный"
+    },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "Автоматический режим обработки переключает «Полноценный» режим на «Упрощенный»,\nесли на странице больше элементов, чем указано в параметре «Предел авто-переключения режима»."
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "Автоматический"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Предел авто-переключения режима"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "Если на странице больше элементов во время её начальной загрузки,\nчем указанный здесь предел, и используется «Автоматический» режим,\nто фактический режим обработки данной страницы будет переключен\nс «Полноценного» на «Упрощённый»."
     },
     "mode_options_@title": {
         "description": "mode_options_@title: text on the tooltip\/hint",
