@@ -1097,7 +1097,7 @@ height: 148px;
 }
 
 #hostState:before {
-    content: "\2002";
+    content: "\FE56";
     display: inline-block;
     margin-right: -1px;
     margin-left: 5px;
