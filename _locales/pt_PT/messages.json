@@ -1,6 +1,6 @@
 {
     "short_locale": {
-        "description": "short_locale: two letters of current locale such as en for English",
+        "description": "short_locale: two letters of the current locale",
         "message": "pt"
     },
     "appDesc": {
@@ -8,6 +8,7 @@
         "message": "Esta extensão altera as cores, o brilho e o contraste da página para aumentar a legibilidade e traz o modo noturno escuro para todos os sites."
     },
     "globalToggleKey": {
+        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Alternância de extensão global"
     }
 }
