@@ -1,6 +1,6 @@
 {
     "short_locale": {
-        "description": "short_locale: two letters of current locale such as en for English",
+        "description": "short_locale: two letters of the current locale",
         "message": "pl"
     },
     "appDesc": {
@@ -8,6 +8,7 @@
         "message": "Dostosuje kontrast, jasność i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny."
     },
     "globalToggleKey": {
+        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Globalny przełącznik rozszerzenia"
     },
     "runOnThisSite_text_label": {
