@@ -1,6 +1,6 @@
 {
     "short_locale": {
-        "description": "short_locale: two letters of current locale such as en for English",
+        "description": "short_locale: two letters of the current locale",
         "message": "fr"
     }
 }
