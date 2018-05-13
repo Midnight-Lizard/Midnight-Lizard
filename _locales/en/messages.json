@@ -1,6 +1,6 @@
 {
     "short_locale": {
-        "description": "short_locale: two letters of current locale such as en for English",
+        "description": "short_locale: two letters of the current locale",
         "message": "en"
     },
     "appDesc": {
@@ -8,7 +8,12 @@
         "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
     },
     "globalToggleKey": {
+        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Global extension toggle"
+    },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "Current website toggle"
     },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",

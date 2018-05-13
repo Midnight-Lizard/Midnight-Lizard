@@ -100,7 +100,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 }
 
 #isEnabledSwitch:before {right: 0px;top: 42px;white-space: pre;}
-#isEnabledSwitch:after {right: 20px;bottom: -15px;}
+#isEnabledSwitch:after {right: 20px;bottom: -15.4px;}
 
 #rate-link:before {}
 #rate-link:after {right: 14px;}

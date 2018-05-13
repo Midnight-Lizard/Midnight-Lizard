@@ -18,8 +18,9 @@ namespace MidnightLizard.BackgroundPage
             commandListener.onCommand.addListener(this.processCommand, this);
         }
 
-        protected processCommand(command?: string)
+        protected async processCommand(command?: string)
         {
+            console.log(command);
             switch (command)
             {
                 case "global-toggle":
@@ -32,6 +33,19 @@ namespace MidnightLizard.BackgroundPage
                                     .forEach(req => req
                                         .catch(ex => console.error("Toggle request to the tab faild with: " + ex.message || ex))));
                         });
+                    break;
+
+                case "current-toggle":
+                    try
+                    {
+                        const currentSettings = await this._settingsBus.getCurrentSettings();
+                        currentSettings.runOnThisSite = !currentSettings.runOnThisSite;
+                        this._settingsBus.applySettings(currentSettings);
+                    }
+                    catch (ex)
+                    {
+                        console.error("Current website toggle request to the tab faild with: " + ex.message || ex);
+                    }
                     break;
 
                 default:

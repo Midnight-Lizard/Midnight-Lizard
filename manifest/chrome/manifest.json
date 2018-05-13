@@ -22,6 +22,12 @@
             "suggested_key": {
                 "default": "Alt+Shift+M"
             }
+        },
+        "current-toggle": {
+            "description": "__MSG_currentToggleKey__",
+            "suggested_key": {
+                "default": "Alt+Shift+L"
+            }
         }
     },
     "browser_action": {

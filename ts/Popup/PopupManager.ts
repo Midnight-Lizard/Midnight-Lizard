@@ -142,12 +142,25 @@ namespace MidnightLizard.Popup
             this._commandManager.getCommands()
                 .then(commands =>
                 {
-                    let globalToggleCommand = commands.find(cmd => cmd.name === "global-toggle");
-                    if (globalToggleCommand && globalToggleCommand.shortcut)
+                    for (const command of commands)
                     {
-                        const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
-                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
-                            `\n${this._i18n.getMessage("shortcut_text_lable")}: ${globalToggleCommand.shortcut}`);
+                        if (command.shortcut)
+                        {
+                            switch (command.name)
+                            {
+                                case "global-toggle":
+                                    const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
+                                    isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
+                                        `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
+                                    break;
+
+                                case "current-toggle":
+                                    const hostState = doc.querySelector(`[i18n="hostState"]`)!;
+                                    hostState.setAttribute("tooltip", hostState.getAttribute("tooltip") +
+                                        `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
+                                    break;
+                            }
+                        }
                     }
                 })
                 .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));
