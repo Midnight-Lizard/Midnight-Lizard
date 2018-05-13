@@ -1,6 +1,6 @@
 {
     "short_locale": {
-        "description": "short_locale: two letters of current locale such as en for English",
+        "description": "short_locale: two letters of the current locale",
         "message": "zh"
     },
     "appDesc": {
@@ -8,6 +8,7 @@
         "message": "这个扩展改变了页面的颜色，亮度和对比度，提高了可读性。夜间模式为所有网站开启。"
     },
     "globalToggleKey": {
+        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "全局扩展程序切换"
     },
     "runOnThisSite_text_label": {
