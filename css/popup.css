@@ -540,6 +540,7 @@ select.ml-dialog-input-text {
     right: -7px;
     top: -17px;
     content: "\1F899";
+    pointer-events: none;
 }
 #change-log-link>a * {
     --ml-ignore:false;
@@ -548,9 +549,13 @@ select.ml-dialog-input-text {
     --ml-ignore:true;
     position: relative;
     text-shadow: none;
+    color: var(--ml-main-link-color);
 }
 #change-log-link>a:visited {
     color: var(--ml-footer-background-color);
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not(#imp):not(.imp)>a:visited {
+    color: var(--ml-main-alt-background-color)!important;
 }
 
 #linkHue,
