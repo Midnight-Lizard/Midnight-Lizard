@@ -1059,5 +1059,59 @@
     "github_stars_campaign_text_message": {
         "description": "github_stars_campaign_text_message: text on the campaign ad message",
         "message": "Помогите набрать 🌟на GitHub для запуска кампания по сбору средств"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "Шаблон «$pattern$» не является корректным.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "Шаблон «$pattern$» не содержит корректное значение имени веб-сайта.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Текущая страница соответствует шаблонам"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Адрес текущей страницы соответствует следующим шаблонам:\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "Нет шаблонов под текущую страницу"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "Шаблоны на исключение"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "Страница точно не будет обрабатываться, если её адрес\nсоответствует какому-либо из указанных здесь шаблонов.\nПроверка шаблонов на исключение выполняется в последнюю очередь,\nпоэтому у них наивысший приоритет.\nКаждый шаблон необходимо размещать на новой строке."
+    },
+    "includeMatches_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Шаблоны на включение"
+    },
+    "includeMatches_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "Если выбрано не «Обрабатывать этот веб-сайт»,\nно адрес страницы соответствует хотя бы\nодному из указанных здесь шаблонов,\nто эта страница всё ещё может быть обработана.\nЕсли же выбрано «Обрабатывать этот веб-сайт»,\nто все указанные здесь шаблоны будут проигнорированы.\nКаждый шаблон необходимо размещать на новой строке."
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Синтаксис"
+    },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "Открыть полное описание синтаксиса шаблонов сопоставления в новой вкладке.\nПри этом окно настроек вероятно будет закрыто."
     }
 }
