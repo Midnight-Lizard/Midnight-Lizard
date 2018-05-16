@@ -480,7 +480,11 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "       常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。\n • 当 [Midnight Lizard] 自动启用时激活时间表定义。\n • 蓝光过滤强度控制使用红光替换多少蓝光以减少夜时眼睛疲劳。"
+        "message": "       常规设置\n―――――――――――――――――――\n 此选项卡包含整个页面的常规设置。"
+    },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "激活"
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
@@ -809,10 +813,20 @@
         "message": "快捷方式"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "自定义"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "新配色方案"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "默认"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "原始（无）"
     },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
@@ -918,6 +932,10 @@
         "description": "mode_complex_text_label: text on the label",
         "message": "复合"
     },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "自动"
+    },
     "mode_options_@title": {
         "description": "mode_options_@title: text on the tooltip\/hint",
         "message": "悬停在每个选项上预览其描述"
@@ -957,5 +975,9 @@
     "globals_tab_snack_bar_text_content": {
         "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
         "message": "在此选项卡中的所有更改将自动保存，但您可能需要刷新页面使更改生效。"
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "语法"
     }
 }

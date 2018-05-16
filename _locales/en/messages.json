@@ -494,6 +494,14 @@
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
     },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Activation"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Background"

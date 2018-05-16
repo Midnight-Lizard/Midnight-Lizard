@@ -239,6 +239,10 @@
         "description": "commonTab_text_label: text on the label",
         "message": "Ogólne"
     },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Aktywacja"
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Tło"
@@ -343,10 +347,40 @@
         "message": "Skrót"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Własny"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "Nowy schemat kolorów"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "Domyślny"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Oryginalny"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Mięta wonna"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Halloween"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Odcienie szarości"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Żółty na czarnym"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Zielony na czarnym"
     },
     "backgroundExample_text_label": {
         "description": "backgroundExample_text_label: text on the label",
@@ -407,5 +441,9 @@
     "globals_tab_snack_bar_text_content": {
         "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
         "message": "Wszystkie zmiany na tej karcie będą zapisywane automatycznie, ale może być trzeba odświeżyć stronę, aby zmiany zaczęły obowiązywać."
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Składnia"
     }
 }

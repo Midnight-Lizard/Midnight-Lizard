@@ -482,6 +482,10 @@
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar [Midnight Lizard] automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
     },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Activación"
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Fondos"
@@ -809,9 +813,11 @@
         "message": "Atajo"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Personalizado"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "Nuevo esquema de colores"
     },
     "localStorageOverrideConfirmationMessage": {
@@ -909,5 +915,25 @@
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Complejo"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "Automático"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "Tiempo de activación predeterminada"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Tiempo de desactivación predeterminada"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "Ajustes globales"
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Sintaxis"
     }
 }
