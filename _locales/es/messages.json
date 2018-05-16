@@ -809,9 +809,11 @@
         "message": "Atajo"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Personalizado"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "Nuevo esquema de colores"
     },
     "localStorageOverrideConfirmationMessage": {
