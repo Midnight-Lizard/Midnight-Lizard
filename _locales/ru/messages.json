@@ -813,9 +813,11 @@
         "message": "Сочетание клавишь"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Особая"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "Новая цветовая схема"
     },
     "localStorageOverrideConfirmationMessage": {
