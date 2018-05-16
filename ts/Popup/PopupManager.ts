@@ -11,6 +11,7 @@
 /// <reference path="../Settings/SettingsImporter.ts" />
 /// <reference path="../i18n/DocumentTranslator.ts" />
 /// <reference path="../Colors/RangeFillColorProcessor.ts" />
+/// <reference path="../Settings/MatchPatternProcessor.ts" />
 
 namespace MidnightLizard.Popup
 {
@@ -21,7 +22,7 @@ namespace MidnightLizard.Popup
     @DI.injectable(IPopupManager)
     class PopupManager
     {
-        protected _currentSiteSettings!: Settings.ColorScheme;
+        protected readonly _inputChangeDebounceTime = 300;
         protected _colorSchemeSelect!: HTMLSelectElement;
         protected _applyButton!: HTMLButtonElement;
         protected _closeButton!: HTMLButtonElement;
@@ -41,6 +42,12 @@ namespace MidnightLizard.Popup
         protected _colorSchemeForEdit!: HTMLSelectElement;
         protected _importColorSchemeFileInput!: HTMLInputElement;
         protected _syncSettingsCheckBox!: HTMLInputElement;
+        protected _settingsForm!: HTMLFormElement;
+        protected _lastMatchPatternChangeTimeout = 0;
+        protected get currentSiteSettings()
+        {
+            return this._settingsManager.currentSiteSettings;
+        }
 
         constructor(
             protected readonly _popup: Document,
@@ -57,7 +64,8 @@ namespace MidnightLizard.Popup
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter,
             protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
             protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor,
-            protected readonly _rangeFillColorProcessor: MidnightLizard.Colors.IRangeFillColorProcessor)
+            protected readonly _rangeFillColorProcessor: MidnightLizard.Colors.IRangeFillColorProcessor,
+            protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
             dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
             dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
@@ -91,7 +99,6 @@ namespace MidnightLizard.Popup
 
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
         {
-            this._currentSiteSettings = { ...this._settingsManager.currentSettings };
             if (!this._settingsManager.isActive)
             {
                 this.beforeRootDocumentProcessedFirstTime(this._popup);
@@ -126,6 +133,7 @@ namespace MidnightLizard.Popup
             this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
             this._importColorSchemeFileInput = doc.getElementById("importColorSchemeFileInput") as HTMLInputElement;
             this._syncSettingsCheckBox = doc.getElementById("syncSettings") as HTMLInputElement;
+            this._settingsForm = doc.getElementById("settingsForm") as HTMLFormElement;
 
             this._settingsManager.getCurrentSorage().then(isSync =>
             {
@@ -211,11 +219,12 @@ namespace MidnightLizard.Popup
             });
             Controls.Slider.initSliders(doc);
 
-            this._hostName.innerText = this._currentSiteSettings.hostName || "current page";
+            this._hostName.innerText = this.currentSiteSettings.location &&
+                new URL(this.currentSiteSettings.location).hostname || "current page";
 
             this.fillColorSchemesSelectLists();
-            this.setUpInputFields(this._currentSiteSettings);
-            this.setUpColorSchemeSelectValue(this._currentSiteSettings);
+            this.setUpInputFields(this.currentSiteSettings);
+            this.setUpColorSchemeSelectValue(this.currentSiteSettings);
             this.setUpDefaultInputFields();
             this.updateButtonStates();
             this.toggleSchedule();
@@ -258,10 +267,10 @@ namespace MidnightLizard.Popup
                     {
                         this.setUpInputFields(this._settingsManager.currentSettings);
                     }
-                    if (this._currentSiteSettings.colorSchemeId ===
+                    if (this.currentSiteSettings.colorSchemeId ===
                         Settings.ColorSchemes.default.colorSchemeId)
                     {
-                        this._currentSiteSettings = newDefSet;
+                        this._settingsManager.currentSiteSettings = newDefSet;
                         this.updateButtonStates();
                     }
                 })
@@ -297,9 +306,9 @@ namespace MidnightLizard.Popup
 
         protected getSettingsFromPopup()
         {
-            let settings: Settings.ColorScheme = {} as any, value: string | number | boolean;
+            let settings: Settings.ColorScheme = {} as any, value: string | number | boolean | string[];
             settings.isEnabled = this._isEnabledToggle.checked;
-            for (let setting of Array.prototype.slice.call(document.querySelectorAll(".setting")))
+            for (let setting of Array.from(document.querySelectorAll(".setting")) as HTMLInputElement[])
             {
                 switch (typeof Settings.ColorSchemes.default[setting.id as Settings.ColorSchemePropertyName])
                 {
@@ -330,9 +339,9 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager
                 .applySettings()
-                .then(newSiteSettings => this._currentSiteSettings = newSiteSettings)
                 .then(x => this.updateButtonStates())
                 .catch(ex => alert(this._i18n.getMessage("applyOnPageFailureMessage") + (ex.message || ex)));
+            return false;
         }
 
         protected toggleRunOnThisSite()
@@ -344,7 +353,7 @@ namespace MidnightLizard.Popup
 
         protected toggleIsEnabled()
         {
-            this._currentSiteSettings.isEnabled = this._isEnabledToggle.checked;
+            this.currentSiteSettings.isEnabled = this._isEnabledToggle.checked;
             this._settingsManager
                 .toggleIsEnabled(this._isEnabledToggle.checked)
                 .catch(ex => alert(this._i18n.getMessage("toggleExtensionFailureMessage") + (ex.message || ex)));
@@ -417,12 +426,15 @@ namespace MidnightLizard.Popup
 
         protected updateColorSchemeButtons()
         {
-            this._saveColorSchemeButton.disabled = this._colorSchemeForEdit.value !== "custom" &&
+            const formHasErrors = !this._settingsForm.checkValidity();
+            this._saveColorSchemeButton.disabled = formHasErrors ||
+                this._colorSchemeForEdit.value !== "custom" &&
                 this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings,
                     Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName]) &&
                 Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName ===
                 this._newColorSchemeName.value as Settings.ColorSchemeName;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
+            this._exportColorSchemeButton.disabled = formHasErrors;
 
             this._exportColorSchemeButton.title = this._i18n.getMessage("exportColorSchemeBtn_@title",
                 this._colorSchemeSelect.selectedOptions[0].text,
@@ -441,6 +453,7 @@ namespace MidnightLizard.Popup
                 newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
             }
             this._settingsExporter.export(newScheme);
+            return false;
         }
 
         protected importColorSchemes()
@@ -467,6 +480,7 @@ namespace MidnightLizard.Popup
                     })
                     .catch(error => alert(error));
             }
+            return false;
         }
 
         protected saveUserColorScheme()
@@ -493,6 +507,7 @@ namespace MidnightLizard.Popup
                     })
                     .catch(ex => alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + (ex.message || ex)));
             }
+            return false;
         }
 
         protected deleteUserColorScheme()
@@ -508,6 +523,7 @@ namespace MidnightLizard.Popup
                     })
                     .catch(ex => alert(this._i18n.getMessage("colorSchemeDeleteFailureMessage") + (ex.message || ex)));
             }
+            return false;
         }
 
         protected async updateColorSchemeListsFromDefaultSettings()
@@ -570,6 +586,7 @@ namespace MidnightLizard.Popup
                     .then(x => alert(this._i18n.getMessage("forgetAllSuccessMessage")))
                     .catch(ex => alert(this._i18n.getMessage("forgetAllFailureMessage") + (ex.message || ex)));
             }
+            return false;
         }
 
         protected forgetCurrentSiteSettings()
@@ -578,6 +595,7 @@ namespace MidnightLizard.Popup
                 .deleteCurrentSiteSettings()
                 .then(x => alert(this._i18n.getMessage("forgetThisSuccessMessage")))
                 .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
+            return false;
         }
 
         protected setAsDefaultSettings()
@@ -590,6 +608,7 @@ namespace MidnightLizard.Popup
                     this.updateButtonStates();
                 })
                 .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
+            return false;
         }
 
         protected setUpDefaultInputFields()
@@ -669,6 +688,15 @@ namespace MidnightLizard.Popup
                             dom.addEventListener(input, "input", MidnightLizard.Controls.Slider.onRangeChanged, input)();
                             break;
 
+                        case "textarea":
+                            input.value = settingValue as string;
+                            if (/match/gi.test(input.id))
+                            {
+                                dom.addEventListener(input, "input", this.validateMatchPaterns, this, false, input)();
+                            }
+                            dom.addEventListener(input, "input", this.debounceInputChange, this);
+                            break;
+
                         case "select-one":
                             input.value = settingValue!.toString();
                             if (input.classList.contains("ml-dialog-hue-select"))
@@ -690,18 +718,86 @@ namespace MidnightLizard.Popup
         protected updateButtonStates()
         {
             this.updateColorSchemeButtons();
+            const formHasErrors = !this._settingsForm.checkValidity();
             this._hostState.className = this._settingsManager.currentSettings.runOnThisSite ? "run" : "do-not-run";
-            this._applyButton.disabled = this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this._currentSiteSettings) &&
-                this._settingsManager.currentSettings.runOnThisSite === this._currentSiteSettings.runOnThisSite;
+            this._applyButton.disabled = formHasErrors ||
+                this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this.currentSiteSettings) &&
+                this._settingsManager.currentSettings.runOnThisSite === this.currentSiteSettings.runOnThisSite;
             Promise
                 .all([this._settingsManager.currentSettings, this._settingsManager.getDefaultSettings()])
                 .then(([currentSettings, defaultSettings]) =>
                 {
-                    this._setAsDefaultButton.disabled =
+                    this._setAsDefaultButton.disabled = formHasErrors ||
                         currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId ||
                         this._settingsManager.settingsAreEqual(currentSettings, defaultSettings) &&
                         currentSettings.runOnThisSite === defaultSettings.runOnThisSite;
                 });
+        }
+
+        protected debounceInputChange()
+        {
+            if (this._lastMatchPatternChangeTimeout)
+            {
+                clearTimeout(this._lastMatchPatternChangeTimeout);
+            }
+            this._lastMatchPatternChangeTimeout = setTimeout(() =>
+            {
+                this.onInputFieldChanged();
+            }, this._inputChangeDebounceTime);
+        }
+
+        protected validateMatchPaterns(textarea: HTMLTextAreaElement)
+        {
+            const currentValidationMessage = textarea.validationMessage;
+            const validationMessages = [], currentPageMatchPatterns = [];
+            if (textarea.value)
+            {
+                for (const pattern of textarea.value.split("\n"))
+                {
+                    const validationMessage = this._matchPatternProcessor.validatePattern(pattern);
+                    if (validationMessage !== "")
+                    {
+                        validationMessages.push(validationMessage);
+                    }
+                    else if (this.currentSiteSettings.location &&
+                        this._matchPatternProcessor.testUrl(pattern, this.currentSiteSettings.location, false))
+                    {
+                        currentPageMatchPatterns.push(pattern);
+                    }
+                }
+            }
+            const newValidationMessage = validationMessages.join("\n");
+            textarea.setCustomValidity(newValidationMessage);
+            textarea.title = newValidationMessage;
+            if (currentValidationMessage !== newValidationMessage)
+            {
+                this.updateButtonStates();
+            }
+            const matchResults = textarea.nextElementSibling! as HTMLElement;
+            if (textarea.value)
+            {
+                if (currentPageMatchPatterns.length > 0)
+                {
+                    matchResults.classList.add("match");
+                    matchResults.classList.remove("nomatch");
+                    matchResults.textContent = this._i18n.getMessage("matchCurrentPage_text_message");
+                    matchResults.title = this._i18n.getMessage("matchCurrentPage_@title") +
+                        currentPageMatchPatterns
+                            .map((p, i) => `${i + 1}) '${p}'`).join("\n");
+                }
+                else
+                {
+                    matchResults.classList.add("nomatch");
+                    matchResults.classList.remove("match");
+                    matchResults.textContent = this._i18n.getMessage("noMatchForCurrentPage_text_message");
+                    matchResults.title = "";
+                }
+            }
+            else
+            {
+                matchResults.classList.remove("match");
+                matchResults.classList.remove("nomatch");
+            }
         }
 
         protected static onHueChanged(this: HTMLSelectElement)
@@ -728,7 +824,8 @@ namespace MidnightLizard.Popup
                     let scheme: Settings.ColorSchemeName;
                     for (scheme in Settings.ColorSchemes)
                     {
-                        if (this._settingsManager.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
+                        if (scheme !== Settings.ColorSchemes.default.colorSchemeId &&
+                            this._settingsManager.settingsAreEqual(Settings.ColorSchemes[scheme], settings))
                         {
                             this._colorSchemeSelect.value = scheme;
                             break setUp;
@@ -753,7 +850,7 @@ namespace MidnightLizard.Popup
                 let selectedScheme;
                 if (this._colorSchemeSelect.value === "custom")
                 {
-                    this.applySettingsOnPopup(this._currentSiteSettings);
+                    this.applySettingsOnPopup(this.currentSiteSettings);
                 }
                 else
                 {

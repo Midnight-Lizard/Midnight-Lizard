@@ -6,4 +6,3 @@
 /// <reference path="./TypeGuards.ts" />
 /// <reference path="./Enum.ts" />
 /// <reference path="./RegExp.ts" />
-

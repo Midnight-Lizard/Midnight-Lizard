@@ -98,14 +98,14 @@
 {
     border-right: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, transparent 99.5%, var(--tab-item-border-color, var(--thin-border-color)) 99.5%) 1;
-    height: 46px;
+    height: 23px;
 }
 
 @supports (-moz-appearance: button)
 {
     .ml-tab-item-separator
     {
-        height: 50px;
+        height: 27px;
     }
 }
 

@@ -1,7 +1,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Settings/-Settings.ts" />
-
+/// <reference path="../Settings/MatchPatternProcessor.ts" />
 
 namespace MidnightLizard.Settings
 {
@@ -16,9 +16,10 @@ namespace MidnightLizard.Settings
         constructor(rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
-            settingsBus: MidnightLizard.Settings.ISettingsBus)
+            settingsBus: MidnightLizard.Settings.ISettingsBus,
+            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
-            super(rootDocument, app, storageManager, settingsBus);
+            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor);
             this.isInit = true
         }
 

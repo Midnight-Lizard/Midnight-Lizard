@@ -51,6 +51,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 100,
                     backgroundContrast: 0,
@@ -122,6 +124,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 100,
                     backgroundContrast: 0,
@@ -193,6 +197,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 65,
                     backgroundContrast: 50,
@@ -264,6 +270,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 60,
                     backgroundContrast: 50,
@@ -335,6 +343,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 60,
                     backgroundContrast: 50,
@@ -406,6 +416,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 60,
                     backgroundContrast: 50,
@@ -477,6 +489,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
@@ -548,6 +562,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 60,
@@ -619,6 +635,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 90,
                     backgroundContrast: 50,
@@ -690,6 +708,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 30,
                     backgroundContrast: 50,
@@ -761,6 +781,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 100,
                     backgroundContrast: 50,
@@ -832,6 +854,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 10,
                     backgroundContrast: 50,
@@ -903,6 +927,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
@@ -974,6 +1000,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 10,
                     backgroundContrast: 50,
@@ -1045,6 +1073,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,
@@ -1116,6 +1146,8 @@ namespace MidnightLizard.Settings
                     useDefaultSchedule: true,
                     scheduleStartHour: 0,
                     scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
 
                     backgroundSaturationLimit: 80,
                     backgroundContrast: 50,

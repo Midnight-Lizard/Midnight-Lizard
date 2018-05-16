@@ -2137,7 +2137,7 @@ namespace MidnightLizard.ContentScript
                 transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
                 transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
                 textColor = textColorEntry.color!,
-                transTextColor = this._textColorProcessor.changeColor("grba(0,0,0,0.7)", bgLight, doc.documentElement).color!,
+                transTextColor = this._textColorProcessor.changeColor("grba(0,0,0,0.6)", bgLight, doc.documentElement).color!,
                 borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(

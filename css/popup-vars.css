@@ -20,6 +20,8 @@
     --pseudo-border-color: var(--main-border-color);
     --pseudo-text-shadow-color: darkgray;
     --ml-footer-background-color: var(--alt-background-color);
+    --ml-error: hsla(0, 100%, 45%, 1);
+    --ml-success: hsla(124, 100%, 30%, 1);
 }
 
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):root {

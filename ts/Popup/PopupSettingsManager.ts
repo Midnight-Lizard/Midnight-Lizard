@@ -1,6 +1,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Settings/-Settings.ts" />
+/// <reference path="../Settings/MatchPatternProcessor.ts" />
 
 namespace MidnightLizard.Popup
 {
@@ -37,24 +38,25 @@ namespace MidnightLizard.Popup
         abstract settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean;
         abstract toggleSync(value: boolean): Promise<null>;
         abstract getCurrentSorage(): Promise<boolean>;
+        abstract get currentSiteSettings(): Settings.ColorScheme;
+        abstract set currentSiteSettings(settings: Settings.ColorScheme);
     }
 
     @DI.injectable(IPopupSettingsManager)
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
-        // isActive: boolean;
-        // shift: Colors.ComponentShift;
-        // currentSettings: Settings.ColorScheme;
-        // onSettingsInitialized: Events.ArgumentedEvent<Colors.ComponentShift>;
-        // onSettingsChanged: Events.ResponsiveEvent<(scheme: Settings.ColorScheme) => void, Colors.ComponentShift>;
+        protected _currentSiteSettings!: Settings.ColorScheme;
+        public get currentSiteSettings() { return this._currentSiteSettings }
+        public set currentSiteSettings(settings: Settings.ColorScheme) { this._currentSiteSettings = settings }
 
         constructor(rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
-            settingsBus: MidnightLizard.Settings.ISettingsBus)
+            settingsBus: MidnightLizard.Settings.ISettingsBus,
+            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
-            super(rootDocument, app, storageManager, settingsBus);
+            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor);
         }
 
         protected initCurrentSettings()
@@ -65,6 +67,11 @@ namespace MidnightLizard.Popup
                     this._currentSettings = currentSettings;
                     this.updateSchedule();
                     this.initCurSet();
+                    this._currentSiteSettings = { ...currentSettings };
+                    if (currentSettings.location)
+                    {
+                        this._rootUrl = currentSettings.location;
+                    }
                     this._onSettingsInitialized.raise(this._shift);
                 })
                 .catch(ex =>
@@ -155,17 +162,31 @@ namespace MidnightLizard.Popup
 
         public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>
         {
-            const storage = await this._storageManager.get<Settings.ColorScheme>({ userColorSchemes: [] } as any);
+            const storage = await this._storageManager
+                .get<Settings.PartialColorScheme>({
+                    userColorSchemes: [],
+                    userColorSchemeIds: []
+                });
             if (storage.userColorSchemes && storage.userColorSchemes.length > 0)
             {
-                let existingSchemeIndex = storage.userColorSchemes.findIndex(sch => sch.colorSchemeId === colorSchemeId);
+                let existingSchemeIndex = storage.userColorSchemes
+                    .findIndex(sch => sch.colorSchemeId === colorSchemeId);
                 if (existingSchemeIndex > -1)
                 {
                     storage.userColorSchemes.splice(existingSchemeIndex, 1);
-                    return this._storageManager.set(storage);
                 }
             }
-            return null;
+            if (storage.userColorSchemeIds && storage.userColorSchemeIds.length > 0)
+            {
+                let existingSchemeIdIndex = storage.userColorSchemeIds
+                    .findIndex(id => id === colorSchemeId);
+                if (existingSchemeIdIndex > -1)
+                {
+                    storage.userColorSchemeIds.splice(existingSchemeIdIndex, 1);
+                }
+            }
+            await this._storageManager.remove(`cs:${colorSchemeId}`);
+            return await this._storageManager.set(storage);
         }
 
         public deleteAllSettings()

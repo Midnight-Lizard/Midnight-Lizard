@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run 'Midnight Lizard' on this website."
+        "message": "Run 'Midnight Lizard' on all pages of this website.\nIf unchecked it can be still overwritten by the 'Include match patterns' for some pages.\nUse 'Exclude match patterns' to exclude some pages from processing."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
@@ -53,7 +53,7 @@
     },
     "useDefaultSchedule_@title": {
         "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Use schedule from default settings\nIf you want to use single schedule for all websites then you need to specify it in the default settings."
+        "message": "Use schedule from the default settings.\nIf you want to use single schedule for all websites\nthen you need to specify it in the default settings\nor on the 'Global settings' tab which is the same."
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -484,7 +484,15 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when 'Midnight Lizard' should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
+        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page."
+    },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Activation"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
@@ -560,7 +568,7 @@
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to 'Global settings' tab."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to the 'Global settings' tab."
     },
     "helpLink_@tooltip": {
         "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -985,5 +993,59 @@
     "github_stars_campaign_text_message": {
         "description": "github_stars_campaign_text_message: text on the campaign ad message",
         "message": "Help us collect 🌟 on GitHub to start crowdfunding"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' is not a valid match pattern.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' does not have a valid host.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Some of the patterns match current page"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "The following patterns match current page:\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "None of the patterns match current page"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "Exclude match patterns"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "Page won't be processed if its url matches any of these patterns.\nWrite each pattern on a new line.\nExclude rules have the lowest precedence hence they will always win."
+    },
+    "includeMatches_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Include match patterns"
+    },
+    "includeMatches_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "If 'Run on this website' is unchecked,\nbut page url matches at least one of these patterns\nthen it will be still considered for processing.\nWrite each pattern on a new line.\nIf 'Run on this website' is checked\nthen all include match patterns will be ignored."
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Syntax"
+    },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "Open a complete match patterns syntax description in a new browser tab.\nPopup might be closed."
     }
 }

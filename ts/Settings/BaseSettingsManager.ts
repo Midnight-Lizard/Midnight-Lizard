@@ -5,6 +5,7 @@
 /// <reference path="./ISettingsBus.ts" />
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Colors/-Colors.ts" />
+/// <reference path="./MatchPatternProcessor.ts" />
 
 
 namespace MidnightLizard.Settings
@@ -41,13 +42,34 @@ namespace MidnightLizard.Settings
     {
         protected _scheduleStartHour = 0;
         protected _scheduleFinishHour = 24;
+        protected _rootUrl: string;
         protected _settingsKey: string;
+        protected _curHour = new Date().getHours();
         protected get isScheduled(): boolean
         {
-            let curHour = new Date().getHours();
             return this._scheduleStartHour <= this._scheduleFinishHour
-                ? this._scheduleStartHour <= curHour && curHour < this._scheduleFinishHour
-                : this._scheduleStartHour <= curHour || curHour < this._scheduleFinishHour;
+                ? this._scheduleStartHour <= this._curHour && this._curHour < this._scheduleFinishHour
+                : this._scheduleStartHour <= this._curHour || this._curHour < this._scheduleFinishHour;
+        }
+        protected _lastIncludeMatchPatternsTestResults?: boolean;
+        protected get matchesInclude(): boolean
+        {
+            if (this._lastIncludeMatchPatternsTestResults === undefined)
+            {
+                this._lastIncludeMatchPatternsTestResults =
+                    this.testMatchPatterns(this._currentSettings.includeMatches, true);
+            }
+            return this._lastIncludeMatchPatternsTestResults;
+        }
+        protected _lastExcludeMatchPatternsTestResults?: boolean;
+        protected get matchesExclude(): boolean
+        {
+            if (this._lastExcludeMatchPatternsTestResults === undefined)
+            {
+                this._lastExcludeMatchPatternsTestResults =
+                    this.testMatchPatterns(this._currentSettings.excludeMatches, false);
+            }
+            return this._lastExcludeMatchPatternsTestResults
         }
 
         protected _defaultSettings: Settings.ColorScheme;
@@ -62,7 +84,16 @@ namespace MidnightLizard.Settings
         public get shift() { return this._shift }
 
         /** MidnightLizard should be running on this page */
-        public get isActive() { return this.isInit && this._currentSettings.isEnabled! && this._currentSettings.runOnThisSite && this.isScheduled }
+        public get isActive()
+        {
+            return this.isInit &&
+                this._currentSettings.isEnabled! &&
+                this.isScheduled && (
+                    this._currentSettings.runOnThisSite && !this.matchesExclude
+                    ||
+                    !this._currentSettings.runOnThisSite && this.matchesInclude && !this.matchesExclude
+                )
+        }
         public get isComplex() { return this._computedMode === ProcessingMode.Complex }
         public get isSimple() { return this._computedMode === ProcessingMode.Simplified }
         public get computedMode() { return this._computedMode }
@@ -77,16 +108,19 @@ namespace MidnightLizard.Settings
         constructor(rootDocument: Document,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
-            protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
+            protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus,
+            protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
             let hostName: string;
             try
             {
                 hostName = window.top.location.hostname;
+                this._rootUrl = window.top.location.href;
             }
             catch
             {
                 hostName = rootDocument.location.hostname;
+                this._rootUrl = rootDocument.location.href;
             }
             this._settingsKey = `ws:${hostName}`; //`
             this.initDefaultColorSchemes();
@@ -114,6 +148,9 @@ namespace MidnightLizard.Settings
 
         protected initCurSet()
         {
+            this._lastIncludeMatchPatternsTestResults =
+                this._lastExcludeMatchPatternsTestResults = undefined;
+
             this.applyBackwardCompatibility(this._currentSettings);
             this._computedMode =
                 this._currentSettings.mode === ProcessingMode.Automatic
@@ -333,6 +370,16 @@ namespace MidnightLizard.Settings
                 settings.modeAutoSwitchLimit = 5000;
             }
 
+            if (settings.includeMatches === undefined)
+            {
+                settings.includeMatches = "";
+            }
+
+            if (settings.excludeMatches === undefined)
+            {
+                settings.excludeMatches = "";
+            }
+
             if (settings.buttonSaturationLimit === undefined ||
                 isNaN(settings.buttonSaturationLimit))
             {
@@ -379,6 +426,7 @@ namespace MidnightLizard.Settings
 
         protected updateSchedule()
         {
+            this._curHour = new Date().getHours();
             if (this._currentSettings.useDefaultSchedule)
             {
                 this._scheduleStartHour = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
@@ -527,6 +575,21 @@ namespace MidnightLizard.Settings
                 }
             }
             return true;
+        }
+
+        protected testMatchPatterns(matchPatterns: string, invalidResult: boolean)
+        {
+            if (matchPatterns)
+            {
+                for (const pattern of matchPatterns.split("\n"))
+                {
+                    if (pattern && this._matchPatternProcessor.testUrl(pattern, this._rootUrl, invalidResult))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

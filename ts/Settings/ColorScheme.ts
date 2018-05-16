@@ -10,13 +10,14 @@ namespace MidnightLizard.Settings
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "hostName", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
+        ["isEnabled", "location", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
 
     export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "hostName", "colorSchemeName", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
+        ["isEnabled", "location", "colorSchemeName", "userColorSchemes",
+            "userColorSchemeIds", "changeBrowserTheme"];
 
     export const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "hostName", "colorSchemeId", "colorSchemeName",
+        ["isEnabled", "location", "colorSchemeId", "colorSchemeName",
             "userColorSchemes", "userColorSchemeIds", "runOnThisSite", "changeBrowserTheme"];
 
 
@@ -30,7 +31,7 @@ namespace MidnightLizard.Settings
         userColorSchemeIds?: Array<ColorSchemeName>;
         colorSchemeId: ColorSchemeName;
         colorSchemeName: string;
-        hostName?: string;
+        location?: string;
         isEnabled?: boolean;
         blueFilter: number;
         mode: ProcessingMode;
@@ -39,11 +40,13 @@ namespace MidnightLizard.Settings
         useDefaultSchedule: boolean;
         scheduleStartHour: number;
         scheduleFinishHour: number
+        includeMatches: string;
+        excludeMatches: string;
 
         runOnThisSite: boolean;
         restoreColorsOnCopy: boolean;
         restoreColorsOnPrint: boolean;
-        changeBrowserTheme: boolean;
+        changeBrowserTheme?: boolean;
 
         backgroundSaturationLimit: number;
         backgroundContrast: number;

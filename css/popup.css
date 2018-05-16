@@ -132,6 +132,8 @@ body {
     display: table;
     width: 100%;
     min-height: 500px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .ml-dialog-settings-left {
@@ -152,15 +154,25 @@ body {
     background-color: var(--content-background-color);
 }
 
+@supports (-moz-appearance: button)
+{
+    .ml-dialog-commands>.ml-dialog-input-text {
+        width: 127px;
+    }
+}
+
 .ml-dialog-commands>.ml-dialog-label {
     margin: 0px auto;
     text-align: center;
     display: block;
 }
 
-.ml-dialog-commands>button,
-.ml-dialog-commands>.ml-tool-box {
+.ml-dialog-commands>button {
     margin: 20px 20px;
+    width: 130px;
+}
+.ml-dialog-commands>.ml-tool-box {
+    margin: 40px 20px 20px 20px;
     width: 130px;
 }
 
@@ -217,6 +229,10 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
 }
 
 .ml-input-container:last-of-type {
+    margin-bottom: 0px;
+}
+
+.ml-input-container:last-of-type :last-child {
     margin-bottom: 0px;
 }
 
@@ -290,6 +306,23 @@ select.ml-dialog-input-text {
         calc(100% - 5px) calc(100% / 2 - 2px),
         calc(100% - 8px) calc(100% / 2 - 2px);
     --ml-backgroundnocontrast-background-color:Text;
+    display: block;
+    padding: 0px 3px;
+    height: 23px;
+}
+
+@supports (-moz-appearance: button)
+{
+    select.ml-dialog-input-text {
+        padding: 0px;
+    }
+    .ml-input-container>select.ml-dialog-input {
+        width: 265px;
+    }
+}
+
+.ml-input-container>select.ml-dialog-input {
+    margin: 8px auto 32px auto;
 }
 
 .ml-dialog-input-text option {
@@ -535,10 +568,10 @@ select.ml-dialog-input-text {
 }
 
 #change-log-link>a:after {
-    position: absolute;
+    position: fixed;
     display: block;
-    right: -7px;
-    top: -17px;
+    right: 4px;
+    bottom: 21px;
     content: "\1F899";
     pointer-events: none;
 }
@@ -1152,8 +1185,9 @@ height: 148px;
     content: "\2212";
     color: white;
     font-weight: bold;
-    background-color: red;
+    background-color: var(--ml-error);
     border-color: hsla(0, 73%, 41%, 0.3);
+    --ml-background-background-color:Border;
 }
 
 .ml-host-state {
@@ -1166,6 +1200,7 @@ height: 148px;
     text-overflow: ellipsis;
     overflow: hidden;
     vertical-align: top;
+    white-space: nowrap;
 }
 
 .error-message
@@ -1221,10 +1256,9 @@ height: 148px;
 .ml-ad {
     font-size: 13px;
     position: relative;
-    /* background-color: green; */
     vertical-align: middle;
     padding: 0px 23px;
-    /* text-align: left; */
+    line-height: 20px;
 }
 
 .ml-ad:before {
@@ -1232,6 +1266,80 @@ height: 148px;
     font-size: 20px;
     position: absolute;
     left: 3px;
-    top: 9px;
-    /* padding: 5px; */
+    /* top: 9px; */
+}
+
+.ml-matches-input {
+    height: auto;
+    resize: none;
+}
+
+@supports (-moz-appearance: button)
+{
+    .ml-matches-input:not(#imp)
+    {
+        height: 5em;
+    }
+}
+
+.ml-matches-input::placeholder {
+    
+}
+
+.ml-dialog-label-with-help {
+    margin: auto calc((100% - 267px)/2);
+    width: 266px;
+    display: block;
+    position: relative;
+}
+
+.ml-input-help-link {
+    margin-left: auto;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+}
+
+.ml-dialog-input-text:invalid {
+    box-shadow: inset 0 0 3px 1px var(--ml-error);
+    cursor: help;
+}
+
+.ml-match-current-page {
+    position: absolute;
+    right: calc((100% - 267px) / 2);
+    bottom: 0px;
+    font-size: 12px;
+    visibility: hidden;
+    width: 267;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 14px;
+}
+
+.ml-match-current-page.match {
+    visibility: visible;
+    cursor: help;
+}
+
+.ml-match-current-page:before {
+    padding-right: 3px;
+    --ml-highlightedtext-color:Text;
+    --ml-text-color:Text;
+}
+
+.ml-match-current-page.match:before {
+    content: "\2714";
+    color: var(--ml-success);
+}
+
+.ml-match-current-page.nomatch {
+    visibility: visible;
+}
+
+.ml-match-current-page.nomatch:before {
+    content: "\2716";
+    color: var(--ml-error);
 }

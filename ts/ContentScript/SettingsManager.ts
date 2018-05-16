@@ -1,6 +1,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Settings/-Settings.ts" />
+/// <reference path="../Settings/MatchPatternProcessor.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -29,12 +30,12 @@ namespace MidnightLizard.ContentScript
     {
         constructor(
             protected readonly _rootDocument: Document,
-            // protected readonly _cookiesManager: MidnightLizard.Cookies.ICookiesManager,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
-            settingsBus: MidnightLizard.Settings.ISettingsBus)
+            settingsBus: MidnightLizard.Settings.ISettingsBus,
+            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
-            super(_rootDocument, app, storageManager, settingsBus);
+            super(_rootDocument, app, storageManager, settingsBus, matchPatternProcessor);
             settingsBus.onCurrentSettingsRequested.addListener(this.onCurrentSettingsRequested, this);
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);
@@ -106,7 +107,7 @@ namespace MidnightLizard.ContentScript
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
         {
-            this._currentSettings.hostName = this._rootDocument.location.hostname;
+            this._currentSettings.location = this._rootDocument.location.href;
             response(this._currentSettings);
         }
 
