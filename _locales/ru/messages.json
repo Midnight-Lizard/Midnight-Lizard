@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Следует ли «Midnight Lizard» обрабатывать текущий сайт"
+        "message": "Следует ли «Midnight Lizard» обрабатывать все страницы текущего сайта?\nЕсли убрать галку, то некоторые страницы всё ещё могут быть обработаны,\nесли они соответствуют каким-либо «Шаблонам на включение».\nИспользуйте «Шаблоны на исключение», чтобы запретить обработку некоторых страниц."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
