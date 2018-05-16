@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run 'Midnight Lizard' on all pages of this website.\nIf unchecked it can be still overwritten by the 'Include match patterns' for some pages.\nUse 'Exclude match patterns' to exclude some pages from processing."
+        "message": "Run 'Midnight Lizard' on this website."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
@@ -53,7 +53,7 @@
     },
     "useDefaultSchedule_@title": {
         "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Use schedule from the default settings.\nIf you want to use single schedule for all websites\nthen you need to specify it in the default settings\nor on the 'Global settings' tab which is the same."
+        "message": "Use schedule from default settings\nIf you want to use single schedule for all websites then you need to specify it in the default settings."
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -484,15 +484,7 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page."
-    },
-    "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
-        "message": "Activation"
-    },
-    "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
+        "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when 'Midnight Lizard' should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
@@ -576,7 +568,7 @@
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to the 'Global settings' tab."
+        "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to 'Global settings' tab."
     },
     "helpLink_@tooltip": {
         "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
