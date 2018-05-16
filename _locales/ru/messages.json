@@ -472,7 +472,7 @@
     },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
-        "message": "Основной оттенок"
+        "message": "Базовый оттенок"
     },
     "scrollbarGrayHue_@title": {
         "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
