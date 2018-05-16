@@ -809,9 +809,11 @@
         "message": "快捷方式"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "自定义"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "新配色方案"
     },
     "localStorageOverrideConfirmationMessage": {
