@@ -958,7 +958,7 @@
     },
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Помочь с переводом Midnight Lizard\nна другие языки"
+        "message": "Помочь перевести Midnight Lizard\nна другие языки"
     },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
