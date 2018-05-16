@@ -17,6 +17,9 @@ namespace MidnightLizard.Settings
         /** Determines whether extension is in debug mode */
         abstract get isDebug(): boolean;
 
+        /** Determines whether extension is running on the mobile device */
+        abstract get isMobile():boolean;
+
         /** True if extension is running inside an incognito window */
         abstract get isInIncognitoMode():boolean;
 

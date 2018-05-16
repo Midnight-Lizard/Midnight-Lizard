@@ -1,7 +1,14 @@
 #!/bin/sh
 set -e
 
-ArchPath="../Resources/Releases/midnight-lizard-$(cat ./manifest/$1/manifest.json | jq -r .version)-$1.zip";
+if [ $1 == "firefox" ]
+then
+    FileExtension="xpi";
+else
+    FileExtension="zip";
+fi
+
+ArchPath="../Resources/Releases/midnight-lizard-$(cat ./manifest/$1/manifest.json | jq -r .version)-$1.$FileExtension";
 
 rm -r -f $ArchPath;
 

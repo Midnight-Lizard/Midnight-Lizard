@@ -137,9 +137,9 @@ namespace MidnightLizard.Settings
 
         computeProcessingMode(doc: Document): void
         {
-            if (this._currentSettings.mode === ProcessingMode.Automatic &&
-                doc.body &&
-                doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit)
+            if (this._currentSettings.mode === ProcessingMode.Automatic && (
+                this._app.isMobile || doc.body &&
+                doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit))
             {
                 this._computedMode = ProcessingMode.Simplified;
             }

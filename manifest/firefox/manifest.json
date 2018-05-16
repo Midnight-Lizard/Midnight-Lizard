@@ -12,6 +12,12 @@
         "32": "img/ml-icon-32.png",
         "16": "img/ml-icon-16.png"
     },
+    "applications": {
+        "gecko": {
+            "id": "{8fbc7259-8015-4172-9af1-20e1edfbbd3a}",
+            "strict_min_version": "57.0"
+        }
+    },
     "permissions": [
         "storage",
         "theme"
@@ -120,10 +126,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://*/*"
+                "*://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/*"
+                "http?://www.google.*/*"
             ],
             "css": [
                 "css/custom/google.css"

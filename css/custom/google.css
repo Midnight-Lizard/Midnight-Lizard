@@ -62,3 +62,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .action-menu .mn-dwn
     border-top-color: var(--ml-main-border-color) !important;
     border-bottom-color: var(--ml-main-border-color) !important;
 }
+
+.sbico {
+    --ml-no-invert:true;
+}

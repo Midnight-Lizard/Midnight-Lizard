@@ -24,6 +24,11 @@ namespace Chrome
                 : MidnightLizard.Settings.BrowserName.Chrome
         }
 
+        get isMobile()
+        {
+            return /mobile/gi.test(navigator.userAgent);
+        }
+
         protected readonly _preserveDisplay: boolean = false;
         get preserveDisplay() { return this._preserveDisplay }
 
