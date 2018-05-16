@@ -343,9 +343,11 @@
         "message": "Skrót"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Własny"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "Nowy schemat kolorów"
     },
     "backgroundExample_text_label": {
