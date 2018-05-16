@@ -821,10 +821,76 @@
         "message": "Shortcut"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Custom"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "New color scheme"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "Default"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Original (none)"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Dimmed Dust"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Apple Mint +++"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Kappa Dream"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Almond Ripe"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Sunset Sails"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Halloween"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Morning Mist sss"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Antique Codex"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Increased Contrast"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Grayscale"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Inverted Light"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Inverted Grayscale"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Yellow on Black"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Green on Black"
     },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",

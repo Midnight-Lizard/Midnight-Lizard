@@ -2,6 +2,7 @@
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Settings/-Settings.ts" />
 /// <reference path="../Settings/MatchPatternProcessor.ts" />
+/// <reference path="../i18n/ITranslationAccessor.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -33,9 +34,10 @@ namespace MidnightLizard.ContentScript
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus,
-            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
+            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
+            i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
-            super(_rootDocument, app, storageManager, settingsBus, matchPatternProcessor);
+            super(_rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n);
             settingsBus.onCurrentSettingsRequested.addListener(this.onCurrentSettingsRequested, this);
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);

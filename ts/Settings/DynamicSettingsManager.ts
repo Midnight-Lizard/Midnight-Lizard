@@ -2,6 +2,7 @@
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Settings/-Settings.ts" />
 /// <reference path="../Settings/MatchPatternProcessor.ts" />
+/// <reference path="../i18n/ITranslationAccessor.ts" />
 
 namespace MidnightLizard.Settings
 {
@@ -17,9 +18,10 @@ namespace MidnightLizard.Settings
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus,
-            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
+            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
+            i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
-            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor);
+            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n);
             this.isInit = true
         }
 

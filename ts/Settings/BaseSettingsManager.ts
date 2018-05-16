@@ -6,7 +6,7 @@
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="./MatchPatternProcessor.ts" />
-
+/// <reference path="../i18n/ITranslationAccessor.ts" />
 
 namespace MidnightLizard.Settings
 {
@@ -109,7 +109,8 @@ namespace MidnightLizard.Settings
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus,
-            protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
+            protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
             let hostName: string;
             try
@@ -489,14 +490,21 @@ namespace MidnightLizard.Settings
             });
             if (renameToDefault)
             {
-                this.renameDefaultSettingsToDefault();
+                this.renameSettingsToDefault(this._defaultSettings);
             }
         }
 
-        protected renameDefaultSettingsToDefault()
+        protected renameSettingsToDefault(settings: ColorScheme)
         {
-            this._defaultSettings.colorSchemeId = "default";
-            this._defaultSettings.colorSchemeName = "Default";
+            settings.colorSchemeId = "default";
+            this.localizeColorScheme(settings);
+        }
+
+        protected localizeColorScheme(settings: ColorScheme)
+        {
+            settings.colorSchemeName =
+                this._i18n.getMessage(`colorSchemeName_${settings.colorSchemeId}`) ||
+                settings.colorSchemeName;
         }
 
         public async applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
@@ -505,6 +513,7 @@ namespace MidnightLizard.Settings
             {
                 for (const userColorScheme of defaultSettings.userColorSchemes)
                 {
+                    this.localizeColorScheme(userColorScheme);
                     this.applyBackwardCompatibility(userColorScheme);
                     Settings.ColorSchemes[userColorScheme.colorSchemeId] =
                         Object.assign(Settings.ColorSchemes[userColorScheme.colorSchemeId] || {}, userColorScheme);
@@ -534,8 +543,7 @@ namespace MidnightLizard.Settings
             }
 
             Object.assign(Settings.ColorSchemes.default, defaultSettings.colorSchemeId ? defaultSettings : Settings.ColorSchemes.dimmedDust);
-            Settings.ColorSchemes.default.colorSchemeId = "default";
-            Settings.ColorSchemes.default.colorSchemeName = "Default";
+            this.renameSettingsToDefault(Settings.ColorSchemes.default);
         }
 
         protected assignSettings(to: Settings.ColorScheme, settings: Settings.ColorScheme)
