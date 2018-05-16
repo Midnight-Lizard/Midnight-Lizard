@@ -486,6 +486,14 @@
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page.\n • Activation schedule defines when 'Midnight Lizard' should be automatically enabled.\n • Blue filter intensity controls how much blue light would be replaced with red light to reduces eye strain at night time."
     },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Activation"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Background"
@@ -820,6 +828,70 @@
         "description": "color scheme name",
         "message": "New color scheme"
     },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "Default"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Original (none)"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Dimmed Dust"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Apple Mint"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Kappa Dream"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Almond Ripe"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Sunset Sails"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Halloween"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Morning Mist"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Antique Codex"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Increased Contrast"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Grayscale"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Inverted Light"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Inverted Grayscale"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Yellow on Black"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Green on Black"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Your local settings storage already contains some data.\nDo you want to override it with data from the sync (cloud) storage\nand lose the overridden data?"
@@ -987,5 +1059,59 @@
     "github_stars_campaign_text_message": {
         "description": "github_stars_campaign_text_message: text on the campaign ad message",
         "message": "Help us collect 🌟 on GitHub to start crowdfunding"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' is not a valid match pattern.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' does not have a valid host.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Some of the patterns match current page"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "The following patterns match current page:\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "None of the patterns match current page"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "Exclude match patterns"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "Page won't be processed if its url matches any of these patterns.\nWrite each pattern on a new line.\nExclude rules have the lowest precedence hence they will always win."
+    },
+    "includeMatches_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Include match patterns"
+    },
+    "includeMatches_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "If 'Run on this website' is unchecked,\nbut page url matches at least one of these patterns\nthen it will be still considered for processing.\nWrite each pattern on a new line.\nIf 'Run on this website' is checked\nthen all include match patterns will be ignored."
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Syntax"
+    },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "Open a complete match patterns syntax description in a new browser tab.\nPopup might be closed."
     }
 }
