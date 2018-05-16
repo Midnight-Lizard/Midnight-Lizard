@@ -838,7 +838,7 @@ height: 148px;
     margin: 2px auto 0px auto;
     cursor: help;
     outline: solid 1px var(--thin-border-color);
-    padding: 1px 4px;
+    padding: 0px 4px;
     height: 58px;
     background-color: var(--main-background-color);
 }
@@ -1266,7 +1266,7 @@ height: 148px;
     font-size: 20px;
     position: absolute;
     left: 3px;
-    /* top: 9px; */
+    top: 9px;
 }
 
 .ml-matches-input {

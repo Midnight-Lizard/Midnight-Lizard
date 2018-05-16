@@ -76,7 +76,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
     padding: 10px;
 }
 
-#help:after {left: 2px;bottom: -18px;}
+#help:after {left: 2px;bottom: -18.4px;}
 #help:before {left: -5px;white-space: nowrap;top: 41px;}
 
 .ml-host-state:after {left: 8px;bottom: -19px;}
@@ -92,7 +92,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 }
 
 #host-name:before {
-    left: -20px;
+    left: -32px;
     top: 38px;
     white-space: pre-line;
     width: 225px;
@@ -180,6 +180,10 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 }
 
 .ml-tab-item[tooltip][content="fond-images"]:before
+{
+    margin-top: -64px;
+}
+.ml-tab-item[tooltip][content="scrollbars"]:before
 {
     margin-top: -45px;
 }
