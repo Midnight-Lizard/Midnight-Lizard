@@ -813,9 +813,11 @@
         "message": "Shortcut"
     },
     "colorSchemeName_Custom": {
+        "description": "color scheme name",
         "message": "Custom"
     },
     "colorSchemeName_New": {
+        "description": "color scheme name",
         "message": "New color scheme"
     },
     "localStorageOverrideConfirmationMessage": {
