@@ -53,7 +53,7 @@
     },
     "useDefaultSchedule_@title": {
         "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Базовым является расписание из настроек по умолчанию.\nЕсли Вы хотите использовать одно расписание на всех сайтах, то необходимо выбрать цветовую схему «Default», поменять расписание в ней и затем нажать кнопку «В умолчания», чтобы обновить цветовую схему по умолчанию."
+        "message": "Базовым является расписание из настроек по умолчанию.\nЧтобы использовать одно расписание на всех сайтах,\nнеобходимо установить его на вкладке «Глобальные опции»."
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -486,6 +486,14 @@
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
         "message": "     Общие настройки\n―――――――――――――――――――\n На данной вкладке находятся общие для всей страницы настройки."
     },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Активация"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "    Настройки активации\n―――――――――――――――――――\n Используйте данную вкладку, чтобы указать какие страницы и когда именно должны быть обработаны или же оставлены без изменений."
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Фон"
@@ -820,6 +828,70 @@
         "description": "color scheme name",
         "message": "Новая цветовая схема"
     },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "По умолчанию"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Без цветовой схемы"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Пепельная мгла"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Душистая мята"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Лесной пруд"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Спелый миндаль"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Закатные паруса"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Хэллоуин"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Утренний туман"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Манускрипт"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Повышенная контрастность"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Оттенки серого"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Негатив яркости"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Негатив оттенков серого"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Жёлтый на чёрном"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Зелёный на чёрном"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Ваше локальное хранилище настроек уже содержит некоторую информацию.\nХотите ли Вы перезаписать эту информацию данными из внешнего хранилища для синхронизации и потерять перезаписанные данные?"
@@ -958,7 +1030,7 @@
     },
     "default_scheduleStartHour_@title": {
         "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать все сайты, использующие расписание по умолчанию, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
@@ -966,7 +1038,7 @@
     },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать все сайты, использующие расписание по умолчанию, только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
     },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
