@@ -483,7 +483,7 @@
         "message": "Common"
     },
     "commonTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page."
     },
     "activationTab_text_label": {
@@ -491,7 +491,7 @@
         "message": "Activation"
     },
     "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
     },
     "backgroundTab_text_label": {
@@ -499,7 +499,7 @@
         "message": "Background"
     },
     "backgroundTab_@tooltip": {
-        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Background color settings\n―――――――――――――――――――\n This tab contains settings that define how elements on the page would be filled with color."
     },
     "buttonsTab_text_label": {
@@ -507,7 +507,7 @@
         "message": "Buttons"
     },
     "buttonsTab_@tooltip": {
-        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "  Button background color settings\n―――――――――――――――――――\n This tab contains settings that define how buttons and other elements which play this role on the page would be filled with color."
     },
     "textTab_text_label": {
@@ -515,7 +515,7 @@
         "message": "Text"
     },
     "textTab_@tooltip": {
-        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Text color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all text elements on the page."
     },
     "linkTab_text_label": {
@@ -523,7 +523,7 @@
         "message": "Links"
     },
     "linkTab_@tooltip": {
-        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Hyperlinks color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all hyperlinks on the page."
     },
     "borderTab_text_label": {
@@ -531,7 +531,7 @@
         "message": "Borders"
     },
     "borderTab_@tooltip": {
-        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Borders color settings\n―――――――――――――――――――\n This tab contains color adjustment settings for all borders and lines on the page."
     },
     "imagesTab_text_label": {
@@ -539,7 +539,7 @@
         "message": "Images"
     },
     "imagesTab_@tooltip": {
-        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the saturation and brightness adjustment of the images and pictures."
     },
     "backgroundImagesTab_text_label": {
@@ -547,7 +547,7 @@
         "message": "Fond images"
     },
     "backgroundImagesTab_@tooltip": {
-        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": " Background images adjustment settings\n―――――――――――――――――――\n This tab contains settings for the background images saturation and brightness adjustment.\n Background images are a special type of an element background fill. Such images are usually inside or behind the text."
     },
     "scrollbarsTab_text_label": {
@@ -555,7 +555,7 @@
         "message": "Scrollbars"
     },
     "scrollbarsTab_@tooltip": {
-        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
     },
     "settingsHeader_text_label": {
@@ -567,7 +567,7 @@
         "message": "Toggle current website between\nwhitelist and blacklist"
     },
     "hostName_@tooltip": {
-        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Current website\n―――――――――――――――\n Click to toggle current website between whitelist and blacklist.\n To blacklist all websites by default go to the 'Global settings' tab."
     },
     "helpLink_@tooltip": {
@@ -658,7 +658,7 @@
         "message": "Color schemes"
     },
     "editSchemesTab_@tooltip": {
-        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Color schemes editing\n―――――――――――――――――――\n Settings currently applied on the popup can be used to create a new color scheme or update an existing one. If you create a new color scheme it will be available on all other websites.\n Even after creation you can adjust your color scheme, update it once and changes will be automatically applied to all websites where this color scheme is used. You can also delete your color scheme at any time.\n The same way you can override predefined color schemes with new settings and names. Deletion of the predefined color schemes will only remove overrides and restore their original state.\n Find more examples under the question mark in the popup top-left corner."
     },
     "currentColorScheme_text_label": {
@@ -1045,7 +1045,7 @@
         "message": "Global settings"
     },
     "globalstab_@tooltip": {
-        "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "      Global settings\n―――――――――――――――――――\n This tab contains global settings and shortcuts to default settings.\n Here you can change settings sync, toggle black\/white list mode and browser theme adjustment, edit default schedule."
     },
     "resetThemeConfirmationMessage": {
