@@ -1280,6 +1280,8 @@ height: 148px;
 .ml-matches-input {
     height: auto;
     resize: none;
+    --ml-highlightedtext-color:Text;
+    --ml-text-color:Text;
 }
 
 @supports (-moz-appearance: button)
