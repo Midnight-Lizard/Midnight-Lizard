@@ -715,8 +715,10 @@ namespace MidnightLizard.ContentScript
                             break;
                         }
                         isLink = tag instanceof HTMLAnchorElement;
-                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none || (tag.tagName === ns.img);
+                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !==
+                            Colors.RgbaColor.Transparent;
+                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none ||
+                            (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
                     }
 
                     if (isVisible)

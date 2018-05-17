@@ -1,7 +1,9 @@
+html[ml-stage="loading"],
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
 
 @media screen {
-    html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp) {
+    html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp),
+    html[ml-stage="loading"] canvas:not(#imp):not(.imp):not(imp) {
         filter: brightness(var(--ml-background-lightness-limit))!important;
     }
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
