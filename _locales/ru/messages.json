@@ -483,7 +483,7 @@
         "message": "Общие"
     },
     "commonTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Общие настройки\n―――――――――――――――――――\n На данной вкладке находятся общие для всей страницы настройки."
     },
     "activationTab_text_label": {
@@ -491,7 +491,7 @@
         "message": "Активация"
     },
     "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Настройки активации\n―――――――――――――――――――\n Используйте данную вкладку, чтобы указать какие страницы и когда именно должны быть обработаны или же оставлены без изменений."
     },
     "backgroundTab_text_label": {
@@ -499,7 +499,7 @@
         "message": "Фон"
     },
     "backgroundTab_@tooltip": {
-        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Настройки цвета фона\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие как будут обрабатываться цвета фонов на странице."
     },
     "buttonsTab_text_label": {
@@ -507,7 +507,7 @@
         "message": "Кнопки"
     },
     "buttonsTab_@tooltip": {
-        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Настройки фона кнопок\n―――――――――――――――――――\n На этой вкладке находятся настройки фонов кнопок и других элементов, играющих эту роль."
     },
     "textTab_text_label": {
@@ -515,7 +515,7 @@
         "message": "Текст"
     },
     "textTab_@tooltip": {
-        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Настройки цвета текста\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех текстовых элементов, приравненных к тексту маленьких фоновых изображений и ссылок, имеющих белый, серый, черный или совпадающий с текстом оттенок."
     },
     "linkTab_text_label": {
@@ -523,7 +523,7 @@
         "message": "Ссылки"
     },
     "linkTab_@tooltip": {
-        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "   Настройки цвета гиперссылок\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех гиперссылок на странице, кроме ссылок, имеющих белый, серый, черный или совпадающий с текстом оттенок."
     },
     "borderTab_text_label": {
@@ -531,7 +531,7 @@
         "message": "Границы"
     },
     "borderTab_@tooltip": {
-        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Настройки цвета границ\n―――――――――――――――――――\n На этой вкладке находятся настройки цвета всех границ и линий на странице."
     },
     "imagesTab_text_label": {
@@ -539,7 +539,7 @@
         "message": "Изображения"
     },
     "imagesTab_@tooltip": {
-        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": " Настройки обработки изображений\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие, как будут обрабатываться все изображения на странице."
     },
     "backgroundImagesTab_text_label": {
@@ -547,7 +547,7 @@
         "message": "Картинки фона"
     },
     "backgroundImagesTab_@tooltip": {
-        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "  Настройки фоновых изображений\n―――――――――――――――――――\n На этой вкладке находятся настройки, определяющие, как будут обрабатываться все фоновые изображения на странице.\n Фоновые изображения являются особым видом заливки фона элементов. Зачастую поверх фоновых изображений располагается текст."
     },
     "scrollbarsTab_text_label": {
@@ -555,7 +555,7 @@
         "message": "Прокрутки"
     },
     "scrollbarsTab_@tooltip": {
-        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "   Настройки полос прокрутки\n―――――――――――――――――――\n На этой вкладке находятся настройки отображения полос прокрутки.\nНастройка вида полос прокрутки не поддерживается в Firefox."
     },
     "settingsHeader_text_label": {
@@ -567,7 +567,7 @@
         "message": "Переключатель между черным\nи белым списками"
     },
     "hostName_@tooltip": {
-        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Текущий сайт\n―――――――――――――――\n Кликните на название сайта, чтобы переключить его между черным и белым списками.\n Чтобы все сайты были в черном списке по умолчанию, добавьте один сайт в черный список, а затем нажмите «В умолчания», чтобы это стало умолчанием для всех новых сайтов."
     },
     "helpLink_@tooltip": {
@@ -658,7 +658,7 @@
         "message": "Цветовые схемы"
     },
     "editSchemesTab_@tooltip": {
-        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "  Редактирование цветовых схем\n―――――――――――――――――――\n На этой вкладке Вы можете как создавать новые, так и обновлять или удалять существующие цветовые схемы, используя параметры из цветовой схемы, примененной в данный момент на окне настроек.\n Вы можете отредактировать существующую цветовую схему в любой момент и изменения автоматически применятся на всех сайтах, где она используется, во время следующей перезагрузки страницы.\n Вы можете переопределить даже встроенные цветовые схемы. Однако их нельзя удалить - удаляется лишь информация о переопределении."
     },
     "currentColorScheme_text_label": {
@@ -1045,7 +1045,7 @@
         "message": "Глобальные опции"
     },
     "globalstab_@tooltip": {
-        "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Глобальные настройки\n―――――――――――――――――――\n На данной вкладке находятся глобальные настройки и возможен быстрый доступ к некоторым настройкам по умолчанию.\n Здесь можно изменить параметры синхронизации, переключиться между режимом белых\/черных списков, определить нужно ли изменять тему браузера и установить расписание активации расширения по умолчанию."
     },
     "resetThemeConfirmationMessage": {
