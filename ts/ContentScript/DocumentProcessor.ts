@@ -254,6 +254,7 @@ namespace MidnightLizard.ContentScript
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
                 this._dorm.set(doc, new Map<string, RoomRules>());
                 this._settingsManager.computeProcessingMode(doc);
+                this.processMetaTheme(doc);
                 this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
                 if (this._settingsManager.isComplex)
                 {
@@ -2136,7 +2137,7 @@ namespace MidnightLizard.ContentScript
                 textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
             const
                 backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
-                altBackgroundColor = this._backgroundColorProcessor.changeColor("grb(250,250,250)", true, doc.documentElement).color!,
+                altBackgroundColor = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement).color!,
                 transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
                 transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
                 textColor = textColorEntry.color!,
@@ -2217,6 +2218,19 @@ namespace MidnightLizard.ContentScript
             mainColorsStyle.mlIgnore = true;
             mainColorsStyle.textContent = `:root { ${cssText} }`;
             (doc.head || doc.documentElement).appendChild(mainColorsStyle);
+        }
+
+        protected processMetaTheme(doc: Document)
+        {
+            let metaTheme = doc.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+            if (!metaTheme)
+            {
+                metaTheme = doc.createElement("meta");
+                metaTheme.name = "theme-color";
+                doc.head.appendChild(metaTheme);
+            }
+            const rgbColorString = this._backgroundColorProcessor.changeColor("rgb(240,240,240)", false, metaTheme).color!;
+            metaTheme.content = Colors.RgbaColor.toHexColorString(rgbColorString);
         }
 
         protected createPageScript(doc: Document)
