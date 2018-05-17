@@ -479,7 +479,7 @@
         "message": "Común"
     },
     "commonTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar [Midnight Lizard] automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
     },
     "activationTab_text_label": {
@@ -491,7 +491,7 @@
         "message": "Fondos"
     },
     "backgroundTab_@tooltip": {
-        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Ajustes de color de fondo\n―――――――――――――――――――\n Esta pestaña contiene los ajustes para determinar como se rellenarán los elementos de la página con color."
     },
     "buttonsTab_text_label": {
@@ -499,7 +499,7 @@
         "message": "Botones"
     },
     "buttonsTab_@tooltip": {
-        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Ajustes de color del fondo del botón\n―――――――――――――――――――\n Esta pestaña contiene los ajustes para determinar como se rellenarán los botones y elementos similares de la página con color."
     },
     "textTab_text_label": {
@@ -507,7 +507,7 @@
         "message": "Texto"
     },
     "textTab_@tooltip": {
-        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Ajustes de color de texto\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los elementos de texto de la página."
     },
     "linkTab_text_label": {
@@ -515,7 +515,7 @@
         "message": "Enlaces"
     },
     "linkTab_@tooltip": {
-        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Ajustes de color de enlaces\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los enlaces de la página."
     },
     "borderTab_text_label": {
@@ -523,7 +523,7 @@
         "message": "Bordes"
     },
     "borderTab_@tooltip": {
-        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Ajustes de color de bordes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todos los bordes y líneas de la página."
     },
     "imagesTab_text_label": {
@@ -531,7 +531,7 @@
         "message": "Imágenes"
     },
     "imagesTab_@tooltip": {
-        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "       Ajustes de imágenes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de saturación y brillo de imágenes y fotografías."
     },
     "backgroundImagesTab_text_label": {
@@ -539,7 +539,7 @@
         "message": "Imágenes de fondo"
     },
     "backgroundImagesTab_@tooltip": {
-        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "     Ajustes de imágenes de fondo\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de saturación y brillo de imágenes de fondo.\nLas imágenes de fondo son un tipo especial de elemento de relleno de fondo. Estas imágenes suelen estar dentro o detrás del texto."
     },
     "scrollbarsTab_text_label": {
@@ -547,7 +547,7 @@
         "message": "Barra de desplazamiento"
     },
     "scrollbarsTab_@tooltip": {
-        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Ajustes de color de texto\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
     },
     "settingsHeader_text_label": {
@@ -559,7 +559,7 @@
         "message": "Cambiar la página web actual\nentre lista blanca y lista negra."
     },
     "hostName_@tooltip": {
-        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "    Página web actual\n―――――――――――――――\n Pulsa para cambiar la página actual entre lista blanca y lista negra.\n Para poner en lista negra todas las páginas web por defecto, pon en lista negra una y pulsa el botón 'Predeterminar'."
     },
     "helpLink_@tooltip": {
@@ -650,7 +650,7 @@
         "message": "Esquemas de colores"
     },
     "editSchemesTab_@tooltip": {
-        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style",
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
         "message": "  Edición de los esquemas de color\n―――――――――――――――――――\n Los ajustes aplicados actualmente en la ventana emergente pueden ser usados para crear un nuevo esquema de color o para actualizar uno existente. Si crea un esquema de color nuevo, este estará disponible en los otros sitios web.\n Incluso después de crear su esquema de color puede ajustarlo, actualizarlo y los cambios serán aplicados automaticamente a todos los sitios web donde esté utilizando este esquema de color. También puede borrar su esquema de color en cualquier momento.\n De la misma forma puede anular los esquemas de color predefinidos con nuevos nombres y ajustes. El borrado de los esquemas de color pedefinidos solo eliminará los anulados y restaurará su estado original.\n Encuentre más ejemplos bajo el signo de interrogación en la ventana emergente de la esquina superior izquierda."
     },
     "currentColorScheme_text_label": {
