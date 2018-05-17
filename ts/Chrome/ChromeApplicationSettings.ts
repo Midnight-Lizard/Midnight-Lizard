@@ -29,6 +29,11 @@ namespace Chrome
             return /mobile/gi.test(navigator.userAgent);
         }
 
+        get isDesktop()
+        {
+            return !/mobile/gi.test(navigator.userAgent);
+        }
+
         protected readonly _preserveDisplay: boolean = false;
         get preserveDisplay() { return this._preserveDisplay }
 

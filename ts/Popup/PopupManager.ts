@@ -91,10 +91,14 @@ namespace MidnightLizard.Popup
         protected setPopupScale()
         {
             this._popup.documentElement.style
-                .setProperty("--popup-scale", Math.min(
-                    this._popup.defaultView.innerWidth / 680.0,
-                    this._popup.defaultView.innerHeight / 600.0,
-                ).toString());
+                .setProperty("--popup-scale",
+                    (
+                        this._popup.defaultView.innerWidth / 680.0
+                        // Math.min(
+                        //     this._popup.defaultView.innerWidth / 680.0,
+                        //     this._popup.defaultView.innerHeight / 600.0,
+                        // )
+                    ).toString());
         }
 
         protected beforeSettingsInitialized(shift?: Colors.ComponentShift): void
@@ -151,31 +155,34 @@ namespace MidnightLizard.Popup
                     ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
                     : `https://addons.mozilla.org/${this._app.currentLocale}/firefox/addon/midnight-lizard-quantum/reviews/`;
 
-            this._commandManager.getCommands()
-                .then(commands =>
-                {
-                    for (const command of commands)
+            if (this._app.isDesktop)
+            {
+                this._commandManager.getCommands()
+                    .then(commands =>
                     {
-                        if (command.shortcut)
+                        for (const command of commands)
                         {
-                            switch (command.name)
+                            if (command.shortcut)
                             {
-                                case "global-toggle":
-                                    const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
-                                    isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
-                                        `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
-                                    break;
+                                switch (command.name)
+                                {
+                                    case "global-toggle":
+                                        const isEnabledSwitch = doc.getElementById("isEnabledSwitch")!;
+                                        isEnabledSwitch.setAttribute("tooltip", isEnabledSwitch.getAttribute("tooltip") +
+                                            `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
+                                        break;
 
-                                case "current-toggle":
-                                    const hostState = doc.querySelector(`[i18n="hostState"]`)!;
-                                    hostState.setAttribute("tooltip", hostState.getAttribute("tooltip") +
-                                        `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
-                                    break;
+                                    case "current-toggle":
+                                        const hostState = doc.querySelector(`[i18n="hostState"]`)!;
+                                        hostState.setAttribute("tooltip", hostState.getAttribute("tooltip") +
+                                            `\n${this._i18n.getMessage("shortcut_text_lable")}: ${command.shortcut}`);
+                                        break;
+                                }
                             }
                         }
-                    }
-                })
-                .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));
+                    })
+                    .catch(ex => this._app.isDebug && console.error("Commands acquiring failed.\n" + (ex.message || ex)));
+            }
 
             this._forgetAllSitesButton.onRoomRulesApplied = new Events.ArgumentedEventDispatcher<ContentScript.RoomRules>();
             this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied as any, this);

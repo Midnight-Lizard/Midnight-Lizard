@@ -61,26 +61,27 @@ namespace MidnightLizard.Popup
             super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n);
         }
 
-        protected initCurrentSettings()
+        protected async initCurrentSettings()
         {
-            Promise.all([this.getDefaultSettings(), this._settingsBus.getCurrentSettings()])
-                .then(([defaultSettings, currentSettings]) =>
+            try
+            {
+                const defaultSettings = await this.getDefaultSettings();
+                const currentSettings = await this._settingsBus.getCurrentSettings();
+                this._currentSettings = currentSettings;
+                this.updateSchedule();
+                this.initCurSet();
+                this._currentSiteSettings = { ...currentSettings };
+                if (currentSettings.location)
                 {
-                    this._currentSettings = currentSettings;
-                    this.updateSchedule();
-                    this.initCurSet();
-                    this._currentSiteSettings = { ...currentSettings };
-                    if (currentSettings.location)
-                    {
-                        this._rootUrl = currentSettings.location;
-                    }
-                    this._onSettingsInitialized.raise(this._shift);
-                })
-                .catch(ex =>
-                {
-                    this._app.isDebug && console.error(ex);
-                    this._onSettingsInitializationFailed.raise(ex);
-                });
+                    this._rootUrl = currentSettings.location;
+                }
+                this._onSettingsInitialized.raise(this._shift);
+            }
+            catch (ex)
+            {
+                this._app.isDebug && console.error(ex);
+                this._onSettingsInitializationFailed.raise(ex);
+            }
         }
 
         public getCurrentSorage()

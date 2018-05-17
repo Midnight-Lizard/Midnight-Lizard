@@ -220,10 +220,13 @@ namespace MidnightLizard.ContentScript
                 doc.documentElement.removeAttribute("ml-stage");
                 doc.documentElement.removeAttribute("ml-mode");
                 doc.documentElement.removeAttribute("ml-stage-mode");
+                doc.documentElement.removeAttribute("ml-platform");
             }
             else
             {
                 doc.documentElement.setAttribute("ml-stage", stage);
+                doc.documentElement.setAttribute("ml-platform",
+                    this._app.isDesktop ? "desktop" : "mobile");
                 if (this._settingsManager.isActive)
                 {
                     doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);

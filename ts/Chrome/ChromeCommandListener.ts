@@ -1,6 +1,7 @@
 /// <reference path="../DI/-DI.ts" />
 /// <reference path="../Events/-Events.ts" />
 /// <reference path="../BackgroundPage/ICommandListener.ts" />
+/// <reference path="../Settings/IApplicationSettings.ts" />
 
 namespace Chrome
 {
@@ -13,12 +14,15 @@ namespace Chrome
             return this._onCommand.event;
         }
 
-        constructor()
+        constructor(app: MidnightLizard.Settings.IApplicationSettings)
         {
-            chrome.commands.onCommand.addListener(command =>
+            if (app.isDesktop)
             {
-                this._onCommand.raise(command);
-            });
+                chrome.commands.onCommand.addListener(command =>
+                {
+                    this._onCommand.raise(command);
+                });
+            }
         }
     }
 }

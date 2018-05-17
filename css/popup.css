@@ -1,11 +1,11 @@
 html:not(imp):not(#imp) {
     background-color: rgb(32, 32, 32);
-    --ml-background-background-color:Border;
+    --ml-background-background-color:ButtonBackground;
 }
 
 body {
     margin: 0;
-    min-width: 680px;
+    width: 680px;
     min-height: 600px;
     overflow: hidden!important;
     background-color: var(--main-background-color);
@@ -49,7 +49,7 @@ body {
     color: var(--main-color);
     text-shadow: 0 0 1px var(--main-text-shadow-color);
     --ml-svgbackground-fill:Text;
-    height: 99%;
+    /* height: 99%; */
     border: 1px solid var(--main-border-color);
 }
 
@@ -77,6 +77,7 @@ body {
     position: relative;
     vertical-align: baseline;
     height: 47px;
+    width: 678px;
     z-index: 100;
     /* box-shadow: 0 0 3px var(--main-shadow-color); */
 }
@@ -88,7 +89,7 @@ body {
     background: var(--alt-background-color);
     height: 40px;
     display: table;
-    width: 100%;
+    width: 678px;
     text-align: center;
     z-index: 100;
 }
@@ -130,7 +131,7 @@ body {
 
 .ml-dialog-settings {
     display: table;
-    width: 100%;
+    width: 678px;
     min-height: 500px;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -575,6 +576,13 @@ select.ml-dialog-input-text {
     content: "\1F899";
     pointer-events: none;
 }
+html[ml-platform="mobile"] #change-log-link>a:after {
+    right: 1px;
+    bottom: 16px;
+    content: "\2B06";
+    pointer-events: none;
+}
+
 #change-log-link>a * {
     --ml-ignore:false;
 }
@@ -1305,6 +1313,9 @@ height: 148px;
     cursor: help;
 }
 
+.ml-input-container:not(#imp):not(.imp):not(imp) .ml-match-current-page:not(#imp):not(.imp):not(imp) {
+    background-color: transparent!important;
+}
 .ml-match-current-page {
     position: absolute;
     right: calc((100% - 267px) / 2);
