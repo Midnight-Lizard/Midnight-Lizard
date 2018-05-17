@@ -346,6 +346,9 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager
                 .applySettings()
+                .then(x => Object.assign(
+                    this._settingsManager.currentSiteSettings,
+                    this._settingsManager.currentSettings))
                 .then(x => this.updateButtonStates())
                 .catch(ex => alert(this._i18n.getMessage("applyOnPageFailureMessage") + (ex.message || ex)));
             return false;
