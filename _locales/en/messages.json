@@ -392,11 +392,11 @@
     },
     "imageExample_text_label": {
         "description": "imageExample_text_label: text on the label",
-        "message": "Image example"
+        "message": "Image processing example"
     },
     "imageExample_@title": {
         "description": "imageExample_@title: text on the tooltip\/hint",
-        "message": "Image example"
+        "message": "Example of processing images"
     },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
@@ -902,15 +902,15 @@
     },
     "backgroundExample_text_label": {
         "description": "backgroundExample_text_label: text on the label",
-        "message": "Background examples"
+        "message": "Background processing example"
     },
     "backgroundExample_@title": {
         "description": "backgroundExample_@title: text on the tooltip\/hint",
-        "message": "Example of different background colors processing"
+        "message": "Example of processing different background colors"
     },
     "smallBackgroundImageExample_@title": {
         "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
-        "message": "Example of small background images processing.\nIf main background is dark enough then small background images are inverted.\nIn this case 'Brightness' of background images is not affecting them."
+        "message": "Example of processing small background images.\nIf main background is dark enough then small background images are inverted.\nIn this case 'Brightness' of background images is not affecting them."
     },
     "smallBackgroundImageExample_text_label": {
         "description": "smallBackgroundImageExample_text_label: text on the label",
@@ -918,7 +918,7 @@
     },
     "scrollbarExample_text_label": {
         "description": "scrollbarExample_text_label: text on the label",
-        "message": "Scrollbar example"
+        "message": "Scrollbars processing example"
     },
     "scrollbarExample_@title": {
         "description": "scrollbarExample_@title: text on the tooltip\/hint",
@@ -926,19 +926,19 @@
     },
     "buttonExample_text_label": {
         "description": "buttonExample_text_label: text on the label",
-        "message": "Button examples"
+        "message": "Buttons processing example"
     },
     "buttonExample_@title": {
         "description": "buttonExample_@title: text on the tooltip\/hint",
-        "message": "Example of different buttons colors processing"
+        "message": "Example of processing buttons with different background colors"
     },
     "borderExample_@title": {
         "description": "borderExample_@title: text on the tooltip\/hint",
-        "message": "Example of different border colors processing"
+        "message": "Example of processing different border colors"
     },
     "borderExample_text_label": {
         "description": "borderExample_text_label: text on the label",
-        "message": "Border examples"
+        "message": "Border processing example"
     },
     "backgroundExampleOriginal_@title": {
         "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
@@ -966,11 +966,11 @@
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
-        "message": "Example of different background colors processing with increased contrast.\nContrast depends on an element size so on the real page it might look different."
+        "message": "Example of processing different background colors with increased contrast.\nContrast depends on an element size so on the real page it might look different."
     },
     "backgroundExampleWithoutContrast_@title": {
         "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
-        "message": "Example of different background colors processing with no contrast changes."
+        "message": "Example of processing different background colors with no contrast changes."
     },
     "mode_@title": {
         "description": "mode_@title: text on the tooltip\/hint",
