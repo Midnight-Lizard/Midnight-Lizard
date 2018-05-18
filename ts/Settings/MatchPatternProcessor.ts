@@ -6,7 +6,7 @@ namespace MidnightLizard.Settings
     const hostSegment = "(\\*|(?:\\*\\.)?(?:[^/*]+))?";
     const pathSegment = "(.*)";
     const matchPatternRegExp = new RegExp(
-        `^${schemeSegment}://${hostSegment}/${pathSegment}$`
+        `^${schemeSegment}://${hostSegment}/${pathSegment}$`, "i"
     );
 
     export abstract class IMatchPatternProcessor
