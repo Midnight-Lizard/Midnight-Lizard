@@ -930,7 +930,7 @@
     },
     "buttonExample_@title": {
         "description": "buttonExample_@title: text on the tooltip\/hint",
-        "message": "Example of different buttons colors processing"
+        "message": "Example of processing buttons with different background colors"
     },
     "borderExample_@title": {
         "description": "borderExample_@title: text on the tooltip\/hint",
