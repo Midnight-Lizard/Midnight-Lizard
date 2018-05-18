@@ -3,34 +3,43 @@
 
 **Midnight Lizard** is a Google **Chrome**™ and Mozilla **Firefox**™ extension that changes web page colors, brightness and contrast to increase **readability** and brings dark **night mode** to all websites.
 
-Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier to use.
-You can set up different color schemes for each favorite website and one default theme for all other sites.
-Choose from the predefined schemes or create your own. Number of user color schemes is unlimited.
+Midnight Lizard will help you to customize an appearance of the entire internet in order to make it easier, more fun, productive and healthier to use.
+It is not just a night mode, you can set up different color schemes for each of your favorite websites and one default theme for all other sites.
+Choose from the predefined color schemes or create your own: dark, light or colorful.
+Adjust the web to your vision!
 
 ![Settings menu example](/img/screenshots/popup-example.png?raw=true "Settings menu example")
 
 ## ADVANTAGES
 
-  ✔ Intelligent dark themes  
-  ✔ Inverted brightness instead of inverted colors  
-  ✔ Predefined color schemes like: Increased contrast, Grayscale, Green On Black, etc.  
-  ✔ Significantly improves readability  
-  ✔ Has options to schedule extension activation and deactivation  
-  ✔ Increased differentiation between similar background colors  
-  ✔ Reduces eye strain and disruption of sleep patterns  
-  ✔ Returns images to the original state on mouse hover  
-  ✔ Enhanced syntax highlighting (for programmers)  
-  ✔ Has blue filter to replace blue light with red light  
-  ✔ Essential at night time or in low light environment  
-  ✔ Also useful during the daytime with light and contrast themes  
-  ✔ All colors can be changed with hue gravity option  
-  ✔ File export and import for color schemes  
-  ✔ Completely customizable  
-  ✔ Dynamic browser theme adjustment (Firefox)  
-  ✔ All settings synchronized across devices by default  
-  ✔ Works almost everywhere  
-  ✔ Easy to enable/disable by a global toggle and a keyboard shortcut  
-  ✔ Free forever  
+✔ Intelligent dark themes  
+✔ Inverted brightness instead of inverted colors  
+✔ Predefined color schemes for accessibility:  
+  - Increased contrast (Light),  
+  - Grayscale (Light),  
+  - Inverted Light (Dark),  
+  - Inverted Grayscale (Dark),  
+  - Green on Black (Dark),  
+  - Yellow on Black (Dark).  
+
+✔ Significantly improves readability  
+✔ Has options to schedule extension activation and deactivation  
+✔ Include and exclude URL pattern matching  
+✔ Increased differentiation between similar background colors  
+✔ Reduces eye strain and disruption of sleep patterns  
+✔ Returns images to the original state on mouse hover  
+✔ Enhanced syntax highlighting (for programmers)  
+✔ Has blue filter to replace blue light with red light  
+✔ Essential at night time or in low light environment  
+✔ Also useful during the daytime with light and contrast themes  
+✔ All colors can be changed with a hue gravity option  
+✔ File export and import for color schemes  
+✔ All settings synchronized across devices by default  
+✔ Easy to enable/disable by toggles and keyboard shortcuts  
+✔ Dynamic browser theme adjustment (Firefox)  
+✔ Completely customizable  
+✔ Works almost everywhere  
+✔ Free forever  
 
 ## CONTRIBUTING
   🌍 [Help translate Midnight Lizard into other languages](https://crowdin.com/project/midnight-lizard) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://crowdin.com/project/midnight-lizard)  
