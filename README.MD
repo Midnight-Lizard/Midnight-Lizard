@@ -15,12 +15,12 @@ Adjust the web to your vision!
 ✔ Intelligent dark themes  
 ✔ Inverted brightness instead of inverted colors  
 ✔ Predefined color schemes for accessibility:  
-  - Increased contrast (Light),  
-  - Grayscale (Light),  
-  - Inverted Light (Dark),  
-  - Inverted Grayscale (Dark),  
-  - Green on Black (Dark),  
-  - Yellow on Black (Dark).  
+  - Increased contrast (Light)  
+  - Grayscale (Light)  
+  - Inverted Light (Dark)  
+  - Inverted Grayscale (Dark)  
+  - Green on Black (Dark)  
+  - Yellow on Black (Dark)  
 
 ✔ Significantly improves readability  
 ✔ Has options to schedule extension activation and deactivation  
