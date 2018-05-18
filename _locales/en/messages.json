@@ -392,7 +392,7 @@
     },
     "imageExample_text_label": {
         "description": "imageExample_text_label: text on the label",
-        "message": "Image example"
+        "message": "Image processing example"
     },
     "imageExample_@title": {
         "description": "imageExample_@title: text on the tooltip\/hint",
