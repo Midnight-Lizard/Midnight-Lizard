@@ -1121,5 +1121,9 @@
     "doNotInvertContent_@title": {
         "description": "doNotInvertContent_@title: text on the tooltip\/hint",
         "message": "Установите здесь галочку, чтобы предотвратить инвертирование динамического содержимого.\nДанная опция определяет может ли быть инвертировано такое содержимое, как:\nкарты, PDF файлы, динамические рисунки, анимированные изображения и т.п. \nКогда такое содержимое инвертируется, оно обрабатывается в соответствии с текущими настройками фона.\nА если не инвертируется, то в соответствии с текущими настройками изображений."
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "локальных файлов"
     }
 }
