@@ -371,6 +371,11 @@ namespace MidnightLizard.Settings
                 settings.modeAutoSwitchLimit = 5000;
             }
 
+            if (settings.doNotInvertContent === undefined)
+            {
+                settings.doNotInvertContent = false;
+            }
+
             if (settings.includeMatches === undefined)
             {
                 settings.includeMatches = "";

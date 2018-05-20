@@ -1,4 +1,5 @@
-.app-imagery-mode canvas.widget-scene-canvas, .app-imagery-mode .canvas-container canvas
+.app-imagery-mode canvas.widget-scene-canvas,
+.app-imagery-mode .canvas-container canvas
 {
     --ml-background-background-color:Image;
     --ml-no-invert:true;

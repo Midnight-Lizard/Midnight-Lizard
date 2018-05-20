@@ -1699,16 +1699,18 @@ namespace MidnightLizard.ContentScript
             roomRules: RoomRules)
         {
             let filterValue: Array<string>;
-            const customCanvasRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
-            let bgrSet = this.shift[customCanvasRole] || this.shift.Background, txtSet = this.shift.Text;
-            if (this.shift.Background.lightnessLimit < 0.3 && tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+            if (this.shift.Background.lightnessLimit < 0.3 &&
+                this._settingsManager.currentSettings.doNotInvertContent === false &&
+                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
             {
+                const customDarkRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
+                const darkSet = this.shift[customDarkRole] || this.shift.Background, txtSet = this.shift.Text;
                 roomRules.backgroundColor && (roomRules.backgroundColor.color = null);
                 filterValue = [
                     tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
                     tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
-                    bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
-                    `brightness(${float.format(Math.max(1 - bgrSet.lightnessLimit, 0.88))})`,
+                    darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
+                    `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, 0.88))})`,
                     `hue-rotate(180deg) invert(1)`,
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
                     `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
@@ -1716,11 +1718,13 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
+                const customLightRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
+                const lightSet = this.shift[customLightRole] || this.shift.Image;
                 filterValue = [
                     tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
-                    bgrSet.saturationLimit < 1 ? `saturate(${bgrSet.saturationLimit})` : "",
+                    lightSet.saturationLimit < 1 ? `saturate(${lightSet.saturationLimit})` : "",
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                    bgrSet.lightnessLimit < 1 ? `brightness(${bgrSet.lightnessLimit})` : ""
+                    lightSet.lightnessLimit < 1 ? `brightness(${lightSet.lightnessLimit})` : ""
                 ];
             }
             roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };

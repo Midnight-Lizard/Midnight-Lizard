@@ -29,24 +29,26 @@ namespace MidnightLizard.Settings
     {
         userColorSchemes?: Array<ColorScheme>;
         userColorSchemeIds?: Array<ColorSchemeName>;
+        changeBrowserTheme?: boolean;
+        isEnabled?: boolean;
+        location?: string;
+
         colorSchemeId: ColorSchemeName;
         colorSchemeName: string;
-        location?: string;
-        isEnabled?: boolean;
         blueFilter: number;
         mode: ProcessingMode;
         modeAutoSwitchLimit: number;
 
+        runOnThisSite: boolean;
         useDefaultSchedule: boolean;
         scheduleStartHour: number;
         scheduleFinishHour: number
         includeMatches: string;
         excludeMatches: string;
 
-        runOnThisSite: boolean;
         restoreColorsOnCopy: boolean;
         restoreColorsOnPrint: boolean;
-        changeBrowserTheme?: boolean;
+        doNotInvertContent: boolean;
 
         backgroundSaturationLimit: number;
         backgroundContrast: number;
