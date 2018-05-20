@@ -445,5 +445,9 @@
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "Składnia"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the link",
+        "message": "Nie inwertować dynamiczne"
     }
 }
