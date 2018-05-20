@@ -447,7 +447,7 @@
         "message": "Składnia"
     },
     "doNotInvertContent_text_label": {
-        "description": "doNotInvertContent_text_label: text on the link",
+        "description": "doNotInvertContent_text_label: text on the label",
         "message": "Nie inwertować dynamiczne"
     }
 }
