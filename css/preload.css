@@ -10,4 +10,6 @@ html[ml-is-active][ml-stage="preload"]>body {
     bottom: 0px;
     right: 0px;
     left: 0px;
+    margin: 0px;
+    padding: 0px;
 }
