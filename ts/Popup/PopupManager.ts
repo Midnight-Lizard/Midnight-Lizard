@@ -226,8 +226,7 @@ namespace MidnightLizard.Popup
             });
             Controls.Slider.initSliders(doc);
 
-            this._hostName.innerText = this.currentSiteSettings.location &&
-                new URL(this.currentSiteSettings.location).hostname || "current page";
+            this._hostName.innerText = this.getHostName();
 
             this.fillColorSchemesSelectLists();
             this.setUpInputFields(this.currentSiteSettings);
@@ -236,6 +235,20 @@ namespace MidnightLizard.Popup
             this.updateButtonStates();
             this.toggleSchedule();
             this.onColorSchemeForEditChanged();
+        }
+
+        private getHostName(): string
+        {
+            if (this.currentSiteSettings.location)
+            {
+                const location = new URL(this.currentSiteSettings.location)
+                if(location.protocol==="file:")
+                {
+                    return this._i18n.getMessage("localFiles_text_label");
+                }
+                return location.hostname;
+            }
+            return "current page";
         }
 
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
