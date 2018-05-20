@@ -449,5 +449,9 @@
     "doNotInvertContent_text_label": {
         "description": "doNotInvertContent_text_label: text on the label",
         "message": "Nie inwertować dynamiczne"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "plików lokalnych"
     }
 }
