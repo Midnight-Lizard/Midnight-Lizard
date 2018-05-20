@@ -52,7 +52,6 @@ namespace MidnightLizard.ContentScript
     {
         protected _rootDocumentContentLoaded: boolean = false;
         protected readonly _rootImageUrl: string;
-        protected readonly _isPdf: boolean;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
         protected readonly _images = new Map<string, BackgroundImage>();
         protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
@@ -110,7 +109,6 @@ namespace MidnightLizard.ContentScript
         {
             this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload);
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
-            this._isPdf = /.+\.pdf(#.*)?/i.test(_rootDocument.location.href);
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
                 [
@@ -321,7 +319,8 @@ namespace MidnightLizard.ContentScript
             {
                 if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
                 {
-                    if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
+                    if (tag instanceof HTMLCanvasElement ||
+                        tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                     {
                         return true;
                     }
@@ -1296,7 +1295,8 @@ namespace MidnightLizard.ContentScript
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
 
-                if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
+                if (tag instanceof HTMLCanvasElement ||
+                    tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                 {
                     this.processInaccessibleTextContent(tag, roomRules);
                 }
@@ -1556,7 +1556,8 @@ namespace MidnightLizard.ContentScript
                             }
                         }
 
-                        if (tag instanceof HTMLCanvasElement || this._isPdf && tag instanceof HTMLEmbedElement)
+                        if (tag instanceof HTMLCanvasElement ||
+                            tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                         {
                             this.processInaccessibleTextContent(tag, roomRules);
                         }

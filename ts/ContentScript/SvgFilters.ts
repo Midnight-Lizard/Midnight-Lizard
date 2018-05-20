@@ -45,13 +45,10 @@ namespace MidnightLizard.ContentScript
 
             svg.appendChild(this.createBlueFilter(doc));
 
-            if (doc.location && /.+\.pdf(#.*)?/i.test(doc.location.href))
-            {
-                svg.appendChild(this.createColorReplacementFilter(
-                    doc, FilterType.PdfFilter,
-                    new Colors.RgbaColor(82, 86, 89, 1),
-                    new Colors.RgbaColor(240, 240, 240, 1)));
-            }
+            svg.appendChild(this.createColorReplacementFilter(
+                doc, FilterType.PdfFilter,
+                new Colors.RgbaColor(240, 240, 240, 1),
+                new Colors.RgbaColor(82, 86, 89, 1)));
 
             (this._app.browserName === Settings.BrowserName.Chrome
                 ? doc.head || doc.documentElement
@@ -78,8 +75,8 @@ namespace MidnightLizard.ContentScript
 
         private createColorReplacementFilter(doc: Document,
             filterId: string,
-            originalColor: Colors.RgbaColor,
-            newColor: Colors.RgbaColor)
+            newColor: Colors.RgbaColor,
+            ...originalColors: Colors.RgbaColor[])
         {
             const replaceColorFilter = doc.createElementNS(svgNs, "filter");
             replaceColorFilter.id = filterId;
@@ -93,11 +90,11 @@ namespace MidnightLizard.ContentScript
             feFuncG.setAttribute("type", "discrete");
             feFuncB.setAttribute("type", "discrete");
             feFuncR.setAttribute("tableValues",
-                this.convertColorToComponentTransfer(originalColor.red));
+                this.convertColorsToComponentTransfer(...originalColors.map(x => x.red)));
             feFuncG.setAttribute("tableValues",
-                this.convertColorToComponentTransfer(originalColor.green));
+                this.convertColorsToComponentTransfer(...originalColors.map(x => x.green)));
             feFuncB.setAttribute("tableValues",
-                this.convertColorToComponentTransfer(originalColor.blue));
+                this.convertColorsToComponentTransfer(...originalColors.map(x => x.blue)));
             feComponentTransfer.appendChild(feFuncR);
             feComponentTransfer.appendChild(feFuncG);
             feComponentTransfer.appendChild(feFuncB);
@@ -130,9 +127,11 @@ namespace MidnightLizard.ContentScript
             return replaceColorFilter;
         }
 
-        private convertColorToComponentTransfer(colorComponent: number): string
+        private convertColorsToComponentTransfer(...colorComponents: number[]): string
         {
-            return "0 ".repeat(colorComponent) + "1 " + "0 ".repeat(255 - colorComponent);
+            const transfer = Array.apply(null, Array(256)).map(Number.prototype.valueOf, 0);
+            colorComponents.forEach(c => transfer[c] = 1);
+            return transfer.join(" ");
         }
     }
 }
