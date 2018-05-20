@@ -34,7 +34,7 @@ namespace MidnightLizard.Settings
             }
 
             let [, scheme, host, path] = match;
-            if (!host)
+            if (scheme !== "file" && !host)
             {
                 return this._i18n.getMessage("invalidMatchPatternHost", pattern);
             }
@@ -58,59 +58,56 @@ namespace MidnightLizard.Settings
             if (match)
             {
                 let [, scheme, host, path] = match;
-                if (host)
+
+                let regex = '^';
+
+                if (scheme === '*')
                 {
+                    regex += '(http|https)';
+                }
+                else
+                {
+                    regex += scheme;
+                }
 
-                    let regex = '^';
+                regex += '://';
 
-                    if (scheme === '*')
+                if (host && host === '*')
+                {
+                    regex += '[^/]+?';
+                }
+                else if (host)
+                {
+                    if (host.match(/^\*\./))
                     {
-                        regex += '(http|https)';
+                        regex += '[^/]*?';
+                        host = host.substring(2);
                     }
-                    else
-                    {
-                        regex += scheme;
-                    }
+                    regex += host.replace(/[\[\](){}?+\^\$\\\.|\-]/g, "\\$&");
+                }
 
-                    regex += '://';
-
-                    if (host && host === '*')
+                if (path)
+                {
+                    if (path === '*')
                     {
-                        regex += '[^/]+?';
+                        regex += '(/.*)?';
                     }
-                    else if (host)
+                    else if (path.charAt(0) !== '/')
                     {
-                        if (host.match(/^\*\./))
-                        {
-                            regex += '[^/]*?';
-                            host = host.substring(2);
-                        }
-                        regex += host.replace(/[\[\](){}?+\^\$\\\.|\-]/g, "\\$&");
-                    }
-
-                    if (path)
-                    {
-                        if (path === '*')
-                        {
-                            regex += '(/.*)?';
-                        }
-                        else if (path.charAt(0) !== '/')
-                        {
-                            regex += '/';
-                            regex += path
-                                .replace(/[\[\](){}?+\^\$\\\.|\-]/g, "\\$&")
-                                .replace(/\*/g, '.*?');
-                            regex += '/?';
-                        }
-                    }
-                    else
-                    {
+                        regex += '/';
+                        regex += path
+                            .replace(/[\[\](){}?+\^\$\\\.|\-]/g, "\\$&")
+                            .replace(/\*/g, '.*?');
                         regex += '/?';
                     }
-
-                    regex += '$';
-                    return new RegExp(regex, "i");
                 }
+                else
+                {
+                    regex += '/?';
+                }
+
+                regex += '$';
+                return new RegExp(regex, "i");
             }
             return /.*/;
         }
