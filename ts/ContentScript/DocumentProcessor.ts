@@ -2224,15 +2224,18 @@ namespace MidnightLizard.ContentScript
 
         protected processMetaTheme(doc: Document)
         {
-            let metaTheme = doc.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
-            if (!metaTheme)
+            if (doc.head)
             {
-                metaTheme = doc.createElement("meta");
-                metaTheme.name = "theme-color";
-                doc.head.appendChild(metaTheme);
+                let metaTheme = doc.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+                if (!metaTheme)
+                {
+                    metaTheme = doc.createElement("meta");
+                    metaTheme.name = "theme-color";
+                    doc.head.appendChild(metaTheme);
+                }
+                const rgbColorString = this._backgroundColorProcessor.changeColor("rgb(240,240,240)", false, metaTheme).color!;
+                metaTheme.content = Colors.RgbaColor.toHexColorString(rgbColorString);
             }
-            const rgbColorString = this._backgroundColorProcessor.changeColor("rgb(240,240,240)", false, metaTheme).color!;
-            metaTheme.content = Colors.RgbaColor.toHexColorString(rgbColorString);
         }
 
         protected createPageScript(doc: Document)
