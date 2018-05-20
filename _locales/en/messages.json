@@ -1113,13 +1113,5 @@
     "matchPatternsSyntaxLink_@title": {
         "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
         "message": "Open a complete match patterns syntax description in a new browser tab.\nPopup might be closed."
-    },
-    "doNotInvertContent_text_label": {
-        "description": "doNotInvertContent_text_label: text on the link",
-        "message": "Do not invert dynamic content"
-    },
-    "doNotInvertContent_@title": {
-        "description": "doNotInvertContent_@title: text on the tooltip\/hint",
-        "message": "Check this option to prevent dynamic content from being inverted.\nThis option controls wheather content like maps, PDF files, dynamic drawings,\nanimated images, etc can be inverted when background changes to dark.\nWhen content is inverted it is processed based on the current settings for backgrounds,\nand when it is not inverted then it is processed based on the current settings for images."
     }
 }
