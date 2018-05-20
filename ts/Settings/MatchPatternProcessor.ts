@@ -63,7 +63,7 @@ namespace MidnightLizard.Settings
 
                 if (scheme === '*')
                 {
-                    regex += '(http|https)';
+                    regex += '(http|https|file)';
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace MidnightLizard.Settings
 
                 if (host && host === '*')
                 {
-                    regex += '[^/]+?';
+                    regex += '[^/]*?';
                 }
                 else if (host)
                 {
