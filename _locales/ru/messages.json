@@ -1115,7 +1115,7 @@
         "message": "Открыть полное описание синтаксиса шаблонов сопоставления в новой вкладке.\nПри этом окно настроек вероятно будет закрыто."
     },
     "doNotInvertContent_text_label": {
-        "description": "doNotInvertContent_text_label: text on the link",
+        "description": "doNotInvertContent_text_label: text on the label",
         "message": "Не инвертировать динамическое"
     },
     "doNotInvertContent_@title": {
