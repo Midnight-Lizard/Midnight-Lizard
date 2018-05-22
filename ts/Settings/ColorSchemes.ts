@@ -281,7 +281,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 14,
                     backgroundGraySaturation: 60,
-                    backgroundGrayHue: 174,
+                    backgroundGrayHue: 170,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 80,
 
@@ -289,7 +289,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 3,
                     buttonLightnessLimit: 16,
                     buttonGraySaturation: 50,
-                    buttonGrayHue: 174,
+                    buttonGrayHue: 164,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 80,
 
@@ -306,8 +306,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 60,
                     linkLightnessLimit: 80,
                     linkDefaultSaturation: 60,
-                    linkDefaultHue: 88,
-                    linkVisitedHue: 36,
+                    linkDefaultHue: 85,
+                    linkVisitedHue: 34,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -315,7 +315,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 30,
                     borderLightnessLimit: 50,
                     borderGraySaturation: 10,
-                    borderGrayHue: 122,
+                    borderGrayHue: 130,
                     borderReplaceAllHues: false,
                     borderHueGravity: 80,
 
@@ -329,7 +329,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 10,
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
-                    scrollbarGrayHue: 122,
+                    scrollbarGrayHue: 133,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -363,7 +363,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 4,
                     buttonLightnessLimit: 18,
                     buttonGraySaturation: 40,
-                    buttonGrayHue: 122,
+                    buttonGrayHue: 110,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 80,
 
@@ -371,8 +371,8 @@ namespace MidnightLizard.Settings
                     textContrast: 60,
                     textLightnessLimit: 90,
                     textGraySaturation: 30,
-                    textGrayHue: 66,
-                    textSelectionHue: 88,
+                    textGrayHue: 72,
+                    textSelectionHue: 132,
                     textReplaceAllHues: false,
                     textHueGravity: 80,
 
@@ -380,8 +380,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 55,
                     linkLightnessLimit: 80,
                     linkDefaultSaturation: 70,
-                    linkDefaultHue: 66,
-                    linkVisitedHue: 36,
+                    linkDefaultHue: 68,
+                    linkVisitedHue: 34,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -389,7 +389,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 30,
                     borderLightnessLimit: 50,
                     borderGraySaturation: 20,
-                    borderGrayHue: 88,
+                    borderGrayHue: 82,
                     borderReplaceAllHues: false,
                     borderHueGravity: 80,
 
@@ -403,7 +403,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 20,
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
-                    scrollbarGrayHue: 122,
+                    scrollbarGrayHue: 120,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -437,7 +437,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 3,
                     buttonLightnessLimit: 13,
                     buttonGraySaturation: 50,
-                    buttonGrayHue: 14,
+                    buttonGrayHue: 18,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 80,
 
@@ -445,8 +445,8 @@ namespace MidnightLizard.Settings
                     textContrast: 64,
                     textLightnessLimit: 85,
                     textGraySaturation: 10,
-                    textGrayHue: 88,
-                    textSelectionHue: 36,
+                    textGrayHue: 90,
+                    textSelectionHue: 32,
                     textReplaceAllHues: false,
                     textHueGravity: 80,
 
@@ -463,7 +463,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 30,
                     borderLightnessLimit: 50,
                     borderGraySaturation: 20,
-                    borderGrayHue: 54,
+                    borderGrayHue: 60,
                     borderReplaceAllHues: false,
                     borderHueGravity: 80,
 
@@ -520,7 +520,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 90,
                     textGraySaturation: 20,
                     textGrayHue: 45,
-                    textSelectionHue: 291,
+                    textSelectionHue: 322,
                     textReplaceAllHues: false,
                     textHueGravity: 20,
 
@@ -667,8 +667,8 @@ namespace MidnightLizard.Settings
                     textContrast: 60,
                     textLightnessLimit: 98,
                     textGraySaturation: 20,
-                    textGrayHue: 199,
-                    textSelectionHue: 231,
+                    textGrayHue: 194,
+                    textSelectionHue: 222,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
 
@@ -676,8 +676,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 60,
                     linkLightnessLimit: 100,
                     linkDefaultSaturation: 100,
-                    linkDefaultHue: 231,
-                    linkVisitedHue: 291,
+                    linkDefaultHue: 227,
+                    linkVisitedHue: 295,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -685,7 +685,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 40,
                     borderLightnessLimit: 98,
                     borderGraySaturation: 20,
-                    borderGrayHue: 200,
+                    borderGrayHue: 196,
                     borderReplaceAllHues: false,
                     borderHueGravity: 0,
 
@@ -699,7 +699,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 15,
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 80,
-                    scrollbarGrayHue: 187,
+                    scrollbarGrayHue: 188,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -733,7 +733,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 10,
                     buttonLightnessLimit: 85,
                     buttonGraySaturation: 50,
-                    buttonGrayHue: 36,
+                    buttonGrayHue: 38,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -742,7 +742,7 @@ namespace MidnightLizard.Settings
                     textLightnessLimit: 100,
                     textGraySaturation: 40,
                     textGrayHue: 16,
-                    textSelectionHue: 14,
+                    textSelectionHue: 20,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
 
@@ -750,8 +750,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 65,
                     linkLightnessLimit: 100,
                     linkDefaultSaturation: 100,
-                    linkDefaultHue: 36,
-                    linkVisitedHue: 14,
+                    linkDefaultHue: 32,
+                    linkVisitedHue: 15,
                     linkReplaceAllHues: false,
                     linkHueGravity: 80,
 
@@ -759,7 +759,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 60,
                     borderLightnessLimit: 100,
                     borderGraySaturation: 40,
-                    borderGrayHue: 36,
+                    borderGrayHue: 34,
                     borderReplaceAllHues: false,
                     borderHueGravity: 0,
 
@@ -773,7 +773,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 15,
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 85,
-                    scrollbarGrayHue: 16,
+                    scrollbarGrayHue: 20,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -799,7 +799,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 100,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 240,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -807,7 +807,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 10,
                     buttonLightnessLimit: 90,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 240,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -847,7 +847,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 90,
-                    scrollbarGrayHue: 0,
+                    scrollbarGrayHue: 240,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -873,7 +873,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 100,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 240,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -881,7 +881,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 5,
                     buttonLightnessLimit: 95,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 240,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -889,7 +889,7 @@ namespace MidnightLizard.Settings
                     textContrast: 60,
                     textLightnessLimit: 100,
                     textGraySaturation: 0,
-                    textGrayHue: 0,
+                    textGrayHue: 240,
                     textSelectionHue: 231,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
@@ -907,7 +907,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 40,
                     borderLightnessLimit: 100,
                     borderGraySaturation: 0,
-                    borderGrayHue: 0,
+                    borderGrayHue: 240,
                     borderReplaceAllHues: false,
                     borderHueGravity: 0,
 
@@ -921,7 +921,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 80,
-                    scrollbarGrayHue: 0,
+                    scrollbarGrayHue: 240,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -947,7 +947,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 10,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 190,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -955,7 +955,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 4,
                     buttonLightnessLimit: 15,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 190,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -963,7 +963,7 @@ namespace MidnightLizard.Settings
                     textContrast: 75,
                     textLightnessLimit: 95,
                     textGraySaturation: 0,
-                    textGrayHue: 0,
+                    textGrayHue: 190,
                     textSelectionHue: 207,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
@@ -981,7 +981,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 30,
                     borderLightnessLimit: 70,
                     borderGraySaturation: 0,
-                    borderGrayHue: 0,
+                    borderGrayHue: 190,
                     borderReplaceAllHues: false,
                     borderHueGravity: 0,
 
@@ -995,7 +995,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
-                    scrollbarGrayHue: 0,
+                    scrollbarGrayHue: 190,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -1021,7 +1021,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 10,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 190,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -1029,7 +1029,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 2,
                     buttonLightnessLimit: 7,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 190,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -1037,7 +1037,7 @@ namespace MidnightLizard.Settings
                     textContrast: 75,
                     textLightnessLimit: 95,
                     textGraySaturation: 0,
-                    textGrayHue: 0,
+                    textGrayHue: 190,
                     textSelectionHue: 231,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
@@ -1055,7 +1055,7 @@ namespace MidnightLizard.Settings
                     borderContrast: 30,
                     borderLightnessLimit: 50,
                     borderGraySaturation: 0,
-                    borderGrayHue: 0,
+                    borderGrayHue: 190,
                     borderReplaceAllHues: false,
                     borderHueGravity: 0,
 
@@ -1069,7 +1069,7 @@ namespace MidnightLizard.Settings
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
-                    scrollbarGrayHue: 0,
+                    scrollbarGrayHue: 190,
                     scrollbarSize: 10
                 } as ColorScheme,
 
@@ -1095,7 +1095,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 10,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 55,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -1103,7 +1103,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 3,
                     buttonLightnessLimit: 12,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 55,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -1120,8 +1120,8 @@ namespace MidnightLizard.Settings
                     linkContrast: 55,
                     linkLightnessLimit: 80,
                     linkDefaultSaturation: 90,
-                    linkDefaultHue: 54,
-                    linkVisitedHue: 36,
+                    linkDefaultHue: 60,
+                    linkVisitedHue: 40,
                     linkReplaceAllHues: false,
                     linkHueGravity: 60,
 
@@ -1169,7 +1169,7 @@ namespace MidnightLizard.Settings
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 10,
                     backgroundGraySaturation: 0,
-                    backgroundGrayHue: 0,
+                    backgroundGrayHue: 125,
                     backgroundReplaceAllHues: false,
                     backgroundHueGravity: 0,
 
@@ -1177,7 +1177,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 3,
                     buttonLightnessLimit: 12,
                     buttonGraySaturation: 0,
-                    buttonGrayHue: 0,
+                    buttonGrayHue: 125,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
@@ -1195,7 +1195,7 @@ namespace MidnightLizard.Settings
                     linkLightnessLimit: 80,
                     linkDefaultSaturation: 90,
                     linkDefaultHue: 88,
-                    linkVisitedHue: 122,
+                    linkVisitedHue: 42,
                     linkReplaceAllHues: false,
                     linkHueGravity: 60,
 

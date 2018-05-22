@@ -12,6 +12,7 @@
     text-align: center;
     line-height: 1.2em;
     margin-right: 1em;
+    font-size: 13px;
 }
 
 .ml-checkbox:checked:before

@@ -1,7 +1,10 @@
-input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-slider-runnable-track, input[type='range'].ml-input-range::-webkit-slider-thumb
+input[type='range'].ml-input-range,
+input[type='range'].ml-input-range::-webkit-slider-runnable-track,
+input[type='range'].ml-input-range::-webkit-slider-thumb
 {
   -webkit-appearance: none;
   -moz-appearance: none;
+  appearance: none;
 }
 
 :root
@@ -223,6 +226,34 @@ input[type='range'].ml-input-range, input[type='range'].ml-input-range::-webkit-
     );
 }
 
+.hue
+{
+  --range-segment-width: 251px;
+  --range-track-width: 251px;
+  --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
+  --range-track-background:
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(to right,transparent,transparent),
+    linear-gradient(90deg, 
+      /*var(--pseudo-background-color) 0%,*/
+      /* var(--pseudo-text-shadow-color) 3%, */
+      hsl(0,100%,50%),
+      transparent 3%,
+      transparent 97%,
+      hsl(0,100%,50%)
+      /*var(--pseudo-text-shadow-color) 97%,
+      var(--pseudo-background-color) 100%*/
+    ),
+    linear-gradient(to right,hsl(0,100%,50%),hsl(60,100%,50%),hsl(120,100%,50%),hsl(180,100%,50%),hsl(240,100%,50%),hsl(300,100%,50%),hsl(359,100%,50%)),
+    linear-gradient(to right,transparent,transparent)
+}
+
 .ml-input-range {
   width: var(--range-width);
   cursor: text;
@@ -272,7 +303,7 @@ input[type=range].ml-input-range::-moz-focus-inner
   position: relative;
   color: inherit;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 3px;
   background-color: var(--pseudo-background-color);
   background-image: var(--range-track-background);
 
@@ -324,7 +355,7 @@ input[type=range].ml-input-range::-moz-focus-inner
   position: relative;
   color: inherit;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 3px;
   background-color: var(--pseudo-background-color);
   background-image: var(--range-track-background);
 

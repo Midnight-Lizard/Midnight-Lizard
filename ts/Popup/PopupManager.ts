@@ -242,7 +242,7 @@ namespace MidnightLizard.Popup
             if (this.currentSiteSettings.location)
             {
                 const location = new URL(this.currentSiteSettings.location)
-                if(location.protocol==="file:")
+                if (location.protocol === "file:")
                 {
                     return this._i18n.getMessage("localFiles_text_label");
                 }
@@ -654,6 +654,10 @@ namespace MidnightLizard.Popup
                         case "range":
                             input.value = settingValue!.toString();
                             dom.addEventListener(input, "input", MidnightLizard.Controls.Slider.onRangeChanged, input)();
+                            if (input.classList.contains("hue"))
+                            {
+                                dom.addEventListener(input, "change", PopupManager.onHueRangeChanged, input)();
+                            }
                             break;
 
                         case "select-one":
@@ -709,6 +713,10 @@ namespace MidnightLizard.Popup
                         case "range":
                             input.value = settingValue!.toString();
                             dom.addEventListener(input, "input", MidnightLizard.Controls.Slider.onRangeChanged, input)();
+                            if (input.classList.contains("hue"))
+                            {
+                                dom.addEventListener(input, "change", PopupManager.onHueRangeChanged, input)();
+                            }
                             break;
 
                         case "textarea":
@@ -820,6 +828,19 @@ namespace MidnightLizard.Popup
             {
                 matchResults.classList.remove("match");
                 matchResults.classList.remove("nomatch");
+            }
+        }
+
+        protected static onHueRangeChanged(this: HTMLInputElement)
+        {
+            if (this.hasAttribute("display-color-on"))
+            {
+                const displayColorOn = this.ownerDocument.getElementById(
+                    this.getAttribute("display-color-on") || "-");
+                if (displayColorOn)
+                {
+                    displayColorOn.style.fill = `hsl(${this.value},100%,50%)`;
+                }
             }
         }
 

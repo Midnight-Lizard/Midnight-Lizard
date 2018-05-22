@@ -101,7 +101,7 @@ namespace MidnightLizard.Colors
         protected changeHslaColor(hsla: HslaColor, increaseContrast: boolean, tag: Element): void
         {
             const shift = this._colorShift;
-            if (shift.replaceAllHues || hsla.saturation < 0.1 && shift.grayHue !== 0)
+            if (shift.replaceAllHues || hsla.saturation < 0.1 && shift.graySaturation !== 0)
             {
                 hsla.hue = shift.grayHue;
                 hsla.saturation = shift.graySaturation;
@@ -190,7 +190,7 @@ namespace MidnightLizard.Colors
 
                 if (tag.tagName == "BODY" && rgba.alpha === 0)
                 {
-                    rgbaString = "bodyTrans"; 
+                    rgbaString = "bodyTrans";
                     if (window.top === window.self)
                     {
                         rgba = { red: 255, green: 255, blue: 255, alpha: 1 };

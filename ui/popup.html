@@ -437,56 +437,26 @@ L 14.5 12 z" />
                          <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="backgroundGrayHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="backgroundGrayHue"
                            i18n="backgroundGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
                            i18n="backgroundReplaceAllHues" i18n-attr="title" i18n-text="label">Replace all
                         <input class="ml-checkbox setting" id="backgroundReplaceAllHues" type="checkbox">
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="backgroundGrayHue"
-                            display-color-on="backgroundHue">
-                        <option value="4" label="Red"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                        <option value="340" label="Pink"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                        <option value="291" label="Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                        <option value="262" label="Deep Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                        <option value="231" label="Indigo"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                        <option value="207" label="Blue"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                        <option value="199" label="Light Blue"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                        <option value="187" label="Cyan"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                        <option value="174" label="Teal"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                        <option value="122" label="Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                        <option value="88" label="Light Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                        <option value="66" label="Lime"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                        <option value="54" label="Yellow"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                        <option value="45" label="Amber"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                        <option value="36" label="Orange"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                        <option value="14" label="Deep Orange"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                        <option value="16" label="Brown"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                        <option value="0" label="Grey"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                        <option value="200" label="Blue Grey"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                    </select>
+                    <input class="ml-input-range setting hue" id="backgroundGrayHue" display-color-on="backgroundHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="backgroundGrayHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="backgroundGrayHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
                 <div class="ml-input-container last">
                     <label class="ml-dialog-label"
@@ -691,55 +661,26 @@ L 14.5 12 z" />
                          <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="buttonGrayHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="buttonGrayHue"
                            i18n="buttonGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
                            i18n="buttonReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="buttonReplaceAllHues" type="checkbox">
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="buttonGrayHue" display-color-on="buttonHue">
-                            <option value="4" label="Red"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                            <option value="340" label="Pink"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                            <option value="291" label="Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                            <option value="262" label="Deep Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                            <option value="231" label="Indigo"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                            <option value="207" label="Blue"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                            <option value="199" label="Light Blue"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                            <option value="187" label="Cyan"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                            <option value="174" label="Teal"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                            <option value="122" label="Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                            <option value="88" label="Light Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                            <option value="66" label="Lime"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                            <option value="54" label="Yellow"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                            <option value="45" label="Amber"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                            <option value="36" label="Orange"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                            <option value="14" label="Deep Orange"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                            <option value="16" label="Brown"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                            <option value="0" label="Grey"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                            <option value="200" label="Blue Grey"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                        </select>
+                    <input class="ml-input-range setting hue" id="buttonGrayHue" display-color-on="buttonHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="buttonGrayHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="buttonGrayHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
                 <div class="ml-input-container last">
                     <label class="ml-dialog-label"
@@ -923,102 +864,43 @@ L 14.5 12 z" />
                          <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="textGrayHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="textGrayHue"
                            i18n="textGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label" i18n="textReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="textReplaceAllHues" type="checkbox">
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="textGrayHue"
-                            display-color-on="textHue">
-                            <option value="4" label="Red"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                            <option value="340" label="Pink"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                            <option value="291" label="Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                            <option value="262" label="Deep Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                            <option value="231" label="Indigo"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                            <option value="207" label="Blue"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                            <option value="199" label="Light Blue"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                            <option value="187" label="Cyan"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                            <option value="174" label="Teal"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                            <option value="122" label="Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                            <option value="88" label="Light Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                            <option value="66" label="Lime"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                            <option value="54" label="Yellow"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                            <option value="45" label="Amber"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                            <option value="36" label="Orange"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                            <option value="14" label="Deep Orange"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                            <option value="16" label="Brown"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                            <option value="0" label="Grey"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                            <option value="200" label="Blue Grey"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                        </select>
+                    <input class="ml-input-range setting hue" id="textGrayHue" display-color-on="textHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="textGrayHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="textGrayHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="textSelectionHue" i18n="textSelectionHue" i18n-attr="title" i18n-html="label">
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="textSelectionHue" i18n="textSelectionHue" i18n-attr="title" i18n-html="label">
                         Text <span id="selection">selection</span> hue
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="textSelectionHue" display-color-on="txtSelHue">
-                            <option value="4" label="Red"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                            <option value="340" label="Pink"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                            <option value="291" label="Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                            <option value="262" label="Deep Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                            <option value="231" label="Indigo"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                            <option value="207" label="Blue"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                            <option value="199" label="Light Blue"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                            <option value="187" label="Cyan"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                            <option value="174" label="Teal"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                            <option value="122" label="Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                            <option value="88" label="Light Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                            <option value="66" label="Lime"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                            <option value="54" label="Yellow"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                            <option value="45" label="Amber"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                            <option value="36" label="Orange"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                            <option value="14" label="Deep Orange"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                            <option value="16" label="Brown"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                            <option value="0" label="Grey"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                            <option value="200" label="Blue Grey"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                        </select>
+                    <input class="ml-input-range setting hue" id="textSelectionHue" display-color-on="txtSelHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="textSelectionHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="textSelectionHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
             </div>
             <div id="links"
@@ -1188,103 +1070,43 @@ L 14.5 12 z" />
                          <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="linkDefaultHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="linkDefaultHue"
                            i18n="linkDefaultHue" i18n-attr="title" i18n-text="label">Default link hue</label>
                     <label class="ml-replace-all-hues-label"
                            i18n="linkReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="linkReplaceAllHues" type="checkbox">
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="linkDefaultHue"
-                            display-color-on="linkHue">
-                            <option value="4" label="Red"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                            <option value="340" label="Pink"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                            <option value="291" label="Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                            <option value="262" label="Deep Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                            <option value="231" label="Indigo"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                            <option value="207" label="Blue"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                            <option value="199" label="Light Blue"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                            <option value="187" label="Cyan"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                            <option value="174" label="Teal"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                            <option value="122" label="Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                            <option value="88" label="Light Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                            <option value="66" label="Lime"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                            <option value="54" label="Yellow"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                            <option value="45" label="Amber"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                            <option value="36" label="Orange"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                            <option value="14" label="Deep Orange"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                            <option value="16" label="Brown"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                            <option value="0" label="Grey"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                            <option value="200" label="Blue Grey"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                        </select>
+                    <input class="ml-input-range setting hue" id="linkDefaultHue" display-color-on="linkHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="linkDefaultHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="linkDefaultHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="linkVisitedHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="linkVisitedHue"
                            i18n="linkVisitedHue" i18n-attr="title" i18n-text="label">Visited link hue</label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="linkVisitedHue"
-                            display-color-on="visitedHue">
-                            <option value="4" label="Red"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                            <option value="340" label="Pink"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                            <option value="291" label="Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                            <option value="262" label="Deep Purple"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                            <option value="231" label="Indigo"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                            <option value="207" label="Blue"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                            <option value="199" label="Light Blue"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                            <option value="187" label="Cyan"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                            <option value="174" label="Teal"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                            <option value="122" label="Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                            <option value="88" label="Light Green"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                            <option value="66" label="Lime"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                            <option value="54" label="Yellow"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                            <option value="45" label="Amber"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                            <option value="36" label="Orange"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                            <option value="14" label="Deep Orange"
-                                    style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                            <option value="16" label="Brown"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                            <option value="0" label="Grey"
-                                    style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                            <option value="200" label="Blue Grey"
-                                    style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                        </select>
+                    <input class="ml-input-range setting hue" id="linkVisitedHue" display-color-on="visitedHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="linkVisitedHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="linkVisitedHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
             </div>
             <div id="borders"
@@ -1453,56 +1275,26 @@ L 14.5 12 z" />
                          <path d="M 12,0.5 C 5.6546477,0.5 0.5,5.6546477 0.5,12 0.5,18.345352 5.6546477,23.5 12,23.5 18.345352,23.5 23.5,18.345352 23.5,12 23.5,5.6546477 18.345352,0.5 12,0.5 Z m 0,1 C 17.804912,1.5 22.5,6.1950878 22.5,12 22.5,17.804912 17.804912,22.5 12,22.5 6.1950878,22.5 1.5,17.804912 1.5,12 1.5,6.1950878 6.1950878,1.5 12,1.5 Z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="borderGrayHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="borderGrayHue"
                            i18n="borderGrayHue" i18n-attr="title" i18n-text="label">Default hue</label>
                     <label class="ml-replace-all-hues-label"
                            i18n="borderReplaceAllHues" i18n-attr="title" i18n-text="label">
                         Replace all<input class="ml-checkbox setting" id="borderReplaceAllHues" type="checkbox">
                     </label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="borderGrayHue"
-                            display-color-on="borderHue">
-                        <option value="4" label="Red"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                        <option value="340" label="Pink"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                        <option value="291" label="Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                        <option value="262" label="Deep Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                        <option value="231" label="Indigo"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                        <option value="207" label="Blue"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                        <option value="199" label="Light Blue"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                        <option value="187" label="Cyan"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                        <option value="174" label="Teal"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                        <option value="122" label="Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                        <option value="88" label="Light Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                        <option value="66" label="Lime"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                        <option value="54" label="Yellow"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                        <option value="45" label="Amber"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                        <option value="36" label="Orange"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                        <option value="14" label="Deep Orange"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                        <option value="16" label="Brown"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                        <option value="0" label="Grey"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                        <option value="200" label="Blue Grey"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                    </select>
+                    <input class="ml-input-range setting hue" id="borderGrayHue" display-color-on="borderHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="borderGrayHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="borderGrayHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
                 <div class="ml-input-container last">
                     <label class="ml-dialog-label"
@@ -1844,52 +1636,22 @@ L 14.5 12 z" />
                          <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
                     </svg>
                 </div>
-                <div class="ml-input-container">
-                    <label class="ml-dialog-label" for="scrollbarGrayHue"
+                <div class="ml-input-container hue">
+                    <label class="ml-dialog-label hue" for="scrollbarGrayHue"
                            i18n="scrollbarGrayHue" i18n-attr="title" i18n-text="label">Scrollbar hue</label>
                     <br>
-                    <select class="ml-dialog-input ml-dialog-input-text ml-dialog-hue-select setting"
-                            id="scrollbarGrayHue"
-                            display-color-on="scrollbarHue">
-                        <option value="4" label="Red"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(244, 67, 54)!important;">Red</option>
-                        <option value="340" label="Pink"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(233, 30, 99)!important;">Pink</option>
-                        <option value="291" label="Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(156, 39, 176)!important;">Purple</option>
-                        <option value="262" label="Deep Purple"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(103, 58, 183)!important;">Deep Purple</option>
-                        <option value="231" label="Indigo"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(63, 81, 181)!important;">Indigo</option>
-                        <option value="207" label="Blue"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(33, 150, 243)!important;">Blue</option>
-                        <option value="199" label="Light Blue"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(3, 169, 244)!important;">Light Blue</option>
-                        <option value="187" label="Cyan"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(0, 188, 212)!important;">Cyan</option>
-                        <option value="174" label="Teal"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(0, 150, 136)!important;">Teal</option>
-                        <option value="122" label="Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(76, 175, 80)!important;">Green</option>
-                        <option value="88" label="Light Green"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(139, 195, 74)!important;">Light Green</option>
-                        <option value="66" label="Lime"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(205, 220, 57)!important;">Lime</option>
-                        <option value="54" label="Yellow"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 235, 59)!important;">Yellow</option>
-                        <option value="45" label="Amber"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 193, 7)!important;">Amber</option>
-                        <option value="36" label="Orange"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(255, 152, 0)!important;">Orange</option>
-                        <option value="14" label="Deep Orange"
-                                style="color: rgb(255, 255, 255)!important; background-color: rgb(255, 87, 34)!important;">Deep Orange</option>
-                        <option value="16" label="Brown"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(121, 85, 72)!important;">Brown</option>
-                        <option value="0" label="Grey"
-                                style="color: rgba(0, 0, 0, 0.870588)!important; background-color: rgb(158, 158, 158)!important;">Grey</option>
-                        <option value="200" label="Blue Grey"
-                                style="color: rgba(255, 255, 255, 0.870588)!important; background-color: rgb(96, 125, 139)!important;">Blue Grey</option>
-                    </select>
+                    <input class="ml-input-range setting hue" id="scrollbarGrayHue" display-color-on="scrollbarHue"
+                           type="range" min="0" max="359" step="1" list="from-0-to-359-degree">
+                    <svg for="scrollbarGrayHue" role="button" class="ml-input-range-icon low"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+                    </svg>
+                    <svg for="scrollbarGrayHue" role="button" class="ml-input-range-icon high"
+                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+                    </svg>
                 </div>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label"
@@ -2213,6 +1975,22 @@ L 14.5 12 z" />
         <option>80</option>
         <option>90</option>
         <option>100</option>
+    </datalist>
+
+    <datalist id="from-0-to-359-degree">
+        <option>0</option>
+        <option>30</option>
+        <option>60</option>
+        <option>90</option>
+        <option>120</option>
+        <option>150</option>
+        <option>180</option>
+        <option>210</option>
+        <option>240</option>
+        <option>270</option>
+        <option>300</option>
+        <option>330</option>
+        <option>359</option>
     </datalist>
 
     <datalist id="from-0-to-10000-elements">

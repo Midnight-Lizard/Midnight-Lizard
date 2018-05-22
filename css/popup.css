@@ -187,12 +187,22 @@ body {
 
 .ml-replace-all-hues-label {
     position: absolute;
-    right: 24px;
-    top: -4.5px;
+    display: inline-block;
+    right: 37px;
+    bottom: 32px;
     cursor: help;
+    width: 80px;
+    text-align: right;
+    font-size: 12px;
+    /* background: red; */
 }
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-replace-all-hues-label:not(#imp) {
     background-color: transparent!important;
+}
+.ml-replace-all-hues-label>.ml-checkbox {
+    margin-left: 4px;
+    margin-right: 0px;
+    font-size: 10px;
 }
 
 .ml-dialog-label {
@@ -202,6 +212,9 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-replace-all-hues
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not(#imp) {
     background-color: transparent!important;
 }
+.ml-dialog-label.hue {
+    position: relative;
+}
 
 .ml-dialog-label:after {
     content: ": " var(--input-string) "%";
@@ -210,6 +223,27 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not
 
 .ml-dialog-label.time:after {
     content: ": " var(--input-string) ":00";
+}
+
+.ml-dialog-label.hue:after {
+    content: ": " var(--input-string) "\00B0";
+    /* position: absolute; */
+    /* right: -40px; */
+    /* width: 40px; */
+}
+
+.ml-dialog-label.hue:before {
+    content: "-";
+    position: absolute;
+    background-color: hsl(var(--input-value),100%,50%);
+    --ml-ignore:true;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    right: -18px;
+    color: hsl(calc(var(--input-value) + 180),100%,50%);
+    transform: rotate(calc(0Deg - var(--input-degree)));
+    text-align: right;
 }
 
 .ml-dialog-label.size:after {
@@ -1219,7 +1253,7 @@ height: 148px;
 }
 
 .ml-input-container.last {
-    margin-top: -8px!important;
+    /* margin-top: -8px!important; */
 }
 
 .ml-mode-container {
