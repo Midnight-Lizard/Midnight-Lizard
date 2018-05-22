@@ -126,8 +126,7 @@ namespace MidnightLizard.Settings
             this._settingsKey = `ws:${hostName}`; //`
             this.initDefaultColorSchemes();
             this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
-            this._defaultSettings.colorSchemeId = "default";
-            this._defaultSettings.colorSchemeName = "Default";
+            this.renameSettingsToDefault(this._defaultSettings);
             this._currentSettings = { ...this._defaultSettings };
             this.initCurrentSettings();
             this.onSettingsInitialized.addListener(shift => this.isInit = true, this);

@@ -42,6 +42,7 @@ namespace MidnightLizard.ContentScript
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);
             settingsBus.onSettingsDeletionRequested.addListener(this.onSettingsDeletionRequested, this);
+            storageManager.onStorageChanged.addListener(this.onStorageChanged, this);
         }
 
         protected initCurSet()
@@ -71,7 +72,14 @@ namespace MidnightLizard.ContentScript
                 }
                 this.updateSchedule();
                 this.initCurSet();
-                this._onSettingsInitialized.raise(this._shift);
+                if (!this.isInit)
+                {
+                    this._onSettingsInitialized.raise(this._shift);
+                }
+                else
+                {
+                    this._onSettingsChanged.raise(() => null, this._shift);
+                }
             }
             catch (ex)
             {
@@ -111,6 +119,29 @@ namespace MidnightLizard.ContentScript
         {
             this._currentSettings.location = this._rootDocument.location.href;
             response(this._currentSettings);
+        }
+
+        protected onStorageChanged(changes?: Partial<Settings.ColorScheme>)
+        {
+            console.log(123);
+            if (changes && (
+                //+ current website settings changed
+                this._settingsKey in changes
+                ||
+                //+ current website has default settings and they changed
+                this._currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId &&
+                Object.keys(changes).find(key => !!key && !key.startsWith("cs:") && key !== "userColorSchemeIds")
+                ||
+                //+ current website settings use default schedule and it changed
+                this._currentSettings.useDefaultSchedule &&
+                ("scheduleStartHour" in changes || "scheduleFinishHour" in changes)
+                ||
+                //+ current website color scheme changed
+                `cs:${this._currentSettings.colorSchemeId}` in changes))
+            {
+                this.initDefaultColorSchemes();
+                this.initCurrentSettings();
+            }
         }
 
         /** it is main frame or child frame w/o access to the main frame */

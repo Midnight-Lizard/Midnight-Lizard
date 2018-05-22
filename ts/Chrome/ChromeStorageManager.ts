@@ -3,9 +3,13 @@
 /// <reference path="../Settings/IStorageManager.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../i18n/ITranslationAccessor.ts" />
+/// <reference path="../Events/-Events.ts" />
 
 namespace Chrome
 {
+    type ArgEvent<TRequestArgs> = MidnightLizard.Events.ArgumentedEvent<TRequestArgs>;
+    const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
+
     @MidnightLizard.DI.injectable(MidnightLizard.Settings.IStorageManager)
     class ChromeStorageManager implements MidnightLizard.Settings.IStorageManager
     {
@@ -15,6 +19,10 @@ namespace Chrome
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
         {
+            chrome.storage.onChanged.addListener((changes, namespace) =>
+            {
+                this._onStorageChanged.raise(changes);
+            });
         }
 
         set(obj: Object)
@@ -81,6 +89,12 @@ namespace Chrome
         protected setCurrentStorage(storage: MidnightLizard.Settings.StorageType)
         {
             this.currentStorage = storage;
+        }
+
+        protected _onStorageChanged = new ArgEventDispatcher<Partial<MidnightLizard.Settings.ColorScheme>>();
+        public get onStorageChanged()
+        {
+            return this._onStorageChanged.event;
         }
     }
 }
