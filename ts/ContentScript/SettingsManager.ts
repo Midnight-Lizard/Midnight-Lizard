@@ -122,14 +122,14 @@ namespace MidnightLizard.ContentScript
             return window.top === window.self || !hasAccessToMainFrame;
         }
 
-        protected saveCurrentSettings()
+        protected async saveCurrentSettings()
         {
             if (this.isSelfMaintainable)
             {
                 if (this._currentSettings.colorSchemeId === "default")
                 {
-                    this._storageManager.remove(this._settingsKey);
-                    this._storageManager.set({
+                    await this._storageManager.remove(this._settingsKey);
+                    await this._storageManager.set({
                         [this._settingsKey]: {
                             runOnThisSite: this._currentSettings.runOnThisSite
                         }
@@ -137,7 +137,7 @@ namespace MidnightLizard.ContentScript
                 }
                 else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
                 {
-                    this._storageManager.set({
+                    await this._storageManager.set({
                         [this._settingsKey]: {
                             colorSchemeId: this._currentSettings.colorSchemeId,
                             runOnThisSite: this._currentSettings.runOnThisSite
@@ -155,7 +155,7 @@ namespace MidnightLizard.ContentScript
                             forSave[setting] = this._currentSettings[setting];
                         }
                     }
-                    this._storageManager.set({ [this._settingsKey]: forSave });
+                    await this._storageManager.set({ [this._settingsKey]: forSave });
                 }
             }
         }
