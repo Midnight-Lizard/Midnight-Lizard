@@ -1062,13 +1062,14 @@ namespace MidnightLizard.ContentScript
                     let children: Element[] = Array.prototype.filter.call(tag.parentElement!.children,
                         (otherTag: Element, index: number) =>
                         {
-                            if (otherTag != tag && (otherTag.isChecked || (otherTag.isChecked === undefined) && this.checkElement(otherTag)))
+                            if (otherTag != tag && otherTag.isChecked)
                             {
                                 otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
                                     parseInt((otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle
                                         : doc.defaultView.getComputedStyle(otherTag, "")).zIndex || "0");
                                 otherTag.zIndex = isNaN(otherTag.zIndex) ? -999 : otherTag.zIndex;
-                                if (otherTag.mlBgColor && otherTag.mlBgColor.color && otherTag.zIndex < tag.zIndex!)
+                                if (otherTag.mlBgColor && otherTag.mlBgColor.color &&
+                                    otherTag.zIndex < tag.zIndex! && otherTag.mlBgColor.role !== cc.TextSelection)
                                 {
                                     probeRect = probeRect || (tag.rect = tag.rect || tag.getBoundingClientRect());
                                     otherTag.rect = otherTag.rect || otherTag.getBoundingClientRect();

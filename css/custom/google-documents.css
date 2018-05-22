@@ -3,6 +3,11 @@
     --ml-border-border-bottom-color:Text;
 }
 
+#bgColorButton .goog-color-menu-button-indicator
+{
+    --ml-border-border-bottom-color:ButtonBackground;
+}
+
 .kix-paginateddocumentplugin-compact-mode, .kix-page-paginated
 {
     box-shadow: 0 0 1pt 0pt #ccc!important;
@@ -32,4 +37,8 @@
 .docs-rotationhandle-circle,
 .docs-rotationhandle-stick {
     --ml-background-background-color:Border;
+}
+
+.kix-lineview-background {
+    --ml-background-background-color:ButtonBackground;
 }
