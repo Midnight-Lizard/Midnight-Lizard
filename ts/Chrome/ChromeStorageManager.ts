@@ -13,7 +13,7 @@ namespace Chrome
     @MidnightLizard.DI.injectable(MidnightLizard.Settings.IStorageManager)
     class ChromeStorageManager implements MidnightLizard.Settings.IStorageManager
     {
-        currentStorage?: MidnightLizard.Settings.StorageType;
+        private currentStorage?: MidnightLizard.Settings.StorageType;
 
         constructor(readonly chromePromise: Chrome.ChromePromise,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
@@ -21,6 +21,10 @@ namespace Chrome
         {
             chrome.storage.onChanged.addListener((changes, namespace) =>
             {
+                if ("sync" in changes)
+                {
+                    this.currentStorage = changes.sync.newValue;
+                }
                 this._onStorageChanged.raise(changes);
             });
         }
@@ -56,7 +60,7 @@ namespace Chrome
             if (newStorage !== currStorage)
             {
                 await this.transferStorage(currStorage, newStorage);
-                this.setCurrentStorage(newStorage);
+                this.currentStorage = newStorage;
             }
             return this.chromePromise.storage.local.set({ sync: value });
         }
@@ -84,11 +88,6 @@ namespace Chrome
                 this.currentStorage = state.sync ? "sync" : "local"
                 return this.currentStorage;
             }
-        }
-
-        protected setCurrentStorage(storage: MidnightLizard.Settings.StorageType)
-        {
-            this.currentStorage = storage;
         }
 
         protected _onStorageChanged = new ArgEventDispatcher<Partial<MidnightLizard.Settings.ColorScheme>>();

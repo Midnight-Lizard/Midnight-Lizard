@@ -5,7 +5,6 @@ namespace MidnightLizard.Settings
 
     export abstract class IStorageManager
     {
-        abstract currentStorage?: StorageType;
         abstract set(obj: Object): Promise<null>;
         abstract get<T>(key: T | null): Promise<T>;
         abstract clear(): Promise<null>;
