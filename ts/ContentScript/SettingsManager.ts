@@ -29,6 +29,8 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class SettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements ISettingsManager
     {
+        private skipOneSettingsUpdate: boolean = false;
+
         constructor(
             protected readonly _rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
@@ -123,8 +125,11 @@ namespace MidnightLizard.ContentScript
 
         protected onStorageChanged(changes?: Partial<Settings.ColorScheme>)
         {
-            console.log(123);
-            if (changes && (
+            if (changes && this.skipOneSettingsUpdate && this._settingsKey in changes)
+            {
+                this.skipOneSettingsUpdate = false;
+            }
+            else if (changes && (
                 //+ current website settings changed
                 this._settingsKey in changes
                 ||
@@ -157,9 +162,9 @@ namespace MidnightLizard.ContentScript
         {
             if (this.isSelfMaintainable)
             {
+                this.skipOneSettingsUpdate = true;
                 if (this._currentSettings.colorSchemeId === "default")
                 {
-                    await this._storageManager.remove(this._settingsKey);
                     await this._storageManager.set({
                         [this._settingsKey]: {
                             runOnThisSite: this._currentSettings.runOnThisSite
