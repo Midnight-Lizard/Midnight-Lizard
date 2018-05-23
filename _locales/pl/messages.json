@@ -438,10 +438,6 @@
         "description": "globalstab_text_label: text on the label",
         "message": "Ustawienia ogólne"
     },
-    "globals_tab_snack_bar_text_content": {
-        "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
-        "message": "Wszystkie zmiany na tej karcie będą zapisywane automatycznie, ale może być trzeba odświeżyć stronę, aby zmiany zaczęły obowiązywać."
-    },
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "Składnia"
