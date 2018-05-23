@@ -741,10 +741,6 @@
             }
         }
     },
-    "colorSchemeSaveSuccessMessage": {
-        "description": "colorSchemeSaveSuccessMessage: text on the message box",
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
-    },
     "colorSchemeSaveFailureMessage": {
         "description": "colorSchemeSaveFailureMessage: text on the message box",
         "message": "Error al actualizar el esquema de color.\n"
@@ -758,10 +754,6 @@
             }
         }
     },
-    "colorSchemeDeleteSuccessMessage": {
-        "description": "colorSchemeDeleteSuccessMessage: text on the message box",
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
-    },
     "colorSchemeDeleteFailureMessage": {
         "description": "colorSchemeDeleteFailureMessage: text on the message box",
         "message": "Error al borrar el esquema de color.\n"
@@ -770,17 +762,9 @@
         "description": "forgetAllConfirmationMessage: text on the message box",
         "message": "Todos los ajustes y esquemas de color personalizados que haya realizado serán borrados! ¿Seguro que quiere continuar?"
     },
-    "forgetAllSuccessMessage": {
-        "description": "forgetAllSuccessMessage: text on the message box",
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
-    },
     "forgetAllFailureMessage": {
         "description": "forgetAllFailureMessage: text on the message box",
         "message": "Error al borrar los ajustes de los sitios web.\n"
-    },
-    "forgetThisSuccessMessage": {
-        "description": "forgetThisSuccessMessage: text on the message box",
-        "message": "Hecho. Surtirá efecto después de refrescar la página."
     },
     "forgetThisFailureMessage": {
         "description": "forgetThisFailureMessage: text on the message box",
@@ -797,10 +781,6 @@
     "toggleExtensionFailureMessage": {
         "description": "toggleExtensionFailureMessage: text on the message box",
         "message": "Interruptor de extensión falló. Reinicie todas las ventanas del navegador y vuelva a intentarlo.\n"
-    },
-    "syncChangeSuccessMessage": {
-        "description": "syncChangeSuccessMessage: text on the message box",
-        "message": "Los cambios se han aplicado con éxito.\nEs posible que deba refrescar la página para ver los cambios."
     },
     "syncChangeFailureMessage": {
         "description": "syncChangeFailureMessage: text on the message box",
