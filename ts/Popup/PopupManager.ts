@@ -442,7 +442,6 @@ namespace MidnightLizard.Popup
         protected onSettingsSyncChanged()
         {
             this._settingsManager.toggleSync(this._syncSettingsCheckBox.checked)
-                .then(x => alert(this._i18n.getMessage("syncChangeSuccessMessage")))
                 .then(x => this.updateColorSchemeListsFromDefaultSettings())
                 .catch(ex => alert(this._i18n.getMessage("syncChangeFailureMessage") + (ex.message || ex)));
         }
@@ -526,7 +525,6 @@ namespace MidnightLizard.Popup
                     {
                         this._settingsManager.changeSettings(newScheme);
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert(this._i18n.getMessage("colorSchemeSaveSuccessMessage"));
                     })
                     .catch(ex => alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + (ex.message || ex)));
             }
@@ -542,7 +540,6 @@ namespace MidnightLizard.Popup
                     .then(async (x) =>
                     {
                         await this.updateColorSchemeListsFromDefaultSettings();
-                        alert(this._i18n.getMessage("colorSchemeDeleteSuccessMessage"));
                     })
                     .catch(ex => alert(this._i18n.getMessage("colorSchemeDeleteFailureMessage") + (ex.message || ex)));
             }
@@ -606,7 +603,6 @@ namespace MidnightLizard.Popup
                 this._settingsManager
                     .deleteAllSettings()
                     .then(x => this.updateButtonStates())
-                    .then(x => alert(this._i18n.getMessage("forgetAllSuccessMessage")))
                     .catch(ex => alert(this._i18n.getMessage("forgetAllFailureMessage") + (ex.message || ex)));
             }
             return false;
@@ -616,7 +612,6 @@ namespace MidnightLizard.Popup
         {
             this._settingsManager
                 .deleteCurrentSiteSettings()
-                .then(x => alert(this._i18n.getMessage("forgetThisSuccessMessage")))
                 .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
             return false;
         }
