@@ -11,6 +11,10 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "全局扩展程序切换"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "当前网站开关"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "在此网站上运行"
