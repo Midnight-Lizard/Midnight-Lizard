@@ -30,6 +30,7 @@ namespace MidnightLizard.ContentScript
     class SettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements ISettingsManager
     {
         private skipOneSettingsUpdate: boolean = false;
+        protected _scheduleUpdateTimeout?: number;
 
         constructor(
             protected readonly _rootDocument: Document,
@@ -51,6 +52,31 @@ namespace MidnightLizard.ContentScript
         {
             super.initCurSet();
             this.notifySettingsApplied();
+        }
+
+        protected updateSchedule()
+        {
+            super.updateSchedule();
+            if (this._scheduleUpdateTimeout)
+            {
+                clearTimeout(this._scheduleUpdateTimeout);
+            }
+            if (this._scheduleStartHour !== 0 || this._scheduleFinishHour !== 24)
+            {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const millisecondsUntilNextSwitch = [
+                    this._scheduleStartHour, this._scheduleFinishHour,
+                    this._scheduleStartHour + 24, this._scheduleFinishHour + 24
+                ]
+                    .filter(h => h > this._curHour)
+                    .reduce((next, h) => h < next ? h : next, 99) * 60 * 60 * 1000 +
+                    today.getTime() - Date.now();
+                this._scheduleUpdateTimeout = setTimeout(() =>
+                {
+                    this.initCurrentSettings();
+                }, millisecondsUntilNextSwitch);
+            }
         }
 
         protected async initCurrentSettings()
