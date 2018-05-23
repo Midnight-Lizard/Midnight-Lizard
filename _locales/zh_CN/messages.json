@@ -745,10 +745,6 @@
             }
         }
     },
-    "colorSchemeSaveSuccessMessage": {
-        "description": "colorSchemeSaveSuccessMessage: text on the message box",
-        "message": "已完成。将在页面刷新后生效。"
-    },
     "colorSchemeSaveFailureMessage": {
         "description": "colorSchemeSaveFailureMessage: text on the message box",
         "message": "配色方案更新失败。\n"
@@ -762,10 +758,6 @@
             }
         }
     },
-    "colorSchemeDeleteSuccessMessage": {
-        "description": "colorSchemeDeleteSuccessMessage: text on the message box",
-        "message": "已完成。将在页面刷新后生效。"
-    },
     "colorSchemeDeleteFailureMessage": {
         "description": "colorSchemeDeleteFailureMessage: text on the message box",
         "message": "配色方案检测失败。\n"
@@ -774,17 +766,9 @@
         "description": "forgetAllConfirmationMessage: text on the message box",
         "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
     },
-    "forgetAllSuccessMessage": {
-        "description": "forgetAllSuccessMessage: text on the message box",
-        "message": "已完成。将在页面刷新后生效。"
-    },
     "forgetAllFailureMessage": {
         "description": "forgetAllFailureMessage: text on the message box",
         "message": "全部网页设置删除失败。\n"
-    },
-    "forgetThisSuccessMessage": {
-        "description": "forgetThisSuccessMessage: text on the message box",
-        "message": "已完成。将在页面刷新后生效。"
     },
     "forgetThisFailureMessage": {
         "description": "forgetThisFailureMessage: text on the message box",
@@ -801,10 +785,6 @@
     "toggleExtensionFailureMessage": {
         "description": "toggleExtensionFailureMessage: text on the message box",
         "message": "扩展程序开关切换失败。请重启所有浏览器窗口并重试。\n"
-    },
-    "syncChangeSuccessMessage": {
-        "description": "syncChangeSuccessMessage: text on the message box",
-        "message": "更改已成功应用。\n您可能需要刷新页面以查看更改。"
     },
     "syncChangeFailureMessage": {
         "description": "syncChangeFailureMessage: text on the message box",
@@ -975,10 +955,6 @@
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "您是否想重置当前的浏览器主题为默认？\n可能重置为原始的 Firefox 主题而非您先前的主题。"
-    },
-    "globals_tab_snack_bar_text_content": {
-        "description": "globals_tab_snack_bar_text_content: text on the snack-bar",
-        "message": "在此选项卡中的所有更改将自动保存，但您可能需要刷新页面使更改生效。"
     },
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
