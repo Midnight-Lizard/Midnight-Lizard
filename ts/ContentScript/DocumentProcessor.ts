@@ -115,7 +115,6 @@ namespace MidnightLizard.ContentScript
             protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
             protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
         {
-            debugger;
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
