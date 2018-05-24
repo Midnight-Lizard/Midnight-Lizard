@@ -92,6 +92,8 @@ namespace Chrome
     {
         export declare function getCurrent(): Promise<chrome.tabs.Tab>;
         export declare function getZoom(tabId: number): Promise<number>;
+        export declare function insertCSS(tabId: number, details: chrome.tabs.InjectDetails): Promise<void>;
+        export declare function executeScript(tabId: number, details: chrome.tabs.InjectDetails): Promise<void>;
         export declare function query(queryInfo: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]>;
         export declare function sendMessage<TResult>(tabId: number, message: any): Promise<TResult>;
     }

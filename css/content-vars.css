@@ -65,6 +65,10 @@
     --ml-buttonborder-fill:ButtonBorder;
 }
 
-.ml-ignore {
+.ml-ignore, symbol, defs, script, head {
     --ml-ignore:true;
+}
+#hc_extension_bkgnd:not(impt)
+{
+    display: none !important;
 }

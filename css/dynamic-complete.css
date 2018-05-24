@@ -31,4 +31,33 @@ html[ml-stage="complete"] {}
     html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover {
         color: var(--visited-color-hover) !important;
     }
+
+    html[ml-stage-mode="complete-complex"] [transition="filter"][style*="var(--ml-blue-filter)"]:hover
+    {
+        filter: none!important;
+    }
+    
+    html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"]):hover
+    {
+        animation-name: transition-filter-none;
+        animation-fill-mode: forwards;
+    }
+    
+    html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"])
+    {
+        animation-name: transition-filter-original;
+        animation-timing-function: ease-out;
+        animation-duration: 333ms;
+        animation-fill-mode: backwards;
+    }
+    
+    @keyframes transition-filter-none
+    {
+        to { filter: none; }
+    }
+    
+    @keyframes transition-filter-original
+    {
+        from { filter: none; }
+    }
 }

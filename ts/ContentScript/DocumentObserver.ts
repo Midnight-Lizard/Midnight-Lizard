@@ -14,16 +14,21 @@ namespace MidnightLizard.ContentScript
 
     export abstract class IDocumentObserver
     {
+        abstract startDocumentUpdateObservation(doc: Document): void;
         abstract startDocumentObservation(document: Document, resumeState?: ObservationState): void;
         abstract stopDocumentObservation(doc: Document): ObservationState | undefined;
+        abstract stopDocumentUpdateObservation(doc: Document): void;
         abstract get onClassChanged(): ArgEvent<Set<Element>>;
         abstract get onStyleChanged(): ArgEvent<Set<Element>>;
         abstract get onElementsAdded(): ArgEvent<Set<Element>>;
+        abstract get onUpdateChanged(): ArgEvent<Element>;
     }
 
     @DI.injectable(IDocumentObserver)
     class DocumentObserver implements IDocumentObserver
     {
+        protected readonly _updateObserverConfig: MutationObserverInit =
+            { attributes: true, attributeFilter: ["ml-update"] };
         protected readonly _bodyObserverConfig: MutationObserverInit =
             { subtree: true, childList: true, /*attributeOldValue: true,*/ attributes: true, attributeFilter: ["class", "style", "fill", "stroke"] };
         protected readonly _simpleBodyObserverConfig: MutationObserverInit =
@@ -31,6 +36,7 @@ namespace MidnightLizard.ContentScript
         protected readonly _headObserverConfig: MutationObserverInit = { childList: true };
         protected readonly _bodyObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _headObservers = new WeakMap<Document, MutationObserver>();
+        protected readonly _updateObservers = new WeakMap<Document, MutationObserver>();
 
         constructor(
             protected readonly _rootDocument: Document,
@@ -44,6 +50,12 @@ namespace MidnightLizard.ContentScript
         public get onClassChanged()
         {
             return this._onClassChanged.event;
+        }
+
+        protected _onUpdateChanged = new ArgEventDispatcher<Element>();
+        public get onUpdateChanged()
+        {
+            return this._onUpdateChanged.event;
         }
 
         protected _onStyleChanged = new ArgEventDispatcher<Set<Element>>();
@@ -63,6 +75,26 @@ namespace MidnightLizard.ContentScript
             if (!this._settingsManager.isActive)
             {
                 this.stopDocumentObservation(this._rootDocument);
+            }
+        }
+
+        public startDocumentUpdateObservation(doc: Document): void
+        {
+            let updateObserver = this._updateObservers.get(doc);
+            if (updateObserver === undefined)
+            {
+                this._updateObservers.set(doc, updateObserver =
+                    new MutationObserver(this.updateObserverCallback.bind(this)));
+            }
+            updateObserver.observe(doc.documentElement, this._updateObserverConfig);
+        }
+
+        public stopDocumentUpdateObservation(doc: Document): void
+        {
+            const updateObserver = this._updateObservers.get(doc);
+            if (updateObserver !== undefined)
+            {
+                updateObserver.disconnect();
             }
         }
 
@@ -198,6 +230,11 @@ namespace MidnightLizard.ContentScript
             {
                 this._styleSheetProcessor.processDocumentStyleSheets(mutation.target.ownerDocument);
             }
+        }
+
+        protected updateObserverCallback(mutations: MutationRecord[], observer: MutationObserver)
+        {
+            this._onUpdateChanged.raise(mutations[0].target as HTMLElement);
         }
     }
 }

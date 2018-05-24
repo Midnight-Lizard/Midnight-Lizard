@@ -1,3 +1,4 @@
+/// <reference path="./ChromeApplicationInstaller.ts" />
 /// <reference path="./ChromeStorageManager.ts" />
 /// <reference path="./ChromeCommandListener.ts" />
 /// <reference path="./ChromeApplicationSettings.ts" />

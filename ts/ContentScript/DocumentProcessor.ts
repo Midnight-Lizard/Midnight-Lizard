@@ -40,6 +40,13 @@ namespace MidnightLizard.ContentScript
         Complete = "complete"
     }
 
+    enum UpdateStage
+    {
+        Aware = "aware",
+        Requested = "requested",
+        Ready = "ready"
+    }
+
     export abstract class IDocumentProcessor
     {
         abstract get onRootDocumentProcessing(): ArgEvent<Document>;
@@ -63,6 +70,7 @@ namespace MidnightLizard.ContentScript
         protected readonly _css: MidnightLizard.ContentScript.CssStyleKeys;
         protected readonly _transitionForbiddenProperties: Set<string>;
         protected readonly _boundParentBackgroundGetter: any;
+        protected _autoUpdateTask?: number;
 
         protected get shift() { return this._settingsManager.shift }
 
@@ -107,7 +115,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
             protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
         {
-            this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload);
+            debugger;
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
@@ -133,15 +141,25 @@ namespace MidnightLizard.ContentScript
             this._boundUserActionHandler = this.onUserAction.bind(this);
             this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
             this._boundUserHoverHandler = this.onUserHover.bind(this);
-            dom.addEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded, this);
-            _settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this);
-            _settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this, Events.EventHandlerPriority.Low);
-            _documentObserver.onElementsAdded.addListener(this.onElementsAdded as any, this);
-            _documentObserver.onClassChanged.addListener(this.onClassChanged as any, this);
-            _documentObserver.onStyleChanged.addListener(this.onStyleChanged as any, this);
-            _styleSheetProcessor.onElementsForUserActionObservationFound
-                .addListener(this.onElementsForUserActionObservationFound as any, this);
             this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
+            if (this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload))
+            {
+                this.addListeners();
+            }
+            this._documentObserver.startDocumentUpdateObservation(_rootDocument);
+            this._documentObserver.onUpdateChanged.addListener(this.onDocumentUpdateStageChanged as any, this);
+        }
+
+        private addListeners()
+        {
+            dom.addEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded, this);
+            this._settingsManager.onSettingsInitialized.addListener(this.onSettingsInitialized, this);
+            this._settingsManager.onSettingsChanged.addListener(this.onSettingsChanged, this, Events.EventHandlerPriority.Low);
+            this._documentObserver.onElementsAdded.addListener(this.onElementsAdded as any, this);
+            this._documentObserver.onClassChanged.addListener(this.onClassChanged as any, this);
+            this._documentObserver.onStyleChanged.addListener(this.onStyleChanged as any, this);
+            this._styleSheetProcessor.onElementsForUserActionObservationFound
+                .addListener(this.onElementsForUserActionObservationFound as any, this);
         }
 
         protected createStandardPseudoCssTexts()
@@ -179,20 +197,20 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected onSettingsInitialized(shift?: Colors.ComponentShift): void
+        protected onSettingsInitialized(): void
         {
             if (this._settingsManager.isActive)
             {
                 this.createStandardPseudoCssTexts();
                 this.injectDynamicValues(this._rootDocument);
-                if (this._rootDocumentContentLoaded)
+                if (this._rootDocumentContentLoaded || this._rootDocument.readyState === "complete")
                 {
+                    this._rootDocumentContentLoaded = true;
                     this.processRootDocument();
                 }
                 else
                 {
                     this.setDocumentProcessingStage(this._rootDocument, ProcessingStage.Loading);
-                    // this.createLoadingStyles(this._rootDocument);
                 }
             }
             else
@@ -201,13 +219,38 @@ namespace MidnightLizard.ContentScript
             }
         }
 
+        protected onDocumentUpdateStageChanged(html: HTMLHtmlElement)
+        {
+            switch (html.getAttribute("ml-update"))
+            {
+                // received by the old version
+                case UpdateStage.Requested:
+                    this.restoreDocumentColors(html.ownerDocument);
+                    html.setAttribute("ml-update", UpdateStage.Ready);
+                    break;
+
+                // received by the new version
+                case UpdateStage.Ready:
+                    this._autoUpdateTask && clearTimeout(this._autoUpdateTask);
+                    this.addListeners();
+                    this.onSettingsInitialized();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         protected onDocumentContentLoaded()
         {
             dom.removeEventListener(this._rootDocument, "DOMContentLoaded", this.onDocumentContentLoaded);
-            this._rootDocumentContentLoaded = true;
-            if (this._settingsManager.isActive)
+            if (!this._rootDocumentContentLoaded)
             {
-                this.processRootDocument();
+                this._rootDocumentContentLoaded = true;
+                if (this._settingsManager.isActive)
+                {
+                    this.processRootDocument();
+                }
             }
         }
 
@@ -222,16 +265,46 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                doc.documentElement.setAttribute("ml-stage", stage);
-                doc.documentElement.setAttribute("ml-platform",
-                    this._app.isDesktop ? "desktop" : "mobile");
-                if (this._settingsManager.isActive)
+                if (stage === ProcessingStage.Preload &&
+                    doc.documentElement.getAttribute("ml-stage") === ProcessingStage.Complete)
                 {
-                    doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);
-                    doc.documentElement.setAttribute("ml-stage-mode",
-                        stage + "-" + this._settingsManager.computedMode);
+                    // check if old version is update aware
+                    if (doc.documentElement.hasAttribute("ml-update"))
+                    {
+                        doc.documentElement.setAttribute("ml-update", UpdateStage.Requested);
+                        if (this._app.browserName === Settings.BrowserName.Firefox)
+                        {
+                            // Firefox destroyes old version so I have to auto-update after 3sec
+                            this._autoUpdateTask = setTimeout(() =>
+                            {
+                                doc.documentElement.setAttribute("ml-update", UpdateStage.Ready);
+                            }, 3000);
+                        }
+                    }
+                    else
+                    {
+                        this._settingsManager.onSettingsChanged.addListener((response, shift) =>
+                        {
+                            throw new Error("Midnight Lizard has been updated. Please refresh the page.");
+                        }, this);
+                    }
+                    return false;
+                }
+                else
+                {
+                    doc.documentElement.setAttribute("ml-update", UpdateStage.Aware);
+                    doc.documentElement.setAttribute("ml-stage", stage);
+                    doc.documentElement.setAttribute("ml-platform",
+                        this._app.isDesktop ? "desktop" : "mobile");
+                    if (this._settingsManager.isActive)
+                    {
+                        doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);
+                        doc.documentElement.setAttribute("ml-stage-mode",
+                            stage + "-" + this._settingsManager.computedMode);
+                    }
                 }
             }
+            return true;
         }
 
         protected getLastDoccumentProcessingMode(doc: Document)
@@ -1135,6 +1208,7 @@ namespace MidnightLizard.ContentScript
 
         protected restoreDocumentColors(doc: Document)
         {
+            this._documentObserver.stopDocumentUpdateObservation(doc);
             this._documentObserver.stopDocumentObservation(doc);
             this.removeDynamicValuesStyle(doc);
             this.removePageScript(doc);
@@ -1165,6 +1239,9 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlTextShadow;
                 delete tag.rect;
                 delete tag.selectors;
+                delete tag.isObserved;
+
+                dom.removeAllEventListeners(tag);
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {

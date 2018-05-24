@@ -14,7 +14,8 @@
     },
     "permissions": [
         "storage",
-        "theme"
+        "theme",
+        "<all_urls>"
     ],
     "commands": {
         "global-toggle": {
@@ -60,14 +61,6 @@
                 "css/dynamic-complete.css",
                 "css/dynamic-universal.css",
                 "css/custom/bookmark-sidebar.css"
-            ]
-        },
-        {
-            "run_at": "document_start",
-            "all_frames": true,
-            "match_about_blank": true,
-            "matches": [
-                "<all_urls>"
             ],
             "js": [
                 "js/content-script.js"
@@ -80,17 +73,6 @@
             ],
             "css": [
                 "css/custom/chrome-new-tab.css"
-            ]
-        },
-        {
-            "run_at": "document_idle",
-            "all_frames": true,
-            "match_about_blank": true,
-            "matches": [
-                "<all_urls>"
-            ],
-            "css": [
-                "css/content-idle.css"
             ]
         },
         {
