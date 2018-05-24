@@ -273,11 +273,11 @@ namespace MidnightLizard.ContentScript
                         doc.documentElement.setAttribute("ml-update", UpdateStage.Requested);
                         if (this._app.browserName === Settings.BrowserName.Firefox)
                         {
-                            // Firefox destroyes old version so I have to auto-update after 3sec
+                            // Firefox destroyes old version so I have to auto-update after 5sec
                             this._autoUpdateTask = setTimeout(() =>
                             {
                                 doc.documentElement.setAttribute("ml-update", UpdateStage.Ready);
-                            }, 3000);
+                            }, 5000);
                         }
                     }
                     else
