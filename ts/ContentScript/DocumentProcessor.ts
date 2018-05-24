@@ -1212,10 +1212,17 @@ namespace MidnightLizard.ContentScript
             this.removeDynamicValuesStyle(doc);
             this.removePageScript(doc);
             this.clearPseudoStyles(doc);
+            this.restoreMetaTheme(doc);
             const lastProcMode = this.getLastDoccumentProcessingMode(doc);
             this.setDocumentProcessingStage(doc, ProcessingStage.None);
+            const isPopup = doc.location.pathname === "/ui/popup.html";
             for (let tag of doc.getElementsByTagName("*"))
             {
+                if (!isPopup)
+                {
+                    delete tag.isObserved;
+                    dom.removeAllEventListeners(tag);
+                }
                 this.restoreElementColors(tag as HTMLElement,
                     this._settingsManager.isActive && this._settingsManager.isComplex,
                     lastProcMode);
@@ -1238,9 +1245,6 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlTextShadow;
                 delete tag.rect;
                 delete tag.selectors;
-                delete tag.isObserved;
-
-                dom.removeAllEventListeners(tag);
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
@@ -2306,17 +2310,40 @@ namespace MidnightLizard.ContentScript
 
         protected processMetaTheme(doc: Document)
         {
-            if (doc.head)
+            if (doc.head && this._settingsManager.currentSettings.changeBrowserTheme)
             {
                 let metaTheme = doc.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+                let originalColor = "rgb(240,240,240)";
                 if (!metaTheme)
                 {
                     metaTheme = doc.createElement("meta");
                     metaTheme.name = "theme-color";
                     doc.head.appendChild(metaTheme);
                 }
-                const rgbColorString = this._backgroundColorProcessor.changeColor("rgb(240,240,240)", false, metaTheme).color!;
+                else
+                {
+                    originalColor = this._colorConverter.convert(metaTheme.content) || originalColor;
+                    metaTheme.originalColor = metaTheme.content;
+                }
+                const rgbColorString = this._buttonBackgroundColorProcessor.changeColor(
+                    originalColor, this._settingsManager.shift.Background.lightnessLimit, metaTheme).color!;
                 metaTheme.content = Colors.RgbaColor.toHexColorString(rgbColorString);
+            }
+        }
+
+        protected restoreMetaTheme(doc: Document)
+        {
+            let metaTheme = doc.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+            if (metaTheme)
+            {
+                if (metaTheme.originalColor)
+                {
+                    metaTheme.content = metaTheme.originalColor;
+                }
+                else
+                {
+                    metaTheme.remove();
+                }
             }
         }
 
