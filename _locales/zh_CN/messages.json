@@ -812,6 +812,34 @@
         "description": "color scheme name",
         "message": "原始（无）"
     },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "苹果薄荷"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "万圣节"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "提高对比度"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "灰色"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "反转灰度"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底黄字"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底绿字"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "您的本地设置存储已包含一些数据。\n您是否想使用同步（云）存储覆盖数据并丢失被覆盖的数据？"
@@ -959,5 +987,13 @@
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "语法"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the label",
+        "message": "不反转动态内容"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "本地文件"
     }
 }
