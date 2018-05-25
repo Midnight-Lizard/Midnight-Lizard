@@ -280,7 +280,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     margin-left: calc((100% - 257px)/2);
 }
 
-.ml-input-container:hover {
+.ml-input-container>label:hover {
     --ml-text-color:HighlightedText;
     color: var(--main-color);
 }
