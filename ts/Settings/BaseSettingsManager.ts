@@ -337,13 +337,13 @@ namespace MidnightLizard.Settings
                     hueGravity: 0
                 },
                 SvgBackground: {
-                    saturationLimit: set.backgroundSaturationLimit,
+                    saturationLimit: set.buttonSaturationLimit,
                     contrast: set.backgroundContrast,
-                    lightnessLimit: Math.min(Number((set.backgroundLightnessLimit * 1.2).toFixed(2)), 1),
-                    graySaturation: set.backgroundGraySaturation,
-                    grayHue: set.backgroundGrayHue,
+                    lightnessLimit: set.borderLightnessLimit,
+                    graySaturation: set.buttonGraySaturation,
+                    grayHue: set.buttonGrayHue,
                     replaceAllHues: false,
-                    hueGravity: set.backgroundHueGravity || 0
+                    hueGravity: set.buttonHueGravity || 0
                 },
                 BackgroundImage: {
                     saturationLimit: set.backgroundImageSaturationLimit,

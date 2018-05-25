@@ -1893,7 +1893,7 @@ namespace MidnightLizard.ContentScript
                         return this._svgColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
 
                     case cc.TextSelection:
-                        return this._textSelectionColorProcessor.changeColor(propVal, true, tag, this._boundParentBackgroundGetter);
+                        return this._textSelectionColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
                 }
             }
             return undefined;
