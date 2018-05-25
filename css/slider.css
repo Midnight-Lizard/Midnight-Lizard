@@ -32,6 +32,7 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
 
 .time
 {
+  --current-value-line-color: currentColor;
   --range-segment-width: 60px;
   --range-track-width: 241px;
   --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
@@ -121,6 +122,7 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
 
 .percent, .elements
 {
+  --current-value-line-color: currentColor;
   --range-segment-width: 50px;
   --range-track-width: 251px;
   --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
@@ -228,6 +230,7 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
 
 .hue
 {
+  --current-value-line-color: hsl(calc(var(--input-value) + 180),100%,50%);
   --range-segment-width: 251px;
   --range-track-width: 251px;
   --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
@@ -436,19 +439,19 @@ input[type=range].ml-input-range::-moz-focus-inner
   width: 15px;
   height: 15px;
   box-shadow:
-    14.0px 14.0px 0px -7px currentColor,
-    13.5px 13.5px 0px -7px currentColor,
-    13.0px 13.0px 0px -7px currentColor,
-    12.5px 12.5px 0px -7px currentColor,
-    12.0px 12.0px 0px -7px currentColor,
-    11.5px 11.5px 0px -7px currentColor,
-    11.0px 11.0px 0px -7px currentColor,
-    10.5px 10.5px 0px -7px currentColor,
-    10.0px 10.0px 0px -7px currentColor,
-     9.5px  9.5px 0px -7px currentColor,
-     9.0px  9.0px 0px -7px currentColor,
-     8.5px  8.5px 0px -7px currentColor,
-     8.0px  8.0px 0px -7px currentColor;
+    14.0px 14.0px 0px -7px var(--current-value-line-color),
+    13.5px 13.5px 0px -7px var(--current-value-line-color),
+    13.0px 13.0px 0px -7px var(--current-value-line-color),
+    12.5px 12.5px 0px -7px var(--current-value-line-color),
+    12.0px 12.0px 0px -7px var(--current-value-line-color),
+    11.5px 11.5px 0px -7px var(--current-value-line-color),
+    11.0px 11.0px 0px -7px var(--current-value-line-color),
+    10.5px 10.5px 0px -7px var(--current-value-line-color),
+    10.0px 10.0px 0px -7px var(--current-value-line-color),
+     9.5px  9.5px 0px -7px var(--current-value-line-color),
+     9.0px  9.0px 0px -7px var(--current-value-line-color),
+     8.5px  8.5px 0px -7px var(--current-value-line-color),
+     8.0px  8.0px 0px -7px var(--current-value-line-color);
   transform: translate(0px, 15px) rotate(-135deg);
 }
 
@@ -487,18 +490,18 @@ input[type=range].ml-input-range::-moz-focus-inner
   width: 15px;
   height: 15px;
   box-shadow:
-    14.0px 14.0px 0px -7px currentColor,
-    13.5px 13.5px 0px -7px currentColor,
-    13.0px 13.0px 0px -7px currentColor,
-    12.5px 12.5px 0px -7px currentColor,
-    12.0px 12.0px 0px -7px currentColor,
-    11.5px 11.5px 0px -7px currentColor,
-    11.0px 11.0px 0px -7px currentColor,
-    10.5px 10.5px 0px -7px currentColor,
-    10.0px 10.0px 0px -7px currentColor,
-     9.5px  9.5px 0px -7px currentColor,
-     9.0px  9.0px 0px -7px currentColor,
-     8.5px  8.5px 0px -7px currentColor,
-     8.0px  8.0px 0px -7px currentColor;
+    14.0px 14.0px 0px -7px var(--current-value-line-color),
+    13.5px 13.5px 0px -7px var(--current-value-line-color),
+    13.0px 13.0px 0px -7px var(--current-value-line-color),
+    12.5px 12.5px 0px -7px var(--current-value-line-color),
+    12.0px 12.0px 0px -7px var(--current-value-line-color),
+    11.5px 11.5px 0px -7px var(--current-value-line-color),
+    11.0px 11.0px 0px -7px var(--current-value-line-color),
+    10.5px 10.5px 0px -7px var(--current-value-line-color),
+    10.0px 10.0px 0px -7px var(--current-value-line-color),
+     9.5px  9.5px 0px -7px var(--current-value-line-color),
+     9.0px  9.0px 0px -7px var(--current-value-line-color),
+     8.5px  8.5px 0px -7px var(--current-value-line-color),
+     8.0px  8.0px 0px -7px var(--current-value-line-color);
   transform: translate(0px, 0px) rotate(-135deg);
 }
