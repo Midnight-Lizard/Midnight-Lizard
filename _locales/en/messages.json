@@ -45,7 +45,7 @@
     },
     "changeBrowserTheme_@title": {
         "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
-        "message": "Adjust browser theme to the current color scheme.\nSupported only by Firefox.\nPartially supported by Vivaldi."
+        "message": "Adjust browser theme to the current color scheme.\nSupported by Firefox and partially by Vivaldi."
     },
     "useDefaultSchedule_text_label": {
         "description": "useDefaultSchedule_text_label: text on the label",
