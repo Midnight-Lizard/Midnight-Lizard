@@ -268,17 +268,10 @@ namespace MidnightLizard.ContentScript
                     doc.documentElement.getAttribute("ml-stage") === ProcessingStage.Complete)
                 {
                     // check if old version is update aware
-                    if (doc.documentElement.hasAttribute("ml-update"))
+                    if (doc.documentElement.hasAttribute("ml-update") &&
+                        this._app.browserName !== Settings.BrowserName.Firefox)
                     {
                         doc.documentElement.setAttribute("ml-update", UpdateStage.Requested);
-                        if (this._app.browserName === Settings.BrowserName.Firefox)
-                        {
-                            // Firefox destroyes old version so I have to auto-update after 5sec
-                            this._autoUpdateTask = setTimeout(() =>
-                            {
-                                doc.documentElement.setAttribute("ml-update", UpdateStage.Ready);
-                            }, 5000);
-                        }
                     }
                     else
                     {
