@@ -14,7 +14,10 @@ namespace Chrome
             protected readonly _chromePromise: Chrome.ChromePromise,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings)
         {
-            chrome.runtime.onInstalled.addListener(this.onInstalled.bind(this));
+            if (_app.browserName !== MidnightLizard.Settings.BrowserName.Firefox)
+            {
+                chrome.runtime.onInstalled.addListener(this.onInstalled.bind(this));
+            }
         }
 
         protected onInstalled(e: chrome.runtime.InstalledDetails)
