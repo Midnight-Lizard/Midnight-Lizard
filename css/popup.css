@@ -208,6 +208,11 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-replace-all-hues
 .ml-dialog-label {
     margin-left: calc((100% - 267px)/2);
     cursor: help;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 299px;
+    display: inline-block;
 }
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not(#imp) {
     background-color: transparent!important;
