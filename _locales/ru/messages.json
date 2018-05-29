@@ -61,7 +61,7 @@
     },
     "scheduleStartHour_@title": {
         "description": "scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать текущий сайт, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать текущий сайт, начиная с указанного времени."
     },
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
@@ -69,7 +69,7 @@
     },
     "scheduleFinishHour_@title": {
         "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать текущий сайт только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать текущий сайт только до наступления указанного времени."
     },
     "blueFilter_text_label": {
         "description": "blueFilter_text_label: text on the label",
@@ -1010,7 +1010,7 @@
     },
     "default_scheduleStartHour_@title": {
         "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, начиная с указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется необработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, начиная с указанного времени."
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
@@ -1018,7 +1018,7 @@
     },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, только до наступления указанного времени.\nПроверка расписания происходит только при перезагрузке страницы.\nЕсли страница не перезагружалась, то она останется обработанной\nи после наступления указанного времени."
+        "message": "Расширение будет обрабатывать все сайты,\nиспользующие базовое расписание, только до наступления указанного времени."
     },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
