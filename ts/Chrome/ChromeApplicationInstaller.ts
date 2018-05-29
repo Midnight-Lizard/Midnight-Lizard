@@ -42,7 +42,7 @@ namespace Chrome
                         .executeScript(tab.id!, {
                             allFrames: true,
                             matchAboutBlank: true,
-                            runAt: mainInjection.run_at,
+                            runAt: "document_idle",
                             file: mainInjection.js![0]
                         })
                         .catch(this.printError);
