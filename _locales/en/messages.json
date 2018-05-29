@@ -1026,7 +1026,7 @@
     },
     "globalstab_@tooltip": {
         "description": "globalstab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": "      Global settings\n―――――――――――――――――――\n This tab contains global settings and shortcuts to default settings.\n Here you can change settings sync, toggle black\/white list mode and browser theme adjustment, edit default schedule."
+        "message": "      Global settings\n―――――――――――――――――――\n This tab contains global settings and shortcuts to default settings.\n Here you can change settings sync, edit default schedule, toggle black\/white list mode and browser theme adjustment."
     },
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
