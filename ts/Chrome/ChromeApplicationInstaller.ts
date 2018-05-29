@@ -22,32 +22,35 @@ namespace Chrome
 
         protected onInstalled(e: chrome.runtime.InstalledDetails)
         {
-            const mainInjection = chrome.runtime.getManifest().content_scripts![0];
-            this._chromePromise.tabs
-                .query({})
-                .then(tabs => tabs.map(tab =>
-                {
-                    for (const css of mainInjection.css!)
+            setTimeout(() =>
+            {
+                const mainInjection = chrome.runtime.getManifest().content_scripts![0];
+                this._chromePromise.tabs
+                    .query({})
+                    .then(tabs => tabs.map(tab =>
                     {
+                        for (const css of mainInjection.css!)
+                        {
+                            this._chromePromise.tabs
+                                .insertCSS(tab.id!, {
+                                    allFrames: true,
+                                    matchAboutBlank: true,
+                                    runAt: mainInjection.run_at,
+                                    file: css
+                                })
+                                .catch(this.printError);
+                        }
                         this._chromePromise.tabs
-                            .insertCSS(tab.id!, {
+                            .executeScript(tab.id!, {
                                 allFrames: true,
                                 matchAboutBlank: true,
-                                runAt: mainInjection.run_at,
-                                file: css
+                                runAt: "document_idle",
+                                file: mainInjection.js![0]
                             })
                             .catch(this.printError);
-                    }
-                    this._chromePromise.tabs
-                        .executeScript(tab.id!, {
-                            allFrames: true,
-                            matchAboutBlank: true,
-                            runAt: "document_idle",
-                            file: mainInjection.js![0]
-                        })
-                        .catch(this.printError);
-                }))
-                .catch(this.printError);
+                    }))
+                    .catch(this.printError);
+            }, 3000);
         }
     }
 }
