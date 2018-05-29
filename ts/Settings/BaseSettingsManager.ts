@@ -490,7 +490,8 @@ namespace MidnightLizard.Settings
             Object.assign(this._defaultSettings, {
                 scheduleStartHour: defaultSettings.scheduleStartHour,
                 scheduleFinishHour: defaultSettings.scheduleFinishHour,
-                changeBrowserTheme: defaultSettings.changeBrowserTheme
+                changeBrowserTheme: defaultSettings.changeBrowserTheme,
+                userColorSchemeIds: defaultSettings.userColorSchemeIds
             });
             if (renameToDefault)
             {
