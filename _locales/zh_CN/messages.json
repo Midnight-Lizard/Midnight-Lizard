@@ -61,7 +61,7 @@
     },
     "scheduleStartHour_@title": {
         "description": "scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "扩展程序仅在此时间启动后于此网站激活。\n页面将在指定时间区间内刷新使时间表生效。"
+        "message": "扩展程序仅在此时间启动后于此网站激活。"
     },
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
@@ -69,7 +69,7 @@
     },
     "scheduleFinishHour_@title": {
         "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "扩展程序仅在此次应用于当前网页。\n页面将在指定时间区间内刷新使时间表生效。"
+        "message": "扩展程序仅在此次应用于当前网页。"
     },
     "blueFilter_text_label": {
         "description": "blueFilter_text_label: text on the label",
@@ -966,7 +966,7 @@
     },
     "default_scheduleStartHour_@title": {
         "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "扩展程序将在之后应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+        "message": "扩展程序将在之后应用于所有使用默认时间表的网站。"
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
@@ -974,7 +974,7 @@
     },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "扩展程序仅在此次应用于所有使用默认时间表的网站。\n页面将在指定时间区间内刷新使时间表生效。"
+        "message": "扩展程序仅在此次应用于所有使用默认时间表的网站。"
     },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",

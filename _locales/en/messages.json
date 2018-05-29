@@ -61,7 +61,7 @@
     },
     "scheduleStartHour_@title": {
         "description": "scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "Extension will be active on the current website only starting from this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+        "message": "Extension will be active on the current website only starting from this time."
     },
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
@@ -69,7 +69,7 @@
     },
     "scheduleFinishHour_@title": {
         "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "Extension will be active on the current website only until this time.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+        "message": "Extension will be active on the current website only until this time."
     },
     "blueFilter_text_label": {
         "description": "blueFilter_text_label: text on the label",
@@ -1010,7 +1010,7 @@
     },
     "default_scheduleStartHour_@title": {
         "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "Extension will be active only starting from this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+        "message": "Extension will be active only starting from this time on all websites with default schedule."
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
@@ -1018,7 +1018,7 @@
     },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "Extension will be active only until this time on all websites with default schedule.\nPage should be refreshed during the specified time lapse in order for schedule to take effect."
+        "message": "Extension will be active only until this time on all websites with default schedule."
     },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
