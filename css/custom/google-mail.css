@@ -55,3 +55,15 @@ div[role="navigation"] .qj:after {
     --ml-background-border-right-color:Border;
     --ml-background-border-top-color:Border;
 }
+
+.zE {
+    --ml-background-background-color:ButtonBackground;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp) {
+    background-color: var(--ml-main-button-background-color)!important;
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp) {
+    background-color: transparent!important;
+}
