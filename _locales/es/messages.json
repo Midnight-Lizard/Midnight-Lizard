@@ -11,6 +11,10 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Alternar la extensión global"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "Cambiar al sitio web actual"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "Ejecutar en el sitio web actual"
@@ -486,6 +490,10 @@
         "description": "commonTab_text_label: text on the label",
         "message": "Activación"
     },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "     Ajustes de activación\n―――――――――――――――――――\n Utilice esta ficha para definir qué páginas y cuándo deben procesarse o dejarse sin modificar."
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "Fondos"
@@ -799,6 +807,34 @@
     "colorSchemeName_New": {
         "description": "color scheme name",
         "message": "Nuevo esquema de colores"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "Por defecto"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Original (ninguna)"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Menta Manzana"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Noche de Brujas"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Códice antigüo"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Mayor contraste"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Escala de grises"
     },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
