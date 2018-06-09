@@ -836,6 +836,18 @@
         "description": "color scheme name",
         "message": "Escala de grises"
     },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Luz Invertida"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Amarillo sobre negro"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Verde sobre negro"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Tu almacenamiento de ajustes local ya contiene datos.\n¿Quieres sobrescribirlos con los datos del almacenamiento (nube) sincronizado y perder los datos sobrescritos?"
@@ -948,8 +960,28 @@
         "description": "globalstab_text_label: text on the label",
         "message": "Ajustes globales"
     },
+    "github_stars_campaign_text_message": {
+        "description": "github_stars_campaign_text_message: text on the campaign ad message",
+        "message": "Ayúdenos a recopilar 🌟 en GitHub para iniciar la microfinanciación colectiva"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "Excluir patrones de coincidencia"
+    },
+    "includeMatches_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Incluir patrones de coincidencia"
+    },
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "Sintaxis"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the label",
+        "message": "No invertir contenido dinámico"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "archivos locales"
     }
 }
