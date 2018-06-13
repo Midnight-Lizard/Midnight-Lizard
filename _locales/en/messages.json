@@ -77,7 +77,7 @@
     },
     "blueFilter_@title": {
         "description": "blueFilter_@title: text on the tooltip\/hint",
-        "message": "Blue filter intensity\nRemoves blue light from the page and replces it with red light"
+        "message": "Blue filter intensity.\nRemoves blue light from the page and replaces it with red light."
     },
     "backgroundSaturationLimit_text_label": {
         "description": "backgroundSaturationLimit_text_label: text on the label",
