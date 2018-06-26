@@ -63,10 +63,10 @@ namespace MidnightLizard.ContentScript
         classList: string[];
         tagName: string;
         parentElement: Element;
-        computedStyle: CSSStyleDeclaration;
-        rect: ClientRect | null | undefined;
-        area?: number;
-        path: string | null | undefined;
+        mlComputedStyle: CSSStyleDeclaration;
+        mlRect: ClientRect | null | undefined;
+        mlArea?: number;
+        mlPath: string | null | undefined;
         bgColor = "";
         style: PseudoElementStyle & CSSStyleDeclarationKeys;
         ownerDocument: Document;
@@ -76,9 +76,9 @@ namespace MidnightLizard.ContentScript
         protected resolveCss!: (css: string) => void;
         getBoundingClientRect()
         {
-            this.rect = this.parentElement.rect = this.parentElement.rect || this.parentElement.getBoundingClientRect();
-            this.area = this.rect.width * this.rect.height;
-            return this.rect;
+            this.mlRect = this.parentElement.mlRect = this.parentElement.mlRect || this.parentElement.getBoundingClientRect();
+            this.mlArea = this.mlRect.width * this.mlRect.height;
+            return this.mlRect;
         }
         applyStyleChanges(standardCssText?: string)
         {
@@ -95,8 +95,8 @@ namespace MidnightLizard.ContentScript
             this.tagName = typeName;
             this.selectorText = `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}`;
             this.parentElement = parent;
-            this.computedStyle = computedStyle;
-            this.rect = parent.rect;
+            this.mlComputedStyle = computedStyle;
+            this.mlRect = parent.mlRect;
             this.style = new PseudoElementStyle() as PseudoElementStyle & CSSStyleDeclarationKeys;
             this.ownerDocument = parent.ownerDocument;
             this.stylePromise = new Promise((resolve, reject) => this.resolveCss = resolve);

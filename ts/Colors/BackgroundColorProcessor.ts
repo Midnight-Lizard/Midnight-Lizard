@@ -51,33 +51,33 @@ namespace MidnightLizard.Colors
 
         protected tryGetTagArea(tag: Element)
         {
-            if (tag.area === undefined)
+            if (tag.mlArea === undefined)
             {
-                tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
-                if (tag.computedStyle && tag.computedStyle.width && tag.computedStyle.width.endsWith("px") &&
-                    tag.computedStyle.height && tag.computedStyle.height.endsWith("px"))
+                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+                if (tag.mlComputedStyle && tag.mlComputedStyle.width && tag.mlComputedStyle.width.endsWith("px") &&
+                    tag.mlComputedStyle.height && tag.mlComputedStyle.height.endsWith("px"))
                 {
-                    let width = parseInt(tag.computedStyle.width), height = parseInt(tag.computedStyle.height);
+                    let width = parseInt(tag.mlComputedStyle.width), height = parseInt(tag.mlComputedStyle.height);
                     if (!isNaN(width) && !isNaN(height))
                     {
-                        tag.area = width * height;
+                        tag.mlArea = width * height;
                     }
                 }
             }
-            return tag.area;
+            return tag.mlArea;
         }
 
         protected getTagArea(tag: Element)
         {
-            if (tag.area === undefined)
+            if (tag.mlArea === undefined)
             {
                 if (this.tryGetTagArea(tag) === undefined)
                 {
-                    tag.rect = tag.rect || tag.getBoundingClientRect();
-                    tag.area = tag.rect.width * tag.rect.height;
+                    tag.mlRect = tag.mlRect || tag.getBoundingClientRect();
+                    tag.mlArea = tag.mlRect.width * tag.mlRect.height;
                 }
             }
-            return tag.area!;
+            return tag.mlArea!;
         }
 
         protected tryUpdateLightArea(tag: Element, lightness: number)

@@ -389,8 +389,8 @@ namespace MidnightLizard.ContentScript
                     {
                         return true;
                     }
-                    tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
-                    return tag.computedStyle.backgroundImage !== this._css.none;
+                    tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+                    return tag.mlComputedStyle.backgroundImage !== this._css.none;
                 }
                 return false;
             };
@@ -409,7 +409,7 @@ namespace MidnightLizard.ContentScript
 
         protected hasPseudoClassOverrided(tag: HTMLElement, pseudo: PseudoClass)
         {
-            return !!tag.computedStyle && tag.computedStyle.getPropertyValue(`--ml-pseudo-${PseudoClass[pseudo].toLowerCase()}`) === true.toString()
+            return !!tag.mlComputedStyle && tag.mlComputedStyle.getPropertyValue(`--ml-pseudo-${PseudoClass[pseudo].toLowerCase()}`) === true.toString()
         }
 
         protected onElementsForUserActionObservationFound([pseudoClass, tags]: [PseudoClass, NodeListOf<Element>])
@@ -703,7 +703,7 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
-                if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.path || ""))
+                if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.mlPath || ""))
                 {
                     console.log(needReCalculation);
                     console.log(tag.style.cssText);
@@ -767,78 +767,78 @@ namespace MidnightLizard.ContentScript
                     wm = allTags[0].ownerDocument.defaultView.innerWidth;
                 for (let tag of allTags)
                 {
-                    tag.rowNumber = rowNumber++;
+                    tag.mlRowNumber = rowNumber++;
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
-                    if (isVisible || tag.computedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
+                    if (isVisible || tag.mlComputedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
                     {
-                        tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        if (!tag.computedStyle)
+                        tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
+                        if (!tag.mlComputedStyle)
                         {
                             break;
                         }
                         isLink = tag instanceof HTMLAnchorElement;
-                        hasBgColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor) !==
+                        hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !==
                             Colors.RgbaColor.Transparent;
-                        hasImage = tag.computedStyle!.backgroundImage !== docProc._css.none ||
+                        hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
                             (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
                     }
 
                     if (isVisible)
                     {
-                        tag.rect = tag.rect || tag.getBoundingClientRect();
-                        isVisible = tag.rect.width !== 0 && tag.rect.height !== 0;
-                        isVisible && (tag.area = tag.rect.width * tag.rect.height);
+                        tag.mlRect = tag.mlRect || tag.getBoundingClientRect();
+                        isVisible = tag.mlRect.width !== 0 && tag.mlRect.height !== 0;
+                        isVisible && (tag.mlArea = tag.mlRect.width * tag.mlRect.height);
                         inView = isVisible &&
-                            (tag.rect.bottom >= 0 && tag.rect.bottom <= hm || tag.rect.top >= 0 && tag.rect.top <= hm) &&
-                            (tag.rect.right >= 0 && tag.rect.right <= wm || tag.rect.left >= 0 && tag.rect.left <= wm);
+                            (tag.mlRect.bottom >= 0 && tag.mlRect.bottom <= hm || tag.mlRect.top >= 0 && tag.mlRect.top <= hm) &&
+                            (tag.mlRect.right >= 0 && tag.mlRect.right <= wm || tag.mlRect.left >= 0 && tag.mlRect.left <= wm);
                         if (!isVisible)
                         {
-                            tag.rect = null;
-                            if (hasBgColor) tag.order = po.invisColorTags;
-                            else if (hasImage) tag.order = po.invisImageTags;
-                            else if (isLink) tag.order = po.invisLinks;
-                            else tag.order = po.invisTransTags;
+                            tag.mlRect = null;
+                            if (hasBgColor) tag.mlOrder = po.invisColorTags;
+                            else if (hasImage) tag.mlOrder = po.invisImageTags;
+                            else if (isLink) tag.mlOrder = po.invisLinks;
+                            else tag.mlOrder = po.invisTransTags;
                         }
                         else if (hasBgColor)
                         {
-                            if (inView) tag.order = po.viewColorTags;
-                            else tag.order = po.visColorTags;
+                            if (inView) tag.mlOrder = po.viewColorTags;
+                            else tag.mlOrder = po.visColorTags;
                         }
                         else if (hasImage)
                         {
-                            if (inView) tag.order = po.viewImageTags;
-                            else tag.order = po.visImageTags;
+                            if (inView) tag.mlOrder = po.viewImageTags;
+                            else tag.mlOrder = po.visImageTags;
                         }
                         else if (isLink)
                         {
-                            if (inView) tag.order = po.viewLinks;
-                            else tag.order = po.visLinks;
+                            if (inView) tag.mlOrder = po.viewLinks;
+                            else tag.mlOrder = po.visLinks;
                         }
                         else
                         {
-                            if (inView) tag.order = po.viewTransTags;
-                            else tag.order = po.visTransTags;
+                            if (inView) tag.mlOrder = po.viewTransTags;
+                            else tag.mlOrder = po.visTransTags;
                         }
                     }
-                    else if (tag.computedStyle)
+                    else if (tag.mlComputedStyle)
                     {
-                        if (hasBgColor) tag.order = po.invisColorTags;
-                        else if (hasImage) tag.order = po.invisImageTags;
-                        else tag.order = po.invisTransTags;
+                        if (hasBgColor) tag.mlOrder = po.invisColorTags;
+                        else if (hasImage) tag.mlOrder = po.invisImageTags;
+                        else tag.mlOrder = po.invisTransTags;
                     }
                     else
                     {
-                        tag.order = po.delayedInvisTags;
+                        tag.mlOrder = po.delayedInvisTags;
                         otherInvisTags.push(tag);
                     }
                 }
 
                 allTags.sort((a, b) =>
-                    a.order !== b.order ? a.order! - b.order!
-                        : b.area && a.area && b.area !== a.area ? b.area - a.area
-                            : a.rowNumber! - b.rowNumber!);
+                    a.mlOrder !== b.mlOrder ? a.mlOrder! - b.mlOrder!
+                        : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
+                            : a.mlRowNumber! - b.mlRowNumber!);
                 allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
 
                 const results = Util.handlePromise(DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
@@ -868,10 +868,10 @@ namespace MidnightLizard.ContentScript
                                 tag.ownerDocument.defaultView &&
                                 !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
                                 tag.mlColor.reason === Colors.ColorReason.Inherited &&
-                                tag.mlColor.intendedColor && tag.computedStyle &&
+                                tag.mlColor.intendedColor && tag.mlComputedStyle &&
                                 tag.mlColor.intendedColor !== (tag instanceof HTMLElement
-                                    ? tag.computedStyle!.color
-                                    : tag!.computedStyle!.fill));
+                                    ? tag.mlComputedStyle!.color
+                                    : tag!.mlComputedStyle!.fill));
 
                             if (brokenColorTags.length > 0)
                             {
@@ -900,10 +900,10 @@ namespace MidnightLizard.ContentScript
                         {
                             const brokenTransparentTags = t.filter(tag =>
                                 tag.ownerDocument.defaultView && tag.mlBgColor &&
-                                !tag.mlBgColor.color && tag.computedStyle &&
+                                !tag.mlBgColor.color && tag.mlComputedStyle &&
                                 tag.mlBgColor.reason === Colors.ColorReason.Parent &&
                                 tag instanceof HTMLElement &&
-                                tag.computedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
+                                tag.mlComputedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
                                 !tag.hasAttribute("fixed")
                             );
                             if (brokenTransparentTags.length > 0)
@@ -932,7 +932,7 @@ namespace MidnightLizard.ContentScript
                     docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
                 if (tags.length < chunkLength)
                 {
-                    result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].order || po.viewColorTags)! / density);
+                    result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].mlOrder || po.viewColorTags)! / density);
                 }
                 else
                 {
@@ -1026,11 +1026,11 @@ namespace MidnightLizard.ContentScript
         {
             let maxSize = 50, maxAxis = 25,
                 check = (w: number, h: number) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
-            tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
-            let width = parseInt(tag.computedStyle.width!), height = parseInt(tag.computedStyle.height!);
+            tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+            let width = parseInt(tag.mlComputedStyle.width!), height = parseInt(tag.mlComputedStyle.height!);
             if (!isNaN(width) && !isNaN(height))
             {
-                tag.area = tag.area || width * height;
+                tag.mlArea = tag.mlArea || width * height;
                 return check(width, height);
             }
             else if (!isNaN(width) && width < maxAxis && width > 0)
@@ -1043,32 +1043,32 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                tag.rect = tag.rect || tag.getBoundingClientRect();
-                tag.area = tag.rect.width * tag.rect.height;
-                return check(tag.rect.width, tag.rect.height);
+                tag.mlRect = tag.mlRect || tag.getBoundingClientRect();
+                tag.mlArea = tag.mlRect.width * tag.mlRect.height;
+                return check(tag.mlRect.width, tag.mlRect.height);
             }
         }
 
         protected calcTagArea(tag: Element | PseudoElement, tryClientRect = true)
         {
-            if (tag.area === undefined)
+            if (tag.mlArea === undefined)
             {
-                tag.computedStyle = tag.computedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
-                let width = parseInt(tag.computedStyle.width!), height = parseInt(tag.computedStyle.height!);
+                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+                let width = parseInt(tag.mlComputedStyle.width!), height = parseInt(tag.mlComputedStyle.height!);
                 if (!isNaN(width) && !isNaN(height))
                 {
-                    tag.area = width * height;
+                    tag.mlArea = width * height;
                 }
                 else if (tryClientRect)
                 {
-                    tag.rect = tag.rect || tag.getBoundingClientRect();
-                    if (tag.rect.width || tag.rect.height)
+                    tag.mlRect = tag.mlRect || tag.getBoundingClientRect();
+                    if (tag.mlRect.width || tag.mlRect.height)
                     {
-                        tag.area = tag.rect.width * tag.rect.height;
+                        tag.mlArea = tag.mlRect.width * tag.mlRect.height;
                     }
                     else
                     {
-                        tag.rect = null;
+                        tag.mlRect = null;
                     }
                 }
             }
@@ -1079,9 +1079,9 @@ namespace MidnightLizard.ContentScript
             var parentPath = "";
             if (tag.parentElement)
             {
-                parentPath = (tag.parentElement.path ? tag.parentElement.path : this.calcElementPath(tag.parentElement as HTMLElement)) + " ";
+                parentPath = (tag.parentElement.mlPath ? tag.parentElement.mlPath : this.calcElementPath(tag.parentElement as HTMLElement)) + " ";
             }
-            tag.path = parentPath + tag.tagName;
+            tag.mlPath = parentPath + tag.tagName;
             if (!tag.isPseudo)
             {
                 var attr: Attr, length = (tag as Element).attributes.length;
@@ -1090,15 +1090,15 @@ namespace MidnightLizard.ContentScript
                     attr = (tag as Element).attributes[i];
                     if (attr.value && attr.name && !attr.name.endsWith("timer") && attr.name !== "d")
                     {
-                        tag.path += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
+                        tag.mlPath += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
                     }
                     else if (attr.name === "disabled")
                     {
-                        tag.path += "X";
+                        tag.mlPath += "X";
                     }
                 }
             }
-            return tag.path;
+            return tag.mlPath;
         }
 
         protected getElementIndex(tag: Element)
@@ -1118,11 +1118,11 @@ namespace MidnightLizard.ContentScript
                 let doc = tag.ownerDocument;
                 let isSvg = tag instanceof SVGElement &&
                     tag.parentElement instanceof SVGElement;
-                tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.computedStyle && isRealElement(tag) && (tag.computedStyle!.position == this._css.absolute || tag.computedStyle!.position == this._css.relative || isSvg))
+                if (tag.mlComputedStyle && isRealElement(tag) && (tag.mlComputedStyle!.position == this._css.absolute || tag.mlComputedStyle!.position == this._css.relative || isSvg))
                 {
-                    tag.zIndex = isSvg ? this.getElementIndex(tag) : parseInt(tag.computedStyle!.zIndex || "0");
+                    tag.zIndex = isSvg ? this.getElementIndex(tag) : parseInt(tag.mlComputedStyle!.zIndex || "0");
                     tag.zIndex = isNaN(tag.zIndex!) ? -999 : tag.zIndex;
                     let children: Element[] = Array.prototype.filter.call(tag.parentElement!.children,
                         (otherTag: Element, index: number) =>
@@ -1130,16 +1130,16 @@ namespace MidnightLizard.ContentScript
                             if (otherTag != tag && otherTag.isChecked)
                             {
                                 otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
-                                    parseInt((otherTag.computedStyle = otherTag.computedStyle ? otherTag.computedStyle
+                                    parseInt((otherTag.mlComputedStyle = otherTag.mlComputedStyle ? otherTag.mlComputedStyle
                                         : doc.defaultView.getComputedStyle(otherTag, "")).zIndex || "0");
                                 otherTag.zIndex = isNaN(otherTag.zIndex) ? -999 : otherTag.zIndex;
                                 if (otherTag.mlBgColor && otherTag.mlBgColor.color &&
                                     otherTag.zIndex < tag.zIndex! && otherTag.mlBgColor.role !== cc.TextSelection)
                                 {
-                                    probeRect = probeRect || (tag.rect = tag.rect || tag.getBoundingClientRect());
-                                    otherTag.rect = otherTag.rect || otherTag.getBoundingClientRect();
-                                    if (otherTag.rect.left <= probeRect.left && otherTag.rect.top <= probeRect.top &&
-                                        otherTag.rect.right >= probeRect.right && otherTag.rect.bottom >= probeRect.bottom)
+                                    probeRect = probeRect || (tag.mlRect = tag.mlRect || tag.getBoundingClientRect());
+                                    otherTag.mlRect = otherTag.mlRect || otherTag.getBoundingClientRect();
+                                    if (otherTag.mlRect.left <= probeRect.left && otherTag.mlRect.top <= probeRect.top &&
+                                        otherTag.mlRect.right >= probeRect.right && otherTag.mlRect.bottom >= probeRect.bottom)
                                     {
                                         return true;
                                     }
@@ -1169,7 +1169,7 @@ namespace MidnightLizard.ContentScript
                 }
                 else
                 {
-                    probeRect = probeRect || (tag.rect = tag.rect || tag.getBoundingClientRect());
+                    probeRect = probeRect || (tag.mlRect = tag.mlRect || tag.getBoundingClientRect());
                     result = this.getParentBackground(tag.parentElement!, probeRect);
                 }
             }
@@ -1225,7 +1225,7 @@ namespace MidnightLizard.ContentScript
         protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
         {
             delete tag.mlParentBgColor;
-            delete tag.path;
+            delete tag.mlPath;
 
             if (tag.mlBgColor || tag instanceof Element &&
                 (lastProcMode === Settings.ProcessingMode.Simplified ||
@@ -1236,7 +1236,7 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlBgColor;
                 delete tag.mlColor;
                 delete tag.mlTextShadow;
-                delete tag.rect;
+                delete tag.mlRect;
                 delete tag.selectors;
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
@@ -1307,7 +1307,7 @@ namespace MidnightLizard.ContentScript
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
                 if (keepTransitionDuration && !tag.originalTransitionDuration &&
-                    tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
+                    tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration !== this._css._0s)
                 {
                     const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
                     if (hasForbiddenTransition)
@@ -1349,7 +1349,7 @@ namespace MidnightLizard.ContentScript
         protected caclulateSimplifiedRoomRules(tag: HTMLElement)
         {
             if (tag && tag.ownerDocument.defaultView &&
-                (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
+                (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 const doc = tag.ownerDocument, roomRules = new RoomRules(),
                     bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
@@ -1361,10 +1361,10 @@ namespace MidnightLizard.ContentScript
                         tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
                         tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;;
 
-                tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
-                    tag.computedStyle!.backgroundImage !== this._rootImageUrl)
+                if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
+                    tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
@@ -1386,7 +1386,7 @@ namespace MidnightLizard.ContentScript
             } | undefined
         {
             if (tag && tag.ownerDocument.defaultView && !(tag as HTMLElement).mlBgColor
-                && (!tag.computedStyle || tag.computedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
+                && (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 let doc = tag.ownerDocument;
                 let isSmall, bgInverted;
@@ -1425,14 +1425,14 @@ namespace MidnightLizard.ContentScript
 
                 this.calcElementPath(tag);
                 tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
-                room = tag.path + tag.selectors;
+                room = tag.mlPath + tag.selectors;
                 roomRules = this._dorm.get(doc)!.get(room);
 
                 if (!roomRules)
                 {
-                    tag.computedStyle = tag.computedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                    tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
                     roomRules = new RoomRules();
-                    if (tag.computedStyle)
+                    if (tag.mlComputedStyle)
                     {
                         this._app.isDebug && (roomRules.owner = tag);
                         if (isRealElement(tag))
@@ -1459,7 +1459,7 @@ namespace MidnightLizard.ContentScript
                                 roomRules.attributes.set("after-style", roomId);
                             }
                         }
-                        if (tag.computedStyle && tag.computedStyle.transitionDuration !== this._css._0s)
+                        if (tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration !== this._css._0s)
                         {
                             let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
                             if (hasForbiddenTransition)
@@ -1472,7 +1472,7 @@ namespace MidnightLizard.ContentScript
                             if (tag instanceof SVGElement)
                             {
                                 if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement!) &&
-                                    tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
+                                    tag.mlComputedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                                 {
                                     isSvgText = true;
                                     roomRules.backgroundColor = Object.assign({}, this.getParentBackground(
@@ -1493,7 +1493,7 @@ namespace MidnightLizard.ContentScript
 
                             if (this._app.preserveDisplay && roomRules.backgroundColor && roomRules.backgroundColor.color && tag.id && tag.className)
                             {
-                                roomRules.display = tag.computedStyle!.display;
+                                roomRules.display = tag.mlComputedStyle!.display;
                             }
                         }
 
@@ -1507,12 +1507,12 @@ namespace MidnightLizard.ContentScript
                             (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 ||
                                 this._settingsManager.currentSettings.blueFilter !== 0))
                         {
-                            const customImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
+                            const customImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                             let imgSet = this.shift[customImageRole] || this.shift.Image;
                             roomRules.filter =
                                 {
                                     value: [
-                                        tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
+                                        tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
                                         imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                         this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
                                         imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
@@ -1527,23 +1527,23 @@ namespace MidnightLizard.ContentScript
                         }
                         const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                        if (tag.computedStyle!.content!.startsWith("url") &&
+                        if (tag.mlComputedStyle!.content!.startsWith("url") &&
                             (this._app.browserName === Settings.BrowserName.Chrome ||
-                                !(beforePseudoElement && beforePseudoElement.computedStyle.content === tag.computedStyle!.content) &&
-                                !(afterPseudoElement && afterPseudoElement.computedStyle.content === tag.computedStyle!.content)))
+                                !(beforePseudoElement && beforePseudoElement.mlComputedStyle.content === tag.mlComputedStyle!.content) &&
+                                !(afterPseudoElement && afterPseudoElement.mlComputedStyle.content === tag.mlComputedStyle!.content)))
                         {
                             let doInvert = (!isTable) && bgInverted &&
-                                (tag.computedStyle!.content!.search(doNotInvertRegExp) === -1) &&
-                                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
+                                (tag.mlComputedStyle!.content!.search(doNotInvertRegExp) === -1) &&
+                                tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                                 (
                                     this.tagIsSmall(tag)
 
                                     || tag.isPseudo && tag.parentElement!.parentElement &&
                                     this.tagIsSmall(tag.parentElement!.parentElement!) &&
-                                    tag.parentElement!.parentElement!.computedStyle!.overflow === this._css.hidden
+                                    tag.parentElement!.parentElement!.mlComputedStyle!.overflow === this._css.hidden
 
                                     || !tag.isPseudo && this.tagIsSmall(tag.parentElement!) &&
-                                    tag.parentElement!.computedStyle!.overflow === this._css.hidden
+                                    tag.parentElement!.mlComputedStyle!.overflow === this._css.hidden
                                 );
                             if (this.shift.Image.lightnessLimit < 1 || this.shift.Image.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                             {
@@ -1551,7 +1551,7 @@ namespace MidnightLizard.ContentScript
                                 roomRules.filter =
                                     {
                                         value: [
-                                            tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter : "",
+                                            tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
                                             imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
                                             imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
                                             doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
@@ -1562,8 +1562,8 @@ namespace MidnightLizard.ContentScript
                             }
                         }
 
-                        if (tag.computedStyle!.backgroundImage && tag.computedStyle!.backgroundImage !== this._css.none &&
-                            tag.computedStyle!.backgroundImage !== this._rootImageUrl)
+                        if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
+                            tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                         {
                             this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                         }
@@ -1595,9 +1595,9 @@ namespace MidnightLizard.ContentScript
                                 let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
                                 let currentTextContrast = Math.abs(roomRules.backgroundColor.light - roomRules.color.light);
                                 if (currentTextContrast != originalTextContrast && roomRules.color.originalLight != roomRules.color.light &&
-                                    tag.computedStyle!.textShadow && tag.computedStyle!.textShadow !== this._css.none)
+                                    tag.mlComputedStyle!.textShadow && tag.mlComputedStyle!.textShadow !== this._css.none)
                                 {
-                                    let newTextShadow = tag.computedStyle!.textShadow!,
+                                    let newTextShadow = tag.mlComputedStyle!.textShadow!,
                                         newColor: Colors.ColorEntry | undefined = undefined, currentTextShadowColor: string | null,
                                         prevHslColor: Colors.HslaColor, shadowContrast: number, inheritedShadowColor;
                                     let uniqColors = new Set<string>(newTextShadow
@@ -1621,7 +1621,7 @@ namespace MidnightLizard.ContentScript
                                                 }
                                             }
                                         });
-                                        if (newTextShadow !== tag.computedStyle!.textShadow)
+                                        if (newTextShadow !== tag.mlComputedStyle!.textShadow)
                                         {
                                             roomRules.textShadow = { value: newTextShadow, color: newColor || null };
                                         }
@@ -1636,24 +1636,24 @@ namespace MidnightLizard.ContentScript
                             this.processInaccessibleTextContent(tag, roomRules);
                         }
 
-                        if (isSvg && tag.computedStyle!.stroke !== this._css.none || !isSvg && (
-                            tag.computedStyle!.borderStyle && tag.computedStyle!.borderStyle !== this._css.none ||
-                            !tag.computedStyle!.borderStyle && (
-                                tag.computedStyle!.borderTopStyle !== this._css.none ||
-                                tag.computedStyle!.borderRightStyle !== this._css.none ||
-                                tag.computedStyle!.borderBottomStyle !== this._css.none ||
-                                tag.computedStyle!.borderLeftStyle !== this._css.none)))
+                        if (isSvg && tag.mlComputedStyle!.stroke !== this._css.none || !isSvg && (
+                            tag.mlComputedStyle!.borderStyle && tag.mlComputedStyle!.borderStyle !== this._css.none ||
+                            !tag.mlComputedStyle!.borderStyle && (
+                                tag.mlComputedStyle!.borderTopStyle !== this._css.none ||
+                                tag.mlComputedStyle!.borderRightStyle !== this._css.none ||
+                                tag.mlComputedStyle!.borderBottomStyle !== this._css.none ||
+                                tag.mlComputedStyle!.borderLeftStyle !== this._css.none)))
                         {
-                            let brdColor = tag.computedStyle!.getPropertyValue(ns.css.brdColor);
+                            let brdColor = tag.mlComputedStyle!.getPropertyValue(ns.css.brdColor);
                             const brdColorIsSingle = brdColor && brdColor.indexOf(" r") === -1 || !brdColor &&
-                                tag.computedStyle!.borderTopColor === tag.computedStyle!.borderRightColor &&
-                                tag.computedStyle!.borderRightColor === tag.computedStyle!.borderBottomColor &&
-                                tag.computedStyle!.borderBottomColor === tag.computedStyle!.borderLeftColor;
-                            const bgrColor = tag.computedStyle!.getPropertyValue(ns.css.bgrColor);
+                                tag.mlComputedStyle!.borderTopColor === tag.mlComputedStyle!.borderRightColor &&
+                                tag.mlComputedStyle!.borderRightColor === tag.mlComputedStyle!.borderBottomColor &&
+                                tag.mlComputedStyle!.borderBottomColor === tag.mlComputedStyle!.borderLeftColor;
+                            const bgrColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor);
 
                             if (brdColorIsSingle)
                             {
-                                brdColor = brdColor || tag.computedStyle!.borderTopColor!;
+                                brdColor = brdColor || tag.mlComputedStyle!.borderTopColor!;
                                 if (brdColor === bgrColor)
                                 {
                                     roomRules.borderColor = Object.assign(Object.assign({},
@@ -1670,23 +1670,23 @@ namespace MidnightLizard.ContentScript
                             else if (!isSvg)
                             {
                                 let borderRole = isButton ? cc.ButtonBorder : cc.Border, transBordersCount = 0;
-                                if (tag.isPseudo && tag.computedStyle!.width === this._css._0px && tag.computedStyle!.height === this._css._0px &&
+                                if (tag.isPseudo && tag.mlComputedStyle!.width === this._css._0px && tag.mlComputedStyle!.height === this._css._0px &&
                                     ((transBordersCount = [
-                                        tag.computedStyle!.borderTopColor,
-                                        tag.computedStyle!.borderRightColor,
-                                        tag.computedStyle!.borderBottomColor,
-                                        tag.computedStyle!.borderLeftColor
+                                        tag.mlComputedStyle!.borderTopColor,
+                                        tag.mlComputedStyle!.borderRightColor,
+                                        tag.mlComputedStyle!.borderBottomColor,
+                                        tag.mlComputedStyle!.borderLeftColor
                                     ].filter(c => c === Colors.RgbaColor.Transparent).length) === 3 ||
                                         transBordersCount === 2 && [
-                                            tag.computedStyle!.borderTopWidth,
-                                            tag.computedStyle!.borderRightWidth,
-                                            tag.computedStyle!.borderBottomWidth,
-                                            tag.computedStyle!.borderLeftWidth
+                                            tag.mlComputedStyle!.borderTopWidth,
+                                            tag.mlComputedStyle!.borderRightWidth,
+                                            tag.mlComputedStyle!.borderBottomWidth,
+                                            tag.mlComputedStyle!.borderLeftWidth
                                         ].filter(c => c === this._css._0px).length === 1))
                                 {
                                     borderRole = cc.Background;
                                 }
-                                if (tag.computedStyle!.borderTopColor === bgrColor)
+                                if (tag.mlComputedStyle!.borderTopColor === bgrColor)
                                 {
                                     roomRules.borderTopColor = Object.assign(Object.assign({},
                                         roomRules.backgroundColor), {
@@ -1700,7 +1700,7 @@ namespace MidnightLizard.ContentScript
                                         { role: borderRole, property: this._css.borderTopColor, tag: tag, bgLight: bgLight });
                                 }
 
-                                if (tag.computedStyle!.borderRightColor === bgrColor)
+                                if (tag.mlComputedStyle!.borderRightColor === bgrColor)
                                 {
                                     roomRules.borderRightColor = Object.assign(Object.assign({},
                                         roomRules.backgroundColor), {
@@ -1714,7 +1714,7 @@ namespace MidnightLizard.ContentScript
                                         { role: borderRole, property: this._css.borderRightColor, tag: tag, bgLight: bgLight });
                                 }
 
-                                if (tag.computedStyle!.borderBottomColor === bgrColor)
+                                if (tag.mlComputedStyle!.borderBottomColor === bgrColor)
                                 {
                                     roomRules.borderBottomColor = Object.assign(Object.assign({},
                                         roomRules.backgroundColor), {
@@ -1728,7 +1728,7 @@ namespace MidnightLizard.ContentScript
                                         { role: borderRole, property: this._css.borderBottomColor, tag: tag, bgLight: bgLight });
                                 }
 
-                                if (tag.computedStyle!.borderLeftColor === bgrColor)
+                                if (tag.mlComputedStyle!.borderLeftColor === bgrColor)
                                 {
                                     roomRules.borderLeftColor = Object.assign(Object.assign({},
                                         roomRules.backgroundColor), {
@@ -1775,13 +1775,13 @@ namespace MidnightLizard.ContentScript
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
                 this._settingsManager.currentSettings.doNotInvertContent === false &&
-                tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+                tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
             {
-                const customDarkRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
+                const customDarkRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
                 const darkSet = this.shift[customDarkRole] || this.shift.Background, txtSet = this.shift.Text;
                 roomRules.backgroundColor && (roomRules.backgroundColor.color = null);
                 filterValue = [
-                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                    tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter! : "",
                     tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
                     darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
                     `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, 0.88))})`,
@@ -1792,10 +1792,10 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                const customLightRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
+                const customLightRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                 const lightSet = this.shift[customLightRole] || this.shift.Image;
                 filterValue = [
-                    tag.computedStyle!.filter != this._css.none ? tag.computedStyle!.filter! : "",
+                    tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter! : "",
                     lightSet.saturationLimit < 1 ? `saturate(${lightSet.saturationLimit})` : "",
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
                     lightSet.lightnessLimit < 1 ? `brightness(${lightSet.lightnessLimit})` : ""
@@ -1807,8 +1807,8 @@ namespace MidnightLizard.ContentScript
         private calculateTransitionDuration(tag: HTMLElement | PseudoElement)
         {
             let hasForbiddenTransition = false;
-            let durations = tag.computedStyle!.transitionDuration!.split(", ");
-            tag.computedStyle!.transitionProperty!.split(", ").forEach((prop, index) =>
+            let durations = tag.mlComputedStyle!.transitionDuration!.split(", ");
+            tag.mlComputedStyle!.transitionProperty!.split(", ").forEach((prop, index) =>
             {
                 if (this._transitionForbiddenProperties.has(prop))
                 {
@@ -1827,12 +1827,12 @@ namespace MidnightLizard.ContentScript
                     role: Colors.Component, property: string, tag: HTMLElement | PseudoElement, bgLight?: number, propVal?: string
                 }): Colors.ColorEntry | undefined
         {
-            if (tag.computedStyle)
+            if (tag.mlComputedStyle)
             {
                 let propRole = (cc as any as { [p: string]: Colors.Component })
-                [tag.computedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)];
+                [tag.mlComputedStyle.getPropertyValue(`--ml-${cc[component].replace("$", "-").toLowerCase()}-${property}`)];
                 propRole = propRole !== undefined ? propRole : component;
-                propVal = propVal || tag.computedStyle!.getPropertyValue(property);
+                propVal = propVal || tag.mlComputedStyle!.getPropertyValue(property);
                 let bgLightVal = 1;
                 switch (propRole)
                 {
@@ -1915,7 +1915,7 @@ namespace MidnightLizard.ContentScript
             tag: HTMLElement | PseudoElement, doc: Document, roomRules: RoomRules,
             isButton: boolean, isTable: boolean, bgInverted: boolean)
         {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-            let backgroundImage = tag.computedStyle!.backgroundImage!;
+            let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
             let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
             let gradientColors = new Map<string, string>();
             if (gradientColorMatches)
@@ -1924,31 +1924,31 @@ namespace MidnightLizard.ContentScript
                 gradientColors.forEach((id, color) => backgroundImage =
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
-            let backgroundSizes = tag.computedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
+            let backgroundSizes = tag.mlComputedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
             let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
             if (/\burl\(/gi.test(backgroundImage))
             {
-                const customBgImageRole = tag.computedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
+                const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                 let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
                 doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
-                    tag.computedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
+                    tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                     (
                         this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
                         this.tagIsSmall(tag.parentElement.parentElement) &&
-                        (tag.parentElement.parentElement.computedStyle!.overflow === this._css.hidden)
+                        (tag.parentElement.parentElement.mlComputedStyle!.overflow === this._css.hidden)
                     );
 
                 if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
                 {
-                    isPseudoContent = tag.isPseudo && tag.computedStyle.content !== "''" && tag.computedStyle!.content !== '""';
+                    isPseudoContent = tag.isPseudo && tag.mlComputedStyle.content !== "''" && tag.mlComputedStyle!.content !== '""';
 
                     if (bgImgSet.lightnessLimit < 1 && !doInvert)
                     {
                         this.calcTagArea(tag);
-                        let area = 1 - Math.min(Math.max(tag.area!, 1) / doc.viewArea!, 1),
+                        let area = 1 - Math.min(Math.max(tag.mlArea!, 1) / doc.viewArea!, 1),
                             lim = bgImgSet.lightnessLimit,
                             txtLim = this.shift.Text.lightnessLimit;
                         bgImgLight = Math.min(((lim ** (1 / 2) - lim) ** (1 / 3) * area) ** 3 + lim, Math.max(lim, txtLim));
@@ -2290,7 +2290,7 @@ namespace MidnightLizard.ContentScript
             cssText += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
 
             const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules = new RoomRules;
-            fakeCanvas.computedStyle = fakeCanvas.style;
+            fakeCanvas.mlComputedStyle = fakeCanvas.style;
             this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
             cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value}`;
 

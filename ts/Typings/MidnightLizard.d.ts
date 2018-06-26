@@ -15,8 +15,8 @@ interface Node
     /** number of times when element has been mutated faster than mutation trottle timeout */
     mlMutationThrottledCount: number | undefined;
     /** Processing order */
-    order: MidnightLizard.ContentScript.ProcessingOrder | undefined;
-    rowNumber: number | undefined;
+    mlOrder: MidnightLizard.ContentScript.ProcessingOrder | undefined;
+    mlRowNumber: number | undefined;
     /** If true - Midnight Lizard would not process this element */
     mlIgnore: boolean | null | undefined;
     /** Calculated background color */
@@ -36,17 +36,17 @@ interface Node
     /** Occurs when IDocumentProcessor applies RoomRules on this element */
     onRoomRulesApplied: MidnightLizard.Events.ArgumentedEventDispatcher<MidnightLizard.ContentScript.RoomRules>;
     /** cache of getBoundingClientRect call results */
-    rect: ClientRect | null | undefined;
+    mlRect: ClientRect | null | undefined;
     /** Computed z-index */
     zIndex: number | undefined;
     /** Concatinated into the string list of matched css selectors */
     selectors: string | null | undefined;
     /** cache of getComputedStyle call results */
-    computedStyle: CSSStyleDeclaration | undefined | null;
+    mlComputedStyle: CSSStyleDeclaration | undefined | null;
     /** area of the element */
-    area: number | undefined;
+    mlArea: number | undefined;
     /** Element path in the DOM tree */
-    path: string | undefined | null;
+    mlPath: string | undefined | null;
     /** is true if this element has been verified as suitable for the processing */
     isChecked: boolean | null | undefined;
     ////////////////////////////////////////////////////////////////
