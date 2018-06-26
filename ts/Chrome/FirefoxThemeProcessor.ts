@@ -31,26 +31,27 @@ namespace Firefox
                 {
                     const mainVersion = parseInt(info.version.split('.')[0]);
                     const applySettingsOnTheme =
-                        ([set, wnd, changeTheme]: [MidnightLizard.Settings.ColorScheme, browser.windows.Window, boolean | undefined]) =>
+                        ([settings, wnd, defaultSettings]: [MidnightLizard.Settings.ColorScheme, browser.windows.Window, MidnightLizard.Settings.ColorScheme]) =>
                         {
-                            settingsManager.changeSettings(set, true);
-                            if (changeTheme)
+                            if (defaultSettings.changeBrowserTheme)
                             {
+                                settingsManager.changeSettings(settings, true);
+                                if (!settingsManager.isActive)
+                                {
+                                    settingsManager.changeSettings(defaultSettings, true);
+                                }
                                 if (settingsManager.isActive)
                                 {
                                     const
                                         darkGray = new cx.RgbaColor(80, 80, 80, 1).toString(),
+                                        normalGray = new cx.RgbaColor(180, 180, 180, 1).toString(),
                                         lightGray = new cx.RgbaColor(240, 240, 240, 1).toString();
                                     const
-                                        darkBgColor = backgroundColorProcessor
-                                            .changeColor(darkGray, true, document.body),
-                                        darkTextColor = textColorProcessor
-                                            .changeColor(cx.RgbaColor.Black, darkBgColor.light, document.body),
-                                        darkBorderColor = borderColorProcessor
-                                            .changeColor(cx.RgbaColor.Black, darkBgColor.light, document.body),
+                                        mainBgColor = backgroundColorProcessor
+                                            .changeColor(cx.RgbaColor.White, true, document.body),
 
                                         midBgColor = backgroundColorProcessor
-                                            .changeColor(set.backgroundLightnessLimit < 40
+                                            .changeColor(settings.backgroundLightnessLimit < 40
                                                 ? darkGray
                                                 : cx.RgbaColor.White, true, document.body),
                                         midTextColor = textColorProcessor
@@ -58,24 +59,28 @@ namespace Firefox
                                         midBorderColor = borderColorProcessor
                                             .changeColor(cx.RgbaColor.Black, midBgColor.light, document.body),
 
-                                        lightBgColor = backgroundColorProcessor
-                                            .changeColor(set.backgroundLightnessLimit < 40
-                                                ? cx.RgbaColor.White
-                                                : lightGray, true, document.body),
-                                        lightTextColor = textColorProcessor
-                                            .changeColor(cx.RgbaColor.Black, lightBgColor.light, document.body),
-                                        lightBorderColor = borderColorProcessor
-                                            .changeColor(cx.RgbaColor.Black, lightBgColor.light, document.body),
+                                        darkBgColor = backgroundColorProcessor
+                                            .changeColor(darkGray, true, document.body),
+                                        darkTextColor = textColorProcessor
+                                            .changeColor(cx.RgbaColor.Black, darkBgColor.light, document.body),
+                                        darkBorderColor = borderColorProcessor
+                                            .changeColor(cx.RgbaColor.Black, darkBgColor.light, document.body),
 
                                         buttonColor = buttonColorProcessor
-                                            .changeColor(cx.RgbaColor.White, lightBgColor.light, document.body),
+                                            .changeColor(cx.RgbaColor.White, mainBgColor.light, document.body),
                                         buttonHoverColor = buttonColorProcessor
-                                            .changeColor(lightGray, lightBgColor.light, document.body),
+                                            .changeColor(normalGray, buttonColor.light, document.body),
+                                        buttonActiveColor = buttonColorProcessor
+                                            .changeColor(lightGray, buttonColor.light, document.body),
+                                        lightTextColor = textColorProcessor
+                                            .changeColor(cx.RgbaColor.Black, buttonColor.light, document.body),
+                                        lightBorderColor = borderColorProcessor
+                                            .changeColor(cx.RgbaColor.Black, buttonColor.light, document.body),
 
                                         linkColor = linkColorProcessor
-                                            .changeColor(darkGray, lightBgColor.light, document.body),
+                                            .changeColor(darkGray, buttonColor.light, document.body),
                                         visitedLinkColor = visitedLinkColorProcessor
-                                            .changeColor(darkGray, lightBgColor.light, document.body),
+                                            .changeColor(darkGray, buttonColor.light, document.body),
 
                                         selectionBgColor = selectionColorProcessor
                                             .changeColor(cx.RgbaColor.White, false, document.body);
@@ -95,7 +100,7 @@ namespace Firefox
                                     if (mainVersion >= 57)
                                     {
                                         Object.assign(theme.colors, {
-                                            toolbar: lightBgColor.color,
+                                            toolbar: buttonColor.color,
                                             toolbar_text: lightTextColor.color,
                                             toolbar_field: midBgColor.color,
                                             toolbar_field_text: midTextColor.color
@@ -120,7 +125,7 @@ namespace Firefox
                                     {
                                         Object.assign(theme.colors, {
                                             button_background_hover: buttonHoverColor.color,
-                                            button_background_active: buttonColor.color,
+                                            button_background_active: buttonActiveColor.color,
 
                                             tab_line: linkColor.color,
                                             tab_loading: linkColor.color,
@@ -155,7 +160,7 @@ namespace Firefox
                             Promise.all([
                                 settingsBus.getCurrentSettings(),
                                 getCurrentWindow(),
-                                defaultSettings.changeBrowserTheme
+                                defaultSettings
                             ])
                                 .then(applySettingsOnTheme)
                                 .catch(ex =>
@@ -163,7 +168,7 @@ namespace Firefox
                                     Promise.all([
                                         defaultSettings,
                                         getCurrentWindow(),
-                                        defaultSettings.changeBrowserTheme
+                                        defaultSettings
                                     ])
                                         .then(applySettingsOnTheme)
                                         .catch(exx =>
