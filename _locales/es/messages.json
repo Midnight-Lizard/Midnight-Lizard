@@ -948,6 +948,14 @@
         "description": "mode_automatic_text_label: text on the label",
         "message": "Automático"
     },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "Ejecutar en todos sitios web por defecto"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "Ejecutar 'Midnight Lizard' en todos los sitios web sin ajustes personalizados."
+    },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "Tiempo de activación predeterminada"
@@ -963,6 +971,18 @@
     "github_stars_campaign_text_message": {
         "description": "github_stars_campaign_text_message: text on the campaign ad message",
         "message": "Ayúdenos a recopilar 🌟 en GitHub para iniciar la microfinanciación colectiva"
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Algunos de los patrones coinciden con la página actual"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "Los siguientes patrones coinciden con la página actual:\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "Ninguno de los patrones coincide con la página actual"
     },
     "excludeMatches_text_label": {
         "description": "excludeMatches_text_label: text on the label",
