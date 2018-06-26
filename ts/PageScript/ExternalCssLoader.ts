@@ -52,7 +52,7 @@ namespace MidnightLizard.PageScript
                         style.innerText = css;
                         style.disabled = true;
                         document.head.appendChild(style);
-                        style.sheet.disabled = true;
+                        style.sheet!.disabled = true;
                     })
                     .catch(ex =>
                     {

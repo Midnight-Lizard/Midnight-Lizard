@@ -234,7 +234,7 @@ namespace MidnightLizard.ContentScript
                                         style.innerText = css;
                                         style.disabled = true;
                                         (d.head || d.documentElement).appendChild(style);
-                                        style.sheet.disabled = true;
+                                        style.sheet!.disabled = true;
                                     })));
                         }
                     }

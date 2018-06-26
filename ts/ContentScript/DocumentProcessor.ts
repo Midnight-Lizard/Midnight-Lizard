@@ -1084,10 +1084,10 @@ namespace MidnightLizard.ContentScript
             tag.path = parentPath + tag.tagName;
             if (!tag.isPseudo)
             {
-                var attr: Attr, length = (tag as Node).attributes.length;
+                var attr: Attr, length = (tag as Element).attributes.length;
                 for (var i = 0; i < length; i++)
                 {
-                    attr = (tag as Node).attributes[i];
+                    attr = (tag as Element).attributes[i];
                     if (attr.value && attr.name && !attr.name.endsWith("timer") && attr.name !== "d")
                     {
                         tag.path += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
@@ -1471,7 +1471,7 @@ namespace MidnightLizard.ContentScript
                         {
                             if (tag instanceof SVGElement)
                             {
-                                if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement) &&
+                                if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement!) &&
                                     tag.computedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                                 {
                                     isSvgText = true;
