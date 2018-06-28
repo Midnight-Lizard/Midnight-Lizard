@@ -37,7 +37,7 @@ namespace MidnightLizard.ContentScript
 
         protected applyCachedSettings()
         {
-            if (localStorage.getItem(mlIsActiveProperty))
+            if (localStorage.getItem(mlIsActiveProperty) === "true")
             {
                 this._html.setAttribute(mlIsActiveAttribute, "");
                 this._html.style.setProperty(mlBackgroundLightnessLimitProperty,
@@ -59,7 +59,7 @@ namespace MidnightLizard.ContentScript
                 this._html.style.removeProperty(mlBackgroundLightnessLimitProperty);
             }
 
-            localStorage.setItem(mlIsActiveProperty, (this._settingsManager.isActive ? 1 : 0).toString());
+            localStorage.setItem(mlIsActiveProperty, this._settingsManager.isActive ? "true" : "false");
             localStorage.setItem(mlBackgroundLightnessLimitProperty, shift!.Background.lightnessLimit.toString());
         }
     }
