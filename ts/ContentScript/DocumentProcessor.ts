@@ -1470,6 +1470,7 @@ namespace MidnightLizard.ContentScript
                                 roomRules.transitionDuration = { value: durations.join(", ") };
                             }
                         }
+                        const bgrColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor);
                         if (!isSvgText)
                         {
                             if (tag instanceof SVGElement)
@@ -1485,13 +1486,13 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else
                                 {
-                                    roomRules.backgroundColor = this.changeColor({ role: cc.SvgBackground, property: ns.css.bgrColor, tag: tag });
+                                    roomRules.backgroundColor = this.changeColor({ role: cc.SvgBackground, property: ns.css.bgrColor, tag: tag, propVal: bgrColor });
                                 }
                             }
                             else
                             {
                                 roomRules.backgroundColor = this.changeColor(
-                                    { role: isButton ? cc.ButtonBackground : cc.Background, property: ns.css.bgrColor, tag: tag });
+                                    { role: isButton ? cc.ButtonBackground : cc.Background, property: ns.css.bgrColor, tag: tag, propVal: bgrColor });
                             }
 
                             if (this._app.preserveDisplay && roomRules.backgroundColor && roomRules.backgroundColor.color && tag.id && tag.className)
@@ -1572,6 +1573,7 @@ namespace MidnightLizard.ContentScript
                         }
 
                         let bgLight = roomRules.backgroundColor.light;
+
                         if (!isSvg || isSvgText)
                         {
                             if (isLink || !isSvg && ( //tag.isPseudo &&
@@ -1591,7 +1593,20 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                const txtColor = tag.mlComputedStyle!.getPropertyValue(ns.css.fntColor);
+                                if (roomRules.backgroundColor && roomRules.backgroundColor.color &&
+                                    txtColor === bgrColor)
+                                {
+                                    roomRules.color = Object.assign(Object.assign({},
+                                        roomRules.backgroundColor), {
+                                            reason: Colors.ColorReason.SameAsBackground,
+                                            owner: this._app.isDebug ? tag : null
+                                        });
+                                }
+                                else
+                                {
+                                    roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight, propVal: txtColor });
+                                }
                             }
                             if (roomRules.color)
                             {
@@ -1652,7 +1667,6 @@ namespace MidnightLizard.ContentScript
                                 tag.mlComputedStyle!.borderTopColor === tag.mlComputedStyle!.borderRightColor &&
                                 tag.mlComputedStyle!.borderRightColor === tag.mlComputedStyle!.borderBottomColor &&
                                 tag.mlComputedStyle!.borderBottomColor === tag.mlComputedStyle!.borderLeftColor;
-                            const bgrColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor);
 
                             if (brdColorIsSingle)
                             {
