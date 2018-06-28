@@ -32,10 +32,12 @@ namespace MidnightLizard.ContentScript
                 this.applyCachedSettings();
                 _settingsManager.onSettingsInitialized.addListener(
                     this.onSettingsInitialized, this, Events.EventHandlerPriority.After);
+                _settingsManager.onSettingsChanged.addListener(
+                    this.onSettingsChanged, this, Events.EventHandlerPriority.After);
             }
         }
 
-        protected applyCachedSettings()
+        private applyCachedSettings()
         {
             if (localStorage.getItem(mlIsActiveProperty) === "true")
             {
@@ -45,22 +47,30 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected onSettingsInitialized(shift?: Colors.ComponentShift): void
+        private applyActualSettings(shift: Colors.ComponentShift)
         {
             if (this._settingsManager.isActive)
             {
                 this._html.setAttribute(mlIsActiveAttribute, "");
-                this._html.style.setProperty(mlBackgroundLightnessLimitProperty,
-                    shift!.Background.lightnessLimit.toString());
+                this._html.style.setProperty(mlBackgroundLightnessLimitProperty, shift!.Background.lightnessLimit.toString());
             }
             else
             {
                 this._html.removeAttribute(mlIsActiveAttribute);
                 this._html.style.removeProperty(mlBackgroundLightnessLimitProperty);
             }
-
             localStorage.setItem(mlIsActiveProperty, this._settingsManager.isActive ? "true" : "false");
             localStorage.setItem(mlBackgroundLightnessLimitProperty, shift!.Background.lightnessLimit.toString());
+        }
+
+        protected onSettingsInitialized(shift?: Colors.ComponentShift): void
+        {
+            this.applyActualSettings(shift!);
+        }
+
+        protected onSettingsChanged(resp: any, shift?: Colors.ComponentShift): void
+        {
+            this.applyActualSettings(shift!);
         }
     }
 }
