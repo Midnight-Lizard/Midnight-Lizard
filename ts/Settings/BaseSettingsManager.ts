@@ -491,7 +491,9 @@ namespace MidnightLizard.Settings
                 scheduleStartHour: defaultSettings.scheduleStartHour,
                 scheduleFinishHour: defaultSettings.scheduleFinishHour,
                 changeBrowserTheme: defaultSettings.changeBrowserTheme,
-                userColorSchemeIds: defaultSettings.userColorSchemeIds
+                userColorSchemeIds: defaultSettings.userColorSchemeIds,
+                restoreColorsOnCopy: defaultSettings.restoreColorsOnCopy,
+                restoreColorsOnPrint: defaultSettings.restoreColorsOnPrint,
             });
             if (renameToDefault)
             {

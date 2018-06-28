@@ -167,6 +167,9 @@ namespace MidnightLizard.ContentScript
                 this._currentSettings.useDefaultSchedule &&
                 ("scheduleStartHour" in changes || "scheduleFinishHour" in changes)
                 ||
+                //- color restoration options changed
+                ("restoreColorsOnCopy" in changes || "restoreColorsOnPrint" in changes)
+                ||
                 //+ current website color scheme changed
                 `cs:${this._currentSettings.colorSchemeId}` in changes))
             {

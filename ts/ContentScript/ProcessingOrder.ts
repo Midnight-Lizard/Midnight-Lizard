@@ -64,4 +64,7 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.invisImageTags, 0],
         [ProcessingOrder.delayedInvisTags, 0]
     ]);
+
+    export const onCopyReCalculationDelays = new Map<ProcessingOrder, number>(bigReCalculationDelays);
+    onCopyReCalculationDelays.set(ProcessingOrder.viewColorTags, 1);
 }

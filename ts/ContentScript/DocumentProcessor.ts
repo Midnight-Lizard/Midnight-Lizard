@@ -331,19 +331,20 @@ namespace MidnightLizard.ContentScript
                         const printMedia = doc.defaultView.matchMedia("print");
                         printMedia.addListener(mql =>
                         {
-                            if (mql.matches)
+                            if (this._settingsManager.currentSettings.restoreColorsOnPrint)
                             {
-                                this.restoreDocumentColors(doc);
-                            }
-                            else
-                            {
-                                this.injectDynamicValues(doc);
-                                this.processDocument(doc);
+                                if (mql.matches)
+                                {
+                                    this.restoreDocumentColors(doc);
+                                }
+                                else
+                                {
+                                    this.injectDynamicValues(doc);
+                                    this.processDocument(doc);
+                                }
                             }
                         });
                     }
-                    //this.applyLoadingShadow(doc.documentElement);
-                    // this.removeLoadingStyles(doc);
                     this.createPseudoStyles(doc);
                     this.createPageScript(doc);
                     this.calculateDefaultColors(doc);
@@ -550,7 +551,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected reCalcRootElement(rootElem: HTMLElement, full: boolean, clearParentBgColors = false)
+        protected reCalcRootElement(rootElem: HTMLElement, onCopy: boolean, clearParentBgColors = false)
         {
             if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
@@ -558,7 +559,7 @@ namespace MidnightLizard.ContentScript
                 let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
                 if (allTags && allTags.length > 0)
                 {
-                    let skipSelectors = this._settingsManager.isSimple || full || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
+                    let skipSelectors = this._settingsManager.isSimple || onCopy || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
                     let filteredTags = allTags.filter(el => el.isChecked && el.mlBgColor && (skipSelectors || el.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(el)));
                     if (this._settingsManager.isSimple)
                     {
@@ -576,12 +577,13 @@ namespace MidnightLizard.ContentScript
                         });
                     }
                     filteredTags.splice(0, 0, rootElem);
-                    if (filteredTags.length < 100 || full || this._settingsManager.isSimple)
+                    if (filteredTags.length < 100 || onCopy || this._settingsManager.isSimple)
                     {
                         this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
                         filteredTags.forEach(tag => this.restoreElementColors(tag, true));
                         this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        DocumentProcessor.processAllElements(filteredTags, this, bigReCalculationDelays);
+                        DocumentProcessor.processAllElements(filteredTags, this, onCopy
+                            ? onCopyReCalculationDelays : bigReCalculationDelays);
                     }
                     else
                     {
@@ -1200,6 +1202,7 @@ namespace MidnightLizard.ContentScript
 
         protected restoreDocumentColors(doc: Document)
         {
+            dom.removeAllEventListeners(doc);
             this._documentObserver.stopDocumentUpdateObservation(doc);
             this._documentObserver.stopDocumentObservation(doc);
             this.removeDynamicValuesStyle(doc);
