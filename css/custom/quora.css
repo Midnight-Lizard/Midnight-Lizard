@@ -1,4 +1,5 @@
-.doc[contenteditable="true"]
+html[ml-stage] .doc[contenteditable="true"]:not(imp):not(#imp):not(.imp)
 {
     --ml-ignore:true;
+    background-color: var(--ml-main-background-color);
 }
