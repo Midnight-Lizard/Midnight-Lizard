@@ -840,6 +840,10 @@
         "description": "color scheme name",
         "message": "Luz Invertida"
     },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Escala de grises invertida"
+    },
     "colorSchemeName_yellowOnBlack": {
         "description": "color scheme name",
         "message": "Amarillo sobre negro"
