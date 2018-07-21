@@ -28,7 +28,7 @@ Adjust the web to your vision!
 ✔ Increased differentiation between similar background colors  
 ✔ Reduces eye strain and disruption of sleep patterns  
 ✔ Returns images to the original state on mouse hover  
-✔ Enhanced syntax highlighting (for programmers)  
+✔ Improves existing syntax highlighting (for programmers)  
 ✔ Has blue filter to replace blue light with red light  
 ✔ Essential at night time or in low light environment  
 ✔ Also useful during the daytime with light and contrast themes  
