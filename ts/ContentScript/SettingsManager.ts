@@ -127,7 +127,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings?: Settings.ColorScheme): void
+        protected onNewSettingsApplicationRequested(response: AnyResponse, newSettings?: Settings.ColorScheme)
         {
             this._currentSettings = newSettings!;
             this.saveCurrentSettings();
@@ -191,36 +191,43 @@ namespace MidnightLizard.ContentScript
         {
             if (this.isSelfMaintainable)
             {
-                this.skipOneSettingsUpdate = true;
-                if (this._currentSettings.colorSchemeId === "default")
+                try
                 {
-                    await this._storageManager.set({
-                        [this._settingsKey]: {
-                            runOnThisSite: this._currentSettings.runOnThisSite
-                        }
-                    });
-                }
-                else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
-                {
-                    await this._storageManager.set({
-                        [this._settingsKey]: {
-                            colorSchemeId: this._currentSettings.colorSchemeId,
-                            runOnThisSite: this._currentSettings.runOnThisSite
-                        }
-                    });
-                }
-                else
-                {
-                    let setting: Settings.ColorSchemePropertyName;
-                    const forSave: Settings.ColorScheme = {} as any;
-                    for (setting in this._currentSettings)
+                    this.skipOneSettingsUpdate = true;
+                    if (this._currentSettings.colorSchemeId === "default")
                     {
-                        if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
-                        {
-                            forSave[setting] = this._currentSettings[setting];
-                        }
+                        await this._storageManager.set({
+                            [this._settingsKey]: {
+                                runOnThisSite: this._currentSettings.runOnThisSite
+                            }
+                        });
                     }
-                    await this._storageManager.set({ [this._settingsKey]: forSave });
+                    else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
+                    {
+                        await this._storageManager.set({
+                            [this._settingsKey]: {
+                                colorSchemeId: this._currentSettings.colorSchemeId,
+                                runOnThisSite: this._currentSettings.runOnThisSite
+                            }
+                        });
+                    }
+                    else
+                    {
+                        let setting: Settings.ColorSchemePropertyName;
+                        const forSave: Settings.ColorScheme = {} as any;
+                        for (setting in this._currentSettings)
+                        {
+                            if (Settings.excludeSettingsForSave.indexOf(setting) == -1)
+                            {
+                                forSave[setting] = this._currentSettings[setting];
+                            }
+                        }
+                        await this._storageManager.set({ [this._settingsKey]: forSave });
+                    }
+                }
+                catch (error)
+                {
+                    alert(this._i18n.getMessage("applyOnPageFailureMessage") + (error.message || error))
                 }
             }
         }
