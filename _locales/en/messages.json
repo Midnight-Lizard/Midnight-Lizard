@@ -1101,5 +1101,17 @@
     "localFiles_text_label": {
         "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
         "message": "local files"
+    },
+    "colorSchemeImportNotSupportedMessage": {
+        "description": "colorSchemeImportNotSupportedMessage: text on the message box",
+        "message": "Color schemes import from files is not supported in Firefox"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "Change scrollbars style and colors"
+    },
+    "scrollbarStyle_@title": {
+        "description": "scrollbarStyle_@title: text on the tooltip\/hint",
+        "message": "Apply custom style and colors on scrollbars."
     }
 }
