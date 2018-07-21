@@ -211,6 +211,7 @@ namespace MidnightLizard.Popup
             this._newColorSchemeName.oninput = this.updateColorSchemeButtons.bind(this);
             this._exportColorSchemeButton.onclick = this.exportColorScheme.bind(this);
             this._importColorSchemeFileInput.onchange = this.importColorSchemes.bind(this);
+            this._importColorSchemeFileInput.onclick = this.importColorSchemesClick.bind(this);
 
             Controls.Tab.initTabControl(doc, (tab) =>
             {
@@ -476,6 +477,17 @@ namespace MidnightLizard.Popup
             }
             this._settingsExporter.export(newScheme);
             return false;
+        }
+
+        protected importColorSchemesClick(event: Event)
+        {
+            if (this._app.browserName === Settings.BrowserName.Firefox)
+            {
+                alert(this._i18n.getMessage("colorSchemeImportNotSupportedMessage"));
+                event.preventDefault();
+                return true;
+            }
+            return;
         }
 
         protected importColorSchemes()
@@ -907,11 +919,11 @@ namespace MidnightLizard.Popup
             let newRules = Object.assign(new ContentScript.RoomRules(),
                 {
                     textShadow:
-                        {
-                            value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
-                                ? roomRules.textShadow.color.color
-                                : "black"
-                        }
+                    {
+                        value: (roomRules.textShadow && roomRules.textShadow.color && roomRules.textShadow.color.color)
+                            ? roomRules.textShadow.color.color
+                            : "black"
+                    }
                 });
             this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props);
         }
