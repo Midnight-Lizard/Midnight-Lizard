@@ -261,6 +261,7 @@ namespace MidnightLizard.ContentScript
                 doc.documentElement.removeAttribute("ml-mode");
                 doc.documentElement.removeAttribute("ml-stage-mode");
                 doc.documentElement.removeAttribute("ml-platform");
+                doc.documentElement.removeAttribute("ml-scrollbar-style");
             }
             else
             {
