@@ -227,7 +227,7 @@ namespace MidnightLizard.ContentScript
                 }
                 catch (error)
                 {
-                    alert(this._i18n.getMessage("applyOnPageFailureMessage") + (error.message || error))
+                    alert("Midnight Lizard\n" + this._i18n.getMessage("applyOnPageFailureMessage") + (error.message || error))
                 }
             }
         }
