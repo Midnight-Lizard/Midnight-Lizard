@@ -840,6 +840,10 @@
         "description": "color scheme name",
         "message": "Luz Invertida"
     },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Escala de grises invertida"
+    },
     "colorSchemeName_yellowOnBlack": {
         "description": "color scheme name",
         "message": "Amarillo sobre negro"
@@ -971,6 +975,15 @@
     "github_stars_campaign_text_message": {
         "description": "github_stars_campaign_text_message: text on the campaign ad message",
         "message": "Ayúdenos a recopilar 🌟 en GitHub para iniciar la microfinanciación colectiva"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' no es un patrón de coincidencia válido.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
     },
     "matchCurrentPage_text_message": {
         "description": "matchCurrentPage_text_message: text on the label",
