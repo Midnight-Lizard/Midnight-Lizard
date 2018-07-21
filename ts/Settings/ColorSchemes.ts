@@ -108,7 +108,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 100,
                     scrollbarGrayHue: 0,
-                    scrollbarSize: 0
+                    scrollbarSize: 0,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Original
@@ -182,7 +183,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 100,
                     scrollbarGrayHue: 0,
-                    scrollbarSize: 0
+                    scrollbarSize: 0,
+                    scrollbarStyle: false
                 } as ColorScheme,
 
                 // Dimmed Dust
@@ -256,7 +258,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 16,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Apple Mint
@@ -330,7 +333,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 133,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Kappa Dream
@@ -404,7 +408,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 120,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Almond Ripe
@@ -478,7 +483,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 45,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Sunset Sails
@@ -552,7 +558,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 36,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Halloween
@@ -626,7 +633,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 20,
                     scrollbarGrayHue: 16,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Morning Mist
@@ -700,7 +708,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 80,
                     scrollbarGrayHue: 188,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Antique Codex
@@ -774,7 +783,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 85,
                     scrollbarGrayHue: 20,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Increased Contrast
@@ -848,7 +858,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 90,
                     scrollbarGrayHue: 240,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Grayscale
@@ -922,7 +933,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 80,
                     scrollbarGrayHue: 240,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Inverted Light
@@ -996,7 +1008,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 190,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Inverted Grayscale
@@ -1070,7 +1083,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 40,
                     scrollbarGrayHue: 190,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Yellow on Black
@@ -1144,7 +1158,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 54,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme,
 
                 // Green on Black
@@ -1218,7 +1233,8 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 0,
                     scrollbarLightnessLimit: 50,
                     scrollbarGrayHue: 122,
-                    scrollbarSize: 10
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
                 } as ColorScheme
             ]
         } as any as ColorScheme

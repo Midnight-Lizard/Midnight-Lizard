@@ -364,6 +364,11 @@ namespace MidnightLizard.Settings
                 settings.mode = ProcessingMode.Complex;
             }
 
+            if (settings.scrollbarStyle === undefined)
+            {
+                settings.scrollbarStyle = true;
+            }
+
             if (settings.modeAutoSwitchLimit === undefined ||
                 isNaN(settings.modeAutoSwitchLimit))
             {

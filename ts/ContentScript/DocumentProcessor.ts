@@ -290,6 +290,8 @@ namespace MidnightLizard.ContentScript
                         this._app.isDesktop ? "desktop" : "mobile");
                     if (this._settingsManager.isActive)
                     {
+                        doc.documentElement.setAttribute("ml-scrollbar-style",
+                            this._settingsManager.currentSettings.scrollbarStyle ? "ml-simple" : "original");
                         doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);
                         doc.documentElement.setAttribute("ml-stage-mode",
                             stage + "-" + this._settingsManager.computedMode);

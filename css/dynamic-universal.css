@@ -16,57 +16,57 @@ html[ml-stage]:not([ml-stage="preload"]) {}
     html[ml-stage]:not([ml-stage="preload"]) :not(imp)::placeholder {
         color: var(--ml-main-trans-text-color) !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
         width: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         height: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         background: var(--ml-main-scrollbar-thumb-normal-color) !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:hover {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:hover {
         --bg-color: var(--ml-main-scrollbar-thumb-hover-color);
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:active {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:active {
         --bg-color: var(--ml-main-scrollbar-thumb-active-color);
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button {
         --bg-color: var(--ml-main-scrollbar-thumb-normal-color);
         width: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         height: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3) !important;
         background: linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-two), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-one), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%), linear-gradient(var(--deg-two), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%), var(--bg-color) !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:vertical:decrement {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:vertical:decrement {
         --deg-one: 45deg;
         --deg-two: -45deg;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:vertical:increment {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:vertical:increment {
         --deg-one: 135deg;
         --deg-two: -135deg;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:horizontal:decrement {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:horizontal:decrement {
         --deg-one: -135deg;
         --deg-two: -45deg;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:horizontal:increment {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:horizontal:increment {
         --deg-one: 45deg;
         --deg-two: 135deg;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:hover {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:hover {
         --bg-color: var(--ml-main-scrollbar-thumb-hover-color);
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:active {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:active {
         --bg-color: var(--ml-main-scrollbar-thumb-active-color);
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:horizontal {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:horizontal {
         --deg-one: 90deg;
         --deg-two: 0deg;
         min-width: calc(var(--ml-main-scrollbar-size) * 2 / var(--ml-zoom)) !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:vertical {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb:vertical {
         --deg-one: 0deg;
         --deg-two: 90deg;
         min-height: calc(var(--ml-main-scrollbar-size) * 2 / var(--ml-zoom)) !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb {
         --bg-color: var(--ml-main-scrollbar-thumb-normal-color);
         border-radius: calc(1px / var(--ml-zoom)) !important;
         border: none !important;
@@ -76,18 +76,18 @@ html[ml-stage]:not([ml-stage="preload"]) {}
         background-repeat: no-repeat !important;
         background-position: center !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-track {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-track {
         background: var(--ml-main-scrollbar-track-color) !important;
         box-shadow: inset 0 0 calc(6px / var(--ml-zoom)) rgba(0, 0, 0, 0.3) !important;
         border-radius: 0px !important;
         border: none !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-track-piece {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-track-piece {
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
     }
-    html[ml-stage]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-corner {
+    html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-corner {
         background: var(--ml-main-scrollbar-thumb-normal-color) !important;
     }
     html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) {

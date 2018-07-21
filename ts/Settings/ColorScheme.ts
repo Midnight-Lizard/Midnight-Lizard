@@ -104,5 +104,6 @@ namespace MidnightLizard.Settings
         scrollbarLightnessLimit: number;
         scrollbarGrayHue: number;
         scrollbarSize: number;
+        scrollbarStyle: boolean;
     }
 }
