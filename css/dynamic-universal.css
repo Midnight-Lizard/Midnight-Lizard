@@ -101,7 +101,7 @@ html[ml-stage]:not([ml-stage="preload"]) {}
         background-color: rgb(255, 255, 255) !important;
         border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(168, 168, 168) !important;
         color: #252525 !important;
-        --ml-ignore: true;
+        --ml-ignore:true;
         filter: var(--ml-text-filter);
     }
     html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) *:not(#imp):not(imp):not(.imp) {
