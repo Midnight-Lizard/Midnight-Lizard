@@ -4,7 +4,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
 @media screen {
     html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp),
     html[ml-stage="loading"] canvas:not(#imp):not(.imp):not(imp) {
-        filter: brightness(var(--ml-background-lightness-limit))!important;
+        filter: brightness(var(--ml-background-lightness-limit)) !important;
     }
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
@@ -54,6 +54,8 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>footer:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="toolbar"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="toolbar"]:not(svg):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="current"]:not(svg):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="header"]:not(svg):not(#imp):not(.ml),
@@ -61,6 +63,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>header:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>footer:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="toolbar"]:not(svg):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="current"]:not(svg):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="header"]:not(svg):not(#imp):not(.ml),
@@ -68,6 +71,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>header:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>footer:not(imp):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="hover"]:not(svg):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="toolbar"]:not(svg):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="current"]:not(svg):not(#imp) {
         background-color: var(--ml-main-alt-background-color) !important;
@@ -150,4 +154,36 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp) {
         color: var(--ml-main-visited-color-hover) !important;
     }
+    /* Angular & Material design fixes begin */
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-menu-content:not(.imp):not(#imp)>.mat-menu-item:not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp) {
+        background-color: transparent !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-backdrop.cdk-overlay-backdrop-showing:not(.imp):not(#imp) {
+        background-color: var(--ml-main-trans-background-color) !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-card:not(.imp):not(#imp) {
+        background-color: var(--ml-main-alt-background-color) !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-form-field-infix:not(.imp):not(#imp) {
+        border-top-color: transparent !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-drawer-container:not(.imp):not(#imp)>.mat-drawer:not(.imp):not(#imp) {
+        background-color: var(--ml-main-background-color) !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-progress-spinner:not(.imp):not(#imp)>svg:not(.imp):not(#imp)>circle:not(.imp):not(#imp) {
+        fill: transparent !important;
+    }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-form-field-wrapper:not(.imp):not(#imp)>.mat-form-field-underline:not(.imp):not(#imp) {
+        background-color: var(--ml-main-border-color) !important;
+    }
+    .mat-form-field-underline {
+        --ml-background-background-color:Border;
+    }
+    /* Angular & Material design fixes end */
 }
