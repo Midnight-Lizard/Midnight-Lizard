@@ -1790,7 +1790,7 @@ namespace MidnightLizard.ContentScript
 
         private processInaccessibleTextContent(
             tag: HTMLCanvasElement | HTMLEmbedElement,
-            roomRules: RoomRules)
+            roomRules: RoomRules, customTextLight?: number)
         {
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
@@ -1807,7 +1807,7 @@ namespace MidnightLizard.ContentScript
                     `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, 0.88))})`,
                     `hue-rotate(180deg) invert(1)`,
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                    `brightness(${float.format(Math.max(txtSet.lightnessLimit, 0.88))})`
+                    `brightness(${float.format(Math.max(customTextLight || txtSet.lightnessLimit, 0.88))})`
                 ];
             }
             else
@@ -2235,6 +2235,7 @@ namespace MidnightLizard.ContentScript
         {
             this.calculateDefaultColors(doc, cx.Link, cx.Black);
             const bgLight = this.shift.Background.lightnessLimit,
+                autofillBackgroundColorEntry = this._backgroundColorProcessor.changeColor("rgb(250,255,189)", false, doc.documentElement),
                 textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
             const
                 backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
@@ -2247,6 +2248,8 @@ namespace MidnightLizard.ContentScript
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(
                     this._settingsManager.shift, textColorEntry.light, bgLight).color!,
+                autofillBackgroundColor = autofillBackgroundColorEntry.color!,
+                autofillTextColor = this._textColorProcessor.changeColor(cx.Black, autofillBackgroundColorEntry.light, doc.documentElement).color!,
 
                 buttonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
                 buttonBorderColor = this._buttonBorderColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
@@ -2269,6 +2272,7 @@ namespace MidnightLizard.ContentScript
             return {
                 backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
                 textColor, transTextColor, borderColor, selectionColor, rangeFillColor,
+                autofillBackgroundColor, autofillTextColor,
                 buttonBackgroundColor, buttonBorderColor,
                 scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
                 linkColor, linkColorHover, linkColorActive,
@@ -2312,7 +2316,9 @@ namespace MidnightLizard.ContentScript
             const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules = new RoomRules;
             fakeCanvas.mlComputedStyle = fakeCanvas.style;
             this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
-            cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value}`;
+            cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value};`;
+            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, 1);
+            cssText += `\n--ml-highlighted-text-filter:${fakeCanvasRules.filter!.value};`;
 
             const mainColorsStyle = doc.createElement('style');
             mainColorsStyle.id = "midnight-lizard-dynamic-values";

@@ -16,6 +16,13 @@ html[ml-stage]:not([ml-stage="preload"]) {}
     html[ml-stage]:not([ml-stage="preload"]) :not(imp)::placeholder {
         color: var(--ml-main-trans-text-color) !important;
     }
+    html[ml-stage]:not([ml-stage="preload"]) input:-webkit-autofill,
+    html[ml-stage]:not([ml-stage="preload"]) textarea:-webkit-autofill,
+    html[ml-stage]:not([ml-stage="preload"]) select:-webkit-autofill {
+        /* color: var(--ml-main-autofill-text-color) !important;
+        background-color: var(--ml-main-autofill-background-color) !important; */
+        filter: var(--ml-highlighted-text-filter);
+    }
     html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
         width: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
         height: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
@@ -94,7 +101,7 @@ html[ml-stage]:not([ml-stage="preload"]) {}
         background-color: rgb(255, 255, 255) !important;
         border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(168, 168, 168) !important;
         color: #252525 !important;
-        --ml-ignore:true;
+        --ml-ignore: true;
         filter: var(--ml-text-filter);
     }
     html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) *:not(#imp):not(imp):not(.imp) {
