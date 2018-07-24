@@ -1313,7 +1313,8 @@ namespace MidnightLizard.ContentScript
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
                 if (keepTransitionDuration && !tag.originalTransitionDuration &&
-                    tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration !== this._css._0s)
+                    tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration &&
+                    tag.mlComputedStyle.transitionDuration !== this._css._0s)
                 {
                     const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(tag);
                     if (hasForbiddenTransition)
