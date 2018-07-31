@@ -5,30 +5,62 @@ html[ml-stage="complete"] {}
         transition: all 0s ease 0s !important;
     }
     html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp),
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited) {
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited),
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):before,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):before,
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):after,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):after {
         color: var(--link-color) !important;
     }
     html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover {
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover,
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:before,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:before,
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:after,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:after {
         color: var(--link-color-hover) !important;
     }
     html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active {
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active,
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:before,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:before,
+    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:after,
+    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:after {
         color: var(--link-color-active) !important;
     }
     html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp),
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp) {
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp),
+    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):before,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):before,
+    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):after,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):after {
         color: var(--visited-color) !important;
     }
     html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp),
     html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active,
     html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover,
     html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp),
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover {
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover,
+
+    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):before,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:before,
+    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:before,
+    html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):before,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:before,
+
+    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):after,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:after,
+    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:after,
+    html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):after,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:after {
         color: var(--visited-color-active) !important;
     }
     html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover {
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover,
+    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:before,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:before,
+    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:after,
+    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:after {
         color: var(--visited-color-hover) !important;
     }
 

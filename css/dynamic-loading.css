@@ -129,29 +129,59 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
         fill: var(--ml-main-text-color) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):after {
         color: var(--ml-main-link-color) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:after {
         color: var(--ml-main-link-color-hover) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:after {
         color: var(--ml-main-link-color-active) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) * {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:after {
         color: var(--ml-main-visited-color) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp),
+
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):before,
+
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):after {
         color: var(--ml-main-visited-color-active) !important;
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):before,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):after,
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):after {
         color: var(--ml-main-visited-color-hover) !important;
     }
     /* Angular & Material design fixes begin */
