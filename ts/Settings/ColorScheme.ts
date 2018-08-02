@@ -9,31 +9,37 @@ namespace MidnightLizard.Settings
 
     export type ColorSchemePropertyName = keyof ColorScheme;
 
-    export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "location", "userColorSchemes", "userColorSchemeIds", "changeBrowserTheme"];
+    export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] = [
+        "isEnabled", "location", "userColorSchemes", "userColorSchemeIds",
+        "changeBrowserTheme", "restoreColorsOnCopy", "restoreColorsOnPrint"
+    ];
 
-    export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "location", "colorSchemeName", "userColorSchemes",
-            "userColorSchemeIds", "changeBrowserTheme"];
+    export const excludeSettingsForSave: Settings.ColorSchemePropertyName[] = [
+        "isEnabled", "location", "colorSchemeName", "userColorSchemes",
+        "userColorSchemeIds", "changeBrowserTheme", "restoreColorsOnCopy",
+        "restoreColorsOnPrint"
+    ];
 
-    export const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] =
-        ["isEnabled", "location", "colorSchemeId", "colorSchemeName",
-            "userColorSchemes", "userColorSchemeIds", "runOnThisSite", "changeBrowserTheme"];
+    export const excludeSettingsForCompare: Settings.ColorSchemePropertyName[] = [
+        "isEnabled", "location", "colorSchemeId", "colorSchemeName",
+        "userColorSchemes", "userColorSchemeIds", "runOnThisSite",
+        "changeBrowserTheme", "restoreColorsOnCopy", "restoreColorsOnPrint"
+    ];
 
 
-    export type PartialColorScheme = {[k in keyof Settings.ColorScheme]?: Settings.ColorScheme[k]};
+    export type PartialColorScheme = { [k in keyof Settings.ColorScheme]?: Settings.ColorScheme[k] };
     /**
      * ColorScheme - MidnightLizard Settings
      */
     export interface ColorScheme
     {
         userColorSchemes?: Array<ColorScheme>;
-        userColorSchemeIds?: Array<ColorSchemeName>;
+        userColorSchemeIds?: Array<ColorSchemeId>;
         changeBrowserTheme?: boolean;
         isEnabled?: boolean;
         location?: string;
 
-        colorSchemeId: ColorSchemeName;
+        colorSchemeId: ColorSchemeId;
         colorSchemeName: string;
         blueFilter: number;
         mode: ProcessingMode;
