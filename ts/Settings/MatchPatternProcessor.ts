@@ -27,13 +27,13 @@ namespace MidnightLizard.Settings
                 return "";
             }
 
-            let match = matchPatternRegExp.exec(pattern);
+            const match = matchPatternRegExp.exec(pattern);
             if (!match)
             {
                 return this._i18n.getMessage("invalidMatchPattern", pattern);
             }
 
-            let [, scheme, host, path] = match;
+            const [, scheme, host, path] = match;
             if (scheme !== "file" && !host)
             {
                 return this._i18n.getMessage("invalidMatchPatternHost", pattern);
@@ -63,7 +63,7 @@ namespace MidnightLizard.Settings
 
                 if (scheme === '*')
                 {
-                    regex += '(http|https|file)';
+                    regex += '(http|https|file|ftp)';
                 }
                 else
                 {
