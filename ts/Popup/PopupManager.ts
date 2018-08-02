@@ -386,12 +386,12 @@ namespace MidnightLizard.Popup
         protected fillColorSchemesSelectLists()
         {
             const customScheme = Object.assign({}, this._settingsManager.currentSettings);
-            customScheme.colorSchemeId = "custom" as Settings.ColorSchemeName;
+            customScheme.colorSchemeId = "custom" as Settings.ColorSchemeId;
             customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_Custom");
             this.addColorSchemeOption(this._colorSchemeSelect, customScheme);
             customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_New");
             this.addColorSchemeOption(this._colorSchemeForEdit, customScheme);
-            let schemeName: Settings.ColorSchemeName;
+            let schemeName: Settings.ColorSchemeId;
 
             const defaultSettings = this._settingsManager.getDefaultSettingsCache();
             defaultSettings.colorSchemeId = Settings.ColorSchemes.default.colorSchemeId;
@@ -453,9 +453,9 @@ namespace MidnightLizard.Popup
             this._saveColorSchemeButton.disabled = formHasErrors ||
                 this._colorSchemeForEdit.value !== "custom" &&
                 this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings,
-                    Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName]) &&
-                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName ===
-                this._newColorSchemeName.value as Settings.ColorSchemeName;
+                    Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId]) &&
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId].colorSchemeName ===
+                this._newColorSchemeName.value as Settings.ColorSchemeId;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
             this._exportColorSchemeButton.disabled = formHasErrors;
 
@@ -469,11 +469,11 @@ namespace MidnightLizard.Popup
         protected exportColorScheme()
         {
             const newScheme = Object.assign({}, this._settingsManager.currentSettings);
-            newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
+            newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeId;
             newScheme.colorSchemeName = this._newColorSchemeName.value;
             if (this._colorSchemeForEdit.value === "custom")
             {
-                newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
+                newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeId;
             }
             this._settingsExporter.export(newScheme);
             return false;
@@ -520,17 +520,17 @@ namespace MidnightLizard.Popup
         protected saveUserColorScheme()
         {
             const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
-                ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName : "";
+                ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId].colorSchemeName : "";
             if (this._colorSchemeForEdit.value === "custom" ||
                 confirm(this._i18n.getMessage("colorSchemeSaveConfirmationMessage",
                     colorSchemeForEditName, this._newColorSchemeName.value)))
             {
                 const newScheme = Object.assign({}, this._settingsManager.currentSettings);
-                newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeName;
+                newScheme.colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeId;
                 newScheme.colorSchemeName = this._newColorSchemeName.value;
                 if (this._colorSchemeForEdit.value === "custom")
                 {
-                    newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeName;
+                    newScheme.colorSchemeId = Util.guid("") as Settings.ColorSchemeId;
                 }
                 this._settingsManager.saveUserColorScheme(newScheme)
                     .then(async (x) =>
@@ -546,9 +546,9 @@ namespace MidnightLizard.Popup
         protected deleteUserColorScheme()
         {
             if (confirm(this._i18n.getMessage("colorSchemeDeleteConfirmationMessage",
-                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeName].colorSchemeName)))
+                Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId].colorSchemeName)))
             {
-                this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeName)
+                this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeId)
                     .then(async (x) =>
                     {
                         await this.updateColorSchemeListsFromDefaultSettings();
@@ -580,7 +580,7 @@ namespace MidnightLizard.Popup
             this.setUpColorSchemeSelectValue(settings);
             this.updateButtonStates();
             if (settings.colorSchemeId &&
-                settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                 settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
                 settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
                 Settings.ColorSchemes[settings.colorSchemeId])
@@ -686,7 +686,7 @@ namespace MidnightLizard.Popup
         {
             if (settings.colorSchemeId)
             {
-                if (settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                if (settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                     settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
                     settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
                     Settings.ColorSchemes[settings.colorSchemeId])
@@ -865,14 +865,14 @@ namespace MidnightLizard.Popup
             dom.removeAllEventListeners(this._colorSchemeSelect);
             setUp:
             {
-                if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                     Settings.ColorSchemes[settings.colorSchemeId])
                 {
                     this._colorSchemeSelect.value = settings.colorSchemeId;
                 }
                 else
                 {
-                    let scheme: Settings.ColorSchemeName;
+                    let scheme: Settings.ColorSchemeId;
                     for (scheme in Settings.ColorSchemes)
                     {
                         if (scheme !== Settings.ColorSchemes.default.colorSchemeId &&
@@ -885,7 +885,7 @@ namespace MidnightLizard.Popup
                     this._colorSchemeSelect.value = "custom";
                 }
             }
-            settings.colorSchemeId = this._colorSchemeSelect.value as Settings.ColorSchemeName;
+            settings.colorSchemeId = this._colorSchemeSelect.value as Settings.ColorSchemeId;
             dom.addEventListener(this._colorSchemeSelect, "change", this.onColorSchemeChanged, this);
         }
 
@@ -905,7 +905,7 @@ namespace MidnightLizard.Popup
                 }
                 else
                 {
-                    let selectedScheme = Object.assign({}, Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeName]);
+                    let selectedScheme = Object.assign({}, Settings.ColorSchemes[this._colorSchemeSelect.value as Settings.ColorSchemeId]);
                     selectedScheme.isEnabled = this._isEnabledToggle.checked;
                     this.applySettingsOnPopup(selectedScheme);
                 }

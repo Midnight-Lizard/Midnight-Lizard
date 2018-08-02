@@ -202,7 +202,7 @@ namespace MidnightLizard.ContentScript
                             }
                         });
                     }
-                    else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeName)
+                    else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as Settings.ColorSchemeId)
                     {
                         await this._storageManager.set({
                             [this._settingsKey]: {

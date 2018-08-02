@@ -44,7 +44,7 @@ namespace MidnightLizard.Settings
                                 for (let colorSchemeFromFile of fileContent.colorSchemes)
                                 {
                                     const newColorScheme = Object.assign({}, ColorSchemes.dimmedDust);
-                                    newColorScheme.colorSchemeId = Util.guid("") as ColorSchemeName;
+                                    newColorScheme.colorSchemeId = Util.guid("") as ColorSchemeId;
                                     newColorScheme.colorSchemeName = "New imported color scheme";
                                     let propName: ColorSchemePropertyName;
                                     for (propName in newColorScheme)

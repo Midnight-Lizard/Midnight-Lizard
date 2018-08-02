@@ -470,7 +470,7 @@ namespace MidnightLizard.Settings
 
         public initDefaultColorSchemes()
         {
-            let setting: Settings.ColorSchemeName;
+            let setting: Settings.ColorSchemeId;
             for (setting in Settings.ColorSchemes)
             {
                 delete Settings.ColorSchemes[setting];
@@ -560,7 +560,7 @@ namespace MidnightLizard.Settings
 
         protected assignSettings(to: Settings.ColorScheme, settings: Settings.ColorScheme)
         {
-            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                 Settings.ColorSchemes[settings.colorSchemeId])
             {
                 Object.assign(to, Settings.ColorSchemes[settings.colorSchemeId]);

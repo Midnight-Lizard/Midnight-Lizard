@@ -3,7 +3,7 @@
 namespace MidnightLizard.Settings
 {
 
-    export type ColorSchemeName = keyof typeof ColorSchemes;
+    export type ColorSchemeId = keyof typeof ColorSchemes;
 
     /**
      * ColorSchemes

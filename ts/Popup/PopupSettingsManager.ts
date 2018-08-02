@@ -35,7 +35,7 @@ namespace MidnightLizard.Popup
         abstract deleteAllSettings(): Promise<null>;
         abstract deleteCurrentSiteSettings(): Promise<null>;
         abstract saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>;
-        abstract deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>;
+        abstract deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeId): Promise<null>;
         abstract settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean;
         abstract toggleSync(value: boolean): Promise<null>;
         abstract getCurrentSorage(): Promise<boolean>;
@@ -163,7 +163,7 @@ namespace MidnightLizard.Popup
             (storage as any)[`cs:${userColorScheme.colorSchemeId}`] = userColorScheme;
         }
 
-        public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeName): Promise<null>
+        public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeId): Promise<null>
         {
             const storage = await this._storageManager
                 .get<Settings.PartialColorScheme>({
@@ -211,11 +211,11 @@ namespace MidnightLizard.Popup
         {
             const settings = Object.assign({}, this._currentSettings);
             if (settings.colorSchemeId === undefined ||
-                settings.colorSchemeId !== "custom" as Settings.ColorSchemeName &&
+                settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                 Settings.ColorSchemes[settings.colorSchemeId] &&
                 !this.settingsAreEqual(Settings.ColorSchemes[settings.colorSchemeId], settings))
             {
-                settings.colorSchemeId = "custom" as Settings.ColorSchemeName;
+                settings.colorSchemeId = "custom" as Settings.ColorSchemeId;
             }
             return this._settingsBus.applySettings(settings);
         }
