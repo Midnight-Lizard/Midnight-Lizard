@@ -2011,7 +2011,7 @@ namespace MidnightLizard.ContentScript
                 roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
                 {
                     gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
-                    let size = backgroundSizes[Math.min(index, backgroundSizes.length)];
+                    let size = backgroundSizes[Math.min(index, backgroundSizes.length - 1)];
                     if (haveToProcBgImg && bgImg.startsWith("url"))
                     {
                         return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
