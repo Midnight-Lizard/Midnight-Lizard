@@ -53,6 +53,13 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-lineview:not(#i
     --ml-background-background-color:Border;
 }
 
-.kix-lineview-background {
+.kix-lineview-background,
+.kix-commentoverlayrenderer-highlighted,
+.kix-commentoverlayrenderer-normal {
     --ml-background-background-color:ButtonBackground;
+}
+
+.kix-cursor-caret {
+    --ml-border-border-color:HighlightedText;
+    --ml-border-border-left-color:HighlightedText;
 }
