@@ -33,7 +33,7 @@ namespace MidnightLizard.Settings
                         {
                             let rdr = new FileReader();
                             (rdr as any).fileName = file.name;
-                            rdr.onload = (e) => resolve({ fileText: (e.target as FileReader).result, fileName: (e.target as any).fileName as string });
+                            rdr.onload = (e) => resolve({ fileText: (e.target as any).result, fileName: (e.target as any).fileName });
                             rdr.readAsText(file);
                         }).then<ColorScheme[] | never>(x =>
                         {

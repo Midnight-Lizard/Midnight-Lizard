@@ -2116,7 +2116,7 @@ namespace MidnightLizard.ContentScript
                 .then(blob => new Promise<string>((resolve, reject) =>
                 {
                     let rdr = new FileReader();
-                    rdr.onload = (e) => resolve((e.target as FileReader).result);
+                    rdr.onload = (e) => resolve((e.target as FileReader).result as any);
                     rdr.readAsDataURL(blob);
                 }))
                 .then(dataUrl => new Promise<{ data: string, width: number, height: number }>((resolve, reject) =>
