@@ -7,8 +7,8 @@
   "license": "GPL-3.0",
   "version": "10.0.0",
   "dependencies": {
-    "@types/firefox-webext-browser": "^58.0.2",
-    "@types/chrome": "^0.0.63",
+    "@types/firefox-webext-browser": "^58.0.4",
+    "@types/chrome": "^0.0.74",
     "@types/fb": "^0.0.23",
     "reflect-metadata": "^0.1.12"
   },
