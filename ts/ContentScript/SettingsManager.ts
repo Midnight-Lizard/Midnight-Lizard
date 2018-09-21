@@ -138,9 +138,12 @@ namespace MidnightLizard.ContentScript
 
         protected onIsEnabledToggleRequested(response: AnyResponse, isEnabled?: boolean): void
         {
-            this._currentSettings.isEnabled = isEnabled;
-            this._onSettingsChanged.raise(response, this._shift);
-            this.notifySettingsApplied();
+            if (isEnabled !== this._currentSettings.isEnabled)
+            {
+                this._currentSettings.isEnabled = isEnabled;
+                this._onSettingsChanged.raise(response, this._shift);
+                this.notifySettingsApplied();
+            }
         }
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
