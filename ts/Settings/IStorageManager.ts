@@ -8,7 +8,7 @@ namespace MidnightLizard.Settings
         abstract set(obj: Object): Promise<null>;
         abstract get<T>(key: T | null): Promise<T>;
         abstract clear(): Promise<null>;
-        abstract remove(key: string): Promise<null>;
+        abstract remove(key: string | string[]): Promise<null>;
         abstract toggleSync(value: boolean): Promise<null>;
         abstract getCurrentStorage(): Promise<StorageType>;
         abstract get onStorageChanged(): ArgEvent<Partial<ColorScheme>>;

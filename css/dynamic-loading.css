@@ -28,7 +28,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
         -moz-transition: none !important;
         transition: none !important;
     }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(impt):not([style*="filter:"]):not([style*="d-image"]) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(.ml-ignore):not([style*="filter:"]):not([style*="d-image"]) {
         filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
     }
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.ml-ignore),
@@ -209,10 +209,11 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-progress-spinner:not(.imp):not(#imp)>svg:not(.imp):not(#imp)>circle:not(.imp):not(#imp) {
         fill: transparent !important;
     }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-form-field-wrapper:not(.imp):not(#imp)>.mat-form-field-underline:not(.imp):not(#imp) {
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-form-field-wrapper:not(.imp):not(#imp)>.mat-form-field-underline:not(.imp):not(#imp),
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-tab-list:not(.imp):not(#imp)>.mat-ink-bar:not(.imp):not(#imp) {
         background-color: var(--ml-main-border-color) !important;
     }
-    .mat-form-field-underline {
+    .mat-form-field-underline, .mat-ink-bar {
         --ml-background-background-color:Border;
     }
     /* Angular & Material design fixes end */

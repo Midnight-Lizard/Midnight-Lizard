@@ -7,6 +7,12 @@ namespace MidnightLizard.Settings
         Complex = "complex"
     }
 
+    export enum ColorSchemeNamePrefix
+    {
+        FromFile = "📄 ",
+        Public = "☁ "
+    }
+
     export type ColorSchemePropertyName = keyof ColorScheme;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] = [

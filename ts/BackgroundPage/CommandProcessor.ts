@@ -2,7 +2,7 @@
 /// <reference path="../Settings/ISettingsBus.ts" />
 /// <reference path="../Settings/IStorageManager.ts" />
 /// <reference path="../Settings/ColorScheme.ts" />
-/// <reference path="ICommandListener.ts" />
+/// <reference path="./ICommandListener.ts" />
 
 namespace MidnightLizard.BackgroundPage
 {

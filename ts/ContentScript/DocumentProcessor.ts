@@ -517,7 +517,7 @@ namespace MidnightLizard.ContentScript
         {
             const tag = eArg.currentTarget as HTMLElement;
             const eventTargets = tag instanceof HTMLTableCellElement
-                ? tag.parentElement!.children : [tag];
+                ? Array.from(tag.parentElement!.children) : [tag];
             for (let target of eventTargets)
             {
                 // setTimeout(this._boundUserActionHandler, 0, { currentTarget: target });
@@ -1215,7 +1215,7 @@ namespace MidnightLizard.ContentScript
             const lastProcMode = this.getLastDoccumentProcessingMode(doc);
             this.setDocumentProcessingStage(doc, ProcessingStage.None);
             const isPopup = doc.location.pathname === "/ui/popup.html";
-            for (let tag of doc.getElementsByTagName("*"))
+            for (let tag of Array.from(doc.getElementsByTagName("*")))
             {
                 if (!isPopup)
                 {
@@ -2309,6 +2309,8 @@ namespace MidnightLizard.ContentScript
                 }
             }
             cssText += `\n--ml-browser:${this._app.browserName}!important;`;
+            cssText += `\n--ml-app-id:${this._app.id};`;
+            cssText += `\n--ml-version:${this._app.version};`;
             cssText += `\n--${FilterType.BlueFilter}:url("#${FilterType.BlueFilter}");`;
             cssText += `\n--${FilterType.PdfFilter}:url("#${FilterType.PdfFilter}");`;
             cssText += `\n--ml-invert:${this.shift.Background.lightnessLimit < 0.3 ? 1 : 0}!important;`;

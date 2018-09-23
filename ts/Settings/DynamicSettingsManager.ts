@@ -25,15 +25,7 @@ namespace MidnightLizard.Settings
             this.isInit = true
         }
 
-        public initDefaultColorSchemes() { }
-
         protected initCurrentSettings() { }
-
-        public getDefaultSettings()
-        {
-            super.initDefaultColorSchemes();
-            return super.getDefaultSettings();
-        }
 
         changeSettings(newSettings: ColorScheme, updateSchedule?: boolean): void
         {

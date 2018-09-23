@@ -12,11 +12,12 @@
 /// <reference path="../i18n/DocumentTranslator.ts" />
 /// <reference path="../Colors/RangeFillColorProcessor.ts" />
 /// <reference path="../Settings/MatchPatternProcessor.ts" />
+/// <reference path="../Settings/Public/PublicSettingsManager.ts" />
 
 namespace MidnightLizard.Popup
 {
     const dom = Events.HtmlEvent;
-    const editMark = "📄 ";
+    const editMark = Settings.ColorSchemeNamePrefix.FromFile;
     export abstract class IPopupManager { }
 
     @DI.injectable(IPopupManager)
@@ -52,6 +53,7 @@ namespace MidnightLizard.Popup
         constructor(
             protected readonly _popup: Document,
             protected readonly _settingsManager: MidnightLizard.Popup.IPopupSettingsManager,
+            protected readonly _publicSettingsManager: MidnightLizard.Settings.Public.IPublicSettingsManager,
             protected readonly _commandManager: MidnightLizard.Popup.ICommandManager,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _documentProcessor: MidnightLizard.ContentScript.IDocumentProcessor,
@@ -218,11 +220,14 @@ namespace MidnightLizard.Popup
                 if (tab === "text")
                 {
                     const text = this._popup.getElementById("selection") as Node;
-                    const selection = this._popup.defaultView.getSelection();
-                    const range = this._popup.createRange();
-                    range.selectNodeContents(text);
-                    selection.removeAllRanges();
-                    selection.addRange(range);
+                    if (text)
+                    {
+                        const selection = this._popup.defaultView.getSelection();
+                        const range = this._popup.createRange();
+                        range.selectNodeContents(text);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
                 }
             });
             Controls.Slider.initSliders(doc);
@@ -407,12 +412,31 @@ namespace MidnightLizard.Popup
                     this.addColorSchemeOption(this._colorSchemeForEdit, Settings.ColorSchemes[schemeName]);
                 }
             }
+
+            this._publicSettingsManager.getInstalledPublicColorSchemeIds()
+                .then(publicColorSchemeIds =>
+                {
+                    this.setPublicSchemePrefixToOptions(this._colorSchemeForEdit, publicColorSchemeIds);
+                    this.setPublicSchemePrefixToOptions(this._colorSchemeSelect, publicColorSchemeIds);
+                });
+        }
+
+        protected setPublicSchemePrefixToOptions(select: HTMLSelectElement, publicColorSchemeIds: Settings.ColorSchemeId[])
+        {
+            for (const id of publicColorSchemeIds)
+            {
+                const option = select.namedItem(id);
+                if (option)
+                {
+                    option.text = Settings.ColorSchemeNamePrefix.Public + option.text;
+                }
+            }
         }
 
         protected addColorSchemeOption(select: HTMLSelectElement, colorScheme: Settings.ColorScheme)
         {
             const option = this._popup.createElement("option");
-            option.value = colorScheme.colorSchemeId;
+            option.id = option.value = colorScheme.colorSchemeId;
             option.text = colorScheme.colorSchemeName;
 
             this._dynamicSettingsManager.changeSettings(colorScheme);
@@ -435,7 +459,8 @@ namespace MidnightLizard.Popup
         {
             if (this._colorSchemeForEdit.selectedOptions.length)
             {
-                this._newColorSchemeName.value = (this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text.replace(editMark, "");
+                this._newColorSchemeName.value = (this._colorSchemeForEdit.selectedOptions[0] as HTMLOptionElement).text
+                    .replace(editMark, "").replace(Settings.ColorSchemeNamePrefix.Public, "");
                 this.updateColorSchemeButtons();
             }
         }
@@ -569,7 +594,7 @@ namespace MidnightLizard.Popup
         {
             if (colorScheme)
             {
-                this._settingsManager.applyUserColorSchemes(colorScheme);
+                this._settingsManager.applyUserColorSchemesFromMemory(colorScheme);
             }
             dom.removeAllEventListeners(this._colorSchemeSelect);
             dom.removeAllEventListeners(this._colorSchemeForEdit);

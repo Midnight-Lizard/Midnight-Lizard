@@ -47,7 +47,7 @@ namespace Chrome
                 .then(storage => this.chromePromise.storage[storage].clear());
         }
 
-        remove(key: string): Promise<null>
+        remove(key: string | string[]): Promise<null>
         {
             return this.getCurrentStorage()
                 .then(storage => this.chromePromise.storage[storage].remove(key));

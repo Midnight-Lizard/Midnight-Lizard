@@ -32,6 +32,9 @@ namespace MidnightLizard.Settings
         /** Returns current extension version */
         abstract get version(): string;
 
+        /** Returns current extension id */
+        abstract get id(): string;
+
         /**
          * Converts a relative path within an extension install directory to a fully-qualified URL.
          * @param relativePath - A path to a resource within an extension expressed relative to its install directory.

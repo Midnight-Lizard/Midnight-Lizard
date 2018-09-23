@@ -6,6 +6,7 @@
 /// <reference path="./IThemeProcessor.ts" />
 /// <reference path="../Settings/ExtensionModule.ts" />
 /// <reference path="./IApplicationInstaller.ts" />
+/// <reference path="./ExternalMessageProcessor.ts" />
 
 namespace MidnightLizard.BackgroundPage
 {
@@ -23,4 +24,5 @@ namespace MidnightLizard.BackgroundPage
     DI.Container.resolve(IUninstallUrlSetter);
     DI.Container.resolve(IThemeProcessor);
     DI.Container.resolve(IApplicationInstaller);
+    DI.Container.resolve(IExternalMessageProcessor);
 }

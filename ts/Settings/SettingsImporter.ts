@@ -51,14 +51,26 @@ namespace MidnightLizard.Settings
                                     {
                                         if (excludeSettingsForExport.indexOf(propName) === -1 && colorSchemeFromFile[propName] !== undefined)
                                         {
-                                            if (typeof (colorSchemeFromFile[propName]) !== typeof (newColorScheme[propName]))
+                                            if (propName !== "scrollbarStyle" &&
+                                                typeof (colorSchemeFromFile[propName]) !== typeof (newColorScheme[propName])
+                                                ||
+                                                propName === "scrollbarStyle" &&
+                                                typeof (colorSchemeFromFile[propName]) !== "string" &&
+                                                typeof (colorSchemeFromFile[propName]) !== "boolean")
                                             {
                                                 return Promise.reject(`Color scheme [${colorSchemeFromFile.colorSchemeName
                                                     }] from file [${x.fileName}] has incorrect data type for property [${propName
                                                     }]. It should be [${typeof (newColorScheme[propName])}] but it is [${
                                                     typeof (colorSchemeFromFile[propName])}].`);
                                             }
-                                            newColorScheme[propName] = colorSchemeFromFile[propName];
+                                            if (propName === "scrollbarStyle" && typeof (colorSchemeFromFile[propName]) !== "string")
+                                            {
+                                                newColorScheme[propName] = colorSchemeFromFile[propName] as any === "true" ? true : false;
+                                            }
+                                            else
+                                            {
+                                                newColorScheme[propName] = colorSchemeFromFile[propName];
+                                            }
                                         }
                                     }
                                     colorSchemes.push(newColorScheme);

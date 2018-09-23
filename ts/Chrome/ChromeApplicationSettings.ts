@@ -38,6 +38,7 @@ namespace Chrome
         get preserveDisplay() { return this._preserveDisplay }
 
         get version() { return chrome.runtime.getManifest().version }
+        get id() { return chrome.runtime.id }
 
         constructor(
             protected readonly _rootDocument: Document,

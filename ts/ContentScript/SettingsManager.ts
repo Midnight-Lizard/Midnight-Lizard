@@ -152,7 +152,7 @@ namespace MidnightLizard.ContentScript
             response(this._currentSettings);
         }
 
-        protected onStorageChanged(changes?: Partial<Settings.ColorScheme>)
+        protected async onStorageChanged(changes?: Partial<Settings.ColorScheme>)
         {
             if (changes && this.skipOneSettingsUpdate && this._settingsKey in changes)
             {
@@ -170,14 +170,14 @@ namespace MidnightLizard.ContentScript
                 this._currentSettings.useDefaultSchedule &&
                 ("scheduleStartHour" in changes || "scheduleFinishHour" in changes)
                 ||
-                //- color restoration options changed
+                //+ color restoration options changed
                 ("restoreColorsOnCopy" in changes || "restoreColorsOnPrint" in changes)
                 ||
                 //+ current website color scheme changed
                 `cs:${this._currentSettings.colorSchemeId}` in changes))
             {
                 this.initDefaultColorSchemes();
-                this.initCurrentSettings();
+                await this.initCurrentSettings();
             }
         }
 

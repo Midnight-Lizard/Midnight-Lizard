@@ -124,12 +124,12 @@ namespace MidnightLizard.Settings
                 this._rootUrl = rootDocument.location.href;
             }
             this._settingsKey = `ws:${hostName}`; //`
+            this.onSettingsInitialized.addListener(shift => this.isInit = true, this);
             this.initDefaultColorSchemes();
             this._defaultSettings = { ...ColorSchemes.default, ...ColorSchemes.dimmedDust };
             this.renameSettingsToDefault(this._defaultSettings);
             this._currentSettings = { ...this._defaultSettings };
             this.initCurrentSettings();
-            this.onSettingsInitialized.addListener(shift => this.isInit = true, this);
         }
 
         protected abstract initCurrentSettings(): void;
@@ -475,7 +475,7 @@ namespace MidnightLizard.Settings
             {
                 delete Settings.ColorSchemes[setting];
             }
-            this.applyUserColorSchemes(DefaultColorSchemes);
+            this.applyUserColorSchemesFromMemory(DefaultColorSchemes);
         }
 
         public async getDefaultSettings(renameToDefault: boolean = true)
@@ -490,7 +490,7 @@ namespace MidnightLizard.Settings
 
         protected async processDefaultSettings(defaultSettings: ColorScheme, renameToDefault: boolean)
         {
-            await this.applyUserColorSchemes(defaultSettings);
+            await this.applyUserColorSchemesFromStorage(defaultSettings);
             this.assignSettings(this._defaultSettings, defaultSettings);
             Object.assign(this._defaultSettings, {
                 scheduleStartHour: defaultSettings.scheduleStartHour,
@@ -514,12 +514,17 @@ namespace MidnightLizard.Settings
 
         protected localizeColorScheme(settings: ColorScheme)
         {
+            if (settings.colorSchemeName.startsWith(ColorSchemeNamePrefix.FromFile) ||
+                settings.colorSchemeName.startsWith(ColorSchemeNamePrefix.Public))
+            {
+                return;
+            }
             settings.colorSchemeName =
                 this._i18n.getMessage(`colorSchemeName_${settings.colorSchemeId}`) ||
                 settings.colorSchemeName;
         }
 
-        public async applyUserColorSchemes(defaultSettings: Settings.ColorScheme)
+        public applyUserColorSchemesFromMemory(defaultSettings: Settings.ColorScheme)
         {
             if (defaultSettings.userColorSchemes && defaultSettings.userColorSchemes.length > 0)
             {
@@ -532,6 +537,12 @@ namespace MidnightLizard.Settings
                 }
             }
 
+            Object.assign(Settings.ColorSchemes.default, defaultSettings.colorSchemeId ? defaultSettings : Settings.ColorSchemes.dimmedDust);
+            this.renameSettingsToDefault(Settings.ColorSchemes.default);
+        }
+
+        private async applyUserColorSchemesFromStorage(defaultSettings: Settings.ColorScheme)
+        {
             if (defaultSettings.userColorSchemeIds && defaultSettings.userColorSchemeIds.length > 0)
             {
                 const userColorSchemeIds = defaultSettings.userColorSchemeIds.reduce((all, id) =>
@@ -556,6 +567,71 @@ namespace MidnightLizard.Settings
 
             Object.assign(Settings.ColorSchemes.default, defaultSettings.colorSchemeId ? defaultSettings : Settings.ColorSchemes.dimmedDust);
             this.renameSettingsToDefault(Settings.ColorSchemes.default);
+        }
+
+        public async saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>
+        {
+            const storage = await this._storageManager
+                .get<Settings.PartialColorScheme>({
+                    userColorSchemes: [],
+                    userColorSchemeIds: []
+                });
+
+            if (storage.userColorSchemes && storage.userColorSchemes.length > 0)
+            {
+                for (const oldUserColorScheme of storage.userColorSchemes)
+                {
+                    this.putUserColorSchemeIntoStorage(storage, oldUserColorScheme);
+                }
+                delete storage.userColorSchemes;
+                await this._storageManager.remove('userColorSchemes' as keyof typeof storage);
+            }
+
+            this.putUserColorSchemeIntoStorage(storage, userColorScheme);
+            return this._storageManager.set(storage);
+        }
+
+        protected putUserColorSchemeIntoStorage(storage: Settings.PartialColorScheme, userColorScheme: Settings.ColorScheme)
+        {
+            if (!storage.userColorSchemeIds!
+                .find(id => id === userColorScheme.colorSchemeId))
+            {
+                storage.userColorSchemeIds!.push(userColorScheme.colorSchemeId);
+            }
+            (storage as any)[`cs:${userColorScheme.colorSchemeId}`] = userColorScheme;
+        }
+
+        public async deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeId): Promise<null>
+        {
+            const storage = await this._storageManager
+                .get<Settings.PartialColorScheme>({
+                    userColorSchemes: [],
+                    userColorSchemeIds: []
+                });
+            if (storage.userColorSchemes && storage.userColorSchemes.length > 0)
+            {
+                let existingSchemeIndex = storage.userColorSchemes
+                    .findIndex(sch => sch.colorSchemeId === colorSchemeId);
+                if (existingSchemeIndex > -1)
+                {
+                    storage.userColorSchemes.splice(existingSchemeIndex, 1);
+                }
+            }
+            else
+            {
+                delete storage.userColorSchemes;
+            }
+            if (storage.userColorSchemeIds && storage.userColorSchemeIds.length > 0)
+            {
+                let existingSchemeIdIndex = storage.userColorSchemeIds
+                    .findIndex(id => id === colorSchemeId);
+                if (existingSchemeIdIndex > -1)
+                {
+                    storage.userColorSchemeIds.splice(existingSchemeIdIndex, 1);
+                }
+            }
+            await this._storageManager.remove(`cs:${colorSchemeId}`);
+            return await this._storageManager.set(storage);
         }
 
         protected assignSettings(to: Settings.ColorScheme, settings: Settings.ColorScheme)
