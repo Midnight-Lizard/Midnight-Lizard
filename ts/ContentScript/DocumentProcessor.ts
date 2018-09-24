@@ -1610,7 +1610,11 @@ namespace MidnightLizard.ContentScript
                                 }
                                 else
                                 {
-                                    roomRules.color = this.changeColor({ role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight, propVal: txtColor });
+                                    roomRules.color = this.changeColor({
+                                        role: roomRules.backgroundColor.role === cc.HighlightedBackground
+                                            ? cc.HighlightedText : cc.Text,
+                                        property: ns.css.fntColor, tag: tag, bgLight: bgLight, propVal: txtColor
+                                    });
                                 }
                             }
                             if (roomRules.color)
