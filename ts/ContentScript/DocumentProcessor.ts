@@ -1404,7 +1404,8 @@ namespace MidnightLizard.ContentScript
                     isButton = tag instanceof HTMLButtonElement ||
                         tag instanceof HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
-                        isRealElement(tag) && tag.getAttribute("role") === "button",
+                        isRealElement(tag) && tag.getAttribute("role") === "button" ||
+                        !!tag.className && typeof tag.className === "string" && /button/gi.test(tag.className),
                     isTable =
                         tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
                         tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;

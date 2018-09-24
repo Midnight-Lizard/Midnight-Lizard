@@ -1,9 +1,10 @@
 /// <reference path="../DI/-DI.ts" />
-/// <reference path="BaseColorProcessor.ts" />
+/// <reference path="./BaseColorProcessor.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../Settings/BaseSettingsManager.ts" />
 /// <reference path="./-Colors.ts" />
 /// <reference path="../Settings/DynamicSettingsManager.ts" />
+/// <reference path="./ForegroundColorProcessor.ts" />
 
 namespace MidnightLizard.Colors
 {
@@ -30,7 +31,8 @@ namespace MidnightLizard.Colors
         /** BackgroundColorProcessor constructor */
         constructor(
             app: MidnightLizard.Settings.IApplicationSettings,
-            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
+            protected readonly highlightedBackgroundColorProcessor: MidnightLizard.Colors.IHighlightedBackgroundColorProcessor)
         {
             super(app, settingsManager);
             this._component = Component.Background;
@@ -226,22 +228,33 @@ namespace MidnightLizard.Colors
                 else
                 {
                     let hsla = RgbaColor.toHslaColor(rgba);
-                    let originalLight = hsla.lightness;
-                    this.changeHslaColor(hsla, increaseContrast, tag);
-                    let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
-                    let result = {
-                        role: this._component,
-                        color: newRgbColor.toString(),
-                        light: hsla.lightness,
-                        originalLight: originalLight,
-                        originalColor: rgbaString,
-                        alpha: rgba.alpha,
-                        reason: ColorReason.Ok,
-                        isUpToDate: true,
-                        owner: this._app.isDebug ? tag : null
-                    };
-                    increaseContrast && this._colors.set(rgbaString!, result);
-                    return result;
+                    if (this._component === Component.Background && increaseContrast &&
+                        hsla.saturation > 0.39 && (this.getTagArea(tag) ? tag.mlArea! < 16000 : false))
+                    {
+                        return this.highlightedBackgroundColorProcessor.changeColor(
+                            rgbaString,
+                            getParentBackground ? getParentBackground(tag).light : this._colorShift.lightnessLimit,
+                            tag);
+                    }
+                    else
+                    {
+                        let originalLight = hsla.lightness;
+                        this.changeHslaColor(hsla, increaseContrast, tag);
+                        let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
+                        let result = {
+                            role: this._component,
+                            color: newRgbColor.toString(),
+                            light: hsla.lightness,
+                            originalLight: originalLight,
+                            originalColor: rgbaString,
+                            alpha: rgba.alpha,
+                            reason: ColorReason.Ok,
+                            isUpToDate: true,
+                            owner: this._app.isDebug ? tag : null
+                        };
+                        increaseContrast && this._colors.set(rgbaString!, result);
+                        return result;
+                    }
                 }
             }
         }
@@ -254,7 +267,7 @@ namespace MidnightLizard.Colors
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
-            super(app, settingsManager);
+            super(app, settingsManager, null as any);
             this._component = Component.SvgBackground;
         }
     }
@@ -266,7 +279,7 @@ namespace MidnightLizard.Colors
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
-            super(app, settingsManager);
+            super(app, settingsManager, null as any);
             this._component = Component.TextSelection;
         }
     }
@@ -278,7 +291,7 @@ namespace MidnightLizard.Colors
             app: MidnightLizard.Settings.IApplicationSettings,
             settingsManager: MidnightLizard.Settings.IDynamicSettingsManager)
         {
-            super(app, settingsManager);
+            super(app, settingsManager, null as any);
             this._component = Component.Background;
         }
     }

@@ -36,6 +36,10 @@ namespace MidnightLizard.Colors
     {
         abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
     }
+    export abstract class IHighlightedBackgroundColorProcessor
+    {
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+    }
 
     export abstract class IScrollbarHoverColorProcessor
     {
@@ -512,6 +516,18 @@ namespace MidnightLizard.Colors
                 alpha: 1, // since i don't know the real value
                 isUpToDate: true
             } as ColorEntry;
+        }
+    }
+
+    @DI.injectable(IHighlightedBackgroundColorProcessor)
+    class HighlightedBackgroundColorProcessor extends ForegroundColorProcessor implements IHighlightedBackgroundColorProcessor
+    {
+        constructor(
+            app: MidnightLizard.Settings.IApplicationSettings,
+            settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        {
+            super(app, settingsManager);
+            this._component = Component.HighlightedBackground;
         }
     }
 

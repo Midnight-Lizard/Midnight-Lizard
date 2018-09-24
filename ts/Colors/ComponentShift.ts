@@ -4,6 +4,7 @@ namespace MidnightLizard.Colors
     export enum Component
     {
         Background,
+        HighlightedBackground,
         BackgroundNoContrast,
         Text,
         TextSelection,
@@ -32,6 +33,7 @@ namespace MidnightLizard.Colors
     export interface ComponentShift
     {
         Background: ColorShift;
+        HighlightedBackground: ColorShift;
         Text: ColorShift;
         TextSelection: ColorShift;
         HighlightedText: ColorShift;

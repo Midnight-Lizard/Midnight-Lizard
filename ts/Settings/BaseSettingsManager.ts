@@ -183,6 +183,15 @@ namespace MidnightLizard.Settings
                     replaceAllHues: set.backgroundReplaceAllHues || false,
                     hueGravity: set.backgroundHueGravity || 0
                 },
+                HighlightedBackground: {
+                    saturationLimit: Math.min(set.backgroundSaturationLimit * 1.3, 1),
+                    contrast: Math.min(set.buttonContrast * 1.5, 1),
+                    lightnessLimit: set.borderLightnessLimit * 0.8,
+                    graySaturation: set.backgroundGraySaturation,
+                    grayHue: set.backgroundGrayHue,
+                    replaceAllHues: set.backgroundReplaceAllHues || false,
+                    hueGravity: set.backgroundHueGravity || 0
+                },
                 ButtonBackground: {
                     saturationLimit: set.buttonSaturationLimit,
                     contrast: set.buttonContrast,
