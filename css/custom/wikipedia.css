@@ -68,8 +68,8 @@ body:not(imp) {
     background-color: #f0f0f0;
 }
 
-.mwe-math-fallback-image-inline {
+.mwe-math-fallback-image-inline,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span.mwe-math-element:not(#imp):not(.imp):not(imp)>img[src].mwe-math-fallback-image-inline:not(#imp):not(.imp):not(imp) {
     --ml-ignore:true;
-    /* background-color: #E0E0E0; */
-    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit))!important;
 }
