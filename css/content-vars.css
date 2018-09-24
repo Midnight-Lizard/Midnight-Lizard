@@ -68,7 +68,12 @@
 .ml-ignore, symbol, defs, script, head {
     --ml-ignore:true;
 }
+
 #hc_extension_bkgnd:not(impt)
 {
     display: none !important;
+}
+
+em {
+    --ml-text-color:HighlightedText;
 }
