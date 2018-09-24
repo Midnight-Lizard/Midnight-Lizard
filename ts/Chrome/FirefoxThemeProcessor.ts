@@ -152,7 +152,7 @@ namespace Firefox
                                 }
                             }
                         };
-                    const getCurrentWindow = () => browser.windows.getCurrent({ windowTypes: ["normal"] });
+                    const getCurrentWindow = () => browser.windows.getCurrent();
                     const updateTheme = () =>
                     {
                         settingsManager.getDefaultSettings().then(defaultSettings =>

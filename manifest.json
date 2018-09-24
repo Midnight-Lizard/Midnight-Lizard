@@ -404,6 +404,17 @@
             "css": [
                 "css/custom/google-photos.css"
             ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": false,
+            "matches": [
+                "*://localhost/*",
+                "*://*.midnight-lizard.org/*"
+            ],
+            "js": [
+                "js/custom/chrome-runtime-connect-external-polyfill.js"
+            ]
         }
     ]
 }

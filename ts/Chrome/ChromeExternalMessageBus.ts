@@ -22,9 +22,9 @@ namespace Chrome
             return this._onConnected.event;
         }
 
-        constructor()
+        constructor(app: MidnightLizard.Settings.IApplicationSettings)
         {
-            chrome.runtime.onConnectExternal.addListener(port =>
+            const handler = (port: chrome.runtime.Port) =>
             {
                 if (!this.connections.has(port))
                 {
@@ -33,7 +33,15 @@ namespace Chrome
                     port.onMessage.addListener(message => this._onMessage.raise(message));
                     this._onConnected.raise(port);
                 }
-            });
+            };
+            if (app.browserName === MidnightLizard.Settings.BrowserName.Firefox)
+            {
+                chrome.runtime.onConnect.addListener(handler);
+            }
+            else
+            {
+                chrome.runtime.onConnectExternal.addListener(handler);
+            }
         }
 
         public sendCurrentPublicSchemes(port: chrome.runtime.Port, publicSchemeIds: MidnightLizard.Settings.Public.PublicSchemeId[])
