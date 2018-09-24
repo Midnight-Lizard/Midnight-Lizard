@@ -229,7 +229,8 @@ namespace MidnightLizard.Colors
                 {
                     let hsla = RgbaColor.toHslaColor(rgba);
                     if (this._component === Component.Background && increaseContrast &&
-                        hsla.saturation > 0.39 && (this.getTagArea(tag) ? tag.mlArea! < 16000 : false))
+                        hsla.saturation > 0.39 && hsla.lightness < 0.86 &&
+                        (this.getTagArea(tag) ? tag.mlArea! < 16000 : false))
                     {
                         return this.highlightedBackgroundColorProcessor.changeColor(
                             rgbaString,
