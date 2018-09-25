@@ -209,7 +209,7 @@ namespace MidnightLizard.ContentScript
             }
             if (childListChanges.size > 0)
             {
-                this._onElementAdded.raise(childListChanges);
+                this.groupAddedElements(childListChanges);
             }
             if (classChanges.size > 0)
             {
@@ -219,6 +219,90 @@ namespace MidnightLizard.ContentScript
             {
                 observer.disconnect();
             }
+        }
+
+        private addedElementsGroupMinimumSize = 50;
+        private addedElementsGroupAbsoluteTimeoutMS = 100;
+        private addedElementsGroupSlidingTimeoutMS = 50;
+        private lastAddedElementsGroupSlidingTimeout?: number;
+        private lastAddedElementsGroupAbsoluteTimeout?: number;
+        private addedElementsGroup = new Set<Element>();
+        private groupAddedElements(addedElements: Set<Element>)
+        {
+            clearTimeout(this.lastAddedElementsGroupSlidingTimeout);
+
+            this.addedElementsGroup = new Set([...this.addedElementsGroup, ...addedElements]);
+
+            if (this.addedElementsGroup.size > this.addedElementsGroupMinimumSize)
+            {
+                this.releaseAddedElementsGroup('self:' + addedElements.size);
+            }
+            else
+            {
+                if (Date.now() - this._rootDocument.mlTimestamp! > 5000)
+                {
+                    // only after 5sec since document processing started
+                    // hiding elements untill group release
+                    addedElements.forEach(tag =>
+                    {
+                        if (tag instanceof HTMLElement || tag instanceof SVGElement)
+                        {
+                            tag.originalOpacity = tag.style.opacity || "none";
+                            tag.style.opacity = "0";
+                        }
+                    })
+                }
+
+                // sliding timeout restarts with each chunk
+                this.lastAddedElementsGroupSlidingTimeout = setTimeout(() =>
+                    this.releaseAddedElementsGroup('sliding'),
+                    this.addedElementsGroupSlidingTimeoutMS);
+
+                if (!this.lastAddedElementsGroupAbsoluteTimeout)
+                {
+                    // absolute timeout starts with first chunk in group
+                    // and ends when group is released
+                    this.lastAddedElementsGroupAbsoluteTimeout = setTimeout(() =>
+                        this.releaseAddedElementsGroup('absolute'),
+                        this.addedElementsGroupAbsoluteTimeoutMS);
+                }
+            }
+        }
+
+        private releaseAddedElementsGroup(title: string)
+        {
+            console.log(title);
+            this.clearAllTimeouts();
+            if (this.addedElementsGroup && this.addedElementsGroup.size)
+            {
+                this.addedElementsGroup.forEach(tag =>
+                {
+                    if (tag instanceof HTMLElement || tag instanceof SVGElement)
+                    {
+                        if (tag.originalOpacity)
+                        {
+                            if (tag.originalOpacity === "none")
+                            {
+                                tag.style.removeProperty("opacity");
+                            }
+                            else
+                            {
+                                tag.style.opacity = tag.originalOpacity;
+                            }
+                        }
+                    }
+                });
+                this._onElementAdded.raise(this.addedElementsGroup);
+                this.addedElementsGroup.clear();
+            }
+        }
+
+        private clearAllTimeouts()
+        {
+            clearTimeout(this.lastAddedElementsGroupAbsoluteTimeout);
+            clearTimeout(this.lastAddedElementsGroupSlidingTimeout);
+            this.lastAddedElementsGroupSlidingTimeout = undefined;
+            this.lastAddedElementsGroupAbsoluteTimeout = undefined;
         }
 
         protected headObserverCallback(mutations: MutationRecord[], observer: MutationObserver)
