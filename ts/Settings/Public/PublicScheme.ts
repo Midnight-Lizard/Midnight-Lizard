@@ -9,6 +9,7 @@ namespace MidnightLizard.Settings.Public
     {
         readonly id: PublicSchemeId;
         readonly publisher: Publisher;
+        readonly generation: number;
         readonly colorScheme: ColorScheme;
     }
 }
