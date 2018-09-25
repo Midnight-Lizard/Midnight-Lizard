@@ -735,8 +735,8 @@ namespace MidnightLizard.ContentScript
             const
                 allAddedElements = Array.from(addedElements.values()),
                 allNewTags = allAddedElements.filter(filter);
-            DocumentProcessor.processAllElements(allNewTags, this,
-                this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
+            // DocumentProcessor.processAllElements(allNewTags, this,
+            //     this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
             const allChildTags = new Set<HTMLElement>();
             (this._settingsManager.isComplex ? allNewTags :
                 allAddedElements.filter(this.getFilterOfElementsForComplexProcessing()))
@@ -757,7 +757,7 @@ namespace MidnightLizard.ContentScript
                         });
                     }
                 });
-            DocumentProcessor.processAllElements(Array.from(allChildTags.values()), this,
+            DocumentProcessor.processAllElements(allNewTags.concat(Array.from(allChildTags.values())), this,
                 this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
         }
 
