@@ -16,6 +16,7 @@
 namespace MidnightLizard.ContentScript
 {
     const chunkLength = 300;
+    const minChunkableLength = 450;
     const dom = Events.HtmlEvent;
     const cx = Colors.RgbaColor;
     const cc = Colors.Component;
@@ -317,6 +318,7 @@ namespace MidnightLizard.ContentScript
         {
             if (doc.body && doc.defaultView && this._settingsManager.isActive)
             {
+                doc.mlTimestamp = Date.now();
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
                 this._dorm.set(doc, new Map<string, RoomRules>());
                 this._settingsManager.computeProcessingMode(doc);
@@ -363,7 +365,7 @@ namespace MidnightLizard.ContentScript
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.getElementsByTagName("*"))
                         .filter(this.getFilterOfElementsForSimplifiedProcessing()) as HTMLElement[];
-                    DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays, false);
+                    DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
                 }
             }
         }
@@ -730,6 +732,7 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
+            console.log('onElementsAdded:' + addedElements.size);
             const filter = this.getFilterOfElements();
             addedElements.forEach(tag => this.restoreElementColors(tag));
             const
@@ -761,13 +764,15 @@ namespace MidnightLizard.ContentScript
                 this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
         }
 
-        protected static processAllElements(allTags: HTMLElement[], docProc: DocumentProcessor,
-            delays = normalDelays, delayInvisibleElements = true): void
+        protected static processAllElements(
+            allTags: HTMLElement[],
+            docProc: DocumentProcessor,
+            delays = normalDelays): void
         {
             if (allTags.length > 0)
             {
-                let otherInvisTags = new Array<HTMLElement>(), rowNumber = 0,
-                    ns = USP.htm, isSvg: boolean, isVisible: boolean, isLink = false, hasBgColor = false, hasImage = false, inView: boolean,
+                let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean,
+                    isLink = false, hasBgColor = false, hasImage = false, inView: boolean,
                     hm = allTags[0].ownerDocument.defaultView.innerHeight,
                     wm = allTags[0].ownerDocument.defaultView.innerWidth;
                 for (let tag of allTags)
@@ -776,19 +781,13 @@ namespace MidnightLizard.ContentScript
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
-                    if (isVisible || tag.mlComputedStyle || !delayInvisibleElements || allTags.length < 2 * chunkLength)
-                    {
-                        tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                        if (!tag.mlComputedStyle)
-                        {
-                            break;
-                        }
-                        isLink = tag instanceof HTMLAnchorElement;
-                        hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !==
-                            Colors.RgbaColor.Transparent;
-                        hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
-                            (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
-                    }
+                    tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
+                    if (!tag.mlComputedStyle) break; // something is wrong with this document
+                    isLink = tag instanceof HTMLAnchorElement;
+                    hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !==
+                        Colors.RgbaColor.Transparent;
+                    hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
+                        (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
 
                     if (isVisible)
                     {
@@ -827,16 +826,12 @@ namespace MidnightLizard.ContentScript
                             else tag.mlOrder = po.visTransTags;
                         }
                     }
-                    else if (tag.mlComputedStyle)
+                    else
                     {
                         if (hasBgColor) tag.mlOrder = po.invisColorTags;
                         else if (hasImage) tag.mlOrder = po.invisImageTags;
+                        else if (isLink) tag.mlOrder = po.invisLinks;
                         else tag.mlOrder = po.invisTransTags;
-                    }
-                    else
-                    {
-                        tag.mlOrder = po.delayedInvisTags;
-                        otherInvisTags.push(tag);
                     }
                 }
 
@@ -844,15 +839,9 @@ namespace MidnightLizard.ContentScript
                     a.mlOrder !== b.mlOrder ? a.mlOrder! - b.mlOrder!
                         : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
                             : a.mlRowNumber! - b.mlRowNumber!);
-                allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
 
-                const results = Util.handlePromise(DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
-
-                if (otherInvisTags.length > 0)
-                {
-                    Promise.all([otherInvisTags, docProc, delays, results])
-                        .then(([otherTags, dp, dl]) => DocumentProcessor.processAllElements(otherTags, dp, dl, false));
-                }
+                const results = Util.handlePromise(
+                    DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
 
                 DocumentProcessor.fixColorInheritance(allTags, docProc, results);
             }
@@ -935,7 +924,7 @@ namespace MidnightLizard.ContentScript
                 const density = 2000 / tags.length
                 let result: Promise<HTMLElement[]>, needObservation = docProc._settingsManager.isComplex &&
                     docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
-                if (tags.length < chunkLength)
+                if (tags.length < minChunkableLength)
                 {
                     result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].mlOrder || po.viewColorTags)! / density);
                 }
@@ -944,8 +933,9 @@ namespace MidnightLizard.ContentScript
                     const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
                         _delays.get(chunk[0].order || po.viewColorTags) / _density)
                         .bind(null, delays, density);
-                    result = Util.forEachPromise(
-                        Util.sliceIntoChunks(tags, chunkLength).map(chunk => [chunk, docProc]),
+                    result = Util.forEachPromise(this.concatZeroDelayedChunks(
+                        Util.sliceIntoChunks(tags, chunkLength), getNextDelay)
+                        .map(chunk => [chunk, docProc]),
                         DocumentProcessor.processElementsChunk, 0, getNextDelay);
                 }
                 if (needObservation)
@@ -956,6 +946,21 @@ namespace MidnightLizard.ContentScript
                 return result;
             }
             return undefined;
+        }
+
+        private static concatZeroDelayedChunks(
+            chunks: HTMLElement[][],
+            getNextDelay: (chunk: HTMLElement[][]) => number)
+        {
+            let zeroDelayedChunk: HTMLElement[] = [];
+            let ix = 0, nextChunk = chunks[ix];
+            while (nextChunk && getNextDelay([nextChunk]) === 0)
+            {
+                zeroDelayedChunk = zeroDelayedChunk.concat(nextChunk);
+                nextChunk = chunks[++ix];
+            }
+            chunks.splice(0, ix, zeroDelayedChunk);
+            return chunks;
         }
 
         protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
