@@ -1814,6 +1814,18 @@ namespace MidnightLizard.ContentScript
 
                 return { roomRules: roomRules, before: beforePseudoElement, after: afterPseudoElement };
             }
+            else if (tag instanceof Element && tag.originalVisibility)
+            {
+                if (tag.originalVisibility === this._css.none)
+                {
+                    tag.style.removeProperty(this._css.visibility);
+                }
+                else
+                {
+                    tag.style.visibility = tag.originalVisibility;
+                }
+                delete tag.originalVisibility;
+            }
             return undefined;
         }
 

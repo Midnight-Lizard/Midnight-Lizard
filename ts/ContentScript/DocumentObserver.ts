@@ -245,7 +245,8 @@ namespace MidnightLizard.ContentScript
                     // hiding elements untill group release
                     addedElements.forEach(tag =>
                     {
-                        if (tag instanceof HTMLElement || tag instanceof SVGElement)
+                        if ((tag instanceof HTMLElement || tag instanceof SVGElement) &&
+                            !tag.classList.contains('ml-ignore'))
                         {
                             tag.originalVisibility = tag.style.visibility || "none";
                             tag.style.visibility = "hidden";
