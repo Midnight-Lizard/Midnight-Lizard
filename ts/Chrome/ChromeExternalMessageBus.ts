@@ -10,7 +10,9 @@ namespace Chrome
     {
         private readonly connections = new Set<chrome.runtime.Port>();
 
-        private _onMessage = new MidnightLizard.Events.ArgumentedEventDispatcher<MidnightLizard.Settings.IncommingExternalMessage>();
+        private _onMessage = new MidnightLizard.Events.ArgumentedEventDispatcher<{
+            port: chrome.runtime.Port, message: MidnightLizard.Settings.IncommingExternalMessage
+        }>();
         public get onMessage()
         {
             return this._onMessage.event;
@@ -30,7 +32,7 @@ namespace Chrome
                 {
                     this.connections.add(port);
                     port.onDisconnect.addListener(closedPort => this.connections.delete(closedPort));
-                    port.onMessage.addListener(message => this._onMessage.raise(message));
+                    port.onMessage.addListener(message => this._onMessage.raise({ port, message }));
                     this._onConnected.raise(port);
                 }
             };
@@ -56,6 +58,11 @@ namespace Chrome
             {
                 port.postMessage(message);
             }
+        }
+
+        notifyError(port: chrome.runtime.Port, errorMessage: string, details: any): void
+        {
+            port.postMessage(new MidnightLizard.Settings.ErrorMessage(errorMessage, details));
         }
     }
 }

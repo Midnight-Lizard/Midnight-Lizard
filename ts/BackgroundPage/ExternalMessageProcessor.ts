@@ -33,23 +33,33 @@ namespace MidnightLizard.BackgroundPage
                 await this.publicSettingsManager.getInstalledPublicSchemeIds());
         }
 
-        private async processMessage(message?: Settings.IncommingExternalMessage)
+        private async processMessage(msg?: { port: any, message: Settings.IncommingExternalMessage })
         {
-            if (message)
+            if (msg)
             {
+                const { port, message } = msg;
                 console.log(message);
-                switch (message.type)
+                try
                 {
-                    case Settings.ExternalMessageType.InstallPublicScheme:
-                        await this.publicSettingsManager.installPublicScheme(message.publicScheme);
-                        break;
+                    switch (message.type)
+                    {
+                        case Settings.ExternalMessageType.InstallPublicScheme:
+                            await this.publicSettingsManager.installPublicScheme(message.publicScheme);
+                            break;
 
-                    case Settings.ExternalMessageType.UninstallPublicScheme:
-                        await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
-                        break;
+                        case Settings.ExternalMessageType.UninstallPublicScheme:
+                            await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
+                            break;
 
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
+                }
+                catch (error)
+                {
+                    this.externalMessageBus.notifyError(port, "Midnight Lizard extension failed", {
+                        message: error.message || error, stack: error.stack
+                    });
                 }
             }
         }

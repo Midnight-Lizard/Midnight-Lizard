@@ -3,13 +3,14 @@
 namespace MidnightLizard.Settings
 {
     export type IncommingExternalMessage = InstallPublicSchemeCommand | UninstallPublicSchemeCommand;
-    export type OutgoingExternalMessage = PublicSchemesChanged;
+    export type OutgoingExternalMessage = PublicSchemesChanged | ErrorMessage;
 
     export enum ExternalMessageType
     {
         InstallPublicScheme = "InstallPublicScheme",
         PublicSchemesChanged = "PublicSchemesChanged",
-        UninstallPublicScheme = "UninstallPublicScheme"
+        UninstallPublicScheme = "UninstallPublicScheme",
+        ErrorMessage = "ErrorMessage"
     }
 
     export class InstallPublicSchemeCommand
@@ -28,5 +29,13 @@ namespace MidnightLizard.Settings
     {
         type: ExternalMessageType.PublicSchemesChanged = ExternalMessageType.PublicSchemesChanged;
         constructor(readonly publicSchemeIds: Readonly<Public.PublicSchemeId[]>) { }
+    }
+
+    export class ErrorMessage
+    {
+        type: ExternalMessageType.ErrorMessage = ExternalMessageType.ErrorMessage;
+        constructor(
+            readonly errorMessage: string,
+            readonly details: any) { }
     }
 }
