@@ -404,6 +404,18 @@ namespace MidnightLizard.ContentScript
 
         private calculateDefaultColors(doc: Document, defaultLinkColor?: string, defaultTextColor?: string)
         {
+            if (!defaultLinkColor)
+            {
+                const aWithoutClass = doc.body.querySelector("a:not([class])");
+                if (aWithoutClass)
+                {
+                    defaultLinkColor = doc.defaultView.getComputedStyle(aWithoutClass).color!;
+                }
+            }
+            if (!defaultTextColor)
+            {
+                defaultTextColor = doc.defaultView.getComputedStyle(doc.body).color!;
+            }
             defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._activeLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
