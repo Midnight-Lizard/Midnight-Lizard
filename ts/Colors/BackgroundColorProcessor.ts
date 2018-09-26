@@ -190,7 +190,7 @@ namespace MidnightLizard.Colors
             {
                 let rgba = RgbaColor.parse(rgbaString);
 
-                if (tag.tagName == "BODY" && rgba.alpha === 0)
+                if (tag instanceof HTMLBodyElement && rgba.alpha === 0)
                 {
                     rgbaString = "bodyTrans";
                     if (window.top === window.self)
