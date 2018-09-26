@@ -792,12 +792,11 @@ namespace MidnightLizard.ContentScript
                     tag.mlRowNumber = rowNumber++;
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
-                    isVisible = tag.tagName == "BODY" || isSvg || tag.offsetParent !== null || !!tag.offsetHeight
+                    isVisible = isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
                     if (!tag.mlComputedStyle) break; // something is wrong with this document
                     isLink = tag instanceof HTMLAnchorElement;
-                    hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !==
-                        Colors.RgbaColor.Transparent;
+                    hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                     hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
                         (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
 
@@ -805,13 +804,13 @@ namespace MidnightLizard.ContentScript
                     {
                         tag.mlRect = tag.mlRect || tag.getBoundingClientRect();
                         isVisible = tag.mlRect.width !== 0 && tag.mlRect.height !== 0;
-                        isVisible && (tag.mlArea = tag.mlRect.width * tag.mlRect.height);
+                        isVisible && (tag.mlArea = tag.mlArea || tag.mlRect.width * tag.mlRect.height);
                         inView = isVisible &&
                             (tag.mlRect.bottom >= 0 && tag.mlRect.bottom <= hm || tag.mlRect.top >= 0 && tag.mlRect.top <= hm) &&
                             (tag.mlRect.right >= 0 && tag.mlRect.right <= wm || tag.mlRect.left >= 0 && tag.mlRect.left <= wm);
                         if (!isVisible)
                         {
-                            tag.mlRect = null;
+                            tag.mlRect = tag.mlArea = undefined;
                             if (hasBgColor) tag.mlOrder = po.invisColorTags;
                             else if (hasImage) tag.mlOrder = po.invisImageTags;
                             else if (isLink) tag.mlOrder = po.invisLinks;
@@ -853,8 +852,8 @@ namespace MidnightLizard.ContentScript
                     a instanceof HTMLBodyElement ? -9999999999
                         : b instanceof HTMLBodyElement ? 9999999999
                             : a.mlOrder !== b.mlOrder ? a.mlOrder! - b.mlOrder!
-                        : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
-                            : a.mlRowNumber! - b.mlRowNumber!);
+                                : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
+                                    : a.mlRowNumber! - b.mlRowNumber!);
 
                 const results = Util.handlePromise(
                     DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
@@ -947,7 +946,7 @@ namespace MidnightLizard.ContentScript
                 else
                 {
                     const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
-                        _delays.get(chunk[0].order || po.viewColorTags) / _density)
+                        _delays.get(chunk[0].mlOrder || po.viewColorTags) / _density)
                         .bind(null, delays, density);
                     result = Util.forEachPromise(this.concatZeroDelayedChunks(
                         Util.sliceIntoChunks(tags, chunkLength), getNextDelay)
@@ -975,7 +974,10 @@ namespace MidnightLizard.ContentScript
                 zeroDelayedChunk = zeroDelayedChunk.concat(nextChunk);
                 nextChunk = chunks[++ix];
             }
-            chunks.splice(0, ix, zeroDelayedChunk);
+            if (ix > 1 && zeroDelayedChunk.length)
+            {
+                chunks.splice(0, ix, zeroDelayedChunk);
+            }
             return chunks;
         }
 
@@ -2426,9 +2428,9 @@ namespace MidnightLizard.ContentScript
             if (isRealElement(tag))
             {
                 if (roomRules.attributes && roomRules.attributes.size > 0)
-            {
-                roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
-            }
+                {
+                    roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
+                }
 
                 // restoring original visibility of added element
                 if (tag.originalVisibility)
