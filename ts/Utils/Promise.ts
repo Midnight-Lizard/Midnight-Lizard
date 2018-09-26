@@ -14,13 +14,20 @@ namespace MidnightLizard.Util
         arrayOfParams.forEach((params, index) =>
         {
             lastDelay = getNextDelay ? getNextDelay(params, lastDelay, index) : lastDelay;
-            fePromise = Promise
-                .all([action, lastDelay, params, fePromise])
-                .then(([act, delay, params, prev]) =>
-                {
-                    params && params.push(prev);
-                    return setTimeoutPromise(act, delay, params)
-                });
+            if (index === 0 && lastDelay === 0)
+            {
+                fePromise = Promise.resolve(params ? action(...params) : action());
+            }
+            else
+            {
+                fePromise = Promise
+                    .all([action, lastDelay, params, fePromise])
+                    .then(([act, delay, params, prev]) =>
+                    {
+                        params && params.push(prev);
+                        return setTimeoutPromise(act, delay, params)
+                    });
+            }
         });
         return fePromise;
     }
