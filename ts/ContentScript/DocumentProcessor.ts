@@ -354,7 +354,6 @@ namespace MidnightLizard.ContentScript
                     this.createPageScript(doc);
                     this.calculateDefaultColors(doc);
                     doc.body.isChecked = true;
-                    DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.body.getElementsByTagName("*"))
                         .concat([doc.body, doc.documentElement])
@@ -836,8 +835,12 @@ namespace MidnightLizard.ContentScript
                     }
                 }
 
+                allTags[0].ownerDocument.body.mlOrder = po.viewColorTags;
+
                 allTags.sort((a, b) =>
-                    a.mlOrder !== b.mlOrder ? a.mlOrder! - b.mlOrder!
+                    a instanceof HTMLBodyElement ? -9999999999
+                        : b instanceof HTMLBodyElement ? 9999999999
+                            : a.mlOrder !== b.mlOrder ? a.mlOrder! - b.mlOrder!
                         : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
                             : a.mlRowNumber! - b.mlRowNumber!);
 
