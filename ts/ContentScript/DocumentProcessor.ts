@@ -356,14 +356,15 @@ namespace MidnightLizard.ContentScript
                     doc.body.isChecked = true;
                     DocumentProcessor.processElementsChunk([doc.body], this, null, 0);
                     this._documentObserver.startDocumentObservation(doc);
-                    let allTags = Array.from(doc.getElementsByTagName("*"))
+                    let allTags = Array.from(doc.body.getElementsByTagName("*"))
+                        .concat([doc.body, doc.documentElement])
                         .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this);
                 }
                 else
                 {
                     this._documentObserver.startDocumentObservation(doc);
-                    let allTags = Array.from(doc.getElementsByTagName("*"))
+                    let allTags = Array.from(doc.body.getElementsByTagName("*"))
                         .filter(this.getFilterOfElementsForSimplifiedProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
                 }
