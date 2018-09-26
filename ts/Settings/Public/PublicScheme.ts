@@ -1,15 +1,19 @@
 /// <reference path="../ColorScheme.ts" />
-/// <reference path="./Publisher.ts" />
 
 namespace MidnightLizard.Settings.Public
 {
     export declare type PublicSchemeId = string;
+    export declare type PublisherId = string;
 
     export interface PublicScheme
     {
+        /** Public scheme aggregate ID */
         readonly id: PublicSchemeId;
-        readonly publisher: Publisher;
-        readonly generation: number;
-        readonly colorScheme: ColorScheme;
+        /** Publisher ID */
+        readonly pid: PublisherId;
+        /** Public scheme aggregate generation */
+        readonly gen: number;
+        /** Color scheme */
+        readonly cs: ColorScheme;
     }
 }

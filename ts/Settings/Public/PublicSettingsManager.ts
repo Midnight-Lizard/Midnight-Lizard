@@ -50,7 +50,7 @@ namespace MidnightLizard.Settings.Public
             const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
             if (publicScheme)
             {
-                await this.deleteUserColorScheme(publicScheme.colorScheme.colorSchemeId)
+                await this.deleteUserColorScheme(publicScheme.cs.colorSchemeId)
                 await this._storageManager.remove(key);
 
                 const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
@@ -65,15 +65,15 @@ namespace MidnightLizard.Settings.Public
 
         public async installPublicScheme(publicScheme: PublicScheme): Promise<void>
         {
-            this.applyBackwardCompatibility(publicScheme.colorScheme);
-            await this.saveUserColorScheme(publicScheme.colorScheme);
+            this.applyBackwardCompatibility(publicScheme.cs);
+            await this.saveUserColorScheme(publicScheme.cs);
 
             const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
 
             const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
 
             const overlappingSchemes = Object.entries(existingPublicSchemes)
-                .filter(([key, value]) => value.colorScheme.colorSchemeId === publicScheme.colorScheme.colorSchemeId);
+                .filter(([key, value]) => value.cs.colorSchemeId === publicScheme.cs.colorSchemeId);
 
             if (overlappingSchemes.length > 0)
             {
@@ -97,7 +97,7 @@ namespace MidnightLizard.Settings.Public
 
             const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
 
-            return Object.values(existingPublicSchemes).map(x => x.colorScheme.colorSchemeId);
+            return Object.values(existingPublicSchemes).map(x => x.cs.colorSchemeId);
         }
 
         private getInstalledPublicSchemes(storage: PublicSchemesStorage)
