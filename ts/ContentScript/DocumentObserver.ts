@@ -223,7 +223,7 @@ namespace MidnightLizard.ContentScript
 
         private addedElementsGroupMinimumSize = 50;
         private addedElementsGroupAbsoluteTimeoutMS = 100;
-        private addedElementsGroupSlidingTimeoutMS = 50;
+        private addedElementsGroupSlidingTimeoutMS = 30;
         private lastAddedElementsGroupSlidingTimeout?: number;
         private lastAddedElementsGroupAbsoluteTimeout?: number;
         private addedElementsGroup = new Set<Element>();
@@ -247,8 +247,8 @@ namespace MidnightLizard.ContentScript
                     {
                         if (tag instanceof HTMLElement || tag instanceof SVGElement)
                         {
-                            tag.originalOpacity = tag.style.opacity || "none";
-                            tag.style.opacity = "0";
+                            tag.originalVisibility = tag.style.visibility || "none";
+                            tag.style.visibility = "hidden";
                         }
                     })
                 }
@@ -275,23 +275,6 @@ namespace MidnightLizard.ContentScript
             this.clearAllTimeouts();
             if (this.addedElementsGroup && this.addedElementsGroup.size)
             {
-                this.addedElementsGroup.forEach(tag =>
-                {
-                    if (tag instanceof HTMLElement || tag instanceof SVGElement)
-                    {
-                        if (tag.originalOpacity)
-                        {
-                            if (tag.originalOpacity === "none")
-                            {
-                                tag.style.removeProperty("opacity");
-                            }
-                            else
-                            {
-                                tag.style.opacity = tag.originalOpacity;
-                            }
-                        }
-                    }
-                });
                 this._onElementAdded.raise(this.addedElementsGroup);
                 this.addedElementsGroup.clear();
             }

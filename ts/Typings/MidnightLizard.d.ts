@@ -66,7 +66,7 @@ interface Node
     originalBorderRightColor: string | null | undefined;
     originalBorderBottomColor: string | null | undefined;
     originalBorderLeftColor: string | null | undefined;
-    originalOpacity: string | null | undefined;
+    originalVisibility: string | null | undefined;
     originalBackgroundImage: string | null | undefined;
     originalBackgroundSize: string | null | undefined;
     ////////////////////////////////////////////////////////////////

@@ -2407,9 +2407,26 @@ namespace MidnightLizard.ContentScript
             let applyBgPromise;
             let ns = USP.htm;
             ns = _ns || (isSvg ? USP.svg : USP.htm);
-            if (isRealElement(tag) && roomRules.attributes && roomRules.attributes.size > 0)
+            if (isRealElement(tag))
+            {
+                if (roomRules.attributes && roomRules.attributes.size > 0)
             {
                 roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
+            }
+
+                // restoring original visibility of added element
+                if (tag.originalVisibility)
+                {
+                    if (tag.originalVisibility === this._css.none)
+                    {
+                        tag.style.removeProperty(this._css.visibility);
+                    }
+                    else
+                    {
+                        tag.style.visibility = tag.originalVisibility;
+                    }
+                    delete tag.originalVisibility;
+                }
             }
             if (roomRules.filter && roomRules.filter.value)
             {
