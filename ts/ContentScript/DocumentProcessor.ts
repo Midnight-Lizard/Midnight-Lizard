@@ -1997,8 +1997,8 @@ namespace MidnightLizard.ContentScript
                         this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                     ].filter(f => f).join(" ").trim();
 
-                    if (tag.tagName !== "INPUT" && tag.tagName !== "TEXTAREA" &&
-                        tag.tagName !== "BODY" && tag !== doc.documentElement)
+                    if (tag instanceof HTMLInputElement && tag instanceof HTMLTextAreaElement &&
+                        tag instanceof HTMLBodyElement && tag !== doc.documentElement)
                     {
                         roomRules.filter = { value: bgFilter };
                     }
@@ -2009,7 +2009,7 @@ namespace MidnightLizard.ContentScript
                         noFilters = true;
                     }
 
-                    haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag.tagName === "BODY" ||
+                    haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag instanceof HTMLBodyElement ||
                         isPseudoContent || roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
                         haveToProcBgGrad || noFilters;
 
