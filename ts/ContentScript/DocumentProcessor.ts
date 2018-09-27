@@ -789,8 +789,8 @@ namespace MidnightLizard.ContentScript
         {
             if (allTags.length > 0)
             {
-                let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean,
-                    isLink = false, hasBgColor = false, hasImage = false, inView: boolean,
+                let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean, isImage: boolean,
+                    isLink = false, hasBgColor = false, hasBgImage = false, inView: boolean,
                     doc = allTags[0].ownerDocument,
                     hm = doc.defaultView.innerHeight,
                     wm = doc.defaultView.innerWidth;
@@ -804,8 +804,8 @@ namespace MidnightLizard.ContentScript
                     if (!tag.mlComputedStyle) break; // something is wrong with this element
                     isLink = tag instanceof HTMLAnchorElement;
                     hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                    hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
-                        (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
+                    isImage = (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
+                    hasBgImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none;
 
                     if (isVisible)
                     {
@@ -819,7 +819,8 @@ namespace MidnightLizard.ContentScript
                         {
                             tag.mlRect = tag.mlArea = undefined;
                             if (hasBgColor) tag.mlOrder = po.invisColorTags;
-                            else if (hasImage) tag.mlOrder = po.invisImageTags;
+                            else if (isImage) tag.mlOrder = po.invisImageTags;
+                            else if (hasBgImage) tag.mlOrder = po.invisBgImageTags;
                             else if (isLink) tag.mlOrder = po.invisLinks;
                             else tag.mlOrder = po.invisTransTags;
                         }
@@ -828,10 +829,15 @@ namespace MidnightLizard.ContentScript
                             if (inView) tag.mlOrder = po.viewColorTags;
                             else tag.mlOrder = po.visColorTags;
                         }
-                        else if (hasImage)
+                        else if (isImage)
                         {
                             if (inView) tag.mlOrder = po.viewImageTags;
                             else tag.mlOrder = po.visImageTags;
+                        }
+                        else if (hasBgImage)
+                        {
+                            if (inView) tag.mlOrder = po.viewBgImageTags;
+                            else tag.mlOrder = po.visBgImageTags;
                         }
                         else if (isLink)
                         {
@@ -847,7 +853,8 @@ namespace MidnightLizard.ContentScript
                     else
                     {
                         if (hasBgColor) tag.mlOrder = po.invisColorTags;
-                        else if (hasImage) tag.mlOrder = po.invisImageTags;
+                        else if (isImage) tag.mlOrder = po.invisImageTags;
+                        else if (hasBgImage) tag.mlOrder = po.invisBgImageTags;
                         else if (isLink) tag.mlOrder = po.invisLinks;
                         else tag.mlOrder = po.invisTransTags;
                     }
