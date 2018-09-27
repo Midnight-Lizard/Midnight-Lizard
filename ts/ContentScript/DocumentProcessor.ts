@@ -3,9 +3,9 @@
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Events/-Events.ts" />
-/// <reference path="DocumentObserver.ts" />
-/// <reference path="StyleSheetProcessor.ts" />
-/// <reference path="SettingsManager.ts" />
+/// <reference path="./DocumentObserver.ts" />
+/// <reference path="./StyleSheetProcessor.ts" />
+/// <reference path="./SettingsManager.ts" />
 /// <reference path="../Colors/BackgroundColorProcessor.ts" />
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
@@ -548,7 +548,7 @@ namespace MidnightLizard.ContentScript
                     target.selectors !== this._styleSheetProcessor
                         .getElementMatchedSelectors(target)))
             {
-                this.reCalcRootElement(target, false, true);
+                this.reCalcAllRootElements(new Set([target]), false, true);
             }
         }
 
@@ -564,11 +564,31 @@ namespace MidnightLizard.ContentScript
                     rootElem = rootElem.parentElement || rootElem;
                 }
                 rootElem = this.getColoredParent(rootElem, true, true);
-                this.reCalcRootElement(rootElem, true);
+
+                this.reCalcAllRootElements(new Set([rootElem]), true);
             }
         }
 
-        protected reCalcRootElement(rootElem: HTMLElement, onCopy: boolean, clearParentBgColors = false)
+        private reCalcAllRootElements(rootElements: Set<HTMLElement>, onCopy: boolean, clearParentBgColors = false)
+        {
+            if (rootElements && rootElements.size)
+            {
+                const allElements = Array.from(rootElements)
+                    .reduce((allElements, rootElement) => this
+                        .reCalcRootElement(rootElement, onCopy, clearParentBgColors),
+                        new Array<HTMLElement>());
+
+                this._documentObserver.stopDocumentObservation(allElements[0].ownerDocument);
+                allElements.forEach(tag => this.restoreElementColors(tag, true));
+                this._documentObserver.startDocumentObservation(allElements[0].ownerDocument);
+                DocumentProcessor.processAllElements(allElements, this,
+                    onCopy ? onCopyReCalculationDelays :
+                        allElements.length < 50 ? smallReCalculationDelays :
+                            bigReCalculationDelays);
+            }
+        }
+
+        protected reCalcRootElement(rootElem: HTMLElement, onCopy: boolean, clearParentBgColors = false): HTMLElement[]
         {
             if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
@@ -593,32 +613,23 @@ namespace MidnightLizard.ContentScript
                             }
                         });
                     }
-                    filteredTags.splice(0, 0, rootElem);
                     if (filteredTags.length < 100 || onCopy || this._settingsManager.isSimple)
                     {
-                        this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        filteredTags.forEach(tag => this.restoreElementColors(tag, true));
-                        this._documentObserver.startDocumentObservation(rootElem.ownerDocument);
-                        DocumentProcessor.processAllElements(filteredTags, this, onCopy
-                            ? onCopyReCalculationDelays : bigReCalculationDelays);
+                        filteredTags.splice(0, 0, rootElem);
+                        return filteredTags;
                     }
                     else
                     {
-                        this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                        this.restoreElementColors(rootElem, true);
-                        const results = DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
-                        DocumentProcessor.fixColorInheritance([rootElem], this, results);
+                        return [rootElem];
                     }
                 }
                 else if (this._settingsManager.isComplex ||
                     this.getFilterOfElementsForSimplifiedProcessing()(rootElem))
                 {
-                    this._documentObserver.stopDocumentObservation(rootElem.ownerDocument);
-                    this.restoreElementColors(rootElem, true);
-                    const results = DocumentProcessor.processElementsChunk([rootElem], this, null, 0);
-                    DocumentProcessor.fixColorInheritance([rootElem], this, results);
+                    return [rootElem];
                 }
             }
+            return [];
         }
 
         protected onStyleChanged(changedElements: Set<HTMLElement>)
@@ -734,12 +745,12 @@ namespace MidnightLizard.ContentScript
                 }
             });
 
-            elementsForReCalculation.forEach(tag => this.reCalcRootElement(tag, false));
+            this.reCalcAllRootElements(elementsForReCalculation, false);
         }
 
         protected onClassChanged(changedElements: Set<HTMLElement>)
         {
-            changedElements.forEach(tag => this.reCalcRootElement(tag, false));
+            this.reCalcAllRootElements(changedElements, false);
         }
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
@@ -785,16 +796,17 @@ namespace MidnightLizard.ContentScript
             {
                 let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean,
                     isLink = false, hasBgColor = false, hasImage = false, inView: boolean,
-                    hm = allTags[0].ownerDocument.defaultView.innerHeight,
-                    wm = allTags[0].ownerDocument.defaultView.innerWidth;
+                    doc = allTags[0].ownerDocument,
+                    hm = doc.defaultView.innerHeight,
+                    wm = doc.defaultView.innerWidth;
                 for (let tag of allTags)
                 {
                     tag.mlRowNumber = rowNumber++;
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = isSvg || tag.offsetParent !== null || !!tag.offsetHeight
-                    tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "")
-                    if (!tag.mlComputedStyle) break; // something is wrong with this document
+                    tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag, "")
+                    if (!tag.mlComputedStyle) break; // something is wrong with this element
                     isLink = tag instanceof HTMLAnchorElement;
                     hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
                     hasImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none ||
@@ -846,7 +858,7 @@ namespace MidnightLizard.ContentScript
                     }
                 }
 
-                allTags[0].ownerDocument.body.mlOrder = po.viewColorTags;
+                doc.body.mlOrder = po.viewColorTags;
 
                 allTags.sort((a, b) =>
                     a instanceof HTMLBodyElement ? -9999999999
@@ -1503,7 +1515,7 @@ namespace MidnightLizard.ContentScript
                         {
                             if (tag instanceof SVGElement)
                             {
-                                if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement!) &&
+                                if (this.tagIsSmall(tag instanceof SVGSVGElement ? tag : tag.ownerSVGElement || tag) &&
                                     tag.mlComputedStyle!.getPropertyValue("--ml-small-svg-is-text") === true.toString())
                                 {
                                     isSvgText = true;
@@ -2458,6 +2470,13 @@ namespace MidnightLizard.ContentScript
                     delete tag.originalVisibility;
                 }
             }
+
+            if (roomRules.transitionDuration && roomRules.transitionDuration.value)
+            {
+                tag.originalTransitionDuration = tag.style.transitionDuration;
+                tag.style.setProperty(this._css.transitionDuration, roomRules.transitionDuration.value, this._css.important)
+            }
+
             if (roomRules.filter && roomRules.filter.value)
             {
                 tag.keepFilter = roomRules.keepFilter;
@@ -2471,12 +2490,6 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.setProperty(this._css.filter, roomRules.filter.value);
                 }
-            }
-
-            if (roomRules.transitionDuration && roomRules.transitionDuration.value)
-            {
-                tag.originalTransitionDuration = tag.style.transitionDuration;
-                tag.style.setProperty(this._css.transitionDuration, roomRules.transitionDuration.value, this._css.important)
             }
 
             if (roomRules.backgroundImages)
