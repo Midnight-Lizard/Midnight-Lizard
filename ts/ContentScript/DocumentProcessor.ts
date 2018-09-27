@@ -733,12 +733,6 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
-                if (tag.className === "goog-color-menu-button-indicator" && /t-text-color/g.test(tag.mlPath || ""))
-                {
-                    console.log(needReCalculation);
-                    console.log(tag.style.cssText);
-                }
-
                 if (needReCalculation)
                 {
                     elementsForReCalculation.add(tag);
@@ -755,7 +749,6 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
-            console.log('onElementsAdded:' + addedElements.size);
             const filter = this.getFilterOfElements();
             addedElements.forEach(tag => this.restoreElementColors(tag));
             const

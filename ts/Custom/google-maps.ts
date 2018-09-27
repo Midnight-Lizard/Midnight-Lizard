@@ -17,7 +17,6 @@ namespace MidnightLizard.Custom
             {
                 canvas.style.removeProperty("filter");
                 canvas.style.setProperty("--ml-timestamp", Date.now().toString(16));
-                console.log(canvas.className);
             }
         }
     }

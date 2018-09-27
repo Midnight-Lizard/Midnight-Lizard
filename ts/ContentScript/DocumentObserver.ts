@@ -272,7 +272,7 @@ namespace MidnightLizard.ContentScript
 
         private releaseAddedElementsGroup(title: string)
         {
-            console.log(title);
+            // console.log(title);
             this.clearAllTimeouts();
             if (this.addedElementsGroup && this.addedElementsGroup.size)
             {
