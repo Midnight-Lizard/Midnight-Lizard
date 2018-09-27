@@ -239,9 +239,9 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                if (Date.now() - this._rootDocument.mlTimestamp! > 5000)
+                if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
                 {
-                    // only after 5sec since document processing started
+                    // only after 3sec since document processing started
                     // hiding elements untill group release
                     addedElements.forEach(tag =>
                     {
