@@ -195,8 +195,10 @@ namespace MidnightLizard.ContentScript
                         break;
 
                     case "childList":
-                        Array.prototype.slice.call(mutation.addedNodes)
-                            .forEach((node: Element) => childListChanges.add(node));
+                        Array.from(mutation.addedNodes)
+                            .forEach((node) =>
+                                node instanceof Element &&
+                                childListChanges.add(node));
                         break;
 
                     default:
@@ -242,7 +244,7 @@ namespace MidnightLizard.ContentScript
                 if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
                 {
                     // only after 3sec since document processing started
-                    // hiding elements untill group release
+                    // hiding elements untill group release and their processing
                     addedElements.forEach(tag =>
                     {
                         if ((tag instanceof HTMLElement || tag instanceof SVGElement) &&
