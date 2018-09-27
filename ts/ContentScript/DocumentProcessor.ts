@@ -577,14 +577,16 @@ namespace MidnightLizard.ContentScript
                     .reduce((allElements, rootElement) => this
                         .reCalcRootElement(rootElement, onCopy, clearParentBgColors),
                         new Array<HTMLElement>());
-
-                this._documentObserver.stopDocumentObservation(allElements[0].ownerDocument);
-                allElements.forEach(tag => this.restoreElementColors(tag, true));
-                this._documentObserver.startDocumentObservation(allElements[0].ownerDocument);
-                DocumentProcessor.processAllElements(allElements, this,
-                    onCopy ? onCopyReCalculationDelays :
-                        allElements.length < 50 ? smallReCalculationDelays :
-                            bigReCalculationDelays);
+                if (allElements.length)
+                {
+                    this._documentObserver.stopDocumentObservation(allElements[0].ownerDocument);
+                    allElements.forEach(tag => this.restoreElementColors(tag, true));
+                    this._documentObserver.startDocumentObservation(allElements[0].ownerDocument);
+                    DocumentProcessor.processAllElements(allElements, this,
+                        onCopy ? onCopyReCalculationDelays :
+                            allElements.length < 50 ? smallReCalculationDelays :
+                                bigReCalculationDelays);
+                }
             }
         }
 
