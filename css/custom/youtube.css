@@ -48,15 +48,17 @@ polygon.ytd-topbar-logo-renderer[fill="#FFFFFF"], #yt-logo-svg polygon[fill="#FF
 
 .ytp-volume-slider-handle:after
 {
-    background: linear-gradient(90deg, 
+    background: linear-gradient(90deg,
       rgba(255,255,255,0) 10%,
       rgba(128,128,128,.5) 10%
     ) !important;
 }
 
-.ytp-menuitem-toggle-checkbox:after, .toggle-button[aria-pressed=true], paper-toggle-button[aria-pressed=true], .toggle
+.ytp-menuitem-toggle-checkbox:after, .toggle-button[aria-pressed=true],
+paper-toggle-button[aria-pressed=true], .toggle
 {
     --ml-background-background-color:HighlightedText;
+    --ml-buttonbackground-background-color:HighlightedText;
 }
 
 #selectionBar.paper-tabs
@@ -128,4 +130,12 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
     --ml-visitedlink-active-color:Text;
     --ml-link-hover-color:Text;
     --ml-visitedlink-hover-color:Text;
+}
+
+ytd-app[is-watch-page]:not(imp) {
+    --ml-ignore:true;
+    background-color: var(--ml-main-background-color, white);
+}
+ytd-app[is-watch-page]:not(imp)>* {
+    --ml-ignore:false;
 }
