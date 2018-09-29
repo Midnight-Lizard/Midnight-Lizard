@@ -49,7 +49,7 @@ namespace MidnightLizard.ContentScript
                 { prop: "background-size", priority: 4 },
                 { prop: "text-shadow", priority: 4 }
             ];
-
+        private readonly _passedPseudoSelectors = new Set<string>();
         protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
 
         protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
@@ -79,10 +79,14 @@ namespace MidnightLizard.ContentScript
         /** StyleSheetProcessor constructor
          * @param _app - application settings
          */
-        constructor(protected readonly _app: Settings.IApplicationSettings)
+        constructor(settingsManager: Settings.IBaseSettingsManager,
+            protected readonly _app: Settings.IApplicationSettings)
         {
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
+
+            settingsManager.onSettingsChanged
+                .addListener(() => this._passedPseudoSelectors.clear(), this);
         }
 
         protected compileExcludeStylesRegExp(): string
@@ -274,28 +278,31 @@ namespace MidnightLizard.ContentScript
             this._selectors.set(doc, filteredStyleRules.map(sr => sr.selectorText));
         }
 
-        findElementsForUserActionObservation(doc: Document, rules: Array<CSSStyleRule>)
+        public findElementsForUserActionObservation(doc: Document, rules: Array<CSSStyleRule>)
         {
             for (const pseudoClass of Util.getEnumValues<PseudoClass>(PseudoClass))
             {
                 const pseudoClassRegExp = this.getPseudoClassRegExp(pseudoClass);
-                const selector = Array.from(new Set(rules
+                for (const selector of Util.sliceIntoChunks(Array.from(new Set(rules
                     .filter(rule => rule.selectorText.search(pseudoClassRegExp) !== -1)
-                    .map(rule => rule.selectorText.replace(pseudoClassRegExp, "$1"))))
-                    .join(",");
-                if (selector)
+                    .map(rule => rule.selectorText.replace(pseudoClassRegExp, "$1")))), 50)
+                    .map(x => x.join(",")))
                 {
-                    try
+                    if (selector && !this._passedPseudoSelectors.has(selector))
                     {
-                        const elements = doc.body.querySelectorAll(selector);
-                        if (elements.length > 0)
+                        try
                         {
-                            this._onElementsForUserActionObservationFound.raise([pseudoClass, elements]);
+                            this._passedPseudoSelectors.add(selector);
+                            const elements = doc.body.querySelectorAll(selector);
+                            if (elements.length > 0)
+                            {
+                                this._onElementsForUserActionObservationFound.raise([pseudoClass, elements]);
+                            }
                         }
-                    }
-                    catch (ex)
-                    {
-                        this._app.isDebug && console.error(ex);
+                        catch (ex)
+                        {
+                            this._app.isDebug && console.error(ex);
+                        }
                     }
                 }
             }
