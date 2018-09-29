@@ -574,8 +574,8 @@ namespace MidnightLizard.ContentScript
             if (rootElements && rootElements.size)
             {
                 const allElements = Array.from(rootElements)
-                    .reduce((allElements, rootElement) => this
-                        .reCalcRootElement(rootElement, onCopy, clearParentBgColors),
+                    .reduce((allElems, rootElement) => allElems.concat(this
+                        .reCalcRootElement(rootElement, onCopy, clearParentBgColors)),
                         new Array<HTMLElement>());
                 if (allElements.length)
                 {
@@ -960,7 +960,7 @@ namespace MidnightLizard.ContentScript
                 else
                 {
                     const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
-                        _delays.get(chunk[0].mlOrder || po.viewColorTags) / _density)
+                        _delays.get(Math.round(chunk[0].mlOrder || po.viewColorTags) / _density))
                         .bind(null, delays, density);
                     result = Util.forEachPromise(this.concatZeroDelayedChunks(
                         Util.sliceIntoChunks(tags, chunkLength), getNextDelay)
