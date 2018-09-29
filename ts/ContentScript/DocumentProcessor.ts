@@ -869,6 +869,8 @@ namespace MidnightLizard.ContentScript
                                 : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
                                     : a.mlRowNumber! - b.mlRowNumber!);
 
+                allTags[0].mlOrder = po.viewColorTags;
+
                 const results = Util.handlePromise(
                     DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
 
