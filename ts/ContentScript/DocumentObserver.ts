@@ -242,6 +242,7 @@ namespace MidnightLizard.ContentScript
             else
             {
                 // if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
+                if (this._settingsManager.isComplex)
                 {
                     const prevState = this.stopDocumentObservation(this._rootDocument);
                     // only after 3sec since document processing started
