@@ -241,19 +241,21 @@ namespace MidnightLizard.ContentScript
             }
             else
             {
-                if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
+                // if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
                 {
+                    const prevState = this.stopDocumentObservation(this._rootDocument);
                     // only after 3sec since document processing started
                     // hiding elements untill group release and their processing
                     addedElements.forEach(tag =>
                     {
                         if ((tag instanceof HTMLElement || tag instanceof SVGElement) &&
-                            !tag.classList.contains('ml-ignore'))
+                            !tag.classList.contains('ml-ignore') && !tag.originalVisibility)
                         {
                             tag.originalVisibility = tag.style.visibility || "none";
                             tag.style.visibility = "hidden";
                         }
-                    })
+                    });
+                    this.startDocumentObservation(this._rootDocument, prevState);
                 }
 
                 // sliding timeout restarts with each chunk
