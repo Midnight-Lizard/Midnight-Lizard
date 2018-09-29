@@ -783,14 +783,14 @@ namespace MidnightLizard.ContentScript
         }
 
         protected static processAllElements(
-            allTags: HTMLElement[],
-            docProc: DocumentProcessor,
-            delays = normalDelays): void
+            allTags: HTMLElement[], docProc: DocumentProcessor,
+            delays = normalDelays, delayInvisibleElements = true): void
         {
             if (allTags.length > 0)
             {
-                let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean, isImage: boolean,
+                let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean, isImage = false,
                     isLink = false, hasBgColor = false, hasBgImage = false, inView: boolean,
+                    otherInvisTags = new Array<HTMLElement>(),
                     doc = allTags[0].ownerDocument,
                     hm = doc.defaultView.innerHeight,
                     wm = doc.defaultView.innerWidth;
@@ -800,12 +800,15 @@ namespace MidnightLizard.ContentScript
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
                     isVisible = isSvg || tag.offsetParent !== null || !!tag.offsetHeight
-                    tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag, "")
-                    if (!tag.mlComputedStyle) break; // something is wrong with this element
-                    isLink = tag instanceof HTMLAnchorElement;
-                    hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
-                    isImage = (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
-                    hasBgImage = tag.mlComputedStyle!.backgroundImage !== docProc._css.none;
+                    if (isVisible || tag.mlComputedStyle || !delayInvisibleElements || allTags.length < minChunkableLength)
+                    {
+                        tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag, "")
+                        if (!tag.mlComputedStyle) break; // something is wrong with this element
+                        isLink = tag instanceof HTMLAnchorElement;
+                        hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
+                        isImage = (tag.tagName === ns.img) || tag instanceof HTMLCanvasElement;
+                        hasBgImage = !hasBgColor && tag.mlComputedStyle!.backgroundImage !== docProc._css.none;
+                    }
 
                     if (isVisible)
                     {
@@ -850,13 +853,18 @@ namespace MidnightLizard.ContentScript
                             else tag.mlOrder = po.visTransTags;
                         }
                     }
-                    else
+                    else if (tag.mlComputedStyle)
                     {
                         if (hasBgColor) tag.mlOrder = po.invisColorTags;
                         else if (isImage) tag.mlOrder = po.invisImageTags;
                         else if (hasBgImage) tag.mlOrder = po.invisBgImageTags;
                         else if (isLink) tag.mlOrder = po.invisLinks;
                         else tag.mlOrder = po.invisTransTags;
+                    }
+                    else
+                    {
+                        tag.mlOrder = po.delayedInvisTags;
+                        otherInvisTags.push(tag);
                     }
                 }
 
@@ -869,10 +877,26 @@ namespace MidnightLizard.ContentScript
                                 : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
                                     : a.mlRowNumber! - b.mlRowNumber!);
 
+                if (otherInvisTags.length)
+                {
+                    // removing invisible elements
+                    allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
+                }
+
+                // always process first chunk in sync
                 allTags[0].mlOrder = po.viewColorTags;
 
                 const results = Util.handlePromise(
                     DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
+
+                if (otherInvisTags.length > 0)
+                {
+                    Promise.all([otherInvisTags, docProc, delays, results]).then(([otherTags, dp, dl]) =>
+                        setTimeout((ot: typeof otherTags, dpt: typeof dp, dlt: typeof dl) =>
+                            DocumentProcessor.processAllElements(ot, dpt, dlt, false),
+                            Math.round((delays.get(po.delayedInvisTags)! / 2000) * otherTags.length),
+                            otherTags, dp, dl));
+                }
 
                 DocumentProcessor.fixColorInheritance(allTags, docProc, results);
             }
@@ -962,7 +986,7 @@ namespace MidnightLizard.ContentScript
                 else
                 {
                     const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
-                        _delays.get(Math.round(chunk[0].mlOrder || po.viewColorTags) / _density))
+                        Math.round(_delays.get(chunk[0].mlOrder || po.viewColorTags) / _density))
                         .bind(null, delays, density);
                     result = Util.forEachPromise(this.concatZeroDelayedChunks(
                         Util.sliceIntoChunks(tags, chunkLength), getNextDelay)
@@ -1042,14 +1066,14 @@ namespace MidnightLizard.ContentScript
                         .join("\n");
                     if (css)
                     {
-                        if (dl)
-                        {
-                            setTimeout((d: Document, c: string) => d.mlPseudoStyles!.appendChild(d.createTextNode(c)), dl, doc, css);
-                        }
-                        else
-                        {
-                            doc.mlPseudoStyles!.appendChild(doc.createTextNode(css));
-                        }
+                        // if (dl)
+                        // {
+                        //     setTimeout((d: Document, c: string) => d.mlPseudoStyles!.appendChild(d.createTextNode(c)), dl, doc, css);
+                        // }
+                        // else
+                        // {
+                        doc.mlPseudoStyles!.appendChild(doc.createTextNode(css));
+                        // }
                     }
                     return tags;
                 });

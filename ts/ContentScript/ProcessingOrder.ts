@@ -16,7 +16,8 @@ namespace MidnightLizard.ContentScript
         invisImageTags,
         invisTransTags,
         invisLinks,
-        invisBgImageTags
+        invisBgImageTags,
+        delayedInvisTags
     }
 
     export const normalDelays = new Map<ProcessingOrder, number>([
@@ -34,7 +35,8 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.invisImageTags, 1250],
         [ProcessingOrder.invisTransTags, 1500],
         [ProcessingOrder.invisLinks, 2000],
-        [ProcessingOrder.invisBgImageTags, 2500]
+        [ProcessingOrder.invisBgImageTags, 2500],
+        [ProcessingOrder.delayedInvisTags, 3000]
     ]);
 
     export const bigReCalculationDelays = new Map<ProcessingOrder, number>([
@@ -52,7 +54,8 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.invisImageTags, 175],
         [ProcessingOrder.invisTransTags, 210],
         [ProcessingOrder.invisLinks, 250],
-        [ProcessingOrder.invisBgImageTags, 300]
+        [ProcessingOrder.invisBgImageTags, 300],
+        [ProcessingOrder.delayedInvisTags, 350]
     ]);
 
     export const smallReCalculationDelays = new Map<ProcessingOrder, number>([
@@ -70,7 +73,8 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.invisImageTags, 0],
         [ProcessingOrder.invisTransTags, 0],
         [ProcessingOrder.invisLinks, 0],
-        [ProcessingOrder.invisBgImageTags, 0]
+        [ProcessingOrder.invisBgImageTags, 0],
+        [ProcessingOrder.delayedInvisTags, 0]
     ]);
 
     export const onCopyReCalculationDelays = new Map<ProcessingOrder, number>(bigReCalculationDelays);
