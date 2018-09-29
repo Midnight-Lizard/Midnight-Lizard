@@ -16,7 +16,7 @@
 namespace MidnightLizard.ContentScript
 {
     const chunkLength = 300;
-    const minChunkableLength = 450;
+    const minChunkableLength = 700;
     const dom = Events.HtmlEvent;
     const cx = Colors.RgbaColor;
     const cc = Colors.Component;
