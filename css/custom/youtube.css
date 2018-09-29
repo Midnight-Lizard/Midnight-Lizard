@@ -34,6 +34,7 @@
 .toggle-bar, .ytd-sentiment-bar-renderer, .toggle-button[aria-pressed=false], paper-toggle-button[aria-pressed=false]
 {
     --ml-background-background-color:Border;
+    --ml-buttonbackground-background-color:Border;
 }
 
 .ytp-volume-slider-handle:before, .ytp-volume-slider-handle, .ytp-button[aria-pressed]:after,
