@@ -1162,7 +1162,9 @@ namespace MidnightLizard.ContentScript
                     tag.parentElement instanceof SVGElement;
                 tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.mlComputedStyle && isRealElement(tag) && (tag.mlComputedStyle!.position == this._css.absolute || tag.mlComputedStyle!.position == this._css.relative || isSvg))
+                if (tag.mlComputedStyle && isRealElement(tag) &&
+                    (tag.mlComputedStyle!.position == this._css.absolute ||
+                        tag.mlComputedStyle!.position == this._css.relative || isSvg))
                 {
                     tag.zIndex = isSvg ? this.getElementIndex(tag) : parseInt(tag.mlComputedStyle!.zIndex || "0");
                     tag.zIndex = isNaN(tag.zIndex!) ? -999 : tag.zIndex;
@@ -1203,7 +1205,10 @@ namespace MidnightLizard.ContentScript
                     }
                 }
                 bgColor = bgColor ||
-                    (tag.parentElement!.mlBgColor && tag.parentElement!.mlBgColor!.isUpToDate ? tag.parentElement!.mlBgColor : null) ||
+                    ((tag.parentElement!.mlBgColor &&
+                        tag.parentElement!.mlBgColor!.isUpToDate &&
+                        !(tag.parentElement instanceof SVGGElement))
+                        ? tag.parentElement!.mlBgColor : null) ||
                     tag.parentElement!.mlParentBgColor;
                 if (bgColor && bgColor.alpha > 0.2)
                 {
