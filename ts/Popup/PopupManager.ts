@@ -300,7 +300,11 @@ namespace MidnightLizard.Popup
                         this.updateButtonStates();
                     }
                 })
-                .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
+                .catch(async ex =>
+                {
+                    const reason = await this._settingsManager.getErrorReason(ex);
+                    alert(this._i18n.getMessage("setAsDefaultFailureMessage") + reason);
+                });
 
         }
 
@@ -563,7 +567,11 @@ namespace MidnightLizard.Popup
                         this._settingsManager.changeSettings(newScheme);
                         await this.updateColorSchemeListsFromDefaultSettings();
                     })
-                    .catch(ex => alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + (ex.message || ex)));
+                    .catch(async ex =>
+                    {
+                        const reason = await this._settingsManager.getErrorReason(ex);
+                        alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + reason);
+                    });
             }
             return false;
         }
@@ -662,7 +670,11 @@ namespace MidnightLizard.Popup
                     this.setUpDefaultInputFields();
                     this.updateButtonStates();
                 })
-                .catch(ex => alert(this._i18n.getMessage("setAsDefaultFailureMessage") + (ex.message || ex)));
+                .catch(async ex =>
+                {
+                    const reason = await this._settingsManager.getErrorReason(ex);
+                    alert(this._i18n.getMessage("setAsDefaultFailureMessage") + reason);
+                });
             return false;
         }
 

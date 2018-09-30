@@ -40,5 +40,9 @@ namespace MidnightLizard.Settings
          * @param relativePath - A path to a resource within an extension expressed relative to its install directory.
          */
         abstract getFullPath(relativePath: string): string;
+
+        abstract getStorageLimits(
+            storage: MidnightLizard.Settings.StorageType,
+            limit: MidnightLizard.Settings.StorageLimits): number;
     }
 }

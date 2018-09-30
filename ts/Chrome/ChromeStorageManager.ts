@@ -23,7 +23,7 @@ namespace Chrome
             {
                 if ("sync" in changes)
                 {
-                    this.currentStorage = changes.sync.newValue;
+                    this.currentStorage = changes.sync.newValue ? "sync" : "local";
                 }
                 this._onStorageChanged.raise(changes);
             });

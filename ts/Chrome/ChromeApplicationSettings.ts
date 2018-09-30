@@ -63,5 +63,12 @@ namespace Chrome
         {
             return chrome.runtime.getURL(relativePath);
         }
+
+        public getStorageLimits(
+            storage: MidnightLizard.Settings.StorageType,
+            limit: MidnightLizard.Settings.StorageLimits)
+        {
+            return chrome.storage[storage as 'sync'][limit];
+        }
     }
 }

@@ -174,7 +174,10 @@ namespace MidnightLizard.ContentScript
                 ("restoreColorsOnCopy" in changes || "restoreColorsOnPrint" in changes)
                 ||
                 //+ current website color scheme changed
-                `cs:${this._currentSettings.colorSchemeId}` in changes))
+                `cs:${this._currentSettings.colorSchemeId}` in changes
+                ||
+                //+ storage type changed
+                'sync' in changes))
             {
                 this.initDefaultColorSchemes();
                 await this.initCurrentSettings();
@@ -230,7 +233,8 @@ namespace MidnightLizard.ContentScript
                 }
                 catch (error)
                 {
-                    alert("Midnight Lizard\n" + this._i18n.getMessage("applyOnPageFailureMessage") + (error.message || error))
+                    const reason = await this.getErrorReason(error);
+                    alert("Midnight Lizard\n" + this._i18n.getMessage("applyOnPageFailureMessage") + reason);
                 }
             }
         }

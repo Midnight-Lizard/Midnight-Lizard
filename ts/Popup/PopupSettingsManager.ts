@@ -41,6 +41,7 @@ namespace MidnightLizard.Popup
         abstract getCurrentSorage(): Promise<boolean>;
         abstract get currentSiteSettings(): Settings.ColorScheme;
         abstract set currentSiteSettings(settings: Settings.ColorScheme);
+        abstract async getErrorReason(error: any): Promise<string>;
     }
 
     @DI.injectable(IPopupSettingsManager)

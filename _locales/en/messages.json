@@ -1113,5 +1113,50 @@
     "scrollbarStyle_@title": {
         "description": "scrollbarStyle_@title: text on the tooltip\/hint",
         "message": "Apply custom style and colors on scrollbars."
+    },
+    "syncStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "syncStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "Browser limits total sync storage available for each extension to $limit$ bytes. You have exceeded this limit. You can switch to local storage on 'Global settings' tab in Midnight Lizrd's settings popup and all settings will be automatically transfered to local storage.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_ITEMS_ErrorMessage": {
+        "description": "syncStorage_MAX_ITEMS_ErrorMessage: storage error message",
+        "message": "Browser limits total number of records in the sync storage available for each extension to $limit$ records. You have exceeded this limit. You can switch to local storage on 'Global settings' tab in Midnight Lizrd's settings popup and all settings will be automatically transfered to local storage.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage: storage error message",
+        "message": "Browser limits how often extensions can write into sync storage to $limit$ times per hour. You have exceeded this limit. Please try again later or switch to local storage on 'Global settings' tab in Midnight Lizrd's settings popup and all settings will be automatically transfered to local storage.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage: storage error message",
+        "message": "Browser limits how often extensions can write into sync storage to $limit$ times per minute. You have exceeded this limit. Please try again later or switch to local storage on 'Global settings' tab in Midnight Lizrd's settings popup and all settings will be automatically transfered to local storage.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "localStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "localStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "Browser limits total local storage available for each extension to $limit$ bytes. You have exceeded this limit. You have to delete custom color schemes or custom settings from some websites in order to store new settings.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
     }
 }

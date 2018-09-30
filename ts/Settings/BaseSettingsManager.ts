@@ -694,5 +694,25 @@ namespace MidnightLizard.Settings
             }
             return false;
         }
+
+        public async getErrorReason(error: any): Promise<string>
+        {
+            var result = (typeof error === 'string' ? error : error.message as string) || '';
+            const storage = await this._storageManager.getCurrentStorage();
+
+            let limit: keyof typeof MidnightLizard.Settings.StorageLimits;
+            for (limit in MidnightLizard.Settings.StorageLimits)
+            {
+                if (new RegExp(`\\b${limit}\\b`, 'gi').test(result))
+                {
+                    result = this._i18n.getMessage(`${storage}Storage_${limit}_ErrorMessage`,
+                        this._app.getStorageLimits(storage, limit as MidnightLizard.Settings.StorageLimits).toString())
+                        || result;
+                    break;
+                }
+            }
+
+            return result;
+        }
     }
 }
