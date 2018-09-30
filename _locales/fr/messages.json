@@ -3,6 +3,29 @@
         "description": "short_locale: two letters of the current locale",
         "message": "fr"
     },
+    "saveColorSchemeBtn_@title": {
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "Mise à jour du schéma de couleurs sélectionné avec les paramètres actuels de popup"
+    },
+    "exportColorSchemeBtn_@title": {
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "Exporter vers un fichier le schéma de couleurs sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": "$1"
+            },
+            "color_scheme_for_edit": {
+                "content": "$2"
+            },
+            "color_scheme_name": {
+                "content": "$3"
+            }
+        }
+    },
+    "importColorSchemeBtn_@title": {
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "Importer un schéma de couleur depuis un fichier"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "Ce"
