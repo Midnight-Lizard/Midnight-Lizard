@@ -38,17 +38,49 @@
         "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Importer un schéma de couleur depuis un fichier"
     },
+    "currentColorScheme_@title": {
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
+        "message": "Choisissez votre schéma de couleur favori"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "Ce"
+    },
+    "forgetThisSiteBtn_@title": {
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
+        "message": "Oublier les paramètres du site actuel"
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
         "message": "Oublier les réglages de tous les sites"
     },
+    "setAsDefaultBtn_text_label": {
+        "description": "setAsDefaultBtn_text_label: text on the label",
+        "message": "Définir par défaut"
+    },
     "setAsDefaultBtn_@title": {
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
         "message": "Définir les paramètres actuels par défaut pour tous les sites web sans paramètres personnalisés"
+    },
+    "applyBtn_text_label": {
+        "description": "applyBtn_text_label: text on the label",
+        "message": "Appliquer"
+    },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "Appliquer et sauvegarder les paramètres actuels pour ce site"
+    },
+    "closeBtn_text_label": {
+        "description": "closeBtn_text_label: text on the label",
+        "message": "Fermer"
+    },
+    "closeBtn_@title": {
+        "description": "closeBtn_@title: text on the tooltip\/hint",
+        "message": "Fermer la fenêtre pop-up et abandonner toutes les modifications non enregistrées"
+    },
+    "rateLink_@tooltip": {
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Notez cette extension"
     },
     "emailLink_@tooltip": {
         "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -69,5 +101,12 @@
     "forgetAllConfirmationMessage": {
         "description": "forgetAllConfirmationMessage: text on the message box",
         "message": "Tous les paramètres et les jeux de couleurs personnalisés créés précédemment seront supprimés ! Êtes-vous sûr de vouloir continuer ?"
+    },
+    "shortcut_text_lable": {
+        "message": "Raccourci"
+    },
+    "colorSchemeName_New": {
+        "description": "color scheme name",
+        "message": "Nouveau schéma de couleur"
     }
 }
