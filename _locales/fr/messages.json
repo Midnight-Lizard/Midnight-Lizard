@@ -2,5 +2,21 @@
     "short_locale": {
         "description": "short_locale: two letters of the current locale",
         "message": "fr"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "Ce"
+    },
+    "setAsDefaultBtn_@title": {
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
+        "message": "Définir les paramètres actuels par défaut pour tous les sites web sans paramètres personnalisés"
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
+        "message": "La suppression du jeu de couleurs a échoué.\n"
+    },
+    "forgetAllConfirmationMessage": {
+        "description": "forgetAllConfirmationMessage: text on the message box",
+        "message": "Tous les paramètres et les jeux de couleurs personnalisés créés précédemment seront supprimés ! Êtes-vous sûr de vouloir continuer ?"
     }
 }
