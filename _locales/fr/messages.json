@@ -11,13 +11,25 @@
         "description": "commonTab_text_label: text on the label",
         "message": "Activation"
     },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
+        "message": "Supprimer"
+    },
     "deleteColorSchemeBtn_@title": {
         "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Supprimer le schéma de couleur sélectionné pour edition"
     },
+    "saveColorSchemeBtn_text_label": {
+        "description": "saveColorSchemeBtn_text_label: text on the label",
+        "message": "Sauvegarder"
+    },
     "saveColorSchemeBtn_@title": {
         "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Mise à jour du schéma de couleur sélectionné avec les paramètres actuels de popup"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "exportColorSchemeBtn_text_label: text on the label",
+        "message": "Exporter"
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
@@ -34,9 +46,21 @@
             }
         }
     },
+    "importColorSchemeBtn_text_label": {
+        "description": "importColorSchemeBtn_text_label: text on the label",
+        "message": "Importer"
+    },
     "importColorSchemeBtn_@title": {
         "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
         "message": "Importer un schéma de couleur depuis un fichier"
+    },
+    "editSchemesTab_text_label": {
+        "description": "editSchemesTab_text_label: text on the label",
+        "message": "Schémas de couleur"
+    },
+    "currentColorScheme_text_label": {
+        "description": "currentColorScheme_text_label: text on the label",
+        "message": "Schéma de couleur actuel"
     },
     "currentColorScheme_@title": {
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
@@ -49,6 +73,10 @@
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "Oublier les paramètres du site actuel"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "Tous"
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
@@ -90,6 +118,10 @@
         "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Signaler un problème"
     },
+    "changeLogLink_@tooltip": {
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Journal des modifications"
+    },
     "colorSchemeSaveFailureMessage": {
         "description": "colorSchemeSaveFailureMessage: text on the message box",
         "message": "La mise à jour du schéma de couleur a échoué.\n"
@@ -105,8 +137,16 @@
     "shortcut_text_lable": {
         "message": "Raccourci"
     },
+    "colorSchemeName_Custom": {
+        "description": "color scheme name",
+        "message": "Personnalisé"
+    },
     "colorSchemeName_New": {
         "description": "color scheme name",
         "message": "Nouveau schéma de couleur"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "Défaut"
     }
 }
