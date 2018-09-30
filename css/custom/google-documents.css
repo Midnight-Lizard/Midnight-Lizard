@@ -1,11 +1,13 @@
 .docs-textcolormenubutton .goog-color-menu-button-indicator
 {
     --ml-border-border-bottom-color:Text;
+    --ml-buttonborder-border-bottom-color:Text;
 }
 
 #bgColorButton .goog-color-menu-button-indicator
 {
-    --ml-border-border-bottom-color:ButtonBackground;
+    --ml-border-border-bottom-color:HighlightedBackground;
+    --ml-buttonborder-border-bottom-color:HighlightedBackground;
 }
 
 .kix-paginateddocumentplugin-compact-mode, .kix-page-paginated
@@ -13,7 +15,10 @@
     box-shadow: 0 0 1pt 0pt #ccc!important;
 }
 
-.docs-listpreset-palette, .docos-comment-bubble-icon:before, .docs-instant-button-bubble-icon:before
+.docs-listpreset-palette, 
+.docos-comment-bubble-icon:before, 
+.docs-instant-button-bubble-icon:before,
+.kix-pagenumber-img, .kix-toc-img
 {
     filter: invert(var(--ml-invert));
 }
@@ -26,6 +31,15 @@
     --ml-border-border-left-color:TextSelection;
     --ml-border-border-right-color:TextSelection;
     --ml-border-border-top-color:TextSelection;
+}
+
+.docos-anchoreddocoview-arrow-inner
+{
+    --ml-border-border-color:Background;
+    --ml-border-border-bottom-color:Background;
+    --ml-border-border-left-color:Background;
+    --ml-border-border-right-color:Background;
+    --ml-border-border-top-color:Background;
 }
 
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div:not(#imp):not(.imp):not(imp)>.kix-paragraphrenderer:not(#imp):not(.imp):not(imp),
