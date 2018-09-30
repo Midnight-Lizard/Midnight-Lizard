@@ -3,13 +3,25 @@
         "description": "short_locale: two letters of the current locale",
         "message": "fr"
     },
+    "useImageHoverAnimation_text_label": {
+        "description": "useImageHoverAnimation_text_label: text on the label",
+        "message": "Animation du survol d'une image"
+    },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Activation"
+    },
+    "deleteColorSchemeBtn_@title": {
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "Supprimer le schéma de couleur sélectionné pour edition"
+    },
     "saveColorSchemeBtn_@title": {
         "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Mise à jour du schéma de couleurs sélectionné avec les paramètres actuels de popup"
+        "message": "Mise à jour du schéma de couleur sélectionné avec les paramètres actuels de popup"
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Exporter vers un fichier le schéma de couleurs sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
+        "message": "Exporter vers un fichier le schéma de couleur sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -30,9 +42,25 @@
         "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "Ce"
     },
+    "forgetAllSitesBtn_@title": {
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
+        "message": "Oublier les réglages de tous les sites"
+    },
     "setAsDefaultBtn_@title": {
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
         "message": "Définir les paramètres actuels par défaut pour tous les sites web sans paramètres personnalisés"
+    },
+    "emailLink_@tooltip": {
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Envoyer un e-mail au développeur"
+    },
+    "bugReportLink_@tooltip": {
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Signaler un problème"
+    },
+    "colorSchemeSaveFailureMessage": {
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
+        "message": "La mise à jour du schéma de couleur a échoué.\n"
     },
     "colorSchemeDeleteFailureMessage": {
         "description": "colorSchemeDeleteFailureMessage: text on the message box",
