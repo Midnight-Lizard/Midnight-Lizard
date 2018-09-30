@@ -102,6 +102,7 @@ namespace MidnightLizard.ContentScript
             protected readonly _textColorProcessor: MidnightLizard.Colors.ITextColorProcessor,
             protected readonly _textSelectionColorProcessor: MidnightLizard.Colors.ITextSelectionColorProcessor,
             protected readonly _highlightedTextColorProcessor: MidnightLizard.Colors.IHighlightedTextColorProcessor,
+            protected readonly _highlightedBackgroundColorProcessor: MidnightLizard.Colors.IHighlightedBackgroundColorProcessor,
             protected readonly _linkColorProcessor: MidnightLizard.Colors.ILinkColorProcessor,
             protected readonly _visitedLinkColorProcessor: MidnightLizard.Colors.IVisitedLinkColorProcessor,
             protected readonly _activeVisitedLinkColorProcessor: MidnightLizard.Colors.IActiveVisitedLinkColorProcessor,
@@ -1951,6 +1952,10 @@ namespace MidnightLizard.ContentScript
                     case cc.ButtonBackground:
                         bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
                         return this._buttonBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
+
+                    case cc.HighlightedBackground:
+                        bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
+                        return this._highlightedBackgroundColorProcessor.changeColor(propVal, bgLightVal, tag);
 
                     case cc.Text:
                         bgLightVal = bgLight !== undefined ? bgLight : this.getParentBackground(tag).light;
