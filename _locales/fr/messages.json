@@ -578,6 +578,18 @@
         "description": "isEnabledOff_text_label: text on the label",
         "message": "OFF"
     },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "Synchroniser les réglages"
+    },
+    "syncSettings_@title": {
+        "description": "syncSettings_@title: text on the tooltip\/hint",
+        "message": "Synchronisez les réglages «Midnight Lizard» sur tous vos appareils où cette option est également cochée.\nLorsque les paramètres personnalisés cochés pour chaque site Web seront fusionnés à partir de tous les appareils, une liste de schémas de couleur personnalisés sera remplacée par la dernière. Assurez-vous donc que vous êtes en ligne lorsque vous éditez des schémas personnalisés.\nVous devez également activer «Sync» dans les réglages du navigateur pour que la synchronisation des réglages de «Midnight Lizard» fonctionne."
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "colorSchemeForEdit_text_label: text on the label",
+        "message": "Schéma de couleur pour l'édition"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "Supprimer"
