@@ -310,6 +310,30 @@
         "description": "linkVisitedHue_text_label: text on the label",
         "message": "Teinte des liens visités"
     },
+    "linkVisitedHue_@title": {
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
+        "message": "Teinte des liens visités"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "borderSaturationLimit_text_label: text on the label",
+        "message": "Limite de saturation"
+    },
+    "borderSaturationLimit_@title": {
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de saturation des bordures"
+    },
+    "borderContrast_text_label": {
+        "description": "borderContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
+    "borderContrast_@title": {
+        "description": "borderContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale de luminosité entre les bordures et son fond"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "borderLightnessLimit_text_label: text on the label",
+        "message": "Limite de luminosité"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
