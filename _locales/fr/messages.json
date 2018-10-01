@@ -125,7 +125,7 @@
     },
     "backgroundReplaceAllHues_text_label": {
         "description": "backgroundReplaceAllHues_text_label: text on the label",
-        "message": "Tout remplacer"
+        "message": " Remplace tout"
     },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
