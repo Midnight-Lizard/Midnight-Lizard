@@ -418,6 +418,26 @@
         "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limite de la luminosité des images de fond. Plus l'image est petite, plus elle est brillante."
     },
+    "backgroundImageExample_text_label": {
+        "description": "backgroundImageExample_text_label: text on the label",
+        "message": "Exemple d'image de fond"
+    },
+    "backgroundImageExample_@title": {
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "Exemple d'image de fond"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "backgroundImageExampleText_text_label: text on the label",
+        "message": "Exemple"
+    },
+    "backgroundImageExampleText_@title": {
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
+        "message": "Si ce site Web contient des images de fond derrière le texte, vous devez ajuster le niveau de luminosité des images de fond jusqu'à ce que vous puissiez voir clairement le texte sur l'image."
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
+        "message": "Saturation"
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "Activation"
