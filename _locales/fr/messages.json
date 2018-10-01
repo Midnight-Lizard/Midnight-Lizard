@@ -454,6 +454,10 @@
         "description": "scrollbarLightnessLimit_text_label: text on the label",
         "message": "Luminosité"
     },
+    "scrollbarLightnessLimit_@title": {
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Luminosité du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "Activation"
