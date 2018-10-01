@@ -302,6 +302,14 @@
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": " Remplace tout"
     },
+    "linkReplaceAllHues_@title": {
+        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes normaux des liens de cette page seront remplacées.\nLa saturation par défaut sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+    },
+    "linkVisitedHue_text_label": {
+        "description": "linkVisitedHue_text_label: text on the label",
+        "message": "Teinte des liens visités"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
