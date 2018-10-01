@@ -246,6 +246,38 @@
     "textSelectionHue_html_label": {
         "message": "Teinte de <span id=\"selection\">sélection<\/span> du texte"
     },
+    "textSelectionHue_@title": {
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
+        "message": "Teinte de sélection du texte"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "linkSaturationLimit_text_label: text on the label",
+        "message": "Limite de saturation"
+    },
+    "linkSaturationLimit_@title": {
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de saturation des liens"
+    },
+    "linkContrast_text_label": {
+        "description": "linkContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
+    "linkContrast_@title": {
+        "description": "linkContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale de luminosité entre les liens et son fond"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "linkLightnessLimit_text_label: text on the label",
+        "message": "Limite de luminosité"
+    },
+    "linkLightnessLimit_@title": {
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de luminosité des liens"
+    },
+    "linkDefaultSaturation_text_label": {
+        "description": "linkDefaultSaturation_text_label: text on the label",
+        "message": "Saturation des liens par défaut"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
