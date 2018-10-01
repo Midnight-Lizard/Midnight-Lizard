@@ -334,6 +334,18 @@
         "description": "borderLightnessLimit_text_label: text on the label",
         "message": "Limite de luminosité"
     },
+    "borderLightnessLimit_@title": {
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de luminosité des bordures"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "borderGraySaturation_text_label: text on the label",
+        "message": "Saturation des bordures grisées"
+    },
+    "borderGraySaturation_@title": {
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
+        "message": "Saturation des bordures grisées après l'application de la teinte par défaut sélectionnée"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
