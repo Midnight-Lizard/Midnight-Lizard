@@ -95,6 +95,22 @@
         "description": "backgroundLightnessLimit_text_label: text on the label",
         "message": "Limite de luminosité"
     },
+    "backgroundLightnessLimit_@title": {
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de luminosité du fond"
+    },
+    "backgroundGraySaturation_text_label": {
+        "description": "backgroundGraySaturation_text_label: text on the label",
+        "message": "Saturation de fond gris"
+    },
+    "backgroundGraySaturation_@title": {
+        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
+        "message": "Saturation les fondos gris après application de la teinte par défaut sélectionnée"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "backgroundHueGravity_text_label: text on the label",
+        "message": "Gravité de teinte par défaut"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
