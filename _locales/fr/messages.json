@@ -39,6 +39,38 @@
         "description": "changeBrowserTheme_text_label: text on the label",
         "message": "Changer le thème du navigateur"
     },
+    "changeBrowserTheme_@title": {
+        "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
+        "message": "Régler le thème du navigateur sur le schéma de couleur actuel.\nPris en charge par Firefox et partiellement par Vivaldi."
+    },
+    "useDefaultSchedule_text_label": {
+        "description": "useDefaultSchedule_text_label: text on the label",
+        "message": "Utiliser l'horaire par défaut"
+    },
+    "useDefaultSchedule_@title": {
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
+        "message": "Utiliser l'horaire des paramètres par défaut.\nSi vous souhaitez utiliser l'horaire unique pour tous les sites Web,\nvous devez le spécifier dans les paramètres par défaut."
+    },
+    "scheduleStartHour_text_label": {
+        "description": "scheduleStartHour_text_label: text on the label",
+        "message": "Temps d'activation"
+    },
+    "scheduleStartHour_@title": {
+        "description": "scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "L'extension sera active sur le site Web actuel uniquement à partir de ce moment."
+    },
+    "scheduleFinishHour_text_label": {
+        "description": "scheduleFinishHour_text_label: text on the label",
+        "message": "Temps de désactivation"
+    },
+    "scheduleFinishHour_@title": {
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "L'extension sera active sur le site Web actuel seulement jusqu'à ce moment."
+    },
+    "blueFilter_text_label": {
+        "description": "blueFilter_text_label: text on the label",
+        "message": "Intensité du filtre bleu"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
