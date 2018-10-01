@@ -127,6 +127,38 @@
         "description": "backgroundReplaceAllHues_text_label: text on the label",
         "message": " Remplace tout"
     },
+    "backgroundReplaceAllHues_@title": {
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "buttonSaturationLimit_text_label: text on the label",
+        "message": "Limite de saturation"
+    },
+    "buttonSaturationLimit_@title": {
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de saturation du fond du bouton"
+    },
+    "buttonContrast_text_label": {
+        "description": "buttonContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
+    "buttonContrast_@title": {
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale de luminosité entre les boutons et le fond autour d'eux"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "buttonLightnessLimit_text_label: text on the label",
+        "message": "Limite de luminosité"
+    },
+    "buttonLightnessLimit_@title": {
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de luminosité du fond du bouton"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "buttonGraySaturation_text_label: text on the label",
+        "message": "Saturation du bouton gris"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
