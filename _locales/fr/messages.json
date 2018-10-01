@@ -556,7 +556,27 @@
     },
     "hostState_@tooltip": {
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Déplacer le site Web actuel entre\nliste blanche et liste noire"
+        "message": "Basculer le site Web actuel entre\nliste blanche et liste noire"
+    },
+    "hostName_@tooltip": {
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "    Site Web actuel\n―――――――――――――――\n Cliquez pour faire basculer le site Web actuel entre la liste blanche et la liste noire.\n Pour mettre tous les sites Web sur liste noire par défaut, accédez à l'onglet «Réglages globaux»."
+    },
+    "helpLink_@tooltip": {
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Forum d'entraide"
+    },
+    "isEnabledSwitch_@tooltip": {
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Activer ou désactiver l'extension entière"
+    },
+    "isEnabledOn_text_label": {
+        "description": "isEnabledOn_text_label: text on the label",
+        "message": "ON"
+    },
+    "isEnabledOff_text_label": {
+        "description": "isEnabledOff_text_label: text on the label",
+        "message": "OFF"
     },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
