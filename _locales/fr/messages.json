@@ -358,9 +358,65 @@
         "description": "borderGrayHue_text_label: text on the label",
         "message": "Teinte par défaut"
     },
+    "borderGrayHue_@title": {
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
+        "message": "Teinte à utiliser pour augmenter la saturation des couleurs des bordures grisées"
+    },
+    "borderReplaceAllHues_text_label": {
+        "description": "borderReplaceAllHues_text_label: text on the label",
+        "message": " Remplace tout"
+    },
+    "borderReplaceAllHues_@title": {
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "imageSaturationLimit_text_label: text on the label",
+        "message": "Saturation"
+    },
+    "imageSaturationLimit_@title": {
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Régler la saturation de toutes les images à cette valeur"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "imageLightnessLimit_text_label: text on the label",
+        "message": "Luminosité"
+    },
+    "imageLightnessLimit_@title": {
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Régler la luminosité de toutes les images à cette valeur"
+    },
+    "imageExample_text_label": {
+        "description": "imageExample_text_label: text on the label",
+        "message": "Exemple de traitement d'images"
+    },
+    "imageExample_@title": {
+        "description": "imageExample_@title: text on the tooltip\/hint",
+        "message": "Exemple de traitement d'images"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
+    },
+    "useImageHoverAnimation_@title": {
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
+        "message": "Supprimer tous les effets de l'image lorsque vous passez la souris dessus"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
+        "message": "Saturation"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Saturation des images de fond"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
+        "message": "Luminosité"
+    },
+    "backgroundImageLightnessLimit_@title": {
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de la luminosité des images de fond. Plus l'image est petite, plus elle est brillante."
     },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
