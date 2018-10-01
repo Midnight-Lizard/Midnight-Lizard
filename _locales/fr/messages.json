@@ -438,6 +438,22 @@
         "description": "scrollbarSaturationLimit_text_label: text on the label",
         "message": "Saturation"
     },
+    "scrollbarSaturationLimit_@title": {
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Saturation du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "scrollbarContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
+    "scrollbarContrast_@title": {
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale entre la luminosité du barre coulissante de la barre de défilement et de fond principal.\nApplicable uniquement avec des fond lumineux."
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
+        "message": "Luminosité"
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "Activation"
