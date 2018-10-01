@@ -460,7 +460,7 @@
     },
     "scrollbarLightnessLimit_@title": {
         "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Scrollbar thumb and buttons brightness limit"
+        "message": "Scrollbar thumb and buttons brightness"
     },
     "scrollbarSize_text_label": {
         "description": "scrollbarSize_text_label: text on the label",
