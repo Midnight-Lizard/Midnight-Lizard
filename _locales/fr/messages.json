@@ -15,6 +15,30 @@
         "description": "currentToggleKey: keyboard shortcut description in the browser settings",
         "message": "Activer\/désactiver l'extension pour le site courant"
     },
+    "runOnThisSite_text_label": {
+        "description": "runOnThisSite_text_label: text on the label",
+        "message": "Exécuter sur ce site Web"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "restoreColorsOnCopy_text_label: text on the label",
+        "message": "Restaurer les couleurs d'origine sur copie"
+    },
+    "restoreColorsOnCopy_@title": {
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
+        "message": "Restaurer les couleurs d'origine avant de copier le contenu de la page"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "restoreColorsOnPrint_text_label: text on the label",
+        "message": "Restaurer les couleurs d'origine sur impression"
+    },
+    "restoreColorsOnPrint_@title": {
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
+        "message": "Restaurer les couleurs d'origine avant d'imprimer le contenu de la page"
+    },
+    "changeBrowserTheme_text_label": {
+        "description": "changeBrowserTheme_text_label: text on the label",
+        "message": "Changer le thème du navigateur"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
