@@ -268,7 +268,7 @@
     },
     "linkContrast_@title": {
         "description": "linkContrast_@title: text on the tooltip\/hint",
-        "message": "Minimal difference between links and background brightness"
+        "message": "Minimal difference in brightness between links and their background"
     },
     "linkLightnessLimit_text_label": {
         "description": "linkLightnessLimit_text_label: text on the label",
