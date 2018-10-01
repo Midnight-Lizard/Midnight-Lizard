@@ -767,5 +767,25 @@
     "colorSchemeName_grayscale": {
         "description": "color scheme name",
         "message": "Niveaux de Gris"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Lumière Inversée"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Niveaux de Gris Inversés"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Jaune sur Noir"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Vert sur Noir"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"
     }
 }
