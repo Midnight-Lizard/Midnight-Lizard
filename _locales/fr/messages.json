@@ -578,6 +578,30 @@
         "description": "isEnabledOff_text_label: text on the label",
         "message": "OFF"
     },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "Synchroniser les réglages"
+    },
+    "syncSettings_@title": {
+        "description": "syncSettings_@title: text on the tooltip\/hint",
+        "message": "Synchronisez les réglages «Midnight Lizard» sur tous vos appareils où cette option est également cochée.\nLorsque les paramètres personnalisés cochés pour chaque site Web seront fusionnés à partir de tous les appareils, une liste de schémas de couleur personnalisés sera remplacée par la dernière. Assurez-vous donc que vous êtes en ligne lorsque vous éditez des schémas personnalisés.\nVous devez également activer «Sync» dans les réglages du navigateur pour que la synchronisation des réglages de «Midnight Lizard» fonctionne."
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "colorSchemeForEdit_text_label: text on the label",
+        "message": "Schéma de couleur pour l'édition"
+    },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "Choisissez un schéma de couleur pour l'édition.\nVous pouvez créer un nouveau schéma et mettre à jour ou supprimer le schéma de couleur existant."
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "Nom du schéma de couleur"
+    },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "Vous pouvez éditer le nom du schéma de couleur avant de sauvegarder"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "Supprimer"
@@ -715,5 +739,65 @@
     "colorSchemeName_default": {
         "description": "color scheme name",
         "message": "Défaut"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Amande Mûre"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Voiles au Coucher"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Veille de la Toussaint"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Brume Matinale"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Antique Codex"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Contraste Augmenté"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Niveaux de Gris"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "Lumière Inversée"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "Niveaux de Gris Inversés"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "Jaune sur Noir"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "Vert sur Noir"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "Votre espace de stockage de réglages sync (cloud) contient déjà des données.\nVous voulez les remplacer par les données du stockage de réglages locaux\net perdre les données substituées ?"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "Exemple de traitement du fond"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "Exemple de traitement du fond de différentes couleurs"
     }
 }
