@@ -278,6 +278,30 @@
         "description": "linkDefaultSaturation_text_label: text on the label",
         "message": "Saturation des liens par défaut"
     },
+    "linkDefaultSaturation_@title": {
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
+        "message": "Saturation des liens avec la couleur de lien normal et pour les liens visités après l’application des teintes sélectionnées"
+    },
+    "linkHueGravity_text_label": {
+        "description": "linkHueGravity_text_label: text on the label",
+        "message": "Gravité de la teinte par défaut"
+    },
+    "linkHueGravity_@title": {
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
+        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+    },
+    "linkDefaultHue_text_label": {
+        "description": "linkDefaultHue_text_label: text on the label",
+        "message": "Teinte par défaut"
+    },
+    "linkDefaultHue_@title": {
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
+        "message": "Teinte à utiliser pour remplacer la teinte normale d'un lien"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "linkReplaceAllHues_text_label: text on the label",
+        "message": " Remplace tout"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
