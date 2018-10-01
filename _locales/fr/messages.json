@@ -743,5 +743,29 @@
     "colorSchemeName_almondRipe": {
         "description": "color scheme name",
         "message": "Amande Mûre"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Voiles au Coucher"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "Veille de la Toussaint"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Brume Matinale"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "Antique Codex"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "Contraste Augmenté"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "Niveaux de Gris"
     }
 }
