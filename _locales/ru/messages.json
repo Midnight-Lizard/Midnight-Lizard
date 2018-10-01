@@ -1113,5 +1113,50 @@
     "scrollbarStyle_@title": {
         "description": "scrollbarStyle_@title: text on the tooltip\/hint",
         "message": "Изменять стиль, размер и цвета полос прокрутки."
+    },
+    "syncStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "syncStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "Браузер ограничивает общий размер синхронизируемого хранилища доступный для каждого расширения до $limit$ байт. Вы превысили это ограничение. Вы можете переключиться на локальное хранилище на вкладке «Глобальные опции» в окне настроек Midnight Lizard, и все настройки будут автоматически перенесены в локальное хранилище.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_ITEMS_ErrorMessage": {
+        "description": "syncStorage_MAX_ITEMS_ErrorMessage: storage error message",
+        "message": "Браузер ограничивает общее количество записей доступное для каждого расширения в синхронизируемом хранилище до $limit$ записей. Вы превысили это ограничение. Вы можете переключиться на локальное хранилище на вкладке «Глобальные опции» в окне настроек Midnight Lizard, и все настройки будут автоматически перенесены в локальное хранилище.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage: storage error message",
+        "message": "Браузер ограничивает частоту записи расширениями данных в синхронизируемое хранилище до $limit$ раз в час. Вы превысили это ограничение. Пожалуйста, повторите попытку позже или переключитесь на локальное хранилище на вкладке «Глобальные опции» в окне настроек Midnight Lizard, и все настройки будут автоматически перенесены в локальное хранилище.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage: storage error message",
+        "message": "Браузер ограничивает частоту записи расширениями данных в синхронизируемое хранилище до $limit$ раз в минуту. Вы превысили это ограничение. Пожалуйста, повторите попытку позже или переключитесь на локальное хранилище на вкладке «Глобальные опции» в окне настроек Midnight Lizard, и все настройки будут автоматически перенесены в локальное хранилище.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "localStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "localStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "Браузер ограничивает общий размер локального хранилища для каждого расширения до $limit$ байт. Вы превысили этот лимит. Вам нужно удалить пользовательские цветовые схемы или настройки некоторых веб-сайтов, чтобы иметь возможность сохранить новые.",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
     }
 }
