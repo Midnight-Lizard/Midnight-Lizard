@@ -458,9 +458,85 @@
         "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Luminosité du barre coulissante et des boutons avec des flèches sur la barre de défilement"
     },
+    "scrollbarSize_text_label": {
+        "description": "scrollbarSize_text_label: text on the label",
+        "message": "Taille"
+    },
+    "scrollbarSize_@title": {
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
+        "message": "Taille de la barre de défilement"
+    },
+    "scrollbarGrayHue_text_label": {
+        "description": "scrollbarGrayHue_text_label: text on the label",
+        "message": "Teinte de la barre de défilement"
+    },
+    "scrollbarGrayHue_@title": {
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
+        "message": "Teinte du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+    },
+    "commonTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "Commun"
+    },
+    "commonTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "    Paramètres communs\n―――――――――――――――――――\n Cet onglet contient les paramètres communs à la page entière."
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "Activation"
+    },
+    "backgroundTab_text_label": {
+        "description": "backgroundTab_text_label: text on the label",
+        "message": "Fond"
+    },
+    "backgroundTab_@tooltip": {
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "  Paramètres de couleur de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent la manière dont les éléments de la page seront remplis de couleurs."
+    },
+    "buttonsTab_text_label": {
+        "description": "buttonsTab_text_label: text on the label",
+        "message": "Boutons"
+    },
+    "buttonsTab_@tooltip": {
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": " Params de couleur de fond du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
+    },
+    "textTab_text_label": {
+        "description": "textTab_text_label: text on the label",
+        "message": "Texte"
+    },
+    "textTab_@tooltip": {
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "  Paramètres de couleur du texte\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les éléments de texte de la page."
+    },
+    "linkTab_text_label": {
+        "description": "linkTab_text_label: text on the label",
+        "message": "Liens"
+    },
+    "linkTab_@tooltip": {
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": " Paramètres de couleur des hyperliens\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les liens hypertexte sur la page."
+    },
+    "borderTab_text_label": {
+        "description": "borderTab_text_label: text on the label",
+        "message": "Bordures"
+    },
+    "borderTab_@tooltip": {
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": " Paramètres de couleur des bordures\n―――――――――――――――――――\n Cet onglet contient les paramètres de réglage des couleurs pour toutes les bordures et lignes de la page."
+    },
+    "imagesTab_text_label": {
+        "description": "imagesTab_text_label: text on the label",
+        "message": "Images"
+    },
+    "imagesTab_@tooltip": {
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": "  Paramètres de réglage des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de réglage de la luminosité des images et des photos."
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "backgroundImagesTab_text_label: text on the label",
+        "message": "Images de fond"
     },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
