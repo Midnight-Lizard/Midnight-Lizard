@@ -244,7 +244,7 @@
         "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
     },
     "textSelectionHue_html_label": {
-        "message": "Teinte de texte <span id=\"selection\">sélectionné<\/span>"
+        "message": "Teinte de <span id=\"selection\">sélection<\/span> du texte"
     },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
