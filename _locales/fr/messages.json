@@ -211,6 +211,41 @@
         "description": "textLightnessLimit_@title: text on the tooltip\/hint",
         "message": "Limite de luminosité du texte"
     },
+    "textGraySaturation_text_label": {
+        "description": "textGraySaturation_text_label: text on the label",
+        "message": "Saturation du texte grisé"
+    },
+    "textGraySaturation_@title": {
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
+        "message": "Saturation du texte grisé après l'application de la teinte par défaut sélectionnée"
+    },
+    "textHueGravity_text_label": {
+        "description": "textHueGravity_text_label: text on the label",
+        "message": "Gravité de la teinte par défaut"
+    },
+    "textHueGravity_@title": {
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
+        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+    },
+    "textGrayHue_text_label": {
+        "description": "textGrayHue_text_label: text on the label",
+        "message": "Teinte par défaut"
+    },
+    "textGrayHue_@title": {
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
+        "message": "Teinte à utiliser pour augmenter la saturation des couleurs du texte grisé"
+    },
+    "textReplaceAllHues_text_label": {
+        "description": "textReplaceAllHues_text_label: text on the label",
+        "message": " Remplace tout"
+    },
+    "textReplaceAllHues_@title": {
+        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+    },
+    "textSelectionHue_html_label": {
+        "message": "Teinte de texte <span id=\"selection\">sélectionné<\/span>"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
