@@ -199,6 +199,18 @@
         "description": "textContrast_text_label: text on the label",
         "message": "Contraste"
     },
+    "textContrast_@title": {
+        "description": "textContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale de luminosité entre le texte et son fond"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "textLightnessLimit_text_label: text on the label",
+        "message": "Limite de luminosité"
+    },
+    "textLightnessLimit_@title": {
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de luminosité du texte"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
