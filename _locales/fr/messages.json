@@ -538,6 +538,26 @@
         "description": "backgroundImagesTab_text_label: text on the label",
         "message": "Images de fond"
     },
+    "backgroundImagesTab_@tooltip": {
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": " Params de réglage des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
+    },
+    "scrollbarsTab_text_label": {
+        "description": "scrollbarsTab_text_label: text on the label",
+        "message": "Barres de défilement"
+    },
+    "scrollbarsTab_@tooltip": {
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page.\nNon pris en charge par Firefox."
+    },
+    "settingsHeader_text_label": {
+        "description": "settingsHeader_text_label: text on the label",
+        "message": " réglages pour"
+    },
+    "hostState_@tooltip": {
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Déplacer le site Web actuel entre\nliste blanche et liste noire"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "Supprimer"
