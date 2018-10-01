@@ -71,6 +71,30 @@
         "description": "blueFilter_text_label: text on the label",
         "message": "Intensité du filtre bleu"
     },
+    "blueFilter_@title": {
+        "description": "blueFilter_@title: text on the tooltip\/hint",
+        "message": "Intensité du filtre bleu.\nSupprime la lumière bleue de la page et la restitue avec une lumière rouge."
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "backgroundSaturationLimit_text_label: text on the label",
+        "message": "Limite de saturation"
+    },
+    "backgroundSaturationLimit_@title": {
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de saturation du fond"
+    },
+    "backgroundContrast_text_label": {
+        "description": "backgroundContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
+    "backgroundContrast_@title": {
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
+        "message": "Différence minimale de luminosité entre les fondos similaires.\nSelon la taille et l'ordre des éléments, les résultats peuvent être aléatoires."
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "backgroundLightnessLimit_text_label: text on the label",
+        "message": "Limite de luminosité"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
