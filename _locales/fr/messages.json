@@ -787,5 +787,17 @@
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "Votre espace de stockage de réglages sync (cloud) contient déjà des données.\nVous voulez les remplacer par les données du stockage de réglages locaux\net perdre les données substituées ?"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "Exemple de traitement du fond"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "Exemple de traitement du fond de différentes couleurs"
     }
 }
