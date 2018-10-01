@@ -572,11 +572,11 @@
     },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
-        "message": "ON"
+        "message": "▌ "
     },
     "isEnabledOff_text_label": {
         "description": "isEnabledOff_text_label: text on the label",
-        "message": "OFF"
+        "message": " ◯"
     },
     "syncSettings_text_label": {
         "description": "syncSettings_text_label: text on the label",
