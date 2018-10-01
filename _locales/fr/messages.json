@@ -590,6 +590,18 @@
         "description": "colorSchemeForEdit_text_label: text on the label",
         "message": "Schéma de couleur pour l'édition"
     },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "Choisissez un schéma de couleur pour l'édition.\nVous pouvez créer un nouveau schéma et mettre à jour ou supprimer le schéma de couleur existant."
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "Nom du schéma de couleur"
+    },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "Vous pouvez éditer le nom du schéma de couleur avant de sauvegarder"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "Supprimer"
@@ -727,5 +739,9 @@
     "colorSchemeName_default": {
         "description": "color scheme name",
         "message": "Défaut"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Amande Mûre"
     }
 }
