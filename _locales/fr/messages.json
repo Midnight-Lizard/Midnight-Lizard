@@ -179,6 +179,26 @@
         "description": "buttonGrayHue_@title: text on the tooltip\/hint",
         "message": "Teinte à utiliser pour augmenter la saturation des couleurs du fond du bouton gris"
     },
+    "buttonReplaceAllHues_text_label": {
+        "description": "buttonReplaceAllHues_text_label: text on the label",
+        "message": " Remplace tout"
+    },
+    "buttonReplaceAllHues_@title": {
+        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+    },
+    "textSaturationLimit_text_label": {
+        "description": "textSaturationLimit_text_label: text on the label",
+        "message": "Limite de saturation"
+    },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "Limite de saturation du texte"
+    },
+    "textContrast_text_label": {
+        "description": "textContrast_text_label: text on the label",
+        "message": "Contraste"
+    },
     "useImageHoverAnimation_text_label": {
         "description": "useImageHoverAnimation_text_label: text on the label",
         "message": "Animation du survol d'une image"
