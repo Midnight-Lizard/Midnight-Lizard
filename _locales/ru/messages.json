@@ -1075,11 +1075,11 @@
         "message": "Страница точно не будет обрабатываться, если её адрес\nсоответствует какому-либо из указанных здесь шаблонов.\nПроверка шаблонов на исключение выполняется в последнюю очередь,\nпоэтому у них наивысший приоритет.\nКаждый шаблон необходимо размещать на новой строке."
     },
     "includeMatches_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "description": "includeMatches_text_label: text on the label",
         "message": "Шаблоны на включение"
     },
     "includeMatches_@title": {
-        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "description": "includeMatches_@title: text on the tooltip\/hint",
         "message": "Если выбрано не «Обрабатывать этот веб-сайт»,\nно адрес страницы соответствует хотя бы\nодному из указанных здесь шаблонов,\nто эта страница всё ещё может быть обработана.\nЕсли же выбрано «Обрабатывать этот веб-сайт»,\nто все указанные здесь шаблоны будут проигнорированы.\nКаждый шаблон необходимо размещать на новой строке."
     },
     "matchPatternsSyntaxLink_text_label": {

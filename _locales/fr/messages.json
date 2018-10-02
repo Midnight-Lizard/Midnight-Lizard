@@ -125,7 +125,7 @@
     },
     "backgroundReplaceAllHues_text_label": {
         "description": "backgroundReplaceAllHues_text_label: text on the label",
-        "message": " Remplace tout"
+        "message": "Remplacer toutes"
     },
     "backgroundReplaceAllHues_@title": {
         "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
@@ -181,7 +181,7 @@
     },
     "buttonReplaceAllHues_text_label": {
         "description": "buttonReplaceAllHues_text_label: text on the label",
-        "message": " Remplace tout"
+        "message": "Remplacer toutes"
     },
     "buttonReplaceAllHues_@title": {
         "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
@@ -237,7 +237,7 @@
     },
     "textReplaceAllHues_text_label": {
         "description": "textReplaceAllHues_text_label: text on the label",
-        "message": " Remplace tout"
+        "message": "Remplacer toutes"
     },
     "textReplaceAllHues_@title": {
         "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
@@ -300,7 +300,7 @@
     },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
-        "message": " Remplace tout"
+        "message": "Remplacer toutes"
     },
     "linkReplaceAllHues_@title": {
         "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
@@ -364,7 +364,7 @@
     },
     "borderReplaceAllHues_text_label": {
         "description": "borderReplaceAllHues_text_label: text on the label",
-        "message": " Remplace tout"
+        "message": "Remplacer toutes"
     },
     "borderReplaceAllHues_@title": {
         "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
@@ -873,7 +873,7 @@
         "message": "Exclure les motifs"
     },
     "includeMatches_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "description": "includeMatches_text_label: text on the label",
         "message": "Inclure les motifs"
     },
     "matchPatternsSyntaxLink_text_label": {
