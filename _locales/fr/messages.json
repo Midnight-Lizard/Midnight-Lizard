@@ -468,11 +468,11 @@
     },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
-        "message": "Teinte de la barre de défilement"
+        "message": "Teinte des barres de défilement"
     },
     "scrollbarGrayHue_@title": {
         "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+        "message": "Teinte du barre coulissante et des boutons avec des flèches sur des barres de défilement"
     },
     "commonTab_text_label": {
         "description": "commonTab_text_label: text on the label",
