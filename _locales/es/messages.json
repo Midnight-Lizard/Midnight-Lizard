@@ -1006,7 +1006,7 @@
         "message": "Excluir patrones de coincidencia"
     },
     "includeMatches_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "description": "includeMatches_text_label: text on the label",
         "message": "Incluir patrones de coincidencia"
     },
     "matchPatternsSyntaxLink_text_label": {
