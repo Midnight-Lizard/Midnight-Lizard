@@ -472,7 +472,7 @@
     },
     "scrollbarGrayHue_@title": {
         "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte du barre coulissante et des boutons avec des flèches sur des barres de défilement"
+        "message": "Teinte du barre coulissante et des boutons avec des flèches sur barres de défilement"
     },
     "commonTab_text_label": {
         "description": "commonTab_text_label: text on the label",
