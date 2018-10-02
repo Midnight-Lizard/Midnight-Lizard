@@ -1075,11 +1075,11 @@
         "message": "Page won't be processed if its url matches any of these patterns.\nWrite each pattern on a new line.\nExclude rules have the lowest precedence hence they will always win."
     },
     "includeMatches_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "description": "includeMatches_text_label: text on the label",
         "message": "Include match patterns"
     },
     "includeMatches_@title": {
-        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "description": "includeMatches_@title: text on the tooltip\/hint",
         "message": "If 'Run on this website' is unchecked,\nbut page url matches at least one of these patterns\nthen it will be still considered for processing.\nWrite each pattern on a new line.\nIf 'Run on this website' is checked\nthen all include match patterns will be ignored."
     },
     "matchPatternsSyntaxLink_text_label": {
