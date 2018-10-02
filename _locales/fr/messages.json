@@ -887,5 +887,9 @@
     "localFiles_text_label": {
         "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
         "message": "fichiers locaux"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "Changer le style des barres de défilement"
     }
 }
