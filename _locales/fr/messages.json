@@ -873,7 +873,7 @@
         "message": "Exclure les motifs"
     },
     "includeMatches_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "description": "includeMatches_text_label: text on the label",
         "message": "Inclure les motifs"
     },
     "matchPatternsSyntaxLink_text_label": {
