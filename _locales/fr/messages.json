@@ -540,7 +540,7 @@
     },
     "backgroundImagesTab_@tooltip": {
         "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": " Params de réglage des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
+        "message": "   Réglages des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
     },
     "scrollbarsTab_text_label": {
         "description": "scrollbarsTab_text_label: text on the label",
