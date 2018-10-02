@@ -500,7 +500,7 @@
     },
     "buttonsTab_@tooltip": {
         "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": " Params de couleur de fond du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
+        "message": "  Paramètres de couleur du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
     },
     "textTab_text_label": {
         "description": "textTab_text_label: text on the label",
@@ -532,7 +532,7 @@
     },
     "imagesTab_@tooltip": {
         "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": "  Paramètres de réglage des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de réglage de la luminosité des images et des photos."
+        "message": "    Paramètres des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de luminosité des images et des photos."
     },
     "backgroundImagesTab_text_label": {
         "description": "backgroundImagesTab_text_label: text on the label",
