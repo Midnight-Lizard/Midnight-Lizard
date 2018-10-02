@@ -23,9 +23,15 @@
 {
     margin: -10px 5px -6px -3px;
     fill: var(--main-color);
+    vertical-align: middle;
     width: 18px;
     height: 18px;
-    vertical-align: middle;
+}
+[content="activation-tab-content"]>.ml-tab-item-icon
+{
+    margin-right: 6px;
+    width: 17px;
+    height: 17px;
 }
 
 .right .ml-tab-item-icon
