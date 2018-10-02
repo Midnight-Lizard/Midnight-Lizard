@@ -468,11 +468,11 @@
     },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
-        "message": "Teinte de la barre de défilement"
+        "message": "Teinte des barres de défilement"
     },
     "scrollbarGrayHue_@title": {
         "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+        "message": "Teinte du barre coulissante et des boutons avec des flèches sur barres de défilement"
     },
     "commonTab_text_label": {
         "description": "commonTab_text_label: text on the label",
@@ -500,7 +500,7 @@
     },
     "buttonsTab_@tooltip": {
         "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": " Params de couleur de fond du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
+        "message": "  Paramètres de couleur du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
     },
     "textTab_text_label": {
         "description": "textTab_text_label: text on the label",
@@ -532,7 +532,7 @@
     },
     "imagesTab_@tooltip": {
         "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": "  Paramètres de réglage des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de réglage de la luminosité des images et des photos."
+        "message": "    Paramètres des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de luminosité des images et des photos."
     },
     "backgroundImagesTab_text_label": {
         "description": "backgroundImagesTab_text_label: text on the label",
@@ -540,7 +540,7 @@
     },
     "backgroundImagesTab_@tooltip": {
         "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": " Params de réglage des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
+        "message": "   Réglages des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
     },
     "scrollbarsTab_text_label": {
         "description": "scrollbarsTab_text_label: text on the label",
@@ -572,11 +572,11 @@
     },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
-        "message": "ON"
+        "message": "▌ "
     },
     "isEnabledOff_text_label": {
         "description": "isEnabledOff_text_label: text on the label",
-        "message": "OFF"
+        "message": " ◯"
     },
     "syncSettings_text_label": {
         "description": "syncSettings_text_label: text on the label",
@@ -740,6 +740,22 @@
         "description": "color scheme name",
         "message": "Défaut"
     },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "Original (aucun)"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Poussière Cosmique"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "Baume Sauvage"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Forêt Marais"
+    },
     "colorSchemeName_almondRipe": {
         "description": "color scheme name",
         "message": "Amande Mûre"
@@ -799,5 +815,81 @@
     "backgroundExample_@title": {
         "description": "backgroundExample_@title: text on the tooltip\/hint",
         "message": "Exemple de traitement du fond de différentes couleurs"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "smallBackgroundImageExample_text_label: text on the label",
+        "message": "Exemple de petites images de fond"
+    },
+    "scrollbarExample_text_label": {
+        "description": "scrollbarExample_text_label: text on the label",
+        "message": "Exemple de traitement de barre de défilement"
+    },
+    "buttonExample_text_label": {
+        "description": "buttonExample_text_label: text on the label",
+        "message": "Exemple de traitement des boutons"
+    },
+    "borderExample_text_label": {
+        "description": "borderExample_text_label: text on the label",
+        "message": "Exemple de traitement des bordures"
+    },
+    "mode_text_label": {
+        "description": "mode_text_label: text on the label",
+        "message": "Mode de processing"
+    },
+    "mode_simplified_text_label": {
+        "description": "mode_simplified_text_label: text on the label",
+        "message": "Simplifié"
+    },
+    "mode_complex_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Complexe"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "Automatique"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Limite de mode automatique"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "Exécuter sur tous sites Web par défaut"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "Temps d'activation par défaut"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Temps de désactivation par défaut"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "Réglages globaux"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "Exclure les motifs"
+    },
+    "includeMatches_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "Inclure les motifs"
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "Syntaxe"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the label",
+        "message": "Ne pas inverser le contenu dynamique"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "fichiers locaux"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "Changer le style des barres de défilement"
     }
 }
