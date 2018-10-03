@@ -71,3 +71,7 @@ body:not(imp) {
     /* background-color: #E0E0E0; */
     filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
 }
+
+#simpleSearch {
+    background-image: none !important;
+}

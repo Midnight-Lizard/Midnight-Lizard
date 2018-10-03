@@ -73,3 +73,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span.mwe-math-elemen
     --ml-ignore:true;
     filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit))!important;
 }
+
+#simpleSearch {
+    background-image: none !important;
+}

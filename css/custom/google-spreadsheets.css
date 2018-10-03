@@ -5,7 +5,7 @@
 
 #t-cell-color .goog-color-menu-button-indicator
 {
-    --ml-border-border-bottom-color:Background;
+    --ml-border-border-bottom-color:BackgroundNoContrast;
 }
 
 #waffle-rich-text-editor:not(impt)

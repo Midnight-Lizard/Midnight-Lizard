@@ -85,6 +85,12 @@ paper-toggle-button[aria-pressed=true], .toggle
     --ml-text-fill:Background;
 }
 
+html[ml-is-active] .arrow .yt-icon
+{
+    --ml-ignore:true;
+    fill: var(--ml-main-text-color);
+}
+
 .ytp-settings-button.ytp-hd-quality-badge:after
 {
     color: white;
