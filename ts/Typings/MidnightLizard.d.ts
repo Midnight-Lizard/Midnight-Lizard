@@ -19,6 +19,7 @@ interface Node
     mlRowNumber: number | undefined;
     /** If true - Midnight Lizard would not process this element */
     mlIgnore: boolean | null | undefined;
+    mlFixed?: string | null;
     /** Calculated background color */
     mlBgColor: MidnightLizard.Colors.ColorEntry | null | undefined;
     /** Calculated font color */

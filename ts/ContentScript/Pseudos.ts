@@ -20,7 +20,7 @@ namespace MidnightLizard.ContentScript
         After
     }
 
-    type CSSStyleDeclarationKeys = {[K in keyof CSSStyleDeclaration]: CSSStyleDeclaration[K] | undefined}
+    type CSSStyleDeclarationKeys = { [K in keyof CSSStyleDeclaration]: CSSStyleDeclaration[K] | undefined }
 
     export class PseudoElementStyle
     {
@@ -63,6 +63,7 @@ namespace MidnightLizard.ContentScript
         classList: string[];
         tagName: string;
         parentElement: Element;
+        mlFixed?: string | null;
         mlComputedStyle: CSSStyleDeclaration;
         mlRect: ClientRect | null | undefined;
         mlArea?: number;

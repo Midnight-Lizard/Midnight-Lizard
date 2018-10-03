@@ -954,7 +954,7 @@ namespace MidnightLizard.ContentScript
                                 tag.mlBgColor.reason === Colors.ColorReason.Parent &&
                                 tag instanceof HTMLElement &&
                                 tag.mlComputedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
-                                !tag.hasAttribute("fixed")
+                                !tag.mlFixed
                             );
                             if (brokenTransparentTags.length > 0)
                             {
@@ -962,7 +962,7 @@ namespace MidnightLizard.ContentScript
                                 brokenTransparentTags.forEach(tag =>
                                 {
                                     dProc.restoreElementColors(tag, true);
-                                    tag.setAttribute("fixed", "bgcolor");
+                                    tag.mlFixed = "bgcolor";
                                 });
                                 dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
                                 DocumentProcessor.processAllElements(brokenTransparentTags, dProc, bigReCalculationDelays);
@@ -971,6 +971,47 @@ namespace MidnightLizard.ContentScript
                     }
                 });
             }
+        }
+
+        private static getBrokenTransparentElements(prevChunk: HTMLElement[])
+        {
+            return prevChunk.filter(tag =>
+                tag.ownerDocument.defaultView && tag.mlBgColor &&
+                !tag.mlBgColor.color && tag.mlComputedStyle &&
+                tag.mlBgColor.reason === Colors.ColorReason.Parent &&
+                tag instanceof HTMLElement &&
+                tag.mlComputedStyle!.backgroundColor !== Colors.RgbaColor.Transparent &&
+                !tag.mlFixed);
+        }
+
+        private static calculateNewRoomRulesToFixColorInheritanceInPrevChunk(
+            prevChunk: HTMLElement[], docProc: DocumentProcessor):
+            {
+                tag: HTMLElement,
+                result?: {
+                    roomRules: RoomRules,
+                    before?: PseudoElement,
+                    after?: PseudoElement
+                }
+            }[]
+        {
+            return prevChunk.filter(tag =>
+                tag.ownerDocument.defaultView &&
+                tag.mlColor && tag.mlColor.color === null &&
+                tag.mlColor.reason === Colors.ColorReason.Inherited &&
+                tag.mlColor.intendedColor && tag.mlComputedStyle &&
+                tag.mlColor.intendedColor !== (tag instanceof HTMLElement
+                    ? tag.mlComputedStyle!.color
+                    : tag!.mlComputedStyle!.fill)).map(tag =>
+                    {
+                        const newColor = Object.assign({}, tag.mlColor!);
+                        newColor.base = docProc._app.isDebug ? tag.mlColor : null
+                        newColor.reason = Colors.ColorReason.FixedInheritance;
+                        newColor.color = newColor.intendedColor!;
+                        return {
+                            tag: tag, result: { roomRules: { color: newColor } }
+                        };
+                    });
         }
 
         protected static processOrderedElements(tags: HTMLElement[], docProc: DocumentProcessor, delays = normalDelays)
@@ -982,7 +1023,8 @@ namespace MidnightLizard.ContentScript
                     docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
                 if (tags.length < minChunkableLength)
                 {
-                    result = DocumentProcessor.processElementsChunk(tags, docProc, null, delays.get(tags[0].mlOrder || po.viewColorTags)! / density);
+                    result = DocumentProcessor.processElementsChunk(tags, docProc, null,
+                        delays.get(tags[0].mlOrder || po.viewColorTags)! / density);
                 }
                 else
                 {
@@ -1022,18 +1064,31 @@ namespace MidnightLizard.ContentScript
             return chunks;
         }
 
-        protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor, prev: null, delay: number)
+        protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor,
+            prevChunk?: HTMLElement[] | null, delay?: number)
         {
-            const paramsForPromiseAll: any[] = [chunk, chunk[0].ownerDocument, delay];
-            const results = chunk.map(tag =>
+            docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
+
+            const paramsForPromiseAll: any[] = [[...chunk], chunk[0].ownerDocument, delay];
+            if (prevChunk)
             {
-                return {
+                const brokenTransparentElements = DocumentProcessor.getBrokenTransparentElements(prevChunk);
+                if (brokenTransparentElements.length)
+                {
+                    brokenTransparentElements.forEach(tag =>
+                    {
+                        docProc.restoreElementColors(tag, true);
+                        tag.mlFixed = "bgcolor";
+                    });
+                    chunk.splice(0, 0, ...brokenTransparentElements);
+                }
+            }
+            const results = DocumentProcessor.calculateNewRoomRulesToFixColorInheritanceInPrevChunk(
+                prevChunk || [], docProc).concat(chunk.map(tag => ({
                     tag: tag, result: docProc._settingsManager.isComplex
                         ? docProc.calculateRoomRules(tag)
                         : docProc.caclulateSimplifiedRoomRules(tag)
-                }
-            });
-            docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
+                })));
             results
                 .filter(r => r.result)
                 .map(tr =>
@@ -1057,7 +1112,9 @@ namespace MidnightLizard.ContentScript
                     return [tr.result!.before, tr.result!.after].filter(x => x).map(x => x!.stylePromise);
                 })
                 .filter(r => r).forEach(r => paramsForPromiseAll.push(...r!.map(Util.handlePromise)));
+
             docProc._documentObserver.startDocumentObservation(chunk[0].ownerDocument);
+
             return Promise.all(paramsForPromiseAll as [HTMLElement[], Document, number, PromiseResult<string>])
                 .then(([tags, doc, dl, ...cssArray]) =>
                 {
@@ -1150,7 +1207,7 @@ namespace MidnightLizard.ContentScript
             {
                 parentPath = (tag.parentElement.mlPath ? tag.parentElement.mlPath : this.calcElementPath(tag.parentElement as HTMLElement)) + " ";
             }
-            tag.mlPath = parentPath + tag.tagName;
+            tag.mlPath = parentPath + tag.tagName + tag.mlFixed;
             if (!tag.isPseudo)
             {
                 var attr: Attr, length = (tag as Element).attributes.length;
@@ -1313,6 +1370,7 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlTextShadow;
                 delete tag.mlRect;
                 delete tag.selectors;
+                delete tag.mlFixed;
 
                 if (tag.originalBackgroundColor !== undefined && tag.originalBackgroundColor !== tag.style.getPropertyValue(ns.css.bgrColor))
                 {
@@ -1404,10 +1462,6 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.removeAttribute("after-style")
                 }
-                if (tag.hasAttribute("fixed"))
-                {
-                    tag.removeAttribute("fixed");
-                }
                 if (tag.hasAttribute("ml-no-bg-image"))
                 {
                     tag.removeAttribute("ml-no-bg-image");
@@ -1427,7 +1481,7 @@ namespace MidnightLizard.ContentScript
             if (tag && tag.ownerDocument.defaultView &&
                 (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
-                const doc = tag.ownerDocument, roomRules = new RoomRules(),
+                const doc = tag.ownerDocument, roomRules: RoomRules = {},
                     bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
                     isButton = tag instanceof HTMLButtonElement ||
                         tag instanceof HTMLInputElement &&
@@ -1508,7 +1562,7 @@ namespace MidnightLizard.ContentScript
                 if (!roomRules)
                 {
                     tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
-                    roomRules = new RoomRules();
+                    roomRules = {};
                     if (tag.mlComputedStyle)
                     {
                         this._app.isDebug && (roomRules.owner = tag);
@@ -2406,7 +2460,7 @@ namespace MidnightLizard.ContentScript
             cssText += `\n--ml-invert:${this.shift.Background.lightnessLimit < 0.3 ? 1 : 0}!important;`;
             cssText += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
 
-            const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules = new RoomRules;
+            const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules: RoomRules = {};
             fakeCanvas.mlComputedStyle = fakeCanvas.style;
             this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
             cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value};`;

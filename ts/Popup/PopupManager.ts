@@ -953,7 +953,7 @@ namespace MidnightLizard.Popup
         {
             let props = Object.assign({}, ContentScript.USP.htm);
             props.css = { shdColor: "--icon-shadow-color" } as any;
-            let newRules = Object.assign(new ContentScript.RoomRules(),
+            let newRules = Object.assign({},
                 {
                     textShadow:
                     {
@@ -961,7 +961,7 @@ namespace MidnightLizard.Popup
                             ? roomRules.textShadow.color.color
                             : "black"
                     }
-                });
+                } as ContentScript.RoomRules);
             this._documentProcessor.applyRoomRules(this._forgetAllSitesButton.parentElement!, newRules, props);
         }
 
@@ -981,13 +981,13 @@ namespace MidnightLizard.Popup
                 this._settingsManager.shift,
                 roomRules.color!.light,
                 roomRules.backgroundColor!.light);
-            const newRules = Object.assign(new ContentScript.RoomRules(),
+            const newRules = Object.assign({},
                 {
                     backgroundColor: { color: currentStyle.backgroundColor },
                     color: { color: currentStyle.color },
                     borderColor: { color: currentStyle.borderColor },
                     textShadow: { value: rangeFillColor.color }
-                });
+                } as ContentScript.RoomRules);
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
 
@@ -1002,10 +1002,10 @@ namespace MidnightLizard.Popup
                     fntColor: "",
                     shdColor: ""
                 };
-            let newRules = Object.assign(new ContentScript.RoomRules(),
+            let newRules = Object.assign({},
                 {
                     borderColor: { color: currentStyle.borderRightColor }
-                });
+                } as ContentScript.RoomRules);
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
 
@@ -1020,10 +1020,10 @@ namespace MidnightLizard.Popup
                     fntColor: "",
                     shdColor: ""
                 };
-            let newRules = Object.assign(new ContentScript.RoomRules(),
+            let newRules = Object.assign({},
                 {
                     backgroundColor: { color: currentStyle.backgroundColor }
-                } as Partial<ContentScript.RoomRules>);
+                } as ContentScript.RoomRules);
             this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
         }
     }
