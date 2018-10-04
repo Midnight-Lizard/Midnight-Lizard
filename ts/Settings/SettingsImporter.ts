@@ -63,7 +63,7 @@ namespace MidnightLizard.Settings
                                                     }]. It should be [${typeof (newColorScheme[propName])}] but it is [${
                                                     typeof (colorSchemeFromFile[propName])}].`);
                                             }
-                                            if (propName === "scrollbarStyle" && typeof (colorSchemeFromFile[propName]) !== "string")
+                                            if (propName === "scrollbarStyle" && typeof (colorSchemeFromFile[propName]) === "string")
                                             {
                                                 newColorScheme[propName] = colorSchemeFromFile[propName] as any === "true" ? true : false;
                                             }
