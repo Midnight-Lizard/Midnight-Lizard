@@ -19,7 +19,8 @@
 .renderable-component-color-text-background
 {
     --ml-background-background-color:Border;
-    --ml-text-color:Background;
+    --ml-text-color:BackgroundNoContrast;
+    --ml-highlightedtext-color:BackgroundNoContrast;
 }
 .renderable-component-color-text-background:before,
 .renderable-component-color-text-background:after
@@ -37,7 +38,8 @@
 }
 
 .widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before,
-.maps-sprite-common-arrow-back-white, .section-star-array li:not(.section-star-empty), .widget-expand-button-pegman-icon
+.maps-sprite-common-arrow-back-white, .section-star-array li:not(.section-star-empty),
+.widget-expand-button-pegman-icon, .close-button-white
 {
     --ml-no-invert:true;
 }
@@ -67,7 +69,8 @@
     --ml-border-border-top-color:Background;
 }
 
-.widget-pane-content.scrollable-y:not(impt)::-webkit-scrollbar
+.scrollable-y
 {
-    width: 6px!important;
+    --ml-main-scrollbar-size:6px;
+    /* width: 6px!important; */
 }
