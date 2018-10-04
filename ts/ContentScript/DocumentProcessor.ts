@@ -365,7 +365,7 @@ namespace MidnightLizard.ContentScript
                 {
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.body.getElementsByTagName("*"))
-                        .filter(this.getFilterOfElementsForSimplifiedProcessing()) as HTMLElement[];
+                        .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
                 }
             }
@@ -601,10 +601,6 @@ namespace MidnightLizard.ContentScript
                 {
                     let skipSelectors = this._settingsManager.isSimple || onCopy || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
                     let filteredTags = allTags.filter(el => el.isChecked && el.mlBgColor && (skipSelectors || el.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(el)));
-                    if (this._settingsManager.isSimple)
-                    {
-                        filteredTags = filteredTags.filter(this.getFilterOfElementsForSimplifiedProcessing());
-                    }
                     if (!skipSelectors && clearParentBgColors)
                     {
                         allTags.forEach(tag =>
@@ -626,8 +622,7 @@ namespace MidnightLizard.ContentScript
                         return [rootElem];
                     }
                 }
-                else if (this._settingsManager.isComplex ||
-                    this.getFilterOfElementsForSimplifiedProcessing()(rootElem))
+                else if (this._settingsManager.isComplex)
                 {
                     return [rootElem];
                 }
@@ -752,33 +747,29 @@ namespace MidnightLizard.ContentScript
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
-            const filter = this.getFilterOfElements();
+            const filter = this.getFilterOfElementsForComplexProcessing();
             addedElements.forEach(tag => this.restoreElementColors(tag));
             const
                 allAddedElements = Array.from(addedElements.values()),
                 allNewTags = allAddedElements.filter(filter);
-            // DocumentProcessor.processAllElements(allNewTags, this,
-            //     this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
             const allChildTags = new Set<HTMLElement>();
-            (this._settingsManager.isComplex ? allNewTags :
-                allAddedElements.filter(this.getFilterOfElementsForComplexProcessing()))
-                .forEach(newTag =>
+            allNewTags.forEach(newTag =>
+            {
+                if (newTag.getElementsByTagName)
                 {
-                    if (newTag.getElementsByTagName)
+                    Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
                     {
-                        Array.prototype.forEach.call(newTag.getElementsByTagName("*"), (childTag: HTMLElement) =>
+                        if (addedElements!.has(childTag) === false)
                         {
-                            if (addedElements!.has(childTag) === false)
+                            this.restoreElementColors(childTag);
+                            if (filter(childTag))
                             {
-                                this.restoreElementColors(childTag);
-                                if (filter(childTag))
-                                {
-                                    allChildTags.add(childTag);
-                                }
+                                allChildTags.add(childTag);
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
+            });
             DocumentProcessor.processAllElements(allNewTags.concat(Array.from(allChildTags.values())), this,
                 this._settingsManager.isComplex ? bigReCalculationDelays : smallReCalculationDelays);
         }
@@ -795,11 +786,22 @@ namespace MidnightLizard.ContentScript
                     doc = allTags[0].ownerDocument,
                     hm = doc.defaultView.innerHeight,
                     wm = doc.defaultView.innerWidth;
+
+                let elementsFilter: ((tag: HTMLElement) => boolean) | null = null;
+                if (docProc._settingsManager.isSimple && !delayInvisibleElements)
+                {
+                    elementsFilter = docProc.getFilterOfElementsForSimplifiedProcessing();
+                }
+
                 for (let tag of allTags)
                 {
                     tag.mlRowNumber = rowNumber++;
                     isSvg = tag instanceof SVGElement;
                     ns = isSvg ? USP.svg : USP.htm;
+                    if (elementsFilter && !elementsFilter(tag))
+                    {
+                        break;
+                    }
                     isVisible = isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     if (isVisible || tag.mlComputedStyle || !delayInvisibleElements || allTags.length < minChunkableLength)
                     {
@@ -893,10 +895,17 @@ namespace MidnightLizard.ContentScript
                 if (otherInvisTags.length > 0)
                 {
                     Promise.all([otherInvisTags, docProc, delays, results]).then(([otherTags, dp, dl]) =>
-                        setTimeout((ot: typeof otherTags, dpt: typeof dp, dlt: typeof dl) =>
-                            DocumentProcessor.processAllElements(ot, dpt, dlt, false),
-                            Math.round((delays.get(po.delayedInvisTags)! / 2000) * otherTags.length),
-                            otherTags, dp, dl));
+                    {
+                        const density = 1000 / otherTags.length
+                        const getNextDelay = ((_delays: any, _density: any, [chunk]: [any]) =>
+                            Math.round(_delays.get(chunk[0].mlOrder || po.viewColorTags) / _density))
+                            .bind(null, delays, density);
+                        Util.forEachPromise(
+                            Util.sliceIntoChunks(otherTags, chunkLength * 2).map(chunk => [chunk, dp, dl]),
+                            DocumentProcessor.processAllElements,
+                            Math.round(delays.get(po.delayedInvisTags)! / density),
+                            getNextDelay);
+                    });
                 }
 
                 DocumentProcessor.fixColorInheritance(allTags, docProc, results);

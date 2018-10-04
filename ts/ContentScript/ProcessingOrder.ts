@@ -69,12 +69,12 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.visLinks, 0],
         [ProcessingOrder.visTransTags, 0],
         [ProcessingOrder.visBgImageTags, 0],
-        [ProcessingOrder.invisColorTags, 0],
-        [ProcessingOrder.invisImageTags, 0],
-        [ProcessingOrder.invisTransTags, 0],
-        [ProcessingOrder.invisLinks, 0],
-        [ProcessingOrder.invisBgImageTags, 0],
-        [ProcessingOrder.delayedInvisTags, 0]
+        [ProcessingOrder.invisColorTags, 1],
+        [ProcessingOrder.invisImageTags, 1],
+        [ProcessingOrder.invisTransTags, 1],
+        [ProcessingOrder.invisLinks, 1],
+        [ProcessingOrder.invisBgImageTags, 1],
+        [ProcessingOrder.delayedInvisTags, 100]
     ]);
 
     export const onCopyReCalculationDelays = new Map<ProcessingOrder, number>(bigReCalculationDelays);
