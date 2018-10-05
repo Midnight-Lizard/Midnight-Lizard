@@ -42,5 +42,5 @@ Adjust the web to your vision!
 ✔ Free forever  
 
 ## CONTRIBUTING
-  🌍 [Help translate Midnight Lizard into other languages](https://crowdin.com/project/midnight-lizard) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://crowdin.com/project/midnight-lizard)  
-  🐛 [Found a bug or has a new feature proposal?](/issues/new)  
+  🌍 [Help translate Midnight Lizard into other languages](https://translate.midnight-lizard.org) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://translate.midnight-lizard.org)  
+  🐛 [Found a bug or has a new feature proposal?](https://github.com/Midnight-Lizard/Midnight-Lizard/issues/new)  
