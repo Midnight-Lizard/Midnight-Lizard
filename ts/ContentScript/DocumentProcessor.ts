@@ -824,7 +824,16 @@ namespace MidnightLizard.ContentScript
                         if (!isVisible)
                         {
                             tag.mlRect = tag.mlArea = undefined;
-                            if (hasBgColor) tag.mlOrder = po.invisColorTags;
+                            if (hasBgColor)
+                            {
+                                tag.mlOrder = po.invisColorTags;
+
+                                if (tag instanceof SVGSVGElement && tag.parentElement)
+                                {
+                                    DocumentProcessor.fixParentElementsOrder(
+                                        tag.parentElement, po.invisColorTags);
+                                }
+                            }
                             else if (isImage) tag.mlOrder = po.invisImageTags;
                             else if (hasBgImage) tag.mlOrder = po.invisBgImageTags;
                             else if (isLink) tag.mlOrder = po.invisLinks;
@@ -880,6 +889,7 @@ namespace MidnightLizard.ContentScript
                                 : b.mlArea && a.mlArea && b.mlArea !== a.mlArea ? b.mlArea - a.mlArea
                                     : a.mlRowNumber! - b.mlRowNumber!);
 
+                otherInvisTags = otherInvisTags.filter(tag => tag.mlOrder === po.delayedInvisTags);
                 if (otherInvisTags.length)
                 {
                     // removing invisible elements
@@ -909,6 +919,18 @@ namespace MidnightLizard.ContentScript
                 }
 
                 DocumentProcessor.fixColorInheritance(allTags, docProc, results);
+            }
+        }
+
+        private static fixParentElementsOrder(parentElement: HTMLElement, procOrd: ProcessingOrder): any
+        {
+            if (parentElement.mlOrder && parentElement.mlOrder > procOrd)
+            {
+                parentElement.mlOrder = procOrd
+                if (parentElement.parentElement)
+                {
+                    DocumentProcessor.fixParentElementsOrder(parentElement.parentElement, procOrd);
+                }
             }
         }
 
