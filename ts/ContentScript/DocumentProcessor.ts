@@ -1400,6 +1400,7 @@ namespace MidnightLizard.ContentScript
                         tag.style.setProperty(ns.css.fntColor, tag.originalColor);
                     }
                     tag.style.removeProperty(this._css.originalColor);
+                    tag.style.removeProperty(this._css.placeholderColor);
                     tag.style.removeProperty(this._css.linkColor);
                     tag.style.removeProperty(this._css.visitedColor);
                     tag.style.removeProperty(this._css.linkColorActive);
@@ -1710,6 +1711,13 @@ namespace MidnightLizard.ContentScript
                         }
 
                         let bgLight = roomRules.backgroundColor.light;
+                        if (tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement)
+                        {
+                            roomRules.placeholderColor = this.changeColor({
+                                role: cc.Text, property: ns.css.fntColor, tag: tag, bgLight: bgLight,
+                                propVal: "grba(0,0,0,0.6)"
+                            });
+                        }
 
                         if (!isSvg || isSvgText)
                         {
@@ -2650,6 +2658,11 @@ namespace MidnightLizard.ContentScript
             {
                 tag.originalBackgroundColor = tag.style.getPropertyValue(ns.css.bgrColor);
                 tag.style.setProperty(ns.css.bgrColor, roomRules.backgroundColor.color, this._css.important);
+            }
+
+            if (roomRules.placeholderColor && roomRules.placeholderColor.color)
+            {
+                tag.style.setProperty(this._css.placeholderColor, roomRules.placeholderColor.color, this._css.important);
             }
 
             if (roomRules.color && roomRules.color.color)

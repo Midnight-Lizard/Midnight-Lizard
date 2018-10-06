@@ -4,44 +4,44 @@ namespace MidnightLizard.ContentScript
 {
     /** Unified Style Properties */
     export const USP =
+    {
+        htm:
         {
-            htm:
+            dom:
             {
-                dom:
-                {
-                    bgrColor: "backgroundColor",
-                    brdColor: "borderColor",
-                    fntColor: "color",
-                    shdColor: "textShadow"
-                },
-                css:
-                {
-                    bgrColor: "background-color",
-                    brdColor: "border-color",
-                    fntColor: "color",
-                    shdColor: "text-shadow"
-                },
-                img: "IMG"
+                bgrColor: "backgroundColor",
+                brdColor: "borderColor",
+                fntColor: "color",
+                shdColor: "textShadow"
             },
-            svg:
+            css:
             {
-                dom:
-                {
-                    bgrColor: "fill",
-                    brdColor: "stroke",
-                    fntColor: "fill",
-                    shdColor: "textShadow"
-                },
-                css:
-                {
-                    bgrColor: "fill",
-                    brdColor: "stroke",
-                    fntColor: "fill",
-                    shdColor: "text-shadow"
-                },
-                img: "image"
-            }
-        };
+                bgrColor: "background-color",
+                brdColor: "border-color",
+                fntColor: "color",
+                shdColor: "text-shadow"
+            },
+            img: "IMG"
+        },
+        svg:
+        {
+            dom:
+            {
+                bgrColor: "fill",
+                brdColor: "stroke",
+                fntColor: "fill",
+                shdColor: "textShadow"
+            },
+            css:
+            {
+                bgrColor: "fill",
+                brdColor: "stroke",
+                fntColor: "fill",
+                shdColor: "text-shadow"
+            },
+            img: "image"
+        }
+    };
 
     export type CssStyleKeys =
         {
@@ -62,6 +62,7 @@ namespace MidnightLizard.ContentScript
         absolute = "absolute";
         relative = "relative";
         hidden = "hidden";
+        placeholderColor = "--placeholder-color";
         originalColor = "--original-color";
         linkColor = "--link-color";
         visitedColor = "--visited-color";

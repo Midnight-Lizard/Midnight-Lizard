@@ -14,7 +14,7 @@ html[ml-stage]:not([ml-stage="preload"]) {}
         text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
     }
     html[ml-stage]:not([ml-stage="preload"]) :not(imp)::placeholder {
-        color: var(--ml-main-trans-text-color) !important;
+        color: var(--placeholder-color,var(--ml-main-trans-text-color)) !important;
     }
     html[ml-stage]:not([ml-stage="preload"]) input:-webkit-autofill,
     html[ml-stage]:not([ml-stage="preload"]) textarea:-webkit-autofill,
