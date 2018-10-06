@@ -19,6 +19,7 @@ namespace MidnightLizard.Settings
         halloween: ColorScheme;
         morningMist: ColorScheme;
         antiqueCodex: ColorScheme;
+        blueLightFilter: ColorScheme;
         increasedContrast: ColorScheme;
         grayscale: ColorScheme;
         invertedLight: ColorScheme;
@@ -717,9 +718,9 @@ namespace MidnightLizard.Settings
                     colorSchemeId: "antiqueCodex",
                     colorSchemeName: "Antique Codex",
                     runOnThisSite: true,
+                    doNotInvertContent: false,
                     restoreColorsOnCopy: false,
                     restoreColorsOnPrint: true,
-                    doNotInvertContent: false,
                     blueFilter: 5,
                     mode: ProcessingMode.Automatic,
                     modeAutoSwitchLimit: 5000,
@@ -783,6 +784,81 @@ namespace MidnightLizard.Settings
                     scrollbarContrast: 5,
                     scrollbarLightnessLimit: 85,
                     scrollbarGrayHue: 20,
+                    scrollbarSize: 10,
+                    scrollbarStyle: true
+                } as ColorScheme,
+
+                // Blue Light Filter
+                {
+                    colorSchemeId: "blueLightFilter",
+                    colorSchemeName: "Blue Light Filter",
+                    runOnThisSite: true,
+                    doNotInvertContent: false,
+                    restoreColorsOnCopy: false,
+                    restoreColorsOnPrint: true,
+                    blueFilter: 40,
+                    mode: ProcessingMode.Automatic,
+                    modeAutoSwitchLimit: 5000,
+
+                    useDefaultSchedule: true,
+                    scheduleStartHour: 0,
+                    scheduleFinishHour: 24,
+                    includeMatches: "",
+                    excludeMatches: "",
+
+                    backgroundSaturationLimit: 90,
+                    backgroundContrast: 50,
+                    backgroundLightnessLimit: 100,
+                    backgroundGraySaturation: 30,
+                    backgroundGrayHue: 90,
+                    backgroundReplaceAllHues: false,
+                    backgroundHueGravity: 0,
+
+                    buttonSaturationLimit: 100,
+                    buttonContrast: 10,
+                    buttonLightnessLimit: 85,
+                    buttonGraySaturation: 30,
+                    buttonGrayHue: 96,
+                    buttonReplaceAllHues: false,
+                    buttonHueGravity: 0,
+
+                    textSaturationLimit: 90,
+                    textContrast: 70,
+                    textLightnessLimit: 100,
+                    textGraySaturation: 20,
+                    textGrayHue: 16,
+                    textSelectionHue: 20,
+                    textReplaceAllHues: false,
+                    textHueGravity: 0,
+
+                    linkSaturationLimit: 90,
+                    linkContrast: 73,
+                    linkLightnessLimit: 100,
+                    linkDefaultSaturation: 100,
+                    linkDefaultHue: 120,
+                    linkVisitedHue: 35,
+                    linkReplaceAllHues: false,
+                    linkHueGravity: 80,
+
+                    borderSaturationLimit: 80,
+                    borderContrast: 50,
+                    borderLightnessLimit: 100,
+                    borderGraySaturation: 20,
+                    borderGrayHue: 80,
+                    borderReplaceAllHues: false,
+                    borderHueGravity: 0,
+
+                    imageLightnessLimit: 100,
+                    imageSaturationLimit: 100,
+                    useImageHoverAnimation: false,
+
+                    backgroundImageLightnessLimit: 100,
+                    backgroundImageSaturationLimit: 100,
+
+                    scrollbarSaturationLimit: 30,
+                    scrollbarContrast: 5,
+                    scrollbarLightnessLimit: 85,
+                    scrollbarGrayHue: 115,
                     scrollbarSize: 10,
                     scrollbarStyle: true
                 } as ColorScheme,
