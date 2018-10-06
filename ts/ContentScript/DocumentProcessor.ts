@@ -1733,6 +1733,11 @@ namespace MidnightLizard.ContentScript
                         }
 
                         let bgLight = roomRules.backgroundColor.light;
+                        if (roomRules.backgroundColor.color && roomRules.backgroundColor.alpha < 0.1)
+                        {
+                            bgLight = this.getParentBackground(tag).light;
+                        }
+
                         if (tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement)
                         {
                             roomRules.placeholderColor = this.changeColor({
