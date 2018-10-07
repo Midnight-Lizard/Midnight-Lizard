@@ -436,7 +436,7 @@
     },
     "backgroundImageExampleText_@title": {
         "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
-        "message": "If this website has background images behind the text then you should adjust background images brightness level until you would be able to see the text over the image clearly."
+        "message": "If this website has background images behind the text\nthen you should adjust background images brightness level\nuntil you would be able to see the text over the image clearly."
     },
     "scrollbarSaturationLimit_text_label": {
         "description": "scrollbarSaturationLimit_text_label: text on the label",
