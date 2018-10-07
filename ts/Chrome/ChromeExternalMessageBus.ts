@@ -36,14 +36,7 @@ namespace Chrome
                     this._onConnected.raise(port);
                 }
             };
-            if (app.browserName === MidnightLizard.Settings.BrowserName.Firefox)
-            {
-                chrome.runtime.onConnect.addListener(handler);
-            }
-            else
-            {
-                chrome.runtime.onConnectExternal.addListener(handler);
-            }
+            chrome.runtime.onConnect.addListener(handler);
         }
 
         public sendCurrentPublicSchemes(port: chrome.runtime.Port, publicSchemeIds: MidnightLizard.Settings.Public.PublicSchemeId[])

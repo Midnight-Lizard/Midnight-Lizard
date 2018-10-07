@@ -16,11 +16,6 @@
         "storage",
         "<all_urls>"
     ],
-    "externally_connectable": {
-        "matches": [
-            "*://*.midnight-lizard.org/*"
-        ]
-    },
     "offline_enabled": true,
     "commands": {
         "global-toggle": {
@@ -402,6 +397,16 @@
             ],
             "css": [
                 "css/custom/google-photos.css"
+            ]
+        },
+        {
+            "run_at": "document_idle",
+            "all_frames": false,
+            "matches": [
+                "*://*.midnight-lizard.org/*"
+            ],
+            "js": [
+                "js/custom/chrome-runtime-connect-external-polyfill.js"
             ]
         }
     ]
