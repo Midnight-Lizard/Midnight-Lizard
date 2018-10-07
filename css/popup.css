@@ -682,7 +682,7 @@ height: 148px;
 .ml-bg-example tr:nth-of-type(1) td,
 .ml-bg-example tr:nth-of-type(2) td 
 {
-    width: 33px;
+    width: 24px;
     text-align: center;
     font: 400 11px Arial;
     height: 20px;
@@ -694,35 +694,43 @@ height: 148px;
 }
 
 .ml-bg-example td:nth-of-type(1) {
-    background-color: gray;
+    background-color: hsl(0,0%,50%);
 }
 
 .ml-bg-example td:nth-of-type(2) {
-    background-color: red;
+    background-color: hsl(0,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(3) {
-    background-color: yellow;
+    background-color: hsl(40,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(4) {
-    background-color: green;
+    background-color: hsl(80,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(5) {
-    background-color: cyan;
+    background-color: hsl(120,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(6) {
-    background-color: blue;
+    background-color: hsl(160,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(7) {
-    background-color: indigo;
+    background-color: hsl(200,100%,50%);
 }
 
 .ml-bg-example td:nth-of-type(8) {
-    background-color: purple;
+    background-color: hsl(240,100%,50%);
+}
+
+.ml-bg-example td:nth-of-type(9) {
+    background-color: hsl(280,100%,50%);
+}
+
+.ml-bg-example td:nth-of-type(10) {
+    background-color: hsl(320,100%,50%);
 }
 
 .ml-small-bg-image-example
@@ -799,12 +807,13 @@ height: 148px;
 }
 
 .ml-button-example button {
-    width: calc(100% / 9);
-    height: 29px;
+    width: 8.65%;
+    height: 24px;
     text-align: center;
     border: 1px solid var(--thin-border-color);
     border-radius: 4px;
     position: relative;
+    padding: 0;
 }
 
 .ml-button-example button:after {
@@ -819,67 +828,83 @@ height: 148px;
 }
 
 .ml-button-example button:nth-of-type(1) {
-    background-color: gray;
+    background-color: hsl(0,0%,50%);
 }
 
 .ml-button-example button:nth-of-type(2) {
-    background-color: red;
+    background-color: hsl(0,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(3) {
-    background-color: yellow;
+    background-color: hsl(40,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(4) {
-    background-color: green;
+    background-color: hsl(80,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(5) {
-    background-color: cyan;
+    background-color: hsl(120,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(6) {
-    background-color: blue;
+    background-color: hsl(160,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(7) {
-    background-color: indigo;
+    background-color: hsl(200,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(8) {
-    background-color: purple;
+    background-color: hsl(240,100%,50%);
+}
+
+.ml-button-example button:nth-of-type(9) {
+    background-color: hsl(280,100%,50%);
+}
+
+.ml-button-example button:nth-of-type(10) {
+    background-color: hsl(320,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(1):after {
-    background-color: gray;
+    background-color: hsl(0,0%,50%);
 }
 
 .ml-button-example button:nth-of-type(2):after {
-    background-color: red;
+    background-color: hsl(0,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(3):after {
-    background-color: yellow;
+    background-color: hsl(40,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(4):after {
-    background-color: green;
+    background-color: hsl(80,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(5):after {
-    background-color: cyan;
+    background-color: hsl(120,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(6):after {
-    background-color: blue;
+    background-color: hsl(160,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(7):after {
-    background-color: indigo;
+    background-color: hsl(200,100%,50%);
 }
 
 .ml-button-example button:nth-of-type(8):after {
-    background-color: purple;
+    background-color: hsl(240,100%,50%);
+}
+
+.ml-button-example button:nth-of-type(9):after {
+    background-color: hsl(280,100%,50%);
+}
+
+.ml-button-example button:nth-of-type(10):after {
+    background-color: hsl(320,100%,50%);
 }
 
 .ml-border-example {
@@ -888,7 +913,7 @@ height: 148px;
     cursor: help;
     outline: solid 1px var(--thin-border-color);
     padding: 0px 4px;
-    height: 58px;
+    height: 63px;
     background-color: var(--main-background-color);
 }
 
@@ -905,49 +930,69 @@ height: 148px;
 }
 
 .ml-border-example hr {
-    border-width: 1px;
+    border-top-width: 3px;
+    border-bottom-width: 0px;
     border-style: solid;
-    font-size: 7px;
+    font-size: 4px;
+    transition-property: opacity;
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
 }
 
-.ml-border-example hr:nth-of-type(10) {
-    border-color: white;
+.ml-border-example>div:hover hr {
+    opacity: 0;
+}
+
+.ml-border-example hr:hover {
+    opacity: 1 !important;
 }
 
 .ml-border-example hr:nth-of-type(1) {
-    border-color: red;
+    border-color: hsl(0,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(2) {
-    border-color: yellow;
+    border-color: hsl(40,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(3) {
-    border-color: green;
+    border-color: hsl(80,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(4) {
-    border-color: cyan;
+    border-color: hsl(120,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(5) {
-    border-color: blue;
+    border-color: hsl(160,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(6) {
-    border-color: indigo;
+    border-color: hsl(200,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(7) {
-    border-color: purple;
-}
-
-.ml-border-example hr:nth-of-type(9) {
-    border-color: gray;
+    border-color: hsl(240,100%,50%);
 }
 
 .ml-border-example hr:nth-of-type(8) {
-    border-color: black;
+    border-color: hsl(280,100%,50%);
+}
+
+.ml-border-example hr:nth-of-type(9) {
+    border-color: hsl(320,100%,50%);
+}
+
+.ml-border-example hr:nth-of-type(10) {
+    border-color: hsl(0,0%,0%);
+}
+
+.ml-border-example hr:nth-of-type(11) {
+    border-color: hsl(0,0%,50%);
+}
+
+.ml-border-example hr:nth-of-type(12) {
+    border-color: hsl(0,0%,100%);
 }
 
 .ml-bg-image-example {
