@@ -1499,6 +1499,19 @@ namespace MidnightLizard.ContentScript
                     tag.removeAttribute("ml-no-bg-image");
                 }
             }
+            // in case content-editable element has been re-inserted into the document
+            // it happens in google sheets when cell has multiple text colors
+            else if (tag.style.getPropertyPriority(this._css.color) === this._css.important)
+            {
+                const originalColor = tag.style.getPropertyValue(this._css.originalColor);
+                if (originalColor)
+                {
+                    if (originalColor !== tag.style.getPropertyValue(this._css.color))
+                    {
+                        tag.style.setProperty(this._css.color, originalColor);
+                    }
+                }
+            }
         }
 
         protected checkElement(tag: any)
