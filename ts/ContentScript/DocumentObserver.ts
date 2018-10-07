@@ -250,6 +250,7 @@ namespace MidnightLizard.ContentScript
                     addedElements.forEach(tag =>
                     {
                         if ((tag instanceof HTMLElement || tag instanceof SVGElement) &&
+                            !(tag instanceof HTMLBRElement) && // <-- this is necessary for google sheets
                             !tag.classList.contains('ml-ignore') && !tag.originalVisibility)
                         {
                             tag.originalVisibility = tag.style.visibility || "none";
