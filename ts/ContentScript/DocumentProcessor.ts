@@ -2695,12 +2695,6 @@ namespace MidnightLizard.ContentScript
             if (roomRules.color && roomRules.color.color)
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                if (tag.originalColor && isRealElement(tag) && ((tag.parentElement &&
-                    tag.parentElement instanceof HTMLElement &&
-                    tag.parentElement!.contentEditable === true.toString()) || tag.contentEditable === true.toString()))
-                {
-                    tag.style.setProperty(this._css.originalColor, tag.originalColor!);
-                }
                 if (roomRules.visitedColor && roomRules.visitedColor.color)
                 {
                     tag.style.setProperty(this._css.linkColor, roomRules.color.color, this._css.important);
@@ -2719,6 +2713,17 @@ namespace MidnightLizard.ContentScript
             else if (roomRules.color && (roomRules.color.reason === Colors.ColorReason.Inherited) && tag.style.getPropertyValue(ns.css.fntColor))
             {
                 tag.originalColor = "";
+            }
+
+            if (isRealElement(tag) && ((tag.parentElement &&
+                tag.parentElement instanceof HTMLElement &&
+                tag.parentElement!.contentEditable === true.toString()) ||
+                tag.contentEditable === true.toString()))
+            {
+                tag.style.setProperty(this._css.originalColor,
+                    tag.originalColor ||
+                    roomRules.color && roomRules.color.originalColor ||
+                    cx.Black);
             }
 
             if (roomRules.borderColor && roomRules.borderColor.color)
