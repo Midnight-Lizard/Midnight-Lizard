@@ -1155,14 +1155,7 @@ namespace MidnightLizard.ContentScript
                         .join("\n");
                     if (css)
                     {
-                        // if (dl)
-                        // {
-                        //     setTimeout((d: Document, c: string) => d.mlPseudoStyles!.appendChild(d.createTextNode(c)), dl, doc, css);
-                        // }
-                        // else
-                        // {
                         doc.mlPseudoStyles!.appendChild(doc.createTextNode(css));
-                        // }
                     }
                     return tags;
                 });
