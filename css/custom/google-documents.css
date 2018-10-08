@@ -6,8 +6,8 @@
 
 #bgColorButton .goog-color-menu-button-indicator
 {
-    --ml-border-border-bottom-color:HighlightedBackground;
-    --ml-buttonborder-border-bottom-color:HighlightedBackground;
+    --ml-border-border-bottom-color:Background;
+    --ml-buttonborder-border-bottom-color:Background;
 }
 
 .kix-paginateddocumentplugin-compact-mode, .kix-page-paginated

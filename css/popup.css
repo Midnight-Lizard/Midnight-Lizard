@@ -932,6 +932,7 @@ height: 148px;
 .ml-border-example hr {
     border-top-width: 3px;
     border-bottom-width: 0px;
+    margin: 2px 0px;
     border-style: solid;
     font-size: 4px;
     transition-property: opacity;
