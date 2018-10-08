@@ -211,7 +211,8 @@ namespace MidnightLizard.ContentScript
             }
             if (childListChanges.size > 0)
             {
-                this.groupAddedElements(childListChanges);
+                this._onElementAdded.raise(childListChanges);
+                // this.groupAddedElements(childListChanges);
             }
             if (classChanges.size > 0)
             {
