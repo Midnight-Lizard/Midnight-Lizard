@@ -2025,6 +2025,7 @@ namespace MidnightLizard.ContentScript
         private calculateTransitionDuration(tag: HTMLElement | PseudoElement)
         {
             let hasForbiddenTransition = false;
+            const singleDuration = !tag.mlComputedStyle!.transitionDuration!.includes(",");
             let durations = tag.mlComputedStyle!.transitionDuration!.split(", ");
             tag.mlComputedStyle!.transitionProperty!.split(", ").forEach((prop, index) =>
             {
@@ -2032,6 +2033,10 @@ namespace MidnightLizard.ContentScript
                 {
                     durations[index] = this._css._0s;
                     hasForbiddenTransition = true;
+                }
+                else if (singleDuration)
+                {
+                    durations[index] = tag.mlComputedStyle!.transitionDuration!;
                 }
             });
             return { hasForbiddenTransition, durations };
