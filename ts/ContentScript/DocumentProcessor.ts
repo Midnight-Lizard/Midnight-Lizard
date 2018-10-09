@@ -1747,11 +1747,16 @@ namespace MidnightLizard.ContentScript
                                 tag.parentElement instanceof HTMLAnchorElement ||
                                 tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
                             {
-                                roomRules.color = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                if (!(tag instanceof HTMLFontElement))
+                                const linkColor = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                if (tag instanceof HTMLFontElement)
                                 {
-                                    roomRules.color$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                    roomRules.color$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                    roomRules.color = linkColor;
+                                }
+                                else
+                                {
+                                    roomRules.linkColor = linkColor;
+                                    roomRules.linkColor$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                    roomRules.linkColor$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
 
                                     roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                                     roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
@@ -2697,25 +2702,26 @@ namespace MidnightLizard.ContentScript
             if (roomRules.color && roomRules.color.color)
             {
                 tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
-                if (roomRules.visitedColor && roomRules.visitedColor.color)
-                {
-                    tag.style.setProperty(this._css.linkColor, roomRules.color.color, this._css.important);
-                    tag.style.setProperty(this._css.linkColorHover, roomRules.color$Hover!.color, this._css.important);
-                    tag.style.setProperty(this._css.linkColorActive, roomRules.color$Avtive!.color, this._css.important);
-
-                    tag.style.setProperty(this._css.visitedColor, roomRules.visitedColor.color, this._css.important);
-                    tag.style.setProperty(this._css.visitedColorHover, roomRules.visitedColor$Hover!.color, this._css.important);
-                    tag.style.setProperty(this._css.visitedColorActive, roomRules.visitedColor$Active!.color, this._css.important);
-                }
-                else
-                {
-                    tag.style.setProperty(ns.css.fntColor, roomRules.color.color, this._css.important);
-                }
+                tag.style.setProperty(ns.css.fntColor, roomRules.color.color, this._css.important);
             }
             else if (roomRules.color && (roomRules.color.reason === Colors.ColorReason.Inherited) && tag.style.getPropertyValue(ns.css.fntColor))
             {
                 tag.originalColor = "";
             }
+
+            if (roomRules.linkColor && roomRules.linkColor.color)
+            {
+                tag.style.setProperty(this._css.linkColor, roomRules.linkColor.color, this._css.important);
+                tag.style.setProperty(this._css.linkColorHover, roomRules.linkColor$Hover!.color, this._css.important);
+                tag.style.setProperty(this._css.linkColorActive, roomRules.linkColor$Avtive!.color, this._css.important);
+            }
+
+                if (roomRules.visitedColor && roomRules.visitedColor.color)
+                {
+                    tag.style.setProperty(this._css.visitedColor, roomRules.visitedColor.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorHover, roomRules.visitedColor$Hover!.color, this._css.important);
+                    tag.style.setProperty(this._css.visitedColorActive, roomRules.visitedColor$Active!.color, this._css.important);
+                }
 
             if (isRealElement(tag) && ((tag.parentElement &&
                 tag.parentElement instanceof HTMLElement &&

@@ -8,12 +8,13 @@ namespace MidnightLizard.ContentScript
     {
         owner?: any;
         backgroundColor?: Colors.ColorEntry | null | undefined;
-        color?: Colors.ColorEntry | null | undefined;
         placeholderColor?: Colors.ColorEntry | null | undefined;
+        color?: Colors.ColorEntry | null | undefined;
+        linkColor?: Colors.ColorEntry | null | undefined;
         visitedColor?: Colors.ColorEntry | null | undefined;
-        color$Hover?: Colors.ColorEntry | null | undefined;
+        linkColor$Hover?: Colors.ColorEntry | null | undefined;
         visitedColor$Hover?: Colors.ColorEntry | null | undefined;
-        color$Avtive?: Colors.ColorEntry | null | undefined;
+        linkColor$Avtive?: Colors.ColorEntry | null | undefined;
         visitedColor$Active?: Colors.ColorEntry | null | undefined;
         borderColor?: Colors.ColorEntry | null | undefined;
         borderTopColor?: Colors.ColorEntry | null | undefined;
