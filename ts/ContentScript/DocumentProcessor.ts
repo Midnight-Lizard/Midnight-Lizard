@@ -2434,6 +2434,7 @@ namespace MidnightLizard.ContentScript
         protected calculateMainColors(doc: Document)
         {
             this.calculateDefaultColors(doc, cx.Link, cx.Black);
+            doc.documentElement.mlArea = 1;
             const bgLight = this.shift.Background.lightnessLimit,
                 autofillBackgroundColorEntry = this._backgroundColorProcessor.changeColor("rgb(250,255,189)", false, doc.documentElement),
                 textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
@@ -2467,6 +2468,7 @@ namespace MidnightLizard.ContentScript
                 visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
                 visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!;
 
+            delete doc.documentElement.mlArea;
             this._backgroundColorProcessor.clear();
 
             return {
