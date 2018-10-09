@@ -108,7 +108,6 @@ namespace MidnightLizard.ContentScript
         originalTransitionDuration: string | null | undefined;
         originalBackgroundColor: string | null | undefined;
         originalDisplay: string | null | undefined;
-        originalZIndex: string | null | undefined;
         originalColor: string | null | undefined;
         originalTextShadow: string | null | undefined;
         originalBorderColor: string | null | undefined;

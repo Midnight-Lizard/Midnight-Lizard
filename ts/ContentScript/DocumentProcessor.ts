@@ -646,13 +646,6 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
-                value = tag.style.getPropertyValue(this._css.zIndex);
-                if (value && tag.style.getPropertyPriority(this._css.zIndex) !== this._css.important)
-                {
-                    tag.originalZIndex = value;
-                    needReCalculation = true;
-                }
-
                 value = tag.style.getPropertyValue(ns.css.fntColor);
                 if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
                     tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
@@ -1403,10 +1396,6 @@ namespace MidnightLizard.ContentScript
                 if (tag.originalDisplay !== undefined && tag.originalDisplay !== tag.style.display)
                 {
                     tag.style.display = tag.originalDisplay;
-                }
-                if (tag.originalZIndex !== undefined && tag.style.zIndex !== tag.originalZIndex)
-                {
-                    tag.style.zIndex = tag.originalZIndex;
                 }
                 if (tag.originalColor !== undefined)
                 {
