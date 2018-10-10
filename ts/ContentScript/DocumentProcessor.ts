@@ -891,7 +891,7 @@ namespace MidnightLizard.ContentScript
                                     : a.mlRowNumber! - b.mlRowNumber!);
 
                 otherInvisTags = otherInvisTags.filter(tag => tag.mlOrder === po.delayedInvisTags);
-                if (otherInvisTags.length)
+                if (otherInvisTags.length && otherInvisTags.length < allTags.length)
                 {
                     // removing invisible elements
                     allTags.splice(allTags.length - otherInvisTags.length, otherInvisTags.length);
