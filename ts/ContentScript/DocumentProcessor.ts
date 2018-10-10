@@ -12,6 +12,7 @@
 /// <reference path="../Colors/RangeFillColorProcessor.ts" />
 /// <reference path="./SvgFilters.ts" />
 /// <reference path="./PreloadManager.ts" />
+/// <reference path="./BackgroundImageProcessor.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -61,9 +62,6 @@ namespace MidnightLizard.ContentScript
         protected _rootDocumentContentLoaded: boolean = false;
         protected readonly _rootImageUrl: string;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
-        protected readonly _images = new Map<string, BackgroundImage>();
-        protected readonly _imagePromises = new Map<string, Promise<BackgroundImage>>();
-        protected readonly _anchors = new WeakMap<Document, HTMLAnchorElement>();
         protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
@@ -115,7 +113,8 @@ namespace MidnightLizard.ContentScript
             protected readonly _buttonBorderColorProcessor: MidnightLizard.Colors.IButtonBorderColorProcessor,
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter,
             protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
-            protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters)
+            protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters,
+            protected readonly _backgroundImageProcessor: MidnightLizard.ContentScript.IBackgroundImageProcessor)
         {
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
             this._css = css as any;
@@ -183,8 +182,6 @@ namespace MidnightLizard.ContentScript
 
         protected onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
-            this._images.clear();
-            this._imagePromises.clear();
             this.createStandardPseudoCssTexts();
             this.restoreDocumentColors(this._rootDocument);
             if (this._settingsManager.isActive)
@@ -2222,7 +2219,8 @@ namespace MidnightLizard.ContentScript
                     let size = backgroundSizes[Math.min(index, backgroundSizes.length - 1)];
                     if (haveToProcBgImg && bgImg.startsWith("url"))
                     {
-                        return this.processBackgroundImage(tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
+                        return this._backgroundImageProcessor.process(
+                            tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
                     }
                     else if (/gradient/gi.test(bgImg))
                     {
@@ -2233,6 +2231,10 @@ namespace MidnightLizard.ContentScript
                         return new BackgroundImage(size, bgImg, BackgroundImageType.Image);
                     }
                 });
+                if (!roomRules.hasBackgroundImagePromises)
+                {
+                    delete roomRules.filter;
+                }
             }
         }
 
@@ -2286,78 +2288,6 @@ namespace MidnightLizard.ContentScript
                 mainColor && (mainColor!.light = lightSum / uniqColors.size);
             }
             return new BackgroundImage(size, gradient, BackgroundImageType.Gradient);
-        }
-
-        protected getAbsoluteUrl(doc: Document, relativeUrl: string): string
-        {
-            let anchor = this._anchors.get(doc);
-            if (!anchor)
-            {
-                anchor = doc.createElement("a");
-                this._anchors.set(doc, anchor);
-            }
-            anchor.href = relativeUrl;
-            return anchor.href;
-        }
-
-        protected processBackgroundImage(tag: HTMLElement | PseudoElement, index: number, url: string,
-            size: string, roomRules: RoomRules, doInvert: boolean, isPseudoContent: boolean, bgFilter: string):
-            BackgroundImage | Promise<BackgroundImage>
-        {
-            let imageKey = [url, size, doInvert].join("-");
-            roomRules.backgroundImageKeys = roomRules.backgroundImageKeys || [];
-            roomRules.backgroundImageKeys[index] = imageKey;
-            let prevImage = this._images.get(imageKey);
-            if (prevImage)
-            {
-                return prevImage;
-            }
-            let prevPromise = this._imagePromises.get(imageKey);
-            if (prevPromise)
-            {
-                roomRules.hasBackgroundImagePromises = true;
-                return prevPromise;
-            }
-            url = this.getAbsoluteUrl(tag.ownerDocument, Util.trim(url.substr(3), "()'\""));
-            let dataPromise = fetch(url, { cache: "force-cache" })
-                .then(resp => resp.blob())
-                .then(blob => new Promise<string>((resolve, reject) =>
-                {
-                    let rdr = new FileReader();
-                    rdr.onload = (e) => resolve((e.target as FileReader).result as any);
-                    rdr.readAsDataURL(blob);
-                }))
-                .then(dataUrl => new Promise<{ data: string, width: number, height: number }>((resolve, reject) =>
-                {
-                    let img = new Image();
-                    img.onload = (e) =>
-                    {
-                        let trg = (e.target as HTMLImageElement);
-                        resolve({ data: trg.src, width: trg.naturalWidth, height: trg.naturalHeight })
-                    };
-                    img.src = dataUrl;
-                }));
-
-            const bgFltr = bgFilter.replace(`var(--${FilterType.BlueFilter})`, `url(#${FilterType.BlueFilter})`);
-            let result = Promise.all([dataPromise, size, bgFltr, this._settingsManager.currentSettings.blueFilter / 100]).then(
-                ([img, bgSize, fltr, blueFltr]) =>
-                {
-                    let imgWidth = img.width + this._css.px, imgHeight = img.height + this._css.px;
-                    return new BackgroundImage(
-                        /^(auto\s?){1,2}$/i.test(bgSize) ? imgWidth + " " + imgHeight : bgSize,
-                        "url(data:image/svg+xml," + encodeURIComponent
-                            (
-                            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${img.width} ${img.height}" filter="${fltr}">` +
-                            `<filter id="${FilterType.BlueFilter}"><feColorMatrix type="matrix" values="` +
-                            `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0"/></filter>` +
-                            `<image width="${imgWidth}" height="${imgHeight}" href="${img.data}"/></svg>`
-                            ).replace(/\(/g, "%28").replace(/\)/g, "%29") + ")",
-                        BackgroundImageType.Image
-                    );
-                });
-            this._imagePromises.set(imageKey, result);
-            roomRules.hasBackgroundImagePromises = true;
-            return result;
         }
 
         protected applyBackgroundImages(tag: HTMLElement | PseudoElement, backgroundImages: BackgroundImage[])
@@ -2664,8 +2594,10 @@ namespace MidnightLizard.ContentScript
                             rr.hasBackgroundImagePromises = false;
                             (bgImgs as BackgroundImage[]).forEach((img: BackgroundImage, index) =>
                             {
-                                if (rr.backgroundImageKeys)
-                                    this._images.set(rr.backgroundImageKeys[index], img);
+                                if (rr.backgroundImageKeys && img.type === BackgroundImageType.Image)
+                                {
+                                    this._backgroundImageProcessor.save(rr.backgroundImageKeys[index], img);
+                                }
                             });
                             return this.applyBackgroundImages(t, bgImgs as BackgroundImage[]);
                         });
