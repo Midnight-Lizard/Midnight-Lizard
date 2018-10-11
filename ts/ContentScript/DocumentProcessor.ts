@@ -1516,6 +1516,7 @@ namespace MidnightLizard.ContentScript
             if (tag && tag.ownerDocument.defaultView &&
                 (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
+                let hasRoomRules = false;
                 const doc = tag.ownerDocument, roomRules: RoomRules = {},
                     bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
                     isButton = tag instanceof HTMLButtonElement ||
@@ -1531,16 +1532,21 @@ namespace MidnightLizard.ContentScript
                 if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
                     tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                 {
+                    hasRoomRules = true;
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                 }
 
                 if (tag instanceof HTMLCanvasElement ||
                     tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                 {
+                    hasRoomRules = true;
                     this.processInaccessibleTextContent(tag, roomRules);
                 }
 
-                return { roomRules, before: undefined, after: undefined };
+                if (hasRoomRules)
+                {
+                    return { roomRules, before: undefined, after: undefined };
+                }
             }
             return undefined;
         }
