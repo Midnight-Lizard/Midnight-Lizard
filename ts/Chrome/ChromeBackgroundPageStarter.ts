@@ -8,5 +8,5 @@
 /// <reference path="./ChromeUninstallUrlSetter.ts" />
 /// <reference path="./ChromeTranslationAccessor.ts" />
 /// <reference path="./FirefoxThemeProcessor.ts" />
-/// <reference path="./ChromeExternalMessageBus.ts" />
+/// <reference path="./ChromeBackgroundMessageBus.ts" />
 /// <reference path="../BackgroundPage/BackgroundPageStarter.ts" />

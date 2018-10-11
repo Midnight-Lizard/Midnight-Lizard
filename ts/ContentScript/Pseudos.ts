@@ -104,7 +104,6 @@ namespace MidnightLizard.ContentScript
         }
         currentFilter: string | null | undefined;
         originalFilter = null;
-        keepFilter: boolean | undefined;
         originalTransitionDuration: string | null | undefined;
         originalBackgroundColor: string | null | undefined;
         originalDisplay: string | null | undefined;

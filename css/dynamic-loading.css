@@ -8,7 +8,8 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     }
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after {
+    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after,
+    [ml-bg-image] {
         background-image: none !important;
     }
     html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,

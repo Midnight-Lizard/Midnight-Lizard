@@ -110,6 +110,8 @@ namespace MidnightLizard.Settings
 
         backgroundImageLightnessLimit: number;
         backgroundImageSaturationLimit: number;
+        hideBigBackgroundImages: boolean;
+        maxBackgroundImageSize: number;
 
         scrollbarSaturationLimit: number;
         scrollbarContrast: number;

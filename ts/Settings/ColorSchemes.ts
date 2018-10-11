@@ -104,6 +104,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
@@ -179,6 +181,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: false,
+                    maxBackgroundImageSize: 0,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
@@ -254,6 +258,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 5,
                     scrollbarContrast: 0,
@@ -329,6 +335,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 10,
                     scrollbarContrast: 0,
@@ -404,6 +412,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 20,
                     scrollbarContrast: 0,
@@ -479,6 +489,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 20,
                     scrollbarContrast: 0,
@@ -554,6 +566,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 20,
                     scrollbarContrast: 0,
@@ -629,6 +643,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 80,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 30,
                     scrollbarContrast: 0,
@@ -704,6 +720,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 90,
                     backgroundImageSaturationLimit: 90,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 15,
                     scrollbarContrast: 5,
@@ -779,6 +797,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 93,
                     backgroundImageSaturationLimit: 30,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 15,
                     scrollbarContrast: 5,
@@ -854,6 +874,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 30,
                     scrollbarContrast: 5,
@@ -929,6 +951,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 5,
@@ -1004,6 +1028,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 100,
                     backgroundImageSaturationLimit: 10,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 5,
@@ -1079,6 +1105,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
@@ -1154,6 +1182,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 30,
                     backgroundImageSaturationLimit: 10,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 0,
                     scrollbarContrast: 0,
@@ -1229,6 +1259,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 40,
                     scrollbarContrast: 0,
@@ -1304,6 +1336,8 @@ namespace MidnightLizard.Settings
 
                     backgroundImageLightnessLimit: 40,
                     backgroundImageSaturationLimit: 100,
+                    hideBigBackgroundImages: true,
+                    maxBackgroundImageSize: 500,
 
                     scrollbarSaturationLimit: 40,
                     scrollbarContrast: 0,

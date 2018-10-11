@@ -8,9 +8,9 @@ window.addEventListener('message', (msg) =>
     }
 });
 
-function openConnection()
+function openConnection(port?: any)
 {
-    if (!connection)
+    if (!connection || port)
     {
         connection = chrome.runtime.connect({ name: 'polyfill' });
         connection.onMessage.addListener((msg, port) =>

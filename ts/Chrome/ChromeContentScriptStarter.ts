@@ -2,4 +2,5 @@
 /// <reference path="./ChromeApplicationSettings.ts" />
 /// <reference path="./ChromeSettingsBus.ts" />
 /// <reference path="./ChromeTranslationAccessor.ts" />
+/// <reference path="./ChromeContentMessageBus.ts" />
 /// <reference path="../ContentScript/ContentScriptStarter.ts" />

@@ -1484,9 +1484,9 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.removeAttribute("after-style")
                 }
-                if (tag.hasAttribute("ml-no-bg-image"))
+                if (tag.hasAttribute("ml-bg-image"))
                 {
-                    tag.removeAttribute("ml-no-bg-image");
+                    tag.removeAttribute("ml-bg-image");
                 }
             }
             // in case content-editable element has been re-inserted into the document
@@ -1689,7 +1689,6 @@ namespace MidnightLizard.ContentScript
                                         imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
                                     ].filter(f => f).join(" ").trim()
                                 };
-                            roomRules.keepFilter = true;
                             roomRules.attributes = roomRules.attributes || new Map<string, string>();
                             if (this._settingsManager.currentSettings.useImageHoverAnimation)
                             {
@@ -2125,18 +2124,6 @@ namespace MidnightLizard.ContentScript
             return undefined;
         }
 
-        protected removeTemporaryFilter(tag: HTMLElement | PseudoElement)
-        {
-            if (!tag.keepFilter)
-            {
-                if (tag.originalFilter !== undefined)
-                {
-                    tag.style.setProperty(this._css.filter, tag.originalFilter)
-                }
-                isRealElement(tag) && tag.removeAttribute(this._css.transition);
-            }
-        }
-
         protected processBackgroundImagesAndGradients(
             tag: HTMLElement | PseudoElement, doc: Document, roomRules: RoomRules,
             isButton: boolean, isTable: boolean, bgInverted: boolean)
@@ -2188,26 +2175,20 @@ namespace MidnightLizard.ContentScript
                         this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                     ].filter(f => f).join(" ").trim();
 
-                    if (!(tag instanceof HTMLInputElement) && !(tag instanceof HTMLTextAreaElement) &&
-                        !(tag instanceof HTMLBodyElement) && tag !== doc.documentElement)
+                    haveToProcBgImg = !(tag instanceof HTMLImageElement) &&
+                        (isRealElement(tag) && !!tag.firstChild || isPseudoContent || haveToProcBgGrad ||
+                            roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
+                            tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement ||
+                            tag instanceof HTMLBodyElement || tag instanceof HTMLHtmlElement);
+
+                    if (haveToProcBgImg)
                     {
-                        roomRules.filter = { value: bgFilter };
+                        roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                        roomRules.attributes.set("ml-bg-image", "");
                     }
                     else
                     {
-                        roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                        roomRules.attributes.set("ml-no-bg-image", "");
-                        noFilters = true;
-                    }
-
-                    haveToProcBgImg = isRealElement(tag) && !!tag.firstChild || tag instanceof HTMLBodyElement ||
-                        isPseudoContent || roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
-                        haveToProcBgGrad || noFilters;
-
-                    if (tag.tagName === USP.htm.img)
-                    {
-                        roomRules.keepFilter = true;
-                        haveToProcBgImg = false;
+                        roomRules.filter = { value: bgFilter };
                     }
                 }
             }
@@ -2220,11 +2201,14 @@ namespace MidnightLizard.ContentScript
                     if (haveToProcBgImg && bgImg.startsWith("url"))
                     {
                         return this._backgroundImageProcessor.process(
-                            tag, index, bgImg, size, roomRules!, doInvert, isPseudoContent, bgFilter);
+                            bgImg, bgFilter, size, this._settingsManager.currentSettings.blueFilter / 100, roomRules,
+                            this._settingsManager.currentSettings.hideBigBackgroundImages
+                                ? this._settingsManager.currentSettings.maxBackgroundImageSize * 1024
+                                : -1);
                     }
                     else if (/gradient/gi.test(bgImg))
                     {
-                        return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules!);
+                        return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules);
                     }
                     else
                     {
@@ -2293,7 +2277,6 @@ namespace MidnightLizard.ContentScript
         protected applyBackgroundImages(tag: HTMLElement | PseudoElement, backgroundImages: BackgroundImage[])
         {
             let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
-            this.removeTemporaryFilter(tag);
             tag.style.setProperty(this._css.backgroundImage, backgroundImages.map(bgImg => bgImg.data).join(","), this._css.important);
             tag.style.setProperty(this._css.backgroundSize, backgroundImages.map(bgImg => bgImg.size).join(","), this._css.important);
             this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
@@ -2567,7 +2550,6 @@ namespace MidnightLizard.ContentScript
 
             if (roomRules.filter && roomRules.filter.value)
             {
-                tag.keepFilter = roomRules.keepFilter;
                 tag.originalFilter = tag.style.filter;
                 tag.currentFilter = roomRules.filter.value;
                 if (tag.isPseudo)
@@ -2592,30 +2574,15 @@ namespace MidnightLizard.ContentScript
                         {
                             rr.backgroundImages = bgImgs as BackgroundImage[];
                             rr.hasBackgroundImagePromises = false;
-                            (bgImgs as BackgroundImage[]).forEach((img: BackgroundImage, index) =>
-                            {
-                                if (rr.backgroundImageKeys && img.type === BackgroundImageType.Image)
-                                {
-                                    this._backgroundImageProcessor.save(rr.backgroundImageKeys[index], img);
-                                }
-                            });
                             return this.applyBackgroundImages(t, bgImgs as BackgroundImage[]);
                         });
-                    Promise
-                        .all([tag, Util.handlePromise(applyBgPromise), roomRules])
-                        .then(([tag, result, rr]) =>
+                    applyBgPromise.catch(ex =>
+                    {
+                        if (this._app.isDebug)
                         {
-                            if (result && result.status === Util.PromiseStatus.Failure)
-                            {
-                                this._app.isDebug &&
-                                    console.error(`Can not fetch background image\n${rr.backgroundImageKeys &&
-                                        rr.backgroundImageKeys.join("\n")}: ` +
-                                        result.data);
-                                let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
-                                this.removeTemporaryFilter(tag);
-                                this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
-                            }
-                        });
+                            console.error(`Faild to fetch background image\n${ex}`);
+                        }
+                    });
                 }
                 else
                 {

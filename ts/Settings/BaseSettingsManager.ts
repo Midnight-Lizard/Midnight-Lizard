@@ -163,7 +163,7 @@ namespace MidnightLizard.Settings
                 {
                     const prop = setting as ColorSchemePropertyName;
                     const val = set[prop];
-                    if (!/Hue$|Width/g.test(prop) && Util.isNum(val))
+                    if (!/Hue$/g.test(prop) && Util.isNum(val))
                     {
                         set[prop] = val / 100;
                     }
@@ -368,6 +368,17 @@ namespace MidnightLizard.Settings
 
         protected applyBackwardCompatibility(settings: ColorScheme)
         {
+            if (settings.hideBigBackgroundImages === undefined)
+            {
+                settings.hideBigBackgroundImages = true;
+            }
+
+            if (settings.maxBackgroundImageSize === undefined ||
+                isNaN(settings.maxBackgroundImageSize))
+            {
+                settings.maxBackgroundImageSize = 1000;
+            }
+
             if (!settings.mode)
             {
                 settings.mode = ProcessingMode.Complex;

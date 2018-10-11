@@ -1,6 +1,6 @@
 /// <reference path="../DI/-DI.ts" />
-/// <reference path="./IExternalMessageBus.ts" />
-/// <reference path="../Settings/ExternalMessages.ts" />
+/// <reference path="./IBackgroundMessageBus.ts" />
+/// <reference path="../Settings/Messages.ts" />
 /// <reference path="../Settings/Public/PublicSettingsManager.ts" />
 
 namespace MidnightLizard.BackgroundPage
@@ -11,11 +11,11 @@ namespace MidnightLizard.BackgroundPage
     class ExternalMessageProcessor implements IExternalMessageProcessor
     {
         constructor(
-            private readonly externalMessageBus: MidnightLizard.BackgroundPage.IExternalMessageBus,
+            private readonly messageBus: MidnightLizard.BackgroundPage.IBackgroundMessageBus,
             private readonly publicSettingsManager: MidnightLizard.Settings.Public.IPublicSettingsManager)
         {
-            externalMessageBus.onMessage.addListener(this.processMessage, this);
-            externalMessageBus.onConnected.addListener(this.processNewConnection, this);
+            messageBus.onMessage.addListener(this.processMessage, this);
+            messageBus.onConnected.addListener(this.processNewConnection, this);
             publicSettingsManager.onPublicSchemesChanged.addListener(this.notifyAboutChanges, this);
         }
 
@@ -23,31 +23,32 @@ namespace MidnightLizard.BackgroundPage
         {
             if (publicSchemeIds)
             {
-                this.externalMessageBus.notifyPublicSchemesChanged(publicSchemeIds);
+                this.messageBus.broadcastMessage(
+                    new MidnightLizard.Settings.PublicSchemesChanged(publicSchemeIds), "portal");
             }
         }
 
         private async processNewConnection(port: any)
         {
-            this.externalMessageBus.sendCurrentPublicSchemes(port,
-                await this.publicSettingsManager.getInstalledPublicSchemeIds());
+            this.messageBus.postMessage(port,
+                new MidnightLizard.Settings.PublicSchemesChanged(
+                    await this.publicSettingsManager.getInstalledPublicSchemeIds()));
         }
 
-        private async processMessage(msg?: { port: any, message: Settings.IncommingExternalMessage })
+        private async processMessage(msg?: { port: any, message: Settings.MessageToBackgroundPage })
         {
             if (msg)
             {
                 const { port, message } = msg;
-                console.log(message);
                 try
                 {
                     switch (message.type)
                     {
-                        case Settings.ExternalMessageType.InstallPublicScheme:
+                        case Settings.MessageType.InstallPublicScheme:
                             await this.publicSettingsManager.installPublicScheme(message.publicScheme);
                             break;
 
-                        case Settings.ExternalMessageType.UninstallPublicScheme:
+                        case Settings.MessageType.UninstallPublicScheme:
                             await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
                             break;
 
@@ -57,9 +58,10 @@ namespace MidnightLizard.BackgroundPage
                 }
                 catch (error)
                 {
-                    this.externalMessageBus.notifyError(port, "Midnight Lizard extension failed", {
-                        message: error.message || error, stack: error.stack
-                    });
+                    this.messageBus.postMessage(port,
+                        new MidnightLizard.Settings.ErrorMessage("Midnight Lizard extension failed", {
+                            message: error.message || error, stack: error.stack
+                        }));
                 }
             }
         }

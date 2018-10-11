@@ -228,6 +228,11 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not
     font-weight: bold;
 }
 
+.ml-dialog-label.data:after {
+    content: ": " var(--input-string) "KiB";
+    font-weight: bold;
+}
+
 .ml-dialog-label.time:after {
     content: ": " var(--input-string) ":00";
 }
@@ -1004,6 +1009,7 @@ height: 148px;
     text-align: center;
     padding-top: 35px;
     background-repeat: no-repeat;
+    height: 80px;
 }
 
 .ml-scrollbar-example {
