@@ -9,23 +9,32 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(IDocumentZoomObserver)
     class DocumentZoomObserver implements IDocumentZoomObserver
     {
+        private lastZoom = 1;
+
         constructor(doc: Document,
-            protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
+            settingsBus: MidnightLizard.Settings.ISettingsBus,
+            private readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
         {
-            _settingsBus.onZoomChanged.addListener((done, zoom) =>
+            settingsBus.onZoomChanged.addListener((done, zoom) =>
             {
-                this.setDocumentZoom(doc, zoom || 1);
+                this.lastZoom = zoom || 1;
+                this.setDocumentZoom(doc);
                 if (window.top === window.self)
                 {
                     done(true);
                 }
             }, null);
+
+            _settingsManager.onSettingsInitialized.addListener(_ => this.setDocumentZoom(doc), this);
+            _settingsManager.onSettingsChanged.addListener(_ => this.setDocumentZoom(doc), this);
         }
 
-        protected setDocumentZoom(doc: Document, zoom: number)
+        private setDocumentZoom(doc: Document)
         {
-            doc.documentElement.style.setProperty("--ml-zoom", zoom.toString(), "important");
+            if (this._settingsManager.isActive)
+            {
+                doc.documentElement.style.setProperty("--ml-zoom", this.lastZoom.toString(), "important");
+            }
         }
-
     }
 }
