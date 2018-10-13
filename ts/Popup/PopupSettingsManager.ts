@@ -66,8 +66,9 @@ namespace MidnightLizard.Popup
         {
             try
             {
-                const defaultSettings = await this.getDefaultSettings();
-                const currentSettings = await this._settingsBus.getCurrentSettings();
+                const [currentSettings] = await Promise.all([
+                    this._settingsBus.getCurrentSettings(),
+                    this.getDefaultSettings()]);
                 this._currentSettings = currentSettings;
                 this.updateSchedule();
                 this.initCurSet();

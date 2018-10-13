@@ -16,8 +16,8 @@
 
 namespace MidnightLizard.ContentScript
 {
-    const chunkLength = 300;
-    const minChunkableLength = 700;
+    let chunkLength = 300;
+    let minChunkableLength = 700;
     const dom = Events.HtmlEvent;
     const cx = Colors.RgbaColor;
     const cc = Colors.Component;
@@ -86,6 +86,7 @@ namespace MidnightLizard.ContentScript
          */
         constructor(css: MidnightLizard.ContentScript.CssStyle,
             protected readonly _rootDocument: Document,
+            protected readonly _module: MidnightLizard.Settings.CurrentExtensionModule,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager,
             protected readonly _preloadManager: MidnightLizard.ContentScript.IPreloadManager,
@@ -116,6 +117,12 @@ namespace MidnightLizard.ContentScript
             protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters,
             protected readonly _backgroundImageProcessor: MidnightLizard.ContentScript.IBackgroundImageProcessor)
         {
+            if (_module.name === Settings.ExtensionModule.PopupWindow)
+            {
+                chunkLength = 250;
+                minChunkableLength = 600;
+                normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
+            }
             this._rootImageUrl = `url("${_rootDocument.location.href}")`;
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
@@ -386,7 +393,7 @@ namespace MidnightLizard.ContentScript
         {
             return (tag) =>
             {
-                if (this.checkElement(tag) && (tag.parentElement || tag === tag.ownerDocument.documentElement))
+                if (this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument.documentElement))
                 {
                     if (tag instanceof HTMLCanvasElement ||
                         tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")

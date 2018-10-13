@@ -25,18 +25,18 @@ namespace MidnightLizard.ContentScript
         [ProcessingOrder.visColorTags, 1],
         [ProcessingOrder.viewImageTags, 5],
         [ProcessingOrder.viewLinks, 10],
-        [ProcessingOrder.viewBgImageTags, 50],
-        [ProcessingOrder.viewTransTags, 100],
-        [ProcessingOrder.visImageTags, 175],
-        [ProcessingOrder.visLinks, 250],
-        [ProcessingOrder.visTransTags, 500],
-        [ProcessingOrder.visBgImageTags, 750],
-        [ProcessingOrder.invisColorTags, 1000],
-        [ProcessingOrder.invisImageTags, 1250],
-        [ProcessingOrder.invisTransTags, 1500],
-        [ProcessingOrder.invisLinks, 2000],
-        [ProcessingOrder.invisBgImageTags, 2500],
-        [ProcessingOrder.delayedInvisTags, 3000]
+        [ProcessingOrder.viewBgImageTags, 25],
+        [ProcessingOrder.viewTransTags, 75],
+        [ProcessingOrder.visImageTags, 125],
+        [ProcessingOrder.visLinks, 175],
+        [ProcessingOrder.visTransTags, 250],
+        [ProcessingOrder.visBgImageTags, 400],
+        [ProcessingOrder.invisColorTags, 750],
+        [ProcessingOrder.invisImageTags, 1100],
+        [ProcessingOrder.invisTransTags, 1450],
+        [ProcessingOrder.invisLinks, 1750],
+        [ProcessingOrder.invisBgImageTags, 2250],
+        [ProcessingOrder.delayedInvisTags, 2500]
     ]);
 
     export const bigReCalculationDelays = new Map<ProcessingOrder, number>([

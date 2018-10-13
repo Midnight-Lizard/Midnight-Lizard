@@ -1,4 +1,8 @@
-html[ml-is-active][ml-stage]:not([ml-stage="complete"])
-{
-    filter: brightness(var(--ml-background-lightness-limit));
+html[ml-is-active][ml-stage]:not([ml-stage="complete"]) {
+    filter: var(--ml-preload-filter);
+}
+
+html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :before,
+html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :after {
+    visibility: hidden;
 }

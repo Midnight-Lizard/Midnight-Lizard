@@ -270,7 +270,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
 
 .ml-input-range-icon
 {
-  fill: var(--main-color);
+  --ml-ignore:true;
+  fill: var(--ml-main-text-color, var(--main-color));
   width: 18px;
   height: 18px;
   position: absolute;

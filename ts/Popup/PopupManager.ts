@@ -157,6 +157,8 @@ namespace MidnightLizard.Popup
                     ? "https://chrome.google.com/webstore/detail/midnight-lizard/pbnndmlekkboofhnbonilimejonapojg/reviews"
                     : `https://addons.mozilla.org/${this._app.currentLocale}/firefox/addon/midnight-lizard-quantum/reviews/`;
 
+            doc.querySelectorAll(".ml-input-range-icon,.ml-input-range-icon *").forEach(tag => tag.mlIgnore = true);
+
             if (this._app.isDesktop)
             {
                 this._commandManager.getCommands()
