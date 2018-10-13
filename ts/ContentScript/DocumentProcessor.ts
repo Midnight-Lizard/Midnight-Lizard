@@ -1393,6 +1393,7 @@ namespace MidnightLizard.ContentScript
                     this._settingsManager.isSimple))
             {
                 let ns = tag instanceof SVGElement ? USP.svg : USP.htm;
+                const hasLinkColors = tag.mlColor && tag.mlColor.role === cc.Link;
 
                 delete tag.mlBgColor;
                 delete tag.mlColor;
@@ -1417,6 +1418,9 @@ namespace MidnightLizard.ContentScript
                     }
                     tag.style.removeProperty(this._css.originalColor);
                     tag.style.removeProperty(this._css.placeholderColor);
+                }
+                if (hasLinkColors)
+                {
                     tag.style.removeProperty(this._css.linkColor);
                     tag.style.removeProperty(this._css.visitedColor);
                     tag.style.removeProperty(this._css.linkColorActive);
@@ -1808,11 +1812,12 @@ namespace MidnightLizard.ContentScript
                                     });
                                 }
                             }
-                            if (roomRules.color)
+                            if (roomRules.color || roomRules.linkColor)
                             {
-                                let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - roomRules.color.originalLight);
-                                let currentTextContrast = Math.abs(roomRules.backgroundColor.light - roomRules.color.light);
-                                if (currentTextContrast != originalTextContrast && roomRules.color.originalLight != roomRules.color.light &&
+                                const textColor = roomRules.color! || roomRules.linkColor!;
+                                let originalTextContrast = Math.abs(roomRules.backgroundColor.originalLight - textColor.originalLight);
+                                let currentTextContrast = Math.abs(roomRules.backgroundColor.light - textColor.light);
+                                if (currentTextContrast != originalTextContrast && textColor.originalLight != textColor.light &&
                                     tag.mlComputedStyle!.textShadow && tag.mlComputedStyle!.textShadow !== this._css.none)
                                 {
                                     let newTextShadow = tag.mlComputedStyle!.textShadow!,
@@ -1830,7 +1835,7 @@ namespace MidnightLizard.ContentScript
                                             {
                                                 newColor = this.changeColor({
                                                     role: cc.TextShadow, property: ns.css.shdColor,
-                                                    bgLight: roomRules!.color!.light,
+                                                    bgLight: textColor.light,
                                                     propVal: currentTextShadowColor, tag
                                                 });
                                                 if (newColor && newColor.color)
@@ -1971,7 +1976,7 @@ namespace MidnightLizard.ContentScript
                 if (isRealElement(tag))
                 {
                     tag.mlBgColor = roomRules.backgroundColor;
-                    tag.mlColor = roomRules.color;
+                    tag.mlColor = roomRules.color || roomRules.linkColor;
                     if (roomRules.textShadow)
                     {
                         tag.mlTextShadow = roomRules.textShadow.color;

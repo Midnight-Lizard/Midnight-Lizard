@@ -363,8 +363,12 @@ namespace MidnightLizard.Colors
     {
         protected readonly _tagName = "a";
 
-        protected getInheritedColor(tag: Element, rgbStr: string): ColorEntry | null
+        protected getInheritedColor(tag: HTMLElement, rgbStr: string): ColorEntry | null
         {
+            if (!(tag instanceof HTMLAnchorElement))
+            {
+                return super.getInheritedColor(tag, rgbStr);
+            }
             return null;
         }
 
