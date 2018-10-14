@@ -26,7 +26,7 @@ namespace MidnightLizard.ContentScript
     type PromiseResult<T> = Util.HandledPromiseResult<T>;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const doNotInvertRegExp = /user|account|photo(?!.+black)|white|grey|gray|flag/gi;
+    const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag/gi;
     const maxAttrLen = 100;
     /** 2 fraction digits number format */
     const float = new Intl.NumberFormat('en-US', {
@@ -2164,7 +2164,8 @@ namespace MidnightLizard.ContentScript
                 const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                 let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
-                doInvert = !isTable && bgInverted && (backgroundImage.search(doNotInvertRegExp) === -1) &&
+                doInvert = !isTable && bgInverted &&
+                    ((backgroundImage + tag.className).search(doNotInvertRegExp) === -1) &&
                     tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                     (
                         this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
