@@ -78,9 +78,9 @@ namespace MidnightLizard.Util.RegExpBuilder
         return arrayOfExpressions.join("|");
     }
 
-    /** Returns: _exp1__exp2__exp3...expN_ */
+    /** Returns: _exp1exp2exp3...expN_ */
     export const join = and, combine = and;
-    /** Returns: _exp1__exp2__exp3...expN_ */
+    /** Returns: _exp1exp2exp3...expN_ */
     export function and(...arrayOfExpressions: string[])
     {
         return arrayOfExpressions.join("");
@@ -100,9 +100,9 @@ namespace MidnightLizard.Util.RegExpBuilder
         return `[^${charSet.join("")}]`;
     }
 
-    /** Returns: _exp_** */
+    /** Returns: _exp_* */
     export const anytime = any;
-    /** Returns: _exp_** */
+    /** Returns: _exp_* */
     export function any(exp: string)
     {
         return `${exp}*`;
@@ -130,7 +130,7 @@ namespace MidnightLizard.Util.RegExpBuilder
         return `${exp}{${occurs}}`;
     }
 
-    /** Returns: _exp_ __{__ _minOccurs_ __,__ _maxOccurs_ __}__ */
+    /** Returns: _exp_ { _minOccurs_, _maxOccurs_ } */
     export function strictly(minOccurs: number, maxOccurs: number, exp: string)
     {
         return `${exp}{${minOccurs},${maxOccurs}}`;
@@ -187,16 +187,16 @@ namespace MidnightLizard.Util.RegExpBuilder
         return `${left}[^${right}]+${right}`;
     }
 
-    /** \\__(__[^\\__)__]+\\__)__ */
+    /** \\([^\\)]+\\) */
     export const SomethingInParentheses = somethingIn("(", ")");
 
-    /** \\__{__[^\\__}__]+\\__}__ */
+    /** \\{[^\\}]+\\} */
     export const SomethingInBraces = somethingIn("{", "}");
 
-    /** \\__[__[^\\__]__]+\\__]__ */
+    /** \\[[^\\]]+\\] */
     export const SomethingInBrackets = somethingIn("[", "]");
 
-    /** __<__[^__>__]+__>__ */
+    /** <[^>]+> */
     export const SomethingInChevrons = somethingIn("<", ">");
 
     /** [\\w\\-] */
