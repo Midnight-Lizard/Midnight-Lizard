@@ -363,7 +363,7 @@ namespace MidnightLizard.ContentScript
                     let allTags = Array.from(doc.body.getElementsByTagName("*"))
                         .concat([doc.body, doc.documentElement])
                         .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
-                    DocumentProcessor.processAllElements(allTags, this);
+                    DocumentProcessor.processAllElements(allTags, this, normalDelays, true, false);
                 }
                 else
                 {
@@ -534,14 +534,16 @@ namespace MidnightLizard.ContentScript
 
         protected onUserHover(eArg: Event)
         {
-            const tag = eArg.currentTarget as HTMLElement;
-            const eventTargets = tag instanceof HTMLTableCellElement
-                ? Array.from(tag.parentElement!.children) : [tag];
-            for (let target of eventTargets)
+            if (this._settingsManager.isActive && this._settingsManager.isComplex)
             {
-                // setTimeout(this._boundUserActionHandler, 0, { currentTarget: target });
-                tag.ownerDocument.defaultView.requestAnimationFrame(
-                    () => this.onUserAction({ currentTarget: target } as any));
+                const tag = eArg.currentTarget as HTMLElement;
+                const eventTargets = tag instanceof HTMLTableCellElement
+                    ? Array.from(tag.parentElement!.children) as HTMLElement[] : [tag];
+
+                this.reCalcAllRootElements(new Set(
+                    eventTargets.filter(target => (target.alwaysRecalculateStyles ||
+                        target.selectors !== this._styleSheetProcessor
+                            .getElementMatchedSelectors(target)))), false, true);
             }
         }
 
@@ -781,7 +783,8 @@ namespace MidnightLizard.ContentScript
 
         protected static processAllElements(
             allTags: HTMLElement[], docProc: DocumentProcessor,
-            delays = normalDelays, delayInvisibleElements = true): void
+            delays = normalDelays, delayInvisibleElements = true,
+            needObservation = true): void
         {
             if (allTags.length > 0)
             {
@@ -905,7 +908,7 @@ namespace MidnightLizard.ContentScript
                 allTags[0].mlOrder = po.viewColorTags;
 
                 const results = Util.handlePromise(
-                    DocumentProcessor.processOrderedElements(allTags, docProc, delays)!);
+                    DocumentProcessor.processOrderedElements(allTags, docProc, delays, needObservation)!);
 
                 if (otherInvisTags.length > 0)
                 {
@@ -1050,13 +1053,15 @@ namespace MidnightLizard.ContentScript
                     });
         }
 
-        protected static processOrderedElements(tags: HTMLElement[], docProc: DocumentProcessor, delays = normalDelays)
+        protected static processOrderedElements(tags: HTMLElement[], docProc: DocumentProcessor,
+            delays = normalDelays, needObservation = false)
         {
             if (tags.length > 0)
             {
-                const density = 2000 / tags.length
-                let result: Promise<HTMLElement[]>, needObservation = docProc._settingsManager.isComplex &&
-                    docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument);
+                const density = 2000 / tags.length;
+                needObservation = needObservation && docProc._settingsManager.isComplex &&
+                    !!docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument)
+                let result: Promise<HTMLElement[]>;
                 if (tags.length < minChunkableLength)
                 {
                     result = DocumentProcessor.processElementsChunk(tags, docProc, null,
