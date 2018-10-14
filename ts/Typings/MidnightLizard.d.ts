@@ -81,6 +81,11 @@ interface HTMLInputElement
     labelElement: HTMLLabelElement | undefined;
 }
 
+interface StyleSheet
+{
+    mlExternal?: string | null;
+}
+
 interface Window
 {
     Element: typeof Element;

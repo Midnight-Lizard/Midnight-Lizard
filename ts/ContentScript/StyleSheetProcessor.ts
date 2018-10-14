@@ -5,11 +5,11 @@
 
 namespace MidnightLizard.ContentScript
 {
-
     type CssPromise = Promise<Util.HandledPromiseResult<void>>;
     const x = Util.RegExpBuilder;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
+    const dom = Events.HtmlEvent;
 
     enum Var
     {
@@ -35,6 +35,9 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(IStyleSheetProcessor)
     class StyleSheetProcessor implements IStyleSheetProcessor
     {
+        private _storageIsAvailable = true;
+        private readonly _selectorsStorageKey = "ml-selectors";
+        private readonly _styleRefsStorageKey = "ml-style-refs";
         protected readonly _stylesLimit = 500;
         protected readonly _trimmedStylesLimit = 500;
         protected readonly _styleProps =
@@ -50,22 +53,24 @@ namespace MidnightLizard.ContentScript
                 { prop: "text-shadow", priority: 4 }
             ];
         private readonly _passedPseudoSelectors = new Set<string>();
-        protected readonly _mediaQueries = new WeakMap<Document, Map<string, boolean>>();
+        protected readonly _mediaQueries = new Map<string, boolean>();
 
-        protected readonly _externalCssPromises = new WeakMap<Document, Map<string, CssPromise>>();
-        getCssPromises(doc: Document): Promise<Util.HandledPromiseResult<void>>[]
+        protected readonly _externalCssPromises = new Map<string, CssPromise>();
+        getCssPromises(doc: Document)
         {
-            let promises = this._externalCssPromises.get(doc);
-            return promises ? Array.from(promises.values()) : [] as any;
+            return Array.from(this._externalCssPromises.values());
         }
 
-        protected readonly _selectors = new WeakMap<Document, string[]>();
-        public getSelectorsCount(doc: Document) { return (this._selectors.get(doc) || []).length }
+        protected _selectors = new Array<string>();
+        public getSelectorsCount(doc: Document) { return this._selectors.length; }
 
-        protected readonly _selectorsQuality = new WeakMap<Document, number>();
-        public getSelectorsQuality(doc: Document) { return this._selectorsQuality.get(doc) }
+        protected _selectorsQuality?: number = undefined;
+        public getSelectorsQuality(doc: Document) { return this._selectorsQuality; }
 
-        protected readonly _preFilteredSelectors = new WeakMap<Document, Map<string, string[]>>();
+        protected _preFilteredSelectors = new Map<string, string[]>();
+        protected readonly _preFilteredSelectorsCache = new Map<string, string[]>();
+        protected _styleRefs = new Set<string>();
+        protected readonly _styleRefsCache = new Set<string>();
 
         // protected readonly _excludeStylesRegExp: string;
         protected readonly _includeStylesRegExp: string;
@@ -79,11 +84,55 @@ namespace MidnightLizard.ContentScript
         /** StyleSheetProcessor constructor
          * @param _app - application settings
          */
-        constructor(settingsManager: Settings.IBaseSettingsManager,
+        constructor(rootDoc: Document,
+            settingsManager: Settings.IBaseSettingsManager,
             protected readonly _app: Settings.IApplicationSettings)
         {
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
+
+            dom.addEventListener(rootDoc.defaultView, "unload", () =>
+            {
+                if (this._storageIsAvailable)
+                {
+                    try
+                    {
+                        if (this._preFilteredSelectors.size && this._styleRefs.size)
+                        {
+                            sessionStorage.setItem(this._selectorsStorageKey,
+                                JSON.stringify(Array.from(this._preFilteredSelectors)));
+
+                            sessionStorage.setItem(this._styleRefsStorageKey,
+                                JSON.stringify(Array.from(this._styleRefs)));
+                        }
+                    }
+                    catch (ex)
+                    {
+                        _app.isDebug && console.error(ex);
+                    }
+                }
+            });
+
+            try
+            {
+                const selectorsJsonData = sessionStorage.getItem(this._selectorsStorageKey);
+                if (selectorsJsonData)
+                {
+                    const selArray = JSON.parse(selectorsJsonData) as [string, string[]][];
+                    this._preFilteredSelectorsCache = new Map(selArray);
+                }
+                const styleRefsJsonData = sessionStorage.getItem(this._styleRefsStorageKey);
+                if (styleRefsJsonData)
+                {
+                    const refsArray = JSON.parse(styleRefsJsonData) as string[];
+                    this._styleRefsCache = new Set(refsArray);
+                }
+            }
+            catch (ex)
+            {
+                this._storageIsAvailable = false;
+                _app.isDebug && console.error(ex);
+            }
 
             settingsManager.onSettingsChanged
                 .addListener(() => this._passedPseudoSelectors.clear(), this);
@@ -168,12 +217,10 @@ namespace MidnightLizard.ContentScript
 
         public processDocumentStyleSheets(doc: Document): void
         {
-            let externalCssPromises = this._externalCssPromises.get(doc);
-            if (externalCssPromises === undefined)
-            {
-                this._externalCssPromises.set(doc, externalCssPromises = new Map<string, CssPromise>());
-            }
-            this._preFilteredSelectors.delete(doc);
+            const styleRefs = new Set<string>();
+            let styleRefIsDone = false;
+            let styleRefCssText = "";
+
             let styleRules = new Array<CSSStyleRule>();
             let styleSheets = Array.from(doc.styleSheets) as (CSSStyleSheet | CSSMediaRule)[];
             let cssRules: CSSRuleList | undefined;
@@ -181,19 +228,23 @@ namespace MidnightLizard.ContentScript
             {
                 if (sheet)
                 {
-                    try
-                    {
-                        cssRules = sheet.cssRules;
-                    }
-                    catch
-                    {
-                        cssRules = undefined;
-                    }
+                    try { cssRules = sheet.cssRules; }
+                    catch{ cssRules = undefined; }
                     if (cssRules)
                     {
                         if (cssRules.length > 0 && (sheet instanceof CSSMediaRule || !sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
-                            for (let rule of Array.from(cssRules) as CSSRule[])
+                            if (sheet instanceof CSSStyleSheet && (sheet.href || sheet.mlExternal))
+                            {
+                                styleRefs.add(sheet.href || sheet.mlExternal!);
+                                styleRefIsDone = true;
+                            }
+                            else
+                            {
+                                styleRefIsDone = false;
+                            }
+                            styleRefCssText = "";
+                            for (let rule of Array.from(cssRules))
                             {
                                 if (rule instanceof CSSStyleRule)
                                 {
@@ -201,6 +252,10 @@ namespace MidnightLizard.ContentScript
                                     if (this._styleProps.some(p => !!style.getPropertyValue(p.prop)))
                                     {
                                         styleRules.push(rule);
+                                        if (!styleRefIsDone)
+                                        {
+                                            styleRefCssText += rule.cssText;
+                                        }
                                     }
                                 }
                                 else if (rule instanceof CSSImportRule)
@@ -215,6 +270,10 @@ namespace MidnightLizard.ContentScript
                                     }
                                 }
                             }
+                            if (styleRefCssText)
+                            {
+                                styleRefs.add(Util.hashCode(styleRefCssText).toString());
+                            }
                         }
                     }
                     else if (sheet instanceof CSSStyleSheet && sheet.href) // external css
@@ -224,11 +283,11 @@ namespace MidnightLizard.ContentScript
                         {
                             sheet.ownerNode.setAttribute("ml-external", sheet.href);
                         }
-                        else if (!externalCssPromises!.has(sheet.href))
+                        else if (!this._externalCssPromises!.has(sheet.href))
                         {
                             let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
                             cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
-                            externalCssPromises.set(
+                            this._externalCssPromises.set(
                                 sheet.href,
                                 Util.handlePromise(Promise.all([doc, cssPromise, sheet.href])
                                     .then(([d, css, href]) =>
@@ -238,7 +297,11 @@ namespace MidnightLizard.ContentScript
                                         style.innerText = css;
                                         style.disabled = true;
                                         (d.head || d.documentElement).appendChild(style);
-                                        style.sheet!.disabled = true;
+                                        if (style.sheet)
+                                        {
+                                            style.sheet.mlExternal = href;
+                                            style.sheet.disabled = true;
+                                        }
                                     })));
                         }
                     }
@@ -274,8 +337,18 @@ namespace MidnightLizard.ContentScript
                 }
             }
 
-            this._selectorsQuality.set(doc, selectorsQuality);
-            this._selectors.set(doc, filteredStyleRules.map(sr => sr.selectorText));
+            this._selectorsQuality = selectorsQuality;
+            this._selectors = filteredStyleRules.map(sr => sr.selectorText);
+            if (Util.setsAreEqual(this._styleRefsCache, styleRefs))
+            {
+                this._styleRefs = this._styleRefsCache;
+                this._preFilteredSelectors = this._preFilteredSelectorsCache;
+            }
+            else
+            {
+                this._styleRefs = styleRefs;
+                this._preFilteredSelectors.clear();
+            }
         }
 
         public findElementsForUserActionObservation(doc: Document, rules: Array<CSSStyleRule>)
@@ -339,13 +412,7 @@ namespace MidnightLizard.ContentScript
         public getPreFilteredSelectors(tag: Element): string[]
         {
             let key = `${tag.tagName}#${tag.id}.${tag.classList.toString()}`;
-            let map = this._preFilteredSelectors.get(tag.ownerDocument);
-            if (map === undefined)
-            {
-                map = new Map<string, string[]>();
-                this._preFilteredSelectors.set(tag.ownerDocument, map);
-            }
-            let preFilteredSelectors = map.get(key);
+            let preFilteredSelectors = this._preFilteredSelectors.get(key);
             if (preFilteredSelectors === undefined)
             {
                 let notThisClassNames = "", className = "";
@@ -370,8 +437,8 @@ namespace MidnightLizard.ContentScript
                 //let excludeRegExp = new RegExp(excludeRegExpText, "i");
                 let includeRegExp = new RegExp(includeRegExpText, "gi");
                 //preFilteredSelectors = this._selectors.get(tag.ownerDocument)!.filter(selector => !excludeRegExp.test(selector));
-                preFilteredSelectors = this._selectors.get(tag.ownerDocument)!.filter(selector => selector.search(includeRegExp) !== -1);
-                map.set(key, preFilteredSelectors);
+                preFilteredSelectors = this._selectors.filter(selector => selector.search(includeRegExp) !== -1);
+                this._preFilteredSelectors.set(key, preFilteredSelectors);
             }
             return preFilteredSelectors;
         }
@@ -394,17 +461,11 @@ namespace MidnightLizard.ContentScript
 
         protected validateMediaQuery(doc: Document, mediaQuery: string)
         {
-            let mediaMap = this._mediaQueries.get(doc);
-            if (mediaMap === undefined)
-            {
-                mediaMap = new Map<string, boolean>();
-                this._mediaQueries.set(doc, mediaMap);
-            }
-            let mediaResult = mediaMap.get(mediaQuery);
+            let mediaResult = this._mediaQueries.get(mediaQuery);
             if (mediaResult === undefined)
             {
                 mediaResult = doc.defaultView.matchMedia(mediaQuery).matches;
-                mediaMap.set(mediaQuery, mediaResult);
+                this._mediaQueries.set(mediaQuery, mediaResult);
             }
             return mediaResult;
         }

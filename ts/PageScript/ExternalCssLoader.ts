@@ -18,7 +18,7 @@ namespace MidnightLizard.PageScript
             if (cs && cs.getPropertyValue("--ml-browser") === "Firefox")
             {
                 this._externalObserver.observe(document.head, this._externalObserverConfig);
-                for (const link of document.head.querySelectorAll(`[${externalAttribute}]`))
+                for (const link of Array.from(document.head.querySelectorAll(`[${externalAttribute}]`)))
                 {
                     this.processExternalCss(link);
                 }
