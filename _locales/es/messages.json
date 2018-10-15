@@ -21,7 +21,7 @@
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Ejecutar 'Midnight Lizard' en el sitio web actual."
+        "message": "Ejecutar [Midnight Lizard] en el sitio web actual."
     },
     "restoreColorsOnCopy_text_label": {
         "description": "restoreColorsOnCopy_text_label: text on the label",
@@ -117,7 +117,7 @@
     },
     "backgroundHueGravity_@title": {
         "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si 'Reemplazar todos' los tonos está activado.\n'Reemplazar todos' los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
     },
     "backgroundGrayHue_text_label": {
         "description": "backgroundGrayHue_text_label: text on the label",
@@ -173,7 +173,7 @@
     },
     "buttonHueGravity_@title": {
         "description": "buttonHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si 'Reemplazar todos' los tonos está activado.\n'Reemplazar todos' los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
     },
     "buttonGrayHue_text_label": {
         "description": "buttonGrayHue_text_label: text on the label",
@@ -229,7 +229,7 @@
     },
     "textHueGravity_@title": {
         "description": "textHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si 'Reemplazar todos' los tonos está activado.\n'Reemplazar todos' los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
     },
     "textGrayHue_text_label": {
         "description": "textGrayHue_text_label: text on the label",
@@ -292,7 +292,7 @@
     },
     "linkHueGravity_@title": {
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si 'Reemplazar todos' los tonos está activado.\n'Reemplazar todos' los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
     },
     "linkDefaultHue_text_label": {
         "description": "linkDefaultHue_text_label: text on the label",
@@ -356,7 +356,7 @@
     },
     "borderHueGravity_@title": {
         "description": "borderHueGravity_@title: text on the tooltip\/hint",
-        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si 'Reemplazar todos' los tonos está activado.\n'Reemplazar todos' los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
+        "message": "Determina como serán afectados los otros tonos por el tono predeterminado seleccionado.\nCuanto mayor sea la gravedad, más se acercarán los demás tonos al tono predeterminado seleccionado.\nEl límite de saturación se usará con los tonos afectados.\nNo funciona si [Reemplazar todos] los tonos está activado.\n[Reemplazar todos] los tonos funciona más rápido y debería usarse en vez de establecer la gravedad al 100%."
     },
     "borderGrayHue_text_label": {
         "description": "borderGrayHue_text_label: text on the label",
@@ -484,7 +484,7 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
-        "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar 'Midnight Lizard' automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
+        "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar [Midnight Lizard] automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
     },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
@@ -592,7 +592,7 @@
     },
     "syncSettings_@title": {
         "description": "syncSettings_@title: text on the tooltip\/hint",
-        "message": "Sincronizar los ajustes de 'Midnight Lizard' en todos los dispositivos con esta opción activada.\nCuando esté activada los ajustes personalizados de cada página web serán unidos desde todos los dispositivos pero la lista de esquemas de color personalizados será sobrescrita con la última disponible. Por tanto, asegúrese de estar en línea cuando edite esquemas personalizados.\nNecesita activar 'Sync' en los ajustes del navegador para que la sincronización de los ajustes de 'Midnight Lizard' funcione."
+        "message": "Sincronizar los ajustes de [Midnight Lizard] en todos los dispositivos con esta opción activada.\nCuando esté activada los ajustes personalizados de cada página web serán unidos desde todos los dispositivos pero la lista de esquemas de color personalizados será sobrescrita con la última disponible. Por tanto, asegúrese de estar en línea cuando edite esquemas personalizados.\nNecesita activar [Sync] en los ajustes del navegador para que la sincronización de los ajustes de [Midnight Lizard] funcione."
     },
     "colorSchemeForEdit_text_label": {
         "description": "colorSchemeForEdit_text_label: text on the label",
@@ -632,7 +632,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Exportar a archivo el esquema de color seleccionado para editar '$color_scheme_for_edit$' con nombre '$color_scheme_name$' y reemplazar todos sus ajustes con los ajustes aplicados actualmente a la ventana emergente de '$current_color_scheme$'.",
+        "message": "Exportar a archivo el esquema de color seleccionado para editar [$color_scheme_for_edit$] con nombre [$color_scheme_name$] y reemplazar todos sus ajustes con los ajustes aplicados actualmente a la ventana emergente de [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -727,7 +727,7 @@
     },
     "colorSchemeImportSuccessMessage": {
         "description": "colorSchemeImportSuccessMessage: text on the message box",
-        "message": "$imported_color_schemes_count$ esquemas de color han sido importados con éxito desde archivos.\nLos esquemas de color importados están marcados con el símbolo $edit_mark$ y serán eliminados con el cierre de la ventana emergente a no ser que guarde cada uno.\nPara guardar el esquema de color importado selecciónelo en la lista desplegable 'Esquema de color actual' y pulse el botón 'Guardar'.",
+        "message": "$imported_color_schemes_count$ esquemas de color han sido importados con éxito desde archivos.\nLos esquemas de color importados están marcados con el símbolo $edit_mark$ y serán eliminados con el cierre de la ventana emergente a no ser que guarde cada uno.\nPara guardar el esquema de color importado selecciónelo en la lista desplegable [Esquema de color actual] y pulse el botón [Guardar].",
         "placeholders": {
             "imported_color_schemes_count": {
                 "content": "$1"
@@ -739,7 +739,7 @@
     },
     "colorSchemeSaveConfirmationMessage": {
         "description": "colorSchemeSaveConfirmationMessage: text on the message box",
-        "message": "Está a punto de actualizar el esquema de color '$color_scheme_for_edit_name$' con los ajustes actuales de la ventana emergente y el nombre '$color_scheme_name$'. ¿Está seguro que quiere continuar?",
+        "message": "Está a punto de actualizar el esquema de color [$color_scheme_for_edit_name$] con los ajustes actuales de la ventana emergente y el nombre [$color_scheme_name$]. ¿Está seguro que quiere continuar?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -755,7 +755,7 @@
     },
     "colorSchemeDeleteConfirmationMessage": {
         "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
-        "message": "Está a punto de eliminar el esquema de color '$color_scheme_for_edit_name$'.\nBorrar esquemas de color del sistema solo eliminará los cambios del esquema de color especificado. No hay forma de eliminar completamente ningún esquema de color del sistema. ¿Estás seguro que quieres continuar?",
+        "message": "Está a punto de eliminar el esquema de color [$color_scheme_for_edit_name$].\nBorrar esquemas de color del sistema solo eliminará los cambios del esquema de color especificado. No hay forma de eliminar completamente ningún esquema de color del sistema. ¿Estás seguro que quieres continuar?",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -890,7 +890,7 @@
     },
     "smallBackgroundImageExample_@title": {
         "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
-        "message": "Ejemplo de procesado de imágenes de fondo pequeñas.\nSi el fondo principal es muy oscuro las imágenes de fondo pequeñas son invertidas.\nEn este caso 'Brillo' de las imágenes de fondo no les está afectando."
+        "message": "Ejemplo de procesado de imágenes de fondo pequeñas.\nSi el fondo principal es muy oscuro las imágenes de fondo pequeñas son invertidas.\nEn este caso [Brillo] de las imágenes de fondo no les está afectando."
     },
     "smallBackgroundImageExample_text_label": {
         "description": "smallBackgroundImageExample_text_label: text on the label",
@@ -942,7 +942,7 @@
     },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
-        "message": "<h1>Midnight Lizard no puede conectar a esta página<\/h1>\n<span>por alguna de las siguientes razones<\/span>\n<br\/>\n<ul>\n    <li>\n        El navegador no permite ejecutar extensiones en esta página<br\/>\n        (p. ej. Web Store, Ajustes, Nueva Pestaña)\n    <\/li><br\/>\n    <li>\n        'Midnight Lizard' ha sido actualizado o acaba de instalarse<br\/>\n        por tanto es necesario actualizar la página\n    <\/li><br\/>\n    <li>\n        La página actual representa un archivo local,<br\/>\n        pero no has dado permiso a 'Midnight Lizard' para procesar archivos locales\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    AVISO<br\/>\n    Midnight Lizard es una extensión por tanto no puede cambiar el color de la pestañas y de las barras de herramientas.\n    Para ello necesitas instalar\/cambiar un tema del navegador personalizado.\n<\/em>"
+        "message": "<h1>Midnight Lizard no puede conectar a esta página<\/h1>\n<span>por alguna de las siguientes razones<\/span>\n<br\/>\n<ul>\n    <li>\n        El navegador no permite ejecutar extensiones en esta página<br\/>\n        (p. ej. Web Store, Ajustes, Nueva Pestaña)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] ha sido actualizado o acaba de instalarse<br\/>\n        por tanto es necesario actualizar la página\n    <\/li><br\/>\n    <li>\n        La página actual representa un archivo local,<br\/>\n        pero no has dado permiso a [Midnight Lizard] para procesar archivos locales\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    AVISO<br\/>\n    Midnight Lizard es una extensión por tanto no puede cambiar el color de la pestañas y de las barras de herramientas.\n    Para ello necesitas instalar\/cambiar un tema del navegador personalizado.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
