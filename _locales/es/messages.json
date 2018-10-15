@@ -53,7 +53,7 @@
     },
     "useDefaultSchedule_@title": {
         "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Usar la configuración de los ajustes predeterminados\nSi quiere utilizar una sola configuración para todos los sitios web tiene que especificarlo en los ajustes predeterminados."
+        "message": "Usar la configuración de los ajustes predeterminados.\nSi quiere utilizar una sola configuración para todos los sitios web tiene que especificarlo en los ajustes predeterminados."
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -816,13 +816,33 @@
         "description": "color scheme name",
         "message": "Original (ninguna)"
     },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Polvo Oscuro"
+    },
     "colorSchemeName_appleMint": {
         "description": "color scheme name",
         "message": "Menta Manzana"
     },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Pantano Bosque"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Almendra Madura"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Velero al Atardecer"
+    },
     "colorSchemeName_halloween": {
         "description": "color scheme name",
         "message": "Noche de Brujas"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Niebla de Mañana"
     },
     "colorSchemeName_antiqueCodex": {
         "description": "color scheme name",
@@ -940,17 +960,41 @@
         "description": "mode_text_label: text on the label",
         "message": "Modo de procesamiento"
     },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "El modo de procesamiento simplificado de la pagina no es preciso, pero funciona muy rápido"
+    },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
         "message": "Simplificado"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "El modo de procesamiento complejo de la pagina no es rápido pero luce muy bien"
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Complejo"
     },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "El modo de procesamiento automático de la página cambiará de 'Complejo' a 'Simplificado' si la página actual tiene más elementos que el 'Limite de cambio del modo automático'."
+    },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
         "message": "Automático"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "Limite de cambio del modo automático"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "Si hay más elementos en la página durante su carga inicial que el limite especificado aquí y el modo 'Automático' es usado, entonces el modo de procesamiento actual para esta página será cambiado de 'Complejo' a 'Simplificado'."
+    },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "Pase el ratón sobre cada opción para ver su descripción"
     },
     "default_runOnThisSite_text_label": {
         "description": "default_runOnThisSite_text_label: text on the label",
@@ -964,9 +1008,17 @@
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "Tiempo de activación predeterminada"
     },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "La extensión estará activa solo iniciando desde este momento en todos los sitios web con cronograma predeterminado."
+    },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
         "message": "Tiempo de desactivación predeterminada"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "La extensión estará activa solo hasta este momento en todos los sitios con cronograma predeterminado."
     },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
@@ -989,6 +1041,15 @@
             }
         }
     },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' no tiene un host válido.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
     "matchCurrentPage_text_message": {
         "description": "matchCurrentPage_text_message: text on the label",
         "message": "Algunos de los patrones coinciden con la página actual"
@@ -1004,6 +1065,10 @@
     "excludeMatches_text_label": {
         "description": "excludeMatches_text_label: text on the label",
         "message": "Excluir patrones de coincidencia"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "La página no será procesada si su URL coincide con cualquiera de estos patrones.\nEscriba cada patrón en una nueva linea.\nExcluir reglas tiene la precedencia más baja, por lo tanto estas siempre van a ganar."
     },
     "includeMatches_text_label": {
         "description": "includeMatches_text_label: text on the label",
