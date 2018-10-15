@@ -816,6 +816,10 @@
         "description": "color scheme name",
         "message": "Original (ninguna)"
     },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "Polvo Oscuro"
+    },
     "colorSchemeName_appleMint": {
         "description": "color scheme name",
         "message": "Menta Manzana"
@@ -940,9 +944,17 @@
         "description": "mode_text_label: text on the label",
         "message": "Modo de procesamiento"
     },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "El modo de procesamiento simplificado de la pagina no es preciso, pero funciona muy rápido"
+    },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
         "message": "Simplificado"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "El modo de procesamiento complejo de la pagina no es rápido pero luce muy bien"
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
