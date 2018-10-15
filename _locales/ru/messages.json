@@ -1158,5 +1158,21 @@
                 "content": "$1"
             }
         }
+    },
+    "hideBigBackgroundImages_text_label": {
+        "description": "hideBigBackgroundImages_text_label: text on the label",
+        "message": "Скрывать большие картинки фона"
+    },
+    "hideBigBackgroundImages_@title": {
+        "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
+        "message": "Скрывать фоновые изображения, если требуется их обработка, но их размер в KiB больше, чем значение, указанное в «Пределе размера картинок фона»"
+    },
+    "maxBackgroundImageSize_text_label": {
+        "description": "maxBackgroundImageSize_text_label: text on the label",
+        "message": "Предел размера картинок фона"
+    },
+    "maxBackgroundImageSize_@title": {
+        "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
+        "message": "Максимальный размер фоновых изображений в KiB.\nЕсли выбрано «Скрывать большие картинки фона», то\nфоновые изображения с размером больше, чем указано\nздесь, будут скрыты, если потребуется их обработка."
     }
 }
