@@ -3,6 +3,8 @@
 
 namespace MidnightLizard.BackgroundPage
 {
+    const noneImageDataUrl = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPgo8L3N2Zz4=";
+
     declare type BackgroundImageCache = MidnightLizard.ContentScript.BackgroundImageCache;
 
     export abstract class IImageFetcher
@@ -31,14 +33,14 @@ namespace MidnightLizard.BackgroundPage
                         }
                         else
                         {
-                            reject(`${url} is too big (${blob.size / 1024} KB)`);
+                            resolve(noneImageDataUrl);
                         }
                     }));
             return dataUrlPromise.then(dataUrl => new Promise<BackgroundImageCache>((resolve, reject) =>
             {
                 let img = new Image();
                 img.onload = () => resolve({ d: dataUrl, w: img.naturalWidth, h: img.naturalHeight });
-                img.onerror = (e) => reject(`Faild to load image: ${url}\n${e.message}`);
+                img.onerror = (e) => reject(`Faild draw the image: ${url}\n${e.message}`);
                 img.src = dataUrl;
             }));
         }
