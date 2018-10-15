@@ -408,6 +408,17 @@
             "js": [
                 "js/custom/chrome-runtime-connect-external-polyfill.js"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*.stackoverflow.com/*",
+                "https://*.stackexchange.com/*"
+            ],
+            "css": [
+                "css/custom/stackoverflow.css"
+            ]
         }
     ]
 }

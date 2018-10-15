@@ -1,0 +1,22 @@
+html[ml-is-active] .-img._glyph {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter);
+}
+
+.left-sidebar-toggle * {
+    --ml-background-background-color:Text;
+}
+
+html[ml-is-active] .left-sidebar-toggle *:before,
+html[ml-is-active] .left-sidebar-toggle *:after {
+    --ml-ignore:true;
+    background-color: var(--ml-main-text-color);
+}
+
+.profile-cards--graph {
+    --ml-backgroundimage:Background;
+}
+
+.profile-avatar:not(imp) {
+    box-shadow: none!important;
+}
