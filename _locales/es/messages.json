@@ -53,7 +53,7 @@
     },
     "useDefaultSchedule_@title": {
         "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Usar la configuración de los ajustes predeterminados\nSi quiere utilizar una sola configuración para todos los sitios web tiene que especificarlo en los ajustes predeterminados."
+        "message": "Usar la configuración de los ajustes predeterminados.\nSi quiere utilizar una sola configuración para todos los sitios web tiene que especificarlo en los ajustes predeterminados."
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -976,6 +976,10 @@
         "description": "mode_automatic_@title: text on the tooltip\/hint",
         "message": "Si hay más elementos en la página durante su carga inicial que el limite especificado aquí y el modo 'Automático' es usado, entonces el modo de procesamiento actual para esta página será cambiado de 'Complejo' a 'Simplificado'."
     },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "Pase el ratón sobre cada opción para ver su descripción"
+    },
     "default_runOnThisSite_text_label": {
         "description": "default_runOnThisSite_text_label: text on the label",
         "message": "Ejecutar en todos sitios web por defecto"
@@ -987,6 +991,10 @@
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "Tiempo de activación predeterminada"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "La extensión estará activa solo iniciando desde este momento en todos los sitios web con cronograma predeterminado."
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
