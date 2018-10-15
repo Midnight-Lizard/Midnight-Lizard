@@ -1050,6 +1050,10 @@
         "description": "excludeMatches_text_label: text on the label",
         "message": "Excluir patrones de coincidencia"
     },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "La página no será procesada si su URL coincide con cualquiera de estos patrones.\nEscriba cada patrón en una nueva linea.\nExcluir reglas tiene la precedencia más baja, por lo tanto estas siempre van a ganar."
+    },
     "includeMatches_text_label": {
         "description": "includeMatches_text_label: text on the label",
         "message": "Incluir patrones de coincidencia"
