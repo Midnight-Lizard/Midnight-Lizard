@@ -1158,5 +1158,21 @@
                 "content": "$1"
             }
         }
+    },
+    "hideBigBackgroundImages_text_label": {
+        "description": "hideBigBackgroundImages_text_label: text on the label",
+        "message": "Hide big background images"
+    },
+    "hideBigBackgroundImages_@title": {
+        "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
+        "message": "Hide background images if they need processing and \ntheir size in KiB is bigger then the value specified in\n'Background image size limit'"
+    },
+    "maxBackgroundImageSize_text_label": {
+        "description": "maxBackgroundImageSize_text_label: text on the label",
+        "message": "Background image size limit"
+    },
+    "maxBackgroundImageSize_@title": {
+        "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
+        "message": "Maximum size of background images in KiB.\nIf 'Hide big background images' is checked then background images\nwith size bigger then specified here will be hidden if processed."
     }
 }
