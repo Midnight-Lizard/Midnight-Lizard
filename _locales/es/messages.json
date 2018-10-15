@@ -824,9 +824,25 @@
         "description": "color scheme name",
         "message": "Menta Manzana"
     },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "Pantano Bosque"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "Almendra Madura"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "Velero al Atardecer"
+    },
     "colorSchemeName_halloween": {
         "description": "color scheme name",
         "message": "Noche de Brujas"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "Niebla de Mañana"
     },
     "colorSchemeName_antiqueCodex": {
         "description": "color scheme name",
