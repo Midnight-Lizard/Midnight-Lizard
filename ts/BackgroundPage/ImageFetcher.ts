@@ -17,29 +17,30 @@ namespace MidnightLizard.BackgroundPage
 
         public fetchImage(url: string, maxSize: number)
         {
-            return fetch(url, { cache: "force-cache" })
-                .then(resp => resp.blob())
-                .then(blob => new Promise<string>((resolve, reject) =>
-                {
-                    if (maxSize === -1 || blob.size < maxSize)
+            const dataUrlPromise = url && url.startsWith("data:image") ? Promise.resolve(url) :
+                fetch(url, { cache: "force-cache" })
+                    .then(resp => resp.blob())
+                    .then(blob => new Promise<string>((resolve, reject) =>
                     {
-                        let rdr = new FileReader();
-                        rdr.onload = () => resolve(rdr.result as any);
-                        rdr.onerror = () => reject(`Faild to load image: ${url}\n${rdr.error!.message}`);
-                        rdr.readAsDataURL(blob);
-                    }
-                    else
-                    {
-                        reject(`${url} is too big (${blob.size / 1024} KB)`);
-                    }
-                }))
-                .then(dataUrl => new Promise<BackgroundImageCache>((resolve, reject) =>
-                {
-                    let img = new Image();
-                    img.onload = () => resolve({ d: dataUrl, w: img.naturalWidth, h: img.naturalHeight });
-                    img.onerror = (e) => reject(`Faild to load image: ${url}\n${e.message}`);
-                    img.src = dataUrl;
-                }));
+                        if (maxSize === -1 || blob.size < maxSize)
+                        {
+                            let rdr = new FileReader();
+                            rdr.onload = () => resolve(rdr.result as any);
+                            rdr.onerror = () => reject(`Faild to load image: ${url}\n${rdr.error!.message}`);
+                            rdr.readAsDataURL(blob);
+                        }
+                        else
+                        {
+                            reject(`${url} is too big (${blob.size / 1024} KB)`);
+                        }
+                    }));
+            return dataUrlPromise.then(dataUrl => new Promise<BackgroundImageCache>((resolve, reject) =>
+            {
+                let img = new Image();
+                img.onload = () => resolve({ d: dataUrl, w: img.naturalWidth, h: img.naturalHeight });
+                img.onerror = (e) => reject(`Faild to load image: ${url}\n${e.message}`);
+                img.src = dataUrl;
+            }));
         }
     }
 }
