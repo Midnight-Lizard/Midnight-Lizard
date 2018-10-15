@@ -1000,6 +1000,10 @@
         "description": "default_scheduleFinishHour_text_label: text on the label",
         "message": "Tiempo de desactivación predeterminada"
     },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "La extensión estará activa solo hasta este momento en todos los sitios con cronograma predeterminado."
+    },
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
         "message": "Ajustes globales"
@@ -1015,6 +1019,15 @@
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",
         "message": "'$pattern$' no es un patrón de coincidencia válido.",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' no tiene un host válido.",
         "placeholders": {
             "pattern": {
                 "content": "$1"
