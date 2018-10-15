@@ -1165,7 +1165,7 @@
     },
     "hideBigBackgroundImages_@title": {
         "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
-        "message": "Hide background images if they need processing and their size in KiB is bigger\nthen the value specified in 'Background image size limit'"
+        "message": "Hide background images if they need processing and \ntheir size in KiB is bigger then the value specified in\n'Background image size limit'"
     },
     "maxBackgroundImageSize_text_label": {
         "description": "maxBackgroundImageSize_text_label: text on the label",
