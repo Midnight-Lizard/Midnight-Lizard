@@ -2161,7 +2161,7 @@ namespace MidnightLizard.ContentScript
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
             let backgroundSizes = tag.mlComputedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
-            let backgroundImages = backgroundImage.match(/[\w-]+\([^)]+\)/gi)!;
+            let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|\b[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
             if (/\burl\(/gi.test(backgroundImage))

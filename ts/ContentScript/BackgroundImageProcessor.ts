@@ -171,8 +171,9 @@ namespace MidnightLizard.ContentScript
                 `<image width="${imgWidth}" height="${imgHeight}" href="${img.d}"/></svg>`;
 
             return new BackgroundImage(/^(auto\s?){1,2}$/i.test(bgSize) ? imgWidth + " " + imgHeight : bgSize,
-                "url(data:image/svg+xml," + encodeURIComponent(svgImg)
-                    .replace(/\(/g, "%28").replace(/\)/g, "%29") + ")", BackgroundImageType.Image);
+                "url('data:image/svg+xml," + encodeURIComponent(svgImg)
+                    .replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29") +
+                "')", BackgroundImageType.Image);
 
             // // looks like with blob + objectUrl it works much slower
             // const blob = new Blob([svgImg], { type: 'image/svg+xml' });
