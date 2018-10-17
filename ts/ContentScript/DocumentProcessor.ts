@@ -336,6 +336,7 @@ namespace MidnightLizard.ContentScript
                     {
                         dom.addEventListener(doc, "copy", this.onCopy, this, false, doc);
                     }
+                    this.processEditableContent(doc);
                     if (this._settingsManager.currentSettings.restoreColorsOnPrint)
                     {
                         const printMedia = doc.defaultView.matchMedia("print");
@@ -373,6 +374,32 @@ namespace MidnightLizard.ContentScript
                     DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
                 }
             }
+        }
+
+        private processEditableContent(doc: Document)
+        {
+            dom.addEventListener(doc.documentElement, "before-get-inner-html", (e: Event) =>
+            {
+                const rootElement = e.target as HTMLElement;
+                if (rootElement && this._settingsManager.isActive && this._settingsManager.isComplex)
+                {
+                    const state = this._documentObserver.stopDocumentObservation(doc); //----------
+
+                    const allElements = Array.from(rootElement.getElementsByTagName("*")) as HTMLElement[];
+                    allElements.splice(0, 0, rootElement);
+                    allElements.forEach(tag => this.restoreElementColors(tag));
+                    rootElement.style.setProperty(this._css.color, cx.Black, this._css.important);
+
+                    dom.addEventListener(rootElement, "after-get-inner-html", (e: Event) =>
+                    {
+                        dom.removeAllEventListeners(rootElement, "after-get-inner-html");
+                        rootElement.style.setProperty(this._css.color, rootElement.originalColor || "");
+                        DocumentProcessor.processAllElements(allElements, this, smallReCalculationDelays);
+                    });
+
+                    this._documentObserver.startDocumentObservation(doc, state); //----------------
+                }
+            });
         }
 
         private getFilterOfElements()
@@ -1576,7 +1603,6 @@ namespace MidnightLizard.ContentScript
                 && (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 let doc = tag.ownerDocument;
-                let isSmall, bgInverted;
                 let bgLight: number, roomRules: RoomRules | undefined, room: string | null = null;
                 let isSvg = tag instanceof SVGElement,
                     isSvgText = tag instanceof SVGTextContentElement,
@@ -1599,16 +1625,10 @@ namespace MidnightLizard.ContentScript
                         labeledElement.type === "file";
                 }
 
-                if (isLink && !isButton && !isSvg &&
-                    tag.className && tag.className && tag.className &&
+                if (isLink && !isButton && !isSvg && tag.className &&
                     (tag.className.includes("button") || tag.className.includes("btn")))
                 {
                     isButton = true;
-                }
-
-                if (isRealElement(tag) && tag.contentEditable == true.toString())
-                {
-                    this.overrideInnerHtml(tag);
                 }
 
                 this.calcElementPath(tag);
@@ -1760,7 +1780,7 @@ namespace MidnightLizard.ContentScript
                             this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
                         }
 
-                        let bgLight = roomRules.backgroundColor.light;
+                        bgLight = roomRules.backgroundColor.light;
                         if (roomRules.backgroundColor.color && roomRules.backgroundColor.alpha < 0.1)
                         {
                             bgLight = this.getParentBackground(tag).light;
@@ -2307,30 +2327,6 @@ namespace MidnightLizard.ContentScript
             return tag;
         }
 
-        protected overrideInnerHtml(tag: HTMLElement)
-        {
-            if (!tag.innerHtmlGetter)
-            {
-                tag.innerHtmlGetter = tag.__lookupGetter__<string>('innerHTML');
-                Object.defineProperty(tag, "innerHTML",
-                    {
-                        get: this.getInnerHtml.bind(this, tag),
-                        set: tag.__lookupSetter__('innerHTML').bind(tag)
-                    });
-            }
-        }
-
-        protected getInnerHtml(tag: HTMLElement)
-        {
-            if (!tag.innerHtmlCache || Date.now() - tag.innerHtmlCache.timestamp > 5000)
-            {
-                this.restoreDocumentColors(tag.ownerDocument);
-                tag.innerHtmlCache = { timestamp: Date.now(), value: tag.innerHtmlGetter() };
-                setTimeout(this.processDocument, 1, tag.ownerDocument);
-            }
-            return tag.innerHtmlCache.value;
-        }
-
         protected removeDynamicValuesStyle(doc: Document)
         {
             const dynamicStyle = doc.getElementById("midnight-lizard-dynamic-values");
@@ -2520,11 +2516,14 @@ namespace MidnightLizard.ContentScript
         {
             try
             {
-                let pageScript = doc.createElement("script");
-                pageScript.id = "midnight-lizard-page-script";
-                pageScript.type = "text/javascript";
-                pageScript.src = this._app.getFullPath("/js/page-script.js");
-                (doc.head || doc.documentElement).appendChild(pageScript);
+                if (!doc.getElementById("midnight-lizard-page-script"))
+                {
+                    const pageScript = doc.createElement("script");
+                    pageScript.id = "midnight-lizard-page-script";
+                    pageScript.type = "text/javascript";
+                    pageScript.src = this._app.getFullPath("/js/page-script.js");
+                    (doc.head || doc.documentElement).appendChild(pageScript);
+                }
             }
             catch (ex)
             {

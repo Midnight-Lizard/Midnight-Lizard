@@ -5,7 +5,9 @@ namespace MidnightLizard.Events
         beforeprint: never,
         resize: never,
         unload: never,
-        beforeunload: never
+        beforeunload: never,
+        "before-get-inner-html": never,
+        "after-get-inner-html": never
     };
     type Listener = (...args: any[]) => any;
     export const _handlers = new WeakMap<EventTarget, Map<keyof EventMap, Map<Listener, Listener>>>();

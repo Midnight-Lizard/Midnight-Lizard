@@ -27,13 +27,19 @@ namespace MidnightLizard.ContentScript
     @DI.injectable(IDocumentObserver)
     class DocumentObserver implements IDocumentObserver
     {
-        protected readonly _updateObserverConfig: MutationObserverInit =
-            { attributes: true, attributeFilter: ["ml-update"] };
-        protected readonly _bodyObserverConfig: MutationObserverInit =
-            { subtree: true, childList: true, /*attributeOldValue: true,*/ attributes: true, attributeFilter: ["class", "style", "fill", "stroke"] };
-        protected readonly _simpleBodyObserverConfig: MutationObserverInit =
-            { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] };
-        protected readonly _headObserverConfig: MutationObserverInit = { childList: true };
+        protected readonly _updateObserverConfig: MutationObserverInit = {
+            attributes: true, attributeFilter: ["ml-update"]
+        };
+        protected readonly _bodyObserverConfig: MutationObserverInit = {
+            subtree: true, childList: true, // attributeOldValue: true,
+            attributes: true, attributeFilter: ["class", "style", "fill", "stroke"]
+        };
+        protected readonly _simpleBodyObserverConfig: MutationObserverInit = {
+            subtree: true, childList: true, attributes: true, attributeFilter: ["class"]
+        };
+        protected readonly _headObserverConfig: MutationObserverInit = {
+            childList: true
+        };
         protected readonly _bodyObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _headObservers = new WeakMap<Document, MutationObserver>();
         protected readonly _updateObservers = new WeakMap<Document, MutationObserver>();

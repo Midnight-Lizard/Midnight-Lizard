@@ -3,22 +3,25 @@ namespace MidnightLizard.PageScript
     const externalAttribute = "ml-external";
     export class ExternalCssLoader
     {
+        private rootDoc!: Document;
         protected readonly _externalCssUrls = new Set<string>();
         protected readonly _externalObserver: MutationObserver;
-        protected readonly _externalObserverConfig: MutationObserverInit =
-            { attributes: true, subtree: true, attributeFilter: [externalAttribute] };
+        protected readonly _externalObserverConfig: MutationObserverInit = {
+            attributes: true, subtree: true, attributeFilter: [externalAttribute]
+        };
         constructor()
         {
             this._externalObserver = new MutationObserver(this.onCssMarkedAsExternal.bind(this));
         }
 
-        public beginExternalCssObservation()
+        public beginExternalCssObservation(doc: Document)
         {
-            const cs = document.defaultView.getComputedStyle(document.documentElement, undefined);
+            this.rootDoc = doc;
+            const cs = doc.defaultView.getComputedStyle(doc.documentElement, undefined);
             if (cs && cs.getPropertyValue("--ml-browser") === "Firefox")
             {
-                this._externalObserver.observe(document.head, this._externalObserverConfig);
-                for (const link of Array.from(document.head.querySelectorAll(`[${externalAttribute}]`)))
+                this._externalObserver.observe(doc.head, this._externalObserverConfig);
+                for (const link of Array.from(doc.head.querySelectorAll(`[${externalAttribute}]`)))
                 {
                     this.processExternalCss(link);
                 }
@@ -47,11 +50,11 @@ namespace MidnightLizard.PageScript
                     .then(response => response.text())
                     .then(css =>
                     {
-                        let style = document.createElement('style');
+                        let style = this.rootDoc.createElement('style');
                         style.title = `MidnightLizard Cross Domain CSS Import From ${externalCssUrl}`;
                         style.innerText = css;
                         style.disabled = true;
-                        document.head.appendChild(style);
+                        this.rootDoc.head.appendChild(style);
                         style.sheet!.disabled = true;
                     })
                     .catch(ex =>
