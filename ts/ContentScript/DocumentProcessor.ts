@@ -388,6 +388,7 @@ namespace MidnightLizard.ContentScript
                     const allElements = Array.from(rootElement.getElementsByTagName("*")) as HTMLElement[];
                     allElements.splice(0, 0, rootElement);
                     allElements.forEach(tag => this.restoreElementColors(tag));
+                    rootElement.originalColor = rootElement.style.color;
                     rootElement.style.setProperty(this._css.color, cx.Black, this._css.important);
 
                     dom.addEventListener(rootElement, "after-get-inner-html", (e: Event) =>
@@ -2181,7 +2182,7 @@ namespace MidnightLizard.ContentScript
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
             let backgroundSizes = tag.mlComputedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
-            let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|\b[\w-]+\([^)]+\)/gi)!;
+            let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
             if (/\burl\(/gi.test(backgroundImage))
