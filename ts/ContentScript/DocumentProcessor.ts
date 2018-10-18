@@ -1271,18 +1271,38 @@ namespace MidnightLizard.ContentScript
             var parentPath = "";
             if (tag.parentElement)
             {
-                parentPath = (tag.parentElement.mlPath ? tag.parentElement.mlPath : this.calcElementPath(tag.parentElement as HTMLElement)) + " ";
+                parentPath = (tag.parentElement.mlPath ? tag.parentElement.mlPath
+                    : this.calcElementPath(tag.parentElement)) + " ";
+                if (tag instanceof HTMLElement)
+                {
+                    if (tag.contentEditable !== this._css.inherit)
+                    {
+                        tag.isEditableContent = tag.contentEditable === true.toString();
+                    }
+                    else
+                    {
+                        tag.isEditableContent = tag.parentElement!.isEditableContent;
+                    }
+                }
+            }
+            else if (tag instanceof HTMLElement)
+            {
+                tag.isEditableContent = tag.contentEditable === true.toString();
             }
             tag.mlPath = parentPath + tag.tagName + tag.mlFixed;
-            if (!tag.isPseudo)
+            if (tag instanceof Element)
             {
-                var attr: Attr, length = (tag as Element).attributes.length;
-                for (var i = 0; i < length; i++)
+                let attr: Attr, length = tag.attributes.length;
+                for (let i = 0; i < length; i++)
                 {
-                    attr = (tag as Element).attributes[i];
+                    attr = tag.attributes[i];
                     if (attr.value && attr.name && !attr.name.endsWith("timer") && attr.name !== "d")
                     {
-                        tag.mlPath += `${attr.name}=${attr.value.length > maxAttrLen ? attr.value.substr(0, maxAttrLen) : attr.value}`;
+                        tag.mlPath += `${attr.name}=${
+                            !(tag instanceof HTMLElement && tag.isEditableContent) &&
+                                attr.value.length > maxAttrLen
+                                ? attr.value.substr(0, maxAttrLen)
+                                : attr.value}`;
                     }
                     else if (attr.name === "disabled")
                     {
@@ -1572,52 +1592,6 @@ namespace MidnightLizard.ContentScript
                     tag.removeAttribute("ml-bg-image");
                 }
             }
-            // else if (tag.isEditableContent)
-            // {
-            //     // in case content-editable element has been re-inserted into the document
-            //     // it happens in google sheets when cell has multiple text colors
-            //     if (tag.style.getPropertyPriority(this._css.color) === this._css.important)
-            //     {
-            //         const originalColor = tag.style.getPropertyValue(this._css.originalColor);
-            //         if (originalColor)
-            //         {
-            //             if (originalColor !== tag.style.getPropertyValue(this._css.color))
-            //             {
-            //                 tag.style.setProperty(this._css.color, originalColor);
-            //             }
-            //         }
-            //         // restoring whatever was the original color of the parent element
-            //         else if (tag.parentElement &&
-            //             tag.parentElement.originalEditableContentColor)
-            //         {
-            //             tag.style.setProperty(this._css.color, tag.parentElement.originalEditableContentColor);
-            //         }
-            //     }
-            //     else if (tag instanceof HTMLFontElement && tag.hasAttribute(this._css.color))
-            //     {
-            //         // font element uses color attribute instead of style
-            //         if (tag.parentElement && tag.parentElement.originalEditableContentColor)
-            //         {
-            //             tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag);
-            //             if (tag.parentElement.mlEditableContentColor === tag.mlComputedStyle.color)
-            //             {
-            //                 tag.style.setProperty(this._css.color, tag.parentElement.originalEditableContentColor);
-            //             }
-            //         }
-            //     }
-
-            //     // the same can happen in gmail with background
-            //     if (tag.style.getPropertyPriority(this._css.backgroundColor) === this._css.important &&
-            //         tag.parentElement && tag.parentElement.originalEditableContentBackgroundColor)
-            //     {
-            //         if (tag.parentElement.mlEditableContentBackgroundColor ===
-            //             tag.style.getPropertyValue(this._css.backgroundColor))
-            //         {
-            //             tag.style.setProperty(this._css.backgroundColor,
-            //                 tag.parentElement.originalEditableContentBackgroundColor);
-            //         }
-            //     }
-            // }
         }
 
         protected checkElement(tag: any)
@@ -1752,7 +1726,9 @@ namespace MidnightLizard.ContentScript
                                 roomRules.transitionDuration = { value: durations.join(", ") };
                             }
                         }
-                        const bgrColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor);
+                        const bgrColor = tag instanceof HTMLElement && tag.isEditableContent
+                            ? tag.style.getPropertyValue(this._css.backgroundColor)
+                            : tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor);
                         if (!isSvgText)
                         {
                             if (tag instanceof SVGElement)
@@ -1891,7 +1867,12 @@ namespace MidnightLizard.ContentScript
                             }
                             else
                             {
-                                const txtColor = tag.mlComputedStyle!.getPropertyValue(ns.css.fntColor);
+                                const txtColor = tag instanceof HTMLElement && tag.isEditableContent
+                                    ? tag instanceof HTMLFontElement && tag.color
+                                        ? this._colorConverter.convert(tag.color) || cx.Black
+                                        : tag.style.getPropertyValue(this._css.color)
+                                        || tag.mlComputedStyle!.getPropertyValue(this._css.color)
+                                    : tag.mlComputedStyle!.getPropertyValue(ns.css.fntColor);
                                 if (roomRules.backgroundColor && roomRules.backgroundColor.color &&
                                     txtColor === bgrColor)
                                 {

@@ -52,7 +52,7 @@ namespace MidnightLizard.ContentScript
         className: string;
         classList: string[];
         tagName: string;
-        parentElement: Element;
+        parentElement: HTMLElement;
         mlFixed?: string | null;
         mlComputedStyle: CSSStyleDeclaration;
         mlRect: ClientRect | null | undefined;
@@ -78,7 +78,7 @@ namespace MidnightLizard.ContentScript
             this.resolveCss(css);
         }
 
-        constructor(type: PseudoType, parent: Element, id: string, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
+        constructor(type: PseudoType, parent: HTMLElement, id: string, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
         {
             let typeName = PseudoType[type].toLowerCase();
             this.id = id;
