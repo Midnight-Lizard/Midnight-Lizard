@@ -82,7 +82,19 @@ html[ml-stage="complete"] {}
         animation-duration: 333ms;
         animation-fill-mode: backwards;
     }
-    
+
+    html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-color"],
+    html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-color"]
+    {
+        color: var(--editable-content-color)!important;
+    }
+
+    html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-background-color"],
+    html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-background-color"]
+    {
+        background-color: var(--editable-content-background-color)!important;
+    }
+
     @keyframes transition-filter-none
     {
         to { filter: none; }

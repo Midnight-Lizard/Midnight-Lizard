@@ -65,6 +65,8 @@ namespace MidnightLizard.ContentScript
         placeholderColor = "--placeholder-color";
         originalColor = "--original-color";
         originalBackgroundColor = "--original-background-color";
+        editableContentColor = "--editable-content-color";
+        editableContentBackgroundColor = "--editable-content-background-color";
         linkColor = "--link-color";
         visitedColor = "--visited-color";
         linkColorHover = "--link-color-hover";

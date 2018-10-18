@@ -24,8 +24,8 @@ interface Node
     mlBgColor: MidnightLizard.Colors.ColorEntry | null | undefined;
     /** Calculated font color */
     mlColor: MidnightLizard.Colors.ColorEntry | null | undefined;
-    mlEditableContentColor: string | null | undefined;
-    mlEditableContentBackgroundColor: string | null | undefined;
+    // mlEditableContentColor: string | null | undefined;
+    // mlEditableContentBackgroundColor: string | null | undefined;
     /** Calculated parent background color */
     mlParentBgColor: MidnightLizard.Colors.ColorEntry | null | undefined;
     /** Calculated text shadow color */
@@ -61,9 +61,9 @@ interface Node
     keepFilter: boolean | undefined;
     originalTransitionDuration: string | null | undefined;
     originalBackgroundColor: string | null | undefined;
-    originalEditableContentBackgroundColor: string | null | undefined;
+    // originalEditableContentBackgroundColor: string | null | undefined;
     originalDisplay: string | null | undefined;
-    originalEditableContentColor: string | null | undefined;
+    // originalEditableContentColor: string | null | undefined;
     originalColor: string | null | undefined;
     originalTextShadow: string | null | undefined;
     originalBorderColor: string | null | undefined;

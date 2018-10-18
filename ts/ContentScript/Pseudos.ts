@@ -45,16 +45,6 @@ namespace MidnightLizard.ContentScript
         }
     }
 
-    export function isPseudoElement(tag: Node | PseudoElement): tag is PseudoElement
-    {
-        return tag.isPseudo;
-    }
-
-    export function isRealElement(tag: Node | PseudoElement): tag is Node
-    {
-        return !tag.isPseudo;
-    }
-
     export class PseudoElement
     {
         isPseudo = true;
