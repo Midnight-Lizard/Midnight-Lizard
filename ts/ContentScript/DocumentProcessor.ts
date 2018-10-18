@@ -387,7 +387,11 @@ namespace MidnightLizard.ContentScript
 
                     const allElements = Array.from(rootElement.getElementsByTagName("*")) as HTMLElement[];
                     allElements.splice(0, 0, rootElement);
-                    allElements.forEach(tag => this.restoreElementColors(tag));
+                    allElements.forEach(tag =>
+                    {
+                        tag.isEditableContent = true;
+                        this.restoreElementColors(tag)
+                    });
                     rootElement.originalColor = rootElement.style.color;
                     rootElement.style.setProperty(this._css.color, cx.Black, this._css.important);
 
@@ -1296,6 +1300,35 @@ namespace MidnightLizard.ContentScript
             return i;
         }
 
+        private isEditableContent(tag: HTMLElement): boolean
+        {
+            if (tag.contentEditable === true.toString())
+            {
+                tag.isEditableContent = true;
+            }
+            else if (tag.contentEditable === false.toString())
+            {
+                tag.isEditableContent = false;
+            }
+            else if (tag.parentElement)
+            {
+                if (tag.parentElement.isEditableContent !== undefined)
+                {
+                    tag.isEditableContent = tag.parentElement.isEditableContent
+                }
+                else
+                {
+                    tag.isEditableContent = this.isEditableContent(tag.parentElement);
+                }
+                return tag.isEditableContent;
+            }
+            else
+            {
+                tag.isEditableContent = false;
+            }
+            return tag.isEditableContent;
+        }
+
         protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
         {
             let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.NotFound);
@@ -1449,8 +1482,12 @@ namespace MidnightLizard.ContentScript
                     {
                         tag.style.setProperty(ns.css.fntColor, tag.originalColor);
                     }
-                    tag.style.removeProperty(this._css.originalColor);
                     tag.style.removeProperty(this._css.placeholderColor);
+                }
+                if (tag.isEditableContent)
+                {
+                    tag.style.removeProperty(this._css.originalColor);
+                    tag.style.removeProperty(this._css.originalBackgroundColor);
                 }
                 if (hasLinkColors)
                 {
@@ -1533,16 +1570,49 @@ namespace MidnightLizard.ContentScript
                     tag.removeAttribute("ml-bg-image");
                 }
             }
-            // in case content-editable element has been re-inserted into the document
-            // it happens in google sheets when cell has multiple text colors
-            else if (tag.style.getPropertyPriority(this._css.color) === this._css.important)
+            else if (tag.isEditableContent)
             {
-                const originalColor = tag.style.getPropertyValue(this._css.originalColor);
-                if (originalColor)
+                // in case content-editable element has been re-inserted into the document
+                // it happens in google sheets when cell has multiple text colors
+                if (tag.style.getPropertyPriority(this._css.color) === this._css.important)
                 {
-                    if (originalColor !== tag.style.getPropertyValue(this._css.color))
+                    const originalColor = tag.style.getPropertyValue(this._css.originalColor);
+                    if (originalColor)
                     {
-                        tag.style.setProperty(this._css.color, originalColor);
+                        if (originalColor !== tag.style.getPropertyValue(this._css.color))
+                        {
+                            tag.style.setProperty(this._css.color, originalColor);
+                        }
+                    }
+                    // restoring whatever was the original color of the parent element
+                    else if (tag.parentElement &&
+                        tag.parentElement.originalEditableContentColor)
+                    {
+                        tag.style.setProperty(this._css.color, tag.parentElement.originalEditableContentColor);
+                    }
+                }
+                else if (tag instanceof HTMLFontElement && tag.hasAttribute(this._css.color))
+                {
+                    // font element uses color attribute instead of style
+                    if (tag.parentElement && tag.parentElement.originalEditableContentColor)
+                    {
+                        tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag);
+                        if (tag.parentElement.mlEditableContentColor === tag.mlComputedStyle.color)
+                        {
+                            tag.style.setProperty(this._css.color, tag.parentElement.originalEditableContentColor);
+                        }
+                    }
+                }
+
+                // the same can happen in gmail with background
+                if (tag.style.getPropertyPriority(this._css.backgroundColor) === this._css.important &&
+                    tag.parentElement && tag.parentElement.originalEditableContentBackgroundColor)
+                {
+                    if (tag.parentElement.mlEditableContentBackgroundColor ===
+                        tag.style.getPropertyValue(this._css.backgroundColor))
+                    {
+                        tag.style.setProperty(this._css.backgroundColor,
+                            tag.parentElement.originalEditableContentBackgroundColor);
                     }
                 }
             }
@@ -2661,15 +2731,24 @@ namespace MidnightLizard.ContentScript
                 tag.style.setProperty(this._css.visitedColorActive, roomRules.visitedColor$Active!.color, this._css.important);
             }
 
-            if (isRealElement(tag) && ((tag.parentElement &&
-                tag.parentElement instanceof HTMLElement &&
-                tag.parentElement!.contentEditable === true.toString()) ||
-                tag.contentEditable === true.toString()))
+            if (isRealElement(tag) && (tag.isEditableContent ||
+                tag.isEditableContent === undefined && this.isEditableContent(tag)))
             {
-                tag.style.setProperty(this._css.originalColor,
-                    tag.originalColor ||
-                    roomRules.color && roomRules.color.originalColor ||
-                    cx.Black);
+                tag.mlEditableContentColor = roomRules.color && (
+                    roomRules.color.color || roomRules.color.intendedColor || roomRules.color.inheritedColor);
+                tag.originalEditableContentColor = tag.originalColor ||
+                    roomRules.color && roomRules.color.originalColor || cx.Black;
+                tag.style.setProperty(this._css.originalColor, tag.originalEditableContentColor);
+
+                tag.mlEditableContentBackgroundColor =
+                    roomRules.backgroundColor && roomRules.backgroundColor.color !== cx.Transparent && roomRules.backgroundColor.color ||
+                    tag.parentElement && tag.parentElement.mlEditableContentBackgroundColor;
+                tag.originalEditableContentBackgroundColor = tag.originalBackgroundColor ||
+                    roomRules.backgroundColor && roomRules.backgroundColor.originalColor !== cx.Transparent &&
+                    roomRules.backgroundColor.originalColor ||
+                    this.getParentBackground(tag).originalColor || cx.White;
+                tag.style.setProperty(this._css.originalBackgroundColor,
+                    tag.originalEditableContentBackgroundColor);
             }
 
             if (roomRules.borderColor && roomRules.borderColor.color)

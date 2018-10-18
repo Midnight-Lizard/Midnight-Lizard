@@ -64,6 +64,7 @@ namespace MidnightLizard.ContentScript
         hidden = "hidden";
         placeholderColor = "--placeholder-color";
         originalColor = "--original-color";
+        originalBackgroundColor = "--original-background-color";
         linkColor = "--link-color";
         visitedColor = "--visited-color";
         linkColorHover = "--link-color-hover";
