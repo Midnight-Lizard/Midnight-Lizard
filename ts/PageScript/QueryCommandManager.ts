@@ -4,11 +4,10 @@ namespace MidnightLizard.PageScript
     {
         public overrideQueryCommandValue(doc: Document)
         {
-            let anyDoc = doc as any;
-            if (!anyDoc.originalQueryCommandValue)
+            if (!doc.originalQueryCommandValue)
             {
-                anyDoc.originalQueryCommandValue = anyDoc.queryCommandValue.bind(anyDoc);
-                anyDoc.queryCommandValue = this.queryCommandValue.bind(this, anyDoc);
+                doc.originalQueryCommandValue = doc.queryCommandValue.bind(doc);
+                doc.queryCommandValue = this.queryCommandValue.bind(this, doc);
             }
         }
 
@@ -51,7 +50,7 @@ namespace MidnightLizard.PageScript
                     }
                 }
             }
-            return (doc as any).originalQueryCommandValue!(command);
+            return doc.originalQueryCommandValue(command);
         }
     }
 }

@@ -1,16 +1,18 @@
+/// <reference path="./Page.d.ts" />
+
 namespace MidnightLizard.PageScript
 {
     export class CssStyleManager
     {
-        public overrideCssStyleDeclaration(doc: Document)
+        public overrideCssStyleDeclaration()
         {
-            let style = (doc.defaultView as any).CSSStyleDeclaration.prototype as CSSStyleDeclaration;
-            Object.defineProperty(style, "color",
-                {
-                    configurable: true,
+            Object.defineProperty(CSSStyleDeclaration.prototype,
+                "color", {
                     get: this.getColor,
                     set: this.setColor
                 });
+            // CSSStyleDeclaration.prototype.__defineGetter__('color', this.getColor);
+            // CSSStyleDeclaration.prototype.__defineSetter__('color', this.setColor);
         }
 
         protected setColor(this: CSSStyleDeclaration, value: string)

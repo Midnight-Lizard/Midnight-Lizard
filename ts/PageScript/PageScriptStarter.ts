@@ -5,8 +5,8 @@
 
 namespace MidnightLizard.PageScript
 {
-    new QueryCommandManager().overrideQueryCommandValue(document);
-    new CssStyleManager().overrideCssStyleDeclaration(document);
-    new ExternalCssLoader().beginExternalCssObservation(document);
+    new CssStyleManager().overrideCssStyleDeclaration();
     new EditableContentManager().beginEditableContentHandling(document);
+    new ExternalCssLoader().beginExternalCssObservation(document);
+    new QueryCommandManager().overrideQueryCommandValue(document);
 }

@@ -1,3 +1,5 @@
+/// <reference path="./Page.d.ts" />
+
 namespace MidnightLizard.PageScript
 {
     export class EditableContentManager
@@ -37,11 +39,12 @@ namespace MidnightLizard.PageScript
             if (!tag.innerHtmlGetter)
             {
                 tag.innerHtmlGetter = tag.__lookupGetter__<string>('innerHTML');
-                Object.defineProperty(tag, "innerHTML",
-                    {
-                        get: this.getInnerHtml.bind(null, tag),
-                        set: tag.__lookupSetter__('innerHTML').bind(tag)
-                    });
+                Object.defineProperty(tag, "innerHTML", {
+                    get: this.getInnerHtml.bind(this, tag),
+                    set: tag.__lookupSetter__('innerHTML').bind(tag)
+                });
+                // CSSStyleDeclaration.prototype.__defineGetter__('innerHTML', this.getInnerHtml.bind(null, tag));
+                // CSSStyleDeclaration.prototype.__defineSetter__('innerHTML', ...);
             }
         }
 
@@ -56,12 +59,4 @@ namespace MidnightLizard.PageScript
             return tag.innerHtmlCache.value;
         }
     }
-}
-
-declare interface Node
-{
-    __lookupGetter__<T>(propertyName: string): () => T;
-    __lookupSetter__<T>(propertyName: string): (value: T) => void;
-    innerHtmlGetter: () => string;
-    innerHtmlCache: { value: string, timestamp: number };
 }
