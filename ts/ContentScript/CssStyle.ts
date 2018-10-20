@@ -56,6 +56,7 @@ namespace MidnightLizard.ContentScript
         _200ms = "200ms";
         all = "all";
         none = "none";
+        normal = "normal";
         important = "important";
         inherit = "inherit";
         px = "px";

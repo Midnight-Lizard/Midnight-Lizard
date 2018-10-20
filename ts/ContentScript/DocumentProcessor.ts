@@ -1788,10 +1788,9 @@ namespace MidnightLizard.ContentScript
                         }
                         const bgInverted = roomRules.backgroundColor.originalLight - roomRules.backgroundColor.light > 0.4;
 
-                        if (tag.mlComputedStyle!.content!.startsWith("url") &&
-                            (this._app.browserName === Settings.BrowserName.Chrome ||
-                                !(beforePseudoElement && beforePseudoElement.mlComputedStyle.content === tag.mlComputedStyle!.content) &&
-                                !(afterPseudoElement && afterPseudoElement.mlComputedStyle.content === tag.mlComputedStyle!.content)))
+                        if (tag.mlComputedStyle!.content!.startsWith("url") && !(
+                            tag instanceof PseudoElement &&
+                            tag.parentElement.mlComputedStyle!.content === tag.mlComputedStyle!.content))
                         {
                             let doInvert = (!isTable) && bgInverted &&
                                 (tag.mlComputedStyle!.content!.search(doNotInvertRegExp) === -1) &&
