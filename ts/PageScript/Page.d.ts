@@ -2,6 +2,7 @@ declare interface Object
 {
     __defineGetter__<T>(propertyName: string, getter: () => T): void;
     __defineSetter__<T>(propertyName: string, setter: (value: T) => void): void;
+    __proto__: any;
 }
 
 declare interface Node

@@ -4,10 +4,11 @@ namespace MidnightLizard.PageScript
 {
     export class EditableContentManager
     {
+        constructor() { }
+
         private readonly _newElementsObserverConfig: MutationObserverInit = {
             subtree: true, childList: true
         };
-        constructor() { }
 
         public beginEditableContentHandling(doc: Document)
         {
@@ -43,8 +44,6 @@ namespace MidnightLizard.PageScript
                     get: this.getInnerHtml.bind(this, tag),
                     set: tag.__lookupSetter__('innerHTML').bind(tag)
                 });
-                // CSSStyleDeclaration.prototype.__defineGetter__('innerHTML', this.getInnerHtml.bind(null, tag));
-                // CSSStyleDeclaration.prototype.__defineSetter__('innerHTML', ...);
             }
         }
 

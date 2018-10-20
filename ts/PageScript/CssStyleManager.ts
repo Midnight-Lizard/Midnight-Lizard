@@ -4,15 +4,14 @@ namespace MidnightLizard.PageScript
 {
     export class CssStyleManager
     {
-        public overrideCssStyleDeclaration()
+        public overrideCssStyleDeclaration(doc: Document)
         {
-            Object.defineProperty(CSSStyleDeclaration.prototype,
+            Object.defineProperty(doc.body.style.__proto__,
                 "color", {
+                    configurable: true,
                     get: this.getColor,
                     set: this.setColor
                 });
-            // CSSStyleDeclaration.prototype.__defineGetter__('color', this.getColor);
-            // CSSStyleDeclaration.prototype.__defineSetter__('color', this.setColor);
         }
 
         protected setColor(this: CSSStyleDeclaration, value: string)
@@ -22,8 +21,8 @@ namespace MidnightLizard.PageScript
 
         protected getColor(this: CSSStyleDeclaration)
         {
-            let originalColor = this.getPropertyValue("--original-color");
-            return originalColor || this.getPropertyValue("color");
+            return this.getPropertyValue("--original-color") ||
+                this.getPropertyValue("color");
         }
     }
 }
