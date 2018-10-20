@@ -36,7 +36,7 @@ namespace Chrome
                 {
                     this._onMessage.raise(msg);
                 });
-                this.connection.onDisconnect.addListener(this.openConnection);
+                this.connection.onDisconnect.addListener(this.openConnection.bind(this));
             }
             return this.connection;
         }
