@@ -12,6 +12,8 @@ namespace MidnightLizard.PageScript
 
         public beginEditableContentHandling(doc: Document)
         {
+            this.overrideCssStyleDeclaration(doc);
+
             doc.addEventListener("DOMContentLoaded", () =>
             {
                 doc.querySelectorAll('[contenteditable="true"]').forEach(tag =>
@@ -56,6 +58,27 @@ namespace MidnightLizard.PageScript
                 tag.dispatchEvent(new CustomEvent("after-get-inner-html", { bubbles: false }));
             }
             return tag.innerHtmlCache.value;
+        }
+
+        private overrideCssStyleDeclaration(doc: Document)
+        {
+            Object.defineProperty(doc.body.style.__proto__,
+                "color", {
+                    configurable: true,
+                    get: this.getColor,
+                    set: this.setColor
+                });
+        }
+
+        private setColor(this: CSSStyleDeclaration, value: string)
+        {
+            this.setProperty("color", value);
+        }
+
+        private getColor(this: CSSStyleDeclaration)
+        {
+            return this.getPropertyValue("--original-color") ||
+                this.getPropertyValue("color");
         }
     }
 }
