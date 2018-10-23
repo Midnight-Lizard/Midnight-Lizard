@@ -2,6 +2,8 @@
 /// <reference path="../Settings/-Settings.ts" />
 /// <reference path="./Pseudos.ts" />
 /// <reference path="../Utils/-Utils.ts" />
+/// <reference path="./WindowMessageBus.ts" />
+/// <reference path="../Settings/Messages.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -86,7 +88,8 @@ namespace MidnightLizard.ContentScript
          */
         constructor(rootDoc: Document,
             settingsManager: Settings.IBaseSettingsManager,
-            protected readonly _app: Settings.IApplicationSettings)
+            private readonly _app: Settings.IApplicationSettings,
+            private readonly _windowMessageBus: MidnightLizard.ContentScript.IWindowMessageBus)
         {
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
@@ -234,9 +237,12 @@ namespace MidnightLizard.ContentScript
                     {
                         if (cssRules.length > 0 && (sheet instanceof CSSMediaRule || !sheet.ownerNode || !(sheet.ownerNode as Element).mlIgnore))
                         {
-                            if (sheet instanceof CSSStyleSheet && (sheet.href || sheet.mlExternal))
+                            if (sheet instanceof CSSStyleSheet && (
+                                sheet.href || sheet.mlExternal ||
+                                sheet.ownerNode instanceof HTMLElement && sheet.ownerNode.hasAttribute("ml-external")))
                             {
-                                styleRefs.add(sheet.href || sheet.mlExternal!);
+                                styleRefs.add(sheet.href || sheet.mlExternal ||
+                                    (sheet.ownerNode as HTMLElement).getAttribute("ml-external")!);
                                 styleRefIsDone = true;
                             }
                             else
@@ -281,7 +287,7 @@ namespace MidnightLizard.ContentScript
                         if (this._app.browserName === Settings.BrowserName.Firefox &&
                             sheet.ownerNode && sheet.ownerNode instanceof HTMLElement)
                         {
-                            sheet.ownerNode.setAttribute("ml-external", sheet.href);
+                            this._windowMessageBus.postMessage(new Settings.FetchExternalCss(sheet.href));
                         }
                         else if (!this._externalCssPromises!.has(sheet.href))
                         {
@@ -293,7 +299,7 @@ namespace MidnightLizard.ContentScript
                                     .then(([d, css, href]) =>
                                     {
                                         let style = d.createElement('style');
-                                        style.title = `MidnightLizard Cross Domain CSS Import From ${href}`;
+                                        style.setAttribute("ml-external", href);
                                         style.innerText = css;
                                         style.disabled = true;
                                         (d.head || d.documentElement).appendChild(style);

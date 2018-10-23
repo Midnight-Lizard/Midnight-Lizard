@@ -2,7 +2,7 @@ var connection: chrome.runtime.Port;
 
 window.addEventListener('message', (msg) =>
 {
-    if (msg.data.fromPolyfillOnPortalSide)
+    if (msg.data && msg.data.fromPolyfillOnPortalSide)
     {
         openConnection().postMessage(msg.data);
     }

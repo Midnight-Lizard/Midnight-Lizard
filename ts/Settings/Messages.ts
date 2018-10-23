@@ -7,6 +7,10 @@ namespace MidnightLizard.Settings
 
     export type LocalMessageFromContent = FetchImage;
 
+    export type WindowMessageFromContent = FetchExternalCss;
+
+    export type WindowMessageToContent = PageScriptLoaded;
+
     export type MessageToBackgroundPage = ExternalMessageFromPortal | LocalMessageFromContent
 
     export type ExternalMessageToPortal = PublicSchemesChanged | ErrorMessage;
@@ -23,7 +27,9 @@ namespace MidnightLizard.Settings
         ErrorMessage = "ErrorMessage",
         FetchImage = "FetchImage",
         ImageFetchFailed = "ImageFetchFailed",
-        ImageFetchCompleted = "ImageFetchCompleted"
+        ImageFetchCompleted = "ImageFetchCompleted",
+        FetchExternalCss = "FetchExternalCss",
+        PageScriptLoaded = "PageScriptLoaded",
     }
 
     export class InstallPublicSchemeCommand
@@ -56,6 +62,18 @@ namespace MidnightLizard.Settings
     {
         type: MessageType.FetchImage = MessageType.FetchImage;
         constructor(readonly url: string, readonly maxSize: number) { }
+    }
+
+    export class FetchExternalCss
+    {
+        type: MessageType.FetchExternalCss = MessageType.FetchExternalCss;
+        constructor(readonly externalCssUrl: string) { }
+    }
+
+    export class PageScriptLoaded
+    {
+        type: MessageType.PageScriptLoaded = MessageType.PageScriptLoaded;
+        constructor() { }
     }
 
     export class ImageFetchCompleted
