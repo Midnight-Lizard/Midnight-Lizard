@@ -22,6 +22,8 @@ namespace MidnightLizard.ContentScript
 
     type CSSStyleDeclarationKeys = { [K in keyof CSSStyleDeclaration]: CSSStyleDeclaration[K] | undefined }
 
+    let lastId = 0;
+
     export class PseudoElementStyle
     {
         protected readonly _props = new Map<string, [string, string]>();
@@ -78,10 +80,10 @@ namespace MidnightLizard.ContentScript
             this.resolveCss(css);
         }
 
-        constructor(type: PseudoType, parent: HTMLElement, id: string, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
+        constructor(type: PseudoType, parent: HTMLElement, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
         {
             let typeName = PseudoType[type].toLowerCase();
-            this.id = id;
+            this.id = (++lastId).toString();
             this.classList = [this.className = "::" + typeName];
             this.tagName = typeName;
             this.selectorText = `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}`;
