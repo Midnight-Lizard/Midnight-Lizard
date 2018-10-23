@@ -2,7 +2,7 @@
 /// <reference path="../Settings/-Settings.ts" />
 /// <reference path="./Pseudos.ts" />
 /// <reference path="../Utils/-Utils.ts" />
-/// <reference path="./WindowMessageBus.ts" />
+// /// <reference path="./WindowMessageBus.ts" />
 /// <reference path="../Settings/Messages.ts" />
 
 namespace MidnightLizard.ContentScript
@@ -88,8 +88,9 @@ namespace MidnightLizard.ContentScript
          */
         constructor(rootDoc: Document,
             settingsManager: Settings.IBaseSettingsManager,
-            private readonly _app: Settings.IApplicationSettings,
-            private readonly _windowMessageBus: MidnightLizard.ContentScript.IWindowMessageBus)
+            private readonly _app: Settings.IApplicationSettings
+            // , private readonly _windowMessageBus: MidnightLizard.ContentScript.IWindowMessageBus
+            )
         {
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
@@ -284,14 +285,15 @@ namespace MidnightLizard.ContentScript
                     }
                     else if (sheet instanceof CSSStyleSheet && sheet.href) // external css
                     {
-                        if (this._app.browserName === Settings.BrowserName.Firefox &&
-                            sheet.ownerNode && sheet.ownerNode instanceof HTMLElement)
+                        // if (this._app.browserName === Settings.BrowserName.Firefox &&
+                        //     sheet.ownerNode && sheet.ownerNode instanceof HTMLElement)
+                        // {
+                        //     this._windowMessageBus.postMessage(new Settings.FetchExternalCss(sheet.href));
+                        // } else 
+                        if (!this._externalCssPromises!.has(sheet.href))
                         {
-                            this._windowMessageBus.postMessage(new Settings.FetchExternalCss(sheet.href));
-                        }
-                        else if (!this._externalCssPromises!.has(sheet.href))
-                        {
-                            let cssPromise = fetch(sheet.href, { cache: "force-cache" }).then(response => response.text());
+                            let cssPromise = fetch(sheet.href, { cache: "force-cache" })
+                                .then(response => response.text());
                             cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
                             this._externalCssPromises.set(
                                 sheet.href,
