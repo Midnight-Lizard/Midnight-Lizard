@@ -20,4 +20,11 @@ namespace MidnightLizard.Util
         for (const a of set1) if (!set2.has(a)) return false;
         return true;
     }
+
+    export function firstSetIncludesAllElementsOfSecondSet<TSource>(set1: Set<TSource>, set2: Set<TSource>)
+    {
+        if (!set1 || !set1.size || !set2 || !set2.size) return false;
+        for (const a of set2) if (!set1.has(a)) return false;
+        return true;
+    }
 }

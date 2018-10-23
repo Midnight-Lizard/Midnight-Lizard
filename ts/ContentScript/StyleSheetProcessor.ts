@@ -339,7 +339,7 @@ namespace MidnightLizard.ContentScript
 
             this._selectorsQuality = selectorsQuality;
             this._selectors = filteredStyleRules.map(sr => sr.selectorText);
-            if (Util.setsAreEqual(this._styleRefsCache, styleRefs))
+            if (Util.firstSetIncludesAllElementsOfSecondSet(this._styleRefsCache, styleRefs))
             {
                 this._styleRefs = this._styleRefsCache;
                 this._preFilteredSelectors = this._preFilteredSelectorsCache;
