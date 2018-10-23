@@ -1,10 +1,10 @@
 var connection: chrome.runtime.Port;
 
-window.addEventListener('message', (msg) =>
+document.documentElement.addEventListener("message-from-portal", e =>
 {
-    if (msg.data && msg.data.fromPolyfillOnPortalSide)
+    if (e instanceof CustomEvent && e.detail)
     {
-        openConnection().postMessage(msg.data);
+        openConnection().postMessage(JSON.parse(e.detail));
     }
 });
 
@@ -15,8 +15,8 @@ function openConnection(port?: any)
         connection = chrome.runtime.connect({ name: 'polyfill' });
         connection.onMessage.addListener((msg, port) =>
         {
-            msg.fromPolyfillOnExtensionSide = true;
-            window.postMessage(msg, "*");
+            document.documentElement.dispatchEvent(
+                new CustomEvent("message-from-extension", { detail: JSON.stringify(msg) }));
         });
         connection.onDisconnect.addListener(openConnection);
     }

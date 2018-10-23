@@ -18,15 +18,11 @@ namespace MidnightLizard.ContentScript
 
         constructor(private readonly rootDoc: Document)
         {
-            rootDoc.defaultView.addEventListener("message", (e) =>
+            rootDoc.documentElement.addEventListener(Settings.MessageType.PageScriptLoaded, (e) =>
             {
-                if (e.data && e.data.type === Settings.MessageType.PageScriptLoaded)
-                {
-                    console.log(e.data);
-                    this._pageScriptLoaded = true;
-                    this._messageBuffer.forEach(this.postMessage.bind(this));
-                    this._messageBuffer.clear();
-                }
+                this._pageScriptLoaded = true;
+                this._messageBuffer.forEach(this.postMessage.bind(this));
+                this._messageBuffer.clear();
             });
         }
 
@@ -34,8 +30,9 @@ namespace MidnightLizard.ContentScript
         {
             if (this._pageScriptLoaded)
             {
-                console.log(message);
-                this.rootDoc.defaultView.postMessage(message, "*");
+                const { type: messageType, ...msg } = message;
+                const event = new CustomEvent(messageType, { detail: JSON.stringify(msg) });
+                this.rootDoc.documentElement.dispatchEvent(event);
             }
             else
             {
