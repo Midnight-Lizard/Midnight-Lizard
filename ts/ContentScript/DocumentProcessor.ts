@@ -575,7 +575,7 @@ namespace MidnightLizard.ContentScript
                 this.reCalcAllRootElements(new Set(
                     eventTargets.filter(target => (target.alwaysRecalculateStyles ||
                         target.selectors !== this._styleSheetProcessor
-                            .getElementMatchedSelectors(target)))), false, true);
+                            .getElementMatchedSelectors(target)))), false);
             }
         }
 
@@ -587,7 +587,7 @@ namespace MidnightLizard.ContentScript
                     target.selectors !== this._styleSheetProcessor
                         .getElementMatchedSelectors(target)))
             {
-                this.reCalcAllRootElements(new Set([target]), false, true);
+                this.reCalcAllRootElements(new Set([target]), false);
             }
         }
 
@@ -608,13 +608,13 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        private reCalcAllRootElements(rootElements: Set<HTMLElement>, onCopy: boolean, clearParentBgColors = false)
+        private reCalcAllRootElements(rootElements: Set<HTMLElement>, andAllChildren: boolean, skipSelectors = false)
         {
             if (rootElements && rootElements.size)
             {
                 const allElements = Array.from(rootElements)
                     .reduce((allElems, rootElement) => allElems.concat(this
-                        .reCalcRootElement(rootElement, onCopy, clearParentBgColors)),
+                        .reCalcRootElement(rootElement, andAllChildren, skipSelectors)),
                         new Array<HTMLElement>());
                 if (allElements.length)
                 {
@@ -622,14 +622,14 @@ namespace MidnightLizard.ContentScript
                     allElements.forEach(tag => this.restoreElementColors(tag, true));
                     this._documentObserver.startDocumentObservation(allElements[0].ownerDocument);
                     DocumentProcessor.processAllElements(allElements, this,
-                        onCopy ? onCopyReCalculationDelays :
+                        andAllChildren ? onCopyReCalculationDelays :
                             allElements.length < 50 ? smallReCalculationDelays :
                                 bigReCalculationDelays);
                 }
             }
         }
 
-        protected reCalcRootElement(rootElem: HTMLElement, onCopy: boolean, clearParentBgColors = false): HTMLElement[]
+        protected reCalcRootElement(rootElem: HTMLElement, andAllChildren: boolean, skipSelectors = false): HTMLElement[]
         {
             if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
@@ -637,9 +637,10 @@ namespace MidnightLizard.ContentScript
                 let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
                 if (allTags && allTags.length > 0)
                 {
-                    let skipSelectors = this._settingsManager.isSimple || onCopy || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
+                    skipSelectors = skipSelectors || this._settingsManager.isSimple || andAllChildren || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
                     let filteredTags = allTags.filter(el => el.isChecked && el.mlBgColor && (skipSelectors || el.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(el)));
-                    if (!skipSelectors && clearParentBgColors)
+
+                    if (filteredTags.length < 100 || andAllChildren || this._settingsManager.isSimple)
                     {
                         allTags.forEach(tag =>
                         {
@@ -649,21 +650,12 @@ namespace MidnightLizard.ContentScript
                                 tag.mlBgColor.isUpToDate = false;
                             }
                         });
-                    }
-                    if (filteredTags.length < 100 || onCopy || this._settingsManager.isSimple)
-                    {
                         filteredTags.splice(0, 0, rootElem);
                         return filteredTags;
                     }
-                    else
-                    {
-                        return [rootElem];
-                    }
+                    else return [rootElem];
                 }
-                else if (this._settingsManager.isComplex)
-                {
-                    return [rootElem];
-                }
+                else return [rootElem];
             }
             return [];
         }
@@ -776,7 +768,7 @@ namespace MidnightLizard.ContentScript
                 }
             });
 
-            this.reCalcAllRootElements(elementsForReCalculation, false);
+            this.reCalcAllRootElements(elementsForReCalculation, false, true);
         }
 
         protected onClassChanged(changedElements: Set<HTMLElement>)
