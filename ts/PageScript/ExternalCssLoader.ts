@@ -8,11 +8,12 @@ namespace MidnightLizard.PageScript
 
         public beginExternalCssObservation(doc: Document)
         {
-            doc.defaultView.addEventListener("message", (e) =>
+            doc.documentElement.addEventListener("FetchExternalCss", (e) =>
             {
-                if (e.data && e.data.type === "FetchExternalCss")
+                if (e instanceof CustomEvent && e.detail)
                 {
-                    this.processExternalCss(e.data.externalCssUrl, doc);
+                    const msg = JSON.parse(e.detail)
+                    this.processExternalCss(msg.externalCssUrl, doc);
                 }
             });
         }
@@ -22,10 +23,11 @@ namespace MidnightLizard.PageScript
             if (externalCssUrl && !this._externalCssUrls.has(externalCssUrl))
             {
                 this._externalCssUrls.add(externalCssUrl);
-                fetch(externalCssUrl, { cache: "force-cache", mode: "no-cors" })
+                fetch(externalCssUrl, { cache: "force-cache" })
                     .then(response => response.text())
                     .then(css =>
                     {
+                        debugger;
                         let style = doc.createElement('style');
                         style.setAttribute("ml-external", externalCssUrl);
                         style.innerText = css;
