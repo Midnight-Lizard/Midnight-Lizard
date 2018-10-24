@@ -62,7 +62,6 @@ namespace MidnightLizard.ContentScript
         protected _rootDocumentContentLoaded: boolean = false;
         protected readonly _rootImageUrl: string;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
-        // protected readonly _dorm = new WeakMap<Document, Map<string, RoomRules>>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
         protected readonly _boundUserHoverHandler: (e: Event) => void;
@@ -325,7 +324,6 @@ namespace MidnightLizard.ContentScript
             {
                 doc.mlTimestamp = Date.now();
                 doc.viewArea = doc.defaultView.innerHeight * doc.defaultView.innerWidth;
-                // this._dorm.set(doc, new Map<string, RoomRules>());
                 this._settingsManager.computeProcessingMode(doc);
                 this.processMetaTheme(doc);
                 this.setDocumentProcessingStage(doc, ProcessingStage.Complete);
@@ -1258,53 +1256,6 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected calcElementPath(tag: HTMLElement | PseudoElement)
-        {
-            var parentPath = "";
-            if (tag.parentElement)
-            {
-                parentPath = (tag.parentElement.mlPath ? tag.parentElement.mlPath
-                    : this.calcElementPath(tag.parentElement)) + " ";
-                if (tag instanceof HTMLElement)
-                {
-                    if (tag.contentEditable !== this._css.inherit)
-                    {
-                        tag.isEditableContent = tag.contentEditable === true.toString();
-                    }
-                    else
-                    {
-                        tag.isEditableContent = tag.parentElement!.isEditableContent;
-                    }
-                }
-            }
-            else if (tag instanceof HTMLElement)
-            {
-                tag.isEditableContent = tag.contentEditable === true.toString();
-            }
-            tag.mlPath = parentPath + tag.tagName + tag.mlFixed;
-            if (tag instanceof Element)
-            {
-                let attr: Attr, length = tag.attributes.length;
-                for (let i = 0; i < length; i++)
-                {
-                    attr = tag.attributes[i];
-                    if (attr.value && attr.name && !attr.name.endsWith("timer") && attr.name !== "d")
-                    {
-                        tag.mlPath += `${attr.name}=${
-                            !(tag instanceof HTMLElement && tag.isEditableContent) &&
-                                attr.value.length > maxAttrLen
-                                ? attr.value.substr(0, maxAttrLen)
-                                : attr.value}`;
-                    }
-                    else if (attr.name === "disabled")
-                    {
-                        tag.mlPath += "X";
-                    }
-                }
-            }
-            return tag.mlPath;
-        }
-
         protected getElementIndex(tag: Element)
         {
             // do not remove {var}
@@ -1675,13 +1626,6 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                // this.calcElementPath(tag);
-                // tag.selectors = this._styleSheetProcessor.getElementMatchedSelectors(tag);
-                // room = tag.mlPath + tag.selectors;
-                // roomRules = this._dorm.get(doc)!.get(room);
-
-                // if (!roomRules)
-                // {
                 tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
                 roomRules = {};
                 if (tag.mlComputedStyle)
@@ -2040,12 +1984,6 @@ namespace MidnightLizard.ContentScript
                         }
                     }
                 }
-                // }
-
-                // if (room)
-                // {
-                //     this._dorm.get(doc)!.set(room, roomRules);
-                // }
 
                 if (tag instanceof Element)
                 {
@@ -2056,8 +1994,6 @@ namespace MidnightLizard.ContentScript
                         tag.mlTextShadow = roomRules.textShadow.color;
                     }
                 }
-
-                // return [beforePseudoElement, afterPseudoElement].filter(x => x).map(x => x!.stylePromise);
 
                 return { roomRules: roomRules, before: beforePseudoElement, after: afterPseudoElement };
             }
