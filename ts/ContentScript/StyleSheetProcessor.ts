@@ -42,6 +42,9 @@ namespace MidnightLizard.ContentScript
         private readonly _styleRefsStorageKey = "ml-style-refs";
         protected readonly _stylesLimit = 500;
         protected readonly _trimmedStylesLimit = 500;
+        protected readonly _css: MidnightLizard.ContentScript.CssStyleKeys;
+        private readonly _passedTransitionSelectors = new Set<string>();
+        protected readonly _transitionForbiddenProperties: Set<string>;
         protected readonly _styleProps =
             [
                 { prop: "background-color", priority: 1 },
@@ -86,12 +89,34 @@ namespace MidnightLizard.ContentScript
         /** StyleSheetProcessor constructor
          * @param _app - application settings
          */
-        constructor(rootDoc: Document,
+        constructor(rootDoc: Document, css: MidnightLizard.ContentScript.CssStyle,
             settingsManager: Settings.IBaseSettingsManager,
             private readonly _app: Settings.IApplicationSettings
             // , private readonly _windowMessageBus: MidnightLizard.ContentScript.IWindowMessageBus
-            )
+        )
         {
+            this._css = css as any;
+            this._transitionForbiddenProperties = new Set<string>(
+                [
+                    this._css.all,
+                    this._css.background,
+                    this._css.backgroundColor,
+                    this._css.backgroundImage,
+                    this._css.color,
+                    this._css.border,
+                    this._css.borderBottom,
+                    this._css.borderBottomColor,
+                    this._css.borderColor,
+                    this._css.borderLeft,
+                    this._css.borderLeftColor,
+                    this._css.borderRight,
+                    this._css.borderRightColor,
+                    this._css.borderTop,
+                    this._css.borderTopColor,
+                    this._css.textShadow,
+                    this._css.filter
+                ]);
+
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
 
@@ -221,7 +246,7 @@ namespace MidnightLizard.ContentScript
 
         public processDocumentStyleSheets(doc: Document): void
         {
-            const styleRefs = new Set<string>();
+            const styleRefs = new Set<string>(), transitionSelectors = new Set<string>();
             let styleRefIsDone = false;
             let styleRefCssText = "";
 
@@ -262,6 +287,16 @@ namespace MidnightLizard.ContentScript
                                         if (!styleRefIsDone)
                                         {
                                             styleRefCssText += rule.cssText;
+                                        }
+                                    }
+                                    const transitionDuration = style.getPropertyValue(this._css.transitionDuration);
+                                    if (transitionDuration && transitionDuration !== this._css._0s)
+                                    {
+                                        if (style.getPropertyValue(this._css.transitionProperty)
+                                            .split(", ")
+                                            .find(p => this._transitionForbiddenProperties.has(p)))
+                                        {
+                                            transitionSelectors.add(rule.selectorText);
                                         }
                                     }
                                 }
@@ -318,6 +353,10 @@ namespace MidnightLizard.ContentScript
 
             let maxPriority = 1;
             let filteredStyleRules = styleRules;
+            if (transitionSelectors.size)
+            {
+                this.findElementsWithTransition(doc, transitionSelectors);
+            }
             this.findElementsForUserActionObservation(doc, styleRules);
             this._styleProps.forEach(p => maxPriority = p.priority > maxPriority ? p.priority : maxPriority);
             let styleProps = this._styleProps;
@@ -356,6 +395,28 @@ namespace MidnightLizard.ContentScript
             {
                 this._styleRefs = styleRefs;
                 this._preFilteredSelectors.clear();
+            }
+        }
+
+        private findElementsWithTransition(doc: Document, transitionSelectors: Set<string>)
+        {
+            for (const selector of Util.sliceIntoChunks(Array
+                .from(transitionSelectors), 50)
+                .map(x => x.join(",")))
+            {
+                if (selector && !this._passedTransitionSelectors.has(selector))
+                {
+                    try
+                    {
+                        this._passedTransitionSelectors.add(selector);
+                        doc.body.querySelectorAll(selector).forEach(tag =>
+                            tag.hasTransitionDuration = true);
+                    }
+                    catch (ex)
+                    {
+                        this._app.isDebug && console.error(ex);
+                    }
+                }
             }
         }
 

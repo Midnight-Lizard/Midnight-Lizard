@@ -62,6 +62,7 @@ interface Node
     originalFilter: string | null | undefined;
     keepFilter: boolean | undefined;
     originalTransitionDuration: string | null | undefined;
+    hasTransitionDuration?: boolean;
     originalBackgroundColor: string | null | undefined;
     // originalEditableContentBackgroundColor: string | null | undefined;
     originalDisplay: string | null | undefined;

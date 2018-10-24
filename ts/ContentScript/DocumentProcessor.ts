@@ -687,121 +687,121 @@ namespace MidnightLizard.ContentScript
 
                 if (!needReCalculation)
                 {
-                value = tag.style.getPropertyValue(ns.css.bgrColor);
-                if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
-                    tag.mlBgColor && tag.mlBgColor.color && tag.mlBgColor.color !== value)
-                {
-                    tag.originalBackgroundColor = value;
-                    needReCalculation = true;
-                }
+                    value = tag.style.getPropertyValue(ns.css.bgrColor);
+                    if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
+                        tag.mlBgColor && tag.mlBgColor.color && tag.mlBgColor.color !== value)
+                    {
+                        tag.originalBackgroundColor = value;
+                        needReCalculation = true;
+                    }
 
                     if (!needReCalculation)
                     {
-                value = tag.style.getPropertyValue(ns.css.fntColor);
-                if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
-                    tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
-                {
-                    tag.originalColor = value;
-                    needReCalculation = true;
-                }
+                        value = tag.style.getPropertyValue(ns.css.fntColor);
+                        if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
+                            tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
+                        {
+                            tag.originalColor = value;
+                            needReCalculation = true;
+                        }
 
                         if (!needReCalculation)
                         {
-                value = tag.style.getPropertyValue(this._css.textShadow);
-                if (value && tag.style.getPropertyPriority(this._css.textShadow) !== this._css.important)
-                {
-                    tag.originalTextShadow = value;
-                    needReCalculation = true;
-                }
+                            value = tag.style.getPropertyValue(this._css.textShadow);
+                            if (value && tag.style.getPropertyPriority(this._css.textShadow) !== this._css.important)
+                            {
+                                tag.originalTextShadow = value;
+                                needReCalculation = true;
+                            }
 
                             if (!needReCalculation)
                             {
-                value = tag.style.getPropertyValue(ns.css.brdColor);
-                if (value && tag.style.getPropertyPriority(ns.css.brdColor) !== this._css.important)
-                {
-                    tag.originalBorderColor = value;
-                    needReCalculation = true;
-                }
+                                value = tag.style.getPropertyValue(ns.css.brdColor);
+                                if (value && tag.style.getPropertyPriority(ns.css.brdColor) !== this._css.important)
+                                {
+                                    tag.originalBorderColor = value;
+                                    needReCalculation = true;
+                                }
 
                                 if (!needReCalculation)
                                 {
-                value = tag.style.getPropertyValue(this._css.borderTopColor);
-                if (value && tag.style.getPropertyPriority(this._css.borderTopColor) !== this._css.important)
-                {
-                    tag.originalBorderTopColor = value;
-                    needReCalculation = true;
-                }
+                                    value = tag.style.getPropertyValue(this._css.borderTopColor);
+                                    if (value && tag.style.getPropertyPriority(this._css.borderTopColor) !== this._css.important)
+                                    {
+                                        tag.originalBorderTopColor = value;
+                                        needReCalculation = true;
+                                    }
 
                                     if (!needReCalculation)
                                     {
-                value = tag.style.getPropertyValue(this._css.borderRightColor);
-                if (value && tag.style.getPropertyPriority(this._css.borderRightColor) !== this._css.important)
-                {
-                    tag.originalBorderRightColor = value;
-                    needReCalculation = true;
-                }
+                                        value = tag.style.getPropertyValue(this._css.borderRightColor);
+                                        if (value && tag.style.getPropertyPriority(this._css.borderRightColor) !== this._css.important)
+                                        {
+                                            tag.originalBorderRightColor = value;
+                                            needReCalculation = true;
+                                        }
 
                                         if (!needReCalculation)
                                         {
-                value = tag.style.getPropertyValue(this._css.borderBottomColor);
-                if (value && tag.style.getPropertyPriority(this._css.borderBottomColor) !== this._css.important)
-                {
-                    tag.originalBorderBottomColor = value;
-                    needReCalculation = true;
-                }
+                                            value = tag.style.getPropertyValue(this._css.borderBottomColor);
+                                            if (value && tag.style.getPropertyPriority(this._css.borderBottomColor) !== this._css.important)
+                                            {
+                                                tag.originalBorderBottomColor = value;
+                                                needReCalculation = true;
+                                            }
 
                                             if (!needReCalculation)
                                             {
-                value = tag.style.getPropertyValue(this._css.borderLeftColor);
-                if (value && tag.style.getPropertyPriority(this._css.borderLeftColor) !== this._css.important)
-                {
-                    tag.originalBorderLeftColor = value;
-                    needReCalculation = true;
-                }
+                                                value = tag.style.getPropertyValue(this._css.borderLeftColor);
+                                                if (value && tag.style.getPropertyPriority(this._css.borderLeftColor) !== this._css.important)
+                                                {
+                                                    tag.originalBorderLeftColor = value;
+                                                    needReCalculation = true;
+                                                }
 
                                                 if (!needReCalculation)
                                                 {
-                value = tag.style.getPropertyValue(this._css.backgroundImage);
-                if (value && tag.style.getPropertyPriority(this._css.backgroundImage) !== this._css.important)
-                {
-                    tag.originalBackgroundImage = value;
-                    needReCalculation = true;
-                }
+                                                    value = tag.style.getPropertyValue(this._css.backgroundImage);
+                                                    if (value && tag.style.getPropertyPriority(this._css.backgroundImage) !== this._css.important)
+                                                    {
+                                                        tag.originalBackgroundImage = value;
+                                                        needReCalculation = true;
+                                                    }
 
                                                     if (!needReCalculation)
                                                     {
-                value = tag.style.getPropertyValue(this._css.backgroundSize);
-                if (value && tag.style.getPropertyPriority(this._css.backgroundSize) !== this._css.important)
-                {
-                    tag.originalBackgroundSize = value;
-                    needReCalculation = true;
-                }
+                                                        value = tag.style.getPropertyValue(this._css.backgroundSize);
+                                                        if (value && tag.style.getPropertyPriority(this._css.backgroundSize) !== this._css.important)
+                                                        {
+                                                            tag.originalBackgroundSize = value;
+                                                            needReCalculation = true;
+                                                        }
 
                                                         if (!needReCalculation)
                                                         {
-                value = tag.style.getPropertyValue(this._css.filter);
-                if (value && tag.currentFilter !== value)
-                {
-                    tag.originalFilter = value;
-                    needReCalculation = true;
-                }
+                                                            value = tag.style.getPropertyValue(this._css.filter);
+                                                            if (value && tag.currentFilter !== value)
+                                                            {
+                                                                tag.originalFilter = value;
+                                                                needReCalculation = true;
+                                                            }
 
                                                             if (!needReCalculation)
                                                             {
-                value = tag.style.getPropertyValue(this._css.transitionDuration);
-                if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
-                {
-                    const transitionProperty = tag.style.getPropertyValue(this._css.transitionProperty);
-                    if (transitionProperty)
-                    {
-                        const { hasForbiddenTransition } = this.calculateTransitionDuration(value, transitionProperty);
-                        if (hasForbiddenTransition)
-                        {
-                            tag.originalTransitionDuration = value;
-                            needReCalculation = true;
-                        }
-                    }
-                }
+                                                                value = tag.style.getPropertyValue(this._css.transitionDuration);
+                                                                if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
+                                                                {
+                                                                    const transitionProperty = tag.style.getPropertyValue(this._css.transitionProperty);
+                                                                    if (transitionProperty)
+                                                                    {
+                                                                        const { hasForbiddenTransition } = this.calculateTransitionDuration(value, transitionProperty);
+                                                                        if (hasForbiddenTransition)
+                                                                        {
+                                                                            tag.originalTransitionDuration = value;
+                                                                            needReCalculation = true;
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -1467,7 +1467,9 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected restoreElementColors(tag: HTMLElement, keepTransitionDuration?: boolean, lastProcMode?: Settings.ProcessingMode)
+        protected restoreElementColors(tag: HTMLElement,
+            keepTransitionDuration?: boolean,
+            lastProcMode?: Settings.ProcessingMode)
         {
             delete tag.mlParentBgColor;
             delete tag.mlPath;
@@ -1492,18 +1494,21 @@ namespace MidnightLizard.ContentScript
                 {
                     tag.style.transitionDuration = tag.originalTransitionDuration;
                 }
-                if (keepTransitionDuration && tag.originalTransitionDuration == undefined &&
-                    tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration &&
-                    tag.mlComputedStyle.transitionDuration !== this._css._0s &&
-                    tag.mlComputedStyle.transitionProperty)
+                if (keepTransitionDuration && tag.originalTransitionDuration === undefined &&
+                    tag.hasTransitionDuration && tag.mlComputedStyle)
                 {
-                    const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(
-                        tag.mlComputedStyle.transitionDuration,
-                        tag.mlComputedStyle.transitionProperty);
-                    if (hasForbiddenTransition)
+                    if (tag.mlComputedStyle.transitionDuration &&
+                        tag.mlComputedStyle.transitionDuration !== this._css._0s &&
+                        tag.mlComputedStyle.transitionProperty)
                     {
-                        tag.originalTransitionDuration = tag.style.transitionDuration;
-                        tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important);
+                        const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(
+                            tag.mlComputedStyle.transitionDuration,
+                            tag.mlComputedStyle.transitionProperty);
+                        if (hasForbiddenTransition)
+                        {
+                            tag.originalTransitionDuration = tag.style.transitionDuration;
+                            tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important);
+                        }
                     }
                 }
 
