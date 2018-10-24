@@ -479,7 +479,7 @@
         "message": "Commun"
     },
     "commonTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "    Paramètres communs\n―――――――――――――――――――\n Cet onglet contient les paramètres communs à la page entière."
     },
     "activationTab_text_label": {
@@ -491,7 +491,7 @@
         "message": "Fond"
     },
     "backgroundTab_@tooltip": {
-        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "  Paramètres de couleur de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent la manière dont les éléments de la page seront remplis de couleurs."
     },
     "buttonsTab_text_label": {
@@ -499,7 +499,7 @@
         "message": "Boutons"
     },
     "buttonsTab_@tooltip": {
-        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "  Paramètres de couleur du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
     },
     "textTab_text_label": {
@@ -507,7 +507,7 @@
         "message": "Texte"
     },
     "textTab_@tooltip": {
-        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "  Paramètres de couleur du texte\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les éléments de texte de la page."
     },
     "linkTab_text_label": {
@@ -515,7 +515,7 @@
         "message": "Liens"
     },
     "linkTab_@tooltip": {
-        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": " Paramètres de couleur des hyperliens\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les liens hypertexte sur la page."
     },
     "borderTab_text_label": {
@@ -523,7 +523,7 @@
         "message": "Bordures"
     },
     "borderTab_@tooltip": {
-        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": " Paramètres de couleur des bordures\n―――――――――――――――――――\n Cet onglet contient les paramètres de réglage des couleurs pour toutes les bordures et lignes de la page."
     },
     "imagesTab_text_label": {
@@ -531,7 +531,7 @@
         "message": "Images"
     },
     "imagesTab_@tooltip": {
-        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "    Paramètres des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de luminosité des images et des photos."
     },
     "backgroundImagesTab_text_label": {
@@ -539,7 +539,7 @@
         "message": "Images de fond"
     },
     "backgroundImagesTab_@tooltip": {
-        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "   Réglages des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
     },
     "scrollbarsTab_text_label": {
@@ -547,7 +547,7 @@
         "message": "Barres de défilement"
     },
     "scrollbarsTab_@tooltip": {
-        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page.\nNon pris en charge par Firefox."
     },
     "settingsHeader_text_label": {
@@ -559,7 +559,7 @@
         "message": "Basculer le site Web actuel entre\nliste blanche et liste noire"
     },
     "hostName_@tooltip": {
-        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nPLEASE KEEP THE FORMATTING EXACTLY AS IS",
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "    Site Web actuel\n―――――――――――――――\n Cliquez pour faire basculer le site Web actuel entre la liste blanche et la liste noire.\n Pour mettre tous les sites Web sur liste noire par défaut, accédez à l'onglet «Réglages globaux»."
     },
     "helpLink_@tooltip": {
