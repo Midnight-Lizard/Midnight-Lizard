@@ -634,11 +634,28 @@ namespace MidnightLizard.ContentScript
             if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
                 rootElem.mlTimestamp = Date.now();
-                let allTags: HTMLElement[] | null = rootElem.firstElementChild ? Array.prototype.slice.call(rootElem.getElementsByTagName("*")) : null;
+                let allTags = rootElem.firstElementChild
+                    ? Array.from(rootElem.getElementsByTagName("*")) as HTMLElement[] : null;
                 if (allTags && allTags.length > 0)
                 {
-                    skipSelectors = skipSelectors || this._settingsManager.isSimple || andAllChildren || (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0);
-                    let filteredTags = allTags.filter(el => el.isChecked && el.mlBgColor && (skipSelectors || el.selectors !== this._styleSheetProcessor.getElementMatchedSelectors(el)));
+                    skipSelectors = skipSelectors || this._settingsManager.isSimple || andAllChildren ||
+                        (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0) ||
+                        allTags.length > chunkLength;
+                    let filteredTags = allTags.filter(el =>
+                    {
+                        if (!(el.isChecked && el.mlBgColor)) return false;
+                        if (!skipSelectors)
+                        {
+                            const newSelectors = this._styleSheetProcessor.getElementMatchedSelectors(el);
+                            if (el.mlSelectors !== newSelectors)
+                            {
+                                el.mlSelectors = newSelectors;
+                                return true;
+                            }
+                            else return false;
+                        }
+                        return true;
+                    });
 
                     if (filteredTags.length < 100 || andAllChildren || this._settingsManager.isSimple)
                     {
