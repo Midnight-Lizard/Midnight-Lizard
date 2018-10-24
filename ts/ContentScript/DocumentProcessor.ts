@@ -62,6 +62,8 @@ namespace MidnightLizard.ContentScript
         protected _rootDocumentContentLoaded: boolean = false;
         protected readonly _rootImageUrl: string;
         protected readonly _standardPseudoCssTexts = new Map<PseudoStyleStandard, string>();
+        /** key = cssText, value = pseudoId */
+        private readonly _pseudoStyles = new Map<string, string>();
         protected readonly _boundUserActionHandler: (e: Event) => void;
         protected readonly _boundCheckedLabelHandler: (e: Event) => void;
         protected readonly _boundUserHoverHandler: (e: Event) => void;
@@ -1639,17 +1641,13 @@ namespace MidnightLizard.ContentScript
                             beforeStyle.content !== this._css.none &&
                             beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
-                            beforePseudoElement = new PseudoElement(PseudoType.Before, tag, beforeStyle, roomRules);
-                            roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                            roomRules.attributes.set("before-style", beforePseudoElement.id);
+                            beforePseudoElement = new PseudoElement(PseudoType.Before, tag, beforeStyle);
                         }
                         if (afterStyle && afterStyle.content &&
                             afterStyle.content !== this._css.none &&
                             afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
                         {
-                            afterPseudoElement = new PseudoElement(PseudoType.After, tag, afterStyle, roomRules);
-                            roomRules.attributes = roomRules.attributes || new Map<string, string>();
-                            roomRules.attributes.set("after-style", afterPseudoElement.id);
+                            afterPseudoElement = new PseudoElement(PseudoType.After, tag, afterStyle);
                         }
                     }
                     if (tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration &&
@@ -2334,24 +2332,23 @@ namespace MidnightLizard.ContentScript
         protected getStandardPseudoStyles()
         {
             const css = new Array<string>();
-            for (let pseudoType of Util.getEnumValues<PseudoType>(PseudoType))
+            for (let pseudoType of Util.getEnumNames(PseudoType))
             {
                 for (let pseudoStandard of Util.getEnumValues<PseudoStyleStandard>(PseudoStyleStandard))
                 {
-                    css.push(this.getStandardPseudoStyleSelector(pseudoType, pseudoStandard, this._standardPseudoCssTexts.get(pseudoStandard)))
+                    const cssText = this._standardPseudoCssTexts.get(pseudoStandard)!;
+                    const pseudo = pseudoType.toLowerCase();
+                    const standard = PseudoStyleStandard[pseudoStandard].replace(/(\B[A-Z])/g, "-$1").toLowerCase();
+                    this._pseudoStyles.set(pseudo + cssText, standard);
+                    css.push(`[${pseudo}-style="${standard}"]:not(imp)::${pseudo}{${cssText}}`)
                 }
             }
             return css.join("\n");
         }
 
-        protected getStandardPseudoStyleSelector(pseudoType: PseudoType, pseudoStyleStandard: PseudoStyleStandard, cssText?: string)
-        {
-            const pseudo = PseudoType[pseudoType].toLowerCase();
-            return `[${pseudo}-style="${PseudoStyleStandard[pseudoStyleStandard]}"]:not(impt)::${pseudo} { ${cssText} }`;
-        }
-
         protected clearPseudoStyles(doc: Document)
         {
+            this._pseudoStyles.clear();
             if (doc.mlPseudoStyles)
             {
                 doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
@@ -2731,28 +2728,17 @@ namespace MidnightLizard.ContentScript
                     let cssText = tag.style.cssText;
                     if (cssText)
                     {
-                        for (let [standardType, standardCssText] of this._standardPseudoCssTexts)
+                        const pseudoKey = tag.tagName + cssText;
+                        const pseudoId = this._pseudoStyles.get(pseudoKey);
+                        if (pseudoId)
                         {
-                            if (cssText === standardCssText)
-                            {
-                                const attrName = `${tag.tagName}-style`,
-                                    attrValue = PseudoStyleStandard[standardType];
-                                if (!tag.parentRoomRules.attributes)
-                                {
-                                    tag.parentRoomRules.attributes = new Map<string, string>();
-                                }
-                                tag.parentRoomRules.attributes.set(attrName, attrValue);
-                                tag.parentElement.setAttribute(attrName, attrValue);
-                                cssText = "";
-                                break;
-                            }
+                            cssText = "";
                         }
-                    }
-                    if (cssText && tag.ownerDocument.mlPseudoStyles && Array.prototype.find.call(
-                        (tag.ownerDocument.mlPseudoStyles.sheet as CSSStyleSheet).cssRules,
-                        (rule: CSSStyleRule) => rule.selectorText === tag.selectorText))
-                    {
-                        cssText = "";
+                        else
+                        {
+                            this._pseudoStyles.set(pseudoKey, tag.id);
+                        }
+                        tag.parentElement.setAttribute(`${tag.tagName}-style`, pseudoId || tag.id);
                     }
                     tag.applyStyleChanges(cssText);
                 }

@@ -80,13 +80,13 @@ namespace MidnightLizard.ContentScript
             this.resolveCss(css);
         }
 
-        constructor(type: PseudoType, parent: HTMLElement, computedStyle: CSSStyleDeclaration, readonly parentRoomRules: RoomRules)
+        constructor(type: PseudoType, parent: HTMLElement, computedStyle: CSSStyleDeclaration)
         {
             let typeName = PseudoType[type].toLowerCase();
             this.id = (++lastId).toString();
             this.classList = [this.className = "::" + typeName];
             this.tagName = typeName;
-            this.selectorText = `[${this.tagName}-style="${this.id}"]:not(impt)${this.className}`;
+            this.selectorText = `[${this.tagName}-style="${this.id}"]:not(imp)${this.className}`;
             this.parentElement = parent;
             this.mlComputedStyle = computedStyle;
             this.mlRect = parent.mlRect;
