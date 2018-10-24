@@ -31,7 +31,7 @@ namespace MidnightLizard.ContentScript
             attributes: true, attributeFilter: ["ml-update"]
         };
         protected readonly _bodyObserverConfig: MutationObserverInit = {
-            subtree: true, childList: true, // attributeOldValue: true,
+            subtree: true, childList: true, attributeOldValue: true,
             attributes: true, attributeFilter: ["class", "style", "fill", "stroke"]
         };
         protected readonly _simpleBodyObserverConfig: MutationObserverInit = {
@@ -182,14 +182,24 @@ namespace MidnightLizard.ContentScript
                             switch (mutation.attributeName)
                             {
                                 case "class":
-                                    classChanges.add(mutation.target as Element);
+                                    if (mutation.target instanceof Element &&
+                                        mutation.oldValue !== mutation.target.className)
+                                    {
+                                        classChanges.add(mutation.target as Element);
+                                    }
                                     break;
 
                                 case "style":
                                 case "fill":
                                 case "stroke":
-                                    if (this._settingsManager.isComplex)
+                                    if (this._settingsManager.isComplex &&
+                                        mutation.target instanceof Element &&
+                                        mutation.oldValue !== mutation.target.getAttribute(mutation.attributeName))
                                     {
+                                        if (mutation.attributeName === "fill" || mutation.attributeName === "stroke")
+                                        {
+                                            mutation.target.mlSvgAttributeChanged = true;
+                                        }
                                         styleChanges.add(mutation.target as Element);
                                     }
                                     break;
@@ -211,95 +221,32 @@ namespace MidnightLizard.ContentScript
                         break;
                 }
             });
-            if (styleChanges.size > 0)
-            {
-                this._onStyleChanged.raise(styleChanges);
-            }
             if (childListChanges.size > 0)
             {
                 this._onElementAdded.raise(childListChanges);
-                // this.groupAddedElements(childListChanges);
+                childListChanges.forEach(tag =>
+                {
+                    classChanges.delete(tag);
+                    styleChanges.delete(tag);
+                });
             }
             if (classChanges.size > 0)
             {
                 this._onClassChanged.raise(classChanges);
+                classChanges.forEach(tag =>
+                {
+                    styleChanges.delete(tag);
+                });
             }
+            if (styleChanges.size > 0)
+            {
+                this._onStyleChanged.raise(styleChanges);
+            }
+
             if (!this._settingsManager.isActive)
             {
                 observer.disconnect();
             }
-        }
-
-        private addedElementsGroupMinimumSize = 50;
-        private addedElementsGroupAbsoluteTimeoutMS = 100;
-        private addedElementsGroupSlidingTimeoutMS = 30;
-        private lastAddedElementsGroupSlidingTimeout?: number;
-        private lastAddedElementsGroupAbsoluteTimeout?: number;
-        private addedElementsGroup = new Set<Element>();
-        private groupAddedElements(addedElements: Set<Element>)
-        {
-            clearTimeout(this.lastAddedElementsGroupSlidingTimeout);
-
-            this.addedElementsGroup = new Set([...this.addedElementsGroup, ...addedElements]);
-
-            if (this.addedElementsGroup.size > this.addedElementsGroupMinimumSize)
-            {
-                this.releaseAddedElementsGroup('self:' + addedElements.size);
-            }
-            else
-            {
-                // if (Date.now() - this._rootDocument.mlTimestamp! > 3000)
-                if (this._settingsManager.isComplex)
-                {
-                    const prevState = this.stopDocumentObservation(this._rootDocument);
-                    // only after 3sec since document processing started
-                    // hiding elements untill group release and their processing
-                    addedElements.forEach(tag =>
-                    {
-                        if ((tag instanceof HTMLElement || tag instanceof SVGElement) &&
-                            !(tag instanceof HTMLBRElement) && // <-- this is necessary for google sheets
-                            !tag.classList.contains('ml-ignore') && !tag.originalVisibility)
-                        {
-                            tag.originalVisibility = tag.style.visibility || "none";
-                            tag.style.visibility = "hidden";
-                        }
-                    });
-                    this.startDocumentObservation(this._rootDocument, prevState);
-                }
-
-                // sliding timeout restarts with each chunk
-                this.lastAddedElementsGroupSlidingTimeout = setTimeout(() =>
-                    this.releaseAddedElementsGroup('sliding'),
-                    this.addedElementsGroupSlidingTimeoutMS);
-
-                if (!this.lastAddedElementsGroupAbsoluteTimeout)
-                {
-                    // absolute timeout starts with first chunk in group
-                    // and ends when group is released
-                    this.lastAddedElementsGroupAbsoluteTimeout = setTimeout(() =>
-                        this.releaseAddedElementsGroup('absolute'),
-                        this.addedElementsGroupAbsoluteTimeoutMS);
-                }
-            }
-        }
-
-        private releaseAddedElementsGroup(title: string)
-        {
-            // console.log(title);
-            this.clearAllTimeouts();
-            if (this.addedElementsGroup && this.addedElementsGroup.size)
-            {
-                this._onElementAdded.raise(this.addedElementsGroup);
-                this.addedElementsGroup.clear();
-            }
-        }
-
-        private clearAllTimeouts()
-        {
-            clearTimeout(this.lastAddedElementsGroupAbsoluteTimeout);
-            clearTimeout(this.lastAddedElementsGroupSlidingTimeout);
-            this.lastAddedElementsGroupSlidingTimeout = undefined;
-            this.lastAddedElementsGroupAbsoluteTimeout = undefined;
         }
 
         protected headObserverCallback(mutations: MutationRecord[], observer: MutationObserver)

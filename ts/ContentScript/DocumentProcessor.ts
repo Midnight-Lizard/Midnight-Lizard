@@ -574,7 +574,7 @@ namespace MidnightLizard.ContentScript
 
                 this.reCalcAllRootElements(new Set(
                     eventTargets.filter(target => (target.alwaysRecalculateStyles ||
-                        target.selectors !== this._styleSheetProcessor
+                        target.mlSelectors !== this._styleSheetProcessor
                             .getElementMatchedSelectors(target)))), false);
             }
         }
@@ -584,7 +584,7 @@ namespace MidnightLizard.ContentScript
             const target = eArg.currentTarget as HTMLElement;
             if (this._settingsManager.isActive && this._settingsManager.isComplex &&
                 (target.alwaysRecalculateStyles ||
-                    target.selectors !== this._styleSheetProcessor
+                    target.mlSelectors !== this._styleSheetProcessor
                         .getElementMatchedSelectors(target)))
             {
                 this.reCalcAllRootElements(new Set([target]), false);
@@ -665,9 +665,11 @@ namespace MidnightLizard.ContentScript
             let elementsForReCalculation = new Set<HTMLElement>();
             changedElements.forEach(tag =>
             {
-                let needReCalculation = false, value: string | null | undefined;
+                let needReCalculation = !!tag.mlSvgAttributeChanged, value: string | null | undefined;
                 const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
+                if (!needReCalculation)
+                {
                 value = tag.style.getPropertyValue(ns.css.bgrColor);
                 if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
                     tag.mlBgColor && tag.mlBgColor.color && tag.mlBgColor.color !== value)
@@ -676,6 +678,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                    if (!needReCalculation)
+                    {
                 value = tag.style.getPropertyValue(ns.css.fntColor);
                 if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
                     tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
@@ -684,6 +688,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                        if (!needReCalculation)
+                        {
                 value = tag.style.getPropertyValue(this._css.textShadow);
                 if (value && tag.style.getPropertyPriority(this._css.textShadow) !== this._css.important)
                 {
@@ -691,6 +697,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                            if (!needReCalculation)
+                            {
                 value = tag.style.getPropertyValue(ns.css.brdColor);
                 if (value && tag.style.getPropertyPriority(ns.css.brdColor) !== this._css.important)
                 {
@@ -698,6 +706,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                if (!needReCalculation)
+                                {
                 value = tag.style.getPropertyValue(this._css.borderTopColor);
                 if (value && tag.style.getPropertyPriority(this._css.borderTopColor) !== this._css.important)
                 {
@@ -705,6 +715,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                    if (!needReCalculation)
+                                    {
                 value = tag.style.getPropertyValue(this._css.borderRightColor);
                 if (value && tag.style.getPropertyPriority(this._css.borderRightColor) !== this._css.important)
                 {
@@ -712,6 +724,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                        if (!needReCalculation)
+                                        {
                 value = tag.style.getPropertyValue(this._css.borderBottomColor);
                 if (value && tag.style.getPropertyPriority(this._css.borderBottomColor) !== this._css.important)
                 {
@@ -719,6 +733,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                            if (!needReCalculation)
+                                            {
                 value = tag.style.getPropertyValue(this._css.borderLeftColor);
                 if (value && tag.style.getPropertyPriority(this._css.borderLeftColor) !== this._css.important)
                 {
@@ -726,6 +742,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                                if (!needReCalculation)
+                                                {
                 value = tag.style.getPropertyValue(this._css.backgroundImage);
                 if (value && tag.style.getPropertyPriority(this._css.backgroundImage) !== this._css.important)
                 {
@@ -733,6 +751,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                                    if (!needReCalculation)
+                                                    {
                 value = tag.style.getPropertyValue(this._css.backgroundSize);
                 if (value && tag.style.getPropertyPriority(this._css.backgroundSize) !== this._css.important)
                 {
@@ -740,6 +760,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                                        if (!needReCalculation)
+                                                        {
                 value = tag.style.getPropertyValue(this._css.filter);
                 if (value && tag.currentFilter !== value)
                 {
@@ -747,6 +769,8 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
+                                                            if (!needReCalculation)
+                                                            {
                 value = tag.style.getPropertyValue(this._css.transitionDuration);
                 if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
                 {
@@ -758,6 +782,18 @@ namespace MidnightLizard.ContentScript
                         {
                             tag.originalTransitionDuration = value;
                             needReCalculation = true;
+                        }
+                    }
+                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1430,8 +1466,9 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlColor;
                 delete tag.mlTextShadow;
                 delete tag.mlRect;
-                delete tag.selectors;
+                delete tag.mlSelectors;
                 delete tag.mlFixed;
+                delete tag.mlSvgAttributeChanged;
 
                 if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration &&
                     tag.style.transitionDuration !== tag.originalTransitionDuration)

@@ -44,7 +44,7 @@ interface Node
     /** Computed z-index */
     zIndex: number | undefined;
     /** Concatinated into the string list of matched css selectors */
-    selectors: string | null | undefined;
+    mlSelectors: string | null | undefined;
     /** cache of getComputedStyle call results */
     mlComputedStyle: CSSStyleDeclaration | undefined | null;
     /** area of the element */
@@ -53,6 +53,8 @@ interface Node
     mlPath: string | undefined | null;
     /** is true if this element has been verified as suitable for the processing */
     isChecked: boolean | null | undefined;
+    /** true when mutation observer detected `fill` or `stroke` attributes changes */
+    mlSvgAttributeChanged?: boolean | null;
     ////////////////////////////////////////////////////////////////
     //////////////////// original values ///////////////////////////
     ////////////////////////////////////////////////////////////////
