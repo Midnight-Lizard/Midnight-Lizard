@@ -129,16 +129,17 @@ namespace MidnightLizard.ContentScript
         {
             url = this.getAbsoluteUrl(Util.trim(url.substr(3), "()'\""));
 
+            const bgFltr = bgFilter.replace(`var(--${FilterType.BlueFilter})`, `url(#${FilterType.BlueFilter})`);
+
             const prevImage = this._images.get(url);
             if (prevImage)
             {
-                return this.createBackgroundImage(prevImage, bgSize, bgFilter, blueFilter);
+                return this.createBackgroundImage(prevImage, bgSize, bgFltr, blueFilter);
             }
 
             roomRules.hasBackgroundImagePromises = true;
             let cachePromise = this._imagePromises.get(url) || this.fetchNewImage(url, maxSize);
 
-            const bgFltr = bgFilter.replace(`var(--${FilterType.BlueFilter})`, `url(#${FilterType.BlueFilter})`);
             let result = Promise.all([url, cachePromise, bgSize, bgFltr, blueFilter])
                 .then(([_url, img, bgSize, fltr, blueFltr]) =>
                 {
