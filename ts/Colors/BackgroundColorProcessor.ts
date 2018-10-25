@@ -232,17 +232,19 @@ namespace MidnightLizard.Colors
                         hsla.saturation > 0.39 && hsla.lightness < 0.86 &&
                         (this.getTagArea(tag) ? tag.mlArea! < 16000 : false))
                     {
-                        return this.highlightedBackgroundColorProcessor.changeColor(
+                        const result = this.highlightedBackgroundColorProcessor.changeColor(
                             rgbaString,
                             getParentBackground ? getParentBackground(tag).light : this._colorShift.lightnessLimit,
                             tag);
+                        increaseContrast && this._colors.set(rgbaString!, result);
+                        return result;
                     }
                     else
                     {
-                        let originalLight = hsla.lightness;
+                        const originalLight = hsla.lightness;
                         this.changeHslaColor(hsla, increaseContrast, tag);
-                        let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
-                        let result = {
+                        const newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
+                        const result = {
                             role: this._component,
                             color: newRgbColor.toString(),
                             light: hsla.lightness,
