@@ -65,11 +65,11 @@ namespace MidnightLizard.ContentScript
             if (this._lastImageSizeLimit !== this._settingsManager.currentSettings.maxBackgroundImageSize ||
                 this._lastHideBigImages !== this._settingsManager.currentSettings.hideBigBackgroundImages)
             {
-                this._images.clear();
                 this._imagePromises.clear();
                 this._imageResolvers.clear();
                 this._imageRejectors.clear();
             }
+            this._images.clear();
         }
 
         private onImageFetchMessage(message?: Settings.LocalMessageToContent)
