@@ -48,8 +48,13 @@ namespace MidnightLizard.Colors
         {
             if (this._settingsManager.currentSettings.blueFilter !== 0)
             {
-                const newBlue = rgba.blue * (1 - this._settingsManager.currentSettings.blueFilter / 100);
-                return new RgbaColor(Math.min(rgba.red + rgba.blue - newBlue, 255), rgba.green, newBlue, rgba.alpha);
+                const blueFilter = this._settingsManager.currentSettings.blueFilter / 100;
+                const newBlue = rgba.blue * (1 - blueFilter);
+                const newRed = rgba.red + rgba.blue * blueFilter;
+                const newGreen = newRed > 255 && rgba.green > 0
+                    ? Math.max(0, rgba.green - (newRed - 255) * blueFilter / Math.PI)
+                    : rgba.green;
+                return new RgbaColor(Math.min(newRed, 255), newGreen, newBlue, rgba.alpha);
             }
             else
             {
