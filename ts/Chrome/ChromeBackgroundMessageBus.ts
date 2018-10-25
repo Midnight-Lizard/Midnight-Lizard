@@ -24,7 +24,7 @@ namespace Chrome
             return this._onConnected.event;
         }
 
-        constructor(app: MidnightLizard.Settings.IApplicationSettings)
+        constructor(private readonly _app: MidnightLizard.Settings.IApplicationSettings)
         {
             const handler = (port: chrome.runtime.Port) =>
             {
@@ -32,7 +32,14 @@ namespace Chrome
                 {
                     this.connections.add(port);
                     port.onDisconnect.addListener(closedPort => this.connections.delete(closedPort));
-                    port.onMessage.addListener(message => this._onMessage.raise({ port, message }));
+                    port.onMessage.addListener(message =>
+                    {
+                        if (_app.isDebug)
+                        {
+                            console.log(message);
+                        }
+                        this._onMessage.raise({ port, message })
+                    });
                     this._onConnected.raise(port);
                 }
             };
@@ -41,11 +48,19 @@ namespace Chrome
 
         public postMessage(port: chrome.runtime.Port, message: MidnightLizard.Settings.MessageFromBackgroundPage)
         {
+            if (this._app.isDebug)
+            {
+                console.log(message);
+            }
             port.postMessage(message);
         }
 
         public broadcastMessage(message: MidnightLizard.Settings.MessageFromBackgroundPage, portType: string)
         {
+            if (this._app.isDebug)
+            {
+                console.log(message);
+            }
             for (const port of this.connections)
             {
                 if (port.name === portType)

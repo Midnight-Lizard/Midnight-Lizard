@@ -12,7 +12,7 @@ function openConnection(port?: any)
 {
     if (!connection || port)
     {
-        connection = chrome.runtime.connect({ name: 'polyfill' });
+        connection = chrome.runtime.connect({ name: 'portal' });
         connection.onMessage.addListener((msg, port) =>
         {
             document.documentElement.dispatchEvent(
