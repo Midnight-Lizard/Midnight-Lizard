@@ -22,9 +22,10 @@ body.dark-theme i.static-icon-filter {
     background-color: rgba(0,0,0,.15)!important;
 }
 
-.sortable:after, .sortable:before {
+.sortable:after, .sortable:before, #context_toggler:before {
     --ml-background-border-top-color:Border;
     --ml-background-border-bottom-color:Border;
+    --ml-background-border-left-color:Border;
 }
 .sortable.az:before, .sortable.za:after {
     --ml-background-border-top-color:HighlightedText;
@@ -42,4 +43,9 @@ body.dark-theme i.static-icon-filter {
 .drop-down-icon:hover+a,
 .general_activity_item:not(.opened):hover {
     background-color: var(--ml-main-alt-background-color) !important;
+}
+
+html[ml-is-active] .editor-current-translation-source .context:not(imp),
+html[ml-is-active] .proofread-string-source .context:not(imp) {
+    color: hsla(0, 0%, 40%, 0.55);
 }
