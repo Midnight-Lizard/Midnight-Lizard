@@ -178,7 +178,10 @@ namespace MidnightLizard.Colors
             let prevColor = increaseContrast ? this._colors.get(rgbaString) : null;
             if (prevColor)
             {
-                this.tryUpdateLightArea(tag, prevColor.originalLight);
+                if (prevColor.role === this._component)
+                {
+                    this.tryUpdateLightArea(tag, prevColor.originalLight);
+                }
                 let newColor = Object.assign({}, prevColor);
                 newColor.reason = ColorReason.Previous;
                 newColor.originalColor = rgbaString;
