@@ -2167,7 +2167,8 @@ namespace MidnightLizard.ContentScript
             isButton: boolean, bgInverted: boolean)
         {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
             let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
-            let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
+            let gradientColorMatches = backgroundImage
+                .match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)|calc\([^)]+\)/gi);
             let gradientColors = new Map<string, string>();
             if (gradientColorMatches)
             {
@@ -2266,9 +2267,11 @@ namespace MidnightLizard.ContentScript
 
         protected processBackgroundGradient(tag: HTMLElement | PseudoElement, isButton: boolean, index: number, gradient: string, roomRules: RoomRules)
         {
+            // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
+            //linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) calc(71.1704% - 16px), transparent calc(71.1704% - 15px), transparent 100%)
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
-            let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|current|color|transparent|stop|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
+            let uniqColors = new Set<string>(gradient
+                .replace(/webkit|moz|ms|repeating|linear|radial|from|\bto\b|gradient|circle|ellipse|top|left|bottom|right|farthest|closest|side|corner|current|color|transparent|stop|calc|[\.\d]+%|[\.\d]+[a-z]{2,3}/gi, '')
                 .match(/(rgba?\([^\)]+\)|#[a-z\d]{6}|[a-z]+)/gi) || []);
             const bgLight = isButton
                 ? this._settingsManager.isComplex
