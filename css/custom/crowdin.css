@@ -45,7 +45,18 @@ body.dark-theme i.static-icon-filter {
     background-color: var(--ml-main-alt-background-color) !important;
 }
 
+html[ml-is-active] .editor-pane-title:not(imp),
 html[ml-is-active] .editor-current-translation-source .context:not(imp),
 html[ml-is-active] .proofread-string-source .context:not(imp) {
-    color: hsla(0, 0%, 40%, 0.55);
+    color: hsla(0, 0%, 40%, 0.6);
+}
+
+.status_select {
+    --ml-background-background-color:HighlightedBackground;
+    --ml-link-color:HighlightedText;
+    --ml-link-active-color:HighlightedText;
+    --ml-link-hover-color:HighlightedText;
+    --ml-visitedlink-color:HighlightedText;
+    --ml-visitedlink-hover-color:HighlightedText;
+    --ml-visitedlink-active-color:HighlightedText;
 }
