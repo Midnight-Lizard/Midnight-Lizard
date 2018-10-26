@@ -2175,7 +2175,8 @@ namespace MidnightLizard.ContentScript
                 gradientColors.forEach((id, color) => backgroundImage =
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
-            let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!);
+            let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!) &&
+                !/cover|contain|%|^(?:,?\s?\d+\dpx)+$/i.test(tag.mlComputedStyle!.backgroundSize!);
             let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
