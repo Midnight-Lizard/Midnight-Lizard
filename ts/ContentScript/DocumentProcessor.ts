@@ -685,132 +685,89 @@ namespace MidnightLizard.ContentScript
                 let needReCalculation = !!tag.mlSvgAttributeChanged, value: string | null | undefined;
                 const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
-                if (!needReCalculation)
+                value = tag.style.getPropertyValue(ns.css.bgrColor);
+                if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
+                    tag.mlBgColor && tag.mlBgColor.color && tag.mlBgColor.color !== value)
                 {
-                    value = tag.style.getPropertyValue(ns.css.bgrColor);
-                    if (value && tag.style.getPropertyPriority(ns.css.bgrColor) !== this._css.important ||
-                        tag.mlBgColor && tag.mlBgColor.color && tag.mlBgColor.color !== value)
-                    {
-                        tag.originalBackgroundColor = value;
-                        needReCalculation = true;
-                    }
+                    tag.originalBackgroundColor = value;
+                    needReCalculation = true;
+                }
 
-                    if (!needReCalculation)
+                value = tag.style.getPropertyValue(ns.css.fntColor);
+                if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
+                    tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
+                {
+                    tag.originalColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.textShadow);
+                if (value && tag.style.getPropertyPriority(this._css.textShadow) !== this._css.important)
+                {
+                    tag.originalTextShadow = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(ns.css.brdColor);
+                if (value && tag.style.getPropertyPriority(ns.css.brdColor) !== this._css.important)
+                {
+                    tag.originalBorderColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.borderTopColor);
+                if (value && tag.style.getPropertyPriority(this._css.borderTopColor) !== this._css.important)
+                {
+                    tag.originalBorderTopColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.borderRightColor);
+                if (value && tag.style.getPropertyPriority(this._css.borderRightColor) !== this._css.important)
+                {
+                    tag.originalBorderRightColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.borderBottomColor);
+                if (value && tag.style.getPropertyPriority(this._css.borderBottomColor) !== this._css.important)
+                {
+                    tag.originalBorderBottomColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.borderLeftColor);
+                if (value && tag.style.getPropertyPriority(this._css.borderLeftColor) !== this._css.important)
+                {
+                    tag.originalBorderLeftColor = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.backgroundImage);
+                if (value && tag.style.getPropertyPriority(this._css.backgroundImage) !== this._css.important)
+                {
+                    tag.originalBackgroundImage = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.filter);
+                if (value && tag.currentFilter !== value)
+                {
+                    tag.originalFilter = value;
+                    needReCalculation = true;
+                }
+
+                value = tag.style.getPropertyValue(this._css.transitionDuration);
+                if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
+                {
+                    const transitionProperty = tag.style.getPropertyValue(this._css.transitionProperty);
+                    if (transitionProperty)
                     {
-                        value = tag.style.getPropertyValue(ns.css.fntColor);
-                        if (value && tag.style.getPropertyPriority(ns.css.fntColor) !== this._css.important ||
-                            tag.mlColor && tag.mlColor.color && tag.mlColor.color !== value)
+                        const { hasForbiddenTransition } = this.calculateTransitionDuration(value, transitionProperty);
+                        if (hasForbiddenTransition)
                         {
-                            tag.originalColor = value;
+                            tag.originalTransitionDuration = value;
                             needReCalculation = true;
-                        }
-
-                        if (!needReCalculation)
-                        {
-                            value = tag.style.getPropertyValue(this._css.textShadow);
-                            if (value && tag.style.getPropertyPriority(this._css.textShadow) !== this._css.important)
-                            {
-                                tag.originalTextShadow = value;
-                                needReCalculation = true;
-                            }
-
-                            if (!needReCalculation)
-                            {
-                                value = tag.style.getPropertyValue(ns.css.brdColor);
-                                if (value && tag.style.getPropertyPriority(ns.css.brdColor) !== this._css.important)
-                                {
-                                    tag.originalBorderColor = value;
-                                    needReCalculation = true;
-                                }
-
-                                if (!needReCalculation)
-                                {
-                                    value = tag.style.getPropertyValue(this._css.borderTopColor);
-                                    if (value && tag.style.getPropertyPriority(this._css.borderTopColor) !== this._css.important)
-                                    {
-                                        tag.originalBorderTopColor = value;
-                                        needReCalculation = true;
-                                    }
-
-                                    if (!needReCalculation)
-                                    {
-                                        value = tag.style.getPropertyValue(this._css.borderRightColor);
-                                        if (value && tag.style.getPropertyPriority(this._css.borderRightColor) !== this._css.important)
-                                        {
-                                            tag.originalBorderRightColor = value;
-                                            needReCalculation = true;
-                                        }
-
-                                        if (!needReCalculation)
-                                        {
-                                            value = tag.style.getPropertyValue(this._css.borderBottomColor);
-                                            if (value && tag.style.getPropertyPriority(this._css.borderBottomColor) !== this._css.important)
-                                            {
-                                                tag.originalBorderBottomColor = value;
-                                                needReCalculation = true;
-                                            }
-
-                                            if (!needReCalculation)
-                                            {
-                                                value = tag.style.getPropertyValue(this._css.borderLeftColor);
-                                                if (value && tag.style.getPropertyPriority(this._css.borderLeftColor) !== this._css.important)
-                                                {
-                                                    tag.originalBorderLeftColor = value;
-                                                    needReCalculation = true;
-                                                }
-
-                                                if (!needReCalculation)
-                                                {
-                                                    value = tag.style.getPropertyValue(this._css.backgroundImage);
-                                                    if (value && tag.style.getPropertyPriority(this._css.backgroundImage) !== this._css.important)
-                                                    {
-                                                        tag.originalBackgroundImage = value;
-                                                        needReCalculation = true;
-                                                    }
-
-                                                    if (!needReCalculation)
-                                                    {
-                                                        value = tag.style.getPropertyValue(this._css.backgroundSize);
-                                                        if (value && tag.style.getPropertyPriority(this._css.backgroundSize) !== this._css.important)
-                                                        {
-                                                            tag.originalBackgroundSize = value;
-                                                            needReCalculation = true;
-                                                        }
-
-                                                        if (!needReCalculation)
-                                                        {
-                                                            value = tag.style.getPropertyValue(this._css.filter);
-                                                            if (value && tag.currentFilter !== value)
-                                                            {
-                                                                tag.originalFilter = value;
-                                                                needReCalculation = true;
-                                                            }
-
-                                                            if (!needReCalculation)
-                                                            {
-                                                                value = tag.style.getPropertyValue(this._css.transitionDuration);
-                                                                if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
-                                                                {
-                                                                    const transitionProperty = tag.style.getPropertyValue(this._css.transitionProperty);
-                                                                    if (transitionProperty)
-                                                                    {
-                                                                        const { hasForbiddenTransition } = this.calculateTransitionDuration(value, transitionProperty);
-                                                                        if (hasForbiddenTransition)
-                                                                        {
-                                                                            tag.originalTransitionDuration = value;
-                                                                            needReCalculation = true;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 }
@@ -1572,10 +1529,6 @@ namespace MidnightLizard.ContentScript
                 if (tag.originalBackgroundImage !== undefined && tag.style.backgroundImage !== tag.originalBackgroundImage)
                 {
                     tag.style.backgroundImage = tag.originalBackgroundImage;
-                    if (tag.originalBackgroundSize !== undefined && tag.style.backgroundSize !== tag.originalBackgroundSize)
-                    {
-                        tag.style.backgroundSize = tag.originalBackgroundSize;
-                    }
                 }
                 if (tag.originalFilter !== undefined && tag.style.filter !== tag.originalFilter)
                 {
@@ -1629,7 +1582,7 @@ namespace MidnightLizard.ContentScript
                     tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     hasRoomRules = true;
-                    this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
+                    this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, bgInverted);
                 }
 
                 if (tag instanceof HTMLCanvasElement ||
@@ -1821,7 +1774,7 @@ namespace MidnightLizard.ContentScript
                     if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
                         tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                     {
-                        this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, isTable, bgInverted);
+                        this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, bgInverted);
                     }
 
                     bgLight = roomRules.backgroundColor.light;
@@ -2211,7 +2164,7 @@ namespace MidnightLizard.ContentScript
 
         protected processBackgroundImagesAndGradients(
             tag: HTMLElement | PseudoElement, doc: Document, roomRules: RoomRules,
-            isButton: boolean, isTable: boolean, bgInverted: boolean)
+            isButton: boolean, bgInverted: boolean)
         {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
             let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
             let gradientColorMatches = backgroundImage.match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)/gi);
@@ -2222,7 +2175,7 @@ namespace MidnightLizard.ContentScript
                 gradientColors.forEach((id, color) => backgroundImage =
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
-            let backgroundSizes = tag.mlComputedStyle!.backgroundSize!.match(/\b[^,]+/gi)!;
+            let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!);
             let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
@@ -2231,7 +2184,7 @@ namespace MidnightLizard.ContentScript
                 const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                 let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
 
-                doInvert = !isTable && bgInverted &&
+                doInvert = !hasRepeats && bgInverted &&
                     ((backgroundImage + tag.className).search(doNotInvertRegExp) === -1) &&
                     tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                     (
@@ -2240,17 +2193,23 @@ namespace MidnightLizard.ContentScript
                         (tag.parentElement.parentElement.mlComputedStyle!.overflow === this._css.hidden)
                     );
 
-                if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 || doInvert || this._settingsManager.currentSettings.blueFilter !== 0)
+                if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 ||
+                    doInvert || this._settingsManager.currentSettings.blueFilter !== 0 ||
+                    hasRepeats && this.shift.Background.lightnessLimit < 1)
                 {
                     isPseudoContent = tag.isPseudo && tag.mlComputedStyle.content !== "''" && tag.mlComputedStyle!.content !== '""';
 
-                    if (bgImgSet.lightnessLimit < 1 && !doInvert)
+                    if (bgImgSet.lightnessLimit < 1 && !doInvert && !hasRepeats)
                     {
                         this.calcTagArea(tag);
                         let area = 1 - Math.min(Math.max(tag.mlArea!, 1) / doc.viewArea!, 1),
                             lim = bgImgSet.lightnessLimit,
                             txtLim = this.shift.Text.lightnessLimit;
                         bgImgLight = Math.min(((lim ** (1 / 2) - lim) ** (1 / 3) * area) ** 3 + lim, Math.max(lim, txtLim));
+                    }
+                    else if (hasRepeats)
+                    {
+                        bgImgLight = this.shift.Background.lightnessLimit;
                     }
 
                     bgFilter = [
@@ -2283,22 +2242,18 @@ namespace MidnightLizard.ContentScript
                 roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
                 {
                     gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
-                    let size = backgroundSizes[Math.min(index, backgroundSizes.length - 1)];
                     if (haveToProcBgImg && bgImg.startsWith("url"))
                     {
                         return this._backgroundImageProcessor.process(
-                            bgImg, bgFilter, size, this._settingsManager.currentSettings.blueFilter / 100, roomRules,
-                            this._settingsManager.currentSettings.hideBigBackgroundImages
-                                ? this._settingsManager.currentSettings.maxBackgroundImageSize * 1024
-                                : -1);
+                            bgImg, bgFilter, this._settingsManager.currentSettings.blueFilter / 100, roomRules);
                     }
                     else if (/gradient/gi.test(bgImg))
                     {
-                        return this.processBackgroundGradient(tag, isButton, index, bgImg, size, roomRules);
+                        return this.processBackgroundGradient(tag, isButton, index, bgImg, roomRules);
                     }
                     else
                     {
-                        return new BackgroundImage(size, bgImg, BackgroundImageType.Image);
+                        return new BackgroundImage(bgImg, BackgroundImageType.Image);
                     }
                 });
                 if (!roomRules.hasBackgroundImagePromises)
@@ -2308,7 +2263,7 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        protected processBackgroundGradient(tag: HTMLElement | PseudoElement, isButton: boolean, index: number, gradient: string, size: string, roomRules: RoomRules)
+        protected processBackgroundGradient(tag: HTMLElement | PseudoElement, isButton: boolean, index: number, gradient: string, roomRules: RoomRules)
         {
             let mainColor: Colors.ColorEntry | null = null, lightSum = 0;
             let uniqColors = new Set<string>(gradient // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
@@ -2357,14 +2312,15 @@ namespace MidnightLizard.ContentScript
                 });
                 mainColor && (mainColor!.light = lightSum / uniqColors.size);
             }
-            return new BackgroundImage(size, gradient, BackgroundImageType.Gradient);
+            return new BackgroundImage(gradient, BackgroundImageType.Gradient);
         }
 
         protected applyBackgroundImages(tag: HTMLElement | PseudoElement, backgroundImages: BackgroundImage[])
         {
             let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
-            tag.style.setProperty(this._css.backgroundImage, backgroundImages.map(bgImg => bgImg.data).join(","), this._css.important);
-            tag.style.setProperty(this._css.backgroundSize, backgroundImages.map(bgImg => bgImg.size).join(","), this._css.important);
+            tag.style.setProperty(this._css.backgroundImage,
+                backgroundImages.map(bgImg => bgImg.data).join(","),
+                this._css.important);
             this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
             return tag;
         }
@@ -2629,16 +2585,18 @@ namespace MidnightLizard.ContentScript
             if (roomRules.backgroundImages)
             {
                 tag.originalBackgroundImage = tag.style.backgroundImage;
-                tag.originalBackgroundSize = tag.style.backgroundSize;
                 if (roomRules.hasBackgroundImagePromises)
                 {
                     applyBgPromise = Promise.all
-                        ([tag, roomRules, ...roomRules.backgroundImages] as [HTMLElement | PseudoElement, RoomRules, BackgroundImage])
-                        .then(([t, rr, ...bgImgs]) =>
+                        ([tag, tag.mlTimestamp, ...roomRules.backgroundImages] as
+                        [HTMLElement | PseudoElement, number, BackgroundImage])
+                        .then(([t, timestamp, ...bgImgs]) =>
                         {
-                            rr.backgroundImages = bgImgs as BackgroundImage[];
-                            rr.hasBackgroundImagePromises = false;
-                            return this.applyBackgroundImages(t, bgImgs as BackgroundImage[]);
+                            if (t.mlTimestamp === timestamp)
+                            {
+                                return this.applyBackgroundImages(t, bgImgs);
+                            }
+                            return t;
                         });
                     applyBgPromise.catch(ex =>
                     {

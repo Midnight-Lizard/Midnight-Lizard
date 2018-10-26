@@ -9,7 +9,6 @@ namespace MidnightLizard.ContentScript
     export class BackgroundImage
     {
         constructor(
-            readonly size: string,
             readonly data: string,
             readonly type: BackgroundImageType)
         { }

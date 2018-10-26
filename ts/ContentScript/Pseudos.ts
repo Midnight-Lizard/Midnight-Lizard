@@ -108,6 +108,7 @@ namespace MidnightLizard.ContentScript
         originalBorderLeftColor: string | null | undefined;
         originalOpacity: string | null | undefined;
         originalBackgroundImage: string | null | undefined;
-        originalBackgroundSize: string | null | undefined;
+
+        mlTimestamp: undefined;
     }
 }

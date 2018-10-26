@@ -8,8 +8,7 @@ namespace MidnightLizard.ContentScript
 {
     export abstract class IBackgroundImageProcessor
     {
-        abstract process(url: string, bgFilter: string, size: string,
-            blueFilter: number, roomRules: RoomRules, maxSize: number)
+        abstract process(url: string, bgFilter: string, blueFilter: number, roomRules: RoomRules)
             : BackgroundImage | Promise<BackgroundImage>;
     }
 
@@ -24,8 +23,9 @@ namespace MidnightLizard.ContentScript
         private readonly _storagePrefix = "ml-image-";
         private readonly _maxCacheSize = 256 * 1024 * 2;
         private _storageIsAccessable: boolean = true;
-        private _lastImageSizeLimit?: number;
-        private _lastHideBigImages?: boolean;
+        private _imageSizeLimit: number = 0;
+        private _hideBigImages: boolean = false;
+        private _imageSizeLimitValue: number = -1;
 
         constructor(rootDoc: Document,
             private readonly _app: MidnightLizard.Settings.IApplicationSettings,
@@ -54,22 +54,31 @@ namespace MidnightLizard.ContentScript
             catch { this._storageIsAccessable = false }
         }
 
+        private calcImageSizeLimitValue()
+        {
+            this._imageSizeLimitValue = this._hideBigImages ? this._imageSizeLimit * 1024 : -1;
+        }
+
         private onSettingsInitialized(): void
         {
-            this._lastHideBigImages = this._settingsManager.currentSettings.hideBigBackgroundImages;
-            this._lastImageSizeLimit = this._settingsManager.currentSettings.maxBackgroundImageSize;
+            this._hideBigImages = this._settingsManager.currentSettings.hideBigBackgroundImages;
+            this._imageSizeLimit = this._settingsManager.currentSettings.maxBackgroundImageSize;
+            this.calcImageSizeLimitValue();
         }
 
         private onSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
-            if (this._lastImageSizeLimit !== this._settingsManager.currentSettings.maxBackgroundImageSize ||
-                this._lastHideBigImages !== this._settingsManager.currentSettings.hideBigBackgroundImages)
+            if (this._imageSizeLimit !== this._settingsManager.currentSettings.maxBackgroundImageSize ||
+                this._hideBigImages !== this._settingsManager.currentSettings.hideBigBackgroundImages)
             {
                 this._imagePromises.clear();
                 this._imageResolvers.clear();
                 this._imageRejectors.clear();
             }
             this._images.clear();
+            this._imageSizeLimit = this._settingsManager.currentSettings.maxBackgroundImageSize;
+            this._hideBigImages = this._settingsManager.currentSettings.hideBigBackgroundImages;
+            this.calcImageSizeLimitValue();
         }
 
         private onImageFetchMessage(message?: Settings.LocalMessageToContent)
@@ -79,15 +88,15 @@ namespace MidnightLizard.ContentScript
                 switch (message.type)
                 {
                     case Settings.MessageType.ImageFetchCompleted:
-                        const resolve = this._imageResolvers.get(message.url);
+                        const resolve = this._imageResolvers.get(message.url + this._imageSizeLimit);
                         resolve && resolve(message.img);
                         break;
 
                     case Settings.MessageType.ImageFetchFailed:
-                        const reject = this._imageRejectors.get(message.url);
+                        const reject = this._imageRejectors.get(message.url + this._imageSizeLimit);
                         reject && reject(message.error);
-                        this._imageRejectors.delete(message.url);
-                        this._imageResolvers.delete(message.url);
+                        this._imageRejectors.delete(message.url + this._imageSizeLimit);
+                        this._imageResolvers.delete(message.url + this._imageSizeLimit);
                         break;
 
                     case Settings.MessageType.ErrorMessage:
@@ -105,13 +114,13 @@ namespace MidnightLizard.ContentScript
 
         private save(url: string, img: BackgroundImageCache): void
         {
-            this._images.set(url, img);
-            this._imagePromises.delete(url);
+            this._images.set(url + this._imageSizeLimit, img);
+            this._imagePromises.delete(url + this._imageSizeLimit);
             if (this._storageIsAccessable && img.d.length < this._maxCacheSize)
             {
                 try
                 {
-                    sessionStorage.setItem(this._storagePrefix + url, JSON.stringify(img));
+                    sessionStorage.setItem(this._storagePrefix + url + this._imageSizeLimit, JSON.stringify(img));
                 }
                 catch (ex)
                 {
@@ -124,54 +133,52 @@ namespace MidnightLizard.ContentScript
             }
         }
 
-        public process(url: string, bgFilter: string, bgSize: string,
-            blueFilter: number, roomRules: RoomRules, maxSize: number)
+        public process(url: string, bgFilter: string, blueFilter: number, roomRules: RoomRules)
         {
             url = this.getAbsoluteUrl(Util.trim(url.substr(3), "()'\""));
 
             const bgFltr = bgFilter.replace(`var(--${FilterType.BlueFilter})`, `url(#${FilterType.BlueFilter})`);
 
-            const prevImage = this._images.get(url);
+            const prevImage = this._images.get(url + this._imageSizeLimit);
             if (prevImage)
             {
-                return this.createBackgroundImage(prevImage, bgSize, bgFltr, blueFilter);
+                return this.createBackgroundImage(prevImage, bgFltr, blueFilter);
             }
 
             roomRules.hasBackgroundImagePromises = true;
-            let cachePromise = this._imagePromises.get(url) || this.fetchNewImage(url, maxSize);
+            let cachePromise = this._imagePromises.get(url + this._imageSizeLimit) || this.fetchNewImage(url);
 
-            let result = Promise.all([url, cachePromise, bgSize, bgFltr, blueFilter])
-                .then(([_url, img, bgSize, fltr, blueFltr]) =>
+            let result = Promise.all([url, cachePromise, bgFltr, blueFilter])
+                .then(([_url, img, fltr, blueFltr]) =>
                 {
                     this.save(_url, img);
-                    return this.createBackgroundImage(img, bgSize, fltr, blueFltr);
+                    return this.createBackgroundImage(img, fltr, blueFltr);
                 });
             return result;
         }
 
-        private fetchNewImage(url: string, maxSize: number)
+        private fetchNewImage(url: string)
         {
             let cachePromise = new Promise<BackgroundImageCache>((resolve, reject) =>
             {
-                this._imageResolvers.set(url, resolve);
-                this._imageRejectors.set(url, reject);
-                this._msgBus.postMessage(new Settings.FetchImage(url, maxSize));
+                this._imageResolvers.set(url + this._imageSizeLimit, resolve);
+                this._imageRejectors.set(url + this._imageSizeLimit, reject);
+                this._msgBus.postMessage(new Settings.FetchImage(url, this._imageSizeLimitValue));
             });
-            this._imagePromises.set(url, cachePromise);
+            this._imagePromises.set(url + this._imageSizeLimit, cachePromise);
             return cachePromise;
         }
 
-        private createBackgroundImage(img: BackgroundImageCache, bgSize: string, filters: string, blueFilter: number)
+        private createBackgroundImage(img: BackgroundImageCache, filters: string, blueFilter: number)
         {
-            let imgWidth = img.w + "px", imgHeight = img.h + "px";
             const svgImg =
-                `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${img.w} ${img.h}" filter="${filters}">` +
+                `<svg xmlns="http://www.w3.org/2000/svg" width="${img.w}" height="${img.h}" filter="${filters}">` +
                 (blueFilter ?
                     `<filter id="${FilterType.BlueFilter}"><feColorMatrix type="matrix" values="` +
                     `1 0 ${blueFilter} 0 0 0 1 0 0 0 0 0 ${1 - blueFilter} 0 0 0 0 0 1 0"/></filter>` : "") +
-                `<image width="${imgWidth}" height="${imgHeight}" href="${img.d}"/></svg>`;
+                `<image width="${img.w}" height="${img.h}" href="${img.d}"/></svg>`;
 
-            return new BackgroundImage(/^(auto\s?){1,2}$/i.test(bgSize) ? imgWidth + " " + imgHeight : bgSize,
+            return new BackgroundImage(
                 "url('data:image/svg+xml," + encodeURIComponent(svgImg)
                     .replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29") +
                 "')", BackgroundImageType.Image);

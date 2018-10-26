@@ -4,12 +4,14 @@ namespace MidnightLizard.ContentScript
 {
     export abstract class IDocumentZoomObserver
     {
+        abstract get CurrentZoom(): number;
     }
 
     @DI.injectable(IDocumentZoomObserver)
     class DocumentZoomObserver implements IDocumentZoomObserver
     {
         private lastZoom = 1;
+        public get CurrentZoom() { return this.lastZoom }
 
         constructor(doc: Document,
             settingsBus: MidnightLizard.Settings.ISettingsBus,

@@ -751,6 +751,7 @@ height: 148px;
     height: 18px;
     display: inline-block;
     background-size: 18px 18px;
+    background-repeat: no-repeat;
 }
 
 .ml-small-bg-image-example span:nth-of-type(1) {
