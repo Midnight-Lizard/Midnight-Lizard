@@ -533,6 +533,23 @@ namespace MidnightLizard.Colors
             super(app, settingsManager);
             this._component = Component.HighlightedBackground;
         }
+
+        protected processTransparentColor(rgbaString: string, backgroundLightness: number, inheritedColorValue: string | undefined, tag: any)
+        {
+            return {
+                role: this._component,
+                color: null,
+                reason: ColorReason.Parent,
+                originalColor: rgbaString,
+                owner: this._app.isDebug ? tag : null,
+                light: backgroundLightness,
+                backgroundLight: backgroundLightness,
+                originalLight: 1, // since i don't know the real value
+                inheritedColor: inheritedColorValue,
+                alpha: 1, // since i don't know the real value
+                isUpToDate: true
+            } as ColorEntry;
+        }
     }
 
     @DI.injectable(IButtonBorderColorProcessor)
