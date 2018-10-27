@@ -10,14 +10,21 @@ namespace MidnightLizard.Custom
 
     function classObserverCallback(mutations: MutationRecord[], observer: MutationObserver)
     {
-        const canvasArr = document.querySelectorAll(".widget-scene-canvas, .canvas-container > canvas") as any as HTMLCanvasElement[];
-        if (canvasArr)
+        if (document.documentElement.getAttribute("ml-mode") === "complex")
         {
-            for (const canvas of canvasArr)
+            const canvasArr = document.querySelectorAll(".widget-scene-canvas, .canvas-container > canvas") as any as HTMLCanvasElement[];
+            if (canvasArr)
             {
-                canvas.style.removeProperty("filter");
-                canvas.style.setProperty("--ml-timestamp", Date.now().toString(16));
+                for (const canvas of canvasArr)
+                {
+                    canvas.style.removeProperty("filter");
+                    canvas.style.setProperty("--ml-timestamp", Date.now().toString(16));
+                }
             }
+        }
+        else
+        {
+            classObserver.disconnect();
         }
     }
 }
