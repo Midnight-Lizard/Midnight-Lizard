@@ -420,6 +420,17 @@
             "css": [
                 "css/custom/stackoverflow.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://github.com/*",
+                "https://*.github.com/*"
+            ],
+            "css": [
+                "css/custom/github.css"
+            ]
         }
     ]
 }

@@ -1,0 +1,52 @@
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-code-addition,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-num-addition,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-code-deletion,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-num-deletion {
+    filter: var(--ml-text-filter) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-addition *:not(#imp):not(.add-line-comment):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-num-addition *:not(#imp):not(.add-line-comment):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-addition .x *:not(#imp):not(.add-line-comment):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-deletion *:not(#imp):not(.add-line-comment):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-num-deletion *:not(#imp):not(.add-line-comment):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-deletion .x *:not(#imp):not(.add-line-comment):not(imp) {
+    background: transparent !important;
+    color: black !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-code-addition .add-line-comment,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .blob-code-deletion .add-line-comment {
+    filter: var(--ml-text-filter) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-addition:not(#imp):not(.imp):not(imp) {
+    background-color: #e6ffed !important;
+    color: black !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-num-addition:not(#imp):not(.imp):not(imp) {
+    background-color: #cdffd8 !important;
+    border-color: #bef5cb !important;
+    color: black !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-addition .x:not(#imp):not(.imp):not(imp) {
+    color: black !important;
+    background-color: #acf2bd !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-deletion:not(#imp):not(.imp):not(imp) {
+    background-color: hsla(353, 100%, 95%, 1) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-num-deletion:not(#imp):not(.imp):not(imp) {
+    background-color: #ffdce0 !important;
+    border-color: #fdaeb7 !important;
+    color: black !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .blob-code-deletion .x:not(#imp):not(.imp):not(imp) {
+    color: black !important;
+    background-color: #fdb8c0 !important;
+}
