@@ -70,3 +70,12 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp) {
     background-color: transparent!important;
 }
+
+#loading div[style*="animation"][style*="background:#db4437"],
+#loading div[style*="animation"][style*="background:#d23f31"] {
+    --ml-background-background-color:HighlightedBackground;
+}
+
+#loading #nlpt:before {
+    --ml-background-background-color:Border;
+}
