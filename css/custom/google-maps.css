@@ -76,5 +76,5 @@
 }
 
 html[ml-stage-mode]:not([ml-stage="loading"]) #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
-    filter: var(--ml-text-filter)!important;
+    filter: var(--ml-contrast-text-filter)!important;
 }

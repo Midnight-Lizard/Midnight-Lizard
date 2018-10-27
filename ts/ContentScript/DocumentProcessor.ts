@@ -2024,7 +2024,7 @@ namespace MidnightLizard.ContentScript
 
         private processInaccessibleTextContent(
             tag: HTMLCanvasElement | HTMLEmbedElement,
-            roomRules: RoomRules, customTextLight?: number)
+            roomRules: RoomRules, strictBgLight = false, customTextLight?: number)
         {
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
@@ -2037,10 +2037,10 @@ namespace MidnightLizard.ContentScript
                 filterValue = [
                     tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
                     darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
-                    `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, 0.88))})`,
+                    `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, strictBgLight ? 0 : 0.9))})`,
                     `hue-rotate(180deg) invert(1)`,
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                    `brightness(${float.format(Math.max(customTextLight || txtSet.lightnessLimit, 0.88))})`
+                    `brightness(${float.format(Math.max(customTextLight || txtSet.lightnessLimit, 0.9))})`
                 ];
             }
             else
@@ -2461,9 +2461,11 @@ namespace MidnightLizard.ContentScript
 
             const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules: RoomRules = {};
             fakeCanvas.mlComputedStyle = fakeCanvas.style;
-            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
+            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, true);
             cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value};`;
-            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, 1);
+            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
+            cssText += `\n--ml-contrast-text-filter:${fakeCanvasRules.filter!.value};`;
+            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, true, 1);
             cssText += `\n--ml-highlighted-text-filter:${fakeCanvasRules.filter!.value};`;
 
             const mainColorsStyle = doc.createElement('style');
