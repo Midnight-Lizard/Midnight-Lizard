@@ -32,8 +32,16 @@ table[role="presentation"] a > div[style*="background-image"]
     --ml-backgroundimage:Background;
 }
 
-div > span > a[id] > span > i, div > span > a[role="button"] > span > i, h6 > span > span > i,
-.fbPhotoSnowlift > div > div > a > i, .snowliftPager
+span > i,
+.fbPhotoSnowlift > div > div > a > i,
+.snowliftPager,
+#pagelet_composer div:not(:last-child) > div[role="tab"] > i,
+#pagelet_composer a[role="button"]:not([data-testid="ellipsis-sprout"]) > div > i,
+.fbTimelineComposerCapsule a:not([data-testid="ellipsis-sprout"]) > div > i,
+.userContentWrapper span[style*="background-image"],
+.UFICommentBody span[style*="background-image"],
+h1[data-click="bluebar_logo"],
+._4w97 ._585_
 {
     --ml-no-invert:true;
     --ml-backgroundimage:Text;
@@ -54,7 +62,7 @@ div > span > a[id] > span > i, div > span > a[role="button"] > span > i, h6 > sp
 }
 
 ._fbEntstreamMediaPhoto__sphericalPhotoLink canvas,
-h1[data-click="bluebar_logo"]
+[data-testid="UFIReactionsMenu"] canvas
 {
     --ml-no-invert:true;
 }
@@ -67,4 +75,22 @@ h1[data-click="bluebar_logo"]
 ._1otk._3t1r._4ubd
 {
     --ml-ignore:true;
+}
+
+.navHeader a:after,
+.sideNavItem a:after {
+    transition-duration: 0s!important;
+}
+
+.UFICommentPhotoIcon {
+    --ml-ignore:true;
+    filter: invert(var(--ml-invert,0));
+}
+
+a[aria-label*="background"] div {
+    --ml-ignore:true;
+}
+
+.fbChatSidebar {
+    box-shadow: none!important;
 }
