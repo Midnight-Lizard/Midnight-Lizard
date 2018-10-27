@@ -490,6 +490,10 @@
         "description": "commonTab_text_label: text on the label",
         "message": "激活"
     },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       激活设置\n―――――――――――――――――――\n 使用此选项卡可以定义哪些页面以及何时应处理或保持不变。"
+    },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "背景"
