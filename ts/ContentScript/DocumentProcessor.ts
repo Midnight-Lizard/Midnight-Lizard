@@ -1778,7 +1778,7 @@ namespace MidnightLizard.ContentScript
                     }
 
                     bgLight = roomRules.backgroundColor.light;
-                    if (roomRules.backgroundColor.color && roomRules.backgroundColor.alpha < 0.1)
+                    if (roomRules.backgroundColor.color && roomRules.backgroundColor.alpha < 0.2)
                     {
                         bgLight = this.getParentBackground(tag).light;
                     }
