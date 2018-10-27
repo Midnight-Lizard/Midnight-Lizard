@@ -2035,7 +2035,6 @@ namespace MidnightLizard.ContentScript
                 const darkSet = this.shift[customDarkRole] || this.shift.Background, txtSet = this.shift.Text;
                 roomRules.backgroundColor && (roomRules.backgroundColor.color = null);
                 filterValue = [
-                    tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter! : "",
                     tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
                     darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
                     `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, 0.88))})`,
@@ -2049,7 +2048,6 @@ namespace MidnightLizard.ContentScript
                 const customLightRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
                 const lightSet = this.shift[customLightRole] || this.shift.Image;
                 filterValue = [
-                    tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter! : "",
                     lightSet.saturationLimit < 1 ? `saturate(${lightSet.saturationLimit})` : "",
                     this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
                     lightSet.lightnessLimit < 1 ? `brightness(${lightSet.lightnessLimit})` : ""
