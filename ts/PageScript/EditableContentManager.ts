@@ -51,13 +51,10 @@ namespace MidnightLizard.PageScript
 
         private getInnerHtml(tag: HTMLElement)
         {
-            if (!tag.innerHtmlCache || Date.now() - tag.innerHtmlCache.timestamp > 1000)
-            {
-                tag.dispatchEvent(new CustomEvent("before-get-inner-html", { bubbles: true }));
-                tag.innerHtmlCache = { timestamp: Date.now(), value: tag.innerHtmlGetter() };
-                tag.dispatchEvent(new CustomEvent("after-get-inner-html", { bubbles: false }));
-            }
-            return tag.innerHtmlCache.value;
+            tag.dispatchEvent(new CustomEvent("before-get-inner-html", { bubbles: true }));
+            const innerHtml = tag.innerHtmlGetter();
+            tag.dispatchEvent(new CustomEvent("after-get-inner-html", { bubbles: false }));
+            return innerHtml;
         }
 
         private overrideCssStyleDeclaration(doc: Document)
