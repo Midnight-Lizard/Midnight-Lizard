@@ -13,9 +13,11 @@ button.ab_button > span > img
     background-color: transparent;
 }
 
-.gbip, .gbii
+html[ml-is-active] .gbip, html[ml-is-active] .gbii
 {
     --ml-backgroundimage:Image;
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important;
+    --ml-ignore:true;
 }
 .gbip:before, .gbii:before
 {
