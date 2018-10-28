@@ -34,6 +34,8 @@ namespace MidnightLizard.Settings
         abstract get onSettingsChanged(): RespEvent<(scheme: ColorScheme) => void, Colors.ComponentShift>;
         abstract getDefaultSettings(renameToDefault?: boolean): Promise<Settings.ColorScheme>;
         abstract computeProcessingMode(doc: Document): void;
+        /** Deactivates old version of extension - this one */
+        abstract deactivateOldVersion(): void;
     }
     /**
      * Base Settings Manager
@@ -144,6 +146,11 @@ namespace MidnightLizard.Settings
             }
             this._app.isDebug &&
                 console.log(`${this._computedMode}: ${doc.body && doc.body.getElementsByTagName("*").length}`);
+        }
+
+        public deactivateOldVersion()
+        {
+            this.isInit = false;
         }
 
         protected initCurSet()

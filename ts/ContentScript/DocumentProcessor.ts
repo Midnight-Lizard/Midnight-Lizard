@@ -231,6 +231,7 @@ namespace MidnightLizard.ContentScript
             {
                 // received by the old version
                 case UpdateStage.Requested:
+                    this._settingsManager.deactivateOldVersion();
                     this.restoreDocumentColors(html.ownerDocument);
                     html.setAttribute("ml-update", UpdateStage.Ready);
                     break;
