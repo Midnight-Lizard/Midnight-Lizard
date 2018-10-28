@@ -844,6 +844,10 @@
         "description": "color scheme name",
         "message": "黑底绿字"
     },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "蓝光过滤"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "您的本地设置存储已包含一些数据。\n您是否想使用同步（云）存储覆盖数据并丢失被覆盖的数据？"

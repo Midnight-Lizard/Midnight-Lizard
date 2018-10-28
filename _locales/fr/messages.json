@@ -800,6 +800,10 @@
         "description": "color scheme name",
         "message": "Vert sur Noir"
     },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "Filtre Bleu"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"

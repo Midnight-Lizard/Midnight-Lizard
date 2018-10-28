@@ -872,6 +872,10 @@
         "description": "color scheme name",
         "message": "Зелёный на чёрном"
     },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "Фильтр синего"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Ваше локальное хранилище настроек уже содержит некоторую информацию.\nХотите ли Вы перезаписать эту информацию данными из внешнего хранилища для синхронизации и потерять перезаписанные данные?"
