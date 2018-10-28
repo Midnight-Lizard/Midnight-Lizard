@@ -26,7 +26,8 @@ namespace MidnightLizard.ContentScript
     type PromiseResult<T> = Util.HandledPromiseResult<T>;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag/gi;
+    const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag/i;
+    const notTextureRegExp = /user|account|avatar|photo|flag/i;
     const maxAttrLen = 100;
     /** 2 fraction digits number format */
     const float = new Intl.NumberFormat('en-US', {
@@ -1743,7 +1744,7 @@ namespace MidnightLizard.ContentScript
                         tag.parentElement.mlComputedStyle!.content === tag.mlComputedStyle!.content))
                     {
                         let doInvert = (!isTable) && bgInverted &&
-                            (tag.mlComputedStyle!.content!.search(doNotInvertRegExp) === -1) &&
+                            !doNotInvertRegExp.test(tag.mlComputedStyle!.content!) &&
                             tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                             (
                                 this.tagIsSmall(tag)
@@ -2164,8 +2165,9 @@ namespace MidnightLizard.ContentScript
         protected processBackgroundImagesAndGradients(
             tag: HTMLElement | PseudoElement, doc: Document, roomRules: RoomRules,
             isButton: boolean, bgInverted: boolean)
-        {//-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
+        {
             let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
+            //-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
             let gradientColorMatches = backgroundImage
                 .match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)|calc\([^)]+\)/gi);
             let gradientColors = new Map<string, string>();
@@ -2175,9 +2177,6 @@ namespace MidnightLizard.ContentScript
                 gradientColors.forEach((id, color) => backgroundImage =
                     backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
             }
-            let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!) &&
-                !/cover|contain|%|^(?:,?\s?\d+\dpx)+$/i.test(tag.mlComputedStyle!.backgroundSize!) &&
-                !/-|\d+\dpx/i.test(tag.mlComputedStyle!.backgroundPosition!);
             let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
                 haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
@@ -2185,15 +2184,15 @@ namespace MidnightLizard.ContentScript
             {
                 const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
                 let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
+                let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!) &&
+                    !/cover|contain|%|^(?:,?\s?\d+\dpx)+$/i.test(tag.mlComputedStyle!.backgroundSize!) &&
+                    !/-|\d+\dpx/i.test(tag.mlComputedStyle!.backgroundPosition!) &&
+                    !notTextureRegExp.test(backgroundImage + tag.className);
 
                 doInvert = !hasRepeats && bgInverted &&
-                    ((backgroundImage + tag.className).search(doNotInvertRegExp) === -1) &&
+                    !doNotInvertRegExp.test(backgroundImage + tag.className) &&
                     tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
-                    (
-                        this.tagIsSmall(tag) || !!tag.parentElement && !!tag.parentElement.parentElement &&
-                        this.tagIsSmall(tag.parentElement.parentElement) &&
-                        (tag.parentElement.parentElement.mlComputedStyle!.overflow === this._css.hidden)
-                    );
+                    this.tagIsSmall(tag);
 
                 if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 ||
                     doInvert || this._settingsManager.currentSettings.blueFilter !== 0 ||
