@@ -8,7 +8,7 @@ button.ab_button > span > img
     filter: invert(var(--ml-invert,0));
 }
 
-.gb_Z:hover .gb_3:not(imp)
+.gb_Z:hover .gb_3:not(imp), .gsfi:not(imp)
 {
     background-color: transparent;
 }
