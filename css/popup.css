@@ -456,7 +456,17 @@ select.ml-dialog-input-text {
 .ml-dialog-error ul {
     font-size: 14pt;
     line-height: 18pt;
+    margin: 20px 0px 0px 0px;
     list-style-type: decimal;
+}
+
+.ml-dialog-error p {
+    font-size: 20pt;
+    font-weight: bold;
+    margin: 8px 0 40px 0px;
+    padding: 2px 0px 5px 0px;
+    border-radius: 3px;
+    background-color: hsla(0, 0%, 0%, 0.25);
 }
 
 .ml-dialog-error em {
