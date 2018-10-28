@@ -1,6 +1,10 @@
-html[ml-is-active] .-img._glyph {
+html[ml-is-active]:not([ml-stage="loading"]) .-img._glyph {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
+}
+
+html[ml-is-active][ml-mode="simple"] header:not(imp):not(#imp):not(.imp) a:not(imp):not(#imp):not(.imp) .-img._glyph:not(imp):not(#imp):not(.imp) {
+    background-color: transparent!important;
 }
 
 .left-sidebar-toggle * {
@@ -19,4 +23,9 @@ html[ml-is-active] .left-sidebar-toggle *:after {
 
 .profile-avatar:not(imp) {
     box-shadow: none!important;
+}
+
+.searchbar > f-input,
+.post-tag {
+    transition-duration: 0s!important;
 }

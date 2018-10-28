@@ -51,6 +51,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>* *:not(.ml-ignore)>*:not(svg):not(.ml-ignore):not(.ml-dialog-hue-select):not(option) {
         background-color: var(--ml-main-trans-background-color) !important;
     }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(svg):not(#imp):not(imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="header"]:not(svg):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="footer"]:not(svg):not(.ml):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),
@@ -95,6 +96,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="current"]:not(svg):not(.ml-ignore):not(#imp) {
         background-color: var(--ml-main-trans-alt-background-color) !important;
     }
+    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
     html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp):not(#imp),
