@@ -872,6 +872,10 @@
         "description": "color scheme name",
         "message": "Verde sobre negro"
     },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "Filtro Azul"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Tu almacenamiento de ajustes local ya contiene datos.\n¿Quieres sobrescribirlos con los datos del almacenamiento (nube) sincronizado y perder los datos sobrescritos?"
