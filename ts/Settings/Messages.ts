@@ -3,7 +3,7 @@
 
 namespace MidnightLizard.Settings
 {
-    export type ExternalMessageFromPortal = InstallPublicSchemeCommand | UninstallPublicSchemeCommand;
+    export type ExternalMessageFromPortal = InstallPublicSchemeCommand | UninstallPublicSchemeCommand | GetInstalledPublicSchemes;
 
     export type LocalMessageFromContent = FetchImage;
 
@@ -21,6 +21,7 @@ namespace MidnightLizard.Settings
 
     export enum MessageType
     {
+        GetInstalledPublicSchemes = "GetInstalledPublicSchemes",
         InstallPublicScheme = "InstallPublicScheme",
         PublicSchemesChanged = "PublicSchemesChanged",
         UninstallPublicScheme = "UninstallPublicScheme",
@@ -30,6 +31,12 @@ namespace MidnightLizard.Settings
         ImageFetchCompleted = "ImageFetchCompleted",
         FetchExternalCss = "FetchExternalCss",
         PageScriptLoaded = "PageScriptLoaded",
+    }
+
+    export class GetInstalledPublicSchemes
+    {
+        type: MessageType.GetInstalledPublicSchemes = MessageType.GetInstalledPublicSchemes;
+        constructor() { }
     }
 
     export class InstallPublicSchemeCommand

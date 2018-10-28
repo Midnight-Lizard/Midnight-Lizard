@@ -15,7 +15,6 @@ namespace MidnightLizard.BackgroundPage
             private readonly publicSettingsManager: MidnightLizard.Settings.Public.IPublicSettingsManager)
         {
             messageBus.onMessage.addListener(this.processMessage, this);
-            messageBus.onConnected.addListener(this.processNewConnection, this);
             publicSettingsManager.onPublicSchemesChanged.addListener(this.notifyAboutChanges, this);
         }
 
@@ -28,7 +27,7 @@ namespace MidnightLizard.BackgroundPage
             }
         }
 
-        private async processNewConnection(port: any)
+        private async sendInstalledPublicSchemesBackTo(port: any)
         {
             this.messageBus.postMessage(port,
                 new MidnightLizard.Settings.PublicSchemesChanged(
@@ -44,6 +43,10 @@ namespace MidnightLizard.BackgroundPage
                 {
                     switch (message.type)
                     {
+                        case Settings.MessageType.GetInstalledPublicSchemes:
+                            await this.sendInstalledPublicSchemesBackTo(port);
+                            break;
+
                         case Settings.MessageType.InstallPublicScheme:
                             await this.publicSettingsManager.installPublicScheme(message.publicScheme);
                             break;
