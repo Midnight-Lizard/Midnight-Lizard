@@ -872,6 +872,10 @@
         "description": "color scheme name",
         "message": "Green on Black"
     },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "Blue Light Filter"
+    },
     "localStorageOverrideConfirmationMessage": {
         "description": "localStorageOverrideConfirmationMessage: text on the message box",
         "message": "Your local settings storage already contains some data.\nDo you want to override it with data from the sync (cloud) storage\nand lose the overridden data?"
