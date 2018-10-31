@@ -1,0 +1,30 @@
+.emoji-outer.emoji-sizer, .emoji, .member_image
+{
+    --ml-no-invert:true;
+    --ml-backgroundimage:Image;
+}
+
+html[ml-is-active] .emoji-outer.emoji-sizer.emoji-only {
+    --ml-ignore:true;
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter);
+}
+
+html[ml-is-active] .p-emoji_picker__list_item {
+    transition-duration: 0s!important;
+    transition-property: none!important;
+}
+
+.p-channel_sidebar__channel--selected {
+    --ml-background-background-color:HighlightedBackground;
+    --ml-link-color:HighlightedText;
+    --ml-link-active-color:HighlightedText;
+    --ml-link-hover-color:HighlightedText;
+    --ml-visitedlink-color:HighlightedText;
+    --ml-visitedlink-hover-color:HighlightedText;
+    --ml-visitedlink-active-color:HighlightedText;
+}
+
+.c-scrollbar__bar {
+    --ml-ignore:true;
+    background-color: var(--ml-main-scrollbar-thumb-normal-color)!important;
+}

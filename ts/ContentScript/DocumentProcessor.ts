@@ -26,8 +26,8 @@ namespace MidnightLizard.ContentScript
     type PromiseResult<T> = Util.HandledPromiseResult<T>;
     type ArgEvent<TArgs> = MidnightLizard.Events.ArgumentedEvent<TArgs>;
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
-    const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag/i;
-    const notTextureRegExp = /user|account|avatar|photo|flag/i;
+    const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag|emoji/i;
+    const notTextureRegExp = /user|account|avatar|photo|flag|emoji/i;
     const maxAttrLen = 100;
     /** 2 fraction digits number format */
     const float = new Intl.NumberFormat('en-US', {

@@ -426,6 +426,16 @@
             ]
         },
         {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*.slack.com/*"
+            ],
+            "css": [
+                "css/custom/slack.css"
+            ]
+        },
+        {
             "run_at": "document_idle",
             "all_frames": false,
             "matches": [
