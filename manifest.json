@@ -400,6 +400,16 @@
             ]
         },
         {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://groups.google.com/*"
+            ],
+            "css": [
+                "css/custom/google-groups.css"
+            ]
+        },
+        {
             "run_at": "document_idle",
             "all_frames": false,
             "matches": [
