@@ -1,0 +1,26 @@
+@namespace xl "http://www.w3.org/1999/xlink";
+
+.bvktdI {
+    --ml-backgroundimage:Background;
+}
+
+.image {
+    --ml-no-invert:true;
+    --ml-backgroundimage:Image;
+}
+
+.Avatar {
+    --ml-backgroundimage:Border;
+}
+
+.-img {
+    --ml-backgroundimage:Image;
+}
+
+use[xl|href="#svg-logotype"] {
+    --ml-svgbackground-fill:Text;
+}
+
+.LoginTopBarProfileButton-caret:after {
+    --ml-background-border-top-color:Border;
+}

@@ -410,6 +410,16 @@
             ]
         },
         {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://opencollective.com/*"
+            ],
+            "css": [
+                "css/custom/opencollective.css"
+            ]
+        },
+        {
             "run_at": "document_idle",
             "all_frames": false,
             "matches": [
