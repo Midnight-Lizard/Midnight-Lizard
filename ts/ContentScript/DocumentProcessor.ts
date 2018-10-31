@@ -2031,7 +2031,8 @@ namespace MidnightLizard.ContentScript
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
                 this._settingsManager.currentSettings.doNotInvertContent === false &&
-                tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString())
+                tag.mlComputedStyle &&
+                tag.mlComputedStyle.getPropertyValue("--ml-no-invert") !== true.toString())
             {
                 const customDarkRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
                 const darkSet = this.shift[customDarkRole] || this.shift.Background, txtSet = this.shift.Text;
