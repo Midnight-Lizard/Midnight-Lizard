@@ -703,7 +703,7 @@
     },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
-        "message": "出口"
+        "message": "退出"
     },
     "closeBtn_@title": {
         "description": "closeBtn_@title: text on the tooltip\/hint",
