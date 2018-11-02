@@ -1054,6 +1054,34 @@
             }
         }
     },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "当前页的一些匹配模式"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "下面的模式与当前页面匹配:\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "不与当前页匹配的模式"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "排除的匹配模式"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "如果网页的url与这些模式中的任何一个匹配，则不会处理该网页。\n每个模式单独的写在新行上。\n排他规则的优先级最低，因此它们总是执行。"
+    },
+    "includeMatches_text_label": {
+        "description": "includeMatches_text_label: text on the label",
+        "message": "包含的匹配模式"
+    },
+    "includeMatches_@title": {
+        "description": "includeMatches_@title: text on the tooltip\/hint",
+        "message": "如果“在此网站上运行”未选中，但页面url至少匹配其中一种模式，\n则仍将考虑对其进行处理。把每个模式写在新的一行上。\n如果选中“在本网站上运行”，则所有“包含的匹配模式”都将被忽略。"
+    },
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "语法"
