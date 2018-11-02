@@ -980,9 +980,21 @@
         "description": "mode_complex_text_label: text on the label",
         "message": "复合"
     },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果当前页面的元素多于“自动模式切换限制”，\n则自动页面处理模式将从“复杂”模式切换到“精简”模式。"
+    },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
         "message": "自动"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "自动模式切换限制"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果页面在初始加载期间的元素数量超过了这里指定的限制，并且使用了“自动”模式，那么页面的实际处理模式将从“复杂”切换到“精简”。"
     },
     "mode_options_@title": {
         "description": "mode_options_@title: text on the tooltip\/hint",
@@ -1019,6 +1031,28 @@
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "您是否想重置当前的浏览器主题为默认？\n可能重置为原始的 Firefox 主题而非您先前的主题。"
+    },
+    "github_stars_campaign_text_message": {
+        "description": "github_stars_campaign_text_message: text on the campaign ad message",
+        "message": "帮助我们收集 GitHub 上的🌟以启动众筹"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "“$pattern$” 不是有效的匹配模式。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "“$pattern$” 主机无效。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
     },
     "matchPatternsSyntaxLink_text_label": {
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
