@@ -840,6 +840,14 @@
         "description": "color scheme name",
         "message": "万圣节"
     },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "晨雾"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "古手抄本"
+    },
     "colorSchemeName_increasedContrast": {
         "description": "color scheme name",
         "message": "提高对比度"
