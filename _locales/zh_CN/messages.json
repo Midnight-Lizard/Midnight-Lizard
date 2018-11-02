@@ -856,6 +856,10 @@
         "description": "color scheme name",
         "message": "灰色"
     },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "负片"
+    },
     "colorSchemeName_invertedGrayscale": {
         "description": "color scheme name",
         "message": "反转灰度"
@@ -962,11 +966,11 @@
     },
     "mode_simplified_@title": {
         "description": "mode_simplified_@title: text on the tooltip\/hint",
-        "message": "简化页面处理模式并不准确但工作速度非常快"
+        "message": "精简页面处理模式并不准确但工作速度非常快"
     },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
-        "message": "简化"
+        "message": "精简"
     },
     "mode_complex_@title": {
         "description": "mode_complex_@title: text on the tooltip\/hint",
