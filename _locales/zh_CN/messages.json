@@ -974,7 +974,7 @@
     },
     "mode_complex_@title": {
         "description": "mode_complex_@title: text on the tooltip\/hint",
-        "message": "复合页面处理模式并不快速但观看体验非常好"
+        "message": "复合页面处理模式处理效率不高，但观看体验非常好"
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
@@ -1162,5 +1162,17 @@
     "hideBigBackgroundImages_text_label": {
         "description": "hideBigBackgroundImages_text_label: text on the label",
         "message": "隐藏大背景图像"
+    },
+    "hideBigBackgroundImages_@title": {
+        "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
+        "message": "隐藏背景图像，如果它们需要处理，并且它们在KiB中的大小大于“背景图像大小限制”中指定的值。"
+    },
+    "maxBackgroundImageSize_text_label": {
+        "description": "maxBackgroundImageSize_text_label: text on the label",
+        "message": "背景图像大小限制"
+    },
+    "maxBackgroundImageSize_@title": {
+        "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
+        "message": "KiB中背景图像的最大大小。\n如果选中了“隐藏大背景图像”，那么如果处理后，将隐藏比这里指定的大的背景图像。"
     }
 }
