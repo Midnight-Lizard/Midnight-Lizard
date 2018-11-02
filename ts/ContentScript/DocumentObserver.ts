@@ -230,17 +230,28 @@ namespace MidnightLizard.ContentScript
                     styleChanges.delete(tag);
                 });
             }
+            if (styleChanges.size > 0)
+            {
+                const tracking = new Map<Element, any>();
+                styleChanges.forEach(tag =>
+                {
+                    if (classChanges.has(tag))
+                    {
+                        tracking.set(tag, tag.mlTimestamp);
+                    }
+                });
+                this._onStyleChanged.raise(styleChanges);
+                tracking.forEach((time, tag) =>
+                {
+                    if (tag.mlTimestamp !== time)
+                    {
+                        classChanges.delete(tag);
+                    }
+                });
+            }
             if (classChanges.size > 0)
             {
                 this._onClassChanged.raise(classChanges);
-                classChanges.forEach(tag =>
-                {
-                    styleChanges.delete(tag);
-                });
-            }
-            if (styleChanges.size > 0)
-            {
-                this._onStyleChanged.raise(styleChanges);
             }
 
             if (!this._settingsManager.isActive)
