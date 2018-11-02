@@ -816,9 +816,25 @@
         "description": "color scheme name",
         "message": "原始（无）"
     },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "宇宙尘"
+    },
     "colorSchemeName_appleMint": {
         "description": "color scheme name",
         "message": "苹果薄荷"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "沼泽森林"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "熟杏"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "晚霞"
     },
     "colorSchemeName_halloween": {
         "description": "color scheme name",
