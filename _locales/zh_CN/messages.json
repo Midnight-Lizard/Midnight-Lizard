@@ -1131,5 +1131,36 @@
                 "content": "$1"
             }
         }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage: storage error message",
+        "message": "浏览器将扩展写入同步存储器的频率限制在每小时$limit$次以内。你已经超过这个限度了。请稍后再试，或在“全局设置”标签的“Midnight Lizard”的设置界面切换为本地存储，并且所有设置将自动转移到本地存储。",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage": {
+        "description": "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage: storage error message",
+        "message": "浏览器将扩展写入同步存储器的频率限制在每分钟$limit$次以内。你已经超过这个限度了。请稍后再试，或在“全局设置”标签的“Midnight Lizard”的设置界面切换为本地存储，并且所有设置将自动转移到本地存储。",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "localStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "localStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "浏览器将每个扩展的可用本地存储总量限制为$limit$字节。你已经超过这个限度了。为了存储新的设置，您必须从一些网站上删除自定义配色方案或自定义设置。",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "hideBigBackgroundImages_text_label": {
+        "description": "hideBigBackgroundImages_text_label: text on the label",
+        "message": "隐藏大背景图像"
     }
 }
