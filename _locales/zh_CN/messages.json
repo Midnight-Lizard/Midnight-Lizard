@@ -1086,12 +1086,50 @@
         "description": "matchPatternsSyntaxLink_text_label: text on the link",
         "message": "语法"
     },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "在新浏览器选项卡中打开一个完整的匹配模式语法描述。\n弹出窗口会被关闭。"
+    },
     "doNotInvertContent_text_label": {
         "description": "doNotInvertContent_text_label: text on the label",
         "message": "不反转动态内容"
     },
+    "doNotInvertContent_@title": {
+        "description": "doNotInvertContent_@title: text on the tooltip\/hint",
+        "message": "检查此选项，以防止动态内容倒转。\n这个选项控制当背景变暗时，像地图、PDF文件、动态绘图、动画图像等内容是否可以反转。\n当内容被倒置时，它将根据背景的当前设置进行处理，\n如果没有被倒置，则根据图像的当前设置进行处理。"
+    },
     "localFiles_text_label": {
         "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
         "message": "本地文件"
+    },
+    "colorSchemeImportNotSupportedMessage": {
+        "description": "colorSchemeImportNotSupportedMessage: text on the message box",
+        "message": "Firefox不支持从文件导入颜色方案"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "改变滚动条的样式和颜色"
+    },
+    "scrollbarStyle_@title": {
+        "description": "scrollbarStyle_@title: text on the tooltip\/hint",
+        "message": "应用自定义的滚动条样式和颜色。"
+    },
+    "syncStorage_QUOTA_BYTES_ErrorMessage": {
+        "description": "syncStorage_QUOTA_BYTES_ErrorMessage: storage error message",
+        "message": "浏览器将每个扩展的同步存储总量限制为$limit$ 字节。你已经超过这个限度了。你可以在“全局设置”标签的“Midnight Lizard”的设置界面切换为本地存储，并且所有设置将自动转移到本地存储。",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
+    },
+    "syncStorage_MAX_ITEMS_ErrorMessage": {
+        "description": "syncStorage_MAX_ITEMS_ErrorMessage: storage error message",
+        "message": "浏览器将每个扩展可以使用的同步存储中的记录总数限制为$limit$条记录。你已经超过这个限度了。你可以在“全局设置”标签的“Midnight Lizard”的设置界面切换为本地存储，并且所有设置将自动转移到本地存储。",
+        "placeholders": {
+            "limit": {
+                "content": "$1"
+            }
+        }
     }
 }
