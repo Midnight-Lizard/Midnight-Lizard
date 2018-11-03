@@ -47,6 +47,14 @@
         "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
         "message": "將瀏覽器主題調整為當前的配色方案。\n僅受 Firefox 支持。"
     },
+    "useDefaultSchedule_text_label": {
+        "description": "useDefaultSchedule_text_label: text on the label",
+        "message": "使用預設計畫"
+    },
+    "useDefaultSchedule_@title": {
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
+        "message": "使用預設設置中的計畫。\n如果要對所有網站使用單個計畫, 則需要在預設設置中指定它。"
+    },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
         "message": "啟用時刻"
@@ -58,5 +66,13 @@
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
         "message": "停用時刻"
+    },
+    "scheduleFinishHour_@title": {
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "擴展將在當前網站上活動, 直到這一次。"
+    },
+    "blueFilter_text_label": {
+        "description": "blueFilter_text_label: text on the label",
+        "message": "藍色過濾強度"
     }
 }
