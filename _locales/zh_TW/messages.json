@@ -11,9 +11,33 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "全局擴展程序切換"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "當前網站切換"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "在此網頁作用"
+    },
+    "runOnThisSite_@title": {
+        "description": "runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在這個網站上運行 \"Midnight Lizard\"。"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "restoreColorsOnCopy_text_label: text on the label",
+        "message": "還原複製時的原始顏色"
+    },
+    "restoreColorsOnCopy_@title": {
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
+        "message": "在從頁面複製內容之前還原原始顏色"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "restoreColorsOnPrint_text_label: text on the label",
+        "message": "恢復列印時的原始顏色"
+    },
+    "restoreColorsOnPrint_@title": {
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
+        "message": "在列印頁面內容之前還原原始顏色"
     },
     "changeBrowserTheme_text_label": {
         "description": "changeBrowserTheme_text_label: text on the label",
