@@ -74,5 +74,13 @@
     "blueFilter_text_label": {
         "description": "blueFilter_text_label: text on the label",
         "message": "藍色過濾強度"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "backgroundSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "backgroundSaturationLimit_@title": {
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景飽和度限制"
     }
 }
