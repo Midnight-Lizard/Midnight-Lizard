@@ -7,13 +7,22 @@
   "license": "GPL-3.0",
   "version": "10.1.3",
   "dependencies": {
-    "@types/firefox-webext-browser": "^58.0.4",
     "@types/chrome": "^0.0.74",
     "@types/fb": "^0.0.23",
-    "reflect-metadata": "^0.1.12"
+    "@types/firefox-webext-browser": "^58.0.4",
+    "opencollective-postinstall": "^2.0.1",
+    "reflect-metadata": "^0.1.12",
+    "opencollective": "^1.0.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/pavel-agarkov/Midnight-Lizard.git"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/Midnight-Lizard"
+  },
+  "scripts": {
+    "postinstall": "opencollective-postinstall"
   }
 }
