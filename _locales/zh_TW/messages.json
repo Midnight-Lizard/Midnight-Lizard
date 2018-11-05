@@ -318,5 +318,81 @@
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "背景"
+    },
+    "buttonsTab_text_label": {
+        "description": "buttonsTab_text_label: text on the label",
+        "message": "按鈕"
+    },
+    "textTab_text_label": {
+        "description": "textTab_text_label: text on the label",
+        "message": "文字"
+    },
+    "linkTab_text_label": {
+        "description": "linkTab_text_label: text on the label",
+        "message": "链接"
+    },
+    "borderTab_text_label": {
+        "description": "borderTab_text_label: text on the label",
+        "message": "邊界"
+    },
+    "imagesTab_text_label": {
+        "description": "imagesTab_text_label: text on the label",
+        "message": "圖片"
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "backgroundImagesTab_text_label: text on the label",
+        "message": "背景图像"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "scrollbarsTab_text_label: text on the label",
+        "message": "滾動條"
+    },
+    "settingsHeader_text_label": {
+        "description": "settingsHeader_text_label: text on the label",
+        "message": " 設定於"
+    },
+    "isEnabledOn_text_label": {
+        "description": "isEnabledOn_text_label: text on the label",
+        "message": "開啟"
+    },
+    "isEnabledOff_text_label": {
+        "description": "isEnabledOff_text_label: text on the label",
+        "message": "關閉"
+    },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "在您的设备间同步设置"
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "colorSchemeForEdit_text_label: text on the label",
+        "message": "所编辑的配色方案"
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "配色方案名"
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
+        "message": "刪除"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "saveColorSchemeBtn_text_label: text on the label",
+        "message": "保存"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "exportColorSchemeBtn_text_label: text on the label",
+        "message": "匯出"
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "importColorSchemeBtn_text_label: text on the label",
+        "message": "匯入"
+    },
+    "editSchemesTab_text_label": {
+        "description": "editSchemesTab_text_label: text on the label",
+        "message": "配色方案"
+    },
+    "currentColorScheme_text_label": {
+        "description": "currentColorScheme_text_label: text on the label",
+        "message": "当前配色方案"
     }
 }
