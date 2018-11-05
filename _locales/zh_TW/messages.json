@@ -402,5 +402,9 @@
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "全部"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "擴展程序僅在此次應用於所有使用默認時間表的網站。"
     }
 }
