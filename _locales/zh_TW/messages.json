@@ -462,9 +462,17 @@
         "description": "scrollbarSize_text_label: text on the label",
         "message": "尺寸"
     },
+    "scrollbarSize_@title": {
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
+        "message": "滾動條尺寸"
+    },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
         "message": "滚动条色調"
+    },
+    "scrollbarGrayHue_@title": {
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮色調"
     },
     "commonTab_text_label": {
         "description": "commonTab_text_label: text on the label",
