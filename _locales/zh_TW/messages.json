@@ -82,5 +82,21 @@
     "backgroundSaturationLimit_@title": {
         "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
         "message": "背景飽和度限制"
+    },
+    "backgroundContrast_text_label": {
+        "description": "backgroundContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "backgroundContrast_@title": {
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
+        "message": "相似背景之間的最小亮度差。\n取決於元素尺寸及順序，結果可能會相當隨機。"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "backgroundLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "backgroundLightnessLimit_@title": {
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景亮度限制"
     }
 }
