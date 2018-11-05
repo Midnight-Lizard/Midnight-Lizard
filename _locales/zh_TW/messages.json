@@ -231,6 +231,10 @@
         "description": "textGrayHue_text_label: text on the label",
         "message": "默認色調"
     },
+    "textGrayHue_@title": {
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色文本色彩飽和度的色相"
+    },
     "textReplaceAllHues_text_label": {
         "description": "textReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
