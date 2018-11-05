@@ -254,13 +254,33 @@
         "description": "linkSaturationLimit_text_label: text on the label",
         "message": "飽和度限制"
     },
+    "linkSaturationLimit_@title": {
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "鏈接飽和度限制"
+    },
     "linkContrast_text_label": {
         "description": "linkContrast_text_label: text on the label",
         "message": "對比度"
     },
+    "linkContrast_@title": {
+        "description": "linkContrast_@title: text on the tooltip\/hint",
+        "message": "鏈接與背景的最小亮度差"
+    },
     "linkLightnessLimit_text_label": {
         "description": "linkLightnessLimit_text_label: text on the label",
         "message": "亮度限制"
+    },
+    "linkLightnessLimit_@title": {
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大鍊接亮度限制"
+    },
+    "linkDefaultSaturation_text_label": {
+        "description": "linkDefaultSaturation_text_label: text on the label",
+        "message": "默認鏈接飽和度"
+    },
+    "linkDefaultSaturation_@title": {
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中色調后的正常链接和已访问链接颜色饱和度"
     },
     "linkHueGravity_text_label": {
         "description": "linkHueGravity_text_label: text on the label",
@@ -268,7 +288,7 @@
     },
     "linkHueGravity_@title": {
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
     },
     "linkDefaultHue_text_label": {
         "description": "linkDefaultHue_text_label: text on the label",
