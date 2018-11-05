@@ -223,6 +223,10 @@
         "description": "textHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
     },
+    "textHueGravity_@title": {
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+    },
     "textGrayHue_text_label": {
         "description": "textGrayHue_text_label: text on the label",
         "message": "默認色調"
@@ -251,6 +255,10 @@
         "description": "linkHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
     },
+    "linkHueGravity_@title": {
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+    },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
@@ -278,6 +286,10 @@
     "borderHueGravity_text_label": {
         "description": "borderHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
+    },
+    "borderHueGravity_@title": {
+        "description": "borderHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
     },
     "borderGrayHue_text_label": {
         "description": "borderGrayHue_text_label: text on the label",
