@@ -414,17 +414,53 @@
         "description": "backgroundImageLightnessLimit_text_label: text on the label",
         "message": "亮度"
     },
+    "backgroundImageLightnessLimit_@title": {
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像亮度限制。图像越小越亮。"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "backgroundImageExample_text_label: text on the label",
+        "message": "背景图像片示例"
+    },
+    "backgroundImageExample_@title": {
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "背景图像片示例"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "backgroundImageExampleText_text_label: text on the label",
+        "message": "示例"
+    },
+    "backgroundImageExampleText_@title": {
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
+        "message": "若此網站在文本後存在背景图像，\n您則應更改背景图像亮度等級\n直到您得以清楚地看見文字背後的图像。"
+    },
     "scrollbarSaturationLimit_text_label": {
         "description": "scrollbarSaturationLimit_text_label: text on the label",
         "message": "飽和度"
+    },
+    "scrollbarSaturationLimit_@title": {
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮饱和度"
     },
     "scrollbarContrast_text_label": {
         "description": "scrollbarContrast_text_label: text on the label",
         "message": "對比度"
     },
+    "scrollbarContrast_@title": {
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和背景的最小亮度差。\n仅应用于亮色背景。"
+    },
     "scrollbarLightnessLimit_text_label": {
         "description": "scrollbarLightnessLimit_text_label: text on the label",
         "message": "亮度"
+    },
+    "scrollbarLightnessLimit_@title": {
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮亮度"
+    },
+    "scrollbarSize_text_label": {
+        "description": "scrollbarSize_text_label: text on the label",
+        "message": "尺寸"
     },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
