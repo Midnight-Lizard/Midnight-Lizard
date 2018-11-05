@@ -191,17 +191,33 @@
         "description": "textSaturationLimit_text_label: text on the label",
         "message": "飽和度限制"
     },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "文字飽和度限制"
+    },
     "textContrast_text_label": {
         "description": "textContrast_text_label: text on the label",
         "message": "對比度"
+    },
+    "textContrast_@title": {
+        "description": "textContrast_@title: text on the tooltip\/hint",
+        "message": "文字與其背景之間的最小亮度差"
     },
     "textLightnessLimit_text_label": {
         "description": "textLightnessLimit_text_label: text on the label",
         "message": "亮度限制"
     },
+    "textLightnessLimit_@title": {
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大文字亮度限制"
+    },
     "textGraySaturation_text_label": {
         "description": "textGraySaturation_text_label: text on the label",
         "message": "灰色文字飽和度"
+    },
+    "textGraySaturation_@title": {
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
+        "message": "應用選定預設色調之後的灰色文字飽和度"
     },
     "textHueGravity_text_label": {
         "description": "textHueGravity_text_label: text on the label",
