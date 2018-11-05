@@ -141,7 +141,7 @@
     },
     "buttonContrast_text_label": {
         "description": "buttonContrast_text_label: text on the label",
-        "message": "對比"
+        "message": "對比度"
     },
     "buttonContrast_@title": {
         "description": "buttonContrast_@title: text on the tooltip\/hint",
@@ -187,6 +187,22 @@
         "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
     },
+    "textSaturationLimit_text_label": {
+        "description": "textSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "textContrast_text_label": {
+        "description": "textContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "textLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "textGraySaturation_text_label": {
+        "description": "textGraySaturation_text_label: text on the label",
+        "message": "灰色文字飽和度"
+    },
     "textHueGravity_text_label": {
         "description": "textHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
@@ -203,6 +219,18 @@
         "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
     },
+    "linkSaturationLimit_text_label": {
+        "description": "linkSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "linkContrast_text_label": {
+        "description": "linkContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "linkLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
     "linkHueGravity_text_label": {
         "description": "linkHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
@@ -214,6 +242,22 @@
     "linkReplaceAllHues_@title": {
         "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "使用所選色相替換所有原始色相。\n否則將只替換此頁面正常链接色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "borderSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "borderContrast_text_label": {
+        "description": "borderContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "borderLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "borderGraySaturation_text_label: text on the label",
+        "message": "灰色邊界飽和度"
     },
     "borderHueGravity_text_label": {
         "description": "borderHueGravity_text_label: text on the label",
@@ -231,8 +275,40 @@
         "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
     },
+    "imageSaturationLimit_text_label": {
+        "description": "imageSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "imageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "scrollbarContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
         "message": "滚动条色調"
+    },
+    "commonTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "普遍"
     }
 }
