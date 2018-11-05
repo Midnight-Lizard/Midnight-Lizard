@@ -113,7 +113,7 @@
     },
     "backgroundHueGravity_@title": {
         "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
-        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
     },
     "backgroundGrayHue_text_label": {
         "description": "backgroundGrayHue_text_label: text on the label",
@@ -129,7 +129,7 @@
     },
     "backgroundReplaceAllHues_@title": {
         "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
     },
     "buttonSaturationLimit_text_label": {
         "description": "buttonSaturationLimit_text_label: text on the label",
@@ -169,7 +169,7 @@
     },
     "buttonHueGravity_@title": {
         "description": "buttonHueGravity_@title: text on the tooltip\/hint",
-        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
     },
     "buttonGrayHue_text_label": {
         "description": "buttonGrayHue_text_label: text on the label",
@@ -185,7 +185,7 @@
     },
     "buttonReplaceAllHues_@title": {
         "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
     },
     "textSaturationLimit_text_label": {
         "description": "textSaturationLimit_text_label: text on the label",
@@ -225,7 +225,7 @@
     },
     "textHueGravity_@title": {
         "description": "textHueGravity_@title: text on the tooltip\/hint",
-        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
     },
     "textGrayHue_text_label": {
         "description": "textGrayHue_text_label: text on the label",
@@ -233,7 +233,7 @@
     },
     "textGrayHue_@title": {
         "description": "textGrayHue_@title: text on the tooltip\/hint",
-        "message": "用於增加灰色文本色彩飽和度的色相"
+        "message": "用於增加灰色文本色彩飽和度的色調"
     },
     "textReplaceAllHues_text_label": {
         "description": "textReplaceAllHues_text_label: text on the label",
@@ -241,7 +241,14 @@
     },
     "textReplaceAllHues_@title": {
         "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "textSelectionHue_html_label": {
+        "message": "文字<span id=\"selection\">選擇<\/span>色調"
+    },
+    "textSelectionHue_@title": {
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
+        "message": "文字選擇色調"
     },
     "linkSaturationLimit_text_label": {
         "description": "linkSaturationLimit_text_label: text on the label",
@@ -263,13 +270,17 @@
         "description": "linkHueGravity_@title: text on the tooltip\/hint",
         "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
     },
+    "linkDefaultHue_text_label": {
+        "description": "linkDefaultHue_text_label: text on the label",
+        "message": "默認色調"
+    },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
     },
     "linkReplaceAllHues_@title": {
         "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "使用所選色相替換所有原始色相。\n否則將只替換此頁面正常链接色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換此頁面正常链接色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
     },
     "borderSaturationLimit_text_label": {
         "description": "borderSaturationLimit_text_label: text on the label",
@@ -293,7 +304,7 @@
     },
     "borderHueGravity_@title": {
         "description": "borderHueGravity_@title: text on the tooltip\/hint",
-        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
     },
     "borderGrayHue_text_label": {
         "description": "borderGrayHue_text_label: text on the label",
@@ -305,7 +316,7 @@
     },
     "borderReplaceAllHues_@title": {
         "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
     },
     "imageSaturationLimit_text_label": {
         "description": "imageSaturationLimit_text_label: text on the label",
