@@ -106,5 +106,9 @@
     "backgroundGraySaturation_@title": {
         "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
         "message": "應用選定的默認色調後灰色背景的飽和度"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "backgroundHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
     }
 }
