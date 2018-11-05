@@ -146,5 +146,25 @@
     "buttonContrast_@title": {
         "description": "buttonContrast_@title: text on the tooltip\/hint",
         "message": "按鈕與其周圍背景之間的最小亮度差"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "buttonLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "buttonLightnessLimit_@title": {
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "按鈕背景亮度限制"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "buttonGraySaturation_text_label: text on the label",
+        "message": "灰色按鈕飽和度"
+    },
+    "buttonGraySaturation_@title": {
+        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
+        "message": "應用選定默認色調之後的灰色按鈕背景飽和度"
+    },
+    "buttonHueGravity_text_label": {
+        "description": "buttonHueGravity_text_label: text on the label",
+        "message": "默認色調重力"
     }
 }
