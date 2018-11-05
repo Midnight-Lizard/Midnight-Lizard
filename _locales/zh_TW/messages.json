@@ -394,5 +394,13 @@
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
         "message": "当前配色方案"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "網站"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "全部"
     }
 }
