@@ -310,5 +310,13 @@
     "commonTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "普遍"
+    },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "啟用"
+    },
+    "backgroundTab_text_label": {
+        "description": "backgroundTab_text_label: text on the label",
+        "message": "背景"
     }
 }
