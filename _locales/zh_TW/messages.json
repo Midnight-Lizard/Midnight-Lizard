@@ -223,6 +223,10 @@
         "description": "borderReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
     },
+    "borderReplaceAllHues_@title": {
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+    },
     "scrollbarGrayHue_text_label": {
         "description": "scrollbarGrayHue_text_label: text on the label",
         "message": "滚动条色調"
