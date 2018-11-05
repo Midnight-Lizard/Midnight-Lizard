@@ -98,5 +98,9 @@
     "backgroundLightnessLimit_@title": {
         "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
         "message": "背景亮度限制"
+    },
+    "backgroundGraySaturation_text_label": {
+        "description": "backgroundGraySaturation_text_label: text on the label",
+        "message": "灰色背景飽和度"
     }
 }
