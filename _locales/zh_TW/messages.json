@@ -294,6 +294,10 @@
         "description": "linkDefaultHue_text_label: text on the label",
         "message": "默認色調"
     },
+    "linkDefaultHue_@title": {
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
+        "message": "用於替換普通鏈接色調的色調"
+    },
     "linkReplaceAllHues_text_label": {
         "description": "linkReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
@@ -302,21 +306,45 @@
         "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
         "message": "使用所選色調替換所有原始色調。\n否則將只替換此頁面正常链接色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
     },
+    "linkVisitedHue_text_label": {
+        "description": "linkVisitedHue_text_label: text on the label",
+        "message": "已訪問鏈接色調"
+    },
+    "linkVisitedHue_@title": {
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
+        "message": "已訪問鏈接色調"
+    },
     "borderSaturationLimit_text_label": {
         "description": "borderSaturationLimit_text_label: text on the label",
         "message": "饱和度限制"
+    },
+    "borderSaturationLimit_@title": {
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "邊界飽和度限制"
     },
     "borderContrast_text_label": {
         "description": "borderContrast_text_label: text on the label",
         "message": "對比度"
     },
+    "borderContrast_@title": {
+        "description": "borderContrast_@title: text on the tooltip\/hint",
+        "message": "邊界與背景的最小亮度差"
+    },
     "borderLightnessLimit_text_label": {
         "description": "borderLightnessLimit_text_label: text on the label",
         "message": "亮度限制"
     },
+    "borderLightnessLimit_@title": {
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大邊界亮度限制"
+    },
     "borderGraySaturation_text_label": {
         "description": "borderGraySaturation_text_label: text on the label",
         "message": "灰色邊界飽和度"
+    },
+    "borderGraySaturation_@title": {
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在應用選中默認色調後的灰色邊界飽和度"
     },
     "borderHueGravity_text_label": {
         "description": "borderHueGravity_text_label: text on the label",
@@ -330,6 +358,10 @@
         "description": "borderGrayHue_text_label: text on the label",
         "message": "默認色調"
     },
+    "borderGrayHue_@title": {
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色邊界色彩飽和度的色調"
+    },
     "borderReplaceAllHues_text_label": {
         "description": "borderReplaceAllHues_text_label: text on the label",
         "message": "全部替換"
@@ -342,13 +374,41 @@
         "description": "imageSaturationLimit_text_label: text on the label",
         "message": "飽和度"
     },
+    "imageSaturationLimit_@title": {
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "設置所有圖像的飽和度為此值"
+    },
     "imageLightnessLimit_text_label": {
         "description": "imageLightnessLimit_text_label: text on the label",
         "message": "亮度"
     },
+    "imageLightnessLimit_@title": {
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "設置所有圖像的亮度為此值"
+    },
+    "imageExample_text_label": {
+        "description": "imageExample_text_label: text on the label",
+        "message": "圖像示例"
+    },
+    "imageExample_@title": {
+        "description": "imageExample_@title: text on the tooltip\/hint",
+        "message": "圖像示例"
+    },
+    "useImageHoverAnimation_text_label": {
+        "description": "useImageHoverAnimation_text_label: text on the label",
+        "message": "使用圖像懸停動畫"
+    },
+    "useImageHoverAnimation_@title": {
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
+        "message": "當游標懸停在圖片上時移除其所有效果"
+    },
     "backgroundImageSaturationLimit_text_label": {
         "description": "backgroundImageSaturationLimit_text_label: text on the label",
         "message": "飽和度"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像飽和度"
     },
     "backgroundImageLightnessLimit_text_label": {
         "description": "backgroundImageLightnessLimit_text_label: text on the label",
