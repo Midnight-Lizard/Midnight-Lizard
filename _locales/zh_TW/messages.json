@@ -110,5 +110,41 @@
     "backgroundHueGravity_text_label": {
         "description": "backgroundHueGravity_text_label: text on the label",
         "message": "默認色調的重力"
+    },
+    "backgroundHueGravity_@title": {
+        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色相將如何被選中的默認色相所影響。\n重力越強，其他所有色相移動至離選擇的默認色相越近。\n飽和度限制將用於受影響的色相。若勾選[全部替換] 色相將不會工作。\n[全部替換] 色相更快且應在超過100% 重力時首選。"
+    },
+    "backgroundGrayHue_text_label": {
+        "description": "backgroundGrayHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "backgroundGrayHue_@title": {
+        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色背景色彩飽和度的色調"
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "backgroundReplaceAllHues_text_label: text on the label",
+        "message": "全部更換"
+    },
+    "backgroundReplaceAllHues_@title": {
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色相替換所有原始色相。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色相重力。"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "buttonSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "buttonSaturationLimit_@title": {
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "按鈕背景飽和度限制"
+    },
+    "buttonContrast_text_label": {
+        "description": "buttonContrast_text_label: text on the label",
+        "message": "對比"
+    },
+    "buttonContrast_@title": {
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
+        "message": "按鈕與其周圍背景之間的最小亮度差"
     }
 }
