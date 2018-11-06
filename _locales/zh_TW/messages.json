@@ -638,6 +638,14 @@
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
         "message": "设置當前设置为所有網站的默认设置"
     },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用并保存此網站的當前设置"
+    },
+    "forgetAllFailureMessage": {
+        "description": "forgetAllFailureMessage: text on the message box",
+        "message": "全部網站设置删除失败。\n"
+    },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "預設啟用時刻"
