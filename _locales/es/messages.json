@@ -1032,10 +1032,6 @@
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "¿Quieres restaurar el tema actual del navegador al predeterminado?\nEsto podría restaurar el tema original de Firefox en lugar del anterior tema."
     },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Ayúdenos a recopilar 🌟 en GitHub para iniciar la microfinanciación colectiva"
-    },
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",
         "message": "'$pattern$' no es un patrón de coincidencia válido.",
