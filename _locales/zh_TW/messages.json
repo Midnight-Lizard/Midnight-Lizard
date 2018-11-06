@@ -646,6 +646,17 @@
         "description": "forgetAllFailureMessage: text on the message box",
         "message": "全部網站设置删除失败。\n"
     },
+    "introduction_html_content": {
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置当前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "默认在所有網站上运行"
+    },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "預設啟用時刻"
