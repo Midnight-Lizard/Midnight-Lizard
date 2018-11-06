@@ -478,29 +478,57 @@
         "description": "commonTab_text_label: text on the label",
         "message": "普遍"
     },
+    "commonTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       普遍设置\n―――――――――――――――――――\n 此选项卡包含整个页面的普遍设置。"
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "啟用"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       啟用设置\n―――――――――――――――――――\n 使用此选项卡可以定义哪些页面以及何时应处理或保持不变。"
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "背景"
     },
+    "backgroundTab_@tooltip": {
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      背景颜色设置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充设置。"
+    },
     "buttonsTab_text_label": {
         "description": "buttonsTab_text_label: text on the label",
         "message": "按鈕"
+    },
+    "buttonsTab_@tooltip": {
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      按钮背景颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充设置。"
     },
     "textTab_text_label": {
         "description": "textTab_text_label: text on the label",
         "message": "文字"
     },
+    "textTab_@tooltip": {
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      文本颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整设置。"
+    },
     "linkTab_text_label": {
         "description": "linkTab_text_label: text on the label",
         "message": "链接"
     },
+    "linkTab_@tooltip": {
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      超链接颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整设置。"
+    },
     "borderTab_text_label": {
         "description": "borderTab_text_label: text on the label",
         "message": "邊界"
+    },
+    "borderTab_@tooltip": {
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      边界颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整设置。"
     },
     "imagesTab_text_label": {
         "description": "imagesTab_text_label: text on the label",
@@ -569,6 +597,14 @@
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "全部"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "預設啟用時刻"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "預設停用時刻"
     },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
