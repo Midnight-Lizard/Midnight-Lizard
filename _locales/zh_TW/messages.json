@@ -622,9 +622,21 @@
         "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "網站"
     },
+    "forgetThisSiteBtn_@title": {
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
+        "message": "忘记當前網站设置"
+    },
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "全部"
+    },
+    "forgetAllSitesBtn_@title": {
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
+        "message": "忘记所有網站的所有自定义项"
+    },
+    "setAsDefaultBtn_@title": {
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
+        "message": "设置當前设置为所有網站的默认设置"
     },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
