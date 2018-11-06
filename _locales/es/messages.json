@@ -709,6 +709,10 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Cerrar ventana emergente y descartar todos los cambios no guardados"
     },
+    "donateLink_@tooltip": {
+        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Donar a nuestro colectivo"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Puntuar esta extensión"
@@ -1031,10 +1035,6 @@
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "¿Quieres restaurar el tema actual del navegador al predeterminado?\nEsto podría restaurar el tema original de Firefox en lugar del anterior tema."
-    },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Ayúdenos a recopilar 🌟 en GitHub para iniciar la microfinanciación colectiva"
     },
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",

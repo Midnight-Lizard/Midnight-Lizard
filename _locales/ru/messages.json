@@ -709,6 +709,10 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Закрыть окно настроек, отменив все несохраненные изменения."
     },
+    "donateLink_@tooltip": {
+        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Сделать пожертвование"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Оценить данное расширение"
@@ -1035,10 +1039,6 @@
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "Хотите ли сбросить текущую тему браузера на схему по умолчанию?\nТема может сброситься к первоначальной теме Firefox, а не к той теме, которая была установлена вами ранее."
-    },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Помогите набрать 🌟на GitHub для запуска кампания по сбору средств"
     },
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",

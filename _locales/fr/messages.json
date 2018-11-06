@@ -697,6 +697,10 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Fermer la fenêtre pop-up et abandonner toutes les modifications non enregistrées"
     },
+    "donateLink_@tooltip": {
+        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Faire un don à notre collectif"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Notez cette extension"
@@ -871,10 +875,6 @@
     "globalstab_text_label": {
         "description": "globalstab_text_label: text on the label",
         "message": "Réglages globaux"
-    },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Aidez-nous à collecter des 🌟 sur GitHub pour démarrer le crowdfunding"
     },
     "excludeMatches_text_label": {
         "description": "excludeMatches_text_label: text on the label",

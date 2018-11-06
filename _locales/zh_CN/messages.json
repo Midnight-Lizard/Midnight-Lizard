@@ -1032,10 +1032,6 @@
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "您是否想重置当前的浏览器主题为默认？\n可能重置为原始的 Firefox 主题而非您先前的主题。"
     },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "帮助我们收集 GitHub 上的🌟以启动众筹"
-    },
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",
         "message": "“$pattern$” 不是有效的匹配模式。",
