@@ -1,4 +1,4 @@
-# Midnight Lizard
+# Midnight Lizard [![OpenCollective](https://opencollective.com/midnight-lizard/backers/badge.svg)](#backers) [![OpenCollective](https://opencollective.com/midnight-lizard/sponsors/badge.svg)](#sponsors) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://translate.midnight-lizard.org)
 ![Wikipedia example](/img/screenshots/wikipedia-orion-nebula.png?raw=true "Wikipedia example")
 
 **Midnight Lizard** is a Google **Chrome**™ and Mozilla **Firefox**™ extension that changes web page colors, brightness and contrast to increase **readability** and brings dark **night mode** to all websites.
@@ -42,5 +42,9 @@ Adjust the web to your vision!
 ✔ Free forever  
 
 ## CONTRIBUTING
-  🌍 [Help translate Midnight Lizard into other languages](https://translate.midnight-lizard.org) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://translate.midnight-lizard.org)  
+  🌍 [Help translate Midnight Lizard into other languages](https://translate.midnight-lizard.org)  
   🐛 [Found a bug or has a new feature proposal?](https://github.com/Midnight-Lizard/Midnight-Lizard/issues/new)  
+  💰 [Help us cover infrastructure expenses](https://opencollective.com/midnight-lizard#contribute)
+  
+## BACKERS
+[![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)

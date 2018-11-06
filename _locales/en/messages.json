@@ -691,7 +691,7 @@
     },
     "setAsDefaultBtn_@title": {
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
-        "message": "Set current settings as a default for all websites w\/o custom settings"
+        "message": "Set current settings as a default\nfor all websites without custom settings"
     },
     "applyBtn_text_label": {
         "description": "applyBtn_text_label: text on the label",
