@@ -872,10 +872,6 @@
         "description": "globalstab_text_label: text on the label",
         "message": "Réglages globaux"
     },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Aidez-nous à collecter des 🌟 sur GitHub pour démarrer le crowdfunding"
-    },
     "excludeMatches_text_label": {
         "description": "excludeMatches_text_label: text on the label",
         "message": "Exclure les motifs"
