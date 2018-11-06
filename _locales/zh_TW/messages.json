@@ -17,7 +17,7 @@
     },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
-        "message": "在此網頁作用"
+        "message": "在此網站作用"
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
@@ -534,17 +534,33 @@
         "description": "imagesTab_text_label: text on the label",
         "message": "圖片"
     },
+    "imagesTab_@tooltip": {
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       圖像调整设置\n―――――――――――――――――――\n 此选项卡包含圖像及圖片的饱和度与亮度调整设置。"
+    },
     "backgroundImagesTab_text_label": {
         "description": "backgroundImagesTab_text_label: text on the label",
         "message": "背景图像"
+    },
+    "backgroundImagesTab_@tooltip": {
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "     背景图像调整设置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整设置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
     },
     "scrollbarsTab_text_label": {
         "description": "scrollbarsTab_text_label: text on the label",
         "message": "滾動條"
     },
+    "scrollbarsTab_@tooltip": {
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
+    },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
         "message": " 設定於"
+    },
+    "hostState_@tooltip": {
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "在白名单和黑名单之间\n切换当前网站"
     },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
