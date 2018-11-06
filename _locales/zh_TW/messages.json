@@ -560,7 +560,11 @@
     },
     "hostState_@tooltip": {
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "在白名单和黑名单之间\n切换当前网站"
+        "message": "在白名单和黑名单之间\n切换当前網站"
+    },
+    "hostName_@tooltip": {
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "     當前網站\n―――――――――――――――\n 点击在白名单和黑名单间切换當前網站。"
     },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
@@ -573,6 +577,10 @@
     "syncSettings_text_label": {
         "description": "syncSettings_text_label: text on the label",
         "message": "在您的设备间同步设置"
+    },
+    "syncSettings_@title": {
+        "description": "syncSettings_@title: text on the tooltip\/hint",
+        "message": "此选项勾选时将在您的设备间同步 [Midnight Lizard] 设置。\n当为每个网站勾选自定义设置时将从所有设备中合并设置但自定义配色方案将被最新配色方案所覆盖。所以请确保您编辑自定义方案时处于在线状态。\n您同时也需要在浏览器设置中启用 [同步] 使得 [Midnight Lizard] 设置同步正常工作。"
     },
     "colorSchemeForEdit_text_label": {
         "description": "colorSchemeForEdit_text_label: text on the label",
@@ -601,6 +609,10 @@
     "editSchemesTab_text_label": {
         "description": "editSchemesTab_text_label: text on the label",
         "message": "配色方案"
+    },
+    "editSchemesTab_@tooltip": {
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 当前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
     },
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
