@@ -11,9 +11,33 @@
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "全局擴展程序切換"
     },
+    "currentToggleKey": {
+        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
+        "message": "當前網站切換"
+    },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
         "message": "在此網頁作用"
+    },
+    "runOnThisSite_@title": {
+        "description": "runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "在這個網站上運行 \"Midnight Lizard\"。"
+    },
+    "restoreColorsOnCopy_text_label": {
+        "description": "restoreColorsOnCopy_text_label: text on the label",
+        "message": "還原複製時的原始顏色"
+    },
+    "restoreColorsOnCopy_@title": {
+        "description": "restoreColorsOnCopy_@title: text on the tooltip",
+        "message": "在從頁面複製內容之前還原原始顏色"
+    },
+    "restoreColorsOnPrint_text_label": {
+        "description": "restoreColorsOnPrint_text_label: text on the label",
+        "message": "恢復列印時的原始顏色"
+    },
+    "restoreColorsOnPrint_@title": {
+        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
+        "message": "在列印頁面內容之前還原原始顏色"
     },
     "changeBrowserTheme_text_label": {
         "description": "changeBrowserTheme_text_label: text on the label",
@@ -22,6 +46,14 @@
     "changeBrowserTheme_@title": {
         "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
         "message": "將瀏覽器主題調整為當前的配色方案。\n僅受 Firefox 支持。"
+    },
+    "useDefaultSchedule_text_label": {
+        "description": "useDefaultSchedule_text_label: text on the label",
+        "message": "使用預設計畫"
+    },
+    "useDefaultSchedule_@title": {
+        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
+        "message": "使用預設設置中的計畫。\n如果要對所有網站使用單個計畫, 則需要在預設設置中指定它。"
     },
     "scheduleStartHour_text_label": {
         "description": "scheduleStartHour_text_label: text on the label",
@@ -34,5 +66,512 @@
     "scheduleFinishHour_text_label": {
         "description": "scheduleFinishHour_text_label: text on the label",
         "message": "停用時刻"
+    },
+    "scheduleFinishHour_@title": {
+        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "擴展將在當前網站上活動, 直到這一次。"
+    },
+    "blueFilter_text_label": {
+        "description": "blueFilter_text_label: text on the label",
+        "message": "藍色過濾強度"
+    },
+    "backgroundSaturationLimit_text_label": {
+        "description": "backgroundSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "backgroundSaturationLimit_@title": {
+        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景飽和度限制"
+    },
+    "backgroundContrast_text_label": {
+        "description": "backgroundContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "backgroundContrast_@title": {
+        "description": "backgroundContrast_@title: text on the tooltip\/hint",
+        "message": "相似背景之間的最小亮度差。\n取決於元素尺寸及順序，結果可能會相當隨機。"
+    },
+    "backgroundLightnessLimit_text_label": {
+        "description": "backgroundLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "backgroundLightnessLimit_@title": {
+        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景亮度限制"
+    },
+    "backgroundGraySaturation_text_label": {
+        "description": "backgroundGraySaturation_text_label: text on the label",
+        "message": "灰色背景飽和度"
+    },
+    "backgroundGraySaturation_@title": {
+        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
+        "message": "應用選定的默認色調後灰色背景的飽和度"
+    },
+    "backgroundHueGravity_text_label": {
+        "description": "backgroundHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
+    },
+    "backgroundHueGravity_@title": {
+        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
+    },
+    "backgroundGrayHue_text_label": {
+        "description": "backgroundGrayHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "backgroundGrayHue_@title": {
+        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色背景色彩飽和度的色調"
+    },
+    "backgroundReplaceAllHues_text_label": {
+        "description": "backgroundReplaceAllHues_text_label: text on the label",
+        "message": "全部更換"
+    },
+    "backgroundReplaceAllHues_@title": {
+        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "buttonSaturationLimit_text_label": {
+        "description": "buttonSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "buttonSaturationLimit_@title": {
+        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "按鈕背景飽和度限制"
+    },
+    "buttonContrast_text_label": {
+        "description": "buttonContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "buttonContrast_@title": {
+        "description": "buttonContrast_@title: text on the tooltip\/hint",
+        "message": "按鈕與其周圍背景之間的最小亮度差"
+    },
+    "buttonLightnessLimit_text_label": {
+        "description": "buttonLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "buttonLightnessLimit_@title": {
+        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "按鈕背景亮度限制"
+    },
+    "buttonGraySaturation_text_label": {
+        "description": "buttonGraySaturation_text_label: text on the label",
+        "message": "灰色按鈕飽和度"
+    },
+    "buttonGraySaturation_@title": {
+        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
+        "message": "應用選定默認色調之後的灰色按鈕背景飽和度"
+    },
+    "buttonHueGravity_text_label": {
+        "description": "buttonHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
+    },
+    "buttonHueGravity_@title": {
+        "description": "buttonHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
+    },
+    "buttonGrayHue_text_label": {
+        "description": "buttonGrayHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "buttonGrayHue_@title": {
+        "description": "buttonGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色按鈕背景色彩飽和度的色調"
+    },
+    "buttonReplaceAllHues_text_label": {
+        "description": "buttonReplaceAllHues_text_label: text on the label",
+        "message": "全部替換"
+    },
+    "buttonReplaceAllHues_@title": {
+        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "textSaturationLimit_text_label": {
+        "description": "textSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "textSaturationLimit_@title": {
+        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "文字飽和度限制"
+    },
+    "textContrast_text_label": {
+        "description": "textContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "textContrast_@title": {
+        "description": "textContrast_@title: text on the tooltip\/hint",
+        "message": "文字與其背景之間的最小亮度差"
+    },
+    "textLightnessLimit_text_label": {
+        "description": "textLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "textLightnessLimit_@title": {
+        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大文字亮度限制"
+    },
+    "textGraySaturation_text_label": {
+        "description": "textGraySaturation_text_label: text on the label",
+        "message": "灰色文字飽和度"
+    },
+    "textGraySaturation_@title": {
+        "description": "textGraySaturation_@title: text on the tooltip\/hint",
+        "message": "應用選定預設色調之後的灰色文字飽和度"
+    },
+    "textHueGravity_text_label": {
+        "description": "textHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
+    },
+    "textHueGravity_@title": {
+        "description": "textHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
+    },
+    "textGrayHue_text_label": {
+        "description": "textGrayHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "textGrayHue_@title": {
+        "description": "textGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色文本色彩飽和度的色調"
+    },
+    "textReplaceAllHues_text_label": {
+        "description": "textReplaceAllHues_text_label: text on the label",
+        "message": "全部替換"
+    },
+    "textReplaceAllHues_@title": {
+        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "textSelectionHue_html_label": {
+        "message": "文字<span id=\"selection\">選擇<\/span>色調"
+    },
+    "textSelectionHue_@title": {
+        "description": "textSelectionHue_@title: text on the tooltip\/hint",
+        "message": "文字選擇色調"
+    },
+    "linkSaturationLimit_text_label": {
+        "description": "linkSaturationLimit_text_label: text on the label",
+        "message": "飽和度限制"
+    },
+    "linkSaturationLimit_@title": {
+        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "鏈接飽和度限制"
+    },
+    "linkContrast_text_label": {
+        "description": "linkContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "linkContrast_@title": {
+        "description": "linkContrast_@title: text on the tooltip\/hint",
+        "message": "鏈接與背景的最小亮度差"
+    },
+    "linkLightnessLimit_text_label": {
+        "description": "linkLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "linkLightnessLimit_@title": {
+        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大鍊接亮度限制"
+    },
+    "linkDefaultSaturation_text_label": {
+        "description": "linkDefaultSaturation_text_label: text on the label",
+        "message": "默認鏈接飽和度"
+    },
+    "linkDefaultSaturation_@title": {
+        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
+        "message": "在应用选中色調后的正常链接和已访问链接颜色饱和度"
+    },
+    "linkHueGravity_text_label": {
+        "description": "linkHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
+    },
+    "linkHueGravity_@title": {
+        "description": "linkHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
+    },
+    "linkDefaultHue_text_label": {
+        "description": "linkDefaultHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "linkDefaultHue_@title": {
+        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
+        "message": "用於替換普通鏈接色調的色調"
+    },
+    "linkReplaceAllHues_text_label": {
+        "description": "linkReplaceAllHues_text_label: text on the label",
+        "message": "全部替換"
+    },
+    "linkReplaceAllHues_@title": {
+        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換此頁面正常链接色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "linkVisitedHue_text_label": {
+        "description": "linkVisitedHue_text_label: text on the label",
+        "message": "已訪問鏈接色調"
+    },
+    "linkVisitedHue_@title": {
+        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
+        "message": "已訪問鏈接色調"
+    },
+    "borderSaturationLimit_text_label": {
+        "description": "borderSaturationLimit_text_label: text on the label",
+        "message": "饱和度限制"
+    },
+    "borderSaturationLimit_@title": {
+        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "邊界飽和度限制"
+    },
+    "borderContrast_text_label": {
+        "description": "borderContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "borderContrast_@title": {
+        "description": "borderContrast_@title: text on the tooltip\/hint",
+        "message": "邊界與背景的最小亮度差"
+    },
+    "borderLightnessLimit_text_label": {
+        "description": "borderLightnessLimit_text_label: text on the label",
+        "message": "亮度限制"
+    },
+    "borderLightnessLimit_@title": {
+        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "最大邊界亮度限制"
+    },
+    "borderGraySaturation_text_label": {
+        "description": "borderGraySaturation_text_label: text on the label",
+        "message": "灰色邊界飽和度"
+    },
+    "borderGraySaturation_@title": {
+        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
+        "message": "在應用選中默認色調後的灰色邊界飽和度"
+    },
+    "borderHueGravity_text_label": {
+        "description": "borderHueGravity_text_label: text on the label",
+        "message": "默認色調的重力"
+    },
+    "borderHueGravity_@title": {
+        "description": "borderHueGravity_@title: text on the tooltip\/hint",
+        "message": "決定其他所有的色調將如何被選中的默認色調所影響。\n重力越強，其他所有色調移動至離選擇的默認色調越近。\n飽和度限制將用於受影響的色調。若勾選[全部替換] 色調將不會工作。\n[全部替換] 色調更快且應在超過100% 重力時首選。"
+    },
+    "borderGrayHue_text_label": {
+        "description": "borderGrayHue_text_label: text on the label",
+        "message": "默認色調"
+    },
+    "borderGrayHue_@title": {
+        "description": "borderGrayHue_@title: text on the tooltip\/hint",
+        "message": "用於增加灰色邊界色彩飽和度的色調"
+    },
+    "borderReplaceAllHues_text_label": {
+        "description": "borderReplaceAllHues_text_label: text on the label",
+        "message": "全部替換"
+    },
+    "borderReplaceAllHues_@title": {
+        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
+        "message": "使用所選色調替換所有原始色調。\n否則將只替換灰、黑、白色調。\n灰色飽和度將用於替換色調。\n將完全覆蓋默認色調重力。"
+    },
+    "imageSaturationLimit_text_label": {
+        "description": "imageSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "imageSaturationLimit_@title": {
+        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "設置所有圖像的飽和度為此值"
+    },
+    "imageLightnessLimit_text_label": {
+        "description": "imageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "imageLightnessLimit_@title": {
+        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "設置所有圖像的亮度為此值"
+    },
+    "imageExample_text_label": {
+        "description": "imageExample_text_label: text on the label",
+        "message": "圖像示例"
+    },
+    "imageExample_@title": {
+        "description": "imageExample_@title: text on the tooltip\/hint",
+        "message": "圖像示例"
+    },
+    "useImageHoverAnimation_text_label": {
+        "description": "useImageHoverAnimation_text_label: text on the label",
+        "message": "使用圖像懸停動畫"
+    },
+    "useImageHoverAnimation_@title": {
+        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
+        "message": "當游標懸停在圖片上時移除其所有效果"
+    },
+    "backgroundImageSaturationLimit_text_label": {
+        "description": "backgroundImageSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "backgroundImageSaturationLimit_@title": {
+        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像飽和度"
+    },
+    "backgroundImageLightnessLimit_text_label": {
+        "description": "backgroundImageLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "backgroundImageLightnessLimit_@title": {
+        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "背景图像亮度限制。图像越小越亮。"
+    },
+    "backgroundImageExample_text_label": {
+        "description": "backgroundImageExample_text_label: text on the label",
+        "message": "背景图像片示例"
+    },
+    "backgroundImageExample_@title": {
+        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "背景图像片示例"
+    },
+    "backgroundImageExampleText_text_label": {
+        "description": "backgroundImageExampleText_text_label: text on the label",
+        "message": "示例"
+    },
+    "backgroundImageExampleText_@title": {
+        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
+        "message": "若此網站在文本後存在背景图像，\n您則應更改背景图像亮度等級\n直到您得以清楚地看見文字背後的图像。"
+    },
+    "scrollbarSaturationLimit_text_label": {
+        "description": "scrollbarSaturationLimit_text_label: text on the label",
+        "message": "飽和度"
+    },
+    "scrollbarSaturationLimit_@title": {
+        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮饱和度"
+    },
+    "scrollbarContrast_text_label": {
+        "description": "scrollbarContrast_text_label: text on the label",
+        "message": "對比度"
+    },
+    "scrollbarContrast_@title": {
+        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和背景的最小亮度差。\n仅应用于亮色背景。"
+    },
+    "scrollbarLightnessLimit_text_label": {
+        "description": "scrollbarLightnessLimit_text_label: text on the label",
+        "message": "亮度"
+    },
+    "scrollbarLightnessLimit_@title": {
+        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮亮度"
+    },
+    "scrollbarSize_text_label": {
+        "description": "scrollbarSize_text_label: text on the label",
+        "message": "尺寸"
+    },
+    "scrollbarSize_@title": {
+        "description": "scrollbarSize_@title: text on the tooltip\/hint",
+        "message": "滾動條尺寸"
+    },
+    "scrollbarGrayHue_text_label": {
+        "description": "scrollbarGrayHue_text_label: text on the label",
+        "message": "滚动条色調"
+    },
+    "scrollbarGrayHue_@title": {
+        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
+        "message": "滚动条滑动块和按钮色調"
+    },
+    "commonTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "普遍"
+    },
+    "activationTab_text_label": {
+        "description": "commonTab_text_label: text on the label",
+        "message": "啟用"
+    },
+    "backgroundTab_text_label": {
+        "description": "backgroundTab_text_label: text on the label",
+        "message": "背景"
+    },
+    "buttonsTab_text_label": {
+        "description": "buttonsTab_text_label: text on the label",
+        "message": "按鈕"
+    },
+    "textTab_text_label": {
+        "description": "textTab_text_label: text on the label",
+        "message": "文字"
+    },
+    "linkTab_text_label": {
+        "description": "linkTab_text_label: text on the label",
+        "message": "链接"
+    },
+    "borderTab_text_label": {
+        "description": "borderTab_text_label: text on the label",
+        "message": "邊界"
+    },
+    "imagesTab_text_label": {
+        "description": "imagesTab_text_label: text on the label",
+        "message": "圖片"
+    },
+    "backgroundImagesTab_text_label": {
+        "description": "backgroundImagesTab_text_label: text on the label",
+        "message": "背景图像"
+    },
+    "scrollbarsTab_text_label": {
+        "description": "scrollbarsTab_text_label: text on the label",
+        "message": "滾動條"
+    },
+    "settingsHeader_text_label": {
+        "description": "settingsHeader_text_label: text on the label",
+        "message": " 設定於"
+    },
+    "isEnabledOn_text_label": {
+        "description": "isEnabledOn_text_label: text on the label",
+        "message": "開啟"
+    },
+    "isEnabledOff_text_label": {
+        "description": "isEnabledOff_text_label: text on the label",
+        "message": "關閉"
+    },
+    "syncSettings_text_label": {
+        "description": "syncSettings_text_label: text on the label",
+        "message": "在您的设备间同步设置"
+    },
+    "colorSchemeForEdit_text_label": {
+        "description": "colorSchemeForEdit_text_label: text on the label",
+        "message": "所编辑的配色方案"
+    },
+    "colorSchemeName_text_label": {
+        "description": "colorSchemeName_text_label: text on the label",
+        "message": "配色方案名"
+    },
+    "deleteColorSchemeBtn_text_label": {
+        "description": "deleteColorSchemeBtn_text_label: text on the label",
+        "message": "刪除"
+    },
+    "saveColorSchemeBtn_text_label": {
+        "description": "saveColorSchemeBtn_text_label: text on the label",
+        "message": "保存"
+    },
+    "exportColorSchemeBtn_text_label": {
+        "description": "exportColorSchemeBtn_text_label: text on the label",
+        "message": "匯出"
+    },
+    "importColorSchemeBtn_text_label": {
+        "description": "importColorSchemeBtn_text_label: text on the label",
+        "message": "匯入"
+    },
+    "editSchemesTab_text_label": {
+        "description": "editSchemesTab_text_label: text on the label",
+        "message": "配色方案"
+    },
+    "currentColorScheme_text_label": {
+        "description": "currentColorScheme_text_label: text on the label",
+        "message": "当前配色方案"
+    },
+    "forgetThisSiteBtn_text_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "網站"
+    },
+    "forgetAllSitesBtn_text_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "全部"
+    },
+    "default_scheduleFinishHour_@title": {
+        "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
+        "message": "擴展程序僅在此次應用於所有使用默認時間表的網站。"
     }
 }
