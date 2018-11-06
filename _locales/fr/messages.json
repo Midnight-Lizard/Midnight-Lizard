@@ -697,6 +697,10 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Fermer la fenêtre pop-up et abandonner toutes les modifications non enregistrées"
     },
+    "donateLink_@tooltip": {
+        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Faire un don à notre collectif"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Notez cette extension"
