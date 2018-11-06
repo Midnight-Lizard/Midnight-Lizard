@@ -709,10 +709,6 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "Close popup and discard all unsaved changes"
     },
-    "donateLink_@tooltip": {
-        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Donate with Open Collective"
-    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Rate this extension"
