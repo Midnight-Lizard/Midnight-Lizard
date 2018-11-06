@@ -657,9 +657,17 @@
         "description": "default_runOnThisSite_text_label: text on the label",
         "message": "默认在所有網站上运行"
     },
+    "default_runOnThisSite_@title": {
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "無自定義設定運行 Midnight Lizard 在所有網站上。"
+    },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
         "message": "預設啟用時刻"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "擴展程序將在之後應用於所有使用默認時間表的網站。"
     },
     "default_scheduleFinishHour_text_label": {
         "description": "default_scheduleFinishHour_text_label: text on the label",
@@ -668,5 +676,9 @@
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
         "message": "擴展程序僅在此次應用於所有使用默認時間表的網站。"
+    },
+    "includeMatches_@title": {
+        "description": "includeMatches_@title: text on the tooltip\/hint",
+        "message": "如果未選中“在此網站上運行”，\n但頁面網址至少匹配其中一個模式，則仍會考慮進行處理。\n將每個模式寫在新行上。\n如果選中“在此網站上運行”，則將忽略所有包含匹配模式。"
     }
 }
