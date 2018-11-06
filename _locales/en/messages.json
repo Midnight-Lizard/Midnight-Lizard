@@ -711,7 +711,7 @@
     },
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Donate"
+        "message": "Donate with Open Collective"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -1039,10 +1039,6 @@
     "resetThemeConfirmationMessage": {
         "description": "resetThemeConfirmationMessage: text on the message box",
         "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
-    },
-    "github_stars_campaign_text_message": {
-        "description": "github_stars_campaign_text_message: text on the campaign ad message",
-        "message": "Help us collect 🌟 on GitHub to start crowdfunding"
     },
     "invalidMatchPattern": {
         "description": "invalidMatchPattern: validation error message",
