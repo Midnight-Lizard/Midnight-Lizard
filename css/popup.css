@@ -528,7 +528,7 @@ select.ml-dialog-input-text {
 }
 
 .ml-footer-icon-container.right {
-    padding-right: 10px;
+    padding-right: 9px;
 }
 
 .ml-footer-separator {
@@ -590,6 +590,14 @@ select.ml-dialog-input-text {
 
 .bug-report-icon:hover {
     fill: #B71C1C;
+}
+
+.donate-icon {
+    width: 25px;
+}
+
+.donate-icon:hover {
+    fill: #1A237E;
 }
 
 .rate-icon {

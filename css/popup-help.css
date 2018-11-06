@@ -102,12 +102,14 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 #isEnabledSwitch:before {right: 0px;top: 42px;white-space: pre;}
 #isEnabledSwitch:after {right: 20px;bottom: -15.4px;}
 
+#donate-link:before {}
+#donate-link:after {}
 #rate-link:before {}
-#rate-link:after {right: 14px;}
+#rate-link:after {right: 13px;}
 #translate-link:before {
     text-align: center;
 }
-#translate-link:after {right: 14px;}
+#translate-link:after {right: 13px;}
 #email-link:before {}
 #email-link:after {}
 #bug-report-link:before {}
