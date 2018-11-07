@@ -711,7 +711,7 @@
     },
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Сделать пожертвование"
+        "message": "Оказать посильную финансовую поддержку"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
