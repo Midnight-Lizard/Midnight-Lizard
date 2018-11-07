@@ -711,7 +711,7 @@
     },
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Donate to our collective"
+        "message": "Provide feasible financial support"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
