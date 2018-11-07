@@ -697,12 +697,104 @@
         "description": "applyBtn_@title: text on the tooltip\/hint",
         "message": "应用并保存此網站的當前设置"
     },
+    "closeBtn_text_label": {
+        "description": "closeBtn_text_label: text on the label",
+        "message": "退出"
+    },
+    "closeBtn_@title": {
+        "description": "closeBtn_@title: text on the tooltip\/hint",
+        "message": "关闭弹出窗口并放弃所有未保存的更改"
+    },
+    "rateLink_@tooltip": {
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "为此扩展程序评分"
+    },
+    "emailLink_@tooltip": {
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "向开发者发送电子邮件"
+    },
+    "bugReportLink_@tooltip": {
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "錯誤回報"
+    },
+    "changeLogLink_@tooltip": {
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "更新日誌"
+    },
+    "colorSchemeImportSuccessMessage": {
+        "description": "colorSchemeImportSuccessMessage: text on the message box",
+        "message": "$imported_color_schemes_count$配色方案已成功从文件中导入。\n已导入的配色方案使用$edit_mark$符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在[当前配色方案]下拉窗口列表中选中配色方案并点击[保存]按钮。",
+        "placeholders": {
+            "imported_color_schemes_count": {
+                "content": "$1"
+            },
+            "edit_mark": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveConfirmationMessage": {
+        "description": "colorSchemeSaveConfirmationMessage: text on the message box",
+        "message": "您正要使用当前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            },
+            "color_scheme_name": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveFailureMessage": {
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
+        "message": "色彩方案更新失敗。\n"
+    },
+    "colorSchemeDeleteConfirmationMessage": {
+        "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
+        "message": "您正要删除配色方案 [$color_scheme_for_edit_name$]。\n删除系统配色方案将移除所有从指定配色方案中的覆盖项。我们没有办法完全删除任意系统配色方案。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            }
+        }
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
+        "message": "配色方案刪除失败。\n"
+    },
+    "forgetAllConfirmationMessage": {
+        "description": "forgetAllConfirmationMessage: text on the message box",
+        "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
+    },
     "forgetAllFailureMessage": {
         "description": "forgetAllFailureMessage: text on the message box",
         "message": "全部網站设置删除失败。\n"
     },
+    "forgetThisFailureMessage": {
+        "description": "forgetThisFailureMessage: text on the message box",
+        "message": "當前網站設定刪除失敗。\n"
+    },
+    "setAsDefaultFailureMessage": {
+        "description": "setAsDefaultFailureMessage: text on the message box",
+        "message": "預設設定應用失敗。\n"
+    },
+    "applyOnPageFailureMessage": {
+        "description": "applyOnPageFailureMessage: text on the message box",
+        "message": "設置應用失敗。請刷新頁面並重試。\n"
+    },
+    "toggleExtensionFailureMessage": {
+        "description": "toggleExtensionFailureMessage: text on the message box",
+        "message": "擴展程序開關切換失敗。請重啟所有瀏覽器窗口並重試。\n"
+    },
+    "syncChangeFailureMessage": {
+        "description": "syncChangeFailureMessage: text on the message box",
+        "message": "無法更改設定同步選項。\n"
+    },
     "introduction_html_content": {
         "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置当前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
+    },
+    "shortcut_text_lable": {
+        "message": "快捷鍵"
     },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
