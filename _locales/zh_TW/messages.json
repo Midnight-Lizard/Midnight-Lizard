@@ -796,6 +796,34 @@
     "shortcut_text_lable": {
         "message": "快捷鍵"
     },
+    "colorSchemeName_Custom": {
+        "description": "color scheme name",
+        "message": "自定義"
+    },
+    "colorSchemeName_New": {
+        "description": "color scheme name",
+        "message": "新色彩方案"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "預設"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "原始 (無)"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "灰暗的灰塵"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "苹果薄荷"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "沼澤森林"
+    },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
         "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
