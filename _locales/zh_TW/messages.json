@@ -17,7 +17,7 @@
     },
     "runOnThisSite_text_label": {
         "description": "runOnThisSite_text_label: text on the label",
-        "message": "在此網頁作用"
+        "message": "在此網站作用"
     },
     "runOnThisSite_@title": {
         "description": "runOnThisSite_@title: text on the tooltip\/hint",
@@ -478,45 +478,101 @@
         "description": "commonTab_text_label: text on the label",
         "message": "普遍"
     },
+    "commonTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       普遍设置\n―――――――――――――――――――\n 此选项卡包含整个页面的普遍设置。"
+    },
     "activationTab_text_label": {
         "description": "commonTab_text_label: text on the label",
         "message": "啟用"
+    },
+    "activationTab_@tooltip": {
+        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       啟用设置\n―――――――――――――――――――\n 使用此选项卡可以定义哪些页面以及何时应处理或保持不变。"
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
         "message": "背景"
     },
+    "backgroundTab_@tooltip": {
+        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      背景颜色设置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充设置。"
+    },
     "buttonsTab_text_label": {
         "description": "buttonsTab_text_label: text on the label",
         "message": "按鈕"
+    },
+    "buttonsTab_@tooltip": {
+        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      按钮背景颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充设置。"
     },
     "textTab_text_label": {
         "description": "textTab_text_label: text on the label",
         "message": "文字"
     },
+    "textTab_@tooltip": {
+        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      文本颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整设置。"
+    },
     "linkTab_text_label": {
         "description": "linkTab_text_label: text on the label",
         "message": "链接"
+    },
+    "linkTab_@tooltip": {
+        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      超链接颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整设置。"
     },
     "borderTab_text_label": {
         "description": "borderTab_text_label: text on the label",
         "message": "邊界"
     },
+    "borderTab_@tooltip": {
+        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      边界颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整设置。"
+    },
     "imagesTab_text_label": {
         "description": "imagesTab_text_label: text on the label",
         "message": "圖片"
+    },
+    "imagesTab_@tooltip": {
+        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "       圖像调整设置\n―――――――――――――――――――\n 此选项卡包含圖像及圖片的饱和度与亮度调整设置。"
     },
     "backgroundImagesTab_text_label": {
         "description": "backgroundImagesTab_text_label: text on the label",
         "message": "背景图像"
     },
+    "backgroundImagesTab_@tooltip": {
+        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "     背景图像调整设置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整设置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
+    },
     "scrollbarsTab_text_label": {
         "description": "scrollbarsTab_text_label: text on the label",
         "message": "滾動條"
     },
+    "scrollbarsTab_@tooltip": {
+        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
+    },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
         "message": " 設定於"
+    },
+    "hostState_@tooltip": {
+        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "在白名单和黑名单之间\n切换当前網站"
+    },
+    "hostName_@tooltip": {
+        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "     當前網站\n―――――――――――――――\n 点击在白名单和黑名单间切换當前網站。"
+    },
+    "helpLink_@tooltip": {
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "支援論壇"
+    },
+    "isEnabledSwitch_@tooltip": {
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "啟用或禁用整個擴充功能"
     },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
@@ -530,48 +586,540 @@
         "description": "syncSettings_text_label: text on the label",
         "message": "在您的设备间同步设置"
     },
+    "syncSettings_@title": {
+        "description": "syncSettings_@title: text on the tooltip\/hint",
+        "message": "此选项勾选时将在您的设备间同步 [Midnight Lizard] 设置。\n当为每个网站勾选自定义设置时将从所有设备中合并设置但自定义配色方案将被最新配色方案所覆盖。所以请确保您编辑自定义方案时处于在线状态。\n您同时也需要在浏览器设置中启用 [同步] 使得 [Midnight Lizard] 设置同步正常工作。"
+    },
     "colorSchemeForEdit_text_label": {
         "description": "colorSchemeForEdit_text_label: text on the label",
         "message": "所编辑的配色方案"
+    },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "选择要编辑的配色方案。\n您可以新建配色方案并更新或删除已有的配色方案。"
     },
     "colorSchemeName_text_label": {
         "description": "colorSchemeName_text_label: text on the label",
         "message": "配色方案名"
     },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "您可以在保存前编辑配色方案名"
+    },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "刪除"
+    },
+    "deleteColorSchemeBtn_@title": {
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "删除选中的所编辑的配色方案"
     },
     "saveColorSchemeBtn_text_label": {
         "description": "saveColorSchemeBtn_text_label: text on the label",
         "message": "保存"
     },
+    "saveColorSchemeBtn_@title": {
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "使用当前的弹出设置更新选中的配色方案"
+    },
     "exportColorSchemeBtn_text_label": {
         "description": "exportColorSchemeBtn_text_label: text on the label",
         "message": "匯出"
+    },
+    "exportColorSchemeBtn_@title": {
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用当前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": "$1"
+            },
+            "color_scheme_for_edit": {
+                "content": "$2"
+            },
+            "color_scheme_name": {
+                "content": "$3"
+            }
+        }
     },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "匯入"
     },
+    "importColorSchemeBtn_@title": {
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "从文件导入配色方案"
+    },
     "editSchemesTab_text_label": {
         "description": "editSchemesTab_text_label: text on the label",
         "message": "配色方案"
+    },
+    "editSchemesTab_@tooltip": {
+        "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 当前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
     },
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
         "message": "当前配色方案"
     },
+    "currentColorScheme_@title": {
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
+        "message": "选择您喜欢的配色方案"
+    },
     "forgetThisSiteBtn_text_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
         "message": "網站"
+    },
+    "forgetThisSiteBtn_@title": {
+        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
+        "message": "忘记當前網站设置"
     },
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "全部"
     },
+    "forgetAllSitesBtn_@title": {
+        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
+        "message": "忘记所有網站的所有自定义项"
+    },
+    "setAsDefaultBtn_text_label": {
+        "description": "setAsDefaultBtn_text_label: text on the label",
+        "message": "设置为默认"
+    },
+    "setAsDefaultBtn_@title": {
+        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
+        "message": "设置當前设置为所有網站的默认设置"
+    },
+    "applyBtn_text_label": {
+        "description": "applyBtn_text_label: text on the label",
+        "message": "应用"
+    },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用并保存此網站的當前设置"
+    },
+    "closeBtn_text_label": {
+        "description": "closeBtn_text_label: text on the label",
+        "message": "退出"
+    },
+    "closeBtn_@title": {
+        "description": "closeBtn_@title: text on the tooltip\/hint",
+        "message": "关闭弹出窗口并放弃所有未保存的更改"
+    },
+    "rateLink_@tooltip": {
+        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "为此扩展程序评分"
+    },
+    "emailLink_@tooltip": {
+        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "向开发者发送电子邮件"
+    },
+    "bugReportLink_@tooltip": {
+        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "錯誤回報"
+    },
+    "changeLogLink_@tooltip": {
+        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "更新日誌"
+    },
+    "colorSchemeImportSuccessMessage": {
+        "description": "colorSchemeImportSuccessMessage: text on the message box",
+        "message": "$imported_color_schemes_count$配色方案已成功从文件中导入。\n已导入的配色方案使用$edit_mark$符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在[当前配色方案]下拉窗口列表中选中配色方案并点击[保存]按钮。",
+        "placeholders": {
+            "imported_color_schemes_count": {
+                "content": "$1"
+            },
+            "edit_mark": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveConfirmationMessage": {
+        "description": "colorSchemeSaveConfirmationMessage: text on the message box",
+        "message": "您正要使用当前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            },
+            "color_scheme_name": {
+                "content": "$2"
+            }
+        }
+    },
+    "colorSchemeSaveFailureMessage": {
+        "description": "colorSchemeSaveFailureMessage: text on the message box",
+        "message": "色彩方案更新失敗。\n"
+    },
+    "colorSchemeDeleteConfirmationMessage": {
+        "description": "colorSchemeDeleteConfirmationMessage: text on the message box",
+        "message": "您正要删除配色方案 [$color_scheme_for_edit_name$]。\n删除系统配色方案将移除所有从指定配色方案中的覆盖项。我们没有办法完全删除任意系统配色方案。您是否确实要继续？",
+        "placeholders": {
+            "color_scheme_for_edit_name": {
+                "content": "$1"
+            }
+        }
+    },
+    "colorSchemeDeleteFailureMessage": {
+        "description": "colorSchemeDeleteFailureMessage: text on the message box",
+        "message": "配色方案刪除失败。\n"
+    },
+    "forgetAllConfirmationMessage": {
+        "description": "forgetAllConfirmationMessage: text on the message box",
+        "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
+    },
+    "forgetAllFailureMessage": {
+        "description": "forgetAllFailureMessage: text on the message box",
+        "message": "全部網站设置删除失败。\n"
+    },
+    "forgetThisFailureMessage": {
+        "description": "forgetThisFailureMessage: text on the message box",
+        "message": "當前網站設定刪除失敗。\n"
+    },
+    "setAsDefaultFailureMessage": {
+        "description": "setAsDefaultFailureMessage: text on the message box",
+        "message": "預設設定應用失敗。\n"
+    },
+    "applyOnPageFailureMessage": {
+        "description": "applyOnPageFailureMessage: text on the message box",
+        "message": "設置應用失敗。請刷新頁面並重試。\n"
+    },
+    "toggleExtensionFailureMessage": {
+        "description": "toggleExtensionFailureMessage: text on the message box",
+        "message": "擴展程序開關切換失敗。請重啟所有瀏覽器窗口並重試。\n"
+    },
+    "syncChangeFailureMessage": {
+        "description": "syncChangeFailureMessage: text on the message box",
+        "message": "無法更改設定同步選項。\n"
+    },
+    "introduction_html_content": {
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置当前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
+    },
+    "shortcut_text_lable": {
+        "message": "快捷鍵"
+    },
+    "colorSchemeName_Custom": {
+        "description": "color scheme name",
+        "message": "自定義"
+    },
+    "colorSchemeName_New": {
+        "description": "color scheme name",
+        "message": "新色彩方案"
+    },
+    "colorSchemeName_default": {
+        "description": "color scheme name",
+        "message": "預設"
+    },
+    "colorSchemeName_original": {
+        "description": "color scheme name",
+        "message": "原始 (無)"
+    },
+    "colorSchemeName_dimmedDust": {
+        "description": "color scheme name",
+        "message": "灰暗的灰塵"
+    },
+    "colorSchemeName_appleMint": {
+        "description": "color scheme name",
+        "message": "苹果薄荷"
+    },
+    "colorSchemeName_kappaDream": {
+        "description": "color scheme name",
+        "message": "沼澤森林"
+    },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "熟杏仁"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "日落風帆"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "萬聖節"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "晨霧"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "古代法典"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "提高對比度"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "灰階"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "倒燈"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "反轉灰度"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底黄字"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底绿字"
+    },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "藍光過濾"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的本地設置存儲已包含一些數據。您是否想使用同步（雲）存儲覆蓋數據並丟失被覆蓋的數據？"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的同步（雲）設置存儲已包含一些數據。您是否想使用本地存儲覆蓋數據並丟失被覆蓋的數據？"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "背景處理示例"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "不同背景顏色處理示例"
+    },
+    "smallBackgroundImageExample_@title": {
+        "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "小背景图像處理示例。若主背景夠黑則小背景图像將翻轉顏色。此例中，背景圖像的[亮度] 不影響它們。"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "smallBackgroundImageExample_text_label: text on the label",
+        "message": "小背景图像示例"
+    },
+    "scrollbarExample_text_label": {
+        "description": "scrollbarExample_text_label: text on the label",
+        "message": "滾動條示例"
+    },
+    "scrollbarExample_@title": {
+        "description": "scrollbarExample_@title: text on the tooltip\/hint",
+        "message": "樣式滾動條示例"
+    },
+    "buttonExample_text_label": {
+        "description": "buttonExample_text_label: text on the label",
+        "message": "按鈕示例"
+    },
+    "buttonExample_@title": {
+        "description": "buttonExample_@title: text on the tooltip\/hint",
+        "message": "不同按鈕顏色處理示例"
+    },
+    "borderExample_@title": {
+        "description": "borderExample_@title: text on the tooltip\/hint",
+        "message": "不同邊界顏色處理示例"
+    },
+    "borderExample_text_label": {
+        "description": "borderExample_text_label: text on the label",
+        "message": "邊界示例"
+    },
+    "backgroundExampleOriginal_@title": {
+        "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始背景颜色"
+    },
+    "borderExampleOriginal_@title": {
+        "description": "borderExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "左側處理的原始邊框顏色"
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方處理的原始小背景图像"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
+        "message": "滾動條樣式<br\/> 不受Firefox 支持<br\/><br\/>"
+    },
+    "translateLink_@tooltip": {
+        "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "幫助翻譯Midnight Lizard至其他語言"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
+    },
+    "backgroundExampleWithContrast_@title": {
+        "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
+        "message": "增加对比度以处理不同背景颜色示例。\n对比度基于元素尺寸故在真实页面上可能看起来存在差异。"
+    },
+    "backgroundExampleWithoutContrast_@title": {
+        "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
+        "message": "无对比度更改以处理不同背景颜色示例。"
+    },
+    "mode_@title": {
+        "description": "mode_@title: text on the tooltip\/hint",
+        "message": "页面处理模式"
+    },
+    "mode_text_label": {
+        "description": "mode_text_label: text on the label",
+        "message": "处理模式"
+    },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "简化页面处理模式并不准确但工作速度非常快"
+    },
+    "mode_simplified_text_label": {
+        "description": "mode_simplified_text_label: text on the label",
+        "message": "简化"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "复合页面处理模式并不快速但观看体验非常好"
+    },
+    "mode_complex_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "复合"
+    },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果當前頁面的元素多於“自動模式切換限制”，則自動頁面處理模式將從“複雜”模式切換為“簡化”模式。"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "自動"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "自動模式切換限制"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果頁面上的元素在初始加載期間超過了此處指定的限制並且使用了“自動”模式，則此頁面的實際處理模式將從“复合”切換為“简化”。"
+    },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "懸停在每個選項上預覽其描述"
+    },
+    "default_runOnThisSite_text_label": {
+        "description": "default_runOnThisSite_text_label: text on the label",
+        "message": "默认在所有網站上运行"
+    },
+    "default_runOnThisSite_@title": {
+        "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
+        "message": "無自定義設定運行 Midnight Lizard 在所有網站上。"
+    },
+    "default_scheduleStartHour_text_label": {
+        "description": "default_scheduleStartHour_text_label: text on the label",
+        "message": "預設啟用時刻"
+    },
+    "default_scheduleStartHour_@title": {
+        "description": "default_scheduleStartHour_@title: text on the tooltip\/hint",
+        "message": "擴展程序將在之後應用於所有使用默認時間表的網站。"
+    },
+    "default_scheduleFinishHour_text_label": {
+        "description": "default_scheduleFinishHour_text_label: text on the label",
+        "message": "預設停用時刻"
+    },
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
         "message": "擴展程序僅在此次應用於所有使用默認時間表的網站。"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "全局設定"
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "resetThemeConfirmationMessage: text on the message box",
+        "message": "您是否想重設當前瀏覽器主題為預設主題?\n可能會重設為原始的 Firefox 主題而非先前的主題。"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' 不是有效的匹配模式。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' 沒有有效的主機。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "一些模式與當前頁面匹配"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "以下模式與當前頁面匹配：\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "所有模式都不匹配當前頁面"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "排除匹配模式"
+    },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "如果其網址與任何這些模式匹配，則不會處理該網頁。\n將每個模式寫在新行上。\n排除規則具有最低優先級，因此它們將始終獲勝。"
+    },
+    "includeMatches_text_label": {
+        "description": "includeMatches_text_label: text on the label",
+        "message": "包括匹配模式"
+    },
+    "includeMatches_@title": {
+        "description": "includeMatches_@title: text on the tooltip\/hint",
+        "message": "如果未選中“在此網站上運行”，\n但頁面網址至少匹配其中一個模式，則仍會考慮進行處理。\n將每個模式寫在新行上。\n如果選中“在此網站上運行”，則將忽略所有包含匹配模式。"
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "語法"
+    },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "在新的瀏覽器選項卡中打開完整的匹配模式語法說明。Popup可能會被關閉。"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the label",
+        "message": "不反轉動態內容"
+    },
+    "doNotInvertContent_@title": {
+        "description": "doNotInvertContent_@title: text on the tooltip\/hint",
+        "message": "選中此選項可防止反轉動態內容。\n這個選項控制當背景變暗時，像地圖、PDF文件、動態繪圖、動畫圖像等內容是否可以反轉。\n內容翻轉時，會根據背景的當前設置對其進行處理，當內容未翻轉時，將根據當前的圖像設置對其進行處理。"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "本地文件"
+    },
+    "colorSchemeImportNotSupportedMessage": {
+        "description": "colorSchemeImportNotSupportedMessage: text on the message box",
+        "message": "Firefox不支持從文件導入顏色方案"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "更改滾動條樣式和顏色"
+    },
+    "scrollbarStyle_@title": {
+        "description": "scrollbarStyle_@title: text on the tooltip\/hint",
+        "message": "在滾動條上應用自定義樣式和顏色。"
+    },
+    "hideBigBackgroundImages_text_label": {
+        "description": "hideBigBackgroundImages_text_label: text on the label",
+        "message": "隱藏大型背景图像"
+    },
+    "hideBigBackgroundImages_@title": {
+        "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
+        "message": "隱藏背景图像，如果他們需要處理，他們的大小在KiB大於'背景图像大小限制'中指定的值"
+    },
+    "maxBackgroundImageSize_text_label": {
+        "description": "maxBackgroundImageSize_text_label: text on the label",
+        "message": "背景图像大小限制"
+    },
+    "maxBackgroundImageSize_@title": {
+        "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
+        "message": "KiB中背景圖像的最大尺寸。\n如果選中了“隱藏大背景圖像”，那麼如果處理後，將隱藏比這裡指定的大的背景圖像。"
     }
 }

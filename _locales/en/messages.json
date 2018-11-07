@@ -711,7 +711,7 @@
     },
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Donate to our collective"
+        "message": "Provide feasible financial support\nby donating to our collective"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -1010,7 +1010,7 @@
     },
     "default_runOnThisSite_@title": {
         "description": "default_runOnThisSite_@title: text on the tooltip\/hint",
-        "message": "Run 'Midnight Lizard' on all websites w\/o custom settings."
+        "message": "Run 'Midnight Lizard' on all websites without custom settings."
     },
     "default_scheduleStartHour_text_label": {
         "description": "default_scheduleStartHour_text_label: text on the label",
