@@ -1089,5 +1089,37 @@
     "doNotInvertContent_@title": {
         "description": "doNotInvertContent_@title: text on the tooltip\/hint",
         "message": "選中此選項可防止反轉動態內容。\n這個選項控制當背景變暗時，像地圖、PDF文件、動態繪圖、動畫圖像等內容是否可以反轉。\n內容翻轉時，會根據背景的當前設置對其進行處理，當內容未翻轉時，將根據當前的圖像設置對其進行處理。"
+    },
+    "localFiles_text_label": {
+        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+        "message": "本地文件"
+    },
+    "colorSchemeImportNotSupportedMessage": {
+        "description": "colorSchemeImportNotSupportedMessage: text on the message box",
+        "message": "Firefox不支持從文件導入顏色方案"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "更改滾動條樣式和顏色"
+    },
+    "scrollbarStyle_@title": {
+        "description": "scrollbarStyle_@title: text on the tooltip\/hint",
+        "message": "在滾動條上應用自定義樣式和顏色。"
+    },
+    "hideBigBackgroundImages_text_label": {
+        "description": "hideBigBackgroundImages_text_label: text on the label",
+        "message": "隱藏大型背景图像"
+    },
+    "hideBigBackgroundImages_@title": {
+        "description": "hideBigBackgroundImages_@title: text on the tooltip\/hint",
+        "message": "隱藏背景图像，如果他們需要處理，他們的大小在KiB大於'背景图像大小限制'中指定的值"
+    },
+    "maxBackgroundImageSize_text_label": {
+        "description": "maxBackgroundImageSize_text_label: text on the label",
+        "message": "背景图像大小限制"
+    },
+    "maxBackgroundImageSize_@title": {
+        "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
+        "message": "KiB中背景圖像的最大尺寸。\n如果選中了“隱藏大背景圖像”，那麼如果處理後，將隱藏比這裡指定的大的背景圖像。"
     }
 }
