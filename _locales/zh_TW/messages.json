@@ -824,6 +824,70 @@
         "description": "color scheme name",
         "message": "沼澤森林"
     },
+    "colorSchemeName_almondRipe": {
+        "description": "color scheme name",
+        "message": "熟杏仁"
+    },
+    "colorSchemeName_sunsetSails": {
+        "description": "color scheme name",
+        "message": "日落風帆"
+    },
+    "colorSchemeName_halloween": {
+        "description": "color scheme name",
+        "message": "萬聖節"
+    },
+    "colorSchemeName_morningMist": {
+        "description": "color scheme name",
+        "message": "晨霧"
+    },
+    "colorSchemeName_antiqueCodex": {
+        "description": "color scheme name",
+        "message": "古代法典"
+    },
+    "colorSchemeName_increasedContrast": {
+        "description": "color scheme name",
+        "message": "提高對比度"
+    },
+    "colorSchemeName_grayscale": {
+        "description": "color scheme name",
+        "message": "灰階"
+    },
+    "colorSchemeName_invertedLight": {
+        "description": "color scheme name",
+        "message": "倒燈"
+    },
+    "colorSchemeName_invertedGrayscale": {
+        "description": "color scheme name",
+        "message": "反轉灰度"
+    },
+    "colorSchemeName_yellowOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底黄字"
+    },
+    "colorSchemeName_greenOnBlack": {
+        "description": "color scheme name",
+        "message": "黑底绿字"
+    },
+    "colorSchemeName_blueLightFilter": {
+        "description": "color scheme name",
+        "message": "藍光過濾"
+    },
+    "localStorageOverrideConfirmationMessage": {
+        "description": "localStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的本地設置存儲已包含一些數據。您是否想使用同步（雲）存儲覆蓋數據並丟失被覆蓋的數據？"
+    },
+    "syncStorageOverrideConfirmationMessage": {
+        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
+        "message": "您的同步（雲）設置存儲已包含一些數據。您是否想使用本地存儲覆蓋數據並丟失被覆蓋的數據？"
+    },
+    "backgroundExample_text_label": {
+        "description": "backgroundExample_text_label: text on the label",
+        "message": "背景處理示例"
+    },
+    "backgroundExample_@title": {
+        "description": "backgroundExample_@title: text on the tooltip\/hint",
+        "message": "不同背景顏色處理示例"
+    },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
         "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
