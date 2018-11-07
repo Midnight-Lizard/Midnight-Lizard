@@ -888,9 +888,69 @@
         "description": "backgroundExample_@title: text on the tooltip\/hint",
         "message": "不同背景顏色處理示例"
     },
+    "smallBackgroundImageExample_@title": {
+        "description": "smallBackgroundImageExample_@title: text on the tooltip\/hint",
+        "message": "小背景图像處理示例。若主背景夠黑則小背景图像將翻轉顏色。此例中，背景圖像的[亮度] 不影響它們。"
+    },
+    "smallBackgroundImageExample_text_label": {
+        "description": "smallBackgroundImageExample_text_label: text on the label",
+        "message": "小背景图像示例"
+    },
+    "scrollbarExample_text_label": {
+        "description": "scrollbarExample_text_label: text on the label",
+        "message": "滾動條示例"
+    },
+    "scrollbarExample_@title": {
+        "description": "scrollbarExample_@title: text on the tooltip\/hint",
+        "message": "樣式滾動條示例"
+    },
+    "buttonExample_text_label": {
+        "description": "buttonExample_text_label: text on the label",
+        "message": "按鈕示例"
+    },
+    "buttonExample_@title": {
+        "description": "buttonExample_@title: text on the tooltip\/hint",
+        "message": "不同按鈕顏色處理示例"
+    },
+    "borderExample_@title": {
+        "description": "borderExample_@title: text on the tooltip\/hint",
+        "message": "不同邊界顏色處理示例"
+    },
+    "borderExample_text_label": {
+        "description": "borderExample_text_label: text on the label",
+        "message": "邊界示例"
+    },
+    "backgroundExampleOriginal_@title": {
+        "description": "backgroundExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方处理的原始背景颜色"
+    },
+    "borderExampleOriginal_@title": {
+        "description": "borderExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "左側處理的原始邊框顏色"
+    },
+    "smallBackgroundImageExampleOriginal_@title": {
+        "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
+        "message": "上方處理的原始小背景图像"
+    },
+    "firefoxNoSupportScrollbar_html_error_message": {
+        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
+        "message": "滾動條樣式<br\/> 不受Firefox 支持<br\/><br\/>"
+    },
+    "translateLink_@tooltip": {
+        "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "幫助翻譯Midnight Lizard至其他語言"
+    },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
         "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
+    },
+    "backgroundExampleWithContrast_@title": {
+        "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
+        "message": "增加对比度以处理不同背景颜色示例。\n对比度基于元素尺寸故在真实页面上可能看起来存在差异。"
+    },
+    "backgroundExampleWithoutContrast_@title": {
+        "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
+        "message": "无对比度更改以处理不同背景颜色示例。"
     },
     "default_runOnThisSite_text_label": {
         "description": "default_runOnThisSite_text_label: text on the label",
