@@ -952,6 +952,50 @@
         "description": "backgroundExampleWithoutContrast_@title: text on the tooltip\/hint",
         "message": "无对比度更改以处理不同背景颜色示例。"
     },
+    "mode_@title": {
+        "description": "mode_@title: text on the tooltip\/hint",
+        "message": "页面处理模式"
+    },
+    "mode_text_label": {
+        "description": "mode_text_label: text on the label",
+        "message": "处理模式"
+    },
+    "mode_simplified_@title": {
+        "description": "mode_simplified_@title: text on the tooltip\/hint",
+        "message": "简化页面处理模式并不准确但工作速度非常快"
+    },
+    "mode_simplified_text_label": {
+        "description": "mode_simplified_text_label: text on the label",
+        "message": "简化"
+    },
+    "mode_complex_@title": {
+        "description": "mode_complex_@title: text on the tooltip\/hint",
+        "message": "复合页面处理模式并不快速但观看体验非常好"
+    },
+    "mode_complex_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "复合"
+    },
+    "mode_automatic_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果當前頁面的元素多於“自動模式切換限制”，則自動頁面處理模式將從“複雜”模式切換為“簡化”模式。"
+    },
+    "mode_automatic_text_label": {
+        "description": "mode_automatic_text_label: text on the label",
+        "message": "自動"
+    },
+    "modeAutoSwitchLimit_text_label": {
+        "description": "mode_complex_text_label: text on the label",
+        "message": "自動模式切換限制"
+    },
+    "modeAutoSwitchLimit_@title": {
+        "description": "mode_automatic_@title: text on the tooltip\/hint",
+        "message": "如果頁面上的元素在初始加載期間超過了此處指定的限制並且使用了“自動”模式，則此頁面的實際處理模式將從“复合”切換為“简化”。"
+    },
+    "mode_options_@title": {
+        "description": "mode_options_@title: text on the tooltip\/hint",
+        "message": "懸停在每個選項上預覽其描述"
+    },
     "default_runOnThisSite_text_label": {
         "description": "default_runOnThisSite_text_label: text on the label",
         "message": "默认在所有網站上运行"
@@ -975,6 +1019,48 @@
     "default_scheduleFinishHour_@title": {
         "description": "default_scheduleFinishHour_@title: text on the tooltip\/hint",
         "message": "擴展程序僅在此次應用於所有使用默認時間表的網站。"
+    },
+    "globalstab_text_label": {
+        "description": "globalstab_text_label: text on the label",
+        "message": "全局設定"
+    },
+    "resetThemeConfirmationMessage": {
+        "description": "resetThemeConfirmationMessage: text on the message box",
+        "message": "您是否想重設當前瀏覽器主題為預設主題?\n可能會重設為原始的 Firefox 主題而非先前的主題。"
+    },
+    "invalidMatchPattern": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' 不是有效的匹配模式。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "invalidMatchPatternHost": {
+        "description": "invalidMatchPattern: validation error message",
+        "message": "'$pattern$' 沒有有效的主機。",
+        "placeholders": {
+            "pattern": {
+                "content": "$1"
+            }
+        }
+    },
+    "matchCurrentPage_text_message": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "一些模式與當前頁面匹配"
+    },
+    "matchCurrentPage_@title": {
+        "description": "matchCurrentPage_text_message: text on the label",
+        "message": "以下模式與當前頁面匹配：\n"
+    },
+    "noMatchForCurrentPage_text_message": {
+        "description": "noMatchForCurrentPage_text_message: text on the label",
+        "message": "所有模式都不匹配當前頁面"
+    },
+    "excludeMatches_text_label": {
+        "description": "excludeMatches_text_label: text on the label",
+        "message": "排除匹配模式"
     },
     "includeMatches_@title": {
         "description": "includeMatches_@title: text on the tooltip\/hint",
