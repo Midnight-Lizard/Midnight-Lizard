@@ -532,7 +532,7 @@
     },
     "imagesTab_text_label": {
         "description": "imagesTab_text_label: text on the label",
-        "message": "圖片"
+        "message": "圖像"
     },
     "imagesTab_@tooltip": {
         "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
@@ -560,7 +560,7 @@
     },
     "hostState_@tooltip": {
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "在白名单和黑名单之间\n切换当前網站"
+        "message": "在白名单和黑名单之间\n切换當前網站"
     },
     "hostName_@tooltip": {
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
@@ -620,7 +620,7 @@
     },
     "saveColorSchemeBtn_@title": {
         "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "使用当前的弹出设置更新选中的配色方案"
+        "message": "使用當前的弹出设置更新选中的配色方案"
     },
     "exportColorSchemeBtn_text_label": {
         "description": "exportColorSchemeBtn_text_label: text on the label",
@@ -628,7 +628,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用当前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
+        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用當前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1"
@@ -655,11 +655,11 @@
     },
     "editSchemesTab_@tooltip": {
         "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      配色方案编辑\n―――――――――――――――――――\n 当前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 當前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
     },
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
-        "message": "当前配色方案"
+        "message": "當前配色方案"
     },
     "currentColorScheme_@title": {
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
@@ -723,7 +723,7 @@
     },
     "colorSchemeImportSuccessMessage": {
         "description": "colorSchemeImportSuccessMessage: text on the message box",
-        "message": "$imported_color_schemes_count$配色方案已成功从文件中导入。\n已导入的配色方案使用$edit_mark$符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在[当前配色方案]下拉窗口列表中选中配色方案并点击[保存]按钮。",
+        "message": "$imported_color_schemes_count$配色方案已成功从文件中导入。\n已导入的配色方案使用$edit_mark$符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在[當前配色方案]下拉窗口列表中选中配色方案并点击[保存]按钮。",
         "placeholders": {
             "imported_color_schemes_count": {
                 "content": "$1"
@@ -735,7 +735,7 @@
     },
     "colorSchemeSaveConfirmationMessage": {
         "description": "colorSchemeSaveConfirmationMessage: text on the message box",
-        "message": "您正要使用当前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "message": "您正要使用當前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1"
@@ -791,7 +791,7 @@
         "message": "無法更改設定同步選項。\n"
     },
     "introduction_html_content": {
-        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置当前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置當前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
     },
     "shortcut_text_lable": {
         "message": "快捷鍵"
@@ -942,7 +942,7 @@
     },
     "popupDisconnected_html_error_message": {
         "description": "popupDisconnected_html_error_message: text on the message box",
-        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        当前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、设置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        當前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
