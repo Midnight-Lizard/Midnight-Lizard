@@ -709,6 +709,10 @@
         "description": "closeBtn_@title: text on the tooltip\/hint",
         "message": "关闭弹出窗口并放弃所有未保存的更改"
     },
+    "donateLink_@tooltip": {
+        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "捐赠给我们的集体"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "为此扩展程序评分"
