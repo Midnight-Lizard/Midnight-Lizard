@@ -566,6 +566,14 @@
         "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "     當前網站\n―――――――――――――――\n 点击在白名单和黑名单间切换當前網站。"
     },
+    "helpLink_@tooltip": {
+        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "支援論壇"
+    },
+    "isEnabledSwitch_@tooltip": {
+        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "啟用或禁用整個擴充功能"
+    },
     "isEnabledOn_text_label": {
         "description": "isEnabledOn_text_label: text on the label",
         "message": "開啟"
@@ -586,25 +594,60 @@
         "description": "colorSchemeForEdit_text_label: text on the label",
         "message": "所编辑的配色方案"
     },
+    "colorSchemeForEdit_@title": {
+        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
+        "message": "选择要编辑的配色方案。\n您可以新建配色方案并更新或删除已有的配色方案。"
+    },
     "colorSchemeName_text_label": {
         "description": "colorSchemeName_text_label: text on the label",
         "message": "配色方案名"
+    },
+    "colorSchemeName_@title": {
+        "description": "colorSchemeName_@title: text on the tooltip\/hint",
+        "message": "您可以在保存前编辑配色方案名"
     },
     "deleteColorSchemeBtn_text_label": {
         "description": "deleteColorSchemeBtn_text_label: text on the label",
         "message": "刪除"
     },
+    "deleteColorSchemeBtn_@title": {
+        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "删除选中的所编辑的配色方案"
+    },
     "saveColorSchemeBtn_text_label": {
         "description": "saveColorSchemeBtn_text_label: text on the label",
         "message": "保存"
+    },
+    "saveColorSchemeBtn_@title": {
+        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "使用当前的弹出设置更新选中的配色方案"
     },
     "exportColorSchemeBtn_text_label": {
         "description": "exportColorSchemeBtn_text_label: text on the label",
         "message": "匯出"
     },
+    "exportColorSchemeBtn_@title": {
+        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用当前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
+        "placeholders": {
+            "current_color_scheme": {
+                "content": "$1"
+            },
+            "color_scheme_for_edit": {
+                "content": "$2"
+            },
+            "color_scheme_name": {
+                "content": "$3"
+            }
+        }
+    },
     "importColorSchemeBtn_text_label": {
         "description": "importColorSchemeBtn_text_label: text on the label",
         "message": "匯入"
+    },
+    "importColorSchemeBtn_@title": {
+        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
+        "message": "从文件导入配色方案"
     },
     "editSchemesTab_text_label": {
         "description": "editSchemesTab_text_label: text on the label",
@@ -617,6 +660,10 @@
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
         "message": "当前配色方案"
+    },
+    "currentColorScheme_@title": {
+        "description": "currentColorScheme_@title: text on the tooltip\/hint",
+        "message": "选择您喜欢的配色方案"
     },
     "forgetThisSiteBtn_text_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
@@ -634,9 +681,17 @@
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
         "message": "忘记所有網站的所有自定义项"
     },
+    "setAsDefaultBtn_text_label": {
+        "description": "setAsDefaultBtn_text_label: text on the label",
+        "message": "设置为默认"
+    },
     "setAsDefaultBtn_@title": {
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
         "message": "设置當前设置为所有網站的默认设置"
+    },
+    "applyBtn_text_label": {
+        "description": "applyBtn_text_label: text on the label",
+        "message": "应用"
     },
     "applyBtn_@title": {
         "description": "applyBtn_@title: text on the tooltip\/hint",
