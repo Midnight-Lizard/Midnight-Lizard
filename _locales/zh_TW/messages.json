@@ -1062,8 +1062,32 @@
         "description": "excludeMatches_text_label: text on the label",
         "message": "排除匹配模式"
     },
+    "excludeMatches_@title": {
+        "description": "excludeMatches_@title: text on the tooltip\/hint",
+        "message": "如果其網址與任何這些模式匹配，則不會處理該網頁。\n將每個模式寫在新行上。\n排除規則具有最低優先級，因此它們將始終獲勝。"
+    },
+    "includeMatches_text_label": {
+        "description": "includeMatches_text_label: text on the label",
+        "message": "包括匹配模式"
+    },
     "includeMatches_@title": {
         "description": "includeMatches_@title: text on the tooltip\/hint",
         "message": "如果未選中“在此網站上運行”，\n但頁面網址至少匹配其中一個模式，則仍會考慮進行處理。\n將每個模式寫在新行上。\n如果選中“在此網站上運行”，則將忽略所有包含匹配模式。"
+    },
+    "matchPatternsSyntaxLink_text_label": {
+        "description": "matchPatternsSyntaxLink_text_label: text on the link",
+        "message": "語法"
+    },
+    "matchPatternsSyntaxLink_@title": {
+        "description": "matchPatternsSyntaxLink_@title: text on the tooltip\/hint",
+        "message": "在新的瀏覽器選項卡中打開完整的匹配模式語法說明。Popup可能會被關閉。"
+    },
+    "doNotInvertContent_text_label": {
+        "description": "doNotInvertContent_text_label: text on the label",
+        "message": "不反轉動態內容"
+    },
+    "doNotInvertContent_@title": {
+        "description": "doNotInvertContent_@title: text on the tooltip\/hint",
+        "message": "選中此選項可防止反轉動態內容。\n這個選項控制當背景變暗時，像地圖、PDF文件、動態繪圖、動畫圖像等內容是否可以反轉。\n內容翻轉時，會根據背景的當前設置對其進行處理，當內容未翻轉時，將根據當前的圖像設置對其進行處理。"
     }
 }
