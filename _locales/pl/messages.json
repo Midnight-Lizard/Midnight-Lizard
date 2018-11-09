@@ -240,7 +240,7 @@
         "message": "Ogólne"
     },
     "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
+        "description": "activationTab_text_label: text on the label",
         "message": "Aktywacja"
     },
     "backgroundTab_text_label": {
