@@ -44,7 +44,7 @@ Adjust the web to your vision!
 ## CONTRIBUTING
   🌍 [Help translate Midnight Lizard into other languages](https://translate.midnight-lizard.org)  
   🐛 [Found a bug or has a new feature proposal?](https://github.com/Midnight-Lizard/Midnight-Lizard/issues/new)  
-  💰 [Donate to help us cover infrastructure expenses] (https://opencollective.com/midnight-lizard#contribute)  
+  💰 [Donate to help us cover infrastructure expenses](https://opencollective.com/midnight-lizard#contribute)  
 
 ## BACKERS
 [![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)
