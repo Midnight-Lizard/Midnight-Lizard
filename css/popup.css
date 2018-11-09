@@ -594,6 +594,8 @@ select.ml-dialog-input-text {
 
 .donate-icon {
     width: 24px;
+    z-index: 1000;
+    position: relative;
 }
 
 .donate-icon:hover {
@@ -632,35 +634,83 @@ select.ml-dialog-input-text {
     fill: #1B5E20;
 }
 
-#change-log-link>a:after {
+#change-log-link > a:after {
+    --ml-ignore:true;
     position: fixed;
     display: block;
     right: 4px;
     bottom: 21px;
     content: "\1F899";
     pointer-events: none;
+    text-shadow: none;
+    color: var(--ml-main-link-color);
 }
-html[ml-platform="mobile"] #change-log-link>a:after {
+html[ml-platform="mobile"] #change-log-link > a:after {
     right: 1px;
     bottom: 16px;
     content: "\2B06";
     pointer-events: none;
 }
-
-#change-log-link>a * {
-    --ml-ignore:false;
+#change-log-link > a:visited:after {
+    color: var(--ml-footer-background-color)!important;
 }
-#change-log-link>a {
-    --ml-ignore:true;
-    position: relative;
-    text-shadow: none;
-    color: var(--ml-main-link-color);
-}
-#change-log-link>a:visited {
-    color: var(--ml-footer-background-color);
-}
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not(#imp):not(.imp)>a:visited {
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not(#imp):not(.imp)>a:visited:after {
     color: var(--ml-main-alt-background-color)!important;
+}
+
+#donate-link > a {
+    position: relative;
+}
+#donate-link > a:after {
+    --ml-ignore:true;
+    position: absolute;
+    display: block;
+    height: 16px;
+    right: 36px;
+    bottom: 4px;
+    content: attr(marker);
+    text-shadow: none;
+    color: var(--ml-main-link-color, var(--light-color));
+    background-color: var(--ml-main-button-background-color, var(--dark-background-color));
+    border: solid 1px var(--ml-main-border-color, var(--light-thin-border-color));
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+#donate-link > a:before {
+    --ml-ignore:true;
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 29px;
+    bottom: 8px;
+    background-color: var(--ml-main-button-background-color, var(--dark-background-color));
+    border: 1px solid var(--ml-main-border-color, var(--light-thin-border-color));
+    border-bottom-color: transparent!important;
+    border-left-color: transparent!important;
+    --w: 16px;
+    --b: 1px;
+    --p: 20%;
+    clip-path: polygon(
+        var(--b) var(--p),
+        var(--b) var(--b),
+        0 0, 100% 0, var(--w) var(--w),
+        calc(var(--w) - var(--b)) calc(var(--w) - var(--b)),
+        calc(var(--w) - var(--p)) calc(var(--w) - var(--b))
+    );
+    transform: rotate(45deg);
+    z-index: 100;
+}
+#donate-link > a:visited:before {
+    border-color: var(--ml-footer-background-color);
+    background-color: var(--ml-footer-background-color);
+}
+#donate-link > a:visited:after {
+    border-color: var(--ml-footer-background-color);
+    background-color: var(--ml-footer-background-color);
+    color: var(--ml-footer-background-color)!important;
 }
 
 #linkHue,

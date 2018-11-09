@@ -487,11 +487,11 @@
         "message": "     Common settings\n―――――――――――――――――――\n This tab contains settings that are common for the entire page."
     },
     "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
+        "description": "activationTab_text_label: text on the label",
         "message": "Activation"
     },
     "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "description": "activationTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "     Activation settings\n―――――――――――――――――――\n Use this tab to define what pages and when should be processed or left unchanged."
     },
     "backgroundTab_text_label": {
@@ -712,6 +712,10 @@
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Provide feasible financial support\nby donating to our collective"
+    },
+    "donateLink_@marker": {
+        "description": "donateLink_@marker: text on the marker",
+        "message": "Donate"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
