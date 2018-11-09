@@ -713,10 +713,6 @@
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Provide feasible financial support\nby donating to our collective"
     },
-    "donateLink_@marker": {
-        "description": "donateLink_@marker: text on the marker",
-        "message": "Donate"
-    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Rate this extension"
