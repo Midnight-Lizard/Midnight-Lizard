@@ -483,7 +483,7 @@
         "message": "    Paramètres communs\n―――――――――――――――――――\n Cet onglet contient les paramètres communs à la page entière."
     },
     "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
+        "description": "activationTab_text_label: text on the label",
         "message": "Activation"
     },
     "backgroundTab_text_label": {
