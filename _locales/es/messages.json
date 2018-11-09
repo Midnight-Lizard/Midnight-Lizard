@@ -487,11 +487,11 @@
         "message": "       Ajustes comúnes\n―――――――――――――――――――\n Esta pestaña contiene los ajustes comunes a toda la página.\n • El programador de activación define cuan se debe activar [Midnight Lizard] automáticamente.\n • La intensidad del filtro azul controla la cantidad de luz azul que se reemplazará con luz roja para reducir la fatiga ocular durante la noche."
     },
     "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
+        "description": "activationTab_text_label: text on the label",
         "message": "Activación"
     },
     "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "description": "activationTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "     Ajustes de activación\n―――――――――――――――――――\n Utilice esta ficha para definir qué páginas y cuándo deben procesarse o dejarse sin modificar."
     },
     "backgroundTab_text_label": {
