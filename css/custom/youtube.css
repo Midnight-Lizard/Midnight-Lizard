@@ -139,10 +139,6 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
     --ml-visitedlink-hover-color:Text;
 }
 
-ytd-app[is-watch-page]:not(imp) {
-    --ml-ignore:true;
-    background-color: var(--ml-main-background-color, white);
-}
-ytd-app[is-watch-page]:not(imp)>* {
-    --ml-ignore:false;
+ytd-app:not(imp) {
+    background-color: var(--yt-main-app-background);
 }
