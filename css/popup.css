@@ -708,14 +708,17 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
     transform: rotate(45deg);
     z-index: 100;
 }
-#donate-link > a:visited:before {
-    border-color: var(--ml-footer-background-color);
-    background-color: var(--ml-footer-background-color);
-}
+#donate-link > a:visited:before ,
 #donate-link > a:visited:after {
     border-color: var(--ml-footer-background-color);
     background-color: var(--ml-footer-background-color);
     color: var(--ml-footer-background-color)!important;
+}
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #donate-link > a:not(#imp):not(.imp):visited:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #donate-link > a:not(#imp):not(.imp):visited:after {
+    border-color: var(--ml-main-alt-background-color)!important;
+    background-color: var(--ml-main-alt-background-color)!important;
+    color: var(--ml-main-alt-background-color)!important;
 }
 
 #donate-link > a:before,
