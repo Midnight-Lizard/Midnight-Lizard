@@ -635,13 +635,16 @@
         "message": "Export to file selected color scheme for edit '$color_scheme_for_edit$' with name '$color_scheme_name$' and replace all its settings with currently applied on the popup settings from '$current_color_scheme$'.",
         "placeholders": {
             "current_color_scheme": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Custom"
             },
             "color_scheme_for_edit": {
-                "content": "$2"
+                "content": "$2",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$3"
+                "content": "$3",
+                "example": "New color scheme"
             }
         }
     },
@@ -742,10 +745,12 @@
         "message": "$imported_color_schemes_count$ color schemes have been successfully imported from the files.\nImported color schemes are marked with a $edit_mark$ symbol and will be deleted with the popup closure unless you save each of them.\nTo save imported color scheme select it in the 'Current color scheme' dropdown list and press 'Save' button.",
         "placeholders": {
             "imported_color_schemes_count": {
-                "content": "$1"
+                "content": "$1",
+                "example": "1"
             },
             "edit_mark": {
-                "content": "$2"
+                "content": "$2",
+                "example": "📄"
             }
         }
     },
@@ -754,10 +759,12 @@
         "message": "You are about to update color scheme '$color_scheme_for_edit_name$' with current popup settings and a name '$color_scheme_name$'. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$2"
+                "content": "$2",
+                "example": "New color scheme"
             }
         }
     },
@@ -770,7 +777,8 @@
         "message": "You are about to delete color scheme '$color_scheme_for_edit_name$'.\nDeleting system color schemes will just remove all overrides from the specified color scheme. There is no way to completely delete any system color scheme. Are you sure want to continue?",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             }
         }
     },
@@ -1053,7 +1061,8 @@
         "message": "'$pattern$' is not a valid match pattern.",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
@@ -1062,7 +1071,8 @@
         "message": "'$pattern$' does not have a valid host.",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
@@ -1131,7 +1141,8 @@
         "message": "Browser limits total sync storage available for each extension to $limit$ bytes. You have exceeded this limit. You can switch to local storage on 'Global settings' tab in Midnight Lizard's settings popup and all settings will be automatically transferred to local storage.",
         "placeholders": {
             "limit": {
-                "content": "$1"
+                "content": "$1",
+                "example": "102400"
             }
         }
     },
@@ -1140,7 +1151,8 @@
         "message": "Browser limits total number of records in the sync storage available for each extension to $limit$ records. You have exceeded this limit. You can switch to local storage on 'Global settings' tab in Midnight Lizard's settings popup and all settings will be automatically transferred to local storage.",
         "placeholders": {
             "limit": {
-                "content": "$1"
+                "content": "$1",
+                "example": "512"
             }
         }
     },
@@ -1149,7 +1161,8 @@
         "message": "Browser limits how often extensions can write into sync storage to $limit$ times per hour. You have exceeded this limit. Please try again later or switch to local storage on 'Global settings' tab in Midnight Lizard's settings popup and all settings will be automatically transferred to local storage.",
         "placeholders": {
             "limit": {
-                "content": "$1"
+                "content": "$1",
+                "example": "1800"
             }
         }
     },
@@ -1158,7 +1171,8 @@
         "message": "Browser limits how often extensions can write into sync storage to $limit$ times per minute. You have exceeded this limit. Please try again later or switch to local storage on 'Global settings' tab in Midnight Lizard's settings popup and all settings will be automatically transferred to local storage.",
         "placeholders": {
             "limit": {
-                "content": "$1"
+                "content": "$1",
+                "example": "120"
             }
         }
     },
@@ -1167,7 +1181,8 @@
         "message": "Browser limits total local storage available for each extension to $limit$ bytes. You have exceeded this limit. You have to delete custom color schemes or custom settings from some websites in order to store new settings.",
         "placeholders": {
             "limit": {
-                "content": "$1"
+                "content": "$1",
+                "example": "5242880"
             }
         }
     },
