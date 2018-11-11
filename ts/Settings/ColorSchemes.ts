@@ -237,7 +237,7 @@ namespace MidnightLizard.Settings
 
                     linkSaturationLimit: 80,
                     linkContrast: 55,
-                    linkLightnessLimit: 66,
+                    linkLightnessLimit: 75,
                     linkDefaultSaturation: 74,
                     linkDefaultHue: 207,
                     linkVisitedHue: 262,
@@ -468,7 +468,7 @@ namespace MidnightLizard.Settings
 
                     linkSaturationLimit: 60,
                     linkContrast: 50,
-                    linkLightnessLimit: 70,
+                    linkLightnessLimit: 75,
                     linkDefaultSaturation: 60,
                     linkDefaultHue: 88,
                     linkVisitedHue: 36,
