@@ -635,13 +635,16 @@
         "message": "Exportar a archivo el esquema de color seleccionado para editar [$color_scheme_for_edit$] con nombre [$color_scheme_name$] y reemplazar todos sus ajustes con los ajustes aplicados actualmente a la ventana emergente de [$current_color_scheme$].",
         "placeholders": {
             "current_color_scheme": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Custom"
             },
             "color_scheme_for_edit": {
-                "content": "$2"
+                "content": "$2",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$3"
+                "content": "$3",
+                "example": "New color scheme"
             }
         }
     },
@@ -734,10 +737,12 @@
         "message": "$imported_color_schemes_count$ esquemas de color han sido importados con éxito desde archivos.\nLos esquemas de color importados están marcados con el símbolo $edit_mark$ y serán eliminados con el cierre de la ventana emergente a no ser que guarde cada uno.\nPara guardar el esquema de color importado selecciónelo en la lista desplegable [Esquema de color actual] y pulse el botón [Guardar].",
         "placeholders": {
             "imported_color_schemes_count": {
-                "content": "$1"
+                "content": "$1",
+                "example": "1"
             },
             "edit_mark": {
-                "content": "$2"
+                "content": "$2",
+                "example": "📄"
             }
         }
     },
@@ -746,10 +751,12 @@
         "message": "Está a punto de actualizar el esquema de color [$color_scheme_for_edit_name$] con los ajustes actuales de la ventana emergente y el nombre [$color_scheme_name$]. ¿Está seguro que quiere continuar?",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$2"
+                "content": "$2",
+                "example": "New color scheme"
             }
         }
     },
@@ -762,7 +769,8 @@
         "message": "Está a punto de eliminar el esquema de color [$color_scheme_for_edit_name$].\nBorrar esquemas de color del sistema solo eliminará los cambios del esquema de color especificado. No hay forma de eliminar completamente ningún esquema de color del sistema. ¿Estás seguro que quieres continuar?",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             }
         }
     },
@@ -1041,7 +1049,8 @@
         "message": "'$pattern$' no es un patrón de coincidencia válido.",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
@@ -1050,7 +1059,8 @@
         "message": "'$pattern$' no tiene un host válido.",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
