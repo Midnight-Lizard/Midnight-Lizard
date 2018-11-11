@@ -343,6 +343,10 @@
         "description": "closeBtn_text_label: text on the label",
         "message": "Zamknij"
     },
+    "donateLink_@marker": {
+        "description": "donateLink_@marker: text on the marker",
+        "message": "Wspomóż"
+    },
     "shortcut_text_lable": {
         "message": "Skrót"
     },
