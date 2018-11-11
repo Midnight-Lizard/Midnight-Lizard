@@ -627,13 +627,16 @@
         "message": "Exporter vers un fichier le schéma de couleur sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
         "placeholders": {
             "current_color_scheme": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Custom"
             },
             "color_scheme_for_edit": {
-                "content": "$2"
+                "content": "$2",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$3"
+                "content": "$3",
+                "example": "New color scheme"
             }
         }
     },
