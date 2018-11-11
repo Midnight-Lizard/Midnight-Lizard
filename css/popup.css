@@ -1535,3 +1535,88 @@ img.ml-image-example {
     content: "\2716";
     color: var(--ml-error);
 }
+
+a[i18n="linkExample"]:nth-child(1) {
+    color: -moz-hyperlinkText;
+    color: -webkit-link;
+    text-decoration-color: -moz-hyperlinkText;
+    text-decoration-color: -webkit-link;
+}
+
+a[i18n="linkExample"]:nth-child(2) {
+    color: hsl(0,100%,50%);
+    text-decoration-color: hsl(0,100%,50%);
+}
+
+a[i18n="linkExample"]:nth-child(3) {
+    color: hsl(60,100%,50%);
+    text-decoration-color: hsl(60,100%,50%);
+}
+
+a[i18n="linkExample"]:nth-child(4) {
+    color: hsl(120,100%,50%);
+    text-decoration-color: hsl(120,100%,50%);
+}
+
+a[i18n="linkExample"]:nth-child(5) {
+    color: hsl(180,100%,50%);
+    text-decoration-color: hsl(180,100%,50%);
+}
+
+a[i18n="linkExample"]:nth-child(6) {
+    color: hsl(240,100%,50%);
+    text-decoration-color: hsl(240,100%,50%);
+}
+
+a[i18n="linkExample"]:nth-child(7) {
+    color: hsl(300,100%,50%);
+    text-decoration-color: hsl(300,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(1) {
+    color: hsl(0,0%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(0,0%,50%);
+}
+
+span[i18n="textExample"]:nth-child(2) {
+    color: hsl(0,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(0,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(3) {
+    color: hsl(60,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(60,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(4) {
+    color: hsl(120,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(120,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(5) {
+    color: hsl(180,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(180,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(6) {
+    color: hsl(240,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(240,100%,50%);
+}
+
+span[i18n="textExample"]:nth-child(7) {
+    color: hsl(300,100%,50%);
+    text-decoration-line: underline;
+    text-decoration-color: hsl(300,100%,50%);
+}
+
+.text-examples {
+    word-spacing: -1.2px;
+    background-color: var(--main-background-color);
+    outline: solid 1px var(--thin-border-color);
+}
