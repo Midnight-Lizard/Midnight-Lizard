@@ -722,7 +722,7 @@
     },
     "donateLink_@notice": {
         "description": "donateLink_@notice: text on the marker",
-        "message": "Follow the link to hide this marker"
+        "message": "Follow the link to hide this message"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
