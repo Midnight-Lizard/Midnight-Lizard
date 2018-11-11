@@ -631,13 +631,16 @@
         "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用當前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
         "placeholders": {
             "current_color_scheme": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Custom"
             },
             "color_scheme_for_edit": {
-                "content": "$2"
+                "content": "$2",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$3"
+                "content": "$3",
+                "example": "New color scheme"
             }
         }
     },
@@ -730,10 +733,12 @@
         "message": "$imported_color_schemes_count$配色方案已成功从文件中导入。\n已导入的配色方案使用$edit_mark$符号标记且会在弹出窗口关闭时被删除，除非您保存每一个配色方案。\n为保存导入的配色方案，请在[當前配色方案]下拉窗口列表中选中配色方案并点击[保存]按钮。",
         "placeholders": {
             "imported_color_schemes_count": {
-                "content": "$1"
+                "content": "$1",
+                "example": "1"
             },
             "edit_mark": {
-                "content": "$2"
+                "content": "$2",
+                "example": "📄"
             }
         }
     },
@@ -742,10 +747,12 @@
         "message": "您正要使用當前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             },
             "color_scheme_name": {
-                "content": "$2"
+                "content": "$2",
+                "example": "New color scheme"
             }
         }
     },
@@ -758,7 +765,8 @@
         "message": "您正要删除配色方案 [$color_scheme_for_edit_name$]。\n删除系统配色方案将移除所有从指定配色方案中的覆盖项。我们没有办法完全删除任意系统配色方案。您是否确实要继续？",
         "placeholders": {
             "color_scheme_for_edit_name": {
-                "content": "$1"
+                "content": "$1",
+                "example": "Dimmed Dust"
             }
         }
     },
@@ -1037,7 +1045,8 @@
         "message": "'$pattern$' 不是有效的匹配模式。",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
@@ -1046,7 +1055,8 @@
         "message": "'$pattern$' 沒有有效的主機。",
         "placeholders": {
             "pattern": {
-                "content": "$1"
+                "content": "$1",
+                "example": "*_*"
             }
         }
     },
