@@ -1201,37 +1201,5 @@
     "maxBackgroundImageSize_@title": {
         "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
         "message": "Maximum size of background images in KiB.\nIf 'Hide big background images' is checked then background images\nwith size bigger then specified here will be hidden if processed."
-    },
-    "linkExamples_text_label": {
-        "description": "linkExamples_text_label: text on the label",
-        "message": "Examples: "
-    },
-    "linkExamples_@title": {
-        "description": "linkExamples_@title: text on the tooltip\/hint",
-        "message": "Example of processing colorful links.\nDecrease 'Default hue gravity' to keep original link colors."
-    },
-    "linkExample_text_label": {
-        "description": "linkExample_text_label: text on the label",
-        "message": "Link"
-    },
-    "linkExample_@title": {
-        "description": "linkExample_@title: text on the tooltip\/hint",
-        "message": "Link itself has a processed color.\nUnderline has the original link color for demonstration purposes."
-    },
-    "textExamples_text_label": {
-        "description": "textExamples_text_label: text on the label",
-        "message": "Examples: "
-    },
-    "textExamples_@title": {
-        "description": "textExamples_@title: text on the tooltip\/hint",
-        "message": "Example of processing colorful texts."
-    },
-    "textExample_text_label": {
-        "description": "textExample_text_label: text on the label",
-        "message": "Text"
-    },
-    "textExample_@title": {
-        "description": "textExample_@title: text on the tooltip\/hint",
-        "message": "Text itself has a processed color.\nUnderline has the original text color for demonstration purposes."
     }
 }
