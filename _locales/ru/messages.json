@@ -487,11 +487,11 @@
         "message": "     Общие настройки\n―――――――――――――――――――\n На данной вкладке находятся общие для всей страницы настройки."
     },
     "activationTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
+        "description": "activationTab_text_label: text on the label",
         "message": "Активация"
     },
     "activationTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+        "description": "activationTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
         "message": "    Настройки активации\n―――――――――――――――――――\n Используйте данную вкладку, чтобы указать какие страницы и когда именно должны быть обработаны или же оставлены без изменений."
     },
     "backgroundTab_text_label": {
@@ -712,6 +712,10 @@
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Оказать посильную финансовую поддержку"
+    },
+    "donateLink_@marker": {
+        "description": "donateLink_@marker: text on the marker",
+        "message": "Поддержать проект"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
