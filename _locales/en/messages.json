@@ -717,6 +717,10 @@
         "description": "donateLink_@marker: text on the marker",
         "message": "Donate"
     },
+    "donateLink_@notice": {
+        "description": "donateLink_@notice: text on the marker",
+        "message": "Follow the link to hide this marker"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Rate this extension"

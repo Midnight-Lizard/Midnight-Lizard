@@ -664,7 +664,6 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
 #donate-link > a:after {
     --ml-ignore:true;
     position: absolute;
-    display: block;
     height: 16px;
     right: 36px;
     bottom: 4px;
@@ -677,6 +676,12 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
     padding: 3px 6px;
     font-size: 13px;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 300px;
+}
+#donate-link > a:hover:after {
+    content: attr(notice);
 }
 #donate-link > a:before {
     --ml-ignore:true;
@@ -713,6 +718,16 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
     color: var(--ml-footer-background-color)!important;
 }
 
+#donate-link > a:before,
+#donate-link > a:after {
+    display: none;
+}
+
+#donate-link > a:not([style*="--link-color:rgb(104, 175, 232)"]):before,
+#donate-link > a:not([style*="--link-color:rgb(104, 175, 232)"]):after {
+    display: block;
+}
+
 #linkHue,
 #textHue,
 #visitedHue,
@@ -732,8 +747,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
 }
 
 img.ml-image-example {
-    
-height: 148px;
+    height: 148px;
 }
 
 .ml-image-example {
@@ -1113,7 +1127,7 @@ height: 148px;
 }
 
 .intro:not(.no-lines):before {
-   content: "";
+    content: "";
 }
 
 .intro:before { 
