@@ -717,6 +717,10 @@
         "description": "donateLink_@marker: text on the marker",
         "message": "Поддержать проект"
     },
+    "donateLink_@notice": {
+        "description": "donateLink_@notice: text on the marker",
+        "message": "Переход по ссылке скроет это сообщение"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Оценить данное расширение"
