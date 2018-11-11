@@ -712,6 +712,10 @@
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "捐贈給我們的集體"
     },
+    "donateLink_@marker": {
+        "description": "donateLink_@marker: text on the marker",
+        "message": "捐助"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "为此扩展程序评分"
