@@ -13,7 +13,7 @@
     --logo-text-color: hsla(120, 100%, 10%, 1);
     --main-input-shadow-color: rgba(0, 0, 0, 0.1);
     --main-shadow-color: rgba(0, 0, 0, 0.6);
-    --outline-color: #2196F3;
+    --outline-color: var(--ml-main-link-color, rgb(0, 78, 223));
     --icon-shadow-color: black;
     --pseudo-background-color: var(--main-background-color);
     --pseudo-color: var(--main-color);

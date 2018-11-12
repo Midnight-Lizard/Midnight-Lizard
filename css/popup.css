@@ -1115,11 +1115,12 @@ img.ml-image-example {
 .intro:hover {
     --ml-text-color:HighlightedText;
     color: var(--main-color);
-    outline: dashed 1px rgb(25, 113, 184);
+    outline: dashed 1px var(--outline-color);
     outline-offset: 1px;
 }
 
 .intro:after {
+    --ml-ignore:true;
     content: "";
     position: absolute;
     z-index: 999;
@@ -1133,7 +1134,8 @@ img.ml-image-example {
     content: "";
 }
 
-.intro:before { 
+.intro:before {
+    --ml-ignore:true;
     position: absolute;
     z-index: 999;
     border: dotted var(--outline-color);
