@@ -1201,5 +1201,37 @@
     "maxBackgroundImageSize_@title": {
         "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
         "message": "Максимальный размер фоновых изображений в KiB.\nЕсли выбрано «Скрывать большие картинки фона», то\nфоновые изображения с размером больше, чем указано\nздесь, будут скрыты, если потребуется их обработка."
+    },
+    "linkExamples_text_label": {
+        "description": "linkExamples_text_label: text on the label",
+        "message": "Примеры: "
+    },
+    "linkExamples_@title": {
+        "description": "linkExamples_@title: text on the tooltip\/hint",
+        "message": "Пример обработки цветных ссылок.\nУменьшите «Притяжение базового оттенка», чтобы сохранить первоначальный оттенок ссылок."
+    },
+    "linkExample_text_label": {
+        "description": "linkExample_text_label: text on the label",
+        "message": "Шаг"
+    },
+    "linkExample_@title": {
+        "description": "linkExample_@title: text on the tooltip\/hint",
+        "message": "Цвет ссылок был обработан.\nЦвет подчеркивания остался первоначальным для наглядности."
+    },
+    "textExamples_text_label": {
+        "description": "textExamples_text_label: text on the label",
+        "message": "Примеры: "
+    },
+    "textExamples_@title": {
+        "description": "textExamples_@title: text on the tooltip\/hint",
+        "message": "Пример обработки цветного текста."
+    },
+    "textExample_text_label": {
+        "description": "textExample_text_label: text on the label",
+        "message": "Том"
+    },
+    "textExample_@title": {
+        "description": "textExample_@title: text on the tooltip\/hint",
+        "message": "Цвет текста был обработан.\nЦвет подчеркивания остался первоначальным для наглядности."
     }
 }
