@@ -1193,5 +1193,21 @@
     "maxBackgroundImageSize_@title": {
         "description": "maxBackgroundImageSize_@title: text on the tooltip\/hint",
         "message": "KiB中背景图像的最大大小。\n如果选中了“隐藏大背景图像”，那么如果处理后，将隐藏比这里指定的大的背景图像。"
+    },
+    "linkExamples_text_label": {
+        "description": "linkExamples_text_label: text on the label",
+        "message": "示例: "
+    },
+    "linkExample_text_label": {
+        "description": "linkExample_text_label: text on the label",
+        "message": "链接"
+    },
+    "textExamples_text_label": {
+        "description": "textExamples_text_label: text on the label",
+        "message": "示例: "
+    },
+    "textExample_text_label": {
+        "description": "textExample_text_label: text on the label",
+        "message": "文本"
     }
 }
