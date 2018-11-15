@@ -122,8 +122,8 @@ namespace MidnightLizard.Settings
             }
             catch
             {
-                hostName = rootDocument.location.hostname;
-                this._rootUrl = rootDocument.location.href;
+                hostName = rootDocument.location!.hostname;
+                this._rootUrl = rootDocument.location!.href;
             }
             this._settingsKey = `ws:${hostName}`; //`
             this.onSettingsInitialized.addListener(shift => this.isInit = true, this);

@@ -120,7 +120,7 @@ namespace MidnightLizard.ContentScript
             //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
             this._includeStylesRegExp = this.compileIncludeStylesRegExp();
 
-            dom.addEventListener(rootDoc.defaultView, "unload", () =>
+            dom.addEventListener(rootDoc.defaultView!, "unload", () =>
             {
                 if (this._storageIsAvailable)
                 {
@@ -338,8 +338,8 @@ namespace MidnightLizard.ContentScript
                                         let style = d.createElement('style');
                                         style.setAttribute("ml-external", href);
                                         style.innerText = css;
-                                        style.disabled = true;
-                                        (d.head || d.documentElement).appendChild(style);
+                                        (style as any).disabled = true;
+                                        (d.head || d.documentElement!).appendChild(style);
                                         if (style.sheet)
                                         {
                                             style.sheet.mlExternal = href;
@@ -533,7 +533,7 @@ namespace MidnightLizard.ContentScript
             let mediaResult = this._mediaQueries.get(mediaQuery);
             if (mediaResult === undefined)
             {
-                mediaResult = doc.defaultView.matchMedia(mediaQuery).matches;
+                mediaResult = doc.defaultView!.matchMedia(mediaQuery).matches;
                 this._mediaQueries.set(mediaQuery, mediaResult);
             }
             return mediaResult;

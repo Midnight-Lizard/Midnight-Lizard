@@ -55,7 +55,7 @@ namespace MidnightLizard.Colors
         {
             if (tag.mlArea === undefined)
             {
-                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag as Element, "");
                 if (tag.mlComputedStyle && tag.mlComputedStyle.width && tag.mlComputedStyle.width.endsWith("px") &&
                     tag.mlComputedStyle.height && tag.mlComputedStyle.height.endsWith("px"))
                 {

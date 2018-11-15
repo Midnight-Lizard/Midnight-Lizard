@@ -35,7 +35,7 @@ namespace MidnightLizard.ContentScript
         {
             if (this._settingsManager.isActive)
             {
-                doc.documentElement.style.setProperty("--ml-zoom", this.lastZoom.toString(), "important");
+                doc.documentElement!.style.setProperty("--ml-zoom", this.lastZoom.toString(), "important");
             }
         }
     }

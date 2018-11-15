@@ -125,7 +125,7 @@ namespace MidnightLizard.ContentScript
                 minChunkableLength = 600;
                 normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
             }
-            this._rootImageUrl = `url("${_rootDocument.location.href}")`;
+            this._rootImageUrl = `url("${_rootDocument.location!.href}")`;
             this._css = css as any;
             this._transitionForbiddenProperties = new Set<string>(
                 [
@@ -233,7 +233,7 @@ namespace MidnightLizard.ContentScript
                 // received by the old version
                 case UpdateStage.Requested:
                     this._settingsManager.deactivateOldVersion();
-                    this.restoreDocumentColors(html.ownerDocument);
+                    this.restoreDocumentColors(html.ownerDocument!);
                     html.setAttribute("ml-update", UpdateStage.Ready);
                     break;
 
@@ -264,24 +264,25 @@ namespace MidnightLizard.ContentScript
 
         protected setDocumentProcessingStage(doc: Document, stage: ProcessingStage)
         {
+            const html = doc.documentElement!;
             if (stage === ProcessingStage.None)
             {
-                doc.documentElement.removeAttribute("ml-stage");
-                doc.documentElement.removeAttribute("ml-mode");
-                doc.documentElement.removeAttribute("ml-stage-mode");
-                doc.documentElement.removeAttribute("ml-platform");
-                doc.documentElement.removeAttribute("ml-scrollbar-style");
+                html.removeAttribute("ml-stage");
+                html.removeAttribute("ml-mode");
+                html.removeAttribute("ml-stage-mode");
+                html.removeAttribute("ml-platform");
+                html.removeAttribute("ml-scrollbar-style");
             }
             else
             {
                 if (stage === ProcessingStage.Preload &&
-                    doc.documentElement.getAttribute("ml-stage") === ProcessingStage.Complete)
+                    html.getAttribute("ml-stage") === ProcessingStage.Complete)
                 {
                     // check if old version is update aware
-                    if (doc.documentElement.hasAttribute("ml-update") &&
+                    if (html.hasAttribute("ml-update") &&
                         this._app.browserName !== Settings.BrowserName.Firefox)
                     {
-                        doc.documentElement.setAttribute("ml-update", UpdateStage.Requested);
+                        html.setAttribute("ml-update", UpdateStage.Requested);
                     }
                     else
                     {
@@ -294,16 +295,16 @@ namespace MidnightLizard.ContentScript
                 }
                 else
                 {
-                    doc.documentElement.setAttribute("ml-update", UpdateStage.Aware);
-                    doc.documentElement.setAttribute("ml-stage", stage);
-                    doc.documentElement.setAttribute("ml-platform",
+                    html.setAttribute("ml-update", UpdateStage.Aware);
+                    html.setAttribute("ml-stage", stage);
+                    html.setAttribute("ml-platform",
                         this._app.isDesktop ? "desktop" : "mobile");
                     if (this._settingsManager.isActive)
                     {
-                        doc.documentElement.setAttribute("ml-scrollbar-style",
+                        html.setAttribute("ml-scrollbar-style",
                             this._settingsManager.currentSettings.scrollbarStyle ? "ml-simple" : "original");
-                        doc.documentElement.setAttribute("ml-mode", this._settingsManager.computedMode);
-                        doc.documentElement.setAttribute("ml-stage-mode",
+                        html.setAttribute("ml-mode", this._settingsManager.computedMode);
+                        html.setAttribute("ml-stage-mode",
                             stage + "-" + this._settingsManager.computedMode);
                     }
                 }
@@ -313,7 +314,7 @@ namespace MidnightLizard.ContentScript
 
         protected getLastDoccumentProcessingMode(doc: Document)
         {
-            return doc.documentElement.getAttribute("ml-mode") as Settings.ProcessingMode || Settings.ProcessingMode.Complex;
+            return doc.documentElement!.getAttribute("ml-mode") as Settings.ProcessingMode || Settings.ProcessingMode.Complex;
         }
 
         protected processRootDocument()
@@ -364,7 +365,7 @@ namespace MidnightLizard.ContentScript
                     doc.body.isChecked = true;
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.body.getElementsByTagName("*"))
-                        .concat([doc.body, doc.documentElement])
+                        .concat([doc.body, doc.documentElement!])
                         .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this, normalDelays, true, false);
                 }
@@ -380,7 +381,7 @@ namespace MidnightLizard.ContentScript
 
         private processEditableContent(doc: Document)
         {
-            dom.addEventListener(doc.documentElement, "before-get-inner-html", (e: Event) =>
+            dom.addEventListener(doc.documentElement!, "before-get-inner-html", (e: Event) =>
             {
                 const rootElement = e.target as HTMLElement;
                 if (rootElement && this._settingsManager.isActive && this._settingsManager.isComplex)
@@ -420,21 +421,21 @@ namespace MidnightLizard.ContentScript
 
         private getFilterOfElementsForComplexProcessing(): (value: Element) => boolean
         {
-            return (tag) => this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument.documentElement);
+            return (tag) => this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument!.documentElement);
         }
 
         private getFilterOfElementsForSimplifiedProcessing(): (value: Element) => boolean
         {
             return (tag) =>
             {
-                if (this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument.documentElement))
+                if (this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument!.documentElement))
                 {
                     if (tag instanceof HTMLCanvasElement ||
                         tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                     {
                         return true;
                     }
-                    tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+                    tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
                     return tag.mlComputedStyle.backgroundImage !== this._css.none;
                 }
                 return false;
@@ -448,12 +449,12 @@ namespace MidnightLizard.ContentScript
                 const aWithoutClass = doc.body.querySelector("a:not([class])");
                 if (aWithoutClass)
                 {
-                    defaultLinkColor = doc.defaultView.getComputedStyle(aWithoutClass).color!;
+                    defaultLinkColor = doc.defaultView!.getComputedStyle(aWithoutClass).color!;
                 }
             }
             if (!defaultTextColor)
             {
-                defaultTextColor = doc.defaultView.getComputedStyle(doc.body).color!;
+                defaultTextColor = doc.defaultView!.getComputedStyle(doc.body).color!;
             }
             defaultLinkColor = this._linkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
             this._visitedLinkColorProcessor.calculateDefaultColor(doc, defaultLinkColor);
@@ -547,7 +548,7 @@ namespace MidnightLizard.ContentScript
             }
             else if (tag instanceof HTMLLabelElement && tag.htmlFor)
             {
-                const checkBox = tag.ownerDocument.getElementById(tag.htmlFor) as HTMLInputElement;
+                const checkBox = tag.ownerDocument!.getElementById(tag.htmlFor) as HTMLInputElement;
                 if (checkBox)
                 {
                     checkBox.labelElement = tag as any;
@@ -595,7 +596,7 @@ namespace MidnightLizard.ContentScript
 
         protected onCopy(doc: Document)
         {
-            let sel = doc.defaultView.getSelection();
+            let sel = doc.defaultView!.getSelection();
             if (sel && !sel.isCollapsed)
             {
                 let rootElem = sel.getRangeAt(0).commonAncestorContainer as HTMLElement;
@@ -620,9 +621,9 @@ namespace MidnightLizard.ContentScript
                         new Array<HTMLElement>());
                 if (allElements.length)
                 {
-                    this._documentObserver.stopDocumentObservation(allElements[0].ownerDocument);
+                    this._documentObserver.stopDocumentObservation(allElements[0].ownerDocument!);
                     allElements.forEach(tag => this.restoreElementColors(tag, true));
-                    this._documentObserver.startDocumentObservation(allElements[0].ownerDocument);
+                    this._documentObserver.startDocumentObservation(allElements[0].ownerDocument!);
                     DocumentProcessor.processAllElements(allElements, this,
                         andAllChildren ? onCopyReCalculationDelays :
                             allElements.length < 50 ? smallReCalculationDelays :
@@ -641,7 +642,7 @@ namespace MidnightLizard.ContentScript
                 if (allTags && allTags.length > 0)
                 {
                     skipSelectors = skipSelectors || this._settingsManager.isSimple || andAllChildren ||
-                        (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument) === 0) ||
+                        (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument!) === 0) ||
                         allTags.length > chunkLength;
                     let filteredTags = allTags.filter(el =>
                     {
@@ -827,9 +828,9 @@ namespace MidnightLizard.ContentScript
                 let rowNumber = 0, ns = USP.htm, isSvg: boolean, isVisible: boolean, isImage = false,
                     isLink = false, hasBgColor = false, hasBgImage = false, inView: boolean,
                     otherInvisTags = new Array<HTMLElement>(),
-                    doc = allTags[0].ownerDocument,
-                    hm = doc.defaultView.innerHeight,
-                    wm = doc.defaultView.innerWidth;
+                    doc = allTags[0].ownerDocument!,
+                    hm = doc.defaultView!.innerHeight,
+                    wm = doc.defaultView!.innerWidth;
 
                 let elementsFilter: ((tag: HTMLElement) => boolean) | null = null;
                 if (docProc._settingsManager.isSimple && !delayInvisibleElements)
@@ -849,7 +850,7 @@ namespace MidnightLizard.ContentScript
                     isVisible = isSvg || tag.offsetParent !== null || !!tag.offsetHeight
                     if (isVisible || tag.mlComputedStyle || !delayInvisibleElements || allTags.length < minChunkableLength)
                     {
-                        tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag, "")
+                        tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag, "")
                         if (!tag.mlComputedStyle) break; // something is wrong with this element
                         isLink = tag instanceof HTMLAnchorElement;
                         hasBgColor = tag.mlComputedStyle!.getPropertyValue(ns.css.bgrColor) !== Colors.RgbaColor.Transparent;
@@ -990,7 +991,7 @@ namespace MidnightLizard.ContentScript
                         setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
                         {
                             const brokenColorTags = t.filter(tag =>
-                                tag.ownerDocument.defaultView &&
+                                tag.ownerDocument!.defaultView &&
                                 !tag.isPseudo && tag.mlColor && tag.mlColor.color === null &&
                                 tag.mlColor.reason === Colors.ColorReason.Inherited &&
                                 tag.mlColor.intendedColor && tag.mlComputedStyle &&
@@ -1000,7 +1001,7 @@ namespace MidnightLizard.ContentScript
 
                             if (brokenColorTags.length > 0)
                             {
-                                dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument);
+                                dProc._documentObserver.stopDocumentObservation(brokenColorTags[0].ownerDocument!);
                                 brokenColorTags.forEach(tag =>
                                 {
                                     const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
@@ -1012,7 +1013,7 @@ namespace MidnightLizard.ContentScript
                                     tag.originalColor = tag.style.getPropertyValue(ns.css.fntColor);
                                     tag.style.setProperty(ns.css.fntColor, newColor.color, dProc._css.important);
                                 });
-                                docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument);
+                                docProc._documentObserver.startDocumentObservation(brokenColorTags[0].ownerDocument!);
                             }
                         }), 0, tags, dp);
                     }
@@ -1024,7 +1025,7 @@ namespace MidnightLizard.ContentScript
                         setTimeout(((t: HTMLElement[], dProc: DocumentProcessor) =>
                         {
                             const brokenTransparentTags = t.filter(tag =>
-                                tag.ownerDocument.defaultView && tag.mlBgColor &&
+                                tag.ownerDocument!.defaultView && tag.mlBgColor &&
                                 !tag.mlBgColor.color && tag.mlComputedStyle &&
                                 tag.mlBgColor.reason === Colors.ColorReason.Parent &&
                                 tag instanceof HTMLElement &&
@@ -1033,13 +1034,13 @@ namespace MidnightLizard.ContentScript
                             );
                             if (brokenTransparentTags.length > 0)
                             {
-                                dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                                dProc._documentObserver.stopDocumentObservation(brokenTransparentTags[0].ownerDocument!);
                                 brokenTransparentTags.forEach(tag =>
                                 {
                                     dProc.restoreElementColors(tag, true);
                                     tag.mlFixed = "bgcolor";
                                 });
-                                dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument);
+                                dProc._documentObserver.startDocumentObservation(brokenTransparentTags[0].ownerDocument!);
                                 DocumentProcessor.processAllElements(brokenTransparentTags, dProc, bigReCalculationDelays);
                             }
                         }), 0, tags, dp);
@@ -1051,7 +1052,7 @@ namespace MidnightLizard.ContentScript
         private static getBrokenTransparentElements(prevChunk: HTMLElement[])
         {
             return prevChunk.filter(tag =>
-                tag.ownerDocument.defaultView && tag.mlBgColor &&
+                tag.ownerDocument!.defaultView && tag.mlBgColor &&
                 !tag.mlBgColor.color && tag.mlComputedStyle &&
                 tag.mlBgColor.reason === Colors.ColorReason.Parent &&
                 tag instanceof HTMLElement &&
@@ -1071,7 +1072,7 @@ namespace MidnightLizard.ContentScript
             }[]
         {
             return prevChunk.filter(tag =>
-                tag.ownerDocument.defaultView &&
+                tag.ownerDocument!.defaultView &&
                 tag.mlColor && tag.mlColor.color === null &&
                 tag.mlColor.reason === Colors.ColorReason.Inherited &&
                 tag.mlColor.intendedColor && tag.mlComputedStyle &&
@@ -1096,7 +1097,7 @@ namespace MidnightLizard.ContentScript
             {
                 const density = 2000 / tags.length;
                 needObservation = needObservation && docProc._settingsManager.isComplex &&
-                    !!docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument)
+                    !!docProc._styleSheetProcessor.getSelectorsCount(tags[0].ownerDocument!)
                 let result: Promise<HTMLElement[]>;
                 if (tags.length < minChunkableLength)
                 {
@@ -1115,7 +1116,7 @@ namespace MidnightLizard.ContentScript
                 }
                 if (needObservation)
                 {
-                    Promise.all([tags as any, docProc, Util.handlePromise(result), ...docProc._styleSheetProcessor.getCssPromises(tags[0].ownerDocument)!])
+                    Promise.all([tags as any, docProc, Util.handlePromise(result), ...docProc._styleSheetProcessor.getCssPromises(tags[0].ownerDocument!)!])
                         .then(([t, dp]) => DocumentProcessor.startObservation(t, dp));
                 }
                 return result;
@@ -1144,9 +1145,9 @@ namespace MidnightLizard.ContentScript
         protected static processElementsChunk(chunk: HTMLElement[], docProc: DocumentProcessor,
             prevChunk?: HTMLElement[] | null, delay?: number)
         {
-            docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument);
+            docProc._documentObserver.stopDocumentObservation(chunk[0].ownerDocument!);
 
-            const paramsForPromiseAll: any[] = [[...chunk], chunk[0].ownerDocument, delay];
+            const paramsForPromiseAll: any[] = [[...chunk], chunk[0].ownerDocument!, delay];
             if (prevChunk)
             {
                 const brokenTransparentElements = DocumentProcessor.getBrokenTransparentElements(prevChunk);
@@ -1190,7 +1191,7 @@ namespace MidnightLizard.ContentScript
                 })
                 .filter(r => r).forEach(r => paramsForPromiseAll.push(...r!.map(Util.handlePromise)));
 
-            docProc._documentObserver.startDocumentObservation(chunk[0].ownerDocument);
+            docProc._documentObserver.startDocumentObservation(chunk[0].ownerDocument!);
 
             return Promise.all(paramsForPromiseAll as [HTMLElement[], Document, number, PromiseResult<string>])
                 .then(([tags, doc, dl, ...cssArray]) =>
@@ -1222,7 +1223,7 @@ namespace MidnightLizard.ContentScript
         {
             let maxSize = 50, maxAxis = 25,
                 check = (w: number, h: number) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
-            tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+            tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag as Element, "");
             let width = parseInt(tag.mlComputedStyle.width!), height = parseInt(tag.mlComputedStyle.height!);
             if (!isNaN(width) && !isNaN(height))
             {
@@ -1249,7 +1250,7 @@ namespace MidnightLizard.ContentScript
         {
             if (tag.mlArea === undefined)
             {
-                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument.defaultView.getComputedStyle(tag as Element, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag as Element, "");
                 let width = parseInt(tag.mlComputedStyle.width!), height = parseInt(tag.mlComputedStyle.height!);
                 if (!isNaN(width) && !isNaN(height))
                 {
@@ -1308,15 +1309,15 @@ namespace MidnightLizard.ContentScript
 
         protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
         {
-            let result = Object.assign({}, tag.ownerDocument.body.mlBgColor || Colors.NotFound);
+            let result = Object.assign({}, tag.ownerDocument!.body.mlBgColor || Colors.NotFound);
             result.reason = Colors.ColorReason.NotFound;
             if (tag.parentElement)
             {
                 let bgColor;
-                let doc = tag.ownerDocument;
+                let doc = tag.ownerDocument!;
                 let isSvg = tag instanceof SVGElement &&
                     tag.parentElement instanceof SVGElement;
-                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
 
                 if (tag.mlComputedStyle && tag instanceof HTMLElement &&
                     (tag.mlComputedStyle!.position == this._css.absolute ||
@@ -1331,7 +1332,7 @@ namespace MidnightLizard.ContentScript
                             {
                                 otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
                                     parseInt((otherTag.mlComputedStyle = otherTag.mlComputedStyle ? otherTag.mlComputedStyle
-                                        : doc.defaultView.getComputedStyle(otherTag, "")).zIndex || "0");
+                                        : doc.defaultView!.getComputedStyle(otherTag, "")).zIndex || "0");
                                 otherTag.zIndex = isNaN(otherTag.zIndex) ? -999 : otherTag.zIndex;
                                 if (otherTag.mlBgColor && otherTag.mlBgColor.color &&
                                     otherTag.zIndex < tag.zIndex! && otherTag.mlBgColor.role !== cc.TextSelection)
@@ -1412,7 +1413,7 @@ namespace MidnightLizard.ContentScript
             this.restoreMetaTheme(doc);
             const lastProcMode = this.getLastDoccumentProcessingMode(doc);
             this.setDocumentProcessingStage(doc, ProcessingStage.None);
-            const isPopup = doc.location.pathname === "/ui/popup.html";
+            const isPopup = doc.location!.pathname === "/ui/popup.html";
             for (let tag of Array.from(doc.getElementsByTagName("*")))
             {
                 if (!isPopup)
@@ -1564,11 +1565,11 @@ namespace MidnightLizard.ContentScript
 
         protected caclulateSimplifiedRoomRules(tag: HTMLElement)
         {
-            if (tag && tag.ownerDocument.defaultView &&
+            if (tag && tag.ownerDocument!.defaultView &&
                 (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 let hasRoomRules = false;
-                const doc = tag.ownerDocument, roomRules: RoomRules = {},
+                const doc = tag.ownerDocument!, roomRules: RoomRules = {},
                     bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
                     isButton = tag instanceof HTMLButtonElement ||
                         tag instanceof HTMLInputElement &&
@@ -1578,7 +1579,7 @@ namespace MidnightLizard.ContentScript
                         tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
                         tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;;
 
-                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
 
                 if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
                     tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
@@ -1607,10 +1608,10 @@ namespace MidnightLizard.ContentScript
                 roomRules: RoomRules, before?: PseudoElement, after?: PseudoElement
             } | undefined
         {
-            if (tag && tag.ownerDocument.defaultView && !(tag as HTMLElement).mlBgColor
+            if (tag && tag.ownerDocument!.defaultView && !(tag as HTMLElement).mlBgColor
                 && (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
-                let doc = tag.ownerDocument;
+                let doc = tag.ownerDocument!;
                 let bgLight: number, roomRules: RoomRules | undefined;//, room: string | null = null;
                 let isSvg = tag instanceof SVGElement,
                     isSvgText = tag instanceof SVGTextContentElement,
@@ -1642,15 +1643,15 @@ namespace MidnightLizard.ContentScript
                     isButton = true;
                 }
 
-                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView.getComputedStyle(tag as HTMLElement, "");
+                tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
                 roomRules = {};
                 if (tag.mlComputedStyle)
                 {
                     this._app.isDebug && (roomRules.owner = tag);
                     if (tag instanceof HTMLElement)
                     {
-                        let beforeStyle = doc.defaultView.getComputedStyle(tag, ":before");
-                        let afterStyle = doc.defaultView.getComputedStyle(tag, ":after");
+                        let beforeStyle = doc.defaultView!.getComputedStyle(tag, ":before");
+                        let afterStyle = doc.defaultView!.getComputedStyle(tag, ":after");
                         if (beforeStyle && beforeStyle.content &&
                             beforeStyle.content !== this._css.none &&
                             beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
@@ -2321,11 +2322,11 @@ namespace MidnightLizard.ContentScript
 
         protected applyBackgroundImages(tag: HTMLElement | PseudoElement, backgroundImages: BackgroundImage[])
         {
-            let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument);
+            let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument!);
             tag.style.setProperty(this._css.backgroundImage,
                 backgroundImages.map(bgImg => bgImg.data).join(","),
                 this._css.important);
-            this._documentObserver.startDocumentObservation(tag.ownerDocument, originalState);
+            this._documentObserver.startDocumentObservation(tag.ownerDocument!, originalState);
             return tag;
         }
 
@@ -2344,7 +2345,7 @@ namespace MidnightLizard.ContentScript
                 doc.mlPseudoStyles.id = "midnight-lizard-pseudo-styles";
                 doc.mlPseudoStyles.mlIgnore = true;
                 doc.mlPseudoStyles.textContent = this.getStandardPseudoStyles();
-                (doc.head || doc.documentElement).appendChild(doc.mlPseudoStyles);
+                (doc.head || doc.documentElement!).appendChild(doc.mlPseudoStyles);
             }
         }
 
@@ -2377,7 +2378,7 @@ namespace MidnightLizard.ContentScript
         protected calculateMainColors(doc: Document)
         {
             this.calculateDefaultColors(doc, cx.Link, cx.Black);
-            doc.documentElement.mlArea = 1;
+            doc.documentElement!.mlArea = 1;
             const bgLight = this.shift.Background.lightnessLimit,
                 autofillBackgroundColorEntry = this._backgroundColorProcessor.changeColor("rgb(250,255,189)", false, doc.documentElement),
                 textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
@@ -2411,7 +2412,7 @@ namespace MidnightLizard.ContentScript
                 visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
                 visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!;
 
-            delete doc.documentElement.mlArea;
+            delete doc.documentElement!.mlArea;
             this._backgroundColorProcessor.clear();
 
             return {
@@ -2473,7 +2474,7 @@ namespace MidnightLizard.ContentScript
             mainColorsStyle.id = "midnight-lizard-dynamic-values";
             mainColorsStyle.mlIgnore = true;
             mainColorsStyle.textContent = `:root { ${cssText} }`;
-            (doc.head || doc.documentElement).appendChild(mainColorsStyle);
+            (doc.head || doc.documentElement!).appendChild(mainColorsStyle);
         }
 
         protected processMetaTheme(doc: Document)
@@ -2525,7 +2526,7 @@ namespace MidnightLizard.ContentScript
                     pageScript.id = "midnight-lizard-page-script";
                     pageScript.type = "text/javascript";
                     pageScript.src = this._app.getFullPath("/js/page-script.js");
-                    (doc.head || doc.documentElement).appendChild(pageScript);
+                    (doc.head || doc.documentElement!).appendChild(pageScript);
                 }
             }
             catch (ex)

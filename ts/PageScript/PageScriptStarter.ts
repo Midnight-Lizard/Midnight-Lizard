@@ -8,5 +8,5 @@ namespace MidnightLizard.PageScript
     // new ExternalCssLoader().beginExternalCssObservation(document);
     new QueryCommandManager().overrideQueryCommandValue(document);
 
-    document.documentElement.dispatchEvent(new CustomEvent("PageScriptLoaded"));
+    document.documentElement!.dispatchEvent(new CustomEvent("PageScriptLoaded"));
 }

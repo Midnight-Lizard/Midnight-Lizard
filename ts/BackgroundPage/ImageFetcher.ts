@@ -40,7 +40,7 @@ namespace MidnightLizard.BackgroundPage
             {
                 let img = new Image();
                 img.onload = () => resolve({ d: dataUrl, w: img.naturalWidth, h: img.naturalHeight });
-                img.onerror = (e) => reject(`Faild draw the image: ${url}\n${e.message}`);
+                img.onerror = (e) => reject(`Faild draw the image: ${url}\n${e}`);
                 img.src = dataUrl;
             }));
         }

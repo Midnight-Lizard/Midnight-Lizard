@@ -148,7 +148,7 @@ namespace MidnightLizard.ContentScript
 
         protected onCurrentSettingsRequested(response: ColorSchemeResponse): void
         {
-            this._currentSettings.location = this._rootDocument.location.href;
+            this._currentSettings.location = this._rootDocument.location!.href;
             response(this._currentSettings);
         }
 

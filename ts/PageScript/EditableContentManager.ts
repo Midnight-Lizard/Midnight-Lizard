@@ -22,7 +22,7 @@ namespace MidnightLizard.PageScript
                 });
             });
             new MutationObserver(this.newElementsObserverCallback.bind(this))
-                .observe(doc.documentElement, this._newElementsObserverConfig);
+                .observe(doc.documentElement!, this._newElementsObserverConfig);
         }
 
         private newElementsObserverCallback(mutations: MutationRecord[], observer: MutationObserver)

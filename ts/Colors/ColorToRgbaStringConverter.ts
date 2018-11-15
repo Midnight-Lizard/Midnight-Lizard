@@ -19,7 +19,7 @@ namespace MidnightLizard.Colors
             div.style.setProperty("color", colorName, "important");
             div.mlIgnore = true;
             this._document.body.appendChild(div);
-            let rgbStr = this._document.defaultView.getComputedStyle(div).color;
+            let rgbStr = this._document.defaultView!.getComputedStyle(div).color;
             this._document.body.removeChild(div)
             return rgbStr;
         }

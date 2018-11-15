@@ -70,7 +70,7 @@ namespace MidnightLizard.Popup
             protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor)
         {
             dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
-            dom.addEventListener(_popup.defaultView, "resize", this.setPopupScale, this);
+            dom.addEventListener(_popup.defaultView!, "resize", this.setPopupScale, this);
             _settingsManager.onSettingsInitialized.addListener(this.beforeSettingsInitialized, this, Events.EventHandlerPriority.High);
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
@@ -92,10 +92,10 @@ namespace MidnightLizard.Popup
 
         protected setPopupScale()
         {
-            this._popup.documentElement.style
+            this._popup.documentElement!.style
                 .setProperty("--popup-scale",
                     (
-                        this._popup.defaultView.innerWidth / 680.0
+                        this._popup.defaultView!.innerWidth / 680.0
                         // Math.min(
                         //     this._popup.defaultView.innerWidth / 680.0,
                         //     this._popup.defaultView.innerHeight / 600.0,
@@ -114,7 +114,7 @@ namespace MidnightLizard.Popup
         protected onSettingsInitializationFailed(ex: any): void
         {
             this._popup.getElementById("dialogError")!.style.display = "block";
-            this._popup.documentElement.removeAttribute("ml-stage");
+            this._popup.documentElement!.removeAttribute("ml-stage");
         }
 
         protected beforeRootDocumentProcessedFirstTime(doc: Document): void
@@ -201,7 +201,7 @@ namespace MidnightLizard.Popup
             footer.onRoomRulesApplied.addListener(this.onFotterRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, footer);
 
             this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
-            this._closeButton.onclick = doc.defaultView.close.bind(doc.defaultView);
+            this._closeButton.onclick = doc.defaultView!.close.bind(doc.defaultView);
             this._applyButton.onclick = this.applySettingsOnPage.bind(this);
             this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
             this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
@@ -224,7 +224,7 @@ namespace MidnightLizard.Popup
                     const text = this._popup.getElementById("selection") as Node;
                     if (text)
                     {
-                        const selection = this._popup.defaultView.getSelection();
+                        const selection = this._popup.defaultView!.getSelection();
                         const range = this._popup.createRange();
                         range.selectNodeContents(text);
                         selection.removeAllRanges();
@@ -261,7 +261,7 @@ namespace MidnightLizard.Popup
 
         protected beforeSettingsChanged(response: (scheme: Settings.ColorScheme) => void, shift?: Colors.ComponentShift): void
         {
-            this._popup.documentElement.style.cssText = "";
+            this._popup.documentElement!.style.cssText = "";
             this.setPopupScale();
             this.updateButtonStates();
             this.toggleSchedule();
@@ -881,7 +881,7 @@ namespace MidnightLizard.Popup
         {
             if (this.hasAttribute("display-color-on"))
             {
-                const displayColorOn = this.ownerDocument.getElementById(
+                const displayColorOn = this.ownerDocument!.getElementById(
                     this.getAttribute("display-color-on") || "-");
                 if (displayColorOn)
                 {
@@ -895,7 +895,7 @@ namespace MidnightLizard.Popup
             this.style.cssText = (this.options[this.selectedIndex] as HTMLOptionElement).style.cssText;
             if (this.hasAttribute("display-color-on"))
             {
-                this.ownerDocument.getElementById(this.getAttribute("display-color-on")!)!.style.fill = this.style.backgroundColor;
+                this.ownerDocument!.getElementById(this.getAttribute("display-color-on")!)!.style.fill = this.style.backgroundColor;
             }
         }
 
@@ -969,7 +969,7 @@ namespace MidnightLizard.Popup
 
         protected onRangeRoomRulesApplied(tag: HTMLElement, roomRules: ContentScript.RoomRules)
         {
-            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
             let props = Object.assign({}, ContentScript.USP.htm);
             props.css =
                 {
@@ -990,12 +990,12 @@ namespace MidnightLizard.Popup
                     borderColor: { color: currentStyle.borderColor },
                     textShadow: { value: rangeFillColor.color }
                 } as ContentScript.RoomRules);
-            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+            this._documentProcessor.applyRoomRules(tag.ownerDocument!.documentElement!, newRules, props);
         }
 
         protected onTabItemSeparatorRoomRulesApplied(tag: HTMLLIElement, roomRules: ContentScript.RoomRules)
         {
-            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
             let props = Object.assign({}, ContentScript.USP.htm);
             props.css =
                 {
@@ -1008,12 +1008,12 @@ namespace MidnightLizard.Popup
                 {
                     borderColor: { color: currentStyle.borderRightColor }
                 } as ContentScript.RoomRules);
-            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+            this._documentProcessor.applyRoomRules(tag.ownerDocument!.documentElement!, newRules, props);
         }
 
         protected onFotterRoomRulesApplied(tag: HTMLLIElement, roomRules: ContentScript.RoomRules)
         {
-            let currentStyle = tag.ownerDocument.defaultView.getComputedStyle(tag, "");
+            let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
             let props = Object.assign({}, ContentScript.USP.htm);
             props.css =
                 {
@@ -1026,7 +1026,7 @@ namespace MidnightLizard.Popup
                 {
                     backgroundColor: { color: currentStyle.backgroundColor }
                 } as ContentScript.RoomRules);
-            this._documentProcessor.applyRoomRules(tag.ownerDocument.documentElement, newRules, props);
+            this._documentProcessor.applyRoomRules(tag.ownerDocument!.documentElement!, newRules, props);
         }
     }
 }

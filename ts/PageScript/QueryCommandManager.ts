@@ -15,7 +15,7 @@ namespace MidnightLizard.PageScript
         {
             if (command === "foreColor" || command === "backColor")
             {
-                let selection = doc.defaultView.getSelection();
+                let selection = doc.defaultView!.getSelection();
                 if (selection)
                 {
                     let range = selection.getRangeAt(0);

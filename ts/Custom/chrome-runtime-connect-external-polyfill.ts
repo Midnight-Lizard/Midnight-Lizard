@@ -1,6 +1,6 @@
 var connection: chrome.runtime.Port;
 
-document.documentElement.addEventListener("message-from-portal", e =>
+document.documentElement!.addEventListener("message-from-portal", e =>
 {
     if (e instanceof CustomEvent && e.detail)
     {
@@ -15,7 +15,7 @@ function openConnection(port?: any)
         connection = chrome.runtime.connect({ name: 'portal' });
         connection.onMessage.addListener((msg, port) =>
         {
-            document.documentElement.dispatchEvent(
+            document.documentElement!.dispatchEvent(
                 new CustomEvent("message-from-extension", { detail: JSON.stringify(msg) }));
         });
         connection.onDisconnect.addListener(openConnection);

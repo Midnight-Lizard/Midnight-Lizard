@@ -13,7 +13,7 @@ namespace MidnightLizard.Controls.Slider
     function onIconClick(eventArgs: Event)
     {
         let target = eventArgs.currentTarget as Element;
-        let slider = target.ownerDocument.getElementById(target.getAttribute("for") !) as HTMLInputElement;
+        let slider = target.ownerDocument!.getElementById(target.getAttribute("for") !) as HTMLInputElement;
         if (slider)
         {
             if (target.classList.contains("low"))

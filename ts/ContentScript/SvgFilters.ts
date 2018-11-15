@@ -51,8 +51,8 @@ namespace MidnightLizard.ContentScript
                 new Colors.RgbaColor(82, 86, 89, 1)));
 
             (this._app.browserName === Settings.BrowserName.Chrome
-                ? doc.head || doc.documentElement
-                : doc.documentElement).appendChild(svg);
+                ? doc.head || doc.documentElement!
+                : doc.documentElement!).appendChild(svg);
         }
 
         private createBlueFilter(doc: Document)

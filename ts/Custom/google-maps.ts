@@ -10,7 +10,7 @@ namespace MidnightLizard.Custom
 
     function classObserverCallback(mutations: MutationRecord[], observer: MutationObserver)
     {
-        if (document.documentElement.getAttribute("ml-mode") === "complex")
+        if (document.documentElement!.getAttribute("ml-mode") === "complex")
         {
             const canvasArr = document.querySelectorAll(".widget-scene-canvas, .canvas-container > canvas") as any as HTMLCanvasElement[];
             if (canvasArr)

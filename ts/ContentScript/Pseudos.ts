@@ -91,7 +91,7 @@ namespace MidnightLizard.ContentScript
             this.mlComputedStyle = computedStyle;
             this.mlRect = parent.mlRect;
             this.style = new PseudoElementStyle() as PseudoElementStyle & CSSStyleDeclarationKeys;
-            this.ownerDocument = parent.ownerDocument;
+            this.ownerDocument = parent.ownerDocument!;
             this.stylePromise = new Promise((resolve, reject) => this.resolveCss = resolve);
         }
         currentFilter: string | null | undefined;

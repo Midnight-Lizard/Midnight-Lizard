@@ -17,7 +17,7 @@ namespace MidnightLizard.Controls.Tab
     function openTab(onTabOpened: (tab: string) => void, eventArgs: Event)
     {
         let target = eventArgs.currentTarget as HTMLElement;
-        let doc = target.ownerDocument;
+        let doc = target.ownerDocument!;
 
         let tabContents = Array.prototype.slice.call(doc.getElementsByClassName("ml-tab-content"));
         for (let tabContent of tabContents)

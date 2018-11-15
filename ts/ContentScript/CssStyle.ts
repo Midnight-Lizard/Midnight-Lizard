@@ -84,7 +84,7 @@ namespace MidnightLizard.ContentScript
         constructor(doc: Document)
         {
             super();
-            for (let prop in doc.documentElement.style)
+            for (let prop in doc.documentElement!.style)
             {
                 this[prop] = prop.replace(/([A-Z])/g, "-$1").toLowerCase();
             }

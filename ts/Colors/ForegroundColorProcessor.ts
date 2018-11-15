@@ -258,7 +258,7 @@ namespace MidnightLizard.Colors
         protected isGray(tag: Element, rgbaString: string, hsla: HslaColor): boolean
         {
             return this._colorShift.replaceAllHues ||
-                (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) &&
+                (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument!)) &&
                 this._colorShift.graySaturation !== 0;
         }
 
@@ -277,7 +277,7 @@ namespace MidnightLizard.Colors
                 (element as any).href = "#";
                 element.style.display = "none";
                 doc.body.appendChild(element);
-                const style = doc.defaultView.getComputedStyle(element, "");
+                const style = doc.defaultView!.getComputedStyle(element, "");
                 if (style)
                 {
                     elementColor = style.color!;
@@ -379,15 +379,15 @@ namespace MidnightLizard.Colors
             // или близок к дефолтному оттенку текста (значит унаследован) то считать текстом
             return this._colorShift.replaceAllHues ||
                 (Math.abs(hsla.hue - this._settingsManager.shift.Text.grayHue) < 2) ||
-                (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument)) && this._colorShift.graySaturation !== 0 ||
-                (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)) && this._settingsManager.shift.Text.graySaturation !== 0;
+                (hsla.saturation < 0.1 || rgbaString === this.getDefaultColor(tag.ownerDocument!)) && this._colorShift.graySaturation !== 0 ||
+                (hsla.saturation < 0.1 || rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument!)) && this._settingsManager.shift.Text.graySaturation !== 0;
         }
 
         protected getGrayShift(tag: Element, rgbaString: string, hsla: HslaColor): Colors.ColorShift
         {
             if ((hsla.saturation < 0.1 ||
                 Math.abs(hsla.hue - this._settingsManager.shift.Text.grayHue) < 2 ||
-                rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument)))
+                rgbaString === this._textColorProcessor.getDefaultColor(tag.ownerDocument!)))
             {
                 return this._settingsManager.shift.Text;
             }

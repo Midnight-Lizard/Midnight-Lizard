@@ -92,7 +92,7 @@ namespace MidnightLizard.ContentScript
                 this._updateObservers.set(doc, updateObserver =
                     new MutationObserver(this.updateObserverCallback.bind(this)));
             }
-            updateObserver.observe(doc.documentElement, this._updateObserverConfig);
+            updateObserver.observe(doc.documentElement!, this._updateObserverConfig);
         }
 
         public stopDocumentUpdateObservation(doc: Document): void
@@ -267,7 +267,7 @@ namespace MidnightLizard.ContentScript
                     .find((x: Node) => x instanceof HTMLStyleElement && !x.mlIgnore));
             if (mutation)
             {
-                this._styleSheetProcessor.processDocumentStyleSheets(mutation.target.ownerDocument);
+                this._styleSheetProcessor.processDocumentStyleSheets(mutation.target.ownerDocument!);
             }
         }
 
