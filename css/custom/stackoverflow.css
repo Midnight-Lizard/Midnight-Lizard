@@ -25,7 +25,7 @@ html[ml-is-active] .left-sidebar-toggle *:after {
     box-shadow: none!important;
 }
 
-.searchbar > f-input,
+.searchbar > .f-input,
 .post-tag {
     transition-duration: 0s!important;
 }
