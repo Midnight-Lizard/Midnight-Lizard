@@ -1,0 +1,33 @@
+#ybar>[role="toolbar"]>*>*>.ybar-icon-sprite,
+#ybar>[role="toolbar"]>*>*>*>.ybar-icon-sprite,
+.uh-menu-panel div>i {
+    --ml-no-invert:true;
+}
+
+ul[data-test-id="color-picker"] li[name] button {
+    --ml-ignore:true;
+}
+
+[data-test-id="theme-chooser"] {
+    --ml-no-invert:true;
+    --ml-backgroundimage:Image;
+}
+
+[data-test-id="previewPane-mode-chooser"] span,
+[data-test-id="msgListDensity-mode-chooser"] span,
+[data-test-id="preview-message-list"] li > div {
+    --ml-background-background-color:Border;
+}
+
+html[ml-is-active] .YLogoMY {
+    --ml-ignore:true;
+    filter: saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) brightness(calc(1 + var(--ml-invert) / 2)) !important;
+}
+
+#uh-logo {
+    --ml-backgroundimage:HighlightedText;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #doc:not(.imp)>#sticky-hd:not(.imp) {
+    background-color: var(--ml-main-alt-background-color)!important;
+}
