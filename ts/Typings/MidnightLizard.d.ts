@@ -76,11 +76,6 @@ interface Node
     originalBorderLeftColor: string | null | undefined;
     originalVisibility: string | null | undefined;
     originalBackgroundImage: string | null | undefined;
-    ////////////////////////////////////////////////////////////////
-    __lookupGetter__<T>(propertyName: string): () => T;
-    __lookupSetter__<T>(propertyName: string): (value: T) => void;
-    innerHtmlGetter: () => string;
-    innerHtmlCache: { value: string, timestamp: number };
 }
 
 interface HTMLInputElement

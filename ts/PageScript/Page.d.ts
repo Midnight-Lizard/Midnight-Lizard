@@ -10,7 +10,7 @@ declare interface Node
     __lookupGetter__<T>(propertyName: string): () => T;
     __lookupSetter__<T>(propertyName: string): (value: T) => void;
     innerHtmlGetter: () => string;
-    innerHtmlCache: { value: string, timestamp: number };
+    innerHtmlCache: { value: string, timestamp: number, consequentCalls: number };
 }
 
 declare interface Document

@@ -2,6 +2,10 @@
 
 namespace MidnightLizard.PageScript
 {
+    const maxConsequentCalls = 2;
+    const maxConsequentCallsPeriodMs = 200;
+    const cacheLifetimeMs = 500;
+
     export class EditableContentManager
     {
         constructor() { }
@@ -51,10 +55,26 @@ namespace MidnightLizard.PageScript
 
         private getInnerHtml(tag: HTMLElement)
         {
+            if (tag.innerHtmlCache &&
+                tag.innerHtmlCache.consequentCalls > maxConsequentCalls &&
+                Date.now() - tag.innerHtmlCache.timestamp < cacheLifetimeMs)
+            {
+                return tag.innerHtmlCache.value;
+            }
+
             tag.dispatchEvent(new CustomEvent("before-get-inner-html", { bubbles: true }));
-            const innerHtml = tag.innerHtmlGetter();
+
+            const consequentCalls = tag.innerHtmlCache &&
+                Date.now() - tag.innerHtmlCache.timestamp < maxConsequentCallsPeriodMs
+                ? tag.innerHtmlCache.consequentCalls + 1 : 1;
+            tag.innerHtmlCache = {
+                value: tag.innerHtmlGetter(), timestamp: Date.now(),
+                consequentCalls: consequentCalls
+            };
+
             tag.dispatchEvent(new CustomEvent("after-get-inner-html", { bubbles: false }));
-            return innerHtml;
+
+            return tag.innerHtmlCache.value;
         }
 
         private overrideCssStyleDeclaration(doc: Document)
