@@ -48,4 +48,4 @@ Adjust the web to your vision!
 
 ## BACKERS
 [![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)
-<sub><sup><sub><sup>※ Only backers with avatars are shown</sup></sub></sup></sub>
+<sub><sup>※ Only backers with avatars are shown</sup></sub>
