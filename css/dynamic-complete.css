@@ -1,107 +1,106 @@
 html[ml-stage="complete"] {}
 
-@media screen {
-    html[ml-stage-mode="complete-complex"] body:not([style*="color"]) *:not([transition]) {
-        transition: all 0s ease 0s !important;
-    }
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp),
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited),
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):before,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):before,
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):after,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):after {
-        color: var(--link-color) !important;
-    }
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover,
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:before,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:before,
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:after,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:after {
-        color: var(--link-color-hover) !important;
-    }
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active,
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:before,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:before,
-    html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:after,
-    html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:after {
-        color: var(--link-color-active) !important;
-    }
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp),
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp),
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):before,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):before,
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):after,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):after {
-        color: var(--visited-color) !important;
-    }
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp),
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active,
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp),
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover,
+html[ml-stage-mode="complete-complex"] body:not([style*="color"]) *:not([transition]) {
+    transition: all 0s ease 0s !important;
+}
 
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):before,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:before,
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:before,
-    html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):before,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:before,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp),
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited),
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):before,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):before,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):after,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):after {
+    color: var(--link-color) !important;
+}
 
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):after,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:after,
-    html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:after,
-    html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):after,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:after {
-        color: var(--visited-color-active) !important;
-    }
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover,
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:before,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:before,
-    html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:after,
-    html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:after {
-        color: var(--visited-color-hover) !important;
-    }
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:before,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:before,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):hover:after,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):hover:after {
+    color: var(--link-color-hover) !important;
+}
 
-    html[ml-stage-mode="complete-complex"] [transition="filter"][style*="var(--ml-blue-filter)"]:hover
-    {
-        filter: none!important;
-    }
-    
-    html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"]):hover
-    {
-        animation-name: transition-filter-none;
-        animation-fill-mode: forwards;
-    }
-    
-    html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"])
-    {
-        animation-name: transition-filter-original;
-        animation-timing-function: ease-out;
-        animation-duration: 333ms;
-        animation-fill-mode: backwards;
-    }
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:before,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:before,
+html[ml-stage-mode="complete-complex"] [style*=--link]:not(imp):active:after,
+html[ml-stage-mode="complete-complex"] a[style*=--link]:not(:visited):active:after {
+    color: var(--link-color-active) !important;
+}
 
-    html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-color"],
-    html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-color"]
-    {
-        color: var(--editable-content-color)!important;
-    }
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp),
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp),
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):before,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):before,
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):after,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):after {
+    color: var(--visited-color) !important;
+}
 
-    html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-background-color"],
-    html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-background-color"]
-    {
-        background-color: var(--editable-content-background-color)!important;
-    }
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp),
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active,
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover,
+html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp),
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover,
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):before,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:before,
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:before,
+html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):before,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:before,
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):after,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:after,
+html[ml-stage-mode="complete-complex"] a:visited:active [style*=--visited]:not(imp):hover:after,
+html[ml-stage-mode="complete-complex"] a:visited:active:hover [style*=--visited]:not(imp):after,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):active:hover:after {
+    color: var(--visited-color-active) !important;
+}
 
-    @keyframes transition-filter-none
-    {
-        to { filter: none; }
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover,
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:before,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:before,
+html[ml-stage-mode="complete-complex"] a:visited [style*=--visited]:not(imp):hover:after,
+html[ml-stage-mode="complete-complex"] [style*=--visited]:visited:not(imp):hover:after {
+    color: var(--visited-color-hover) !important;
+}
+
+html[ml-stage-mode="complete-complex"] [transition="filter"][style*="var(--ml-blue-filter)"]:hover {
+    filter: none !important;
+}
+
+html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"]):hover {
+    animation-name: transition-filter-none;
+    animation-fill-mode: forwards;
+}
+
+html[ml-stage-mode="complete-complex"] [transition="filter"]:not([style*="var(--ml-blue-filter)"]) {
+    animation-name: transition-filter-original;
+    animation-timing-function: ease-out;
+    animation-duration: 333ms;
+    animation-fill-mode: backwards;
+}
+
+html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-color"],
+html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-color"] {
+    color: var(--editable-content-color) !important;
+}
+
+html[ml-stage-mode="complete-complex"] [contenteditable="true"][style*="--editable-content-background-color"],
+html[ml-stage-mode="complete-complex"] [contenteditable="true"] [style*="--editable-content-background-color"] {
+    background-color: var(--editable-content-background-color) !important;
+}
+
+@keyframes transition-filter-none {
+    to {
+        filter: none;
     }
-    
-    @keyframes transition-filter-original
-    {
-        from { filter: none; }
+}
+
+@keyframes transition-filter-original {
+    from {
+        filter: none;
     }
 }

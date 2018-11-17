@@ -1,225 +1,253 @@
 html[ml-stage="loading"],
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) {}
 
-@media screen {
-    html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] canvas:not(#imp):not(.imp):not(imp) {
-        filter: brightness(var(--ml-background-lightness-limit)) !important;
-    }
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after,
-    [ml-bg-image] {
-        background-image: none !important;
-    }
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
-    html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) iframe:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .cdk-overlay-container:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>[style*="filter:"]:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="d-image"]:not([style*="gradient"]):not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) img:not(#imp):not(.imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
-        background-color: transparent !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not([transition]) {
-        -webkit-transition: none !important;
-        -moz-transition: none !important;
-        transition: none !important;
-        transition-property: none!important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(.ml-ignore):not([style*="filter:"]):not([style*="d-image"]) {
-        filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="modal"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) select>option:not(impt):not(.impt),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(svg):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*:not(svg):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore) {
-        background-color: var(--ml-main-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>* *:not(.ml-ignore)>*:not(svg):not(.ml-ignore):not(.ml-dialog-hue-select):not(option) {
-        background-color: var(--ml-main-trans-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(svg):not(#imp):not(imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="header"]:not(svg):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="footer"]:not(svg):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="toolbar"]:not(img):not(.ml-ignore):not(#imp):not(#else),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="toolbar"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="current"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="header"]:not(svg):not(#imp):not(.ml),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="footer"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="toolbar"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="current"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="header"]:not(svg):not(#imp):not(.ml),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="footer"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>header:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>footer:not(imp):not(.ml):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="hover"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="toolbar"]:not(svg):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="current"]:not(svg):not(#imp) {
-        background-color: var(--ml-main-alt-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="header"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="footer"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) header:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) footer:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="hover"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="selected"]:not(svg):not([class="js-selected-navigation-item reponav-item"]) *:not(#imp):not(svg),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="active"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="current"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="header"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="footer"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* header:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* footer:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="hover"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="selected"]:not(svg):not(.ml-ignore):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="current"]:not(svg):not(.ml-ignore):not(#imp) {
-        background-color: var(--ml-main-trans-alt-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp) {
-        background-color: transparent !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="option"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg):not(.ml-ignore):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg):not(.ml-ignore):not(#imp) {
-        background-color: var(--ml-main-button-background-color) !important;
-        border-color: var(--ml-main-button-border-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(impt):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore)>*:not(impt):not(.ml-ignore),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):after {
-        color: var(--ml-main-text-color) !important;
-        border-color: var(--ml-main-border-color) !important;
-        text-shadow: none !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) svg *:not([fill="none"]) {
-        fill: var(--ml-main-text-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):after {
-        color: var(--ml-main-link-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:after {
-        color: var(--ml-main-link-color-hover) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:after {
-        color: var(--ml-main-link-color-active) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:after {
-        color: var(--ml-main-visited-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp),
-
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):before,
-
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):after {
-        color: var(--ml-main-visited-color-active) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):before,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):after,
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):after {
-        color: var(--ml-main-visited-color-hover) !important;
-    }
-    /* Angular & Material design fixes begin */
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-menu-content:not(.imp):not(#imp)>.mat-menu-item:not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp) {
-        background-color: transparent !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-backdrop.cdk-overlay-backdrop-showing:not(.imp):not(#imp) {
-        background-color: var(--ml-main-trans-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-card:not(.imp):not(#imp) {
-        background-color: var(--ml-main-alt-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-form-field-infix:not(.imp):not(#imp) {
-        border-top-color: transparent !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-drawer-container:not(.imp):not(#imp)>.mat-drawer:not(.imp):not(#imp) {
-        background-color: var(--ml-main-background-color) !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-progress-spinner:not(.imp):not(#imp)>svg:not(.imp):not(#imp)>circle:not(.imp):not(#imp) {
-        fill: transparent !important;
-    }
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-form-field-wrapper:not(.imp):not(#imp)>.mat-form-field-underline:not(.imp):not(#imp),
-    html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-tab-list:not(.imp):not(#imp)>.mat-ink-bar:not(.imp):not(#imp) {
-        background-color: var(--ml-main-border-color) !important;
-    }
-    .mat-form-field-underline, .mat-ink-bar {
-        --ml-background-background-color:Border;
-    }
-    /* Angular & Material design fixes end */
+html[ml-stage="loading"] iframe:not(#imp):not(.imp):not(imp),
+html[ml-stage="loading"] canvas:not(#imp):not(.imp):not(imp) {
+    filter: brightness(var(--ml-background-lightness-limit)) !important;
 }
+
+html[ml-stage="loading"] :not(#imp):not(.imp):not(imp),
+html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
+html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after,
+[ml-bg-image] {
+    background-image: none !important;
+}
+
+html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):before,
+html[ml-stage="loading"] :not(#imp):not(.imp):not(imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) iframe:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) .cdk-overlay-container:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>[style*="filter:"]:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="d-image"]:not([style*="gradient"]):not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) [style*="filter:"]:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) img:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.imp):not(imp) :not(#imp):not(.imp):not(imp)>img:not(#imp):not(.imp):not(imp) {
+    background-color: transparent !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not([transition]) {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important;
+    transition-property: none !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) img[src]:not(.ml-ignore):not([style*="filter:"]):not([style*="d-image"]) {
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[aria-expanded="true"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[role="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="modal"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore):not(#imp)>[class*="menu"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) select>option:not(impt):not(.impt),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(svg):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*:not(svg):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>*:not(svg):not(.ml-ignore) {
+    background-color: var(--ml-main-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>* *:not(.ml-ignore)>*:not(svg):not(.ml-ignore):not(.ml-dialog-hue-select):not(option) {
+    background-color: var(--ml-main-trans-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(svg):not(#imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="header"]:not(svg):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="footer"]:not(svg):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>footer:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="hover"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="toolbar"]:not(img):not(.ml-ignore):not(#imp):not(#else),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="toolbar"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="current"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="header"]:not(svg):not(#imp):not(.ml),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="footer"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>header:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>footer:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="hover"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="toolbar"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>[class*="current"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="header"]:not(svg):not(#imp):not(.ml),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="footer"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>header:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>footer:not(imp):not(.ml):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="hover"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="toolbar"]:not(svg):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="selected"]:not(svg):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>[class*="current"]:not(svg):not(#imp) {
+    background-color: var(--ml-main-alt-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="header"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="footer"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) header:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) footer:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="hover"]:not(svg):not(.ml-ignore) *:not(svg):not(#imp):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="selected"]:not(svg):not([class="js-selected-navigation-item reponav-item"]) *:not(#imp):not(svg),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="active"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="current"]:not(svg) *:not(#imp):not(svg):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="header"]:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="footer"]:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* header:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* footer:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="hover"]:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="selected"]:not(svg):not(.ml-ignore):not(#imp):not([class="js-selected-navigation-item reponav-item"]),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>*>* [class*="current"]:not(svg):not(.ml-ignore):not(#imp) {
+    background-color: var(--ml-main-trans-alt-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore) *:not(svg):not(.ml-ignore):not(#imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg) *:not(svg):not(.ml-ignore):not(#imp) {
+    background-color: transparent !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) button:not(imp):not(.ml):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="button"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="submit"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) input[type="reset"]:not(.ml):not(impt):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [role="option"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[role="button"]:not(.ml):not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="button"]:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [class*="btn"]:not(svg):not(.ml-ignore):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a[class*="btn"]:not(svg):not(.ml-ignore):not(#imp) {
+    background-color: var(--ml-main-button-background-color) !important;
+    border-color: var(--ml-main-button-border-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*:not(impt):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.ml-ignore)>*:not(impt):not(.ml-ignore),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) *:not(.ml-ignore):not(impt):after {
+    color: var(--ml-main-text-color) !important;
+    border-color: var(--ml-main-border-color) !important;
+    text-shadow: none !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) svg *:not([fill="none"]) {
+    fill: var(--ml-main-text-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):not(.imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited) *:not(#imp):not(.imp):after {
+    color: var(--ml-main-link-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover:after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):hover *:after {
+    color: var(--ml-main-link-color-hover) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active:after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:not(:visited):not(#imp):active *:after {
+    color: var(--ml-main-link-color-active) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:not(#imp):not(.imp) *:after {
+    color: var(--ml-main-visited-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp):not(#imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp):not(#imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:not(imp) *:not(#imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:active:hover:not(imp) *:not(#imp):after {
+    color: var(--ml-main-visited-color-active) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):before,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp):not(#imp):after,
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) a:visited:hover:not(imp) *:not(#imp):after {
+    color: var(--ml-main-visited-color-hover) !important;
+}
+
+
+
+
+/* Angular & Material design fixes begin */
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-menu-content:not(.imp):not(#imp)>.mat-menu-item:not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-ripple:not(.imp):not(#imp) {
+    background-color: transparent !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-backdrop.cdk-overlay-backdrop-showing:not(.imp):not(#imp) {
+    background-color: var(--ml-main-trans-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-overlay-connected-position-bounding-box:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>body:not(.imp)>.cdk-overlay-container:not(.imp):not(#imp)>.cdk-global-overlay-wrapper:not(.imp):not(#imp)>.cdk-overlay-pane:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-card:not(.imp):not(#imp) {
+    background-color: var(--ml-main-alt-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) :not(.imp):not(#imp)>.mat-form-field-infix:not(.imp):not(#imp) {
+    border-top-color: transparent !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-drawer-container:not(.imp):not(#imp)>.mat-drawer:not(.imp):not(#imp) {
+    background-color: var(--ml-main-background-color) !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-progress-spinner:not(.imp):not(#imp)>svg:not(.imp):not(#imp)>circle:not(.imp):not(#imp) {
+    fill: transparent !important;
+}
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-form-field-wrapper:not(.imp):not(#imp)>.mat-form-field-underline:not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .mat-tab-list:not(.imp):not(#imp)>.mat-ink-bar:not(.imp):not(#imp) {
+    background-color: var(--ml-main-border-color) !important;
+}
+
+.mat-form-field-underline,
+.mat-ink-bar {
+    --ml-background-background-color:Border;
+}
+
+/* Angular & Material design fixes end */
