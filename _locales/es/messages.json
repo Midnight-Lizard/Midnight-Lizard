@@ -556,7 +556,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "    Ajustes de color de texto\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
+        "message": " Ajustes de las barras de desplazamiento\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
@@ -1099,5 +1099,9 @@
     "localFiles_text_label": {
         "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
         "message": "archivos locales"
+    },
+    "scrollbarStyle_text_label": {
+        "description": "scrollbarStyle_text_label: text on the label",
+        "message": "Cambiar barras de desplazamiento"
     }
 }
