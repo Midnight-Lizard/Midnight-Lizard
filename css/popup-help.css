@@ -185,11 +185,19 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 
 .ml-tab-item[tooltip][content="fond-images"]:before
 {
-    margin-top: -64px;
+    bottom: 49px;
 }
 .ml-tab-item[tooltip][content="scrollbars"]:before
 {
-    margin-top: -45px;
+    bottom: 49px;
+}
+.ml-tab-item[tooltip][content="edit-schemes"]:before
+{
+    bottom: 49px;
+}
+.ml-tab-item[tooltip][content="global-settings"]:before
+{
+    bottom: 49px;
 }
 
 @keyframes delayedShowEffect

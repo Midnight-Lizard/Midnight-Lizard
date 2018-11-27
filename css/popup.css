@@ -120,13 +120,13 @@ body {
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
     position: absolute;
-    top: 145px;
-    bottom: 0px;
+    top: 0px;
     right: 0px;
     left: 0px;
-    vertical-align: bottom;
+    /* vertical-align: bottom; */
     background-color: var(--main-background-color);
     /* width: 170px; */
+    padding: 25px 0px 20px 0px;
 }
 
 .ml-dialog-settings {
@@ -151,7 +151,7 @@ body {
 
 .ml-dialog-commands>.ml-dialog-input-text {
     width: 121px;
-    margin: 5px 20px 20px 20px;
+    margin: 5px 20px 15px 20px;
     background-color: var(--content-background-color);
 }
 
@@ -163,13 +163,13 @@ body {
 }
 
 .ml-dialog-commands>.ml-dialog-label {
-    margin: 0px auto;
+    margin: 2px auto;
     text-align: center;
     display: block;
 }
 
 .ml-dialog-commands>button {
-    margin: 20px 20px;
+    margin: 15px 20px;
     width: 130px;
 }
 .ml-dialog-commands>.ml-tool-box {
@@ -309,6 +309,16 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
 .ml-command-container .ml-helio-button {
     width: 120px;
     margin: auto 4px;
+}
+
+.ml-long-cmd-container .ml-helio-button {
+    width: 100%;
+    margin-top: 20px;
+    display: block;
+}
+
+.ml-long-cmd-container {
+    margin: 55px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
 }
 
 .disabled {
@@ -1152,47 +1162,43 @@ img.ml-image-example {
 .intro-select-scheme:after {
     width: 135px;
     height: 32px;
-    top: 160px;
+    top: 42px;
     right: -154px;
 }
 
 .intro-select-scheme:before {
-    height: 25px;
+    height: 71px;
     right: 0px;
-    top: 147px;
-    transform: skew(-127deg);
+    top: 75px;
+    transform: skew(-27deg);
 }
 
 .intro-edit-schemes:after {
     width: 142px;
     height: 32px;
-    top: 34px;
+    bottom: 75px;
     right: -152px;
 }
 
 .intro-edit-schemes:before {
-    height: 242px;
-    width: 5px;
-    border-bottom-right-radius: 10px;
-    border-style: dashed;
-    right: 1px;
-    top: 67px;
-    transform: skew(-5deg);
-    border-width: 0px 1px 1px 0px;
+    height: 84px;
+    right: 5px;
+    top: 313px;
+    transform: skew(19deg);
 }
 
 .intro-apply:after {
     width: 136px;
     height: 34px;
-    top: 361px;
+    top: 156px;
     right: -155px;
 }
 
 .intro-apply:before {
-    height: 75px;
+    height: 93px;
     right: 0px;
-    top: 286px;
-    transform: skew(26deg);
+    top: 191px;
+    transform: skew(-21deg);
 }
 
 .intro-tabs:after {
@@ -1258,16 +1264,16 @@ img.ml-image-example {
 .intro-default:after {
     width: 136px;
     height: 34px;
-    top: 293px;
+    top: 98px;
     right: -155px;
 }
 
 .intro-default:before {
-    height: 59px;
+    height: 236px;
     width: 7px;
-    right: 0px;
-    top: 310px;
-    transform: skew(-31deg);
+    right: -1px;
+    top: 132px;
+    transform: skew(-9deg);
 }
 
 .intro-help:after {

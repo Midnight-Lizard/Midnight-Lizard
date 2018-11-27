@@ -15,7 +15,7 @@
     display: block;
     position: absolute;
     z-index: 1;
-    top: 0px;
+    bottom: 0px;
     width: 100%;
 }
 
@@ -74,6 +74,7 @@
     padding: 14px 13px 14px 2px;
     margin-left: 0;
     margin-right: 10px;
+    position: relative;
     text-align: right;
     font-size: 15px;
     line-height: 17px;
@@ -122,7 +123,11 @@
     border-right: none;
     border-left: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, var(--tab-item-border-color, var(--thin-border-color)) 0.5%, transparent 0.5%) 1;
-    height: 26px;
+    height: 23px;
+}
+
+.right .ml-tab-item-separator:first-of-type {
+    height: 176px;
 }
 
 .ml-tab-item.active:not(imp)

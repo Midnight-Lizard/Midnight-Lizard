@@ -26,7 +26,6 @@ namespace MidnightLizard.Popup
         protected readonly _inputChangeDebounceTime = 300;
         protected _colorSchemeSelect!: HTMLSelectElement;
         protected _applyButton!: HTMLButtonElement;
-        protected _closeButton!: HTMLButtonElement;
         protected _setAsDefaultButton!: HTMLButtonElement;
         protected _hostName!: HTMLAnchorElement;
         protected _hostState!: HTMLElement;
@@ -123,7 +122,6 @@ namespace MidnightLizard.Popup
             this._setAsDefaultButton = doc.getElementById("setAsDefaultBtn") as HTMLButtonElement;
             this._colorSchemeSelect = doc.getElementById("colorScheme") as HTMLSelectElement;
             this._applyButton = doc.getElementById("applyBtn") as HTMLButtonElement;
-            this._closeButton = doc.getElementById("closeBtn") as HTMLButtonElement;
             this._hostName = doc.getElementById("hostName") as HTMLAnchorElement;
             this._hostState = doc.getElementById("hostState")!;
             this._facebookLink = doc.getElementById("facebook-link") as HTMLAnchorElement;
@@ -201,7 +199,6 @@ namespace MidnightLizard.Popup
             footer.onRoomRulesApplied.addListener(this.onFotterRoomRulesApplied as any, this, Events.EventHandlerPriority.Normal, footer);
 
             this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
-            this._closeButton.onclick = doc.defaultView!.close.bind(doc.defaultView);
             this._applyButton.onclick = this.applySettingsOnPage.bind(this);
             this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
             this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
