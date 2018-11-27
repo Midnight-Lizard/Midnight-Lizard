@@ -921,12 +921,15 @@ namespace MidnightLizard.Popup
                     this._colorSchemeSelect.value = "custom";
                 }
             }
+            this.setColorSchemeAttribute();
             settings.colorSchemeId = this._colorSchemeSelect.value as Settings.ColorSchemeId;
             dom.addEventListener(this._colorSchemeSelect, "change", this.onColorSchemeChanged, this);
         }
 
         protected onColorSchemeChanged()
         {
+            this.setColorSchemeAttribute();
+
             if (this._colorSchemeSelect.value === "default")
             {
                 this._settingsManager.getDefaultSettings()
@@ -946,6 +949,12 @@ namespace MidnightLizard.Popup
                     this.applySettingsOnPopup(selectedScheme);
                 }
             }
+        }
+
+        private setColorSchemeAttribute()
+        {
+            this._popup.documentElement!.setAttribute("ml-color-scheme",
+                this._colorSchemeSelect.value);
         }
 
         protected onButtonRoomRulesApplied(roomRules: ContentScript.RoomRules)

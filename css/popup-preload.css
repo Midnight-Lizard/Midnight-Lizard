@@ -3,6 +3,7 @@ html[ml-is-active][ml-stage]:not([ml-stage="complete"]) {
 }
 
 html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :before,
-html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :after {
+html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :after,
+html[ml-is-active][ml-stage]:not([ml-stage="complete"]) .ml-helio-button {
     visibility: hidden;
 }

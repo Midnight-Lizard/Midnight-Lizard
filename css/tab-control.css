@@ -52,6 +52,11 @@
     user-select: none;
     -moz-user-select: none;
     white-space: nowrap;
+    transition: opacity 150ms;
+}
+
+html:not([ml-color-scheme="custom"]) .ml-tab-item:not(:hover):not(.active) {
+    opacity: 0.8;
 }
 
 .left .ml-tab-item {

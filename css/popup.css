@@ -527,6 +527,11 @@ select.ml-dialog-input-text {
     display: table-cell;
     vertical-align: middle;
     position: relative;
+    transition: opacity 150ms;
+}
+
+.ml-footer-icon-container:not(:hover) {
+    opacity: 0.8;
 }
 
 .ml-footer-icon-container>a>svg {
@@ -736,8 +741,8 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #donate-link > a:not
     display: none;
 }
 
-#donate-link > a:not([style*="--link-color:rgb(109, 177, 233)"]):before,
-#donate-link > a:not([style*="--link-color:rgb(109, 177, 233)"]):after {
+html:not([ml-color-scheme="default"]) #donate-link > a:before,
+html:not([ml-color-scheme="default"]) #donate-link > a:after {
     display: block;
 }
 
