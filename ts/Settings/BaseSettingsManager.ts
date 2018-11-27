@@ -383,7 +383,7 @@ namespace MidnightLizard.Settings
             if (settings.maxBackgroundImageSize === undefined ||
                 isNaN(settings.maxBackgroundImageSize))
             {
-                settings.maxBackgroundImageSize = 1000;
+                settings.maxBackgroundImageSize = 500;
             }
 
             if (!settings.mode)
