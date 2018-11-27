@@ -1622,3 +1622,18 @@ span[i18n="textExample"]:nth-child(7) {
     background-color: var(--main-background-color);
     outline: solid 1px var(--thin-border-color);
 }
+
+html[ml-color-scheme="custom"] i.unsaved {
+    --ml-ignore:true;
+    content: "";
+    display: block;
+    position: absolute;
+    right: -3px;
+    top: 18px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--ml-main-link-color);
+    --ml-background-background-color:Text;
+    z-index: 100;
+}
