@@ -42,6 +42,7 @@ namespace MidnightLizard.Popup
         abstract get currentSiteSettings(): Settings.ColorScheme;
         abstract set currentSiteSettings(settings: Settings.ColorScheme);
         abstract async getErrorReason(error: any): Promise<string>;
+        abstract get defaultColorSchemeId(): Settings.ColorSchemeId | undefined;
     }
 
     @DI.injectable(IPopupSettingsManager)

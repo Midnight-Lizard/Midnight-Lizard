@@ -102,6 +102,9 @@ namespace MidnightLizard.Settings
         protected _computedMode: ProcessingMode = ProcessingMode.Complex;
         protected isInit = false;
 
+        private _defaultColorSchemeId!: ColorSchemeId;
+        public get defaultColorSchemeId() { return this._defaultColorSchemeId };
+
         /** SettingsManager constructor
          * @param _cookiesManager - abstract cookies manager
          * @param _settingsBus - abstract settings communication bus
@@ -527,6 +530,7 @@ namespace MidnightLizard.Settings
                 restoreColorsOnCopy: defaultSettings.restoreColorsOnCopy,
                 restoreColorsOnPrint: defaultSettings.restoreColorsOnPrint,
             });
+            this._defaultColorSchemeId = this._defaultSettings.colorSchemeId;
             if (renameToDefault)
             {
                 this.renameSettingsToDefault(this._defaultSettings);

@@ -722,7 +722,14 @@ namespace MidnightLizard.Popup
         {
             if (settings.colorSchemeId)
             {
-                if (settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
+                if (settings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId &&
+                    this._settingsManager.defaultColorSchemeId &&
+                    this._settingsManager.defaultColorSchemeId !== "custom" as Settings.ColorSchemeId &&
+                    Settings.ColorSchemes[this._settingsManager.defaultColorSchemeId])
+                {
+                    this._colorSchemeForEdit.value = this._settingsManager.defaultColorSchemeId;
+                }
+                else if (settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
                     settings.colorSchemeId !== Settings.ColorSchemes.default.colorSchemeId &&
                     settings.colorSchemeId !== Settings.ColorSchemes.original.colorSchemeId &&
                     Settings.ColorSchemes[settings.colorSchemeId])
