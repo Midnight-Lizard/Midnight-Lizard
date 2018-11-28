@@ -480,7 +480,7 @@
     },
     "commonTab_@tooltip": {
         "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "       普遍设置\n―――――――――――――――――――\n 此选项卡包含整个页面的普遍设置。"
+        "message": "       普遍設置\n―――――――――――――――――――\n 此选项卡包含整个页面的普遍設置。"
     },
     "activationTab_text_label": {
         "description": "activationTab_text_label: text on the label",
@@ -488,7 +488,7 @@
     },
     "activationTab_@tooltip": {
         "description": "activationTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "       啟用设置\n―――――――――――――――――――\n 使用此选项卡可以定义哪些页面以及何时应处理或保持不变。"
+        "message": "       啟用設置\n―――――――――――――――――――\n 使用此选项卡可以定义哪些页面以及何时应处理或保持不变。"
     },
     "backgroundTab_text_label": {
         "description": "backgroundTab_text_label: text on the label",
@@ -496,7 +496,7 @@
     },
     "backgroundTab_@tooltip": {
         "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      背景颜色设置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充设置。"
+        "message": "      背景颜色設置\n―――――――――――――――――――\n 此选项卡包含定义元素颜色填充設置。"
     },
     "buttonsTab_text_label": {
         "description": "buttonsTab_text_label: text on the label",
@@ -504,7 +504,7 @@
     },
     "buttonsTab_@tooltip": {
         "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      按钮背景颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充设置。"
+        "message": "      按钮背景颜色設置\n―――――――――――――――――――\n 此选项卡包含此页面中定义按钮的颜色填充設置。"
     },
     "textTab_text_label": {
         "description": "textTab_text_label: text on the label",
@@ -512,7 +512,7 @@
     },
     "textTab_@tooltip": {
         "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      文本颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整设置。"
+        "message": "      文本颜色設置\n―――――――――――――――――――\n 此选项卡包含此页面上所有文本颜色的调整設置。"
     },
     "linkTab_text_label": {
         "description": "linkTab_text_label: text on the label",
@@ -520,7 +520,7 @@
     },
     "linkTab_@tooltip": {
         "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      超链接颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整设置。"
+        "message": "      超链接颜色設置\n―――――――――――――――――――\n 此选项卡包含此页面上所有超連結颜色的调整設置。"
     },
     "borderTab_text_label": {
         "description": "borderTab_text_label: text on the label",
@@ -528,7 +528,7 @@
     },
     "borderTab_@tooltip": {
         "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      边界颜色设置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整设置。"
+        "message": "      边界颜色設置\n―――――――――――――――――――\n 此选项卡包含此页面上所有边界和线条颜色的调整設置。"
     },
     "imagesTab_text_label": {
         "description": "imagesTab_text_label: text on the label",
@@ -536,7 +536,7 @@
     },
     "imagesTab_@tooltip": {
         "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "       圖像调整设置\n―――――――――――――――――――\n 此选项卡包含圖像及圖片的饱和度与亮度调整设置。"
+        "message": "       圖像调整設置\n―――――――――――――――――――\n 此选项卡包含圖像及圖片的饱和度与亮度调整設置。"
     },
     "backgroundImagesTab_text_label": {
         "description": "backgroundImagesTab_text_label: text on the label",
@@ -544,7 +544,7 @@
     },
     "backgroundImagesTab_@tooltip": {
         "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "     背景图像调整设置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整设置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
+        "message": "     背景图像调整設置\n―――――――――――――――――――\n 此选项卡包含背景图像饱和度及亮度调整設置。\n 背景图像是特殊种类的元素背景填充。这些图像通常在文本内或后面。"
     },
     "scrollbarsTab_text_label": {
         "description": "scrollbarsTab_text_label: text on the label",
@@ -552,7 +552,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "        滚动条设置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整设置。\n不支持 Firefox。"
+        "message": "        滚动条設置\n―――――――――――――――――――\n 页面上所有滚动条颜色的调整設置。\n不支持 Firefox。"
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
@@ -584,11 +584,11 @@
     },
     "syncSettings_text_label": {
         "description": "syncSettings_text_label: text on the label",
-        "message": "在您的设备间同步设置"
+        "message": "在您的设备间同步設置"
     },
     "syncSettings_@title": {
         "description": "syncSettings_@title: text on the tooltip\/hint",
-        "message": "此选项勾选时将在您的设备间同步 [Midnight Lizard] 设置。\n当为每个网站勾选自定义设置时将从所有设备中合并设置但自定义配色方案将被最新配色方案所覆盖。所以请确保您编辑自定义方案时处于在线状态。\n您同时也需要在浏览器设置中启用 [同步] 使得 [Midnight Lizard] 设置同步正常工作。"
+        "message": "此选项勾选时将在您的设备间同步 [Midnight Lizard] 設置。\n当为每个网站勾选自定义設置时将从所有设备中合并設置但自定义配色方案将被最新配色方案所覆盖。所以请确保您编辑自定义方案时处于在线状态。\n您同时也需要在浏览器設置中启用 [同步] 使得 [Midnight Lizard] 設置同步正常工作。"
     },
     "colorSchemeForEdit_text_label": {
         "description": "colorSchemeForEdit_text_label: text on the label",
@@ -620,7 +620,7 @@
     },
     "saveColorSchemeBtn_@title": {
         "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "使用當前的弹出设置更新选中的配色方案"
+        "message": "使用當前的弹出設置更新选中的配色方案"
     },
     "exportColorSchemeBtn_text_label": {
         "description": "exportColorSchemeBtn_text_label: text on the label",
@@ -628,7 +628,7 @@
     },
     "exportColorSchemeBtn_@title": {
         "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用當前应用于[$current_color_scheme$]的弹出设置替换其所有设置。",
+        "message": "将所编辑的[$color_scheme_for_edit$]选中配色方案[$color_scheme_name$]导出至文件并使用當前应用于[$current_color_scheme$]的弹出設置替换其所有設置。",
         "placeholders": {
             "current_color_scheme": {
                 "content": "$1",
@@ -658,7 +658,7 @@
     },
     "editSchemesTab_@tooltip": {
         "description": "editSchemesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      配色方案编辑\n―――――――――――――――――――\n 當前应用于弹出窗口的设置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新设置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
+        "message": "      配色方案编辑\n―――――――――――――――――――\n 當前应用于弹出窗口的設置可以用于新建配色方案或更新已有方案。若您新建新配色方案，其将可用于其他所有网站。\n 甚至在创建之后，您可以调整您的配色方案、更新它一次然后更改将自动应用于使用此配色方案的所有网站。您也可以随时删除您的配色方案。\n 以同样的方式您可以使用新設置及名称覆盖预定义的配色方案。删除预定义配色方案将只移除覆盖项并恢复它们的原始状态。\n 请在弹出窗口的左上角问号下查找更多示例。"
     },
     "currentColorScheme_text_label": {
         "description": "currentColorScheme_text_label: text on the label",
@@ -674,7 +674,7 @@
     },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "忘记當前網站设置"
+        "message": "忘记當前網站設置"
     },
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
@@ -686,15 +686,19 @@
     },
     "setAsDefaultBtn_text_label": {
         "description": "setAsDefaultBtn_text_label: text on the label",
-        "message": "设置为默认"
+        "message": "設置为默认"
     },
     "setAsDefaultBtn_@title": {
         "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
-        "message": "设置當前设置为所有網站的默认设置"
+        "message": "設置當前設置为所有網站的默认設置"
     },
     "applyBtn_text_label": {
         "description": "applyBtn_text_label: text on the label",
         "message": "应用"
+    },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用并保存此網站的當前設置"
     },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
@@ -744,7 +748,7 @@
     },
     "colorSchemeSaveConfirmationMessage": {
         "description": "colorSchemeSaveConfirmationMessage: text on the message box",
-        "message": "您正要使用當前名为[$color_scheme_name$]的弹出设置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
+        "message": "您正要使用當前名为[$color_scheme_name$]的弹出設置更新配色方案[$color_scheme_for_edit_name$]。您是否确实要继续？",
         "placeholders": {
             "color_scheme_for_edit_name": {
                 "content": "$1",
@@ -776,11 +780,11 @@
     },
     "forgetAllConfirmationMessage": {
         "description": "forgetAllConfirmationMessage: text on the message box",
-        "message": "您所制作的所有设置及自定义配色方案将被删除！您是否确实想继续？"
+        "message": "您所制作的所有設置及自定义配色方案将被删除！您是否确实想继续？"
     },
     "forgetAllFailureMessage": {
         "description": "forgetAllFailureMessage: text on the message box",
-        "message": "全部網站设置删除失败。\n"
+        "message": "全部網站設置删除失败。\n"
     },
     "forgetThisFailureMessage": {
         "description": "forgetThisFailureMessage: text on the message box",
@@ -803,7 +807,7 @@
         "message": "無法更改設定同步選項。\n"
     },
     "introduction_html_content": {
-        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置當前设置作为所有網站的<span>默认设置<\/span>，请点击右侧面板的<q>设置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有設置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好設置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望設置當前設置作为所有網站的<span>默认設置<\/span>，请点击右侧面板的<q>設置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>"
     },
     "shortcut_text_lable": {
         "message": "快捷鍵"
@@ -951,6 +955,10 @@
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "幫助翻譯Midnight Lizard至其他語言"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>[Midnight Lizard] 无法连接至此页面<\/h1>\n<span>由于以下原因之一<\/span>\n<br\/>\n<ul>\n    <li>\n        浏览器不允许在此页面上运行扩展程序<br\/>\n        （例如：网上应用店、設置、新页面）\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] 已更新或刚刚安装<br\/>\n        故页面需要刷新\n    <\/li><br\/>\n    <li>\n        當前页面为本地文件，<br\/>\n        但您未允许 [Midnight Lizard] 处理本地文件\n    <\/li><br\/>\n<\/ul>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    警 告<br\/>\n    [Midnight Lizard] 是一个拓展程序，因此其无法更改浏览器标签页和工具栏颜色。\n    为了达成此目的，您需要安装或更改自定义浏览器主题、\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
@@ -1147,5 +1155,13 @@
     "textExample_text_label": {
         "description": "textExample_text_label: text on the label",
         "message": "文字"
+    },
+    "forgetThisSiteBtn_text_long_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "刪除當前網站設置"
+    },
+    "forgetAllSitesBtn_text_long_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "刪除所有設置"
     }
 }
