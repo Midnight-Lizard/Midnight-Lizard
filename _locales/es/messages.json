@@ -702,7 +702,7 @@
     },
     "applyBtn_@title": {
         "description": "applyBtn_@title: text on the tooltip\/hint",
-        "message": "Aplicar y guardar ajustes actuales para esta página web"
+        "message": "Aplicar ajustes actuales para esta página web"
     },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
@@ -715,6 +715,10 @@
     "donateLink_@tooltip": {
         "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Donar a nuestro colectivo"
+    },
+    "donateLink_@marker": {
+        "description": "donateLink_@marker: text on the marker",
+        "message": "Donar"
     },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
@@ -1103,5 +1107,13 @@
     "scrollbarStyle_text_label": {
         "description": "scrollbarStyle_text_label: text on the label",
         "message": "Cambiar barras de desplazamiento"
+    },
+    "forgetThisSiteBtn_text_long_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "Eliminar los ajustes de la página web actual"
+    },
+    "forgetAllSitesBtn_text_long_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "Eliminar todos los ajustes"
     }
 }
