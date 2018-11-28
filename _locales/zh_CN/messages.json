@@ -700,6 +700,10 @@
         "description": "applyBtn_text_label: text on the label",
         "message": "应用"
     },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "应用此网站的当前设置"
+    },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
         "message": "退出"
