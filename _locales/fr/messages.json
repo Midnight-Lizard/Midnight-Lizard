@@ -688,6 +688,10 @@
         "description": "applyBtn_text_label: text on the label",
         "message": "Appliquer"
     },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "Appliquer les paramètres actuels pour ce site"
+    },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
         "message": "Fermer"
@@ -898,5 +902,9 @@
     "scrollbarStyle_text_label": {
         "description": "scrollbarStyle_text_label: text on the label",
         "message": "Changer le style des barres de défilement"
+    },
+    "forgetThisSiteBtn_text_long_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "Supprimer les paramètres du site actuel"
     }
 }
