@@ -964,10 +964,6 @@
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Help translate Midnight Lizard\ninto other languages"
     },
-    "popupDisconnected_html_error_message": {
-        "description": "popupDisconnected_html_error_message: text on the message box",
-        "message": "<h1>Midnight Lizard cannot connect to this page<\/h1>\n<span>probably because of one of the following reasons<\/span>\n<br\/>\n<ul>\n    <li>\n        Web browser cannot run extensions on the pages like:<br\/>\n        Web Store, Settings, New Tab, etc.\n    <\/li><br\/>\n    <li>\n        'Midnight Lizard' might has been updated or just installed<br\/>\n        so page needs to be refreshed\n    <\/li><br\/>\n    <li>\n        Current page might be represented by a local file,<br\/>\n        but you have not allowed 'Midnight Lizard' to process local files\n    <\/li><br\/>\n<\/ul>\n<p>※ Just try it on a regular website first<\/p>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    TIP<br\/>\n    Midnight Lizard is an extension so it cannot change colors of browser tabs and toolbars.\n    For this purpose you need to install or change a custom browser theme.\n<\/em>"
-    },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
         "message": "Example of processing different background colors with increased contrast.\nContrast depends on an element size so on the real page it might look different."
