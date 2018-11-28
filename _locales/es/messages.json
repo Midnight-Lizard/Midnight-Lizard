@@ -960,10 +960,6 @@
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Ayuda a traducir Midnight Lizard a otros idiomas"
     },
-    "popupDisconnected_html_error_message": {
-        "description": "popupDisconnected_html_error_message: text on the message box",
-        "message": "<h1>Midnight Lizard no puede conectar a esta página<\/h1>\n<span>por alguna de las siguientes razones<\/span>\n<br\/>\n<ul>\n    <li>\n        El navegador no permite ejecutar extensiones en esta página<br\/>\n        (p. ej. Web Store, Ajustes, Nueva Pestaña)\n    <\/li><br\/>\n    <li>\n        [Midnight Lizard] ha sido actualizado o acaba de instalarse<br\/>\n        por tanto es necesario actualizar la página\n    <\/li><br\/>\n    <li>\n        La página actual representa un archivo local,<br\/>\n        pero no has dado permiso a [Midnight Lizard] para procesar archivos locales\n    <\/li><br\/>\n<\/ul>\n<p>※ Solo intenta usarlo en un sitio web regular<\/p>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    AVISO<br\/>\n    Midnight Lizard es una extensión por tanto no puede cambiar el color de la pestañas y de las barras de herramientas.\n    Para ello necesitas instalar\/cambiar un tema del navegador personalizado.\n<\/em>"
-    },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
         "message": "Ejemplo de procesado de diferentes colores de fondo con contraste incrementado.\nEl contraste depende del tamaño del elemento, por tanto en la página puede verse diferente."
