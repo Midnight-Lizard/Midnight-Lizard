@@ -519,13 +519,14 @@ namespace MidnightLizard.ContentScript
         public canHavePseudoClass(tag: Element, preFilteredSelectors: string[], pseudoClass: PseudoClass): boolean
         {
             let pseudoRegExp = this.getPseudoClassRegExp(pseudoClass);
-            return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 && tag.matches(s.replace(pseudoRegExp, "$1")));
+            return preFilteredSelectors.some(s => s.search(pseudoRegExp) !== -1 &&
+                tag.matches(s.replace(pseudoRegExp, "$1")));
         }
 
         private getPseudoClassRegExp(pseudoClass: PseudoClass)
         {
             return new RegExp(x.remember(x.outOfSet(x.LeftParenthesis, x.WhiteSpace)) +
-                x.Colon + PseudoClass[pseudoClass] + x.WordBoundary, "gi");
+                x.Colon + PseudoClass[pseudoClass] + x.WordBoundary + x.notFollowedBy(x.Minus), "gi");
         }
 
         protected validateMediaQuery(doc: Document, mediaQuery: string)
