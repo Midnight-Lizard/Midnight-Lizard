@@ -1205,5 +1205,13 @@
     "textExample_text_label": {
         "description": "textExample_text_label: text on the label",
         "message": "文本"
+    },
+    "forgetThisSiteBtn_text_long_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "删除当前网站设置"
+    },
+    "forgetAllSitesBtn_text_long_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "删除所有设置"
     }
 }
