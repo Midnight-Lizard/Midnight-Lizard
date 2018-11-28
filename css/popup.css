@@ -29,7 +29,7 @@ body {
     }
 }
 
-@supports (-webkit-appearance: button)
+@supports (orphans: initial)
 {
     .firefox-only
     {
