@@ -37,6 +37,7 @@ namespace MidnightLizard.Popup
         protected _forgetThisSiteButton!: HTMLButtonElement;
         protected _deleteColorSchemeButton!: HTMLButtonElement;
         protected _saveColorSchemeButton!: HTMLButtonElement;
+        protected _hiddenSaveColorSchemeButton!: HTMLButtonElement;
         protected _exportColorSchemeButton!: HTMLButtonElement;
         protected _newColorSchemeName!: HTMLInputElement;
         protected _colorSchemeForEdit!: HTMLSelectElement;
@@ -131,6 +132,7 @@ namespace MidnightLizard.Popup
             this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
             this._runOnThisSiteCheckBox = doc.getElementById("runOnThisSite") as HTMLInputElement;
             this._saveColorSchemeButton = doc.getElementById("saveColorSchemeBtn") as HTMLButtonElement;
+            this._hiddenSaveColorSchemeButton = doc.getElementById("hiddenSaveColorSchemeButton") as HTMLButtonElement;
             this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
             this._exportColorSchemeButton = doc.getElementById("exportColorSchemeBtn") as HTMLButtonElement;
             this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
@@ -208,7 +210,8 @@ namespace MidnightLizard.Popup
 
             this._colorSchemeForEdit.onchange = this.onColorSchemeForEditChanged.bind(this);
             this._deleteColorSchemeButton.onclick = this.deleteUserColorScheme.bind(this);
-            this._saveColorSchemeButton.onclick = this.saveUserColorScheme.bind(this);
+            this._hiddenSaveColorSchemeButton.onclick =
+                this._saveColorSchemeButton.onclick = this.saveUserColorScheme.bind(this);
             this._newColorSchemeName.oninput = this.updateColorSchemeButtons.bind(this);
             this._exportColorSchemeButton.onclick = this.exportColorScheme.bind(this);
             this._importColorSchemeFileInput.onchange = this.importColorSchemes.bind(this);
@@ -478,7 +481,7 @@ namespace MidnightLizard.Popup
         protected updateColorSchemeButtons()
         {
             const formHasErrors = !this._settingsForm.checkValidity();
-            this._saveColorSchemeButton.disabled = formHasErrors ||
+            this._hiddenSaveColorSchemeButton.disabled = this._saveColorSchemeButton.disabled = formHasErrors ||
                 this._colorSchemeForEdit.value !== "custom" &&
                 this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings,
                     Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId]) &&
@@ -486,6 +489,14 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value as Settings.ColorSchemeId;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
             this._exportColorSchemeButton.disabled = formHasErrors;
+            if (!this._hiddenSaveColorSchemeButton.disabled && this._colorSchemeForEdit.value !== "custom")
+            {
+                this._hiddenSaveColorSchemeButton.classList.remove("hidden");
+            }
+            else
+            {
+                this._hiddenSaveColorSchemeButton.classList.add("hidden");
+            }
 
             this._exportColorSchemeButton.title = this._i18n.getMessage("exportColorSchemeBtn_@title",
                 this._colorSchemeSelect.selectedOptions[0].text,
@@ -545,11 +556,13 @@ namespace MidnightLizard.Popup
             return false;
         }
 
-        protected saveUserColorScheme()
+        protected saveUserColorScheme(e: Event)
         {
             const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
                 ? Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId].colorSchemeName : "";
             if (this._colorSchemeForEdit.value === "custom" ||
+                e.target && e.target instanceof HTMLButtonElement &&
+                e.target.id === this._hiddenSaveColorSchemeButton.id ||
                 confirm(this._i18n.getMessage("colorSchemeSaveConfirmationMessage",
                     colorSchemeForEditName, this._newColorSchemeName.value)))
             {
@@ -572,7 +585,7 @@ namespace MidnightLizard.Popup
                         alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + reason);
                     });
             }
-            return false;
+            // return false;
         }
 
         protected deleteUserColorScheme()
@@ -903,9 +916,17 @@ namespace MidnightLizard.Popup
             }
         }
 
+        private updateCustomColorSchemeName()
+        {
+            const customName = this._i18n.getMessage("colorSchemeName_Custom");
+            this._colorSchemeSelect.options.namedItem("custom")!.textContent = `${customName}`;
+        }
+
         protected setUpColorSchemeSelectValue(settings: Settings.ColorScheme)
         {
             dom.removeAllEventListeners(this._colorSchemeSelect);
+            this.updateCustomColorSchemeName();
+
             setUp:
             {
                 if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as Settings.ColorSchemeId &&
@@ -926,6 +947,12 @@ namespace MidnightLizard.Popup
                         }
                     }
                     this._colorSchemeSelect.value = "custom";
+                    if (this._colorSchemeForEdit.value !== "custom")
+                    {
+                        this._colorSchemeSelect.options.namedItem("custom")!.textContent =
+                            Settings.ColorSchemeNamePrefix.Unsaved +
+                            this._colorSchemeForEdit.selectedOptions[0].textContent;
+                    }
                 }
             }
             this.setColorSchemeAttribute();
@@ -936,6 +963,7 @@ namespace MidnightLizard.Popup
         protected onColorSchemeChanged()
         {
             this.setColorSchemeAttribute();
+            this.updateCustomColorSchemeName();
 
             if (this._colorSchemeSelect.value === "default")
             {

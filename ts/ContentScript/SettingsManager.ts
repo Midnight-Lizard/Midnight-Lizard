@@ -176,6 +176,10 @@ namespace MidnightLizard.ContentScript
                 //+ current website color scheme changed
                 `cs:${this._currentSettings.colorSchemeId}` in changes
                 ||
+                // current website uses default settings and corresponding color scheme has changed
+                this._currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId&&
+                `cs:${this.defaultColorSchemeId}` in changes
+                ||
                 //+ storage type changed
                 'sync' in changes))
             {

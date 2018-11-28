@@ -10,7 +10,8 @@ namespace MidnightLizard.Settings
     export enum ColorSchemeNamePrefix
     {
         FromFile = "📄 ",
-        Public = "☁ "
+        Public = "☁ ",
+        Unsaved = "🖉 "
     }
 
     export type ColorSchemePropertyName = keyof ColorScheme;

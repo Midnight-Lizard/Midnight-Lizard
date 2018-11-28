@@ -1650,3 +1650,7 @@ html[ml-color-scheme="custom"] i.unsaved {
     --ml-background-background-color:Text;
     z-index: 100;
 }
+
+.ml-helio-button.hidden {
+    visibility: hidden;
+}
