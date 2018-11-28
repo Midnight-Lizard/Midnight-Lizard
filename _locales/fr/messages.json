@@ -688,10 +688,6 @@
         "description": "applyBtn_text_label: text on the label",
         "message": "Appliquer"
     },
-    "applyBtn_@title": {
-        "description": "applyBtn_@title: text on the tooltip\/hint",
-        "message": "Appliquer et sauvegarder les paramètres actuels pour ce site"
-    },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
         "message": "Fermer"
