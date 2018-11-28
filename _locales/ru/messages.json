@@ -700,6 +700,10 @@
         "description": "applyBtn_text_label: text on the label",
         "message": "Применить"
     },
+    "applyBtn_@title": {
+        "description": "applyBtn_@title: text on the tooltip\/hint",
+        "message": "Применить текущую цветовую схему на текущем сайте,\nпереопределив для него схему по умолчанию."
+    },
     "closeBtn_text_label": {
         "description": "closeBtn_text_label: text on the label",
         "message": "Закрыть"
@@ -959,6 +963,10 @@
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Помочь перевести Midnight Lizard\nна другие языки"
+    },
+    "popupDisconnected_html_error_message": {
+        "description": "popupDisconnected_html_error_message: text on the message box",
+        "message": "<h1>Midnight Lizard не запущен на этой странице<\/h1>\n<span>возможно по одной из следующих причин:<\/span>\n<br\/>\n<ul>\n    <li>\n        Браузер не может запускать расширения на таких страницах как:<br\/>\n        Интернет-магазин расширений, Настройки, Новая вкладка и т.п.\n    <\/li><br\/>\n    <li>\n        Midnight Lizard был обновлен или только что установлен,<br\/>\n        поэтому может понадобиться обновить страницу\n    <\/li><br\/>\n    <li>\n        Текущая страница возможно является локальным файлом,<br\/>\n        но Вы не разрешили Midnight Lizard обрабатывать локальные файлы\n    <\/li><br\/>\n<\/ul>\n<p>※ Просто попробуйте на обычном сайте<\/p>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    СОВЕТ<br\/>\n    Midnight Lizard является расширением, поэтому не может менять цвета вкладок и панелей браузера.\n    Для этих целей Вам необходимо отдельно установить\/поменять тему браузера.\n<\/em>"
     },
     "backgroundExampleWithContrast_@title": {
         "description": "backgroundExampleWithContrast_@title: text on the tooltip\/hint",
