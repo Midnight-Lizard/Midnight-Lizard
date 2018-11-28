@@ -1107,5 +1107,13 @@
     "scrollbarStyle_text_label": {
         "description": "scrollbarStyle_text_label: text on the label",
         "message": "Cambiar barras de desplazamiento"
+    },
+    "forgetThisSiteBtn_text_long_label": {
+        "description": "forgetThisSiteBtn_text_label: text on the label",
+        "message": "Eliminar los ajustes de la página web actual"
+    },
+    "forgetAllSitesBtn_text_long_label": {
+        "description": "forgetAllSitesBtn_text_label: text on the label",
+        "message": "Eliminar todos los ajustes"
     }
 }
