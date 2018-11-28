@@ -317,6 +317,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .ml-long-cmd-container {
