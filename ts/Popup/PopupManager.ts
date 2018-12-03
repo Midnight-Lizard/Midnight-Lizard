@@ -585,7 +585,11 @@ namespace MidnightLizard.Popup
                         alert(this._i18n.getMessage("colorSchemeSaveFailureMessage") + reason);
                     });
             }
-            // return false;
+            if (e.target && e.target instanceof HTMLButtonElement &&
+                e.target.id !== this._hiddenSaveColorSchemeButton.id)
+            {
+                return false;
+            }
         }
 
         protected deleteUserColorScheme()
