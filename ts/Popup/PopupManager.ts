@@ -674,7 +674,6 @@ namespace MidnightLizard.Popup
             this._settingsManager
                 .deleteCurrentSiteSettings()
                 .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
-            return false;
         }
 
         protected setAsDefaultSettings()
