@@ -75,6 +75,10 @@
         "description": "blueFilter_text_label: text on the label",
         "message": "藍色過濾強度"
     },
+    "blueFilter_@title": {
+        "description": "blueFilter_@title: text on the tooltip\/hint",
+        "message": "藍色過濾強度。\n從頁面中刪除藍光並用紅燈替換它。"
+    },
     "backgroundSaturationLimit_text_label": {
         "description": "backgroundSaturationLimit_text_label: text on the label",
         "message": "飽和度限制"
@@ -716,6 +720,10 @@
         "description": "donateLink_@marker: text on the marker",
         "message": "捐助"
     },
+    "donateLink_@notice": {
+        "description": "donateLink_@notice: text on the marker",
+        "message": "點擊鏈接隱藏此消息"
+    },
     "rateLink_@tooltip": {
         "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "为此扩展程序评分"
@@ -1144,17 +1152,33 @@
         "description": "linkExamples_text_label: text on the label",
         "message": "示例: "
     },
+    "linkExamples_@title": {
+        "description": "linkExamples_@title: text on the tooltip\/hint",
+        "message": "處理彩色連結的示例。\n减少“默認色調的重力”以保持原來的連結顏色。"
+    },
     "linkExample_text_label": {
         "description": "linkExample_text_label: text on the label",
         "message": "链接"
+    },
+    "linkExample_@title": {
+        "description": "linkExample_@title: text on the tooltip\/hint",
+        "message": "連結本身具有處理過的顏色。\n底線具有用於演示的原始連結顏色。"
     },
     "textExamples_text_label": {
         "description": "textExamples_text_label: text on the label",
         "message": "示例: "
     },
+    "textExamples_@title": {
+        "description": "textExamples_@title: text on the tooltip\/hint",
+        "message": "處理彩色文字的示例。"
+    },
     "textExample_text_label": {
         "description": "textExample_text_label: text on the label",
         "message": "文字"
+    },
+    "textExample_@title": {
+        "description": "textExample_@title: text on the tooltip\/hint",
+        "message": "文本本身俱有處理過的顏色。\n下劃線具有原始文本顏色以用於演示目的。"
     },
     "forgetThisSiteBtn_text_long_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
