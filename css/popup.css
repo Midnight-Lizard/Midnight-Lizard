@@ -552,6 +552,7 @@ select.ml-dialog-input-text {
 .ml-footer-separator {
     display: table-cell;
     width: 100%;
+    vertical-align: middle;
 }
 
 .instagram-icon {
@@ -1654,4 +1655,15 @@ html[ml-color-scheme="custom"] i.unsaved {
 
 .ml-helio-button.hidden {
     visibility: hidden;
+}
+
+.privacy-link {
+    color: var(--main-text-color);
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+}
+.privacy-link:hover {
+    text-decoration: underline;
 }

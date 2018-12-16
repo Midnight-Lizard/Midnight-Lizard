@@ -133,6 +133,20 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 #instagram-link:after {left: 12px;}
 #pinterest-link:after {left: 10px;}
 #github-link:after {left: 10px;}
+.privacy-link:before {
+    bottom: 34px;
+    left: -20px;
+    white-space: nowrap;
+}
+.privacy-link:after {
+    bottom: 15px;
+    left: 10px;
+    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
+    border-top-color: var(--dark-background-color);
+    border-bottom-color: transparent!important;
+    border-right-color: transparent!important;
+    border-left-color: transparent!important;
+}
 
 .ml-tab-item[tooltip]:before
 {
