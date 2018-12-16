@@ -102,3 +102,22 @@ html[ml-is-active] .minidiv .sfbg {
 html[ml-is-active] .aajZCb {
     box-shadow: 0 4px 6px 0 rgba(0,0,0,0.5);
 }
+
+html[ml-stage-mode="complete-complex"] form#tsf .aajZCb
+{
+    --ml-ignore:true;
+    background-color: var(--ml-main-background-color);
+}
+
+html[ml-stage-mode="complete-complex"] form#tsf .aajZCb *
+{
+    color: var(--ml-main-text-color)!important;
+}
+
+html[ml-stage-mode="complete-complex"] form#tsf .aajZCb .sbhl {
+    background-color: var(--ml-main-alt-background-color);
+}
+
+html[ml-stage-mode="complete-complex"] form#tsf .aajZCb .suggestions-inner-container {
+    border-top-color: var(--ml-main-border-color);
+}
