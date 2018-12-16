@@ -1256,7 +1256,7 @@
     },
     "onlineColorSchemesLink_@title": {
         "description": "onlineColorSchemesLink_@title: text on the tooltip\/hint",
-        "message": "Get more color schemes from online color schemes registry\n$url$",
+        "message": "Go to online color schemes registry\n$url$",
         "placeholders": {
             "url": {
                 "content": "https:\/\/midnight-lizard.org\/schemes",

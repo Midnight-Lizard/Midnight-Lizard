@@ -1241,5 +1241,27 @@
     "forgetAllSitesBtn_text_long_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "Удалить все настройки"
+    },
+    "privacyLink_text_label": {
+        "description": "privacyLink_text_label: text on the label",
+        "message": "Конфиденциальность"
+    },
+    "privacyLink_@tooltip": {
+        "description": "privacyLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Политика конфиденциальности расширения"
+    },
+    "onlineColorSchemesLink_text_label": {
+        "description": "onlineColorSchemesLink_text_label: text on the label",
+        "message": "Больше цветовых схем"
+    },
+    "onlineColorSchemesLink_@title": {
+        "description": "onlineColorSchemesLink_@title: text on the tooltip\/hint",
+        "message": "Перейти в онлайн хранилище цветовых схем\n$url$",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org\/schemes",
+                "example": "https:\/\/midnight-lizard.org\/schemes"
+            }
+        }
     }
 }
