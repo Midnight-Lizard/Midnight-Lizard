@@ -10,7 +10,7 @@ namespace MidnightLizard.ContentScript
     export abstract class ISvgFilters
     {
         public abstract createSvgFilters(doc: Document): void
-        public abstract remodeSvgFilters(doc: Document): void
+        public abstract removeSvgFilters(doc: Document): void
     }
 
     export enum FilterType
@@ -28,7 +28,7 @@ namespace MidnightLizard.ContentScript
         {
         }
 
-        public remodeSvgFilters(doc: Document): void
+        public removeSvgFilters(doc: Document): void
         {
             const svgFilters = doc.getElementById(svgElementId);
             svgFilters && svgFilters.remove();
@@ -130,7 +130,7 @@ namespace MidnightLizard.ContentScript
         private convertColorsToComponentTransfer(...colorComponents: number[]): string
         {
             const transfer = Array.apply(null, Array(256)).map(Number.prototype.valueOf, 0);
-            colorComponents.forEach(c => transfer[c] = 1);
+            colorComponents.forEach(c => transfer[Math.round(c)] = 1);
             return transfer.join(" ");
         }
     }

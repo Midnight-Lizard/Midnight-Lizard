@@ -590,6 +590,7 @@ namespace MidnightLizard.Popup
             {
                 return false;
             }
+            return true;
         }
 
         protected deleteUserColorScheme()

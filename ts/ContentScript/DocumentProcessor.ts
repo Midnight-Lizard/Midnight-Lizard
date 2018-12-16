@@ -959,7 +959,7 @@ namespace MidnightLizard.ContentScript
                             Util.sliceIntoChunks(otherTags, chunkLength * 2).map(chunk => [chunk, dp, dl]),
                             DocumentProcessor.processAllElements,
                             Math.round(delays.get(po.delayedInvisTags)! / density),
-                            getNextDelay);
+                            getNextDelay as any);
                     });
                 }
 
@@ -1110,9 +1110,9 @@ namespace MidnightLizard.ContentScript
                         Math.round(_delays.get(chunk[0].mlOrder || po.viewColorTags) / _density))
                         .bind(null, delays, density);
                     result = Util.forEachPromise(this.concatZeroDelayedChunks(
-                        Util.sliceIntoChunks(tags, chunkLength), getNextDelay)
+                        Util.sliceIntoChunks(tags, chunkLength), getNextDelay as any)
                         .map(chunk => [chunk, docProc]),
-                        DocumentProcessor.processElementsChunk, 0, getNextDelay);
+                        DocumentProcessor.processElementsChunk, 0, getNextDelay as any);
                 }
                 if (needObservation)
                 {
@@ -1452,7 +1452,7 @@ namespace MidnightLizard.ContentScript
                 if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration &&
                     tag.style.transitionDuration !== tag.originalTransitionDuration)
                 {
-                    tag.style.transitionDuration = tag.originalTransitionDuration;
+                    tag.style.transitionDuration = tag.originalTransitionDuration!;
                 }
                 if (keepTransitionDuration && tag.originalTransitionDuration === undefined &&
                     tag.hasTransitionDuration && tag.mlComputedStyle)
@@ -2335,7 +2335,7 @@ namespace MidnightLizard.ContentScript
         {
             const dynamicStyle = doc.getElementById("midnight-lizard-dynamic-values");
             dynamicStyle && dynamicStyle.remove();
-            this._svgFilters.remodeSvgFilters(doc);
+            this._svgFilters.removeSvgFilters(doc);
         }
 
         protected createPseudoStyles(doc: Document)

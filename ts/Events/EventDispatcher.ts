@@ -117,7 +117,7 @@ namespace MidnightLizard.Events
                 handlersInContext = new Map<any, IREH<TResponse, TArg>>();
                 handlersInPriority.set(thisArg, handlersInContext);
             }
-            let boundHandler: IREH<TResponse, TArg> = thisArg || args.length > 0 ? handler.bind(thisArg, ...args) : handler;
+            let boundHandler: IREH<TResponse, TArg> = thisArg || args.length > 0 ? (handler as any).bind(thisArg, ...args) : handler;
             handlersInContext.set(handler, boundHandler);
             return boundHandler;
         }
