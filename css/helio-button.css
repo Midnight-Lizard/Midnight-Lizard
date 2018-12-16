@@ -15,13 +15,15 @@
     color: rgb(255, 255, 255);
 }
 
-.ml-helio-button.icon-button{padding: 1px 0px 1px 20px;}
+.ml-helio-button.icon-button {
+    padding: 1px 0px 1px 15px;
+}
 
 label.ml-helio-button.icon-button
 {
     padding: 0px;
     line-height: 30px;
-    text-indent: 20px;
+    text-indent: 15px;
 }
 
 label.ml-helio-button
@@ -89,10 +91,10 @@ label.ml-helio-button
 }
 
 .ml-helio-button.cyan, .ml-helio-button.cyan:disabled:hover {
-    background: #006064 linear-gradient(#00BCD4,#006064);
+    background: #006064 linear-gradient(hsl(186, 100%, 45%),#006064);
 }
 .ml-helio-button.cyan:not(:disabled):hover {
-    background: #00BCD4 linear-gradient(#006064,#00BCD4);
+    background: hsl(186, 100%, 45%) linear-gradient(hsl(182, 100%, 20%),hsl(186, 100%, 45%));
 }
 
 .ml-helio-button.green, .ml-helio-button.green:disabled:hover {
@@ -106,5 +108,5 @@ label.ml-helio-button
     background: hsl(216, 85%, 34%) linear-gradient(hsla(210, 90%, 52%, 1),hsl(216, 85%, 34%));
 }
 .ml-helio-button.blue:not(:disabled):hover {
-    background: hsla(210, 90%, 52%, 1) linear-gradient(#0D47A1,hsla(210, 90%, 52%, 1));
+    background: hsl(210, 90%, 52%) linear-gradient(#0D47A1,#1685f3);
 }

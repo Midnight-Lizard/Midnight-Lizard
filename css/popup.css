@@ -320,6 +320,18 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     white-space: nowrap;
 }
 
+.ml-long-cmd-container a.ml-helio-button {
+    line-height: 28px;
+    text-align: center;
+    padding-left: 15px;
+    text-decoration: none;
+    width: calc(100% - 15px);
+}
+
+.ml-long-cmd-container>.filler {
+    height: 80px;
+}
+
 .ml-long-cmd-container {
     margin: 55px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
 }

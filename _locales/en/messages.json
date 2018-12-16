@@ -1249,5 +1249,19 @@
     "privacyLink_@tooltip": {
         "description": "privacyLink_@tooltip: text on the tooltip\/hint with custom style",
         "message": "Extension Privacy Policy"
+    },
+    "onlineColorSchemesLink_text_label": {
+        "description": "onlineColorSchemesLink_text_label: text on the label",
+        "message": "Get more color schemes"
+    },
+    "onlineColorSchemesLink_@title": {
+        "description": "onlineColorSchemesLink_@title: text on the tooltip\/hint",
+        "message": "Get more color schemes from online color schemes registry\n$url$",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org\/schemes",
+                "example": "https:\/\/midnight-lizard.org\/schemes"
+            }
+        }
     }
 }
