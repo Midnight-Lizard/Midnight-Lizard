@@ -1262,10 +1262,10 @@ img.ml-image-example {
 @supports not (-moz-appearance: none)
 {
     .intro-tabs:before {
-        height: 12px;
+        height: 16px;
         left: 5px;
-        top: 170px;
-        transform: skew(63deg);
+        top: 169px;
+        transform: skew(56deg);
     }
 }
 
@@ -1279,7 +1279,7 @@ img.ml-image-example {
 
 .intro-host:before {
     width: 17px;
-    height: 98px;
+    height: 89px;
     right: 15px;
     top: -5px;
     border-bottom-right-radius: 6px;
@@ -1297,10 +1297,10 @@ img.ml-image-example {
 }
 
 .intro-toggle:before {
-    height: 63px;
+    height: 58px;
     right: -42px;
     top: -17px;
-    transform: skew(-62deg);
+    transform: skew(-64deg);
 }
 
 .intro-default:after {
@@ -1340,7 +1340,7 @@ img.ml-image-example {
 
 .intro-help:before {
     width: 82px;
-    height: 360px;
+    height: 366px;
     top: 12px;
     border-radius: 0px 10px 0px 0px;
     border-width: 1px 1px 0px 0px;
@@ -1370,11 +1370,11 @@ img.ml-image-example {
 }
 
 .intro-social:before {
-    height: 50px;
-    width: 7px;
+    height: 44px;
+    width: 10px;
     bottom: -2px;
-    left: -40px;
-    transform: skew(116deg);
+    left: -50px;
+    transform: skew(111deg);
 }
 
 #edit-schemes p {
