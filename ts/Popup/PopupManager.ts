@@ -489,7 +489,9 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value as Settings.ColorSchemeId;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
             this._exportColorSchemeButton.disabled = formHasErrors;
-            if (!this._hiddenSaveColorSchemeButton.disabled && this._colorSchemeForEdit.value !== "custom")
+            if (!this._hiddenSaveColorSchemeButton.disabled &&
+                this._colorSchemeSelect.value !== Settings.ColorSchemes.default.colorSchemeId &&
+                this._colorSchemeForEdit.value !== "custom")
             {
                 this._hiddenSaveColorSchemeButton.classList.remove("hidden");
             }
