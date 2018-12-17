@@ -1263,5 +1263,15 @@
                 "example": "https:\/\/midnight-lizard.org\/schemes"
             }
         }
+    },
+    "officialWebsite_@tooltip": {
+        "description": "officialWebsite_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Visit our official website\n$url$",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org",
+                "example": "https:\/\/midnight-lizard.org"
+            }
+        }
     }
 }

@@ -94,10 +94,31 @@ body {
     z-index: 100;
 }
 
-.ml-dialog-header span {
+.ml-dialog-header span, .ml-website-link {
     color: var(--logo-text-color);
     text-shadow: 0 0 1px hsla(94, 100%, 70%, 0.8);
     vertical-align: baseline;
+}
+
+.ml-website-link:hover {
+    text-decoration: underline;
+}
+
+.ml-website-link {
+    --ml-link-color:Text;
+    --ml-link-fill:Text;
+    --ml-link-active-color:Text;
+    --ml-link-active-fill:Text;
+    --ml-link-hover-color:Text;
+    --ml-link-hover-fill:Text;
+    --ml-visitedlink-color:Text;
+    --ml-visitedlink-fill:Text;
+    --ml-visitedlink-hover-color:Text;
+    --ml-visitedlink-hover-fill:Text;
+    --ml-visitedlink-active-color:Text;
+    --ml-visitedlink-active-fill:Text;
+    text-decoration: none;
+    position: relative;
 }
 
 #hostState {
@@ -1672,9 +1693,10 @@ html[ml-color-scheme="custom"] i.unsaved {
 .privacy-link {
     color: var(--main-text-color);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     display: inline-block;
     position: relative;
+    font-weight: bold;
 }
 .privacy-link:hover {
     text-decoration: underline;
