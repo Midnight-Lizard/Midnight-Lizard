@@ -560,7 +560,7 @@
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
-        "message": " – настройки для"
+        "message": " – настройки"
     },
     "hostState_@tooltip": {
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
@@ -815,7 +815,18 @@
         "message": "Не удалось изменить параметры синхронизации.\n"
     },
     "introduction_html_content": {
-        "message": "<h3>Введение<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Чтобы\n        <span>включить<\/span> или\n        <span>отключить<\/span> расширение, используйте переключатель в правом верхнем углу.\n    <\/run>\n    <run class=\"intro intro-host\">\n        Для переключения сайта между\n        <span>черным<\/span> и\n        <span>белым<\/span> списками кликните на названии сайта в заголовке.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    Вы можете выбрать одну из\n    <span>встроенных цветовых схем<\/span> в ниспадающем списке на правой панели.\n<\/p>\n<p class=\"intro intro-tabs\">\n    Кроме этого можно\n    <span>настроить<\/span>\n    выбранную цветовую схему по своему усмотрению. Для этого на левой панели представлены вкладки со всевозможными настройками.\n    Смело меняйте либые параметры - они сразу применяются, но лишь на окно настроек.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        Чтобы применить выбранные Вами настройки на\n        <span>текущий сайт<\/span> нажмите кнопку\n        <q>Применить<\/q>.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Свою цветовую схему можно\n        <span>сохранить<\/span> для повторного использования на других сайтах.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    Если Вы хотите установить текущую цветовую схему в качестве\n    <span>схемы по умолчанию<\/span> нажмите кнопку\n    <q>В умолчания<\/q>.\n<\/p>\n<p class=\"intro intro-help\">\n    На\n    <span>форуме поддержки<\/span>\n    Вы можете найти дополнительные инструкции, задать вопрос или выступить с предложением по усовершенствованию.\n<\/p>"
+        "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+        "message": "<h3>Введение<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Чтобы\n        <span>включить<\/span> или\n        <span>отключить<\/span> расширение, используйте переключатель в правом верхнем углу.\n    <\/run>\n    <run class=\"intro intro-host\">\n        Для переключения сайта между\n        <span>черным<\/span> и\n        <span>белым<\/span> списками кликните на названии сайта в заголовке.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    Вы можете выбрать одну из\n    <span>встроенных цветовых схем<\/span> в ниспадающем списке на правой панели или установить дополнительные с сайта <a target=\"_blank\" title=\"$url$\" href=\"$url$\">$website$</a>.\n<\/p>\n<p class=\"intro intro-tabs\">\n    Кроме этого можно\n    <span>настроить<\/span>\n    выбранную цветовую схему по своему усмотрению. Для этого на левой панели представлены вкладки со всевозможными настройками.\n    Смело меняйте либые параметры - они сразу применяются, но лишь на окно настроек.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        Чтобы применить выбранные Вами настройки на\n        <span>текущий сайт<\/span> нажмите кнопку\n        <q>Применить<\/q>.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Свою цветовую схему можно\n        <span>сохранить<\/span> для повторного использования на других сайтах.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    Если Вы хотите установить текущую цветовую схему в качестве\n    <span>схемы по умолчанию<\/span> нажмите кнопку\n    <q>В умолчания<\/q>.\n<\/p>\n<p class=\"intro intro-help\">\n    На\n    <span>форуме поддержки<\/span>\n    Вы можете найти дополнительные инструкции, задать вопрос или предложить свою идею.\n<\/p>\n<p class=\"intro intro-social\">\n  Подпишитесь на наши каналы, чтобы следить за обновлениями. <a target=\"_blank\" title=\"https:\/\/t.me\/MidnightLizard\" href=\"https:\/\/t.me\/MidnightLizard\">Телеграм</a>, <a target=\"_blank\" title=\"https:\/\/vk.com\/id472354221\" href=\"https:\/\/vk.com\/id472354221\">ВК</a>.\n<\/p>",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org\/schemes",
+                "example": "https:\/\/midnight-lizard.org\/schemes"
+            },
+            "website": {
+                "content": "midnight-lizard.org",
+                "example": "midnight-lizard.org"
+            }
+        }
     },
     "shortcut_text_lable": {
         "message": "Сочетание клавишь"
