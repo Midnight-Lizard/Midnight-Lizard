@@ -560,7 +560,7 @@
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
-        "message": " – настройки для"
+        "message": " – настройки"
     },
     "hostState_@tooltip": {
         "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
