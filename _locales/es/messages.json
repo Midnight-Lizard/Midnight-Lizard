@@ -678,7 +678,7 @@
     },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "Olvidar los ajustes de la página web actual"
+        "message": "Olvidar los ajustes del sitio web actual"
     },
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
@@ -1110,7 +1110,7 @@
     },
     "forgetThisSiteBtn_text_long_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Eliminar los ajustes de la página web actual"
+        "message": "Eliminar ajustes de sitio actual"
     },
     "forgetAllSitesBtn_text_long_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
