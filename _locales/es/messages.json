@@ -678,7 +678,7 @@
     },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "Olvidar los ajustes de la página web actual"
+        "message": "Olvidar los ajustes del sitio web actual"
     },
     "forgetAllSitesBtn_text_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
@@ -809,6 +809,20 @@
     "syncChangeFailureMessage": {
         "description": "syncChangeFailureMessage: text on the message box",
         "message": "Error al cambiar los ajustes de sincronización.\n"
+    },
+    "introduction_html_content": {
+        "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+        "message": "<h3>Introducción<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Para\n        <span>activar<\/span> o\n        <span>desactivar<\/span> una extensión completamente pulse el interruptor en la esquina superior derecha.\n    <\/run>\n    <run class=\"intro intro-host\">\n        Puede cambiar una página web en particular entre\n        <span>lista negra<\/span> y\n        <span>lista blanca<\/span>\n        pulsando en su etiqueta en la barra de la cabecera.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    Puede elegir uno de los\n    <span>esquemas de color predefinidos<\/span> desde la lista desplegable en el panel derecho y usarlo fuera de la extensión.\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    Además de esto, puede\n    <span>ajustar<\/span> su esquema elegido como desee. Para ello tiene todos los ajustes en las pestañas del panel izquierdo.\n    Cualquier cambio que haya hecho será aplicado inmediatamente pero solo en la ventana emergente para que pueda probar tranquilamente.\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        Para asignar los ajustes elegidos a la\n        <span>página web actual<\/span> pulse el botón\n        <q>Aplicar<\/q>\n        en el panel derecho.\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        También puede\n        <span>añadir su esquema<\/span> a la lista de esquemas de color predefinidos para usarlos en cualquier otra página web.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    Si quiere establecer los ajustes actuales como\n    <span>ajustes por defecto<\/span> para todas las páginas web pulse el botón\n    <q>Predeterminar<\/q> en el panel derecho.\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    Puede encontrar\n    <span>más ayuda<\/span> en el foro de soporte, leer tutoriales o realizar preguntas.\n<\/p>",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org\/schemes",
+                "example": "https:\/\/midnight-lizard.org\/schemes"
+            },
+            "website": {
+                "content": "midnight-lizard.org",
+                "example": "midnight-lizard.org"
+            }
+        }
     },
     "shortcut_text_lable": {
         "message": "Atajo"
@@ -1107,7 +1121,7 @@
     },
     "forgetThisSiteBtn_text_long_label": {
         "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Eliminar los ajustes de la página web actual"
+        "message": "Eliminar ajustes del sitio actual"
     },
     "forgetAllSitesBtn_text_long_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
