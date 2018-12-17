@@ -810,9 +810,6 @@
         "description": "syncChangeFailureMessage: text on the message box",
         "message": "无法更改设置同步选项。\n"
     },
-    "introduction_html_content": {
-        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为\n        <span>启用<\/span> 或\n        <span>关闭<\/span> 整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在\n        <span>黑名单<\/span> 和\n        <span>白名单<\/span>\n        之间开关特定网站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种\n    <span>预定义配色方案<\/span> 并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意\n    <span>调整<\/span> 您所选择的配色方案。在左侧面板中的标签页可以调整所有设置。\n    您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好设置至\n        <span>当前网站<\/span> ，请点击右侧面板的\n        <q>应用<\/q> 按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以\n        <span>添加您的配色方案<\/span> 至预定义配色方案用于未来应用于其他网站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望设置当前设置作为所有网站的\n    <span>默认设置<\/span> ，请点击右侧面板的\n    <q>设置为默认<\/q> 按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到\n    <span>更多帮助<\/span> 、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅Midnight Lizard的社交频道以关注最新更新以及特性。\n<\/p>"
-    },
     "shortcut_text_lable": {
         "message": "快捷方式"
     },
