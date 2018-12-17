@@ -814,6 +814,20 @@
         "description": "syncChangeFailureMessage: text on the message box",
         "message": "無法更改設定同步選項。\n"
     },
+    "introduction_html_content": {
+        "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+        "message": "<h3>介绍<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        为<span>启用<\/span>或<span>关闭<\/span>整个扩展程序，请在右上角切换启用开关。\n    <\/run>\n    <run class=\"intro intro-host no-lines\">\n        您也通过点击其在弹出标题栏上的标签在<span>黑名单<\/span>和<span>白名单<\/span>之间开关特定網站。\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme no-lines\">\n    您可以从右侧面板下拉菜单中选择其中一种<span>预定义配色方案<\/span>并使用现成方案。\n<\/p>\n<p class=\"intro intro-tabs no-lines\">\n    除此之外，您可以随意<span>调整<\/span>您所选择的配色方案。在左侧面板中的标签页可以调整所有設置。您所做出的任何更改都将立即应用但只在弹出窗口中您可以安全地玩弄它。\n<\/p>\n<p>\n    <run class=\"intro intro-apply no-lines\">\n        要分配您的偏好設置至<span>當前網站<\/span>，请点击右侧面板的<q>应用<\/q>按钮。\n    <\/run>\n    <run class=\"intro intro-edit-schemes no-lines\">\n        或您可以<span>添加您的配色方案<\/span>至预定义配色方案用于未来应用于其他網站上。\n    <\/run>\n<\/p>\n<p class=\"intro intro-default no-lines\">\n    若您希望設置當前設置作为所有網站的<span>默认設置<\/span>，请点击右侧面板的<q>設置为默认<\/q>按钮。\n<\/p>\n<p class=\"intro intro-help no-lines\">\n    您可以在支持论坛上找到<span>更多帮助<\/span>、阅读已有的教程或提出新的问题。\n<\/p>\n<p class=\"intro intro-social no-lines\">\n    请订阅 Midnight Lizard 的社交频道以关注最新更新以及特性。\n<\/p>",
+        "placeholders": {
+            "url": {
+                "content": "https:\/\/midnight-lizard.org\/schemes",
+                "example": "https:\/\/midnight-lizard.org\/schemes"
+            },
+            "website": {
+                "content": "midnight-lizard.org",
+                "example": "midnight-lizard.org"
+            }
+        }
+    },
     "shortcut_text_lable": {
         "message": "快捷鍵"
     },
@@ -1184,5 +1198,13 @@
     "forgetAllSitesBtn_text_long_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "刪除所有設置"
+    },
+    "privacyLink_text_label": {
+        "description": "privacyLink_text_label: text on the label",
+        "message": "隱私政策"
+    },
+    "privacyLink_@tooltip": {
+        "description": "privacyLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "隱私政策的個擴展"
     }
 }
