@@ -2169,24 +2169,13 @@ namespace MidnightLizard.ContentScript
             isButton: boolean, bgInverted: boolean)
         {
             let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
-            //-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
-            let gradientColorMatches = backgroundImage
-                .match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)|calc\([^)]+\)/gi);
-            let gradientColors = new Map<string, string>();
-            if (gradientColorMatches)
-            {
-                gradientColorMatches.forEach(color => gradientColors.set(color, Math.random().toString()));
-                gradientColors.forEach((id, color) => backgroundImage =
-                    backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
-            }
-            let backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
             let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
-                haveToProcBgGrad = /gradient/gi.test(backgroundImage), noFilters = false;
+                haveToProcBgGrad = /gradient/gi.test(backgroundImage);
             if (/\burl\(/gi.test(backgroundImage))
             {
                 const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof Colors.ComponentShift;
-                let bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
-                let hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!) &&
+                const bgImgSet = this.shift[customBgImageRole] || this.shift.BackgroundImage;
+                const hasRepeats = !/^(?:,?\s?no-repeat)+$/i.test(tag.mlComputedStyle!.backgroundRepeat!) &&
                     !/cover|contain|%|^(?:,?\s?\d+\dpx)+$/i.test(tag.mlComputedStyle!.backgroundSize!) &&
                     !/-|\d+\dpx/i.test(tag.mlComputedStyle!.backgroundPosition!) &&
                     !notTextureRegExp.test(backgroundImage + tag.className);
@@ -2205,7 +2194,7 @@ namespace MidnightLizard.ContentScript
                     if (bgImgSet.lightnessLimit < 1 && !doInvert && !hasRepeats)
                     {
                         this.calcTagArea(tag);
-                        let area = 1 - Math.min(Math.max(tag.mlArea!, 1) / doc.viewArea!, 1),
+                        const area = 1 - Math.min(Math.max(tag.mlArea!, 1) / doc.viewArea!, 1),
                             lim = bgImgSet.lightnessLimit,
                             txtLim = this.shift.Text.lightnessLimit;
                         bgImgLight = Math.min(((lim ** (1 / 2) - lim) ** (1 / 3) * area) ** 3 + lim, Math.max(lim, txtLim));
@@ -2242,6 +2231,26 @@ namespace MidnightLizard.ContentScript
             }
             if (haveToProcBgImg || haveToProcBgGrad)
             {
+                // -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(246, 246, 245)), to(rgb(234, 234, 234)))
+                // -webkit-image-set(url(https://ssl.gstatic.com/1x/history_grey600_48dp.png) 1x,url(https://ssl.gstatic.com/2x/history_grey600_48dp.png) 2x)
+
+                if (roomRules.hasBackgroundImageSet = /image-set\(/gi.test(backgroundImage))
+                {
+                    backgroundImage = backgroundImage.replace(/[\w-]*image-set\(/, "");
+                }
+
+                const gradientColorMatches = backgroundImage
+                    .match(/rgba?\([^)]+\)|(color-stop|from|to)\((rgba?\([^)]+\)|[^)]+)\)|calc\([^)]+\)/gi);
+                const gradientColors = new Map<string, string>();
+                if (gradientColorMatches)
+                {
+                    gradientColorMatches.forEach(color => gradientColors.set(color, Math.random().toString()));
+                    gradientColors.forEach((id, color) => backgroundImage =
+                        backgroundImage.replace(new RegExp(Util.escapeRegex(color), "g"), id));
+                }
+
+                const backgroundImages = backgroundImage.match(/\burl\(\"[^"]+\"\)|[\w-]+\([^)]+\)/gi)!;
+
                 roomRules.backgroundImages = backgroundImages.map((bgImg, index) =>
                 {
                     gradientColors.forEach((id, color) => bgImg = bgImg.replace(new RegExp(id, "g"), color));
@@ -2321,12 +2330,16 @@ namespace MidnightLizard.ContentScript
             return new BackgroundImage(gradient, BackgroundImageType.Gradient);
         }
 
-        protected applyBackgroundImages(tag: HTMLElement | PseudoElement, backgroundImages: BackgroundImage[])
+        protected applyBackgroundImages(tag: HTMLElement | PseudoElement, hasBackgroundImageSet: boolean | undefined, backgroundImages: BackgroundImage[])
         {
             let originalState = this._documentObserver.stopDocumentObservation(tag.ownerDocument!);
-            tag.style.setProperty(this._css.backgroundImage,
-                backgroundImages.map(bgImg => bgImg.data).join(","),
-                this._css.important);
+            let bgImages = backgroundImages.map((bgImg, ix) => bgImg.data + (hasBackgroundImageSet ? ` ${ix + 1}x` : ""))
+                .join(",");
+            if (hasBackgroundImageSet)
+            {
+                bgImages = `-webkit-image-set(${bgImages})`
+            }
+            tag.style.setProperty(this._css.backgroundImage, bgImages, this._css.important);
             this._documentObserver.startDocumentObservation(tag.ownerDocument!, originalState);
             return tag;
         }
@@ -2596,13 +2609,13 @@ namespace MidnightLizard.ContentScript
                 if (roomRules.hasBackgroundImagePromises)
                 {
                     applyBgPromise = Promise.all
-                        ([tag, tag.mlTimestamp, ...roomRules.backgroundImages] as
-                        [HTMLElement | PseudoElement, number, BackgroundImage])
-                        .then(([t, timestamp, ...bgImgs]) =>
+                        ([tag, tag.mlTimestamp, roomRules.hasBackgroundImageSet, ...roomRules.backgroundImages] as
+                            [HTMLElement | PseudoElement, number, boolean, BackgroundImage])
+                        .then(([t, timestamp, hasBackgroundImageSet, ...bgImgs]) =>
                         {
                             if (t.mlTimestamp === timestamp)
                             {
-                                return this.applyBackgroundImages(t, bgImgs);
+                                return this.applyBackgroundImages(t, hasBackgroundImageSet, bgImgs);
                             }
                             return t;
                         });
@@ -2616,7 +2629,7 @@ namespace MidnightLizard.ContentScript
                 }
                 else
                 {
-                    this.applyBackgroundImages(tag, roomRules.backgroundImages as BackgroundImage[]);
+                    this.applyBackgroundImages(tag, roomRules.hasBackgroundImageSet, roomRules.backgroundImages as BackgroundImage[]);
                 }
             }
 
