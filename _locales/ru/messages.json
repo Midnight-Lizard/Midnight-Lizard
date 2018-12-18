@@ -3,10 +3,6 @@
         "description": "short_locale: two letters of the current locale",
         "message": "ru"
     },
-    "appDesc": {
-        "description": "appDesc: extension description displayed in the Web Store",
-        "message": "Настраивает контрастность, яркость и цвета на всех сайтах. Переводит страницы в ночной режим или режим слабой освещенности."
-    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Глобальный переключатель расширения"
