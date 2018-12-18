@@ -3,6 +3,10 @@
         "description": "short_locale: two letters of the current locale",
         "message": "en"
     },
+    "appDesc": {
+        "description": "appDesc: extension description displayed in the Web Store",
+        "message": "Custom color schemes for all websites: night mode, dark theme, blue light filter, screen shader and many more."
+    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Global extension toggle"
