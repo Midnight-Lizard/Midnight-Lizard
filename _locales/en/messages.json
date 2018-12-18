@@ -5,7 +5,11 @@
     },
     "appDesc": {
         "description": "appDesc: extension description displayed in the Web Store",
-        "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
+        "message": "Custom color schemes for all websites: night mode, dark theme, blue light filter, screen shader and many more."
+    },
+    "longDescription":{
+        "description": "long extension description displayed in the Web Store",
+        "message": ""
     },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
