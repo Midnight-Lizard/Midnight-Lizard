@@ -3,10 +3,6 @@
         "description": "short_locale: two letters of the current locale",
         "message": "en"
     },
-    "appDesc": {
-        "description": "appDesc: extension description displayed in the Web Store",
-        "message": "This extension changes page colors, brightness and contrast to increase readability and brings dark night mode to all websites."
-    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Global extension toggle"
