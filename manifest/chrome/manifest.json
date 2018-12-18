@@ -471,6 +471,19 @@
             "css": [
                 "css/custom/yahoo.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://*/*"
+            ],
+            "include_globs": [
+                "https://translate.google.*/*"
+            ],
+            "css": [
+                "css/custom/google-translate.css"
+            ]
         }
     ]
 }
