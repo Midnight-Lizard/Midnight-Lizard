@@ -9,7 +9,7 @@
     },
     "longDescription":{
         "description": "long extension description displayed in the Web Store",
-        "message": ""
+        "message": "-"
     },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
