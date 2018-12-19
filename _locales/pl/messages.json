@@ -3,10 +3,6 @@
         "description": "short_locale: two letters of the current locale",
         "message": "pl"
     },
-    "appDesc": {
-        "description": "appDesc: extension description displayed in the Web Store",
-        "message": "Dostosuje kontrast, jasność i kolory na wszystkich witrynach internetowych. Przenosi strony na tryb nocny."
-    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Globalny przełącznik rozszerzenia"
