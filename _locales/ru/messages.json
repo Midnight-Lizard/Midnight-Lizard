@@ -3,6 +3,10 @@
         "description": "short_locale: two letters of the current locale",
         "message": "ru"
     },
+    "appDesc": {
+        "description": "appDesc: extension description displayed in the Web Store",
+        "message": "Пользовательские цветовые схемы для всех сайтов: ночной режим, темные темы, фильтр синего,повышенная контрастность,понижение яркости"
+    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Глобальный переключатель расширения"
