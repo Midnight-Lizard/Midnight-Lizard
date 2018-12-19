@@ -3,6 +3,10 @@
         "description": "short_locale: two letters of the current locale",
         "message": "es"
     },
+    "appDesc": {
+        "description": "appDesc: extension description displayed in the Web Store",
+        "message": "Esta extensión cambia los colores de la página, el brillo y el contraste para aumentar la legibilidad y trae el modo nocturno oscuro a todos los sitios web."
+    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "Alternar la extensión global"
