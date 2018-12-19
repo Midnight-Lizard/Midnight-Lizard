@@ -142,3 +142,18 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
 ytd-app:not(imp) {
     background-color: var(--yt-main-app-background);
 }
+
+html[ml-stage-mode="complete-complex"] #chat.yt-live-chat-renderer {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter);
+}
+
+html[ml-invert][ml-stage-mode="complete-complex"] #chat.yt-live-chat-renderer img,
+html[ml-invert][ml-stage-mode="complete-complex"] #chat.yt-live-chat-renderer svg {
+    filter: hue-rotate(180deg) invert(1);
+}
+
+html[ml-invert][ml-stage-mode="complete-complex"][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) #chat.yt-live-chat-renderer:not(.imp)::-webkit-scrollbar-track,
+html[ml-invert][ml-stage-mode="complete-complex"][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) #chat.yt-live-chat-renderer:not(.imp) :not(.imp)::-webkit-scrollbar-track {
+    background-color: #fcfcfc !important;
+}

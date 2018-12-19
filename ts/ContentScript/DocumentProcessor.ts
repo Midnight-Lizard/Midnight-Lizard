@@ -272,6 +272,7 @@ namespace MidnightLizard.ContentScript
                 html.removeAttribute("ml-stage-mode");
                 html.removeAttribute("ml-platform");
                 html.removeAttribute("ml-scrollbar-style");
+                html.removeAttribute("ml-invert");
             }
             else
             {
@@ -301,6 +302,10 @@ namespace MidnightLizard.ContentScript
                         this._app.isDesktop ? "desktop" : "mobile");
                     if (this._settingsManager.isActive)
                     {
+                        if (this.shift.Background.lightnessLimit < 0.3)
+                        {
+                            html.setAttribute("ml-invert", "");
+                        }
                         html.setAttribute("ml-scrollbar-style",
                             this._settingsManager.currentSettings.scrollbarStyle ? "ml-simple" : "original");
                         html.setAttribute("ml-mode", this._settingsManager.computedMode);
@@ -1570,7 +1575,7 @@ namespace MidnightLizard.ContentScript
             {
                 let hasRoomRules = false;
                 const doc = tag.ownerDocument!, roomRules: RoomRules = {},
-                    bgInverted = this._settingsManager.shift.Background.lightnessLimit < 0.3,
+                    bgInverted = this.shift.Background.lightnessLimit < 0.3,
                     isButton = tag instanceof HTMLButtonElement ||
                         tag instanceof HTMLInputElement &&
                         (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
@@ -2287,10 +2292,10 @@ namespace MidnightLizard.ContentScript
             const bgLight = isButton
                 ? this._settingsManager.isComplex
                     ? this.getParentBackground(tag).light
-                    : this._settingsManager.shift.Background.lightnessLimit
+                    : this.shift.Background.lightnessLimit
                 : roomRules.backgroundColor
                     ? roomRules.backgroundColor.light
-                    : this._settingsManager.shift.Background.lightnessLimit;
+                    : this.shift.Background.lightnessLimit;
             if (uniqColors.size > 0)
             {
                 uniqColors.forEach(c =>
@@ -2406,7 +2411,7 @@ namespace MidnightLizard.ContentScript
                 borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(
-                    this._settingsManager.shift, textColorEntry.light, bgLight).color!,
+                    this.shift, textColorEntry.light, bgLight).color!,
                 autofillBackgroundColor = autofillBackgroundColorEntry.color!,
                 autofillTextColor = this._textColorProcessor.changeColor(cx.Black, autofillBackgroundColorEntry.light, doc.documentElement).color!,
 
@@ -2509,7 +2514,7 @@ namespace MidnightLizard.ContentScript
                     metaTheme.originalColor = metaTheme.content;
                 }
                 const rgbColorString = this._buttonBackgroundColorProcessor.changeColor(
-                    originalColor, this._settingsManager.shift.Background.lightnessLimit, metaTheme).color!;
+                    originalColor, this.shift.Background.lightnessLimit, metaTheme).color!;
                 metaTheme.content = Colors.RgbaColor.toHexColorString(rgbColorString);
             }
         }
