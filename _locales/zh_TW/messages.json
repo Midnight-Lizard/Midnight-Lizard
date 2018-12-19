@@ -3,6 +3,10 @@
         "description": "short_locale: two letters of the current locale",
         "message": "zh"
     },
+    "appDesc": {
+        "description": "appDesc: extension description displayed in the Web Store",
+        "message": "這個擴展改變了頁面的顏色，亮度和對比度以提高可讀性，並且為所有網站開啟夜間模式。"
+    },
     "globalToggleKey": {
         "description": "globalToggleKey: keyboard shortcut description in the browser settings",
         "message": "全局擴展程序切換"
