@@ -59,6 +59,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>*>* *:not(.ml-ignore
 }
 
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) pre:not(svg):not(#imp):not(imp),
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) textarea:not(svg):not(#imp):not(imp):not(svgx):not(#impx):not(impx),
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="header"]:not(svg):not(.ml):not(#imp),
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>[class*="footer"]:not(svg):not(.ml):not(#imp),
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"])>header:not(imp):not(.ml):not(#imp),

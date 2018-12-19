@@ -1,0 +1,34 @@
+html[ml-is-active] header > div:nth-of-type(2),
+html[ml-is-active] .jfk-button {
+    transition-property: none !important;
+    transition-duration: 0s !important;
+}
+
+html[ml-stage-mode="complete-complex"] .gt-lc.gt-lc-mobile .gt-cd,
+html[ml-stage-mode="complete-complex"] .go-button,
+html[ml-stage-mode="complete-complex"] .language-picker-wrapper,
+html[ml-is-active] .jfk-button-img,
+html[ml-is-active] .trans-verified-button,
+html[ml-is-active] .gt-is-ca,
+html[ml-is-active] .search-image-black,
+html[ml-is-active] .goog-toolbar-menu-button-dropdown,
+html[ml-is-active] .export-button,
+html[ml-is-active] .more-button,
+html[ml-is-active] .close-button {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter);
+}
+
+html[ml-is-active] .gt-lc.gt-lc-mobile .gt-cc-r-i:not(imp) {
+    background-color: transparent!important;
+}
+
+html[ml-is-active] .gbip, html[ml-is-active] .gbii
+{
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important;
+    --ml-ignore:true;
+}
+.gbip:before, .gbii:before
+{
+    --ml-ignore:true;
+}

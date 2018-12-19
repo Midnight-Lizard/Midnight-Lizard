@@ -489,7 +489,9 @@ namespace MidnightLizard.Popup
                 this._newColorSchemeName.value as Settings.ColorSchemeId;
             this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
             this._exportColorSchemeButton.disabled = formHasErrors;
-            if (!this._hiddenSaveColorSchemeButton.disabled && this._colorSchemeForEdit.value !== "custom")
+            if (!this._hiddenSaveColorSchemeButton.disabled &&
+                this._colorSchemeSelect.value !== Settings.ColorSchemes.default.colorSchemeId &&
+                this._colorSchemeForEdit.value !== "custom")
             {
                 this._hiddenSaveColorSchemeButton.classList.remove("hidden");
             }
@@ -598,11 +600,11 @@ namespace MidnightLizard.Popup
             if (confirm(this._i18n.getMessage("colorSchemeDeleteConfirmationMessage",
                 Settings.ColorSchemes[this._colorSchemeForEdit.value as Settings.ColorSchemeId].colorSchemeName)))
             {
-                this._settingsManager.deleteUserColorScheme(this._colorSchemeForEdit.value as Settings.ColorSchemeId)
-                    .then(async (x) =>
-                    {
-                        await this.updateColorSchemeListsFromDefaultSettings();
-                    })
+                const colorSchemeId = this._colorSchemeForEdit.value as Settings.ColorSchemeId;
+                this._settingsManager.deleteUserColorScheme(colorSchemeId)
+                    // TODO: the next line should be removed when there will be a special UI for Public Schemes deletion
+                    .then(x => this._publicSettingsManager.uninstallPublicSchemeByColorSchemeId(colorSchemeId))
+                    .then(x => this.updateColorSchemeListsFromDefaultSettings())
                     .catch(ex => alert(this._i18n.getMessage("colorSchemeDeleteFailureMessage") + (ex.message || ex)));
             }
             return false;

@@ -14,6 +14,7 @@ namespace MidnightLizard.Settings.Public
     {
         public abstract async installPublicScheme(publicScheme: Public.PublicScheme): Promise<void>;
         public abstract async uninstallPublicScheme(publicSchemeId: Public.PublicSchemeId): Promise<void>;
+        public abstract async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId): Promise<void>;
         public abstract async getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
         public abstract async getInstalledPublicColorSchemeIds(): Promise<Settings.ColorSchemeId[]>;
         public abstract get onPublicSchemesChanged(): MidnightLizard.Events.ArgumentedEvent<PublicSchemeId[]>;
@@ -43,6 +44,26 @@ namespace MidnightLizard.Settings.Public
         public initDefaultColorSchemes() { }
 
         protected initCurrentSettings() { }
+
+        public async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId)
+        {
+            const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
+            if (storage.publicSchemeIds.length > 0)
+            {
+                const installedPublicSchemes = Object.values(await this.getInstalledPublicSchemes(storage));
+
+                const publicScheme = installedPublicSchemes.find(x => x.cs.colorSchemeId === colorSchemeId);
+                if (publicScheme)
+                {
+                    let existingPublicSchemeIdIndex = storage.publicSchemeIds.findIndex(id => id === publicScheme.id);
+                    if (existingPublicSchemeIdIndex > -1)
+                    {
+                        storage.publicSchemeIds.splice(existingPublicSchemeIdIndex, 1);
+                    }
+                    await this._storageManager.set(storage);
+                }
+            }
+        }
 
         public async uninstallPublicScheme(publicSchemeId: Public.PublicSchemeId)
         {

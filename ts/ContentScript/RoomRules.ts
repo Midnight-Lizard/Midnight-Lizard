@@ -27,6 +27,7 @@ namespace MidnightLizard.ContentScript
         display?: string | null | undefined;
         attributes?: Map<string, string>;
         backgroundImages?: Array<Promise<BackgroundImage> | BackgroundImage>;
+        hasBackgroundImageSet?: boolean;
         hasBackgroundImagePromises?: boolean;
     }
 }
