@@ -5,7 +5,7 @@
     },
     "appDesc": {
         "description": "appDesc: extension description displayed in the Web Store",
-        "message": "Custom color schemes for all websites: night mode, dark theme, blue light filter, screen shader and many more."
+        "message": "Custom color schemes for all websites: night mode, dark themes, blue light filter, screen shader, high contrast, grayscale, etc."
     },
     "longDescription": {
         "description": "long extension description displayed in the Web Store",
