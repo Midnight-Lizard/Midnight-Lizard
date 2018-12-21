@@ -2404,11 +2404,12 @@ namespace MidnightLizard.ContentScript
             const
                 backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
                 altBackgroundColor = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement).color!,
-                transBackgroundColor = this._backgroundColorProcessor.changeColor("grba(255,255,255,0.5)", true, doc.documentElement).color!,
-                transAltBackgroundColor = this._backgroundColorProcessor.changeColor("grba(250,250,250,0.3)", true, doc.documentElement).color!,
+                transBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(255,255,255,0.5)", true, doc.documentElement).color!,
+                transAltBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(250,250,250,0.3)", true, doc.documentElement).color!,
                 textColor = textColorEntry.color!,
-                transTextColor = this._textColorProcessor.changeColor("grba(0,0,0,0.6)", bgLight, doc.documentElement).color!,
+                transTextColor = this._textColorProcessor.changeColor("rgba(0,0,0,0.6)", bgLight, doc.documentElement).color!,
                 borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
+                transBorderColor = this._borderColorProcessor.changeColor("rgba(127,127,127,0.3)", bgLight, doc.documentElement).color!,
                 selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
                 rangeFillColor = this._rangeFillColorProcessor.changeColor(
                     this.shift, textColorEntry.light, bgLight).color!,
@@ -2416,6 +2417,7 @@ namespace MidnightLizard.ContentScript
                 autofillTextColor = this._textColorProcessor.changeColor(cx.Black, autofillBackgroundColorEntry.light, doc.documentElement).color!,
 
                 buttonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                redButtonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor("rgb(255,0,0)", bgLight, doc.documentElement).color!,
                 buttonBorderColor = this._buttonBorderColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
 
                 scrollbarThumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color!,
@@ -2436,9 +2438,9 @@ namespace MidnightLizard.ContentScript
 
             return {
                 backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
-                textColor, transTextColor, borderColor, selectionColor, rangeFillColor,
+                textColor, transTextColor, borderColor, transBorderColor, selectionColor, rangeFillColor,
                 autofillBackgroundColor, autofillTextColor,
-                buttonBackgroundColor, buttonBorderColor,
+                buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
                 scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
                 linkColor, linkColorHover, linkColorActive,
                 visitedColor, visitedColorHover, visitedColorActive

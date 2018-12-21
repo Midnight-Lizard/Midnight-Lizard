@@ -142,6 +142,9 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
 ytd-app:not(imp) {
     background-color: var(--yt-main-app-background);
 }
+ytd-playlist-sidebar-renderer:not(imp) {
+    background-color: var(--yt-sidebar-background);
+}
 
 html[ml-stage-mode="complete-complex"] #chat.yt-live-chat-renderer {
     --ml-ignore:true;
@@ -157,3 +160,47 @@ html[ml-invert][ml-stage-mode="complete-complex"][ml-scrollbar-style="ml-simple"
 html[ml-invert][ml-stage-mode="complete-complex"][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) #chat.yt-live-chat-renderer:not(.imp) :not(.imp)::-webkit-scrollbar-track {
     background-color: #fcfcfc !important;
 }
+
+paper-item.ytd-menu-service-item-renderer:hover {
+    --ml-background-background-color:ButtonBackground;
+}
+
+/* BEGIN optimazations for video lists */
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer {
+    --ml-ignore:true;
+    border-bottom-color: var(--ml-main-trans-border-color) !important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer * {
+    color: var(--ml-main-text-color)!important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .yt-img-shadow {
+    filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer yt-icon-button.ytd-button-renderer[disabled] * {
+    color: var(--ml-main-trans-text-color)!important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer #filter-menu.ytd-search-sub-menu-renderer,
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer #filter-group-name.ytd-search-filter-group-renderer,
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .ytd-playlist-video-renderer {
+    border-bottom-color: var(--ml-main-trans-border-color) !important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .arrow.yt-horizontal-list-renderer,
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .badge-style-type-live-now.ytd-badge-supported-renderer {
+    background-color: var(--ml-main-button-background-color) !important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer paper-button.ytd-subscribe-button-renderer {
+    background-color: var(--ml-main-red-button-background-color) !important;
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer ytd-playlist-video-renderer:hover:not(.dragging) {
+    background-color: var(--ml-main-alt-background-color) !important;
+}
+
+/* END optimazations for video lists */
