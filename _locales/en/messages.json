@@ -1288,5 +1288,13 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
+    },
+    "open_collective_donate_button_text_label": {
+        "description": "text on the label",
+        "message": "Donate"
+    },
+    "open_collective_custom_amount_text_label": {
+        "description": "text on the label",
+        "message": "Custom amount"
     }
 }

@@ -24,3 +24,26 @@ use[xl|href="#svg-logotype"] {
 .LoginTopBarProfileButton-caret:after {
     --ml-background-border-top-color:Border;
 }
+
+.presetBtn.btn-primary {
+    --ml-buttonbackground-background-color:HighlightedBackground;
+}
+
+.actions .submit .Button:after {
+    content: " (__MSG_open_collective_donate_button_text_label__)";
+}
+
+.customAmount {
+    position: relative;
+}
+
+.customAmount:before {
+    content: "__MSG_open_collective_custom_amount_text_label__";
+    position: absolute;
+    top: -21px;
+    text-transform: uppercase;
+    color: #aaaeb3;
+    font-weight: 300;
+    white-space: nowrap;
+    font-size: 1rem;
+}
