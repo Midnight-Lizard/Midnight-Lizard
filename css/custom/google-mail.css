@@ -79,3 +79,12 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(
 #loading #nlpt:before {
     --ml-background-background-color:Border;
 }
+
+html[ml-stage-mode="complete-complex"] [role="tabpanel"] {
+    --ml-ignore:true;
+    filter: var(--ml-text-filter);
+}
+
+html[ml-stage-mode="complete-complex"] [role="tabpanel"] img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp) {
+    filter:none!important;
+}
