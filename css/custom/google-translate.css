@@ -32,3 +32,39 @@ html[ml-is-active] .gbip, html[ml-is-active] .gbii
 {
     --ml-ignore:true;
 }
+
+html[ml-stage-mode="complete-complex"] #gt-src-is {
+    --ml-ignore:true;
+    background-color: var(--ml-main-background-color);
+    border-color: var(--ml-main-border-color);
+}
+
+html[ml-stage-mode="complete-complex"] #gt-src-is .gt-is-itm-hover {
+    background-color: var(--ml-main-alt-background-color);
+    border-color: var(--ml-main-button-border-color);
+}
+
+html[ml-stage-mode="complete-complex"] #gt-src-is .gt-is-ld {
+    border-color: var(--ml-main-border-color);
+}
+
+html[ml-stage-mode="complete-complex"] #gt-src-is * {
+    color: var(--ml-main-text-color);
+}
+
+html[ml-stage-mode="complete-complex"] #gt-src-is .gt-is-tr {
+    color: var(--ml-main-trans-text-color);
+}
+
+html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t {
+    --ml-ignore:true;
+    background-color: var(--ml-main-background-color);
+}
+
+html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t * {
+    color: var(--ml-main-text-color);
+}
+
+html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t .gt-ct-translit {
+    color: var(--ml-main-trans-text-color);
+}
