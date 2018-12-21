@@ -121,3 +121,7 @@ html[ml-stage-mode="complete-complex"] form#tsf .aajZCb .sbhl {
 html[ml-stage-mode="complete-complex"] form#tsf .aajZCb .suggestions-inner-container {
     border-top-color: var(--ml-main-border-color);
 }
+
+html[ml-is-active] :not(#imp):not(imp):not(.imp)>div.voice_search_button:not(#imp):not(imp):not(.imp) {
+    background-color: transparent!important;
+}
