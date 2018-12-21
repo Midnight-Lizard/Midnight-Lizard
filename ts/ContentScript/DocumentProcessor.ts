@@ -639,7 +639,8 @@ namespace MidnightLizard.ContentScript
 
         protected reCalcRootElement(rootElem: HTMLElement, andAllChildren: boolean, skipSelectors = false): HTMLElement[]
         {
-            if (rootElem && (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
+            if (rootElem && rootElem.isChecked &&
+                (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
                 rootElem.mlTimestamp = Date.now();
                 let allTags = rootElem.firstElementChild
