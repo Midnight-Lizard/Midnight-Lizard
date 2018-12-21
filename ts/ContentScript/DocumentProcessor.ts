@@ -1807,19 +1807,19 @@ namespace MidnightLizard.ContentScript
                             tag.parentElement && tag.parentElement.mlColor && tag.parentElement.mlColor.role === cc.Link))
                         {
                             const linkColor = this.changeColor({ role: cc.Link, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                            if (tag instanceof HTMLFontElement)
+                            if (tag instanceof HTMLFontElement || linkColor && linkColor.role !== cc.Link)
                             {
                                 roomRules.color = linkColor;
                             }
-                            else
+                            else if (linkColor)
                             {
                                 roomRules.linkColor = linkColor;
-                                roomRules.linkColor$Avtive = this.changeColor({ role: cc.Link$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.linkColor$Hover = this.changeColor({ role: cc.Link$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.linkColor$Avtive = this.changeColor({ role: cc.Link$Active, propVal: linkColor.originalColor, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.linkColor$Hover = this.changeColor({ role: cc.Link$Hover, propVal: linkColor.originalColor, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
 
-                                roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
-                                roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.visitedColor = this.changeColor({ role: cc.VisitedLink, propVal: linkColor.originalColor, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.visitedColor$Active = this.changeColor({ role: cc.VisitedLink$Active, propVal: linkColor.originalColor, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
+                                roomRules.visitedColor$Hover = this.changeColor({ role: cc.VisitedLink$Hover, propVal: linkColor.originalColor, property: ns.css.fntColor, tag: tag, bgLight: bgLight });
                             }
                         }
                         else
