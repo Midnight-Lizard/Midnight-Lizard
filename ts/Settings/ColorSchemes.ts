@@ -222,7 +222,7 @@ namespace MidnightLizard.Settings
                     buttonContrast: 4,
                     buttonLightnessLimit: 17,
                     buttonGraySaturation: 10,
-                    buttonGrayHue: 200,
+                    buttonGrayHue: 190,
                     buttonReplaceAllHues: false,
                     buttonHueGravity: 0,
 
