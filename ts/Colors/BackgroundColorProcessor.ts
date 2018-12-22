@@ -195,7 +195,7 @@ namespace MidnightLizard.Colors
 
                 if (tag instanceof HTMLBodyElement && rgba.alpha === 0)
                 {
-                    rgbaString = "bodyTrans";
+                    rgbaString = "body-trans";
                     if (window.top === window.self)
                     {
                         rgba = { red: 255, green: 255, blue: 255, alpha: 1 };
@@ -213,6 +213,16 @@ namespace MidnightLizard.Colors
                             reason: ColorReason.Transparent,
                             owner: this._app.isDebug ? tag : null,
                         } as ColorEntry;
+                    }
+                }
+
+                if (tag instanceof HTMLOptionElement || tag instanceof HTMLOptGroupElement)
+                {
+                    // if parent element is transparent - options will be white by default
+                    if (tag.parentElement && tag.parentElement.mlBgColor && !tag.parentElement.mlBgColor.color)
+                    {
+                        rgbaString = "option-trans";
+                        rgba = { red: 255, green: 255, blue: 255, alpha: 1 };
                     }
                 }
 
