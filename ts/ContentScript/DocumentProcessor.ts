@@ -1595,7 +1595,8 @@ namespace MidnightLizard.ContentScript
 
                 tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
 
-                if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
+                if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
+                    tag.mlComputedStyle!.backgroundImage !== this._css.none &&
                     tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     hasRoomRules = true;
@@ -1789,7 +1790,8 @@ namespace MidnightLizard.ContentScript
                         }
                     }
 
-                    if (tag.mlComputedStyle!.backgroundImage && tag.mlComputedStyle!.backgroundImage !== this._css.none &&
+                    if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
+                        tag.mlComputedStyle!.backgroundImage !== this._css.none &&
                         tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                     {
                         this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, bgInverted);
@@ -2227,11 +2229,10 @@ namespace MidnightLizard.ContentScript
                         this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
                     ].filter(f => f).join(" ").trim();
 
-                    haveToProcBgImg = !(tag instanceof HTMLImageElement) &&
-                        (tag instanceof Element && !!tag.firstChild || isPseudoContent || haveToProcBgGrad ||
-                            roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
-                            tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement ||
-                            tag instanceof HTMLBodyElement || tag instanceof HTMLHtmlElement);
+                    haveToProcBgImg = tag instanceof Element && !!tag.firstChild || isPseudoContent ||
+                        haveToProcBgGrad || roomRules.backgroundColor && !!roomRules.backgroundColor.color ||
+                        tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement ||
+                        tag instanceof HTMLBodyElement || tag instanceof HTMLHtmlElement;
 
                     if (haveToProcBgImg)
                     {
