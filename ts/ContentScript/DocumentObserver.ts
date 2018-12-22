@@ -177,7 +177,7 @@ namespace MidnightLizard.ContentScript
                         }
                         if ((!mutation.target.mlMutationThrottledCount ||
                             mutation.target.mlMutationThrottledCount < maxMutationsCount) &&
-                            (mutation.target.isChecked || mutation.target instanceof HTMLBodyElement))
+                            (mutation.target.mlBgColor || mutation.target instanceof HTMLBodyElement))
                         {
                             switch (mutation.attributeName)
                             {

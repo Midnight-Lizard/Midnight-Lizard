@@ -639,7 +639,7 @@ namespace MidnightLizard.ContentScript
 
         protected reCalcRootElement(rootElem: HTMLElement, andAllChildren: boolean, skipSelectors = false): HTMLElement[]
         {
-            if (rootElem && rootElem.isChecked &&
+            if (rootElem && rootElem.mlBgColor &&
                 (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
             {
                 rootElem.mlTimestamp = Date.now();
@@ -799,9 +799,8 @@ namespace MidnightLizard.ContentScript
         {
             const filter = this.getFilterOfElementsForComplexProcessing();
             addedElements.forEach(tag => this.restoreElementColors(tag));
-            const
-                allAddedElements = Array.from(addedElements.values()),
-                allNewTags = allAddedElements.filter(filter);
+            const allNewTags = Array.from(addedElements.values())
+                .filter(x => x.parentElement && x.parentElement.mlBgColor && this.checkElement(x));
             const allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
             {
