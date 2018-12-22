@@ -795,12 +795,21 @@ namespace MidnightLizard.ContentScript
             this.reCalcAllRootElements(changedElements, false);
         }
 
+        private IsIgnored(tag: Element): boolean
+        {
+            if ("mlIgnore" in tag as any)
+            {
+                return !!tag.mlIgnore;
+            }
+            return !tag.parentElement || (tag.mlIgnore = this.IsIgnored(tag.parentElement));
+        }
+
         protected onElementsAdded(addedElements: Set<HTMLElement>)
         {
             const filter = this.getFilterOfElementsForComplexProcessing();
             addedElements.forEach(tag => this.restoreElementColors(tag));
             const allNewTags = Array.from(addedElements.values())
-                .filter(x => x.parentElement && x.parentElement.mlBgColor && this.checkElement(x));
+                .filter(x => !this.IsIgnored(x) && this.checkElement(x));
             const allChildTags = new Set<HTMLElement>();
             allNewTags.forEach(newTag =>
             {
@@ -1613,8 +1622,9 @@ namespace MidnightLizard.ContentScript
                 roomRules: RoomRules, before?: PseudoElement, after?: PseudoElement
             } | undefined
         {
-            if (tag && tag.ownerDocument!.defaultView && !(tag as HTMLElement).mlBgColor
-                && (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
+            if (tag && tag.ownerDocument!.defaultView && !(tag as HTMLElement).mlBgColor &&
+                (!(tag instanceof Element) || !tag.mlComputedStyle ||
+                    !(tag.mlIgnore = tag.mlComputedStyle!.getPropertyValue("--ml-ignore") === true.toString())))
             {
                 let doc = tag.ownerDocument!;
                 let bgLight: number, roomRules: RoomRules | undefined;//, room: string | null = null;
