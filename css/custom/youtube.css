@@ -191,11 +191,21 @@ html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .ytd-playlist-
 }
 
 html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .arrow.yt-horizontal-list-renderer,
-html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .badge-style-type-live-now.ytd-badge-supported-renderer {
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer .ytd-badge-supported-renderer:not(paper-tooltip):not(.badge-style-type-verified-artist):not(.badge-style-type-verified):not(yt-icon),
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer ytd-toggle-button-renderer.style-compact-gray[is-paper-button],
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer ytd-button-renderer.style-compact-gray[is-paper-button] {
     background-color: var(--ml-main-button-background-color) !important;
 }
 
-html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer paper-button.ytd-subscribe-button-renderer {
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer #tooltip.paper-tooltip {
+    background-color: var(--ml-main-button-background-color) !important;
+    color: var(--ml-main-text-color) !important;
+    opacity: 1 !important;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+}
+
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer paper-button.ytd-subscribe-button-renderer,
+html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer ytd-button-renderer.style-destructive[is-paper-button] {
     background-color: var(--ml-main-red-button-background-color) !important;
 }
 
