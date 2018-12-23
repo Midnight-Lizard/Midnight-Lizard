@@ -1,33 +1,6 @@
-#yt-masthead #logo-container .logo::before, #footer-logo .footer-logo-icon::before {
-    content: '';
-    display: inline-block;
-    background: no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vflh5pqYQ.webp) -348px -266px;
-    background-size: auto;
-    width: 30px;
-    height: 30px;
-}
-
 .ytd-topbar-logo-renderer:first-child > path
 {
     --ml-svgbackground-fill:Border;
-}
-
-.logo
-{
-    --ml-backgroundimage:Text;
-}
-
-#yt-masthead #logo-container.doodle::before
-{
-    content: '';
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    background: no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vflh5pqYQ.webp) -348px -266px;
-    background-size: auto;
-    width: 30px;
-    height: 30px;
-    z-index: 9999;
 }
 
 .ytp-swatch-background-color, .ytp-swatch-background-color-secondary, .ytp-menuitem-toggle-checkbox,
@@ -42,9 +15,24 @@
 .yt-icon[fill="#FFFFFF"], .yt-icon[fill="#fff"], .yt-icon[fill="#FFF"], .yt-icon[fill="#FAFAFA"],
 polygon.ytd-topbar-logo-renderer[fill="#FFFFFF"], #yt-logo-svg polygon[fill="#FFFFFF"]
 {
-    /*background-color: currentColor!important;*/
-    /*--ml-text-color:HighlightedText;*/
     --ml-ignore:true;
+}
+
+html[ml-stage-mode="complete-complex"] yt-icon [fill="#f00"],
+html[ml-stage-mode="complete-complex"] yt-icon [fill="#F00"],
+html[ml-stage-mode="complete-complex"] yt-icon [fill="red"] {
+    --ml-ignore:true;
+    fill:var(--ml-main-red-button-background-color);
+}
+
+html[ml-stage-mode="complete-complex"] yt-icon [fill="#f80000"] {
+    --ml-ignore:true;
+    fill:var(--ml-main-text-color);
+}
+
+html[ml-stage-mode="complete-complex"] yt-icon [fill="#6f6f6f"] {
+    --ml-ignore:true;
+    fill:var(--ml-main-border-color);
 }
 
 .ytp-volume-slider-handle:after
