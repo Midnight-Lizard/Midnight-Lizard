@@ -801,7 +801,11 @@ namespace MidnightLizard.ContentScript
             {
                 return !!tag.mlIgnore;
             }
-            return !tag.parentElement || (tag.mlIgnore = this.IsIgnored(tag.parentElement));
+            if (tag.parentElement)
+            {
+                return tag.mlIgnore = this.IsIgnored(tag.parentElement);
+            }
+            return tag.mlIgnore = false;
         }
 
         protected onElementsAdded(addedElements: Set<HTMLElement>)
