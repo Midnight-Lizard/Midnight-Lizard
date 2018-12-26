@@ -632,7 +632,7 @@ namespace MidnightLizard.ContentScript
                     DocumentProcessor.processAllElements(allElements, this,
                         andAllChildren ? onCopyReCalculationDelays :
                             allElements.length < 50 ? smallReCalculationDelays :
-                                bigReCalculationDelays);
+                                bigReCalculationDelays, true, false);
                 }
             }
         }
