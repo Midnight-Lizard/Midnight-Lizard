@@ -5,11 +5,12 @@ html[ml-is-active] .gux-combo-item:not(imp):not(.imp):not(#imp) > img.gwt-Image:
     filter: var(--ml-text-filter)!important;
 }
 
-html[ml-mode="simple"] .gbqfi.gb_fc:not(imp):not(.imp):not(#imp) {
+html[ml-mode="simple"] .gbqfi.gb_fc:not(imp):not(.imp):not(#imp),
+html[ml-mode="simple"] .gbqfi.gb_qc:not(imp):not(.imp):not(#imp) {
     filter: brightness(var(--ml-text-lightness-limit))!important;
 }
 
-.gbqfi.gb_fc {
+.gbqfi.gb_fc, .gbqfi.gb_qc {
     --ml-no-invert:true;
 }
 
