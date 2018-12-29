@@ -39,7 +39,8 @@
 
 .widget-directions-icon, .directions-travel-mode-icon, .widget-directions .searchbox-hamburger:before,
 .maps-sprite-common-arrow-back-white, .section-star-array li:not(.section-star-empty),
-.widget-expand-button-pegman-icon, .close-button-white, .maps-sprite-fab-camera
+.widget-expand-button-pegman-icon, .close-button-white, .maps-sprite-fab-camera,
+.maps-sprite-homescreen-home, .maps-sprite-homescreen-work, .maps-sprite-homescreen-more
 {
     --ml-no-invert:true;
 }
