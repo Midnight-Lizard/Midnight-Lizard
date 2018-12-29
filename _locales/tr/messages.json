@@ -2,5 +2,9 @@
     "short_locale": {
         "description": "short_locale: two letters of the current locale",
         "message": "tr"
+    },
+    "appDesc": {
+        "description": "appDesc: extension description displayed in the Web Store",
+        "message": "Tüm web siteleri için özel renk şemaları: gece modu, koyu temalar, mavi ışık filtresi, ekran perdesi, gri tonlama, vs."
     }
 }
