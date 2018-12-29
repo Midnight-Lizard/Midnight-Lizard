@@ -766,18 +766,14 @@ namespace MidnightLizard.ContentScript
                     needReCalculation = true;
                 }
 
-                value = tag.style.getPropertyValue(this._css.transitionDuration);
-                if (value && tag.style.getPropertyPriority(this._css.transitionDuration) !== this._css.important)
+                value = tag.style.getPropertyValue(this._css.transitionProperty);
+                if (value && tag.style.getPropertyPriority(this._css.transitionProperty) !== this._css.important)
                 {
-                    const transitionProperty = tag.style.getPropertyValue(this._css.transitionProperty);
-                    if (transitionProperty)
+                    const { hasForbiddenTransition } = this.calculateTransition(value);
+                    if (hasForbiddenTransition)
                     {
-                        const { hasForbiddenTransition } = this.calculateTransitionDuration(value, transitionProperty);
-                        if (hasForbiddenTransition)
-                        {
-                            tag.originalTransitionDuration = value;
-                            needReCalculation = true;
-                        }
+                        tag.originalTransitionProperty = value;
+                        needReCalculation = true;
                     }
                 }
 
@@ -1446,7 +1442,7 @@ namespace MidnightLizard.ContentScript
         }
 
         protected restoreElementColors(tag: HTMLElement,
-            keepTransitionDuration?: boolean,
+            keepTransition?: boolean,
             lastProcMode?: Settings.ProcessingMode)
         {
             delete tag.mlParentBgColor;
@@ -1467,25 +1463,25 @@ namespace MidnightLizard.ContentScript
                 delete tag.mlFixed;
                 delete tag.mlSvgAttributeChanged;
 
-                if (tag.originalTransitionDuration !== undefined && !keepTransitionDuration &&
-                    tag.style.transitionDuration !== tag.originalTransitionDuration)
+                if (tag.originalTransitionProperty !== undefined && !keepTransition &&
+                    tag.style.transitionProperty !== tag.originalTransitionProperty)
                 {
-                    tag.style.transitionDuration = tag.originalTransitionDuration!;
+                    tag.style.transitionProperty = tag.originalTransitionProperty!;
                 }
-                if (keepTransitionDuration && tag.originalTransitionDuration === undefined &&
-                    tag.hasTransitionDuration && tag.mlComputedStyle)
+                if (keepTransition && tag.originalTransitionProperty === undefined &&
+                    tag.hasTransition && tag.mlComputedStyle)
                 {
-                    if (tag.mlComputedStyle.transitionDuration &&
+                    if (tag.mlComputedStyle.transitionProperty &&
+                        tag.mlComputedStyle.transitionDuration &&
                         tag.mlComputedStyle.transitionDuration !== this._css._0s &&
-                        tag.mlComputedStyle.transitionProperty)
+                        tag.mlComputedStyle.transitionProperty !== this._css.none)
                     {
-                        const { hasForbiddenTransition, durations } = this.calculateTransitionDuration(
-                            tag.mlComputedStyle.transitionDuration,
+                        const { hasForbiddenTransition, newTransProps } = this.calculateTransition(
                             tag.mlComputedStyle.transitionProperty);
                         if (hasForbiddenTransition)
                         {
-                            tag.originalTransitionDuration = tag.style.transitionDuration;
-                            tag.style.setProperty(this._css.transitionDuration, durations.join(", "), this._css.important);
+                            tag.originalTransitionProperty = tag.style.transitionProperty;
+                            tag.style.setProperty(this._css.transitionProperty, newTransProps.join(", "), this._css.important);
                         }
                     }
                 }
@@ -1685,16 +1681,18 @@ namespace MidnightLizard.ContentScript
                             afterPseudoElement = new PseudoElement(PseudoType.After, tag, afterStyle);
                         }
                     }
-                    if (tag.mlComputedStyle && tag.mlComputedStyle.transitionDuration &&
+                    if (tag.mlComputedStyle &&
                         tag.mlComputedStyle.transitionProperty &&
-                        tag.mlComputedStyle.transitionDuration !== this._css._0s)
+                        tag.mlComputedStyle.transitionProperty &&
+                        tag.mlComputedStyle.transitionDuration &&
+                        tag.mlComputedStyle.transitionDuration !== this._css._0s &&
+                        tag.mlComputedStyle.transitionProperty !== this._css.none)
                     {
-                        let { hasForbiddenTransition, durations } = this.calculateTransitionDuration(
-                            tag.mlComputedStyle.transitionDuration,
+                        let { hasForbiddenTransition, newTransProps } = this.calculateTransition(
                             tag.mlComputedStyle.transitionProperty);
                         if (hasForbiddenTransition)
                         {
-                            roomRules.transitionDuration = { value: durations.join(", ") };
+                            roomRules.transitionProperty = { value: newTransProps.join(", ") };
                         }
                     }
                     const bgrColor = tag instanceof HTMLElement && tag.isEditableContent
@@ -2031,18 +2029,6 @@ namespace MidnightLizard.ContentScript
 
                 return { roomRules: roomRules, before: beforePseudoElement, after: afterPseudoElement };
             }
-            else if (tag instanceof Element && tag.originalVisibility)
-            {
-                if (tag.originalVisibility === this._css.none)
-                {
-                    tag.style.removeProperty(this._css.visibility);
-                }
-                else
-                {
-                    tag.style.visibility = tag.originalVisibility;
-                }
-                delete tag.originalVisibility;
-            }
             return undefined;
         }
 
@@ -2081,24 +2067,19 @@ namespace MidnightLizard.ContentScript
             roomRules.filter = { value: filterValue.filter(f => f).join(" ").trim() };
         }
 
-        private calculateTransitionDuration(transitionDuration: string, transitionProperty: string)
+        private calculateTransition(transitionProperty: string)
         {
             let hasForbiddenTransition = false;
-            const singleDuration = !transitionDuration.includes(",");
-            let durations = transitionDuration.split(", ");
+            const newTransProps = transitionProperty.split(", ");
             transitionProperty.split(", ").forEach((prop, index) =>
             {
                 if (this._transitionForbiddenProperties.has(prop))
                 {
-                    durations[index] = this._css._0s;
+                    newTransProps[index] = `-${prop}`;
                     hasForbiddenTransition = true;
                 }
-                else if (singleDuration)
-                {
-                    durations[index] = transitionDuration;
-                }
             });
-            return { hasForbiddenTransition, durations };
+            return { hasForbiddenTransition, newTransProps };
         }
 
         protected changeColor(
@@ -2589,26 +2570,12 @@ namespace MidnightLizard.ContentScript
                 {
                     roomRules.attributes.forEach((attrValue, attrName) => tag.setAttribute(attrName, attrValue));
                 }
-
-                // restoring original visibility of added element
-                if (tag.originalVisibility)
-                {
-                    if (tag.originalVisibility === this._css.none)
-                    {
-                        tag.style.removeProperty(this._css.visibility);
-                    }
-                    else
-                    {
-                        tag.style.visibility = tag.originalVisibility;
-                    }
-                    delete tag.originalVisibility;
-                }
             }
 
-            if (roomRules.transitionDuration && roomRules.transitionDuration.value)
+            if (roomRules.transitionProperty && roomRules.transitionProperty.value)
             {
-                tag.originalTransitionDuration = tag.style.transitionDuration;
-                tag.style.setProperty(this._css.transitionDuration, roomRules.transitionDuration.value, this._css.important)
+                tag.originalTransitionProperty = tag.style.transitionProperty;
+                tag.style.setProperty(this._css.transitionProperty, roomRules.transitionProperty.value, this._css.important)
             }
 
             if (roomRules.filter && roomRules.filter.value)

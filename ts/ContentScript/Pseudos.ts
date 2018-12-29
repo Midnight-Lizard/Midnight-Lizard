@@ -96,7 +96,7 @@ namespace MidnightLizard.ContentScript
         }
         currentFilter: string | null | undefined;
         originalFilter = null;
-        originalTransitionDuration: string | null | undefined;
+        originalTransitionProperty: string | null | undefined;
         originalBackgroundColor: string | null | undefined;
         originalDisplay: string | null | undefined;
         originalColor: string | null | undefined;

@@ -61,8 +61,8 @@ interface Node
     currentFilter: string | null | undefined;
     originalFilter: string | null | undefined;
     keepFilter: boolean | undefined;
-    originalTransitionDuration: string | null | undefined;
-    hasTransitionDuration?: boolean;
+    originalTransitionProperty: string | null | undefined;
+    hasTransition?: boolean;
     originalBackgroundColor: string | null | undefined;
     // originalEditableContentBackgroundColor: string | null | undefined;
     originalDisplay: string | null | undefined;
@@ -74,7 +74,6 @@ interface Node
     originalBorderRightColor: string | null | undefined;
     originalBorderBottomColor: string | null | undefined;
     originalBorderLeftColor: string | null | undefined;
-    originalVisibility: string | null | undefined;
     originalBackgroundImage: string | null | undefined;
 }
 

@@ -23,7 +23,7 @@ namespace MidnightLizard.ContentScript
         borderLeftColor?: Colors.ColorEntry | null | undefined;
         textShadow?: { value: string, color: Colors.ColorEntry | null } | null | undefined;
         filter?: { value: string } | null | undefined;
-        transitionDuration?: { value: string } | null | undefined;
+        transitionProperty?: { value: string } | null | undefined;
         display?: string | null | undefined;
         attributes?: Map<string, string>;
         backgroundImages?: Array<Promise<BackgroundImage> | BackgroundImage>;

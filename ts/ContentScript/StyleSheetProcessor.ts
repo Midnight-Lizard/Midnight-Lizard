@@ -410,7 +410,7 @@ namespace MidnightLizard.ContentScript
                     {
                         this._passedTransitionSelectors.add(selector);
                         doc.body.querySelectorAll(selector).forEach(tag =>
-                            tag.hasTransitionDuration = true);
+                            tag.hasTransition = true);
                     }
                     catch (ex)
                     {
