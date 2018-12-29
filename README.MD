@@ -1,4 +1,4 @@
-# Midnight Lizard [![OpenCollective](https://opencollective.com/midnight-lizard/backers/badge.svg)](#backers) [![OpenCollective](https://opencollective.com/midnight-lizard/sponsors/badge.svg)](#sponsors) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://translate.midnight-lizard.org)
+# Midnight Lizard [![OpenCollective](https://opencollective.com/midnight-lizard/backers/badge.svg)](#backers) [![OpenCollective](https://opencollective.com/midnight-lizard/sponsors/badge.svg)](#sponsors) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/midnight-lizard/localized.svg)](https://translate.midnight-lizard.org)
 
 **Midnight Lizard** web-extension for Google **Chrome**™ and Mozilla **Firefox**™ provides custom color schemes for all websites. Each color scheme works on all websites and will never become outdated. There are many predefined color schemes and you can install more from [midnight-lizard.org](https://midnight-lizard.org/schemes)
 
@@ -13,9 +13,6 @@
 ✔ Apply blue light filter to shift all colors towards red light  
 ✔ Keep original images and hues without inversion  
 ✔ Schedule automatic activation and deactivation  
-✔ Use keyboard shortcuts to toggle extension  
-  ⮚ on current website: Alt+Shift+L  
-  ⮚ globally: Alt+Shift+M  
 ✔ Use with PDF and local files (enable in browser settings)  
 ✔ Shade bright colors and images  
 ✔ Change any colour you want  
@@ -24,6 +21,9 @@
 ✔ Apply globally, per-website or with url match patterns  
 ✔ Switch between websites blacklist and whitelist modes  
 ✔ Use Simplified mode to improve performance on heavy websites  
+✔ Use keyboard shortcuts to toggle extension  
+  ⮚ on current website: Alt+Shift+L  
+  ⮚ globally: Alt+Shift+M  
 
 ## CONTRIBUTING
   🌍 [Help translate Midnight Lizard into other languages](https://translate.midnight-lizard.org)  
