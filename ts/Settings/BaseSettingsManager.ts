@@ -582,7 +582,8 @@ namespace MidnightLizard.Settings
                     return all;
                 }, {} as any);
 
-                const userColorSchemesStore = await this._storageManager.get(userColorSchemeIds);
+                const userColorSchemesStore = Object.values<ColorScheme>(await this._storageManager.get(userColorSchemeIds))
+                    .sort((a, b) => a.colorSchemeName ? a.colorSchemeName.localeCompare(b.colorSchemeName) : 0);
 
                 for (const key in userColorSchemesStore)
                 {
