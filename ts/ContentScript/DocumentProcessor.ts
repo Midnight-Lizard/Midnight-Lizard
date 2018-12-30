@@ -10,6 +10,7 @@
 /// <reference path="../Colors/ForegroundColorProcessor.ts" />
 /// <reference path="../Colors/ColorToRgbaStringConverter.ts" />
 /// <reference path="../Colors/RangeFillColorProcessor.ts" />
+/// <reference path="../Colors/NoneColorProcessor.ts" />
 /// <reference path="./SvgFilters.ts" />
 /// <reference path="./PreloadManager.ts" />
 /// <reference path="./BackgroundImageProcessor.ts" />
@@ -117,7 +118,8 @@ namespace MidnightLizard.ContentScript
             protected readonly _colorConverter: MidnightLizard.Colors.IColorToRgbaStringConverter,
             protected readonly _zoomObserver: MidnightLizard.ContentScript.IDocumentZoomObserver,
             protected readonly _svgFilters: MidnightLizard.ContentScript.ISvgFilters,
-            protected readonly _backgroundImageProcessor: MidnightLizard.ContentScript.IBackgroundImageProcessor)
+            protected readonly _backgroundImageProcessor: MidnightLizard.ContentScript.IBackgroundImageProcessor,
+            protected readonly _noneColorProcessor: MidnightLizard.Colors.INoneColorProcessor)
         {
             if (_module.name === Settings.ExtensionModule.PopupWindow)
             {
@@ -2161,6 +2163,9 @@ namespace MidnightLizard.ContentScript
 
                     case cc.TextSelection:
                         return this._textSelectionColorProcessor.changeColor(propVal, false, tag, this._boundParentBackgroundGetter);
+
+                    case cc.None:
+                        return this._noneColorProcessor.changeColor(propVal);
                 }
             }
             return undefined;

@@ -4,6 +4,7 @@ namespace MidnightLizard.Colors
 {
     export enum ColorReason
     {
+        None,
         Ok,
         Parent,
         Previous,

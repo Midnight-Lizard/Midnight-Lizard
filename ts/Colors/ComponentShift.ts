@@ -3,6 +3,7 @@ namespace MidnightLizard.Colors
     /** Html element component */
     export enum Component
     {
+        None,
         Background,
         HighlightedBackground,
         BackgroundNoContrast,
