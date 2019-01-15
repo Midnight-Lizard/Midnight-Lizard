@@ -1126,5 +1126,13 @@
     "forgetAllSitesBtn_text_long_label": {
         "description": "forgetAllSitesBtn_text_label: text on the label",
         "message": "Eliminar todos los ajustes"
+    },
+    "privacyLink_text_label": {
+        "description": "privacyLink_text_label: text on the label",
+        "message": "Privacidad"
+    },
+    "open_collective_donate_button_text_label": {
+        "description": "opencollective.com: text on the label",
+        "message": "Donar"
     }
 }
