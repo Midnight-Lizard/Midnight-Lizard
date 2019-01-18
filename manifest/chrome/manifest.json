@@ -232,20 +232,6 @@
                 "https://*/*"
             ],
             "include_globs": [
-                "https://www.google.*/maps/*",
-                "https://www.google.*/maps?*"
-            ],
-            "js": [
-                "js/custom/google-maps.js"
-            ]
-        },
-        {
-            "run_at": "document_idle",
-            "all_frames": true,
-            "matches": [
-                "https://*/*"
-            ],
-            "include_globs": [
                 "https://www.bing.*/maps/*",
                 "https://www.bing.*/maps?*"
             ],

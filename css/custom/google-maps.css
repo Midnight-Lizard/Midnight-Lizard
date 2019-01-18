@@ -1,8 +1,16 @@
-.app-imagery-mode canvas.widget-scene-canvas,
-.app-imagery-mode .canvas-container canvas
+.canvas-container canvas, .widget-scene-canvas {
+    --ml-ignore:true;
+}
+
+html[ml-is-active] .app-imagery-mode canvas.widget-scene-canvas,
+html[ml-is-active] .app-imagery-mode .canvas-container canvas
 {
-    --ml-background-background-color:Image;
-    --ml-no-invert:true;
+    filter: var(--ml-image-filter);
+}
+
+html[ml-is-active] #app-container:not(.app-imagery-mode) canvas.widget-scene-canvas,
+html[ml-is-active] #app-container:not(.app-imagery-mode) .canvas-container canvas {
+    filter: var(--ml-contrast-text-filter);
 }
 
 .section-reviewchart-bucket-fill, .widget-layer-slider-tick,

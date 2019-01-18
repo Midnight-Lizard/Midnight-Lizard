@@ -2492,6 +2492,14 @@ namespace MidnightLizard.ContentScript
             this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, true, 1);
             cssText += `\n--ml-highlighted-text-filter:${fakeCanvasRules.filter!.value};`;
 
+            let imgSet = this.shift.Image;
+            const imgFilter = [
+                imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
+                this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
+            ].filter(f => f).join(" ").trim();
+            cssText += `\n--ml-image-filter:${imgFilter || 'none'};`;
+
             const mainColorsStyle = doc.createElement('style');
             mainColorsStyle.id = "midnight-lizard-dynamic-values";
             mainColorsStyle.mlIgnore = true;
