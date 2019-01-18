@@ -131,7 +131,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 #change-log-link:after {}
 
 .ml-footer-icon-container.left[tooltip]:before {left: 3px;}
-.ml-footer-icon-container.left[tooltip]:after {left: 9px;}
+.ml-footer-icon-container.left[tooltip]:after {left: 11px;}
 .ml-footer-icon-container.right[tooltip]:before {
     right: 6px;
     text-align: center;
@@ -139,11 +139,13 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 .ml-footer-icon-container.right[tooltip]:after {
     right: 12px;
 }
-#facebook-link:after {}
+#facebook-link:after {
+    left: 12px;
+}
 #google-plus-link:after {left: 12px;}
-#instagram-link:after {left: 12px;}
+#instagram-link:after {left: 15px;}
 #pinterest-link:after {left: 10px;}
-#github-link:after {left: 10px;}
+#github-link:after {left: 12px;}
 .privacy-link:before {
     bottom: 34px;
     left: -20px;
