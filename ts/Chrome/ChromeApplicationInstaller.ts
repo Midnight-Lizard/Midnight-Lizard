@@ -14,7 +14,7 @@ namespace Chrome
             protected readonly _chromePromise: Chrome.ChromePromise,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings)
         {
-            if (!_app.isDebug && _app.browserName !== MidnightLizard.Settings.BrowserName.Firefox)
+            if ( _app.browserName !== MidnightLizard.Settings.BrowserName.Firefox)
             {
                 chrome.runtime.onInstalled.addListener(this.onInstalled.bind(this));
             }
@@ -50,7 +50,7 @@ namespace Chrome
                             .catch(this.printError);
                     }))
                     .catch(this.printError);
-            }, 3000);
+            }, this._app.isDebug ? 3000 : 100);
         }
     }
 }
