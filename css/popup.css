@@ -575,7 +575,7 @@ select.ml-dialog-input-text {
 }
 
 .ml-footer-icon-container.left {
-    padding-left: 10px;
+    padding-left: 12px;
 }
 
 .ml-footer-icon-container.right {
@@ -608,6 +608,12 @@ select.ml-dialog-input-text {
     width: 32px;
 }
 
+.telegram-icon {
+    width: 19px;
+    margin-left: -1px;
+    margin-right: 2px;
+}
+
 .facebook-icon {
     width: 18px;
 }
@@ -630,6 +636,10 @@ select.ml-dialog-input-text {
 
 .google-plus-icon:hover {
     fill: rgb(219, 68, 55);
+}
+
+.telegram-icon:hover {
+    fill: #1e96c8;
 }
 
 .facebook-icon:hover {
