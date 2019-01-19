@@ -202,3 +202,8 @@ html[ml-stage-mode="complete-complex"] .ytd-section-list-renderer ytd-playlist-v
 }
 
 /* END optimazations for video lists */
+
+html[ml-stage][ml-scrollbar-style="ml-simple"][hide-scrollbar]:not([ml-stage="preload"])::-webkit-scrollbar,
+html[ml-stage][ml-scrollbar-style="ml-simple"][hide-scrollbar]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
+    width: 0px!important;
+}
