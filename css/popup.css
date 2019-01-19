@@ -720,6 +720,9 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #change-log-link:not
     color: var(--ml-main-alt-background-color)!important;
 }
 
+#donate-link:hover {
+    z-index: 2;
+}
 #donate-link > a {
     position: relative;
 }
@@ -1707,6 +1710,7 @@ html[ml-color-scheme="custom"] i.unsaved {
     display: inline-block;
     position: relative;
     font-weight: bold;
+    z-index: 1;
 }
 .privacy-link:hover {
     text-decoration: underline;
