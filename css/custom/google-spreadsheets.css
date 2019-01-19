@@ -22,3 +22,14 @@
 {
     color: transparent;
 }
+
+.docs-icon-inputtools-button-inner,
+.docs-icon-inputtools-menuitem-inner,
+.docs-icon-img {
+    --ml-ignore:true;
+    filter: var(--ml-contrast-text-filter);
+}
+
+.goog-menuitem.goog-menuitem-highlight {
+    --ml-background-background-color:ButtonBackground;
+}
