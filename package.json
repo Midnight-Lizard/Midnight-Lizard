@@ -4,7 +4,7 @@
     "name": "Pavel Agarkov",
     "email": "midnight.lizard.extension@gmail.com"
   },
-  "license": "GPL-3.0",
+  "license": "MIT",
   "version": "10.2.0",
   "dependencies": {
     "@types/firefox-webext-browser": "^58.0.4",
@@ -14,6 +14,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pavel-agarkov/Midnight-Lizard.git"
+    "url": "https://github.com/Midnight-Lizard/Midnight-Lizard.git"
   }
 }
