@@ -1,0 +1,138 @@
+<svg height="100%" viewBox="0 0 1903 660" width="100%"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     preserveAspectRatio="xMidYMid meet">
+  <style>
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    .title {
+      font: 500 80px Roboto;
+      fill: #edd500;
+      text-shadow: 0 0 2px rgba(0,0,0,1);
+      letter-spacing: 2px;
+    }
+    .description {
+      font: 500 30px Roboto;
+      fill: #d8d2d0;
+      text-shadow: 0 0 2px rgba(0,0,0,1);
+    }
+    .feature {
+      font: 500 24px Roboto;
+      fill: #d8d2d0;
+      text-shadow: 0 0 2px rgba(0,0,0,1);
+    }
+    .feature-description {
+      font: 500 20px Roboto;
+      fill: #d8d2d0;
+      text-shadow: 0 0 2px rgba(0,0,0,1);
+    }
+  </style>
+  <defs>
+    <filter id="dark-filter">
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.93" />
+        <feFuncG type="linear" slope="0.93" />
+        <feFuncB type="linear" slope="0.93" />
+      </feComponentTransfer>
+      <feColorMatrix type="hueRotate" values="180" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0" />
+        <feFuncG type="table" tableValues="1 0" />
+        <feFuncB type="table" tableValues="1 0" />
+      </feComponentTransfer>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.8" />
+        <feFuncG type="linear" slope="0.8" />
+        <feFuncB type="linear" slope="0.8" />
+      </feComponentTransfer>
+    </filter>
+    <filter id="dark-blue-filter">
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.93" />
+        <feFuncG type="linear" slope="0.93" />
+        <feFuncB type="linear" slope="0.93" />
+      </feComponentTransfer>
+      <feColorMatrix type="hueRotate" values="180" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0" />
+        <feFuncG type="table" tableValues="1 0" />
+        <feFuncB type="table" tableValues="1 0" />
+      </feComponentTransfer>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="0.9" />
+        <feFuncG type="linear" slope="0.8" />
+        <feFuncB type="linear" slope="0.6" />
+      </feComponentTransfer>
+      <feColorMatrix type="matrix" values="1 0 0.4 0 0 0 1 0 0 0 0 0 0.6 0 0 0 0 0 1 0"></feColorMatrix>
+    </filter>
+    <filter id="blue-light-filter">
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="1" />
+        <feFuncG type="linear" slope="0.9" />
+        <feFuncB type="linear" slope="0.7" />
+      </feComponentTransfer>
+      <feColorMatrix type="matrix" values="1 0 0.3 0 0 0 1 0 0 0 0 0 0.7 0 0 0 0 0 1 0"></feColorMatrix>
+    </filter>
+    <filter id="drop-shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+      <feOffset dx="2" dy="2" result="offsetblur" />
+      <feFlood flood-color="black" />
+      <feComposite in2="offsetblur" operator="in" />
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <g id="title" transform="translate(0 100)">
+      <text x="170" y="80" class="title">Midnight Lizard</text>
+      <text x="305" y="200" class="description">Custom color schemes</text>
+      <text x="355" y="245" class="description">for all websites</text>
+    </g>
+    <mask id="light-mask" fill="#fff" height="200" width="200">
+      <path d="M 0,0 200,0 0,200 Z"/>
+    </mask>
+    <mask id="dark-mask" fill="#fff" height="200" width="200">
+      <path d="M 0,200 200,200 200,0 Z"/>
+    </mask>
+    <g id="sides-image">
+      <image width="200" height="200" xlink:href="file:///C:/Projects/MidnightLizard/Extension/promo/parts/sides.svg"></image>
+    </g>
+    <g id="sides" transform="translate(980,0)">
+      <use xlink:href="#sides-image" mask="url(#light-mask)"></use>
+      <use xlink:href="#sides-image" filter="url(#dark-filter)"
+            mask="url(#dark-mask)"></use>
+      <text x="220" y="90" class="feature">Day &amp; night modes</text>
+      <text x="220" y="120" class="feature-description">Improve accessibility</text>
+    </g>
+    <g id="colors-image">
+      <image width="200" height="200" xlink:href="file:///C:/Projects/MidnightLizard/Extension/promo/parts/colors.svg"></image>
+    </g>
+    <g id="colors" transform="translate(1050,150)">
+      <text x="20" y="95" class="feature">Tons of themes</text>
+      <text x="20" y="125" class="feature-description">Choose your colors</text>
+      <use x="220" xlink:href="#colors-image"></use>
+    </g>
+    <g id="blue-filter-image">
+      <image width="200" height="200" xlink:href="file:///C:/Projects/MidnightLizard/Extension/promo/parts/blue-light-filter.svg"></image>
+    </g>
+    <g id="blue-filter" transform="translate(980,300)">
+      <use xlink:href="#blue-filter-image" mask="url(#light-mask)"></use>
+      <use xlink:href="#blue-filter-image" filter="url(#dark-blue-filter)"
+            mask="url(#dark-mask)"></use>
+      <text x="220" y="100" class="feature">Blue light filter</text>
+      <text x="220" y="130" class="feature-description">Protect your eyes</text>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="1903" height="660" fill="#222425"></rect>
+  <g width="1500" height="500" transform="translate(201.5,80)">
+    <rect x="0" y="0" width="1500" height="500" fill="#222425"></rect>
+    <use xlink:href="#title"></use>
+    <use xlink:href="#sides"></use>
+    <use xlink:href="#colors"></use>
+    <use xlink:href="#blue-filter"></use>
+  </g>
+</svg>
