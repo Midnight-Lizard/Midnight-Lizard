@@ -14,6 +14,7 @@
 ✔ Keep original images and hues without inversion  
 ✔ Schedule automatic activation and deactivation  
 ✔ Use with PDF and local files (enable in browser settings)  
+✔ Dynamically change Firefox theme (disabled by default)  
 ✔ Shade bright colors and images  
 ✔ Change any colour you want  
 ✔ Synchronize your settings  
@@ -32,4 +33,3 @@
 
 ## BACKERS
 [![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)
-<sub><sup>※ Only backers with avatars are shown</sup></sub>
