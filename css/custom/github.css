@@ -68,3 +68,7 @@ html[ml-stage-mode="complete-complex"] .gh-header .gh-header-sticky.is-stuck+.gh
     --ml-background-background-color:None;
     background-color: var(--ml-main-alt-background-color);
 }
+
+html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .user-profile-sticky-bar:after {
+    background-color: var(--ml-main-alt-background-color);
+}
