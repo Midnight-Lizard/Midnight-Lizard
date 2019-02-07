@@ -19,7 +19,7 @@ ul[data-test-id="color-picker"] li[name] button {
     --ml-background-background-color:Border;
 }
 
-html[ml-is-active] .YLogoMY {
+html[ml-stage] .YLogoMY {
     --ml-ignore:true;
     filter: saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) brightness(calc(1 + var(--ml-invert) / 2)) !important;
 }

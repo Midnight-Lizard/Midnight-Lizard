@@ -1,5 +1,5 @@
-html[ml-is-active] .jfk-button-standard:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp),
-html[ml-is-active] .gux-combo-item:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp)
+html[ml-stage] .jfk-button-standard:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp),
+html[ml-stage] .gux-combo-item:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp)
 {
     --ml-ignore:true;
     filter: var(--ml-text-filter)!important;

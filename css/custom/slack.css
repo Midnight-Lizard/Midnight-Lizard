@@ -4,12 +4,12 @@
     --ml-backgroundimage:Image;
 }
 
-html[ml-is-active] .emoji-outer.emoji-sizer.emoji-only {
+html[ml-stage] .emoji-outer.emoji-sizer.emoji-only {
     --ml-ignore:true;
     filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter);
 }
 
-html[ml-is-active] .p-emoji_picker__list_item {
+html[ml-stage] .p-emoji_picker__list_item {
     transition-duration: 0s!important;
     transition-property: none!important;
 }

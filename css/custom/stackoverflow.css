@@ -1,9 +1,9 @@
-html[ml-is-active]:not([ml-stage="loading"]) .-img._glyph {
+html[ml-stage]:not([ml-stage="loading"]) .-img._glyph {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
 
-html[ml-is-active][ml-mode="simple"] header:not(imp):not(#imp):not(.imp) a:not(imp):not(#imp):not(.imp) .-img._glyph:not(imp):not(#imp):not(.imp) {
+html[ml-stage][ml-mode="simple"] header:not(imp):not(#imp):not(.imp) a:not(imp):not(#imp):not(.imp) .-img._glyph:not(imp):not(#imp):not(.imp) {
     background-color: transparent!important;
 }
 
@@ -11,8 +11,8 @@ html[ml-is-active][ml-mode="simple"] header:not(imp):not(#imp):not(.imp) a:not(i
     --ml-background-background-color:Text;
 }
 
-html[ml-is-active] .left-sidebar-toggle *:before,
-html[ml-is-active] .left-sidebar-toggle *:after {
+html[ml-stage] .left-sidebar-toggle *:before,
+html[ml-stage] .left-sidebar-toggle *:after {
     --ml-ignore:true;
     background-color: var(--ml-main-text-color);
 }

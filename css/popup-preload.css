@@ -1,9 +1,9 @@
-html[ml-is-active][ml-stage]:not([ml-stage="complete"]) {
+html[ml-stage]:not([ml-stage="complete"]) {
     filter: var(--ml-preload-filter);
 }
 
-html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :before,
-html[ml-is-active][ml-stage]:not([ml-stage="complete"]) :after,
-html[ml-is-active][ml-stage]:not([ml-stage="complete"]) .ml-helio-button {
+html[ml-stage]:not([ml-stage="complete"]) :before,
+html[ml-stage]:not([ml-stage="complete"]) :after,
+html[ml-stage]:not([ml-stage="complete"]) .ml-helio-button {
     visibility: hidden;
 }

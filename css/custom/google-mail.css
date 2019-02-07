@@ -31,11 +31,11 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div[role="button"]:n
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div[role="checkbox"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):before,
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span[role="link"][id]:not(#imp):not(.imp):not(imp):before,
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span[role="button"][id]:not(#imp):not(.imp):not(imp):before,
-html[ml-is-active] div[role="button"]:not(#imp):not(.imp):not(imp)>span>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-is-active] div[role="button"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-is-active] div[role="menuitem"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-is-active] img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
-html[ml-is-active] img[src*="black"]:not(#imp):not(.imp):not(imp) {
+html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>span>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage] div[role="menuitem"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage] img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
+html[ml-stage] img[src*="black"]:not(#imp):not(.imp):not(imp) {
     filter: var(--ml-text-filter) !important;
     background-color: transparent !important;
     --ml-ignore:true;

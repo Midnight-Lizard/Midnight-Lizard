@@ -2,14 +2,14 @@
     --ml-ignore:true;
 }
 
-html[ml-is-active] .app-imagery-mode canvas.widget-scene-canvas,
-html[ml-is-active] .app-imagery-mode .canvas-container canvas
+html[ml-stage] .app-imagery-mode canvas.widget-scene-canvas,
+html[ml-stage] .app-imagery-mode .canvas-container canvas
 {
     filter: var(--ml-image-filter);
 }
 
-html[ml-is-active] #app-container:not(.app-imagery-mode) canvas.widget-scene-canvas,
-html[ml-is-active] #app-container:not(.app-imagery-mode) .canvas-container canvas {
+html[ml-stage] #app-container:not(.app-imagery-mode) canvas.widget-scene-canvas,
+html[ml-stage] #app-container:not(.app-imagery-mode) .canvas-container canvas {
     filter: var(--ml-contrast-text-filter);
 }
 
