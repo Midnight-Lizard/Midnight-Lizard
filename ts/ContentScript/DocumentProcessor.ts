@@ -2401,7 +2401,8 @@ namespace MidnightLizard.ContentScript
             doc.documentElement!.mlArea = 1;
             const bgLight = this.shift.Background.lightnessLimit,
                 autofillBackgroundColorEntry = this._backgroundColorProcessor.changeColor("rgb(250,255,189)", false, doc.documentElement),
-                textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement);
+                textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement),
+                scrollbarSizeNum = this._settingsManager.currentSettings.scrollbarSize;
             const
                 backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
                 altBackgroundColor = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement).color!,
@@ -2425,7 +2426,7 @@ namespace MidnightLizard.ContentScript
                 scrollbarThumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color!,
                 scrollbarThumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color!,
                 scrollbarTrackColor = backgroundColor,
-                scrollbarSize = `${this._settingsManager.currentSettings.scrollbarSize}px`,
+                scrollbarSize = `${scrollbarSizeNum}px`,
 
                 linkColor = this._linkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
                 linkColorHover = this._hoverLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
@@ -2433,6 +2434,17 @@ namespace MidnightLizard.ContentScript
                 visitedColor = this._visitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
                 visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
                 visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!;
+
+            // Firefox scrollbar size
+            let mozScrollbarWidth = 'auto';
+            if (scrollbarSizeNum === 0)
+            {
+                mozScrollbarWidth = 'none';
+            }
+            else if (scrollbarSizeNum < 10)
+            {
+                mozScrollbarWidth = 'thin';
+            }
 
             delete doc.documentElement!.mlArea;
             this._backgroundColorProcessor.clear();
@@ -2442,7 +2454,8 @@ namespace MidnightLizard.ContentScript
                 textColor, transTextColor, borderColor, transBorderColor, selectionColor, rangeFillColor,
                 autofillBackgroundColor, autofillTextColor,
                 buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
-                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarSize,
+                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor,
+                scrollbarSize, mozScrollbarWidth,
                 linkColor, linkColorHover, linkColorActive,
                 visitedColor, visitedColorHover, visitedColorActive
             };

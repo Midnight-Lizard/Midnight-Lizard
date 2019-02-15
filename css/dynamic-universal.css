@@ -30,6 +30,7 @@ html[ml-stage]:not([ml-stage="preload"]) select:-webkit-autofill {
   html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]),
   html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) * {
     scrollbar-color: var(--ml-main-scrollbar-thumb-normal-color) var(--ml-main-alt-background-color) !important;
+    scrollbar-width: var(--ml-main-moz-scrollbar-width) !important;
   }
 }
 
