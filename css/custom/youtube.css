@@ -207,3 +207,8 @@ html[ml-stage][ml-scrollbar-style="ml-simple"][hide-scrollbar]:not([ml-stage="pr
 html[ml-stage][ml-scrollbar-style="ml-simple"][hide-scrollbar]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar {
     width: 0px!important;
 }
+
+html[ml-stage] .ytp-ad-overlay-container {
+  --ml-ignore:true;
+  filter: var(--ml-image-filter);
+}
