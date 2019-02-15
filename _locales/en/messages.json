@@ -560,7 +560,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
+        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
@@ -970,10 +970,6 @@
     "smallBackgroundImageExampleOriginal_@title": {
         "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
         "message": "Original small background images being processed above"
-    },
-    "firefoxNoSupportScrollbar_html_error_message": {
-        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
-        "message": "Scrollbar's styling <br\/> is not supported by Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",

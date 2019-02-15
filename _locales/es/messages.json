@@ -556,7 +556,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Ajustes de las barras de desplazamiento\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
+        "message": " Ajustes de las barras de desplazamiento\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
@@ -962,10 +962,6 @@
     "smallBackgroundImageExampleOriginal_@title": {
         "description": "smallBackgroundImageExampleOriginal_@title: text on the tooltip\/hint",
         "message": "Colores de imágenes de fondo originales procesados encima"
-    },
-    "firefoxNoSupportScrollbar_html_error_message": {
-        "description": "firefoxNoSupportScrollbar_html_error_message: text on the message box",
-        "message": "El estilizado de la barra de desplazamiento <br\/> no es compatible con Firefox <br\/><br\/>"
     },
     "translateLink_@tooltip": {
         "description": "translateLink_@tooltip: text on the tooltip\/hint with custom style",
