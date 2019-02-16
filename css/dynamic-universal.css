@@ -130,7 +130,7 @@ html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(im
 
 
 
-/* --------------------- Google Translate bubble ----------------------- */
+/* --------------------- BEGIN Google Translate bubble ----------------------- */
 
 html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) {
     background-color: rgb(255, 255, 255) !important;
@@ -157,3 +157,26 @@ html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):
     border-color: rgb(255, 255, 255) transparent !important;
     background-color: transparent !important;
 }
+
+/* --------------------- END Google Translate bubble ----------------------- */
+
+/* ---------------- BEGIN GRAMMARLY -------------------*/
+
+[data-grammarly-part="highlights"] [data-gramm="gramm"]>:before {
+  --ml-background-background-color:HighlightedBackground;
+}
+[data-grammarly-part="highlights"] [data-gramm="gramm"]>:after {
+  --ml-background-background-color:Border;
+}
+
+html[ml-stage-mode="complete-complex"] grammarly-popup-editor {
+  --ml-ignore:true;
+}
+html[ml-stage-mode="complete-complex"] grammarly-popup-editor>*>iframe,
+html[ml-stage-mode="complete-complex"] grammarly-card,
+html[ml-stage-mode="complete-complex"] [data-grammarly-part="button"] {
+  --ml-ignore:true;
+  filter: var(--ml-highlighted-text-filter);
+}
+
+/* ---------------- END GRAMMARLY -------------------*/
