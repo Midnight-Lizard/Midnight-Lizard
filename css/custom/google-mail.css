@@ -34,7 +34,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span[role="button"][
 html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>span>img[src]:not(#imp):not(.imp):not(imp),
 html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
 html[ml-stage] div[role="menuitem"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-stage] img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
+html[ml-stage] :not(.Hm)>img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
 html[ml-stage] img[src*="black"]:not(#imp):not(.imp):not(imp) {
     filter: var(--ml-text-filter) !important;
     background-color: transparent !important;
