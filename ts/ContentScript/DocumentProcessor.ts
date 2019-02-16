@@ -1609,7 +1609,7 @@ namespace MidnightLizard.ContentScript
                     tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                 {
                     hasRoomRules = true;
-                    this.processInaccessibleTextContent(tag, roomRules);
+                    this.processInaccessibleTextContent({ tag, roomRules });
                 }
 
                 if (hasRoomRules)
@@ -1908,7 +1908,7 @@ namespace MidnightLizard.ContentScript
                     if (tag instanceof HTMLCanvasElement ||
                         tag instanceof HTMLEmbedElement && tag.getAttribute("type") === "application/pdf")
                     {
-                        this.processInaccessibleTextContent(tag, roomRules);
+                        this.processInaccessibleTextContent({ tag, roomRules });
                     }
 
                     if (isSvg && tag.mlComputedStyle!.stroke !== this._css.none || !isSvg && (
@@ -2035,12 +2035,14 @@ namespace MidnightLizard.ContentScript
         }
 
         private processInaccessibleTextContent(
-            tag: HTMLCanvasElement | HTMLEmbedElement,
-            roomRules: RoomRules, strictBgLight = false, customTextLight?: number)
+            { tag, roomRules, strictBgLight = true, customTextLight, ignoreContentInvertRule = false }: {
+                tag: HTMLCanvasElement | HTMLEmbedElement, ignoreContentInvertRule?: boolean
+                roomRules: RoomRules, strictBgLight?: boolean, customTextLight?: number
+            })
         {
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
-                this._settingsManager.currentSettings.doNotInvertContent === false &&
+                (ignoreContentInvertRule || this._settingsManager.currentSettings.doNotInvertContent === false) &&
                 tag.mlComputedStyle &&
                 tag.mlComputedStyle.getPropertyValue("--ml-no-invert") !== true.toString())
             {
@@ -2498,12 +2500,24 @@ namespace MidnightLizard.ContentScript
 
             const fakeCanvas = doc.createElement("canvas"), fakeCanvasRules: RoomRules = {};
             fakeCanvas.mlComputedStyle = fakeCanvas.style;
-            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, true);
-            cssText += `\n--ml-text-filter:${fakeCanvasRules.filter!.value};`;
-            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules);
-            cssText += `\n--ml-contrast-text-filter:${fakeCanvasRules.filter!.value};`;
-            this.processInaccessibleTextContent(fakeCanvas, fakeCanvasRules, true, 1);
-            cssText += `\n--ml-highlighted-text-filter:${fakeCanvasRules.filter!.value};`;
+            for (const [contentType, ignoreContentInvertRule] of
+                [["", true], ["-dynamic-content", false]] as Array<[string, boolean]>)
+            {
+                this.processInaccessibleTextContent({
+                    tag: fakeCanvas, roomRules: fakeCanvasRules,
+                    strictBgLight: true, ignoreContentInvertRule
+                });
+                cssText += `\n--ml${contentType}-text-filter:${fakeCanvasRules.filter!.value};`;
+                this.processInaccessibleTextContent({
+                    tag: fakeCanvas, roomRules: fakeCanvasRules, ignoreContentInvertRule
+                });
+                cssText += `\n--ml${contentType}-contrast-text-filter:${fakeCanvasRules.filter!.value};`;
+                this.processInaccessibleTextContent({
+                    tag: fakeCanvas, roomRules: fakeCanvasRules,
+                    strictBgLight: true, customTextLight: 1, ignoreContentInvertRule
+                });
+                cssText += `\n--ml${contentType}-highlighted-text-filter:${fakeCanvasRules.filter!.value};`;
+            }
 
             let imgSet = this.shift.Image;
             const imgFilter = [
