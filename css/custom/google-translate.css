@@ -68,3 +68,7 @@ html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t * {
 html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t .gt-ct-translit {
     color: var(--ml-main-trans-text-color);
 }
+
+.gt-related-suggest-message {
+  background-color: transparent!important;
+}
