@@ -169,13 +169,20 @@ html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):
   --ml-background-background-color:Border;
 }
 
-html[ml-stage-mode="complete-complex"] grammarly-popup-editor {
+html[ml-stage-mode="complete-complex"] [data-grammarly-part="button"],
+html[ml-stage-mode="complete-complex"] grammarly-popup-editor,
+html[ml-stage-mode="complete-complex"] grammarly-highlights,
+html[ml-stage-mode="complete-complex"] grammarly-card,
+html[ml-stage-mode="complete-complex"] grammarly-mirror,
+html[ml-stage-mode="complete-complex"] grammarly-button {
   --ml-ignore:true;
 }
 html[ml-stage-mode="complete-complex"] grammarly-popup-editor>*>iframe,
-html[ml-stage-mode="complete-complex"] grammarly-card,
+html[ml-stage-mode="complete-complex"] grammarly-card>*,
+html[ml-stage-mode="complete-complex"] grammarly-mirror>*,
+html[ml-stage-mode="complete-complex"] grammarly-button>*,
+html[ml-stage-mode="complete-complex"] grammarly-highlights>*,
 html[ml-stage-mode="complete-complex"] [data-grammarly-part="button"] {
-  --ml-ignore:true;
   filter: var(--ml-highlighted-text-filter);
 }
 
