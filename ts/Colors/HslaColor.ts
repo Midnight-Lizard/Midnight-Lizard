@@ -1,5 +1,9 @@
 namespace MidnightLizard.Colors
 {
+    const float = new Intl.NumberFormat('en-US', {
+        useGrouping: false,
+        maximumFractionDigits: 2
+    });
     /**
      * HslaColor
      */
@@ -37,9 +41,9 @@ namespace MidnightLizard.Colors
         {
             if (this.alpha === 1)
             {
-                return `hsl(${Math.round(this.hue)}, ${Math.round(this.saturation)}, ${Math.round(this.lightness)})`;
+                return `hsl(${Math.round(this.hue)}, ${float.format(this.saturation * 100)}%, ${float.format(this.lightness * 100)}%)`;
             }
-            return `hsla(${Math.round(this.hue)}, ${Math.round(this.saturation)}, ${Math.round(this.lightness)}, ${this.alpha})`;
+            return `hsla(${Math.round(this.hue)}, ${float.format(this.saturation * 100)}%, ${float.format(this.lightness * 100)}%, ${float.format(this.alpha)})`;
         }
     }
 }

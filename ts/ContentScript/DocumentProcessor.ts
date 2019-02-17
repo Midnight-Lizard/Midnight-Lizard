@@ -2054,7 +2054,8 @@ namespace MidnightLizard.ContentScript
                     darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
                     `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, strictBgLight ? 0 : 0.9))})`,
                     `hue-rotate(180deg) invert(1)`,
-                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    // this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    `var(--${FilterType.ContentFilter})`,
                     `brightness(${float.format(Math.max(customTextLight || txtSet.lightnessLimit, 0.9))})`
                 ];
             }
@@ -2064,7 +2065,8 @@ namespace MidnightLizard.ContentScript
                 const lightSet = this.shift[customLightRole] || this.shift.Image;
                 filterValue = [
                     lightSet.saturationLimit < 1 ? `saturate(${lightSet.saturationLimit})` : "",
-                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    // this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                    `var(--${FilterType.ContentFilter})`,
                     lightSet.lightnessLimit < 1 ? `brightness(${lightSet.lightnessLimit})` : ""
                 ];
             }
@@ -2465,8 +2467,8 @@ namespace MidnightLizard.ContentScript
 
         protected injectDynamicValues(doc: Document)
         {
-            this._svgFilters.createSvgFilters(doc);
             const mainColors = this.calculateMainColors(doc);
+            this._svgFilters.createSvgFilters(doc, mainColors.backgroundColor, mainColors.textColor);
             let cssText = "";
             for (const color in mainColors)
             {
@@ -2493,6 +2495,7 @@ namespace MidnightLizard.ContentScript
             cssText += `\n--ml-browser:${this._app.browserName}!important;`;
             cssText += `\n--ml-app-id:${this._app.id};`;
             cssText += `\n--ml-version:${this._app.version};`;
+            cssText += `\n--${FilterType.ContentFilter}:url("#${FilterType.ContentFilter}");`;
             cssText += `\n--${FilterType.BlueFilter}:url("#${FilterType.BlueFilter}");`;
             cssText += `\n--${FilterType.PdfFilter}:url("#${FilterType.PdfFilter}");`;
             cssText += `\n--ml-invert:${this.shift.Background.lightnessLimit < 0.3 ? 1 : 0}!important;`;

@@ -2,6 +2,7 @@
 /// <reference path="../Settings/BaseSettingsManager.ts" />
 /// <reference path="../Settings/IApplicationSettings.ts" />
 /// <reference path="../Colors/RgbaColor.ts" />
+/// <reference path="../Colors/HslaColor.ts" />
 
 namespace MidnightLizard.ContentScript
 {
@@ -9,12 +10,13 @@ namespace MidnightLizard.ContentScript
 
     export abstract class ISvgFilters
     {
-        public abstract createSvgFilters(doc: Document): void
+        public abstract createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
         public abstract removeSvgFilters(doc: Document): void
     }
 
     export enum FilterType
     {
+        ContentFilter = "ml-content-filter",
         BlueFilter = "ml-blue-filter",
         PdfFilter = "pdf-bg-filter"
     }
@@ -34,25 +36,28 @@ namespace MidnightLizard.ContentScript
             svgFilters && svgFilters.remove();
         }
 
-        public createSvgFilters(doc: Document): void
+        public createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
         {
             const svg = doc.createElementNS(svgNs, "svg");
             svg.id = svgElementId
             svg.mlIgnore = true;
-            svg.style.height = "0px";
+            svg.style.width = svg.style.height = "0";
             svg.style.position = "absolute";
-            svg.style.setProperty("--ml-ignore", "true");
+            // svg.style.setProperty("--ml-ignore", "true");
 
             svg.appendChild(this.createBlueFilter(doc));
+            svg.appendChild(this.createTextFilter(doc, overlayBgColor, overlayTxtColor));
 
             svg.appendChild(this.createColorReplacementFilter(
                 doc, FilterType.PdfFilter,
                 new Colors.RgbaColor(240, 240, 240, 1),
                 new Colors.RgbaColor(82, 86, 89, 1)));
 
-            (this._app.browserName === Settings.BrowserName.Chrome
-                ? doc.head || doc.documentElement!
-                : doc.documentElement!).appendChild(svg);
+            // (this._app.browserName === Settings.BrowserName.Chrome
+            //     ? doc.head || doc.documentElement!
+            //     : doc.documentElement!).appendChild(svg);
+
+            doc.documentElement!.appendChild(svg);
         }
 
         private createBlueFilter(doc: Document)
@@ -65,12 +70,79 @@ namespace MidnightLizard.ContentScript
 
             filter.id = FilterType.BlueFilter;
             filter.setAttribute("color-interpolation-filters", "sRGB");
-            filter.appendChild(feColorMatrix);
 
-            feColorMatrix.setAttribute("type", "matrix");
-            feColorMatrix.setAttribute("values", redShiftMatrix);
+            if (blueFltr > 0)
+            {
+                filter.appendChild(feColorMatrix);
+                feColorMatrix.setAttribute("type", "matrix");
+                feColorMatrix.setAttribute("values", redShiftMatrix);
+            }
 
             return filter;
+        }
+
+        private createTextFilter(doc: Document, overlayBgColor: string, overlayTxtColor: string)
+        {
+            const
+                filter = doc.createElementNS(svgNs, "filter"),
+                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
+                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
+                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+
+            filter.id = FilterType.ContentFilter;
+            filter.setAttribute("color-interpolation-filters", "sRGB");
+
+            let input = "SourceGraphic";
+            input = this.addColorOverlay(overlayBgColor, doc, filter, input, "bg");
+            input = this.addColorOverlay(overlayTxtColor, doc, filter, input, "txt");
+
+            if (blueFltr > 0)
+            {
+                filter.appendChild(feColorMatrix);
+                feColorMatrix.setAttribute("type", "matrix");
+                feColorMatrix.setAttribute("values", redShiftMatrix);
+                feColorMatrix.setAttribute("in", input);
+            }
+
+            return filter;
+        }
+
+        private addColorOverlay(overlayColor: string, doc: Document,
+            filter: SVGFilterElement, input: string, layer: string)
+        {
+            let output = input;
+            const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
+            if (overlayColorHsl.saturation > 0.1)
+            {
+                const isDark = overlayColorHsl.lightness < 0.5;
+                const blendMode = isDark ? "lighten" : "darken";
+                overlayColorHsl.lightness *= isDark ? 1.1 : 0.999;
+                const
+                    feFlood = doc.createElementNS(svgNs, "feFlood"),
+                    feComposite = doc.createElementNS(svgNs, "feComposite"),
+                    feBlend = doc.createElementNS(svgNs, "feBlend");
+
+                filter.appendChild(feFlood);
+                filter.appendChild(feComposite);
+                filter.appendChild(feBlend);
+
+                feFlood.setAttribute("result", "flood_" + layer);
+                feFlood.setAttribute("flood-color", overlayColorHsl.toString());
+                feFlood.setAttribute("flood-opacity", "0.8");
+
+                feComposite.setAttribute("result", "flood_alpha_" + layer);
+                feComposite.setAttribute("in", "flood_" + layer);
+                feComposite.setAttribute("in2", "SourceAlpha");
+                feComposite.setAttribute("operator", "in");
+
+                feBlend.setAttribute("result", "blend_" + layer);
+                feBlend.setAttribute("in", "flood_alpha_" + layer);
+                feBlend.setAttribute("in2", input);
+                feBlend.setAttribute("mode", blendMode);
+
+                output = "blend_" + layer;
+            }
+            return output;
         }
 
         private createColorReplacementFilter(doc: Document,
