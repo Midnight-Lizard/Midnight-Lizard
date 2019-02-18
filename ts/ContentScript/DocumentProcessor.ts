@@ -2439,7 +2439,6 @@ namespace MidnightLizard.ContentScript
                 scrollbarThumbNormalColorFiltered = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
                 scrollbarThumbActiveColorFiltered = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
                 scrollbarTrackColorFiltered = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
-                mozScrollbarTrackColorFiltered = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", false, doc.documentElement).color!,
 
                 linkColor = this._linkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
                 linkColorHover = this._hoverLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
@@ -2462,8 +2461,16 @@ namespace MidnightLizard.ContentScript
             delete doc.documentElement!.mlArea;
             this._backgroundColorProcessor.clear();
 
+            const
+                backgroundColorFiltered = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
+                altBackgroundColorFiltered = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement).color!;
+
+            delete doc.documentElement!.mlArea;
+            this._backgroundColorProcessor.clear();
+
             return {
-                backgroundColor, altBackgroundColor,
+                backgroundColor, backgroundColorFiltered,
+                altBackgroundColor, altBackgroundColorFiltered,
                 transBackgroundColor, transAltBackgroundColor,
                 textColor, transTextColor, borderColor, transBorderColor,
                 selectionColor, selectionTextColor, selectionShadowColor, rangeFillColor,
@@ -2487,7 +2494,7 @@ namespace MidnightLizard.ContentScript
                 scrollbarThumbNormalColorFiltered,
                 scrollbarThumbActiveColorFiltered,
                 scrollbarTrackColorFiltered,
-                mozScrollbarTrackColorFiltered,
+                mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
                 scrollbarShadowColorFiltered: scrollbarShadowColor
             };
         }
