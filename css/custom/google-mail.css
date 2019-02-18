@@ -1,4 +1,4 @@
-a[href="#inbox"][title="Gmail"]:not(#imp):not(.imp):not(imp) span[class]:not(#imp):not(.imp):not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) a[href="#inbox"][title="Gmail"]:not(#imp):not(.imp):not(imp) span[class]:not(#imp):not(.imp):not(imp) {
     --ml-ignore:true;
     --hue-rotate: calc(var(--ml-invert) * 180deg);
     background-color: transparent!important;
@@ -22,26 +22,26 @@ div.T-Kw-Jt {
     --ml-ignore:true;
 }
 
-.J-N-JT .J-N-Jz,
-.J-N-JW .J-N-Jz {
+html[ml-mode]:not([ml-mode="filter"]) .J-N-JT .J-N-Jz,
+html[ml-mode]:not([ml-mode="filter"]) .J-N-JW .J-N-Jz {
     color: rgb(50, 50, 50) !important;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div[role="button"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):after,
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div[role="checkbox"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):before,
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span[role="link"][id]:not(#imp):not(.imp):not(imp):before,
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) span[role="button"][id]:not(#imp):not(.imp):not(imp):before,
-html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>span>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-stage] div[role="button"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-stage] div[role="menuitem"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
-html[ml-stage] :not(.Hm)>img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
-html[ml-stage] img[src*="black"]:not(#imp):not(.imp):not(imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div[role="button"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):after,
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div[role="checkbox"]:not(#imp):not(.imp):not(imp)>span[class]:not(#imp):not(.imp):not(imp):before,
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) span[role="link"][id]:not(#imp):not(.imp):not(imp):before,
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) span[role="button"][id]:not(#imp):not(.imp):not(imp):before,
+html[ml-stage]:not([ml-mode="filter"]) div[role="button"]:not(#imp):not(.imp):not(imp)>span>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage]:not([ml-mode="filter"]) div[role="button"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage]:not([ml-mode="filter"]) div[role="menuitem"]:not(#imp):not(.imp):not(imp)>img[src]:not(#imp):not(.imp):not(imp),
+html[ml-stage]:not([ml-mode="filter"]) :not(.Hm)>img[src$="cleardot.gif"]:not(#imp):not(.imp):not(imp),
+html[ml-stage]:not([ml-mode="filter"]) img[src*="black"]:not(#imp):not(.imp):not(imp) {
     filter: var(--ml-text-filter) !important;
     background-color: transparent !important;
     --ml-ignore:true;
 }
 
-div[tabid="chat"][role="tab"]:not(#imp):not(.imp):not(imp)>div[aria-hidden="true"]:not(#imp):not(.imp):not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) div[tabid="chat"][role="tab"]:not(#imp):not(.imp):not(imp)>div[aria-hidden="true"]:not(#imp):not(.imp):not(imp) {
     --ml-ignore:true;
     filter: invert(var(--ml-invert, 0))!important;
     background-color: transparent!important;
@@ -63,11 +63,11 @@ div[role="navigation"] .qj:after {
     --ml-background-background-color:ButtonBackground;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp) {
     background-color: var(--ml-main-button-background-color)!important;
 }
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) table:not(#imp):not(.imp):not(imp) .zE:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp)>*:not(#imp):not(.imp):not(imp) {
     background-color: transparent!important;
 }
 

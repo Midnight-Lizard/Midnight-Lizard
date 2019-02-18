@@ -11,7 +11,8 @@ namespace MidnightLizard.Colors
     export abstract class IBackgroundColorProcessor
     {
         abstract clear(): void;
-        abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any, getParentBackground?: (tag: any) => ColorEntry): ColorEntry;
+        abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any,
+            getParentBackground?: (tag: any) => ColorEntry, ignoreBlueFilter?: boolean): ColorEntry;
     }
     export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
     export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
@@ -171,7 +172,8 @@ namespace MidnightLizard.Colors
             hsla.lightness = this.scaleValue(light, shift.lightnessLimit);
         }
 
-        public changeColor(rgbaString: string | null, increaseContrast: boolean, tag: Element, getParentBackground?: (tag: any) => ColorEntry): ColorEntry
+        public changeColor(rgbaString: string | null, increaseContrast: boolean,
+            tag: Element, getParentBackground?: (tag: any) => ColorEntry, ignoreBlueFilter?: boolean): ColorEntry
         {
             rgbaString = !rgbaString || rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
 
@@ -256,7 +258,8 @@ namespace MidnightLizard.Colors
                     {
                         const originalLight = hsla.lightness;
                         this.changeHslaColor(hsla, increaseContrast, tag);
-                        const newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
+                        const newRgbColor = ignoreBlueFilter ? HslaColor.toRgbaColor(hsla)
+                            : this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                         const result = {
                             role: this._component,
                             color: newRgbColor.toString(),

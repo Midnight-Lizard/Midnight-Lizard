@@ -1,4 +1,4 @@
-html[ml-stage] .doc[contenteditable="true"]:not(imp):not(#imp):not(.imp)
+html[ml-stage]:not([ml-mode="filter"]) .doc[contenteditable="true"]:not(imp):not(#imp):not(.imp)
 {
     --ml-ignore:true;
     background-color: var(--ml-main-background-color);

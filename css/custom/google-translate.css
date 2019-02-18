@@ -1,5 +1,5 @@
-html[ml-stage] header > div:nth-of-type(2),
-html[ml-stage] .jfk-button {
+html[ml-stage]:not([ml-mode="filter"]) header > div:nth-of-type(2),
+html[ml-stage]:not([ml-mode="filter"]) .jfk-button {
     transition-property: none !important;
     transition-duration: 0s !important;
 }
@@ -7,23 +7,23 @@ html[ml-stage] .jfk-button {
 html[ml-stage-mode="complete-complex"] .gt-lc.gt-lc-mobile .gt-cd,
 html[ml-stage-mode="complete-complex"] .go-button,
 html[ml-stage-mode="complete-complex"] .language-picker-wrapper,
-html[ml-stage] .jfk-button-img,
-html[ml-stage] .trans-verified-button,
-html[ml-stage] .gt-is-ca,
-html[ml-stage] .search-image-black,
-html[ml-stage] .goog-toolbar-menu-button-dropdown,
-html[ml-stage] .export-button,
-html[ml-stage] .more-button,
-html[ml-stage] .close-button {
+html[ml-stage]:not([ml-mode="filter"]) .jfk-button-img,
+html[ml-stage]:not([ml-mode="filter"]) .trans-verified-button,
+html[ml-stage]:not([ml-mode="filter"]) .gt-is-ca,
+html[ml-stage]:not([ml-mode="filter"]) .search-image-black,
+html[ml-stage]:not([ml-mode="filter"]) .goog-toolbar-menu-button-dropdown,
+html[ml-stage]:not([ml-mode="filter"]) .export-button,
+html[ml-stage]:not([ml-mode="filter"]) .more-button,
+html[ml-stage]:not([ml-mode="filter"]) .close-button {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
 
-html[ml-stage] .gt-lc.gt-lc-mobile .gt-cc-r-i:not(imp) {
+html[ml-stage]:not([ml-mode="filter"]) .gt-lc.gt-lc-mobile .gt-cc-r-i:not(imp) {
     background-color: transparent!important;
 }
 
-html[ml-stage] .gbip, html[ml-stage] .gbii
+html[ml-stage]:not([ml-mode="filter"]) .gbip, html[ml-stage] .gbii
 {
     filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important;
     --ml-ignore:true;
@@ -69,6 +69,6 @@ html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t .gt-ct-translit {
     color: var(--ml-main-trans-text-color);
 }
 
-.gt-related-suggest-message {
+html[ml-mode]:not([ml-mode="filter"]) .gt-related-suggest-message {
   background-color: transparent!important;
 }

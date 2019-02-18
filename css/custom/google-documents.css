@@ -10,17 +10,19 @@
     --ml-buttonborder-border-bottom-color:Background;
 }
 
-.kix-paginateddocumentplugin-compact-mode, .kix-page-paginated
+html[ml-mode]:not([ml-mode="filter"]) .kix-paginateddocumentplugin-compact-mode, 
+html[ml-mode]:not([ml-mode="filter"]) .kix-page-paginated
 {
     box-shadow: 0 0 1pt 0pt #ccc!important;
 }
 
-.docs-listpreset-palette, 
-.docos-comment-bubble-icon:before, 
-.docs-instant-button-bubble-icon:before,
-.kix-pagenumber-img, .kix-toc-img
+html[ml-mode]:not([ml-mode="filter"]) .docs-listpreset-palette, 
+html[ml-mode]:not([ml-mode="filter"]) .docos-comment-bubble-icon:before, 
+html[ml-mode]:not([ml-mode="filter"]) .docs-instant-button-bubble-icon:before,
+html[ml-mode]:not([ml-mode="filter"]) .kix-pagenumber-img,
+html[ml-mode]:not([ml-mode="filter"]) .kix-toc-img
 {
-    filter: invert(var(--ml-invert));
+    filter: var(--ml-text-filter);
 }
 
 .kix-selection-overlay
@@ -42,16 +44,16 @@
     --ml-border-border-top-color:Background;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) div:not(#imp):not(.imp):not(imp)>.kix-paragraphrenderer:not(#imp):not(.imp):not(imp),
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp),
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-decorations:not(#imp):not(.imp):not(imp),
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-content:not(#imp):not(.imp):not(imp),
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-content:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp)
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div:not(#imp):not(.imp):not(imp)>.kix-paragraphrenderer:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-decorations:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-content:not(#imp):not(.imp):not(imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .kix-paragraphrenderer:not(#imp):not(.imp):not(imp)>.kix-lineview:not(#imp):not(.imp):not(imp)>.kix-lineview-content:not(#imp):not(.imp):not(imp) *:not(#imp):not(.imp):not(imp)
 {
     background-color: transparent!important;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .kix-lineview:not(#imp):not(.imp):not(imp)>.kix-selection-overlay:not(#imp):not(.imp):not(imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .kix-lineview:not(#imp):not(.imp):not(imp)>.kix-selection-overlay:not(#imp):not(.imp):not(imp) {
     background-color: var(--ml-main-selection-color)!important;
     border-color: var(--ml-main-selection-color)!important;
 }

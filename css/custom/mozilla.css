@@ -1,8 +1,11 @@
-.logo {
+html[ml-mode]:not([ml-mode="filter"]) .logo {
     filter: drop-shadow(0 0 2px rgba(255,255,255,var(--ml-text-lightness-limit,0)));
 }
 
-.nav-main-item>a:focus,.nav-main-item>a:hover,.login>a:focus,.login>a:hover {
+html[ml-mode]:not([ml-mode="filter"]) .nav-main-item>a:focus,
+html[ml-mode]:not([ml-mode="filter"]) .nav-main-item>a:hover,
+html[ml-mode]:not([ml-mode="filter"]) .login>a:focus,
+html[ml-mode]:not([ml-mode="filter"]) .login>a:hover {
     --h:var(--ml-button-background-gray-hue,0);
     --s:calc(100% * var(--ml-button-background-gray-saturation,0));
     --l:calc(100% * var(--ml-button-background-lightness-limit,0.93));

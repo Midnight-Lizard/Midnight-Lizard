@@ -35,7 +35,7 @@ html[ml-stage-mode="complete-complex"] yt-icon [fill="#6f6f6f"] {
     fill:var(--ml-main-border-color);
 }
 
-.ytp-volume-slider-handle:after
+html[ml-mode]:not([ml-mode="filter"]) .ytp-volume-slider-handle:after
 {
     background: linear-gradient(90deg,
       rgba(255,255,255,0) 10%,
@@ -43,8 +43,10 @@ html[ml-stage-mode="complete-complex"] yt-icon [fill="#6f6f6f"] {
     ) !important;
 }
 
-.ytp-menuitem-toggle-checkbox:after, .toggle-button[aria-pressed=true],
-paper-toggle-button[aria-pressed=true], .toggle
+.ytp-menuitem-toggle-checkbox:after, 
+.toggle-button[aria-pressed=true],
+paper-toggle-button[aria-pressed=true], 
+.toggle
 {
     --ml-background-background-color:HighlightedText;
     --ml-buttonbackground-background-color:HighlightedText;
@@ -73,13 +75,13 @@ paper-toggle-button[aria-pressed=true], .toggle
     --ml-text-fill:Background;
 }
 
-html[ml-stage] .arrow .yt-icon
+html[ml-stage]:not([ml-mode="filter"]) .arrow .yt-icon
 {
     --ml-ignore:true;
     fill: var(--ml-main-text-color);
 }
 
-.ytp-settings-button.ytp-hd-quality-badge:after
+html[ml-mode]:not([ml-mode="filter"]) .ytp-settings-button.ytp-hd-quality-badge:after
 {
     color: white;
     background-size: 13px 9px;
@@ -88,13 +90,13 @@ html[ml-stage] .arrow .yt-icon
     --ml-background-background-color:Border;
 }
 
-.checked
+html[ml-mode]:not([ml-mode="filter"]) .checked
 {
     --ml-no-invert:true;
     transition: opacity 0.1s;
 }
 
-.yt-uix-checkbox-on-off input[type=checkbox]:not(:checked) + label > .checked
+html[ml-mode]:not([ml-mode="filter"]) .yt-uix-checkbox-on-off input[type=checkbox]:not(:checked) + label > .checked
 {
     opacity: 0;
 }
@@ -112,8 +114,8 @@ html[ml-stage] .arrow .yt-icon
     --ml-ignore:true;
 }
 
-ytd-searchbox[mode=legacy] #container.ytd-searchbox,
-ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
+html[ml-mode]:not([ml-mode="filter"]) ytd-searchbox[mode=legacy] #container.ytd-searchbox,
+html[ml-mode]:not([ml-mode="filter"]) ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
 {
     box-shadow: none!important;
 }
@@ -127,10 +129,10 @@ ytd-searchbox[mode=legacy-centered] #container.ytd-searchbox
     --ml-visitedlink-hover-color:Text;
 }
 
-ytd-app:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) ytd-app:not(imp) {
     background-color: var(--yt-main-app-background);
 }
-ytd-playlist-sidebar-renderer:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) ytd-playlist-sidebar-renderer:not(imp) {
     background-color: var(--yt-sidebar-background);
 }
 
@@ -208,7 +210,7 @@ html[ml-stage][ml-scrollbar-style="ml-simple"][hide-scrollbar]:not([ml-stage="pr
     width: 0px!important;
 }
 
-html[ml-stage] .ytp-ad-overlay-container {
+html[ml-stage]:not([ml-mode="filter"]) .ytp-ad-overlay-container {
   --ml-ignore:true;
   filter: var(--ml-image-filter);
 }

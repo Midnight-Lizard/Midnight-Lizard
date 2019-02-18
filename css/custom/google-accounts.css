@@ -3,10 +3,10 @@ div[role="progressbar"]
     --ml-ignore:true;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) svg:not([width]):not(imp):not(.ml):not(#imp)>path[fill]:not(imp):not(.ml):not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) svg:not([width]):not(imp):not(.ml):not(#imp)>path[fill]:not(imp):not(.ml):not(#imp) {
     fill: var(--ml-main-button-background-color)!important;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .Us7fWe:not(imp):not(.ml):not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .Us7fWe:not(imp):not(.ml):not(#imp) {
     border-color: transparent!important;
 }

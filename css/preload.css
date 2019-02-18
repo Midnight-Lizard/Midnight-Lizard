@@ -1,4 +1,4 @@
-html[ml-stage="preload"] {
+html[ml-stage="preload"]:not([ml-view="child"]) {
     filter: brightness(var(--ml-background-lightness-limit));
 }
 

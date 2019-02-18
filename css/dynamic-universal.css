@@ -3,33 +3,31 @@ html[ml-stage]:not([ml-stage="preload"]) {}
 html[ml-stage]:not([ml-stage="preload"]):not(imp)::selection,
 html[ml-stage]:not([ml-stage="preload"]) :not(imp)::selection {
     background-color: var(--ml-main-selection-color) !important;
-    color: white !important;
-    text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
+    color: var(--ml-main-selection-text-color) !important;
+    text-shadow: var(--ml-main-selection-shadow-color) 0px 0px 1px !important;
 }
 
 html[ml-stage]:not([ml-stage="preload"]):not(imp)::-moz-selection,
 html[ml-stage]:not([ml-stage="preload"]) :not(imp)::-moz-selection {
     background-color: var(--ml-main-selection-color) !important;
-    color: white !important;
-    text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 1px !important;
+    color: var(--ml-main-selection-text-color) !important;
+    text-shadow: var(--ml-main-selection-shadow-color) 0px 0px 1px !important;
 }
 
 html[ml-stage]:not([ml-stage="preload"]) :not(imp)::placeholder {
     color: var(--placeholder-color, var(--ml-main-trans-text-color)) !important;
 }
 
-html[ml-stage]:not([ml-stage="preload"]) input:-webkit-autofill,
-html[ml-stage]:not([ml-stage="preload"]) textarea:-webkit-autofill,
-html[ml-stage]:not([ml-stage="preload"]) select:-webkit-autofill {
-    /* color: var(--ml-main-autofill-text-color) !important;
-        background-color: var(--ml-main-autofill-background-color) !important; */
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) input:-webkit-autofill,
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) textarea:-webkit-autofill,
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) select:-webkit-autofill {
     filter: var(--ml-highlighted-text-filter);
 }
 
 @supports (-moz-appearance: button) {
   html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]),
   html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) * {
-    scrollbar-color: var(--ml-main-scrollbar-thumb-normal-color) var(--ml-main-alt-background-color) !important;
+    scrollbar-color: var(--ml-main-scrollbar-thumb-normal-color) var(--ml-main-moz-scrollbar-track-color) !important;
     scrollbar-width: var(--ml-main-moz-scrollbar-width) !important;
   }
 }
@@ -50,10 +48,11 @@ html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(im
 
 html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button {
     --bg-color: var(--ml-main-scrollbar-thumb-normal-color);
+    --fg-color: var(--ml-main-scrollbar-marks-color);
     width: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
     height: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
-    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3) !important;
-    background: linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-two), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-one), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%), linear-gradient(var(--deg-two), transparent 49%, currentColor 50%, currentColor 55%, transparent 56%), var(--bg-color) !important;
+    box-shadow: inset 0 0 1px var(--ml-main-scrollbar-shadow-color) !important;
+    background: linear-gradient(var(--deg-one), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-two), var(--bg-color) 34%, transparent 35%, transparent 55%, var(--bg-color) 56%), linear-gradient(var(--deg-one), transparent 49%, var(--fg-color) 50%, var(--fg-color) 55%, transparent 56%), linear-gradient(var(--deg-two), transparent 49%, var(--fg-color) 50%, var(--fg-color) 55%, transparent 56%), var(--bg-color) !important;
 }
 
 html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-button:vertical:decrement {
@@ -98,10 +97,11 @@ html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(im
 
 html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-thumb {
     --bg-color: var(--ml-main-scrollbar-thumb-normal-color);
+    --fg-color: var(--ml-main-scrollbar-marks-color);
     border-radius: calc(1px / var(--ml-zoom)) !important;
     border: none !important;
-    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3) !important;
-    background: linear-gradient(var(--deg-two), var(--bg-color) 30%, transparent 30%, transparent 70%, var(--bg-color) 70%), linear-gradient(var(--deg-one), transparent 9%, currentColor 10%, currentColor 15%, transparent 16%, transparent 34%, currentColor 35%, currentColor 40%, transparent 41%, transparent 59%, currentColor 60%, currentColor 65%, transparent 66%, transparent 84%, currentColor 85%, currentColor 90%, transparent 91%), var(--bg-color) !important;
+    box-shadow: inset 0 0 1px var(--ml-main-scrollbar-shadow-color) !important;
+    background: linear-gradient(var(--deg-two), var(--bg-color) 30%, transparent 30%, transparent 70%, var(--bg-color) 70%), linear-gradient(var(--deg-one), transparent 9%, var(--fg-color) 10%, var(--fg-color) 15%, transparent 16%, transparent 34%, var(--fg-color) 35%, var(--fg-color) 40%, transparent 41%, transparent 59%, var(--fg-color) 60%, var(--fg-color) 65%, transparent 66%, transparent 84%, var(--fg-color) 85%, var(--fg-color) 90%, transparent 91%), var(--bg-color) !important;
     background-size: calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) calc(var(--ml-main-scrollbar-size) / var(--ml-zoom)) !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -109,7 +109,7 @@ html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(im
 
 html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(impt)::-webkit-scrollbar-track {
     background: var(--ml-main-scrollbar-track-color) !important;
-    box-shadow: inset 0 0 calc(6px / var(--ml-zoom)) rgba(0, 0, 0, 0.3) !important;
+    box-shadow: inset 0 0 calc(6px / var(--ml-zoom)) var(--ml-main-scrollbar-shadow-color) !important;
     border-radius: 0px !important;
     border: none !important;
 }
@@ -132,7 +132,7 @@ html[ml-stage][ml-scrollbar-style="ml-simple"]:not([ml-stage="preload"]) :not(im
 
 /* --------------------- BEGIN Google Translate bubble ----------------------- */
 
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) {
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) {
     background-color: rgb(255, 255, 255) !important;
     border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(168, 168, 168) !important;
     color: #252525 !important;
@@ -140,20 +140,20 @@ html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(im
     filter: var(--ml-text-filter);
 }
 
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) *:not(#imp):not(imp):not(.imp) {
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble.gtx-bubble:not(#imp):not(imp):not(.imp) *:not(#imp):not(imp):not(.imp) {
     background-color: transparent !important;
     border-color: transparent !important;
     color: #252525 !important;
 }
 
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowdown:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplbefore:not(#imp):not(imp):not(.imp),
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplbefore:not(#imp):not(imp):not(.imp) {
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble-arrowdown:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplbefore:not(#imp):not(imp):not(.imp),
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplbefore:not(#imp):not(imp):not(.imp) {
     border-color: rgb(187, 187, 187) transparent !important;
     background-color: transparent !important;
 }
 
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowdown:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplafter:not(#imp):not(imp):not(.imp),
-html[ml-stage]:not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplafter:not(#imp):not(imp):not(.imp) {
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble-arrowdown:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplafter:not(#imp):not(imp):not(.imp),
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .jfk-bubble-arrowup:not(#imp):not(imp):not(.imp) .jfk-bubble-arrowimplafter:not(#imp):not(imp):not(.imp) {
     border-color: rgb(255, 255, 255) transparent !important;
     background-color: transparent !important;
 }

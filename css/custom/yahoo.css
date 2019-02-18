@@ -19,7 +19,7 @@ ul[data-test-id="color-picker"] li[name] button {
     --ml-background-background-color:Border;
 }
 
-html[ml-stage] .YLogoMY {
+html[ml-stage]:not([ml-mode="filter"]) .YLogoMY {
     --ml-ignore:true;
     filter: saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) brightness(calc(1 + var(--ml-invert) / 2)) !important;
 }
@@ -28,6 +28,6 @@ html[ml-stage] .YLogoMY {
     --ml-backgroundimage:HighlightedText;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #doc:not(.imp)>#sticky-hd:not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #doc:not(.imp)>#sticky-hd:not(.imp) {
     background-color: var(--ml-main-alt-background-color)!important;
 }

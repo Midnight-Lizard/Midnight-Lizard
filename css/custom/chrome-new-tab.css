@@ -9,14 +9,14 @@
     --ml-background-background-color:Text;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #fkbx:not(#imp):not(imp):not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #fkbx:not(#imp):not(imp):not(.imp) {
     background-color: var(--ml-main-button-background-color)!important;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #fkbx:not(#imp):not(imp):not(.imp) *:not(#fkbx_crt):not(imp):not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #fkbx:not(#imp):not(imp):not(.imp) *:not(#fkbx_crt):not(imp):not(.imp) {
     background-color: transparent!important;
 }
 
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #fkbx_crt:not(#imp):not(imp):not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #fkbx_crt:not(#imp):not(imp):not(.imp) {
     background-color: var(--ml-main-text-color)!important;
 }

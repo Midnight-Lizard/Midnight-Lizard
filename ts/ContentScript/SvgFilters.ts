@@ -46,7 +46,7 @@ namespace MidnightLizard.ContentScript
             // svg.style.setProperty("--ml-ignore", "true");
 
             svg.appendChild(this.createBlueFilter(doc));
-            svg.appendChild(this.createTextFilter(doc, overlayBgColor, overlayTxtColor));
+            svg.appendChild(this.createContentFilter(doc, overlayBgColor, overlayTxtColor));
 
             svg.appendChild(this.createColorReplacementFilter(
                 doc, FilterType.PdfFilter,
@@ -81,7 +81,7 @@ namespace MidnightLizard.ContentScript
             return filter;
         }
 
-        private createTextFilter(doc: Document, overlayBgColor: string, overlayTxtColor: string)
+        private createContentFilter(doc: Document, overlayBgColor: string, overlayTxtColor: string)
         {
             const
                 filter = doc.createElementNS(svgNs, "filter"),
@@ -112,7 +112,7 @@ namespace MidnightLizard.ContentScript
         {
             let output = input;
             const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
-            if (overlayColorHsl.saturation > 0.1)
+            if (overlayColorHsl.saturation > 0.15)
             {
                 const isDark = overlayColorHsl.lightness < 0.5;
                 const blendMode = isDark ? "lighten" : "darken";
@@ -123,18 +123,17 @@ namespace MidnightLizard.ContentScript
                     feBlend = doc.createElementNS(svgNs, "feBlend");
 
                 filter.appendChild(feFlood);
-                filter.appendChild(feComposite);
-                filter.appendChild(feBlend);
-
                 feFlood.setAttribute("result", "flood_" + layer);
                 feFlood.setAttribute("flood-color", overlayColorHsl.toString());
-                feFlood.setAttribute("flood-opacity", "0.8");
+                feFlood.setAttribute("flood-opacity", "1");
 
+                filter.appendChild(feComposite);
                 feComposite.setAttribute("result", "flood_alpha_" + layer);
                 feComposite.setAttribute("in", "flood_" + layer);
                 feComposite.setAttribute("in2", "SourceAlpha");
                 feComposite.setAttribute("operator", "in");
 
+                filter.appendChild(feBlend);
                 feBlend.setAttribute("result", "blend_" + layer);
                 feBlend.setAttribute("in", "flood_alpha_" + layer);
                 feBlend.setAttribute("in2", input);

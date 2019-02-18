@@ -2,14 +2,14 @@
     --ml-ignore:true;
 }
 
-html[ml-stage] .app-imagery-mode canvas.widget-scene-canvas,
-html[ml-stage] .app-imagery-mode .canvas-container canvas
+html[ml-stage]:not([ml-mode="filter"]) .app-imagery-mode canvas.widget-scene-canvas,
+html[ml-stage]:not([ml-mode="filter"]) .app-imagery-mode .canvas-container canvas
 {
     filter: var(--ml-image-filter);
 }
 
-html[ml-stage] #app-container:not(.app-imagery-mode) canvas.widget-scene-canvas,
-html[ml-stage] #app-container:not(.app-imagery-mode) .canvas-container canvas {
+html[ml-stage]:not([ml-mode="filter"]) #app-container:not(.app-imagery-mode) canvas.widget-scene-canvas,
+html[ml-stage]:not([ml-mode="filter"]) #app-container:not(.app-imagery-mode) .canvas-container canvas {
     filter: var(--ml-dynamic-content-contrast-text-filter);
 }
 
@@ -30,8 +30,8 @@ html[ml-stage] #app-container:not(.app-imagery-mode) .canvas-container canvas {
     --ml-text-color:BackgroundNoContrast;
     --ml-highlightedtext-color:BackgroundNoContrast;
 }
-.renderable-component-color-text-background:before,
-.renderable-component-color-text-background:after
+html[ml-mode]:not([ml-mode="filter"]) .renderable-component-color-text-background:before,
+html[ml-mode]:not([ml-mode="filter"]) .renderable-component-color-text-background:after
 {
     --ml-ignore:true;
     background-color: inherit!important;
@@ -53,12 +53,16 @@ html[ml-stage] #app-container:not(.app-imagery-mode) .canvas-container canvas {
     --ml-no-invert:true;
 }
 
-.dir-tt img, .section-line-group-summary-header-icons img, .section-reviewchart-histogram, .section-reviewchart-label, .section-reviewchart-bucket
+html[ml-mode]:not([ml-mode="filter"]) .dir-tt img, 
+html[ml-mode]:not([ml-mode="filter"]) .section-line-group-summary-header-icons img, 
+html[ml-mode]:not([ml-mode="filter"]) .section-reviewchart-histogram, 
+html[ml-mode]:not([ml-mode="filter"]) .section-reviewchart-label, 
+html[ml-mode]:not([ml-mode="filter"]) .section-reviewchart-bucket
 {
     filter: invert(var(--ml-invert));
 }
 
-.widget-settings-header::before
+html[ml-mode]:not([ml-mode="filter"]) .widget-settings-header::before
 {
     content: 'Maps';
     position: absolute;
@@ -84,6 +88,6 @@ html[ml-stage] #app-container:not(.app-imagery-mode) .canvas-container canvas {
     /* width: 6px!important; */
 }
 
-html[ml-stage-mode]:not([ml-stage="loading"]) #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage="loading"]) #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
     filter: var(--ml-dynamic-content-contrast-text-filter)!important;
 }

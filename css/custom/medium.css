@@ -1,4 +1,4 @@
-.svgIcon-use
+html[ml-mode]:not([ml-mode="filter"]) .svgIcon-use
 {
     fill: currentColor!important;
     --ml-ignore:true;

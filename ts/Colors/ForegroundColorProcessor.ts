@@ -12,7 +12,8 @@ namespace MidnightLizard.Colors
     {
         abstract calculateDefaultColor(doc: Document, defaultColor?: string): string;
         abstract getDefaultColor(doc: Document): string | undefined;
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
     export abstract class ILinkColorProcessor extends ITextColorProcessor { }
     export abstract class IVisitedLinkColorProcessor extends ILinkColorProcessor { }
@@ -29,12 +30,14 @@ namespace MidnightLizard.Colors
 
     export abstract class IBorderColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
     export abstract class IButtonBorderColorProcessor extends IBorderColorProcessor { }
     export abstract class IButtonBackgroundColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
     export abstract class IHighlightedBackgroundColorProcessor
     {
@@ -43,17 +46,20 @@ namespace MidnightLizard.Colors
 
     export abstract class IScrollbarHoverColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
 
     export abstract class IScrollbarNormalColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
 
     export abstract class IScrollbarActiveColorProcessor
     {
-        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any): ColorEntry;
+        abstract changeColor(rgbaString: string | null, backgroundLightness: number, tag?: any,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
 
     export abstract class IDynamicTextColorProcessor extends ITextColorProcessor { }
@@ -122,7 +128,7 @@ namespace MidnightLizard.Colors
             }
         }
 
-        public changeColor(rgbaString: string | null, backgroundLightness: number, tag: any): ColorEntry
+        public changeColor(rgbaString: string | null, backgroundLightness: number, tag: any, ignoreBlueFilter?: boolean): ColorEntry
         {
             rgbaString = rgbaString || RgbaColor.Black;
             rgbaString = rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
@@ -154,7 +160,8 @@ namespace MidnightLizard.Colors
                 const hsla = RgbaColor.toHslaColor(rgba);
                 const originalLight = hsla.lightness, isGray = this.isGray(tag, rgbaString, hsla);
                 this.changeHslaColor(hsla, backgroundLightness, isGray, isGray ? this.getGrayShift(tag, rgbaString, hsla) : this._colorShift);
-                let newRgbColor = this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
+                let newRgbColor = ignoreBlueFilter ? HslaColor.toRgbaColor(hsla)
+                    : this.applyBlueFilter(HslaColor.toRgbaColor(hsla));
                 result = {
                     role: this._component,
                     color: newRgbColor.toString(),

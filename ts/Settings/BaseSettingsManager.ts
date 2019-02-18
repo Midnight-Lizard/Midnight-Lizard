@@ -24,6 +24,8 @@ namespace MidnightLizard.Settings
         abstract get isComplex(): boolean;
         /** Simplified processing mode is in use now */
         abstract get isSimple(): boolean;
+        /** Filtered processing mode is in use now */
+        abstract get isFilter(): boolean;
         /** Current computed processing mode */
         abstract get computedMode(): ProcessingMode;
         /** Current settings for calculations */
@@ -98,6 +100,7 @@ namespace MidnightLizard.Settings
         }
         public get isComplex() { return this._computedMode === ProcessingMode.Complex }
         public get isSimple() { return this._computedMode === ProcessingMode.Simplified }
+        public get isFilter() { return this._computedMode === ProcessingMode.Filtered }
         public get computedMode() { return this._computedMode }
         protected _computedMode: ProcessingMode = ProcessingMode.Complex;
         protected isInit = false;
@@ -141,7 +144,11 @@ namespace MidnightLizard.Settings
 
         computeProcessingMode(doc: Document): void
         {
-            if (this._currentSettings.mode === ProcessingMode.Automatic && (
+            if (this._currentSettings.mode === ProcessingMode.Filtered)
+            {
+                this._computedMode = ProcessingMode.Filtered;
+            }
+            else if (this._currentSettings.mode === ProcessingMode.Automatic && (
                 this._app.isMobile || doc.body &&
                 doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit))
             {

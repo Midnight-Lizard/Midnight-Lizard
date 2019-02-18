@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Chrome",
+            "url": "chrome://extensions/",
+            "webRoot": "${workspaceFolder}",
+            "pathMapping": {
+                "chrome-extension://kpnbpljpolhkjhjfahmcmbdjbjgbnejh": "${workspaceRoot}"
+            },
+            "userDataDir": false,
+            "runtimeArgs": [
+                "--user-data-dir=${workspaceFolder}/../web/karma"
+            ]
+        }
+    ]
+}

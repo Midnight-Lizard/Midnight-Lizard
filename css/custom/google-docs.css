@@ -3,18 +3,18 @@
     --ml-ignore:true;
 }
 
-#docs-toolbar-wrapper:not(imp)
+html[ml-mode]:not([ml-mode="filter"]) #docs-toolbar-wrapper:not(imp)
 {
     box-shadow: none!important;
-    color: magenta;
 }
 
-#docs-omnibox-toolbar.goog-toolbar
+html[ml-mode]:not([ml-mode="filter"]) #docs-omnibox-toolbar.goog-toolbar
 {
     background-color: white;
 }
 
-.goog-toolbar-menu-button-dropdown:not(imprt), .goog-toolbar-combo-button-dropdown:not(imprt)
+html[ml-mode]:not([ml-mode="filter"]) .goog-toolbar-menu-button-dropdown:not(imprt),
+html[ml-mode]:not([ml-mode="filter"]) .goog-toolbar-combo-button-dropdown:not(imprt)
 {
     --ml-no-invert:true;
     --ml-backgroundimage:Text;

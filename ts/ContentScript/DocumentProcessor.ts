@@ -29,7 +29,6 @@ namespace MidnightLizard.ContentScript
     const ArgEventDispatcher = MidnightLizard.Events.ArgumentedEventDispatcher;
     const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag|emoji/i;
     const notTextureRegExp = /user|account|avatar|photo|flag|emoji/i;
-    const maxAttrLen = 100;
     /** 2 fraction digits number format */
     const float = new Intl.NumberFormat('en-US', {
         useGrouping: false,
@@ -275,6 +274,7 @@ namespace MidnightLizard.ContentScript
                 html.removeAttribute("ml-platform");
                 html.removeAttribute("ml-scrollbar-style");
                 html.removeAttribute("ml-invert");
+                html.removeAttribute("ml-view");
             }
             else
             {
@@ -300,6 +300,7 @@ namespace MidnightLizard.ContentScript
                 {
                     html.setAttribute("ml-update", UpdateStage.Aware);
                     html.setAttribute("ml-stage", stage);
+                    html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
                     html.setAttribute("ml-platform",
                         this._app.isDesktop ? "desktop" : "mobile");
                     if (this._settingsManager.isActive)
@@ -376,7 +377,7 @@ namespace MidnightLizard.ContentScript
                         .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this, normalDelays, true, false);
                 }
-                else
+                else if (this._settingsManager.isSimple)
                 {
                     this._documentObserver.startDocumentObservation(doc);
                     let allTags = Array.from(doc.body.getElementsByTagName("*"))
@@ -2403,41 +2404,49 @@ namespace MidnightLizard.ContentScript
         {
             this.calculateDefaultColors(doc, cx.Link, cx.Black);
             doc.documentElement!.mlArea = 1;
+            const ignoreBlueFilter = this._settingsManager.isFilter;
             const bgLight = this.shift.Background.lightnessLimit,
-                autofillBackgroundColorEntry = this._backgroundColorProcessor.changeColor("rgb(250,255,189)", false, doc.documentElement),
-                textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement),
+                textColorEntry = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement, ignoreBlueFilter),
                 scrollbarSizeNum = this._settingsManager.currentSettings.scrollbarSize;
-            const
-                backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement).color!,
-                altBackgroundColor = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement).color!,
-                transBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(255,255,255,0.5)", true, doc.documentElement).color!,
-                transAltBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(250,250,250,0.3)", true, doc.documentElement).color!,
+            let
+                backgroundColor = this._backgroundColorProcessor.changeColor(cx.White, true, doc.documentElement, undefined, ignoreBlueFilter).color!,
+                altBackgroundColor = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", true, doc.documentElement, undefined, ignoreBlueFilter).color!,
+                transBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(255,255,255,0.5)", true, doc.documentElement, undefined, ignoreBlueFilter).color!,
+                transAltBackgroundColor = this._backgroundColorProcessor.changeColor("rgba(250,250,250,0.3)", true, doc.documentElement, undefined, ignoreBlueFilter).color!,
                 textColor = textColorEntry.color!,
-                transTextColor = this._textColorProcessor.changeColor("rgba(0,0,0,0.6)", bgLight, doc.documentElement).color!,
-                borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement).color!,
-                transBorderColor = this._borderColorProcessor.changeColor("rgba(127,127,127,0.3)", bgLight, doc.documentElement).color!,
-                selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
-                rangeFillColor = this._rangeFillColorProcessor.changeColor(
-                    this.shift, textColorEntry.light, bgLight).color!,
-                autofillBackgroundColor = autofillBackgroundColorEntry.color!,
-                autofillTextColor = this._textColorProcessor.changeColor(cx.Black, autofillBackgroundColorEntry.light, doc.documentElement).color!,
+                transTextColor = this._textColorProcessor.changeColor("rgba(0,0,0,0.6)", bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                borderColor = this._borderColorProcessor.changeColor(cx.Gray, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                transBorderColor = this._borderColorProcessor.changeColor("rgba(127,127,127,0.3)", bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                selectionColor = this._textSelectionColorProcessor.changeColor(cx.White, false, doc.documentElement, undefined, ignoreBlueFilter).color!,
+                selectionTextColor = cx.White,
+                selectionShadowColor = new cx(0, 0, 0, 0.8).toString(),
+                rangeFillColor = this._rangeFillColorProcessor.changeColor(this.shift, textColorEntry.light, bgLight, ignoreBlueFilter).color!,
 
-                buttonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
-                redButtonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor("rgb(255,0,0)", bgLight, doc.documentElement).color!,
-                buttonBorderColor = this._buttonBorderColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                buttonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor(cx.White, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                redButtonBackgroundColor = this._buttonBackgroundColorProcessor.changeColor("rgb(255,0,0)", bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                buttonBorderColor = this._buttonBorderColorProcessor.changeColor(cx.White, bgLight, doc.documentElement, ignoreBlueFilter).color!,
 
-                scrollbarThumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight).color!,
-                scrollbarThumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight).color!,
-                scrollbarThumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight).color!,
+                scrollbarThumbHoverColor = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                scrollbarThumbNormalColor = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                scrollbarThumbActiveColor = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight, doc.documentElement, ignoreBlueFilter).color!,
                 scrollbarTrackColor = backgroundColor,
+                scrollbarShadowColor = new cx(0, 0, 0, 0.3).toString(),
                 scrollbarSize = `${scrollbarSizeNum}px`,
+                scrollbarMarksColor = textColor,
 
-                linkColor = this._linkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
-                linkColorHover = this._hoverLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
-                linkColorActive = this._activeLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
-                visitedColor = this._visitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
-                visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!,
-                visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement).color!;
+                scrollbarMarksColorFiltered = this._textColorProcessor.changeColor(cx.Black, bgLight, doc.documentElement).color!,
+                scrollbarThumbHoverColorFiltered = this._scrollbarHoverColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                scrollbarThumbNormalColorFiltered = this._scrollbarNormalColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                scrollbarThumbActiveColorFiltered = this._scrollbarActiveColorProcessor.changeColor(cx.White, bgLight, doc.documentElement).color!,
+                scrollbarTrackColorFiltered = this._backgroundColorProcessor.changeColor(cx.White, false, doc.documentElement).color!,
+                mozScrollbarTrackColorFiltered = this._backgroundColorProcessor.changeColor("rgb(250,250,250)", false, doc.documentElement).color!,
+
+                linkColor = this._linkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                linkColorHover = this._hoverLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                linkColorActive = this._activeLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                visitedColor = this._visitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                visitedColorHover = this._hoverVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!,
+                visitedColorActive = this._activeVisitedLinkColorProcessor.changeColor(cx.Link, bgLight, doc.documentElement, ignoreBlueFilter).color!;
 
             // Firefox scrollbar size
             let mozScrollbarWidth = 'auto';
@@ -2454,28 +2463,51 @@ namespace MidnightLizard.ContentScript
             this._backgroundColorProcessor.clear();
 
             return {
-                backgroundColor, altBackgroundColor, transBackgroundColor, transAltBackgroundColor,
-                textColor, transTextColor, borderColor, transBorderColor, selectionColor, rangeFillColor,
-                autofillBackgroundColor, autofillTextColor,
+                backgroundColor, altBackgroundColor,
+                transBackgroundColor, transAltBackgroundColor,
+                textColor, transTextColor, borderColor, transBorderColor,
+                selectionColor, selectionTextColor, selectionShadowColor, rangeFillColor,
                 buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
-                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor, scrollbarTrackColor,
+                scrollbarThumbHoverColor, scrollbarThumbNormalColor,
+                scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarMarksColor,
                 scrollbarSize, mozScrollbarWidth,
                 linkColor, linkColorHover, linkColorActive,
-                visitedColor, visitedColorHover, visitedColorActive
+                visitedColor, visitedColorHover, visitedColorActive,
+
+                scrollbarMarksColorOriginal: textColor,
+                scrollbarThumbHoverColorOriginal: scrollbarThumbHoverColor,
+                scrollbarThumbNormalColorOriginal: scrollbarThumbNormalColor,
+                scrollbarThumbActiveColorOriginal: scrollbarThumbActiveColor,
+                scrollbarTrackColorOriginal: scrollbarTrackColor,
+                mozScrollbarTrackColorOriginal: altBackgroundColor,
+                scrollbarShadowColorOriginal: scrollbarShadowColor,
+
+                scrollbarMarksColorFiltered,
+                scrollbarThumbHoverColorFiltered,
+                scrollbarThumbNormalColorFiltered,
+                scrollbarThumbActiveColorFiltered,
+                scrollbarTrackColorFiltered,
+                mozScrollbarTrackColorFiltered,
+                scrollbarShadowColorFiltered: scrollbarShadowColor
             };
         }
 
         protected injectDynamicValues(doc: Document)
         {
-            const mainColors = this.calculateMainColors(doc);
+            const mainColors = this.calculateMainColors(doc),
+                invertColors = this._settingsManager.isFilter &&
+                    this.shift.Background.lightnessLimit < 0.5;
             this._svgFilters.createSvgFilters(doc, mainColors.backgroundColor, mainColors.textColor);
             let cssText = "";
             for (const color in mainColors)
             {
-                const colorValue = mainColors[color as keyof typeof mainColors];
-                cssText += `\n--ml-main-${
-                    color.replace(/([A-Z])/g, "-$1").toLowerCase()
-                    }:${(mainColors as any)[color]};`;
+                let colorValue = mainColors[color as keyof typeof mainColors];
+                if (invertColors && !/Size|Width|Filtered/.test(color))
+                {
+                    colorValue = Colors.BaseColorProcessor.invertColor(colorValue);
+                }
+                const colorVarName = color.replace(/([A-Z])/g, "-$1").toLowerCase();
+                cssText += `\n--ml-main-${colorVarName}:${colorValue};`;
             }
             let component: keyof Colors.ComponentShift,
                 property: keyof Colors.ColorShift;

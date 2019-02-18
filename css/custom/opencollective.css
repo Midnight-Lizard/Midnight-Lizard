@@ -29,15 +29,15 @@ use[xl|href="#svg-logotype"] {
     --ml-buttonbackground-background-color:HighlightedBackground;
 }
 
-.actions .submit .Button:after {
+html[ml-mode] .actions .submit .Button:after {
     content: " (__MSG_open_collective_donate_button_text_label__)";
 }
 
-.customAmount {
+html[ml-mode] .customAmount {
     position: relative;
 }
 
-.customAmount:before {
+html[ml-mode] .customAmount:before {
     content: "__MSG_open_collective_custom_amount_text_label__";
     position: absolute;
     top: -21px;

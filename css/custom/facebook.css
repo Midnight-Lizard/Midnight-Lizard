@@ -8,12 +8,6 @@ a[role="tab"] > span[class]
     --ml-background-background-color:Border;
 }
 
-::-webkit-input-placeholder
-{
-    color: currentColor!important;
-    opacity: 0.5;
-}
-
 .roundedBox .uiTypeahead .searchIcon
 {
     /*background-position: 0 -728px!important;*/
@@ -47,14 +41,14 @@ h1[data-click="bluebar_logo"],
     --ml-backgroundimage:Text;
 }
 
-.overlayBarButtons .comment_link,
-.overlayBarButtons .share_action_link,
-.overlayBarButtons .UFILinkBright,
-.overlayBarButtons .profilePicButton,
-.overlayBarButtons .fbPhotosPhotoActionsTag,
-.overlayBarButtons .fbPhotoSnowliftDropdownButton,
-.overlayBarButtons .sendButton,
-.fbPhotoMediaTitle
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .comment_link,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .share_action_link,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .UFILinkBright,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .profilePicButton,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .fbPhotosPhotoActionsTag,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .fbPhotoSnowliftDropdownButton,
+html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .sendButton,
+html[ml-mode]:not([ml-mode="filter"]) .fbPhotoMediaTitle
 {
     --ml-ignore:true;
     color: white!important;
@@ -77,12 +71,12 @@ h1[data-click="bluebar_logo"],
     --ml-ignore:true;
 }
 
-.navHeader a:after,
-.sideNavItem a:after {
+html[ml-mode]:not([ml-mode="filter"]) .navHeader a:after,
+html[ml-mode]:not([ml-mode="filter"]) .sideNavItem a:after {
     transition-duration: 0s!important;
 }
 
-.UFICommentPhotoIcon {
+html[ml-mode]:not([ml-mode="filter"]) .UFICommentPhotoIcon {
     --ml-ignore:true;
     filter: invert(var(--ml-invert,0));
 }
@@ -91,6 +85,6 @@ a[aria-label*="background"] div {
     --ml-ignore:true;
 }
 
-.fbChatSidebar {
+html[ml-mode]:not([ml-mode="filter"]) .fbChatSidebar {
     box-shadow: none!important;
 }

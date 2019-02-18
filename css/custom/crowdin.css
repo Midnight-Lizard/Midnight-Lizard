@@ -1,13 +1,14 @@
-img.jsoc-shr-logo, .static-icon-gray,
-body:not(.dark-theme) i[class]:not(.white):not(.static-icon-download),
-body.dark-theme #close-search-box,
-body.dark-theme i.static-icon-apps,
-body.dark-theme i.static-icon-filter {
+html[ml-mode]:not([ml-mode="filter"]) img.jsoc-shr-logo, 
+html[ml-mode]:not([ml-mode="filter"]) .static-icon-gray,
+html[ml-mode]:not([ml-mode="filter"]) body:not(.dark-theme) i[class]:not(.white):not(.static-icon-download),
+html[ml-mode]:not([ml-mode="filter"]) body.dark-theme #close-search-box,
+html[ml-mode]:not([ml-mode="filter"]) body.dark-theme i.static-icon-apps,
+html[ml-mode]:not([ml-mode="filter"]) body.dark-theme i.static-icon-filter {
     --ml-ignore:true;
     filter: var(--ml-text-filter) brightness(calc(2 * var(--ml-invert)));
 }
 
-.folder-toggler {
+html[ml-mode]:not([ml-mode="filter"]) .folder-toggler {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
@@ -16,7 +17,7 @@ body.dark-theme i.static-icon-filter {
     --ml-no-invert:true;
 }
 
-.progress {
+html[ml-mode]:not([ml-mode="filter"]) .progress {
     --ml-backgroundnocontrast-background-color:Border;
     --ml-background-background-color:Border;
     background-color: rgba(0,0,0,.15)!important;
@@ -32,22 +33,22 @@ body.dark-theme i.static-icon-filter {
     --ml-background-border-bottom-color:HighlightedText;
 }
 
-.navbar .nav>li>a:focus,
-.navbar .nav>li>a:hover {
+html[ml-mode]:not([ml-mode="filter"]) .navbar .nav>li>a:focus,
+html[ml-mode]:not([ml-mode="filter"]) .navbar .nav>li>a:hover {
     background-color: var(--ml-main-trans-background-color) !important;
 }
 
-.dropdown-menu li>a:hover,
-.dropdown-menu li>a:focus,
-.dropdown-submenu:hover>a,
-.drop-down-icon:hover+a,
-.general_activity_item:not(.opened):hover {
+html[ml-mode]:not([ml-mode="filter"]) .dropdown-menu li>a:hover,
+html[ml-mode]:not([ml-mode="filter"]) .dropdown-menu li>a:focus,
+html[ml-mode]:not([ml-mode="filter"]) .dropdown-submenu:hover>a,
+html[ml-mode]:not([ml-mode="filter"]) .drop-down-icon:hover+a,
+html[ml-mode]:not([ml-mode="filter"]) .general_activity_item:not(.opened):hover {
     background-color: var(--ml-main-alt-background-color) !important;
 }
 
-html[ml-stage] .editor-pane-title:not(imp),
-html[ml-stage] .editor-current-translation-source .context:not(imp),
-html[ml-stage] .proofread-string-source .context:not(imp) {
+html[ml-stage]:not([ml-mode="filter"]) .editor-pane-title:not(imp),
+html[ml-stage]:not([ml-mode="filter"]) .editor-current-translation-source .context:not(imp),
+html[ml-stage]:not([ml-mode="filter"]) .proofread-string-source .context:not(imp) {
     color: hsla(0, 0%, 40%, 0.6);
 }
 

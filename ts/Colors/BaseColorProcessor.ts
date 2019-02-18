@@ -61,5 +61,12 @@ namespace MidnightLizard.Colors
                 return rgba;
             }
         }
+
+        public static invertColor(rgbaString: string): string
+        {
+            const hslaColor = RgbaColor.toHslaColor(RgbaColor.parse(rgbaString));
+            hslaColor.lightness = 1 - hslaColor.lightness;
+            return hslaColor.toString();
+        }
     }
 }

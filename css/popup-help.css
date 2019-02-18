@@ -4,12 +4,12 @@
     pointer-events: none;
     position: absolute;
     padding: 15px;
-    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.9);
+    box-shadow: 1px 1px 5px 2px var(--tooltip-shadow-color);
     background-color: var(--dark-background-color);
     color: var(--light-color);
     border: solid 1px var(--light-thin-border-color);
     border-radius: 3px;
-    text-shadow: 0 0 1px black;
+    text-shadow: 0 0 1px var(--tooltip-text-shadow-color);
     line-height: 17px;
     font-size: 15px;
     font-weight: normal;
@@ -22,7 +22,7 @@
     transition-duration: 200ms;
     transition-timing-function: ease-out;
 }
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):before {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):before {
     background-color: var(--ml-main-alt-background-color) !important;
 }
 
@@ -55,7 +55,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 .ml-footer-icon-container[tooltip]:not(#imp):after
 {
     top: -6.4px;
-    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
+    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px var(--tooltip-shadow-color));
     border-top-color: var(--dark-background-color);
     border-bottom-color: transparent!important;
     border-right-color: transparent!important;
@@ -64,7 +64,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 
 .ml-dialog-header [tooltip]:not(#imp):after
 {
-    filter: drop-shadow(0px -1px 0px var(--light-thin-border-color)) drop-shadow(0px -2px 1px rgba(0,0,0,0.8));
+    filter: drop-shadow(0px -1px 0px var(--light-thin-border-color)) drop-shadow(0px -2px 1px var(--tooltip-shadow-color));
     border-bottom-color: var(--dark-background-color);
     border-top-color: transparent!important;
     border-right-color: transparent!important;
@@ -154,7 +154,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 .privacy-link:after {
     bottom: 15px;
     left: 10px;
-    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px rgba(0,0,0,0.8));
+    filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px var(--tooltip-shadow-color));
     border-top-color: var(--dark-background-color);
     border-bottom-color: transparent!important;
     border-right-color: transparent!important;
@@ -176,7 +176,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 
 .ml-tab.left .ml-tab-item[tooltip]:after
 {
-    filter: drop-shadow(-1px 0px 0px var(--light-thin-border-color)) drop-shadow(-2px 0px 1px rgba(0,0,0,0.9));
+    filter: drop-shadow(-1px 0px 0px var(--light-thin-border-color)) drop-shadow(-2px 0px 1px var(--tooltip-shadow-color));
     border-right-color: var(--dark-background-color);
     border-left-color: transparent!important;
     border-top-color: transparent!important;
@@ -186,7 +186,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) [tooltip]:not(#imp):
 
 .ml-tab.right .ml-tab-item[tooltip]:after
 {
-    filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px rgba(0,0,0,0.8));
+    filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px var(--tooltip-shadow-color));
     border-left-color: var(--dark-background-color);
     border-right-color: transparent!important;
     border-top-color: transparent!important;

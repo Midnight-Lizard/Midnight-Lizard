@@ -1,4 +1,4 @@
-a[class]:not(:empty)
+html[ml-mode]:not([ml-mode="filter"]) a[class]:not(:empty)
 {
     transition: none!important;
 }

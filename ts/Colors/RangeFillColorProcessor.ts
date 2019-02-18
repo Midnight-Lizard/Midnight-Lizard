@@ -5,7 +5,8 @@ namespace MidnightLizard.Colors
 {
     export abstract class IRangeFillColorProcessor
     {
-        abstract changeColor(shift: ComponentShift, textLight: number, bgLight: number): ColorEntry;
+        abstract changeColor(shift: ComponentShift, textLight: number, bgLight: number,
+            ignoreBlueFilter?: boolean): ColorEntry;
     }
 
     @DI.injectable(IRangeFillColorProcessor)
@@ -18,14 +19,17 @@ namespace MidnightLizard.Colors
             super(app, settingsManager)
         }
 
-        changeColor(shift: ComponentShift, textLight: number, bgLight: number): ColorEntry
+        changeColor(shift: ComponentShift, textLight: number, bgLight: number,
+            ignoreBlueFilter?: boolean): ColorEntry
         {
             const lightness = (textLight + 3 * bgLight) / 4;
+            const resultColor = HslaColor.toRgbaColor(new HslaColor(
+                shift.Border.grayHue,
+                Math.min(shift.Border.graySaturation * 1.15, 1), lightness, 1));
+            const resultColorString = ignoreBlueFilter ? resultColor.toString()
+                : this.applyBlueFilter(resultColor).toString()
             return {
-                color: this.applyBlueFilter(HslaColor.toRgbaColor(new HslaColor(
-                    shift.Border.grayHue,
-                    Math.min(shift.Border.graySaturation * 1.15, 1), lightness, 1)))
-                    .toString(),
+                color: resultColorString,
                 role: Component.TextShadow,
                 light: lightness,
                 originalLight: 0.5,

@@ -1,8 +1,8 @@
-#p-logo {
+html[ml-mode]:not([ml-mode="filter"]) #p-logo {
     position: relative;
 }
 
-#p-logo:before {
+html[ml-mode]:not([ml-mode="filter"]) #p-logo:before {
     content: "";
     background-color: #f0f0f0;
     position: absolute;
@@ -12,8 +12,11 @@
     height: 30px;
     z-index: 999;
 }
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #p-logo:not(#imp):not(.imp):not(imp):before{
+    background-color: var(--ml-main-background-color)!important;
+}
 
-#p-logo:after {
+html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
     --ml-ignore:true;
     content: "";
     background-repeat: no-repeat;
@@ -33,7 +36,7 @@
 (min--moz-device-pixel-ratio:1.5),
 (min-resolution:1.5dppx),
 (min-resolution:144dpi) {
-    #p-logo:after {
+  html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
         background-image: url(/static/images/project-logos/enwikibooks-1.5x.png);
         background-size: 135px auto
     }
@@ -43,35 +46,35 @@
 (min--moz-device-pixel-ratio:2),
 (min-resolution:2dppx),
 (min-resolution:192dpi) {
-    #p-logo:after {
+  html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
         background-image: url(/static/images/project-logos/enwikibooks-2x.png);
         background-size: 135px auto
     }
 }
 
-div.vectorTabs li.selected:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) div.vectorTabs li.selected:not(imp) {
     background-image: none;
     background-color: white;
 }
 
-div.vectorTabs ul li:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) div.vectorTabs ul li:not(imp) {
     background-image: -webkit-linear-gradient(white 0%, #eaf2f8 98%, #a7d7f9 99%);
 }
 
-#mw-page-base:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) #mw-page-base:not(imp) {
     background-image: linear-gradient(#ffffff 50%, #f2f2f2 100%);
 }
 
-body:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) body:not(imp) {
     background-color: #f0f0f0;
 }
 
-.mwe-math-fallback-image-inline {
+html[ml-mode]:not([ml-mode="filter"]) .mwe-math-fallback-image-inline {
     --ml-ignore:true;
     /* background-color: #E0E0E0; */
     filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
 }
 
-#simpleSearch {
+html[ml-mode]:not([ml-mode="filter"]) #simpleSearch {
     background-image: none !important;
 }

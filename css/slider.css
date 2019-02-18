@@ -234,6 +234,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
   --range-segment-width: 251px;
   --range-track-width: 251px;
   --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
+  --edge-hue: hsl(0,100%,50%);
+  --hues-range: linear-gradient(to right,hsl(0,100%,50%),hsl(60,100%,50%),hsl(120,100%,50%),hsl(180,100%,50%),hsl(240,100%,50%),hsl(300,100%,50%),hsl(359,100%,50%));
   --range-track-background:
     linear-gradient(to right,transparent,transparent),
     linear-gradient(to right,transparent,transparent),
@@ -246,15 +248,22 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     linear-gradient(90deg, 
       /*var(--pseudo-background-color) 0%,*/
       /* var(--pseudo-text-shadow-color) 3%, */
-      hsl(0,100%,50%),
+      var(--edge-hue) 0%,
+      var(--edge-hue) 3%,
       transparent 3%,
       transparent 97%,
-      hsl(0,100%,50%)
+      var(--edge-hue) 97%,
+      var(--edge-hue) 100%
       /*var(--pseudo-text-shadow-color) 97%,
       var(--pseudo-background-color) 100%*/
     ),
-    linear-gradient(to right,hsl(0,100%,50%),hsl(60,100%,50%),hsl(120,100%,50%),hsl(180,100%,50%),hsl(240,100%,50%),hsl(300,100%,50%),hsl(359,100%,50%)),
+    var(--hues-range),
     linear-gradient(to right,transparent,transparent)
+}
+
+html[ml-mode="filter"] .hue {
+  --edge-hue: hsla(0, 100%, 70%, 1);
+  --hues-range: linear-gradient(to right,hsla(0, 100%, 70%, 1),hsla(60, 100%, 35%, 1),hsla(120, 100%, 40%, 1),hsla(180, 100%, 40%, 1),hsla(240, 100%, 75%, 1),hsla(300, 100%, 70%, 1),hsla(359, 100%, 70%, 1));
 }
 
 .ml-input-range {

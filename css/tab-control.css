@@ -144,7 +144,7 @@ html:not([ml-color-scheme="custom"]) .ml-tab-item:not(:hover):not(.active) {
     border-image: unset!important;
     z-index: 100;
 }
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:not(#imp) {
     background-color: var(--ml-main-trans-alt-background-color) !important;
 }
 
@@ -165,7 +165,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-item.active:
     animation: fadeEffect 0.4s ease-in-out;
     background-color: var(--content-background-color);
 }
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-content:not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .ml-tab-content:not(#imp) {
     background-color: var(--ml-main-trans-alt-background-color) !important;
 }
 
@@ -177,7 +177,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-tab-content:not(
     text-align: justify;
     text-indent: 15px;
 }
-html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) #default-tab-content.ml-tab-content *:not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #default-tab-content.ml-tab-content *:not(#imp) {
     background-color: transparent!important;
 }
 

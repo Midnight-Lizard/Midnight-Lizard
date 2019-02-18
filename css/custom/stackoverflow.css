@@ -1,4 +1,4 @@
-html[ml-stage]:not([ml-stage="loading"]) .-img._glyph {
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="loading"]) .-img._glyph {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
@@ -11,8 +11,8 @@ html[ml-stage][ml-mode="simple"] header:not(imp):not(#imp):not(.imp) a:not(imp):
     --ml-background-background-color:Text;
 }
 
-html[ml-stage] .left-sidebar-toggle *:before,
-html[ml-stage] .left-sidebar-toggle *:after {
+html[ml-stage]:not([ml-mode="filter"]) .left-sidebar-toggle *:before,
+html[ml-stage]:not([ml-mode="filter"]) .left-sidebar-toggle *:after {
     --ml-ignore:true;
     background-color: var(--ml-main-text-color);
 }
@@ -21,12 +21,12 @@ html[ml-stage] .left-sidebar-toggle *:after {
     --ml-backgroundimage:Background;
 }
 
-.profile-avatar:not(imp) {
+html[ml-mode]:not([ml-mode="filter"]) .profile-avatar:not(imp) {
     box-shadow: none!important;
 }
 
-.searchbar .f-input,
-.post-tag {
+html[ml-mode]:not([ml-mode="filter"]) .searchbar .f-input,
+html[ml-mode]:not([ml-mode="filter"]) .post-tag {
     transition-duration: 0s!important;
     transition-property: none!important;
 }

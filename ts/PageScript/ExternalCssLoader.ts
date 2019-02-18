@@ -31,7 +31,7 @@ namespace MidnightLizard.PageScript
                         let style = doc.createElement('style');
                         style.setAttribute("ml-external", externalCssUrl);
                         style.innerText = css;
-                        style.disabled = true;
+                        // style.disabled = true;
                         doc.head.appendChild(style);
                         if (style.sheet)
                         {

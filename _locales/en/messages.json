@@ -1011,6 +1011,14 @@
         "description": "mode_complex_text_label: text on the label",
         "message": "Complex"
     },
+    "mode_filtered_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Simple global filter over the whole page"
+    },
+    "mode_filtered_text_label": {
+        "description": "text on the label",
+        "message": "Filtered"
+    },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
         "message": "Automatic page processing mode will switch from 'Complex' mode to 'Simplified'\nif current page has more elements than the 'Automatic mode switch limit'."

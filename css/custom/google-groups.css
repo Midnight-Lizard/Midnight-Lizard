@@ -1,12 +1,12 @@
-html[ml-stage] .jfk-button-standard:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp),
-html[ml-stage] .gux-combo-item:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp)
+html[ml-stage]:not([ml-mode="filter"]) .jfk-button-standard:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp),
+html[ml-stage]:not([ml-mode="filter"]) .gux-combo-item:not(imp):not(.imp):not(#imp) > img.gwt-Image:not(imp):not(.imp):not(#imp)
 {
     --ml-ignore:true;
     filter: var(--ml-text-filter)!important;
 }
 
-html[ml-mode="simple"] .gbqfi.gb_fc:not(imp):not(.imp):not(#imp),
-html[ml-mode="simple"] .gbqfi.gb_qc:not(imp):not(.imp):not(#imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .gbqfi.gb_fc:not(imp):not(.imp):not(#imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .gbqfi.gb_qc:not(imp):not(.imp):not(#imp) {
     filter: brightness(var(--ml-text-lightness-limit))!important;
 }
 

@@ -9,6 +9,9 @@ namespace MidnightLizard.ContentScript
     const mlIsActiveProperty = "--" + mlIsActiveAttribute;
     const mlBackgroundLightnessLimitProperty = "--ml-background-lightness-limit";
     const mlPpreloadFilterProperty = "--ml-preload-filter";
+    const mlViewAttribute = "ml-view";
+    const mlModeAttribute = "ml-mode";
+    const mlModeProperty = "--" + mlModeAttribute;
 
     @DI.injectable(IPreloadManager)
     class PreloadManager implements IPreloadManager
@@ -43,7 +46,15 @@ namespace MidnightLizard.ContentScript
         {
             if (localStorage.getItem(mlIsActiveProperty) === "true")
             {
+                this._html.setAttribute(mlViewAttribute, window.top === window.self ? "top" : "child");
                 this._html.setAttribute(mlIsActiveAttribute, "");
+
+                const cachedMode = localStorage.getItem(mlModeProperty);
+                if (cachedMode)
+                {
+                    this._html.setAttribute(mlModeAttribute, cachedMode);
+                }
+
                 if (this._module.name === Settings.ExtensionModule.PopupWindow)
                 {
                     this._html.style.setProperty(mlPpreloadFilterProperty,
@@ -65,19 +76,23 @@ namespace MidnightLizard.ContentScript
                 this._html.setAttribute(mlIsActiveAttribute, "");
                 if (this._module.name === Settings.ExtensionModule.PopupWindow)
                 {
-                    const textFilter = this._html.mlComputedStyle!.getPropertyValue("--ml-text-filter");
-                    this._html.style.setProperty(mlPpreloadFilterProperty, textFilter);
+                    this._html.mlComputedStyle = this._html.mlComputedStyle ||
+                        this._html.ownerDocument!.defaultView!.getComputedStyle(this._html);
+                    const textFilter = this._html.mlComputedStyle.getPropertyValue("--ml-text-filter");
                     localStorage.setItem(mlPpreloadFilterProperty, textFilter);
                 }
                 else
                 {
                     const bgLight = shift!.Background.lightnessLimit.toString();
-                    this._html.style.setProperty(mlBackgroundLightnessLimitProperty, bgLight);
                     localStorage.setItem(mlBackgroundLightnessLimitProperty, bgLight);
+                    localStorage.setItem(mlModeProperty,
+                        this._settingsManager.currentSettings.mode);
                 }
             }
             else
             {
+                this._html.removeAttribute(mlModeAttribute);
+                this._html.removeAttribute(mlViewAttribute);
                 this._html.removeAttribute(mlIsActiveAttribute);
                 this._html.style.removeProperty(mlBackgroundLightnessLimitProperty);
                 this._html.style.removeProperty(mlPpreloadFilterProperty);
