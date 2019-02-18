@@ -11,9 +11,8 @@ html[ml-mode="filter"]:before {
 
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
     filter: var(--ml-text-filter);
+    background-color: var(--ml-main-background-color-filtered) !important;
 }
-
-/* @supports not (-moz-appearance: button) { */
 
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
     --ml-main-scrollbar-marks-color: var(--ml-main-scrollbar-marks-color-filtered) !important;
@@ -35,5 +34,3 @@ html[ml-mode="filter"][ml-view="child"]:not([ml-stage="preload"]) {
     --ml-main-moz-scrollbar-track-color: var(--ml-main-moz-scrollbar-track-color-original) !important;
     --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-original) !important;
 }
-
-/* } */

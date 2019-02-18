@@ -69,10 +69,6 @@ html[ml-mode]:not([ml-mode="filter"]) body:not(imp) {
     background-color: #f0f0f0;
 }
 
-html[ml-mode="filter"] {
-  background-color: var(--ml-main-background-color-filtered) !important;
-}
-
 html[ml-mode]:not([ml-mode="filter"]) .mwe-math-fallback-image-inline {
     --ml-ignore:true;
     /* background-color: #E0E0E0; */
