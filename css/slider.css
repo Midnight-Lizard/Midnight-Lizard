@@ -290,6 +290,10 @@ html[ml-mode="filter"] .hue {
   cursor: pointer;
 }
 
+html[ml-mode="filter"] .ml-input-range-icon {
+  fill: var(--main-color);
+}
+
 .ml-input-range-icon.low
 {
   left: calc(((100% - var(--range-width))/2 - 15px)/2);
