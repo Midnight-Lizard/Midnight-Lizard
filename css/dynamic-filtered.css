@@ -1,14 +1,3 @@
-html[ml-mode="filter"]:before {
-    content: '';
-    position: fixed;
-    background-color: white;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-}
-
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
     filter: var(--ml-text-filter);
     background-color: var(--ml-main-background-color-filtered) !important;
