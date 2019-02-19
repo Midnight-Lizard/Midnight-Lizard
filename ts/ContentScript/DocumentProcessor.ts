@@ -275,6 +275,8 @@ namespace MidnightLizard.ContentScript
                 html.removeAttribute("ml-scrollbar-style");
                 html.removeAttribute("ml-invert");
                 html.removeAttribute("ml-view");
+                html.removeAttribute("ml-embed");
+                html.removeAttribute("ml-image");
             }
             else
             {
@@ -299,12 +301,20 @@ namespace MidnightLizard.ContentScript
                 else
                 {
                     html.setAttribute("ml-update", UpdateStage.Aware);
-                    html.setAttribute("ml-stage", stage);
-                    html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
-                    html.setAttribute("ml-platform",
-                        this._app.isDesktop ? "desktop" : "mobile");
                     if (this._settingsManager.isActive)
                     {
+                        html.setAttribute("ml-stage", stage);
+                        if (this._rootDocument.body && this._rootDocument.body.firstElementChild instanceof HTMLEmbedElement)
+                        {
+                            html.setAttribute("ml-embed", "");
+                        }
+                        if (this._rootDocument.body && this._rootDocument.body.firstElementChild instanceof HTMLImageElement)
+                        {
+                            html.setAttribute("ml-image", "");
+                        }
+                        html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
+                        html.setAttribute("ml-platform",
+                            this._app.isDesktop ? "desktop" : "mobile");
                         if (this.shift.Background.lightnessLimit < 0.3)
                         {
                             html.setAttribute("ml-invert", "");
@@ -2584,6 +2594,22 @@ namespace MidnightLizard.ContentScript
                 imgSat !== 1 ? `saturate(${imgSat})` : "",
             ].filter(f => f).join(" ").trim();
             cssText += `\n--ml-image-revert-filter:${imgRevertFilter || 'none'};`;
+
+            let videoLight = 1, videoSat = 1;
+            if (this.shift.Text.lightnessLimit < 1)
+            {
+                videoLight += 1 - Math.max(this.shift.Text.lightnessLimit, 0.9);
+            }
+            if (this.shift.Background.saturationLimit < 1)
+            {
+                videoSat += 1 - this.shift.Background.saturationLimit;
+            }
+            const videoRevertFilter = [
+                videoLight !== 1 ? `brightness(${videoLight})` : "",
+                invertColors ? `hue-rotate(180deg) invert(1)` : "",
+                videoSat !== 1 ? `saturate(${videoSat})` : "",
+            ].filter(f => f).join(" ").trim();
+            cssText += `\n--ml-video-revert-filter:${videoRevertFilter || 'none'};`;
 
             const mainColorsStyle = doc.createElement('style');
             mainColorsStyle.id = "midnight-lizard-dynamic-values";

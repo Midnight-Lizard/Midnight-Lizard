@@ -1,5 +1,17 @@
 html[ml-stage]:not([ml-stage="preload"]) {}
 
+html[ml-embed] { --ml-ignore:true; }
+html[ml-embed][ml-invert]:not([ml-stage="loading"]) embed[type="application/pdf"] {
+  filter: var(--pdf-bg-filter) var(--ml-text-filter);
+}
+html[ml-embed]:not([ml-invert]):not([ml-stage="loading"]) embed[type="application/pdf"] {
+  filter: var(--ml-text-filter);
+}
+html[ml-image]:not([ml-stage="loading"]):not([ml-mode="simple"]) {
+  --ml-ignore:true;
+  filter: var(--ml-image-filter);
+}
+
 html[ml-stage]:not([ml-stage="preload"]):not(imp)::selection,
 html[ml-stage]:not([ml-stage="preload"]) :not(imp)::selection {
     background-color: var(--ml-main-selection-color) !important;

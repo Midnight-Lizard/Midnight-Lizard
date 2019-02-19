@@ -214,3 +214,20 @@ html[ml-stage]:not([ml-mode="filter"]) .ytp-ad-overlay-container {
   --ml-ignore:true;
   filter: var(--ml-image-filter);
 }
+
+html[ml-stage][ml-scrollbar-style="ml-simple"] {
+  overflow: auto;
+}
+
+/*--- BEGIN FILTER MODE ---*/
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #scrim {
+  filter: invert(1);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .ytp-cued-thumbnail-overlay-image,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .ytp-tooltip-bg {
+  filter: var(--ml-image-revert-filter);
+}
+
+/*--- END FILTER MODE ---*/

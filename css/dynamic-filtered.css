@@ -1,4 +1,4 @@
-html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
+html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]):not([ml-embed]):not([ml-image]) {
   filter: var(--ml-text-filter);
   background-color: var(--ml-main-background-color-filtered) !important;
 }
@@ -24,9 +24,20 @@ html[ml-mode="filter"][ml-view="child"]:not([ml-stage="preload"]) {
   --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-original) !important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) :not([role="button"])>:not([role="button"])>img[src][alt]:not([role="button"]),
-html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) img[src*="avatar"],
-html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) img[src*="account"]
-{
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) :not([role="button"])>:not([role="button"])>img[src][alt]:not([role="button"]),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[src*="avatar"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[src*="account"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img#thumbnail,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img.thumbnail,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) svg image,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:url"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image:url"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background: url"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image: url"] {
   filter: var(--ml-image-revert-filter);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) object,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) video {
+  filter: var(--ml-video-revert-filter);
 }
