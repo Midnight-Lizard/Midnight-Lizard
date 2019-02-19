@@ -112,7 +112,7 @@ namespace MidnightLizard.ContentScript
         {
             let output = input;
             const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
-            if (overlayColorHsl.saturation > 0.1)
+            if (overlayColorHsl.saturation > 0.12)
             {
                 const isDark = overlayColorHsl.lightness < 0.5;
                 const blendMode = isDark ? "lighten" : "darken";
