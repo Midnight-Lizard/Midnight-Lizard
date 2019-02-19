@@ -87,12 +87,15 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .header-logo-inverto
   color: black;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:focus .dropdown-caret, 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:hover .dropdown-caret,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .notification-indicator,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:focus,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:hover {
   color: rgba(0,0,0, 0.8);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:focus .dropdown-caret, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:hover .dropdown-caret {
+  border-top-color: rgba(0,0,0, 0.8);
 }
 
 /*--- END FILTER MODE ---*/
