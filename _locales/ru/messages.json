@@ -1284,13 +1284,5 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
-    },
-    "open_collective_donate_button_text_label": {
-        "description": "opencollective.com: text on the label",
-        "message": "Внести пожертвование"
-    },
-    "open_collective_custom_amount_text_label": {
-        "description": "opencollective.com: text on the label",
-        "message": "Произвольная сумма"
     }
 }

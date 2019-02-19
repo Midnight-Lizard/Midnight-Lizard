@@ -1013,7 +1013,7 @@
     },
     "mode_filtered_@title": {
         "description": "text on the tooltip\/hint",
-        "message": "Simple global filter over the whole page"
+        "message": "Simple global filter over the whole page.\nMost of the settings are ignored in this mode."
     },
     "mode_filtered_text_label": {
         "description": "text on the label",
@@ -1292,13 +1292,5 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
-    },
-    "open_collective_donate_button_text_label": {
-        "description": "opencollective.com: text on the label",
-        "message": "Donate"
-    },
-    "open_collective_custom_amount_text_label": {
-        "description": "opencollective.com: text on the label",
-        "message": "Custom amount"
     }
 }
