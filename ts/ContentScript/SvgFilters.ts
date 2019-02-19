@@ -93,8 +93,8 @@ namespace MidnightLizard.ContentScript
             filter.setAttribute("color-interpolation-filters", "sRGB");
 
             let input = "SourceGraphic";
-            input = this.addColorOverlay(overlayBgColor, doc, filter, input, "bg");
-            input = this.addColorOverlay(overlayTxtColor, doc, filter, input, "txt");
+            input = this.addColorOverlay(overlayBgColor, doc, filter, input, "bg", this._settingsManager.shift.Background.hueGravity);
+            input = this.addColorOverlay(overlayTxtColor, doc, filter, input, "txt", this._settingsManager.shift.Text.hueGravity);
 
             if (blueFltr > 0)
             {
@@ -108,15 +108,15 @@ namespace MidnightLizard.ContentScript
         }
 
         private addColorOverlay(overlayColor: string, doc: Document,
-            filter: SVGFilterElement, input: string, layer: string)
+            filter: SVGFilterElement, input: string, layer: string, overlayIntensity: number)
         {
             let output = input;
             const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
-            if (overlayColorHsl.saturation > 0.15)
+            if (overlayColorHsl.saturation > 0.1)
             {
                 const isDark = overlayColorHsl.lightness < 0.5;
                 const blendMode = isDark ? "lighten" : "darken";
-                overlayColorHsl.lightness *= isDark ? 1.1 : 0.999;
+                overlayColorHsl.lightness *= isDark ? 1.1 : 1;
                 const
                     feFlood = doc.createElementNS(svgNs, "feFlood"),
                     feComposite = doc.createElementNS(svgNs, "feComposite"),
@@ -125,7 +125,7 @@ namespace MidnightLizard.ContentScript
                 filter.appendChild(feFlood);
                 feFlood.setAttribute("result", "flood_" + layer);
                 feFlood.setAttribute("flood-color", overlayColorHsl.toString());
-                feFlood.setAttribute("flood-opacity", "1");
+                feFlood.setAttribute("flood-opacity", (overlayIntensity / 2 + 0.5).toString());
 
                 filter.appendChild(feComposite);
                 feComposite.setAttribute("result", "flood_alpha_" + layer);
