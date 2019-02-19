@@ -2569,6 +2569,22 @@ namespace MidnightLizard.ContentScript
             ].filter(f => f).join(" ").trim();
             cssText += `\n--ml-image-filter:${imgFilter || 'none'};`;
 
+            let imgLight = imgSet.lightnessLimit, imgSat = imgSet.saturationLimit;
+            if (this.shift.Text.lightnessLimit < 1)
+            {
+                imgLight += 1 - Math.max(this.shift.Text.lightnessLimit, 0.9);
+            }
+            if (this.shift.Background.saturationLimit < 1)
+            {
+                imgSat += 1 - this.shift.Background.saturationLimit;
+            }
+            const imgRevertFilter = [
+                imgLight !== 1 ? `brightness(${imgLight})` : "",
+                invertColors ? `hue-rotate(180deg) invert(1)` : "",
+                imgSat !== 1 ? `saturate(${imgSat})` : "",
+            ].filter(f => f).join(" ").trim();
+            cssText += `\n--ml-image-revert-filter:${imgRevertFilter || 'none'};`;
+
             const mainColorsStyle = doc.createElement('style');
             mainColorsStyle.id = "midnight-lizard-dynamic-values";
             mainColorsStyle.mlIgnore = true;

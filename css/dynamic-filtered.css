@@ -1,25 +1,32 @@
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
-    filter: var(--ml-text-filter);
-    background-color: var(--ml-main-background-color-filtered) !important;
+  filter: var(--ml-text-filter);
+  background-color: var(--ml-main-background-color-filtered) !important;
 }
 
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"]) {
-    --ml-main-scrollbar-marks-color: var(--ml-main-scrollbar-marks-color-filtered) !important;
-    --ml-main-scrollbar-thumb-hover-color: var(--ml-main-scrollbar-thumb-hover-color-filtered) !important;
-    --ml-main-scrollbar-thumb-normal-color: var(--ml-main-scrollbar-thumb-normal-color-filtered) !important;
-    --ml-main-scrollbar-thumb-active-color: var(--ml-main-scrollbar-thumb-active-color-filtered) !important;
-    --ml-main-scrollbar-track-color: var(--ml-main-scrollbar-track-color-filtered) !important;
-    --ml-main-moz-scrollbar-track-color: var(--ml-main-moz-scrollbar-track-color-filtered) !important;
-    --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-filtered) !important;
+  --ml-main-scrollbar-marks-color: var(--ml-main-scrollbar-marks-color-filtered) !important;
+  --ml-main-scrollbar-thumb-hover-color: var(--ml-main-scrollbar-thumb-hover-color-filtered) !important;
+  --ml-main-scrollbar-thumb-normal-color: var(--ml-main-scrollbar-thumb-normal-color-filtered) !important;
+  --ml-main-scrollbar-thumb-active-color: var(--ml-main-scrollbar-thumb-active-color-filtered) !important;
+  --ml-main-scrollbar-track-color: var(--ml-main-scrollbar-track-color-filtered) !important;
+  --ml-main-moz-scrollbar-track-color: var(--ml-main-moz-scrollbar-track-color-filtered) !important;
+  --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-filtered) !important;
 }
 
 html[ml-mode="filter"]:not([ml-view="child"]):not([ml-stage="preload"])>*>*,
 html[ml-mode="filter"][ml-view="child"]:not([ml-stage="preload"]) {
-    --ml-main-scrollbar-marks-color: var(--ml-main-scrollbar-marks-color-original) !important;
-    --ml-main-scrollbar-thumb-hover-color: var(--ml-main-scrollbar-thumb-hover-color-original) !important;
-    --ml-main-scrollbar-thumb-normal-color: var(--ml-main-scrollbar-thumb-normal-color-original) !important;
-    --ml-main-scrollbar-thumb-active-color: var(--ml-main-scrollbar-thumb-active-color-original) !important;
-    --ml-main-scrollbar-track-color: var(--ml-main-scrollbar-track-color-original) !important;
-    --ml-main-moz-scrollbar-track-color: var(--ml-main-moz-scrollbar-track-color-original) !important;
-    --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-original) !important;
+  --ml-main-scrollbar-marks-color: var(--ml-main-scrollbar-marks-color-original) !important;
+  --ml-main-scrollbar-thumb-hover-color: var(--ml-main-scrollbar-thumb-hover-color-original) !important;
+  --ml-main-scrollbar-thumb-normal-color: var(--ml-main-scrollbar-thumb-normal-color-original) !important;
+  --ml-main-scrollbar-thumb-active-color: var(--ml-main-scrollbar-thumb-active-color-original) !important;
+  --ml-main-scrollbar-track-color: var(--ml-main-scrollbar-track-color-original) !important;
+  --ml-main-moz-scrollbar-track-color: var(--ml-main-moz-scrollbar-track-color-original) !important;
+  --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-original) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) :not([role="button"])>:not([role="button"])>img[src][alt]:not([role="button"]),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) img[src*="avatar"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) img[src*="account"]
+{
+  filter: var(--ml-image-revert-filter);
 }
