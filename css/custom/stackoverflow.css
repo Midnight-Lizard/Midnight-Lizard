@@ -34,24 +34,24 @@ html[ml-mode]:not([ml-mode="filter"]) .post-tag {
 
 /*--- BEGIN FILTER MODE ---*/
 
-html[ml-mode="filter"]:not([ml-stage="loading"]) .site-footer {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .site-footer {
   background-color: hsla(204, 36%, 95%, 1);
   color: hsla(210, 28%, 10%, 1);
 }
 
-html[ml-mode="filter"]:not([ml-stage="loading"]) .site-footer .-title a {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .site-footer .-title a {
   color: hsla(207, 7%, 25%, 1);
 }
 
-html[ml-mode="filter"]:not([ml-stage="loading"]) .site-footer .-title a:hover {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .site-footer .-title a:hover {
   color: hsla(180, 4%, 5%, 1);
 }
 
-html[ml-mode="filter"]:not([ml-stage="loading"]) .site-footer .-link {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .site-footer .-link {
   color: hsla(208, 17%, 35%, 1);
 }
 
-html[ml-mode="filter"]:not([ml-stage="loading"]) .site-footer .-link:hover {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .site-footer .-link:hover {
   color: hsla(207, 7%, 25%, 1);
 }
 
