@@ -72,3 +72,27 @@ html[ml-stage-mode="complete-complex"] .gh-header .gh-header-sticky.is-stuck+.gh
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .user-profile-sticky-bar:after {
     background-color: var(--ml-main-alt-background-color);
 }
+
+
+/*--- BEGIN FILTER MODE ---*/
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .Header {
+  background-color: hsl(210, 12%, 90%);
+  color: black;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .Header .header-search-wrapper,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .header-logo-invertocat {
+  color: black;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:focus .dropdown-caret, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:hover .dropdown-caret,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .notification-indicator,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="loading"]) .HeaderNavlink:hover {
+  color: rgba(0,0,0, 0.8);
+}
+
+/*--- END FILTER MODE ---*/
