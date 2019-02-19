@@ -88,3 +88,14 @@ a[aria-label*="background"] div {
 html[ml-mode]:not([ml-mode="filter"]) .fbChatSidebar {
     box-shadow: none!important;
 }
+
+
+/*--- BEGIN FILTER MODE ---*/
+
+html[ml-mode="filter"]:not([ml-stage="loading"]) #bluebarRoot>[role="banner"] {
+  background-color: hsl(220, 55%, 80%);
+  border-bottom: 1px solid hsl(218, 60%, 90%);
+  color: black;
+}
+
+/*--- END FILTER MODE ---*/
