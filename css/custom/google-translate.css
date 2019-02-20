@@ -23,7 +23,8 @@ html[ml-stage]:not([ml-mode="filter"]) .gt-lc.gt-lc-mobile .gt-cc-r-i:not(imp) {
     background-color: transparent!important;
 }
 
-html[ml-stage]:not([ml-mode="filter"]) .gbip, html[ml-stage] .gbii
+html[ml-stage]:not([ml-mode="filter"]) .gbip,
+html[ml-stage]:not([ml-mode="filter"]) .gbii
 {
     filter: brightness(var(--ml-image-lightness-limit)) saturate(var(--ml-image-saturation-limit)) var(--ml-blue-filter) !important;
     --ml-ignore:true;
@@ -31,6 +32,11 @@ html[ml-stage]:not([ml-mode="filter"]) .gbip, html[ml-stage] .gbii
 .gbip:before, .gbii:before
 {
     --ml-ignore:true;
+}
+
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbii {
+  filter: var(--ml-image-revert-filter);
 }
 
 html[ml-stage-mode="complete-complex"] #gt-src-is {

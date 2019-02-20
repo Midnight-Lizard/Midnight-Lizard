@@ -5,6 +5,11 @@ html[ml-mode]:not([ml-mode="filter"]) a[href="#inbox"][title="Gmail"]:not(#imp):
     filter: saturate(var(--ml-image-saturation-limit, 1)) hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit, 1));
 }
 
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbii {
+  filter: var(--ml-image-revert-filter);
+}
+
 td[class]:empty:first-child {
     --ml-no-invert:true;
 }

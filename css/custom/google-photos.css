@@ -2,3 +2,8 @@ canvas {
     --ml-no-invert:true;
     --ml-background-background-color:Image;
 }
+
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbii {
+  filter: var(--ml-image-revert-filter);
+}

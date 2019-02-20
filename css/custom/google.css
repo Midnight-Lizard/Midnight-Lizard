@@ -14,7 +14,7 @@ html[ml-mode]:not([ml-mode="filter"]) .gsfi:not(imp)
     background-color: transparent;
 }
 
-html[ml-stage]:not([ml-mode="filter"]) .gbip, 
+html[ml-stage]:not([ml-mode="filter"]) .gbip,
 html[ml-stage]:not([ml-mode="filter"]) .gbii
 {
     --ml-backgroundimage:Image;
@@ -24,6 +24,11 @@ html[ml-stage]:not([ml-mode="filter"]) .gbii
 .gbip:before, .gbii:before
 {
     --ml-ignore:true;
+}
+
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbii {
+  filter: var(--ml-image-revert-filter);
 }
 
 color-palette,
