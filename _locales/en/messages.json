@@ -560,7 +560,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page.\nUnsupported by Firefox."
+        "message": "      Scrollbars settings\n―――――――――――――――――――\n Color adjustment settings for all scrollbars on the page."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
@@ -1010,6 +1010,14 @@
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
         "message": "Complex"
+    },
+    "mode_filtered_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Simple global filter over the whole page.\nMost of the settings are ignored in this mode.\nMight be very resource intense.\nWorks better in a grayscale mode or when\ngray background and gray text saturation are less than 10%."
+    },
+    "mode_filtered_text_label": {
+        "description": "text on the label",
+        "message": "Filtered"
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
