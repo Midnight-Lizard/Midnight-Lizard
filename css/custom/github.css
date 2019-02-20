@@ -98,4 +98,10 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:hover
   border-top-color: rgba(0,0,0, 0.8);
 }
 
+html[ml-mode="filter"] img[data-canonical-src*="badge"],
+html[ml-mode="filter"] img[data-canonical-src*="localized"]
+{
+  filter: none !important;
+}
+
 /*--- END FILTER MODE ---*/
