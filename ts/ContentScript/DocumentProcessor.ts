@@ -304,13 +304,16 @@ namespace MidnightLizard.ContentScript
                     if (this._settingsManager.isActive)
                     {
                         html.setAttribute("ml-stage", stage);
-                        if (this._rootDocument.body && this._rootDocument.body.firstElementChild instanceof HTMLEmbedElement)
+                        if (this._rootDocument.body && this._rootDocument.body.childElementCount === 1)
                         {
-                            html.setAttribute("ml-embed", "");
-                        }
-                        if (this._rootDocument.body && this._rootDocument.body.firstElementChild instanceof HTMLImageElement)
-                        {
-                            html.setAttribute("ml-image", "");
+                            if (this._rootDocument.body.firstElementChild instanceof HTMLEmbedElement)
+                            {
+                                html.setAttribute("ml-embed", "");
+                            }
+                            else if (this._rootDocument.body.firstElementChild instanceof HTMLImageElement)
+                            {
+                                html.setAttribute("ml-image", "");
+                            }
                         }
                         html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
                         html.setAttribute("ml-platform",
