@@ -55,6 +55,14 @@ namespace MidnightLizard.BackgroundPage
                             await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
                             break;
 
+                        case Settings.MessageType.ApplyPublicScheme:
+                            await this.publicSettingsManager.applyPublicScheme(message.publicSchemeId, message.hostName);
+                            break;
+
+                        case Settings.MessageType.SetPublicSchemeAsDefault:
+                            await this.publicSettingsManager.setPublicSchemeAsDefault(message.publicSchemeId);
+                            break;
+
                         default:
                             break;
                     }

@@ -18,6 +18,9 @@ namespace MidnightLizard.Settings.Public
         public abstract async getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
         public abstract async getInstalledPublicColorSchemeIds(): Promise<Settings.ColorSchemeId[]>;
         public abstract get onPublicSchemesChanged(): MidnightLizard.Events.ArgumentedEvent<PublicSchemeId[]>;
+
+        public abstract async applyPublicScheme(publicSchemeId: Public.PublicSchemeId, hostName: string): Promise<void>;
+        public abstract async setPublicSchemeAsDefault(publicSchemeId: Public.PublicSchemeId): Promise<void>;
     }
 
     @DI.injectable(IPublicSettingsManager)
@@ -81,6 +84,41 @@ namespace MidnightLizard.Settings.Public
                     storage.publicSchemeIds.splice(existingPublicSchemeIdIndex, 1);
                 }
                 await this._storageManager.set(storage);
+            }
+        }
+
+        public async applyPublicScheme(publicSchemeId: Public.PublicSchemeId, hostName: string)
+        {
+            const key = `ps:${publicSchemeId}`;
+            const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
+            if (publicScheme)
+            {
+                await this._storageManager.set({
+                    [`ws:${hostName}`]: {
+                        colorSchemeId: publicScheme.cs.colorSchemeId,
+                        runOnThisSite: true
+                    }
+                });
+            }
+            else
+            {
+                throw new Error("Color scheme cannot be found");
+            }
+        }
+
+        public async setPublicSchemeAsDefault(publicSchemeId: Public.PublicSchemeId)
+        {
+            const key = `ps:${publicSchemeId}`;
+            const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
+            if (publicScheme)
+            {
+                await this.getDefaultSettings(false);
+                this._defaultSettings = Object.assign(this._defaultSettings, publicScheme.cs);
+                await this._storageManager.set(this._defaultSettings);
+            }
+            else
+            {
+                throw new Error("Color scheme cannot be found");
             }
         }
 

@@ -3,7 +3,10 @@
 
 namespace MidnightLizard.Settings
 {
-    export type ExternalMessageFromPortal = InstallPublicSchemeCommand | UninstallPublicSchemeCommand | GetInstalledPublicSchemes;
+    export type ExternalMessageFromPortal =
+        InstallPublicSchemeCommand | UninstallPublicSchemeCommand |
+        ApplyPublicSchemeCommand | SetPublicSchemeAsDefaultCommand |
+        GetInstalledPublicSchemes;
 
     export type LocalMessageFromContent = FetchImage;
 
@@ -25,6 +28,8 @@ namespace MidnightLizard.Settings
         InstallPublicScheme = "InstallPublicScheme",
         PublicSchemesChanged = "PublicSchemesChanged",
         UninstallPublicScheme = "UninstallPublicScheme",
+        ApplyPublicScheme = "ApplyPublicScheme",
+        SetPublicSchemeAsDefault = "SetPublicSchemeAsDefault",
         ErrorMessage = "ErrorMessage",
         FetchImage = "FetchImage",
         ImageFetchFailed = "ImageFetchFailed",
@@ -35,31 +40,43 @@ namespace MidnightLizard.Settings
 
     export class GetInstalledPublicSchemes
     {
-        type: MessageType.GetInstalledPublicSchemes = MessageType.GetInstalledPublicSchemes;
+        readonly type: MessageType.GetInstalledPublicSchemes = MessageType.GetInstalledPublicSchemes;
         constructor() { }
     }
 
     export class InstallPublicSchemeCommand
     {
-        type: MessageType.InstallPublicScheme = MessageType.InstallPublicScheme;
+        readonly type: MessageType.InstallPublicScheme = MessageType.InstallPublicScheme;
         constructor(readonly publicScheme: Readonly<Public.PublicScheme>) { }
     }
 
     export class UninstallPublicSchemeCommand
     {
-        type: MessageType.UninstallPublicScheme = MessageType.UninstallPublicScheme;
+        readonly type: MessageType.UninstallPublicScheme = MessageType.UninstallPublicScheme;
+        constructor(readonly publicSchemeId: Public.PublicSchemeId) { }
+    }
+
+    export class ApplyPublicSchemeCommand
+    {
+        readonly type = MessageType.ApplyPublicScheme;
+        constructor(readonly publicSchemeId: Public.PublicSchemeId, readonly hostName: string) { }
+    }
+
+    export class SetPublicSchemeAsDefaultCommand
+    {
+        readonly type = MessageType.SetPublicSchemeAsDefault;
         constructor(readonly publicSchemeId: Public.PublicSchemeId) { }
     }
 
     export class PublicSchemesChanged
     {
-        type: MessageType.PublicSchemesChanged = MessageType.PublicSchemesChanged;
+        readonly type = MessageType.PublicSchemesChanged;
         constructor(readonly publicSchemeIds: Readonly<Public.PublicSchemeId[]>) { }
     }
 
     export class ErrorMessage
     {
-        type: MessageType.ErrorMessage = MessageType.ErrorMessage;
+        readonly type = MessageType.ErrorMessage;
         constructor(
             readonly errorMessage: string,
             readonly details: any) { }
@@ -67,31 +84,31 @@ namespace MidnightLizard.Settings
 
     export class FetchImage
     {
-        type: MessageType.FetchImage = MessageType.FetchImage;
+        readonly type = MessageType.FetchImage;
         constructor(readonly url: string, readonly maxSize: number) { }
     }
 
     export class FetchExternalCss
     {
-        type: MessageType.FetchExternalCss = MessageType.FetchExternalCss;
+        readonly type = MessageType.FetchExternalCss;
         constructor(readonly externalCssUrl: string) { }
     }
 
     export class PageScriptLoaded
     {
-        type: MessageType.PageScriptLoaded = MessageType.PageScriptLoaded;
+        readonly type = MessageType.PageScriptLoaded;
         constructor() { }
     }
 
     export class ImageFetchCompleted
     {
-        type: MessageType.ImageFetchCompleted = MessageType.ImageFetchCompleted;
+        readonly type = MessageType.ImageFetchCompleted;
         constructor(readonly url: string, readonly img: ContentScript.BackgroundImageCache) { }
     }
 
     export class ImageFetchFailed
     {
-        type: MessageType.ImageFetchFailed = MessageType.ImageFetchFailed;
+        readonly type = MessageType.ImageFetchFailed;
         constructor(readonly url: string, readonly error: string) { }
     }
 }
