@@ -1011,13 +1011,13 @@
         "description": "mode_complex_text_label: text on the label",
         "message": "Complex"
     },
-    "mode_filtered_@title": {
+    "mode_filter_@title": {
         "description": "text on the tooltip\/hint",
         "message": "Simple global filter over the whole page.\nMost of the settings are ignored in this mode.\nMight be very resource intense.\nWorks better in a grayscale mode or when\ngray background and gray text saturation are less than 10%."
     },
-    "mode_filtered_text_label": {
+    "mode_filter_text_label": {
         "description": "text on the label",
-        "message": "Filtered"
+        "message": "Filter"
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",

@@ -5,7 +5,7 @@ namespace MidnightLizard.Settings
         Automatic = "auto",
         Simplified = "simple",
         Complex = "complex",
-        Filtered = "filter"
+        Filter = "filter"
     }
 
     export enum ColorSchemeNamePrefix

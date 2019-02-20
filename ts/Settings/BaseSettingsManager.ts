@@ -24,7 +24,7 @@ namespace MidnightLizard.Settings
         abstract get isComplex(): boolean;
         /** Simplified processing mode is in use now */
         abstract get isSimple(): boolean;
-        /** Filtered processing mode is in use now */
+        /** Filter processing mode is in use now */
         abstract get isFilter(): boolean;
         /** Current computed processing mode */
         abstract get computedMode(): ProcessingMode;
@@ -100,7 +100,7 @@ namespace MidnightLizard.Settings
         }
         public get isComplex() { return this._computedMode === ProcessingMode.Complex }
         public get isSimple() { return this._computedMode === ProcessingMode.Simplified }
-        public get isFilter() { return this._computedMode === ProcessingMode.Filtered }
+        public get isFilter() { return this._computedMode === ProcessingMode.Filter }
         public get computedMode() { return this._computedMode }
         protected _computedMode: ProcessingMode = ProcessingMode.Complex;
         protected isInit = false;
@@ -144,9 +144,9 @@ namespace MidnightLizard.Settings
 
         computeProcessingMode(doc: Document): void
         {
-            if (this._currentSettings.mode === ProcessingMode.Filtered)
+            if (this._currentSettings.mode === ProcessingMode.Filter)
             {
-                this._computedMode = ProcessingMode.Filtered;
+                this._computedMode = ProcessingMode.Filter;
             }
             else if (this._currentSettings.mode === ProcessingMode.Automatic && (
                 this._app.isMobile || doc.body &&
