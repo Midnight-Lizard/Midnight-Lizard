@@ -10,7 +10,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     filter: brightness(var(--ml-text-lightness-limit))!important;
 }
 
-.gbqfi.gb_fc, .gbqfi.gb_qc {
+.gbqfi.gb_fc, .gbqfi.gb_qc, .gbqfi.gb_xc {
     --ml-no-invert:true;
 }
 

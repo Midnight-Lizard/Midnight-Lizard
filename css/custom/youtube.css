@@ -215,7 +215,7 @@ html[ml-stage]:not([ml-mode="filter"]) .ytp-ad-overlay-container {
   filter: var(--ml-image-filter);
 }
 
-html[ml-stage][ml-scrollbar-style="ml-simple"] {
+html[ml-stage][ml-scrollbar-style="ml-simple"]:not([hide-scrollbar="true"]) {
   overflow: auto;
 }
 
