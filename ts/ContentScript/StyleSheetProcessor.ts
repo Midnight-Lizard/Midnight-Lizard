@@ -318,18 +318,16 @@ namespace MidnightLizard.ContentScript
                             }
                         }
                     }
-                    else if (sheet instanceof CSSStyleSheet && sheet.href) // external css
+                    // external css
+                    else if (sheet instanceof CSSStyleSheet && sheet.href &&
+                        /* excluding fonts */ !/font/.test(sheet.href))
                     {
-                        // if (this._app.browserName === Settings.BrowserName.Firefox &&
-                        //     sheet.ownerNode && sheet.ownerNode instanceof HTMLElement)
-                        // {
-                        //     this._windowMessageBus.postMessage(new Settings.FetchExternalCss(sheet.href));
-                        // } else 
                         if (!this._externalCssPromises!.has(sheet.href))
                         {
                             let cssPromise = fetch(sheet.href, { cache: "force-cache" })
                                 .then(response => response.text());
-                            cssPromise.catch(ex => this._app.isDebug && console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
+                            cssPromise.catch(ex => this._app.isDebug &&
+                                console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
                             this._externalCssPromises.set(
                                 sheet.href,
                                 Util.handlePromise(Promise.all([doc, cssPromise, sheet.href])
