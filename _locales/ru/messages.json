@@ -49,7 +49,7 @@
     },
     "changeBrowserTheme_@title": {
         "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
-        "message": "Приводить тему браузера в соответствие с цветовой схемой сайта на текущей вкладке.\nПоддерживается на Firefox и частично на Vivaldi."
+        "message": "Приводить тему браузера в соответствие с цветовой схемой сайта на текущей вкладке.\nПоддерживается только на Firefox."
     },
     "useDefaultSchedule_text_label": {
         "description": "useDefaultSchedule_text_label: text on the label",
@@ -560,7 +560,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "   Настройки полос прокрутки\n―――――――――――――――――――\n На этой вкладке находятся настройки отображения полос прокрутки."
+        "message": "   Настройки полос прокрутки\n―――――――――――――――――――\n На этой вкладке находятся настройки отображения полос прокрутки.\nНастройка вида полос прокрутки не поддерживается в Firefox."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
