@@ -35,6 +35,7 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[class*="large"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[class*="screenshot"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]):not([ml-image]) img[class*="emoji"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [class*="emoji"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img#thumbnail,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img.thumbnail,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) svg image,
