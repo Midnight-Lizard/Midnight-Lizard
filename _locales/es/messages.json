@@ -556,7 +556,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Ajustes de las barras de desplazamiento\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página."
+        "message": " Ajustes de las barras de desplazamiento\n―――――――――――――――――――\n Esta pestaña contiene los ajustes de color para todas las barras de desplazamiento de la página.\nNo soportado por Firefox."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
