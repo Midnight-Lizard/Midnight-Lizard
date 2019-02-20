@@ -1011,6 +1011,14 @@
         "description": "mode_complex_text_label: text on the label",
         "message": "Полноценный"
     },
+    "mode_filter_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Накладывает общий фильтр на всю страницу.\nБольшинство настроек игнорируется в этом режиме.\nМожет оказаться очень требовательным к ресурсам!\nРаботает лучше в режиме оттенков серого или\nкогда насыщенность серых фонов и текста менее 10%."
+    },
+    "mode_filter_text_label": {
+        "description": "text on the label",
+        "message": "Фильтр"
+    },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
         "message": "Автоматический режим обработки переключает «Полноценный» режим на «Упрощенный»,\nесли на странице больше элементов, чем указано в параметре «Предел авто-переключения режима»."
