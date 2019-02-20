@@ -548,7 +548,7 @@
     },
     "scrollbarsTab_@tooltip": {
         "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page.\nNon pris en charge par Firefox."
+        "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page."
     },
     "settingsHeader_text_label": {
         "description": "settingsHeader_text_label: text on the label",
