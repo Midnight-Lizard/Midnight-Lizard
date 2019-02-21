@@ -1,0 +1,28 @@
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-belt,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-main {
+  background-color: hsl(213, 28%, 90%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-search-label,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon .nav-a-2 .nav-line-1,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon .nav-a-2 .nav-line-2 {
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-xshop .nav-a,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-a11y-t1.nav-bluebeacon #nav-xshop .nav-a:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-tools .nav-line-1,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-xshop .nav-line-1 {
+  color: hsl(0, 0%, 20%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar .nav-sprite:empty,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .icp-nav-globe-img-2,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter {
+  filter: var(--ml-image-revert-filter)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #nav-cover {
+  background-color: white!important;
+}

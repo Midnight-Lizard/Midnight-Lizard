@@ -472,6 +472,16 @@
             "css": [
                 "css/custom/google-translate.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.amazon.com/*"
+            ],
+            "css": [
+                "css/custom/amazon.css"
+            ]
         }
     ]
 }

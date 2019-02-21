@@ -70,3 +70,8 @@ html[ml-mode="filter"][ml-invert] :fullscreen,
 html[ml-mode="filter"][ml-invert] :fullscreen * {
   filter: none !important;
 }
+
+html[ml-mode="filter"] select>option {
+  background-color: var(--ml-main-background-color-filtered) !important;
+  color: var(--ml-main-text-color-filtered) !important;
+}
