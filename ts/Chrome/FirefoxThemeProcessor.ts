@@ -85,12 +85,21 @@ namespace Firefox
                                         selectionBgColor = selectionColorProcessor
                                             .changeColor(cx.RgbaColor.White, false, document.body);
 
-                                    const theme: browser._manifest.ThemeType = {
-                                        colors: {
+                                    const theme: browser._manifest.ThemeType = { colors: {} };
+                                    if (mainVersion < 59)
+                                    {
+                                        Object.assign(theme.colors, {
                                             accentcolor: darkBgColor.color!,
                                             textcolor: darkTextColor.color!
+                                        });
+
+                                        if (mainVersion >= 57)
+                                        {
+                                            Object.assign(theme.colors, {
+                                                toolbar_text: lightTextColor.color,
+                                            });
                                         }
-                                    };
+                                    }
                                     if (mainVersion < 60)
                                     {
                                         theme.images = {
@@ -101,7 +110,6 @@ namespace Firefox
                                     {
                                         Object.assign(theme.colors, {
                                             toolbar: buttonColor.color,
-                                            toolbar_text: lightTextColor.color,
                                             toolbar_field: midBgColor.color,
                                             toolbar_field_text: midTextColor.color
                                         });
@@ -117,6 +125,9 @@ namespace Firefox
                                     if (mainVersion >= 59)
                                     {
                                         Object.assign(theme.colors, {
+                                            frame: darkBgColor.color!,
+                                            bookmark_text: lightTextColor.color,
+                                            tab_background_text: darkTextColor.color!,
                                             toolbar_field_border: midBorderColor.color,
                                             toolbar_field_separator: darkBorderColor.color
                                         });
@@ -137,6 +148,7 @@ namespace Firefox
                                             popup_border: midBorderColor.color
                                         });
                                     }
+                                    console.log(theme);
                                     if (wnd.id !== undefined)
                                     {
                                         browser.theme.update(wnd.id, theme);
