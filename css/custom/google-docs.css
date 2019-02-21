@@ -1,3 +1,8 @@
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
+html[ml-mode="filter"]:not([ml-stage="preload"]) .gbii {
+  filter: var(--ml-image-revert-filter);
+}
+
 .jfk-palette-colorswatch, .hsv-hs-image, .hsv-v-image, .hsv-swatch
 {
     --ml-ignore:true;
