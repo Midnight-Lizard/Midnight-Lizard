@@ -301,9 +301,10 @@ namespace MidnightLizard.ContentScript
                 else
                 {
                     html.setAttribute("ml-update", UpdateStage.Aware);
+                    html.setAttribute("ml-stage", stage);
+                    html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
                     if (this._settingsManager.isActive)
                     {
-                        html.setAttribute("ml-stage", stage);
                         if (this._rootDocument.body && this._rootDocument.body.childElementCount === 1)
                         {
                             if (this._rootDocument.body.firstElementChild instanceof HTMLEmbedElement)
@@ -315,7 +316,6 @@ namespace MidnightLizard.ContentScript
                                 html.setAttribute("ml-image", "");
                             }
                         }
-                        html.setAttribute("ml-view", window.top === window.self ? "top" : "child");
                         html.setAttribute("ml-platform",
                             this._app.isDesktop ? "desktop" : "mobile");
                         if (this.shift.Background.lightnessLimit < 0.3)
