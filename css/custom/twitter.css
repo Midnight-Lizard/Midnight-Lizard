@@ -12,3 +12,27 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
 {
     background-color: var(--ml-main-background-color)!important;
 }
+
+html[ml-stage-mode]:not([ml-mode="filter"]) div[style*="background-image"][style*="profile_images"] {
+  --ml-ignore:true;
+  filter: var(--ml-image-filter);
+}
+
+html[ml-mode="filter"] .RichEditor--emojiPicker:not(imp) {
+  filter: none!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) button.EmojiPicker-item:not(imp):not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) button.EmojiCategoryIcon:not(imp):not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .EmojiPicker-diversityRow:not(imp):not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="radiogroup"]>[role="radio"]>[style*="background-color"] {
+  filter: var(--ml-image-revert-filter) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .rn-13w96dm {
+  background-color: rgba(255,255,255,0.5)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [aria-labelledby="modal-header"] {
+  filter: drop-shadow(0px 0px 7px rgb(200,200,200));
+}
