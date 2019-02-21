@@ -2206,7 +2206,7 @@ namespace MidnightLizard.ContentScript
                     !/-|\d+\dpx/i.test(tag.mlComputedStyle!.backgroundPosition!) &&
                     !notTextureRegExp.test(backgroundImage + tag.className);
 
-                doInvert = !hasRepeats && bgInverted &&
+                doInvert = !hasRepeats && bgInverted && !tag.style.backgroundImage &&
                     !doNotInvertRegExp.test(backgroundImage + tag.className) &&
                     tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
                     this.tagIsSmall(tag);
