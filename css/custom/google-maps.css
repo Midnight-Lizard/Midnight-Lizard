@@ -88,6 +88,10 @@ html[ml-mode]:not([ml-mode="filter"]) .widget-settings-header::before
     /* width: 6px!important; */
 }
 
-html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage="loading"]) #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
+html[ml-stage-mode]:not([ml-mode="filter"]) #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
     filter: var(--ml-dynamic-content-contrast-text-filter)!important;
+}
+
+html[ml-mode="filter"] #inline-tile-div:not(.imp) > img[role="presentation"]:not(.imp) {
+    filter: none!important;
 }
