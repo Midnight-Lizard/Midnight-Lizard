@@ -2049,38 +2049,39 @@ namespace MidnightLizard.ContentScript
         }
 
         private processInaccessibleTextContent(
-            { tag, roomRules, strictBgLight = true, customTextLight, ignoreContentInvertRule = false }: {
+            { tag, roomRules, strictBgLight = false, customTextLight, ignoreContentInvertRule = false }: {
                 tag: HTMLCanvasElement | HTMLEmbedElement, ignoreContentInvertRule?: boolean
                 roomRules: RoomRules, strictBgLight?: boolean, customTextLight?: number
             })
         {
+            const applyContentFilter =
+                this._settingsManager.currentSettings.blueFilter !== 0 ||
+                this.shift.Background.graySaturation > 0.12 ||
+                this.shift.Text.graySaturation > 0.12;
+
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
                 (ignoreContentInvertRule || this._settingsManager.currentSettings.doNotInvertContent === false) &&
                 tag.mlComputedStyle &&
                 tag.mlComputedStyle.getPropertyValue("--ml-no-invert") !== true.toString())
             {
-                const customDarkRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Background].toLowerCase()}-${this._css.backgroundColor}`) as keyof Colors.ComponentShift;
-                const darkSet = this.shift[customDarkRole] || this.shift.Background, txtSet = this.shift.Text;
+                const darkSet = this.shift.Background, txtSet = this.shift.Text;
                 roomRules.backgroundColor && (roomRules.backgroundColor.color = null);
                 filterValue = [
                     tag instanceof HTMLEmbedElement ? (`var(--${FilterType.PdfFilter})`) : "",
                     darkSet.saturationLimit < 1 ? `saturate(${darkSet.saturationLimit})` : "",
                     `brightness(${float.format(Math.max(1 - darkSet.lightnessLimit, strictBgLight ? 0 : 0.9))})`,
                     `hue-rotate(180deg) invert(1)`,
-                    // this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                    `var(--${FilterType.ContentFilter})`,
+                    applyContentFilter ? `var(--${FilterType.ContentFilter})` : "",
                     `brightness(${float.format(Math.max(customTextLight || txtSet.lightnessLimit, 0.9))})`
                 ];
             }
             else
             {
-                const customLightRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof Colors.ComponentShift;
-                const lightSet = this.shift[customLightRole] || this.shift.Image;
+                const lightSet = this.shift.Image;
                 filterValue = [
                     lightSet.saturationLimit < 1 ? `saturate(${lightSet.saturationLimit})` : "",
-                    // this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                    `var(--${FilterType.ContentFilter})`,
+                    applyContentFilter ? `var(--${FilterType.ContentFilter})` : "",
                     lightSet.lightnessLimit < 1 ? `brightness(${lightSet.lightnessLimit})` : ""
                 ];
             }
@@ -2558,15 +2559,23 @@ namespace MidnightLizard.ContentScript
             for (const [contentType, ignoreContentInvertRule] of
                 [["", true], ["-dynamic-content", false]] as Array<[string, boolean]>)
             {
+                // using real bgLight and limited real txtLight
                 this.processInaccessibleTextContent({
                     tag: fakeCanvas, roomRules: fakeCanvasRules,
                     strictBgLight: true, ignoreContentInvertRule
                 });
                 cssText += `\n--ml${contentType}-text-filter:${fakeCanvasRules.filter!.value};`;
+
+                // using limited bgLight and limited real txtLight
+                // bg is always dark
                 this.processInaccessibleTextContent({
-                    tag: fakeCanvas, roomRules: fakeCanvasRules, ignoreContentInvertRule
+                    tag: fakeCanvas, roomRules: fakeCanvasRules,
+                    ignoreContentInvertRule
                 });
                 cssText += `\n--ml${contentType}-contrast-text-filter:${fakeCanvasRules.filter!.value};`;
+
+                // using real bgLight and custom txtLight
+                // no final text light filter
                 this.processInaccessibleTextContent({
                     tag: fakeCanvas, roomRules: fakeCanvasRules,
                     strictBgLight: true, customTextLight: 1, ignoreContentInvertRule
