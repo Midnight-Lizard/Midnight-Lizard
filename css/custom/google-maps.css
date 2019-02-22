@@ -13,6 +13,20 @@ html[ml-stage]:not([ml-mode="filter"]) #app-container:not(.app-imagery-mode) .ca
     filter: var(--ml-dynamic-content-contrast-text-filter);
 }
 
+html[ml-mode="filter"][ml-invert] .app-imagery-mode
+{
+    filter: var(--ml-image-revert-filter);
+}
+html[ml-mode="filter"][ml-invert] .app-imagery-mode *
+{
+    filter: none!important;
+}
+html[ml-mode="filter"][ml-invert] .app-imagery-mode .widget-minimap-anchor:not(imp),
+html[ml-mode="filter"][ml-invert] .app-imagery-mode .widget-pane:not(imp),
+html[ml-mode="filter"][ml-invert] .app-imagery-mode #omnibox-container:not(imp) {
+  filter: var(--ml-dynamic-content-contrast-text-filter)!important;
+}
+
 .section-reviewchart-bucket-fill, .widget-layer-slider-tick,
 .widget-layer-slider-enabled, .widget-layer-slider-thumb, .widget-layer-toggle-bar
 {
