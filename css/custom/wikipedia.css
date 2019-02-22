@@ -1,34 +1,34 @@
 html[ml-mode]:not([ml-mode="filter"]) #p-logo {
-    position: relative;
+  position: relative;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) #p-logo:before {
-    content: "";
-    background-color: #f0f0f0;
-    position: absolute;
-    bottom: 3px;
-    left: 0px;
-    right: 0px;
-    height: 45px;
-    z-index: 999;
+  content: "";
+  background-color: #f0f0f0;
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  right: 0px;
+  height: 45px;
+  z-index: 999;
 }
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #p-logo:not(#imp):not(.imp):not(imp):before{
-    background-color: var(--ml-main-background-color)!important;
+  background-color: var(--ml-main-background-color)!important;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
-    --ml-ignore:true;
-    content: "";
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki.png);
-    position: absolute;
-    bottom: 3px;
-    left: 0px;
-    right: 0px;
-    height: 45px;
-    z-index: 999;
-    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+  --ml-ignore:true;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki.png);
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  right: 0px;
+  height: 45px;
+  z-index: 999;
+  filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
@@ -36,8 +36,8 @@ html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
 (min-resolution:1.5dppx),
 (min-resolution:144dpi) {
   html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
-        background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-1.5x.png);
-        background-size: 135px auto
+      background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-1.5x.png);
+      background-size: 135px auto
     }
 }
 
@@ -46,34 +46,40 @@ html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
 (min-resolution:2dppx),
 (min-resolution:192dpi) {
   html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
-        background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-2x.png);
-        background-size: 135px auto
+      background-image: url(https://__MSG_short_locale__.wikipedia.org/static/images/project-logos/__MSG_short_locale__wiki-2x.png);
+      background-size: 135px auto
     }
 }
 
 html[ml-mode]:not([ml-mode="filter"]) div.vectorTabs li.selected:not(imp) {
-    background-image: none;
-    background-color: white;
+  background-image: none;
+  background-color: white;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) div.vectorTabs ul li:not(imp) {
-    background-image: -webkit-linear-gradient(white 0%, #eaf2f8 98%, #a7d7f9 99%);
+  background-image: -webkit-linear-gradient(white 0%, #eaf2f8 98%, #a7d7f9 99%);
 }
 
 html[ml-mode]:not([ml-mode="filter"]) #mw-page-base:not(imp) {
-    background-image: linear-gradient(#ffffff 50%, #f2f2f2 100%);
+  background-image: linear-gradient(#ffffff 50%, #f2f2f2 100%);
 }
 
 html[ml-mode]:not([ml-mode="filter"]) body:not(imp) {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .mwe-math-fallback-image-inline,
-html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) span.mwe-math-element:not(#imp):not(.imp):not(imp)>img[src].mwe-math-fallback-image-inline:not(#imp):not(.imp):not(imp) {
-    --ml-ignore:true;
-    filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit))!important;
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) span.mwe-math-element:not(#imp):not(.imp):not(imp)>img[src].mwe-math-fallback-image-inline:not(#imp):not(.imp):not(imp):not(#imp) {
+  --ml-ignore:true;
+  filter: var(--ml-text-filter)!important;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) #simpleSearch {
-    background-image: none !important;
+  background-image: none !important;
+}
+
+html[ml-stage-mode]:not([ml-mode="filter"]) .magnify:not(#imp)>a:not(#imp) {
+  --ml-ignore:true;
+  filter: var(--ml-text-filter);
+  background-color: transparent!important;
 }
