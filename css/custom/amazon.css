@@ -23,6 +23,7 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter {
   filter: var(--ml-image-revert-filter)!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #nav-cover {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #nav-cover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #a-popover-lgtbox {
   background-color: white!important;
 }

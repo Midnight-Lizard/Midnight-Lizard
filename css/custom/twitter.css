@@ -29,10 +29,22 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="radiogroup"]>
   filter: var(--ml-image-revert-filter) !important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .rn-13w96dm {
-  background-color: rgba(255,255,255,0.5)!important;
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .rn-13w96dm,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .PermalinkOverlay-with-background,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .gallery-overlay {
+  background-color: rgba(255,255,255,0.6)!important;
 }
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [aria-labelledby="modal-header"] {
   filter: drop-shadow(0px 0px 7px rgb(200,200,200));
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [aria-labelledby="modal-header"] [style*="background-color"] {
+  background-color: hsla(6, 42%, 90%, 1)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [aria-labelledby="modal-header"] [style*="background-color"] ,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [aria-labelledby="modal-header"] [style*="background-color"] * {
+  transition-property: none!important;
+  color: black!important;
 }
