@@ -28,6 +28,8 @@ namespace MidnightLizard.Settings
 
         readonly recommendations: IRecommendation[] = [
             { browsers: all, mode: filter, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
+            { browsers: all, mode: filter, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
+            { browsers: all, mode: filter, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
             { browsers: all, mode: filter, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
             { browsers: all, mode: simple, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i }
         ];
