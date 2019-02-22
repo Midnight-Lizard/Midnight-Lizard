@@ -2517,6 +2517,7 @@ namespace MidnightLizard.ContentScript
 
         protected injectDynamicValues(doc: Document)
         {
+            this._settingsManager.computeProcessingMode(doc, false);
             const mainColors = this.calculateMainColors(doc),
                 invertColors = this._settingsManager.isFilter &&
                     this.shift.Background.lightnessLimit < 0.5;

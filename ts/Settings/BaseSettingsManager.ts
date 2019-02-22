@@ -7,6 +7,7 @@
 /// <reference path="../Colors/-Colors.ts" />
 /// <reference path="./MatchPatternProcessor.ts" />
 /// <reference path="../i18n/ITranslationAccessor.ts" />
+/// <reference path="./Recommendations.ts" />
 
 namespace MidnightLizard.Settings
 {
@@ -35,7 +36,7 @@ namespace MidnightLizard.Settings
         abstract get onSettingsInitialized(): ArgEvent<Colors.ComponentShift>;
         abstract get onSettingsChanged(): RespEvent<(scheme: ColorScheme) => void, Colors.ComponentShift>;
         abstract getDefaultSettings(renameToDefault?: boolean): Promise<Settings.ColorScheme>;
-        abstract computeProcessingMode(doc: Document): void;
+        abstract computeProcessingMode(doc: Document, countElements?: boolean): void;
         /** Deactivates old version of extension - this one */
         abstract deactivateOldVersion(): void;
     }
@@ -118,7 +119,8 @@ namespace MidnightLizard.Settings
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus,
             protected readonly _matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
-            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor)
+            protected readonly _i18n: MidnightLizard.i18n.ITranslationAccessor,
+            private readonly _recommendations: MidnightLizard.Settings.IRecommendations)
         {
             let hostName: string;
             try
@@ -142,17 +144,25 @@ namespace MidnightLizard.Settings
 
         protected abstract initCurrentSettings(): void;
 
-        computeProcessingMode(doc: Document): void
+        computeProcessingMode(doc: Document, countElements = true): void
         {
             if (this._currentSettings.mode === ProcessingMode.Filter)
             {
                 this._computedMode = ProcessingMode.Filter;
             }
-            else if (this._currentSettings.mode === ProcessingMode.Automatic && (
-                this._app.isMobile || doc.body &&
-                doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit))
+            else if (this._currentSettings.mode === ProcessingMode.Automatic)
             {
-                this._computedMode = ProcessingMode.Simplified;
+                let recommendedMode: ProcessingMode | null = null;
+                if (!this._app.isMobile && (recommendedMode = this._recommendations
+                    .getRecommendedProcessingMode(this._rootUrl)))
+                {
+                    this._computedMode = recommendedMode;
+                }
+                else if (this._app.isMobile || countElements && doc.body &&
+                    doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit)
+                {
+                    this._computedMode = ProcessingMode.Simplified;
+                }
             }
             this._app.isDebug &&
                 console.log(`${this._computedMode}: ${doc.body && doc.body.getElementsByTagName("*").length}`);

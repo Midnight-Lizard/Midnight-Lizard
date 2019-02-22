@@ -38,9 +38,10 @@ namespace MidnightLizard.ContentScript
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus,
             matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
-            i18n: MidnightLizard.i18n.ITranslationAccessor)
+            i18n: MidnightLizard.i18n.ITranslationAccessor,
+            rec: MidnightLizard.Settings.IRecommendations)
         {
-            super(_rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n);
+            super(_rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
             settingsBus.onCurrentSettingsRequested.addListener(this.onCurrentSettingsRequested, this);
             settingsBus.onIsEnabledToggleRequested.addListener(this.onIsEnabledToggleRequested, this);
             settingsBus.onNewSettingsApplicationRequested.addListener(this.onNewSettingsApplicationRequested, this);
@@ -177,7 +178,7 @@ namespace MidnightLizard.ContentScript
                 `cs:${this._currentSettings.colorSchemeId}` in changes
                 ||
                 // current website uses default settings and corresponding color scheme has changed
-                this._currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId&&
+                this._currentSettings.colorSchemeId === Settings.ColorSchemes.default.colorSchemeId &&
                 `cs:${this.defaultColorSchemeId}` in changes
                 ||
                 //+ storage type changed

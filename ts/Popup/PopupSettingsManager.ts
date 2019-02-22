@@ -58,9 +58,10 @@ namespace MidnightLizard.Popup
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus,
             matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
-            i18n: MidnightLizard.i18n.ITranslationAccessor)
+            i18n: MidnightLizard.i18n.ITranslationAccessor,
+            rec: MidnightLizard.Settings.IRecommendations)
         {
-            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n);
+            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
         }
 
         protected async initCurrentSettings()
