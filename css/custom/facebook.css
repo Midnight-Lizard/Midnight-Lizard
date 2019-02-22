@@ -1,44 +1,40 @@
-ul[role="menu"] [role="menuitem"], ul[role="menu"] li > span
-{
-    --ml-border-border-color:Background;
+ul[role="menu"] [role="menuitem"],
+ul[role="menu"] li>span {
+  --ml-border-border-color:Background;
 }
 
-a[role="tab"] > span[class]
-{
-    --ml-background-background-color:Border;
+a[role="tab"]>span[class] {
+  --ml-background-background-color:Border;
 }
 
-.roundedBox .uiTypeahead .searchIcon
-{
-    /*background-position: 0 -728px!important;*/
-    --ml-backgroundimage:Text;
+.roundedBox .uiTypeahead .searchIcon {
+  /*background-position: 0 -728px!important;*/
+  --ml-backgroundimage:Text;
 }
 
-div[data-reaction] i, [contenteditable="true"]
-{
-    --ml-no-invert:true;
-    --ml-backgroundimage:Image;
+div[data-reaction] i,
+[contenteditable="true"] {
+  --ml-no-invert:true;
+  --ml-backgroundimage:Image;
 }
 
-table[role="presentation"] a > div[style*="background-image"]
-{
-    --ml-no-invert:true;
-    --ml-backgroundimage:Background;
+table[role="presentation"] a>div[style*="background-image"] {
+  --ml-no-invert:true;
+  --ml-backgroundimage:Background;
 }
 
-span > i,
-.fbPhotoSnowlift > div > div > a > i,
+span>i,
+.fbPhotoSnowlift>div>div>a>i,
 .snowliftPager,
-#pagelet_composer div:not(:last-child) > div[role="tab"] > i,
-#pagelet_composer a[role="button"]:not([data-testid="ellipsis-sprout"]) > div > i,
-.fbTimelineComposerCapsule a:not([data-testid="ellipsis-sprout"]) > div > i,
+#pagelet_composer div:not(:last-child)>div[role="tab"]>i,
+#pagelet_composer a[role="button"]:not([data-testid="ellipsis-sprout"])>div>i,
+.fbTimelineComposerCapsule a:not([data-testid="ellipsis-sprout"])>div>i,
 .userContentWrapper span[style*="background-image"],
 .UFICommentBody span[style*="background-image"],
 h1[data-click="bluebar_logo"],
-._4w97 ._585_
-{
-    --ml-no-invert:true;
-    --ml-backgroundimage:Text;
+._4w97 ._585_ {
+  --ml-no-invert:true;
+  --ml-backgroundimage:Text;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .comment_link,
@@ -48,47 +44,42 @@ html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .profilePicButton,
 html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .fbPhotosPhotoActionsTag,
 html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .fbPhotoSnowliftDropdownButton,
 html[ml-mode]:not([ml-mode="filter"]) .overlayBarButtons .sendButton,
-html[ml-mode]:not([ml-mode="filter"]) .fbPhotoMediaTitle
-{
-    --ml-ignore:true;
-    color: white!important;
-    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+html[ml-mode]:not([ml-mode="filter"]) .fbPhotoMediaTitle {
+  --ml-ignore:true;
+  color: white !important;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
 
 ._fbEntstreamMediaPhoto__sphericalPhotoLink canvas,
-[data-testid="UFIReactionsMenu"] canvas
-{
-    --ml-no-invert:true;
+[data-testid="UFIReactionsMenu"] canvas {
+  --ml-no-invert:true;
 }
 
-[data-testid="fbfeed_placeholder_story"] > div > div
-{
-    --ml-background-background-color:Border;
+[data-testid="fbfeed_placeholder_story"]>div>div {
+  --ml-background-background-color:Border;
 }
 
-._1otk._3t1r._4ubd
-{
-    --ml-ignore:true;
+._1otk._3t1r._4ubd {
+  --ml-ignore:true;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .navHeader a:after,
 html[ml-mode]:not([ml-mode="filter"]) .sideNavItem a:after {
-    transition-duration: 0s!important;
+  transition-duration: 0s !important;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .UFICommentPhotoIcon {
-    --ml-ignore:true;
-    filter: invert(var(--ml-invert,0));
+  --ml-ignore:true;
+  filter: invert(var(--ml-invert, 0));
 }
 
 a[aria-label*="background"] div {
-    --ml-ignore:true;
+  --ml-ignore:true;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .fbChatSidebar {
-    box-shadow: none!important;
+  box-shadow: none !important;
 }
-
 
 /*--- BEGIN FILTER MODE ---*/
 
@@ -96,6 +87,39 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #bluebarRoot>[role="
   background-color: hsl(220, 55%, 80%);
   border-bottom: 1px solid hsl(218, 60%, 90%);
   color: black;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="dialog"]>:first-child:not(:last-child) {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .stageWrapper {
+  background-color: white;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .stageWrapper #fbPhotoSnowliftMediaTitle * {
+  color: black!important;
+  text-shadow: 0 0 2px white;
+}
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) ._4d3w._2nw8 ._4g9v {
+  background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255,0));
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #pagelet_composer li span a[role="button"]:not([data-testid="ellipsis-sprout"]) i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #pagelet_composer :not(:last-child)>[role="tab"] i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #pagelet_composer a>[role="tab"] i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #pagelet_composer [data-testid="expanded-sprout-list"] a[role="button"] i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) a[aria-label*="background"] div,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) ._fbEntstreamMediaPhoto__sphericalPhotoLink canvas,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-testid="UFIReactionsMenu"] canvas,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-testid="fbFeedStoryUFI/feedbackSummary"] a[role="button"]>span>i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-testid="UFI2CommentTopReactions/tooltip"]>a[role="button"]>span>i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-testid="bookmark_icon_left_nav"]>i,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .stageWrapper>.stageActions,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .stageWrapper .titleButtons,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .stageWrapper>.snowliftPager,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="dialog"]>:nth-child(2)>:first-child>a[role="button"]>i {
+  filter: var(--ml-image-revert-filter);
 }
 
 /*--- END FILTER MODE ---*/
