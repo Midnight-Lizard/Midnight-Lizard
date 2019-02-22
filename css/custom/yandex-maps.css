@@ -1,0 +1,7 @@
+html[ml-mode="filter"] .map-container:not(imp) {
+  filter: none!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .panorama-player-view .panorama-player-view__player-holder canvas {
+  filter: var(--ml-image-revert-filter);
+}

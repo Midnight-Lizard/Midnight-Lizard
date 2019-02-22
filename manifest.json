@@ -482,6 +482,17 @@
             "css": [
                 "css/custom/amazon.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://yandex.ru/maps/*",
+                "https://www.yandex.ru/maps/*"
+            ],
+            "css": [
+                "css/custom/yandex-maps.css"
+            ]
         }
     ]
 }
