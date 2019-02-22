@@ -28,7 +28,7 @@ html[ml-mode]:not([ml-mode="filter"]) #p-logo:after {
   right: 0px;
   height: 45px;
   z-index: 999;
-  filter: invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit));
+  filter: var(--ml-text-filter);
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
