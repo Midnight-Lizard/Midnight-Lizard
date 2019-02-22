@@ -1,0 +1,65 @@
+/* --- COMPLEX --- */
+
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) [class*="glyphsSprite"]:not(#imp),
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .coreSpriteDesktopPhotoGridActive:not(#imp),
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .coreSpriteDesktopPhotoGrid:not(#imp) {
+  --ml-ignore:true;
+  filter: var(--ml-text-filter)!important;
+  background-color: transparent!important;
+}
+
+.Yi5aA {
+  --ml-background-background-color:Border;
+}
+
+/* --- SIMPLE --- */
+
+html[ml-mode="simple"]:not([ml-stage="preload"]) :not(#imp)>.Yi5aA.XCodT:not(#imp) {
+  background-color: var(--ml-main-link-color)!important;
+}
+html[ml-mode="simple"]:not([ml-stage="preload"]) :not(#imp)>.Yi5aA:not(#imp) {
+  background-color: var(--ml-main-border-color)!important;
+}
+
+html[ml-mode="simple"]:not([ml-stage="preload"]) .SvO5t:not(#imp) {
+  background-color: var(--ml-main-text-color)!important;
+}
+.SvO5t {
+  --ml-background-background-color:Text;
+}
+
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) header button>img,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="button"]>canvas+a>img,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="button"]>canvas+span>img,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .coreSpriteHeartSmall,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .coreSpriteSpeechBubbleSmall,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .coreSpritePlayIconSmall,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .coreSpriteLeftPaginationArrow,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .coreSpriteRightPaginationArrow,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .videoSpritePlayButton,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .mediatypesSpriteVideo__filled__32,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .mediatypesSpriteCarousel__filled__32 {
+  filter: var(--ml-image-revert-filter);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) a>div[style*="background-color"] {
+  background-color: rgba(255,255,255, 0.3)!important;
+}
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) a>div[style*="background-color"] *,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="dialog"]+button:before {
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) :not([role="dialog"])>[role="dialog"] {
+  background-color: rgba(255,255,255,.5)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="dialog"]>article>header+div {
+  background-color: white!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .eLAPa {
+  background-color: #0f0f0f!important;
+}

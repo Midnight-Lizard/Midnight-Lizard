@@ -498,6 +498,17 @@
             "css": [
                 "css/custom/yandex-maps.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://instagram.com/*",
+                "https://www.instagram.com/*"
+            ],
+            "css": [
+                "css/custom/instagram.css"
+            ]
         }
     ]
 }
