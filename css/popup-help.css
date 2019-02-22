@@ -151,7 +151,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     left: -20px;
     white-space: nowrap;
 }
-.privacy-link:after {
+.privacy-link:not(#imp):after {
     bottom: 15px;
     left: 10px;
     filter: drop-shadow(0px 1px 0px var(--light-thin-border-color)) drop-shadow(0px 2px 1px var(--tooltip-shadow-color));
@@ -174,7 +174,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     margin-top: -3px;
 }
 
-.ml-tab.left .ml-tab-item[tooltip]:after
+.ml-tab.left .ml-tab-item[tooltip]:not(#imp):after
 {
     filter: drop-shadow(-1px 0px 0px var(--light-thin-border-color)) drop-shadow(-2px 0px 1px var(--tooltip-shadow-color));
     border-right-color: var(--dark-background-color);
@@ -184,7 +184,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     left: 161px;
 }
 
-.ml-tab.right .ml-tab-item[tooltip]:after
+.ml-tab.right .ml-tab-item[tooltip]:not(#imp):after
 {
     filter: drop-shadow(1px 0px 0px var(--light-thin-border-color)) drop-shadow(2px 0px 1px var(--tooltip-shadow-color));
     border-left-color: var(--dark-background-color);

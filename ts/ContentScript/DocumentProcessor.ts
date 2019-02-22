@@ -1595,7 +1595,7 @@ namespace MidnightLizard.ContentScript
 
         protected caclulateSimplifiedRoomRules(tag: HTMLElement)
         {
-            if (tag && tag.ownerDocument!.defaultView &&
+            if (tag && tag.ownerDocument!.defaultView && !tag.classList.contains("ml-ignore") &&
                 (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
             {
                 let hasRoomRules = false;
