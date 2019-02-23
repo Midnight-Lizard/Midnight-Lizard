@@ -676,21 +676,13 @@
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
         "message": "Choose your favorite color scheme"
     },
-    "forgetThisSiteBtn_text_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "This"
-    },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "Forget current website settings"
-    },
-    "forgetAllSitesBtn_text_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "All"
+        "message": "Delete only current website settings.\nDefault settings will be used on that website afterwards."
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
-        "message": "Forget all customizations for all websites"
+        "message": "Delete all customizations for all websites, all color schemes and all global settings.\nRestore all factory defaults."
     },
     "setAsDefaultBtn_text_label": {
         "description": "setAsDefaultBtn_text_label: text on the label",
@@ -1292,5 +1284,17 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
+    },
+    "deleteAllSitesSettingsBtn_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Delete all websites' settings, but keep all color schemes, global and default settings.\nCurrent default settings will be used on all websites afterwards."
+    },
+    "deleteAllSitesSettingsBtn_text_long_label": {
+        "description": "text on the label",
+        "message": "Delete all websites' settings"
+    },
+    "deleteAllWebsitesSettingsFailureMessage": {
+        "description": "text on the message box",
+        "message": "All websites' settings deletion failed.\n"
     }
 }

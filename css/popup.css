@@ -354,7 +354,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
 }
 
 .ml-long-cmd-container {
-    margin: 55px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
+    margin: 26px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
 }
 
 .disabled {
@@ -1579,4 +1579,8 @@ html[ml-color-scheme="custom"] i.unsaved {
 }
 .privacy-link:hover {
     text-decoration: underline;
+}
+
+.ml-input-container.time.extra-margin {
+    margin-top: 24px;
 }

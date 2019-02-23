@@ -34,6 +34,7 @@ namespace MidnightLizard.Popup
         abstract applySettings(): Promise<Settings.ColorScheme>;
         abstract deleteAllSettings(): Promise<null>;
         abstract deleteCurrentSiteSettings(): Promise<null>;
+        abstract deleteAllWebsitesSettings(): Promise<null>;
         abstract saveUserColorScheme(userColorScheme: Settings.ColorScheme): Promise<null>;
         abstract deleteUserColorScheme(colorSchemeId: Settings.ColorSchemeId): Promise<null>;
         abstract settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean;
@@ -144,6 +145,13 @@ namespace MidnightLizard.Popup
         public deleteCurrentSiteSettings()
         {
             return this._settingsBus.deleteSettings();
+        }
+
+        public async deleteAllWebsitesSettings()
+        {
+            const storage: any = await this._storageManager.get(null);
+            return this._storageManager.remove(
+                Object.keys(storage).filter(x => x.startsWith("ws:")));
         }
 
         public toggleSync(value: boolean): Promise<null>

@@ -69,8 +69,15 @@ label.ml-helio-button
     top: 1px;
 }
 
+.ml-helio-button.purple, .ml-helio-button.purple:disabled:hover {
+    background: #471386 linear-gradient(#b12cc9,#471386);
+}
+.ml-helio-button.purple:not(:disabled):hover {
+    background: #b12cc9 linear-gradient(#471386,#b12cc9);
+}
+
 .ml-helio-button.red, .ml-helio-button.red:disabled:hover {
-    background: #b31010 linear-gradient(#f43325,#b31010);
+    background: #b31010 linear-gradient(hsl(4, 90%, 55%),hsl(0, 84%, 38%));
 }
 .ml-helio-button.red:not(:disabled):hover {
     background: #f43325 linear-gradient(#b31010,#f43325);

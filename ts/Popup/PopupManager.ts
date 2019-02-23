@@ -5,7 +5,6 @@
 /// <reference path="../Controls/-Controls.ts" />
 /// <reference path="../Events/-Events.ts" />
 /// <reference path="ICommandManager.ts" />
-// /// <reference path="../SocialMedia/Facebook/FacebookService.ts" />
 /// <reference path="../Utils/-Utils.ts" />
 /// <reference path="../Settings/SettingsExporter.ts" />
 /// <reference path="../Settings/SettingsImporter.ts" />
@@ -34,6 +33,7 @@ namespace MidnightLizard.Popup
         protected _runOnThisSiteCheckBox!: HTMLInputElement;
         protected _useDefaultScheduleCheckBox!: HTMLInputElement;
         protected _forgetAllSitesButton!: HTMLButtonElement;
+        private _deleteAllWebsitesSettingsButton!: HTMLButtonElement;
         protected _forgetThisSiteButton!: HTMLButtonElement;
         protected _deleteColorSchemeButton!: HTMLButtonElement;
         protected _saveColorSchemeButton!: HTMLButtonElement;
@@ -61,7 +61,6 @@ namespace MidnightLizard.Popup
             protected readonly _dynamicSettingsManager: MidnightLizard.Settings.IDynamicSettingsManager,
             protected readonly _dynamicTextColorProcessor: MidnightLizard.Colors.IDynamicTextColorProcessor,
             protected readonly _dynamicBackgroundColorProcessor: MidnightLizard.Colors.IDynamicBackgroundColorProcessor,
-            // protected readonly _facebookService: MidnightLizard.SocialMedia.Facebook.IFacebookService,
             protected readonly _settingsExporter: MidnightLizard.Settings.ISettingsExporter,
             protected readonly _settingsImporter: MidnightLizard.Settings.ISettingsImporter,
             protected readonly _documentTranslator: MidnightLizard.i18n.IDocumentTranslator,
@@ -75,15 +74,7 @@ namespace MidnightLizard.Popup
             _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
             _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, Events.EventHandlerPriority.High);
             _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime as any, this, Events.EventHandlerPriority.High);
-            // _facebookService.onInitialized.addListener(this.onFacebookServiceInitialized, this);
         }
-
-        // protected onFacebookServiceInitialized()
-        // {
-        //     this._facebookService.getFanCount()
-        //         .then(fanCount => this._facebookLink.setAttribute("tooltip", `Facebook  👍${fanCount}`))
-        //         .catch(error => this._app.isDebug && console.error(error));
-        // }
 
         protected popupContentloaded()
         {
@@ -128,6 +119,7 @@ namespace MidnightLizard.Popup
             this._facebookLink = doc.getElementById("facebook-link") as HTMLAnchorElement;
             this._isEnabledToggle = doc.getElementById("isEnabled") as HTMLInputElement;
             this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
+            this._deleteAllWebsitesSettingsButton = doc.getElementById("deleteAllSitesSettingsBtn") as HTMLButtonElement;
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
             this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
             this._runOnThisSiteCheckBox = doc.getElementById("runOnThisSite") as HTMLInputElement;
@@ -206,6 +198,7 @@ namespace MidnightLizard.Popup
             this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
             this._forgetAllSitesButton.onclick = this.forgetAllSitesSettings.bind(this);
             this._forgetThisSiteButton.onclick = this.forgetCurrentSiteSettings.bind(this);
+            this._deleteAllWebsitesSettingsButton.onclick = this.deleteAllWebsitesSettings.bind(this);
             this._setAsDefaultButton.onclick = this.setAsDefaultSettings.bind(this);
 
             this._colorSchemeForEdit.onchange = this.onColorSchemeForEditChanged.bind(this);
@@ -677,6 +670,14 @@ namespace MidnightLizard.Popup
             this._settingsManager
                 .deleteCurrentSiteSettings()
                 .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
+        }
+
+        protected deleteAllWebsitesSettings()
+        {
+            this._settingsManager
+                .deleteAllWebsitesSettings()
+                .catch(ex => alert(this._i18n.getMessage("deleteAllWebsitesSettingsFailureMessage") +
+                    (ex.message || ex)));
         }
 
         protected setAsDefaultSettings()
