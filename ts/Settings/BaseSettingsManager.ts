@@ -50,6 +50,7 @@ namespace MidnightLizard.Settings
         protected _rootUrl: string;
         protected _settingsKey: string;
         protected _curHour = new Date().getHours();
+        private _isNotRecommended = false;
         protected get isScheduled(): boolean
         {
             return this._scheduleStartHour <= this._scheduleFinishHour
@@ -91,7 +92,7 @@ namespace MidnightLizard.Settings
         /** MidnightLizard should be running on this page */
         public get isActive()
         {
-            return this.isInit &&
+            return !this._isNotRecommended && this.isInit &&
                 this._currentSettings.isEnabled! &&
                 this.isScheduled && (
                     this._currentSettings.runOnThisSite && !this.matchesExclude
@@ -152,11 +153,18 @@ namespace MidnightLizard.Settings
             }
             else if (this._currentSettings.mode === ProcessingMode.Automatic)
             {
-                let recommendedMode: ProcessingMode | null = null;
-                if (!this._app.isMobile && (recommendedMode = this._recommendations
-                    .getRecommendedProcessingMode(this._rootUrl)))
+                let recommendedMode = this._recommendations
+                    .getRecommendedProcessingMode(this._rootUrl);
+                if (recommendedMode !== undefined)
                 {
-                    this._computedMode = recommendedMode;
+                    if (recommendedMode)
+                    {
+                        this._computedMode = recommendedMode;
+                    }
+                    else
+                    {
+                        this._isNotRecommended = true;
+                    }
                 }
                 else if (this._app.isMobile || countElements && doc.body &&
                     doc.body.getElementsByTagName("*").length > this._currentSettings.modeAutoSwitchLimit)
