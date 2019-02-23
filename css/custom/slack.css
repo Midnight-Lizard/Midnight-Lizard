@@ -1,3 +1,5 @@
+/* --- COMPLEX --- */
+
 .emoji-outer.emoji-sizer, .emoji, .member_image
 {
     --ml-no-invert:true;
@@ -27,4 +29,92 @@ html[ml-stage]:not([ml-mode="filter"]) .p-emoji_picker__list_item {
 html[ml-mode] .c-scrollbar__bar {
     --ml-ignore:true;
     background-color: var(--ml-main-scrollbar-thumb-normal-color)!important;
+}
+
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .client_channels_list_container:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #team_menu:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar:not(#imp) {
+  color: rgb(8,8,8);
+  background-color: hsl(299, 64%, 90%);
+}
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #team_menu:not(#imp) {
+  border-bottom: 1px solid hsl(299, 64%, 90%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu.active, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu:hover {
+  background-color: hsl(299, 64%, 93%);
+  border-bottom-color: hsl(299, 61%, 93%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #team_menu_user:not(#imp) {
+  color: hsl(308, 9%, 34%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel:link, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link:link, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel:visited, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link:visited, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel:hover, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link:hover {
+  color: hsl(297, 12%, 36%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:visited,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:visited,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected + .p-channel_sidebar__close,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu.active #team_menu_user_name, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu.active .current_user_current_status, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu:hover #team_menu_user_name, 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body:not(.loading) #team_menu:hover .current_user_current_status,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--unread:not(.p-channel_sidebar__channel--muted):not(.p-channel_sidebar__channel--selected) .p-channel_sidebar__name,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--unread:not(.p-channel_sidebar__link--selected) .p-channel_sidebar__name,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--invites:not(.p-channel_sidebar__link--dim) .p-channel_sidebar__name,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__section_heading_label--clickable:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__section_heading_label--unreads,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__quickswitcher:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #team_menu .team_name_caret,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:before,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:hover:before,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:before,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:before,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:after,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:hover:after,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:after,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:after {
+  color: black;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel:not(#imp):hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link:not(#imp):hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__close_container:not(#imp):hover {
+  background: hsl(299, 61%, 93%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__channel--selected:not(#imp):hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar__link--selected:not(#imp):hover {
+  background: hsl(206, 81%, 65%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .texty_emoji_only:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .c-menu.p-emoji_picker:not(#imp) {
+  filter: none!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .texty_emoji_only:not(#imp) img:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .emoji-outer.emoji-sizer:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .emoji.emoji-sizer:not(#imp) {
+  filter: var(--ml-image-revert-filter)!important;
 }
