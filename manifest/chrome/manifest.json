@@ -503,6 +503,16 @@
             "css": [
                 "css/custom/instagram.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://web.whatsapp.com/*"
+            ],
+            "css": [
+                "css/custom/whatsapp.css"
+            ]
         }
     ]
 }

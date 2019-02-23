@@ -1,0 +1,12 @@
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .app-wrapper-web ._2NbD3 * {
+  --ml-ignore:true;
+  color: black !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .app-wrapper-web ._2NbD3 {
+  background-color: rgb(58, 58, 58) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .app-wrapper-web ._2NbD3 * {
+  color: white !important;
+}
