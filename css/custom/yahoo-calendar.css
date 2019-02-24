@@ -1,0 +1,17 @@
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) body {
+    background-color: hsl(263, 25%, 90%) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #masterNav,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Eyebrow {
+  background-color: hsl(266, 66%, 85%) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Eyebrow a:link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Eyebrow a:visited,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Eyebrow a:link>*,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Eyebrow a:visited>* {
+  color: black !important;
+}
