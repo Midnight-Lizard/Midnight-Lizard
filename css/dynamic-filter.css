@@ -58,15 +58,22 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) video {
   filter: var(--ml-video-revert-filter);
 }
 
-html[ml-mode="filter"][ml-invert] :-webkit-full-screen,
+html[ml-mode="filter"][ml-invert] :-webkit-full-screen {
+  filter: var(--ml-blue-filter) !important;
+}
+html[ml-mode="filter"][ml-invert] :-moz-full-screen {
+  filter: var(--ml-blue-filter) !important;
+}
+html[ml-mode="filter"][ml-invert] :fullscreen {
+  filter: var(--ml-blue-filter) !important;
+}
+
 html[ml-mode="filter"][ml-invert] :-webkit-full-screen * {
   filter: none !important;
 }
-html[ml-mode="filter"][ml-invert] :-moz-full-screen,
 html[ml-mode="filter"][ml-invert] :-moz-full-screen * {
   filter: none !important;
 }
-html[ml-mode="filter"][ml-invert] :fullscreen,
 html[ml-mode="filter"][ml-invert] :fullscreen * {
   filter: none !important;
 }

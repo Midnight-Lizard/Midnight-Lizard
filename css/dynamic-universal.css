@@ -1,5 +1,10 @@
 html[ml-stage]:not([ml-stage="preload"]) {}
 
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) object,
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) video {
+  filter: var(--ml-blue-filter);
+}
+
 html[ml-embed] { --ml-ignore:true; }
 html[ml-embed][ml-invert]:not([ml-stage="preload"]) embed[type="application/pdf"] {
   filter: var(--pdf-bg-filter) var(--ml-text-filter);
