@@ -524,6 +524,17 @@
             "css": [
                 "css/custom/twitch.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://yandex.ru/portal/video*",
+                "https://www.yandex.ru/portal/video*"
+            ],
+            "css": [
+                "css/custom/yandex-portal-video.css"
+            ]
         }
     ]
 }

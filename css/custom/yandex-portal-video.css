@@ -1,0 +1,19 @@
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .stream_theme_white .stream-watching__right .stream-watching__container-doc2doc:before {
+    background-image: none !important;
+}
+
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .stream_theme_white .stream-watching__right .stream-watching__container-doc2doc:after {
+  background-color: transparent!important;
+}
+
+html[ml-stage]:not([ml-mode="filter"]):not([ml-stage="preload"]) .logo.logo_type_link:not(#imp) {
+  --ml-ignore:true;
+  background-color: transparent!important;
+  filter: var(--ml-text-filter);
+}
+
+html[ml-stage][ml-invert]:not([ml-mode="filter"]):not([ml-stage="preload"]) .stream_channel-icon-color_black:not(#imp) .channel-icon__icon:not(#imp) {
+  --ml-ignore:true;
+  background-color: transparent!important;
+  filter: var(--ml-text-filter) brightness(2);
+}
