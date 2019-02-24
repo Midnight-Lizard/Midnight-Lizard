@@ -1,3 +1,5 @@
+/* --- COMPLEX --- */
+
 #ybar>[role="toolbar"]>*>*>.ybar-icon-sprite,
 #ybar>[role="toolbar"]>*>*>*>.ybar-icon-sprite,
 .uh-menu-panel div>i {
@@ -30,4 +32,26 @@ html[ml-stage]:not([ml-mode="filter"]) .YLogoMY {
 
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #doc:not(.imp)>#sticky-hd:not(.imp) {
     background-color: var(--ml-main-alt-background-color)!important;
+}
+
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #ybar>[role="toolbar"]>*>*>.ybar-icon-sprite,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #ybar>[role="toolbar"]>*>*>*>.ybar-icon-sprite {
+  filter: var(--ml-image-revert-filter);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Atom .aw_Z22yhkg,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Atom .I_kt4zd {
+  background-image: none!important;
+  background-color: var(--ml-main-alt-background-color)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #Atom .cdPFi_52qC {
+  fill: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) ._yb_dbe04,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) ._yb_1e5bc {
+  color: black!important;
 }

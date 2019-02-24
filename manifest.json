@@ -453,11 +453,10 @@
             "run_at": "document_start",
             "all_frames": true,
             "matches": [
-                "https://yahoo.com/*",
-                "https://*.yahoo.com/*"
+              "https://mail.yahoo.com/*"
             ],
             "css": [
-                "css/custom/yahoo.css"
+                "css/custom/yahoo-mail.css"
             ]
         },
         {
