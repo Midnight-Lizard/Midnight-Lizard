@@ -513,6 +513,16 @@
             "css": [
                 "css/custom/whatsapp.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+                "https://www.twitch.tv/*"
+            ],
+            "css": [
+                "css/custom/twitch.css"
+            ]
         }
     ]
 }

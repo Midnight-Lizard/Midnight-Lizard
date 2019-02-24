@@ -1,0 +1,202 @@
+html[ml-mode]:not([ml-stage="preload"]) .simplebar-track:not(#imp)>.simplebar-scrollbar:not(#imp) {
+  --ml-ignore:true;
+  background-color: var(--ml-main-scrollbar-thumb-normal-color)!important;
+}
+
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .player {
+  background-color: white!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) {
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-button svg {
+  fill: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-volume__slider-thumb {
+  background-color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-slider__left {
+  background-color: hsl(261, 44%, 30%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-slider:before {
+  background-color: hsla(0, 0%, 100%, 0.25)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-play-overlay {
+  background-color: hsla(0, 0%, 100%, 0.5)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .pl-controls-top {
+  background: linear-gradient(180deg,hsla(0, 0%, 100%, 0.8) 0,hsla(0, 0%, 100%, 0.35) 60%,hsla(0, 0%, 100%, 0))!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .pl-controls-bottom {
+  background: linear-gradient(0deg,hsla(0, 0%, 100%, 0.8) 0,hsla(0, 0%, 100%, 0.35) 60%,hsla(0, 0%, 100%, 0))!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .video-player__container:not(:fullscreen) .player-streamstatus {
+  background: radial-gradient(ellipse farthest-side at 150% -50%,hsl(0, 0%, 100%) 0,hsla(0, 0%, 100%, 0) 100%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__logo,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__menu,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .top-nav__menu,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .top-nav__menu {
+  background-color: hsl(258, 39%, 85%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button {
+  background-color: hsl(261, 43%, 85%)!important;
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button:active {
+  background-color: hsl(261, 43%, 80%)!important;
+  border-color: hsl(261, 43%, 75%)!important;
+  box-shadow: 0 0 6px 0 hsl(261, 43%, 75%)!important;
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button:focus {
+  background-color: hsl(261, 43%, 75%)!important;
+  border-color: hsl(261, 43%, 45%)!important;
+  box-shadow: 0 0 6px 0 hsl(261, 43%, 75%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark.tw-root--hover .tw-button:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light.tw-root--hover .tw-button:hover {
+  background-color: hsl(261, 43%, 75%)!important;
+  border-color: hsl(261, 43%, 75%)!important;
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-background-alt {
+  background-color: hsl(260, 8%, 90%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card__hover-content,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card__link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav__overlay-wrapper,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav__theme-wrapper,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-background-base {
+  background-color: hsl(264, 10%, 93%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card__link:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark.tw-root--hover .tw-interactable--inverted:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-interactable--inverted:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-interactable--inverted:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-interactable--inverted:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-interactable--inverted.tw-interactable--hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-interactable--inverted:focus {
+  background-color: hsl(258, 39%, 80%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-link:visited,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__nav-link {
+  color: hsl(257, 40%, 15%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card:hover .side-nav-card__metadata
+{
+  color: hsl(256, 8%, 27%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card:hover .side-nav-card__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-text-alt,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-text-base,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-c-text-overlay-alt,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-text-overlay-alt,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-c-text-overlay-alt {
+  color: hsl(260, 8%, 14%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-input {
+  border-color: hsl(260, 8%, 56%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-input {
+  background: hsl(260, 10%, 94%)!important;
+  border: 1px solid hsl(254, 33%, 73%)!important;
+  color: hsl(300, 9%, 2%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-input:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-input:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-input:focus {
+  border-color: hsla(261, 43%, 75%, 1)!important;
+  box-shadow: 0 0 6px -2px hsla(261, 43%, 75%, 1)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-text-alt-2,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .side-nav-card__metadata {
+  color: hsl(260, 8%, 25%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__nav-link.active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__nav-link:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .top-nav__nav-link.active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .top-nav__nav-link:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .top-nav__nav-link.active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .top-nav__nav-link:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__home-link-logo,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__home-link-logo:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .top-nav__home-link-logo,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .top-nav__home-link-logo:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .top-nav__home-link-logo,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .top-nav__home-link-logo:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button-icon--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button-icon--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button-icon--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-c-text-overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-text-overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-c-text-overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button--overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button-icon--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark.tw-root--hover .tw-button-icon--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light.tw-root--hover .tw-button-icon--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark.tw-root--hover .tw-button--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light.tw-root--hover .tw-button--overlay:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button-icon--overlay:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button-icon--overlay:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button-icon--overlay:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button-icon--overlay:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-checkbox .tw-checkbox__label {
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button--overlay.tw-button--hollow,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button--overlay.tw-button--state-loading,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button--overlay.tw-button--state-success,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button--overlay.tw-button--hollow:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button--overlay.tw-button--state-loading:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--hover .tw-button--overlay.tw-button--state-success:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button--overlay.tw-button--hollow,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button--overlay.tw-button--state-loading,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button--overlay.tw-button--state-success,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark.tw-root--hover .tw-button--overlay.tw-button--state-loading:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button--overlay.tw-button--hollow,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button--overlay.tw-button--state-loading,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button--overlay.tw-button--state-success,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light.tw-root--hover .tw-button--overlay.tw-button--state-loading:hover {
+  border-color: hsl(0, 0%, 35%)!important;
+}
