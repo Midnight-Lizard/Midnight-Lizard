@@ -26,7 +26,7 @@ html[ml-stage]:not([ml-mode="filter"]) .p-emoji_picker__list_item {
     --ml-visitedlink-active-color:HighlightedText;
 }
 
-html[ml-mode] .c-scrollbar__bar {
+html[ml-mode] .c-scrollbar__bar:not(#imp) {
     --ml-ignore:true;
     background-color: var(--ml-main-scrollbar-thumb-normal-color)!important;
 }
