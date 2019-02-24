@@ -1,0 +1,54 @@
+/* --- FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__profile-member-photo:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-photo-edit__preview {
+  filter: var(--ml-image-revert-filter)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #extended-nav {
+  background-color: hsl(201, 30%, 80%);
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link.active:not(.ember-transitioning-out) .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link.ember-transitioning-in .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:active .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:focus .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hover .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link.active:not(.ember-transitioning-out) .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link.ember-transitioning-in .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:active .nav-item__badge,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:focus .nav-item__badge,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:focus .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hover .nav-item__badge,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hover .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:active .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hover .nav-item__dropdown-trigger--icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .open .nav-item__dropdown-trigger--title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__spotlight-upsell:visited {
+  color: black !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-main-container .nav-item__icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__dropdown-trigger--title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-container .dropdown-trigger li-icon {
+  color: hsl(205, 18%, 19%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link--underline:after {
+  border-bottom-color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__spotlight-upsell {
+  color: hsl(45, 44%, 25%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #extended-nav a {
+  color: hsl(201, 100%, 55%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .modal-wormhole .modal-wormhole-overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-modal-overlay {
+  background-color: white;
+}

@@ -549,6 +549,16 @@
             "css": [
                 "css/custom/yahoo-calendar.css"
             ]
+        },
+        {
+            "run_at": "document_start",
+            "all_frames": true,
+            "matches": [
+              "https://www.linkedin.com/*"
+            ],
+            "css": [
+                "css/custom/linkedin.css"
+            ]
         }
     ]
 }
