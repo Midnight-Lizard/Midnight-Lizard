@@ -8,6 +8,7 @@ namespace MidnightLizard.Settings
     const filter = ProcessingMode.Filter;
     const simple = ProcessingMode.Simplified;
     const complx = ProcessingMode.Complex;
+    const _none_ = null;
 
     const enum Platform
     {
@@ -26,7 +27,7 @@ namespace MidnightLizard.Settings
 
     export abstract class IRecommendations
     {
-        public abstract getRecommendedProcessingMode(url: string): ProcessingMode | null | undefined;
+        public abstract getRecommendedProcessingMode(...urls: string[]): ProcessingMode | null | undefined;
     }
 
     @DI.injectable(IRecommendations)
@@ -35,15 +36,20 @@ namespace MidnightLizard.Settings
         private readonly cache = new Map<string, ProcessingMode | null>();
 
         readonly recommendations: IRecommendation[] = [
+            { browsers: allbr, platforms: allpf, mode: _none_, matchPattern: /^https:\/\/(www.)?yandex.ru\/\?stream_channel.*$/i },
+            { browsers: allbr, platforms: allpf, mode: _none_, matchPattern: /^https:\/\/(www.)?yastatic.net\/.*$/i },
+
+            { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/web.whatsapp.com\/$/i },
+            { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/(www.)?yandex.ru\/portal\/video.*$/i },
+            { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/(www.)?yandex.ru\/images\/*$/i },
+
+            { browsers: allbr, platforms: allpf, mode: simple, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i },
+
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
-
-            { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/web.whatsapp.com\/$/i },
-
-            { browsers: allbr, platforms: allpf, mode: simple, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i }
         ];
 
         constructor(app: MidnightLizard.Settings.IApplicationSettings)
@@ -54,16 +60,24 @@ namespace MidnightLizard.Settings
                 rec.platforms.includes(currentPlatform));
         }
 
-        public getRecommendedProcessingMode(url: string): ProcessingMode | null | undefined
+        public getRecommendedProcessingMode(...urls: string[]): ProcessingMode | null | undefined
         {
-            let recommandedMode = this.cache.get(url);
-            if (recommandedMode === undefined)
+            let recommandedMode: ProcessingMode | null | undefined = undefined;
+            for (const url of new Set(urls))
             {
-                const recommendation = this.recommendations.find(rec => rec.matchPattern.test(url));
-                if (recommendation)
+                recommandedMode = this.cache.get(url);
+                if (recommandedMode === undefined)
                 {
-                    recommandedMode = recommendation.mode;
-                    this.cache.set(url, recommandedMode);
+                    const recommendation = this.recommendations.find(rec => rec.matchPattern.test(url));
+                    if (recommendation)
+                    {
+                        recommandedMode = recommendation.mode;
+                        this.cache.set(url, recommandedMode);
+                    }
+                }
+                if (recommandedMode !== undefined)
+                {
+                    break;
                 }
             }
             return recommandedMode;

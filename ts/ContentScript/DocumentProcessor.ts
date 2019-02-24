@@ -218,7 +218,10 @@ namespace MidnightLizard.ContentScript
                 }
                 else
                 {
-                    this.setDocumentProcessingStage(this._rootDocument, ProcessingStage.Loading);
+                    this.setDocumentProcessingStage(this._rootDocument,
+                        this._settingsManager.isActive
+                            ? ProcessingStage.Loading
+                            : ProcessingStage.None);
                 }
             }
             else
@@ -397,6 +400,10 @@ namespace MidnightLizard.ContentScript
                         .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                     DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
                 }
+            }
+            else
+            {
+                this.setDocumentProcessingStage(this._rootDocument, ProcessingStage.None);
             }
         }
 

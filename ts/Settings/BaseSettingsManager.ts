@@ -115,7 +115,8 @@ namespace MidnightLizard.Settings
          * @param _settingsBus - abstract settings communication bus
          * @param _storageManager - abstract browser storage manager
          **/
-        constructor(rootDocument: Document,
+        constructor(
+            protected readonly _rootDocument: Document,
             protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
             protected readonly _storageManager: MidnightLizard.Settings.IStorageManager,
             protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus,
@@ -131,8 +132,8 @@ namespace MidnightLizard.Settings
             }
             catch
             {
-                hostName = rootDocument.location!.hostname;
-                this._rootUrl = rootDocument.location!.href;
+                hostName = _rootDocument.location!.hostname;
+                this._rootUrl = _rootDocument.location!.href;
             }
             this._settingsKey = `ws:${hostName}`; //`
             this.onSettingsInitialized.addListener(shift => this.isInit = true, this);
@@ -147,6 +148,7 @@ namespace MidnightLizard.Settings
 
         computeProcessingMode(doc: Document, countElements = true): void
         {
+            this._isNotRecommended = false;
             if (this._currentSettings.mode === ProcessingMode.Filter)
             {
                 this._computedMode = ProcessingMode.Filter;
@@ -154,7 +156,7 @@ namespace MidnightLizard.Settings
             else if (this._currentSettings.mode === ProcessingMode.Automatic)
             {
                 let recommendedMode = this._recommendations
-                    .getRecommendedProcessingMode(this._rootUrl);
+                    .getRecommendedProcessingMode(this._rootDocument.location!.href, this._rootUrl);
                 if (recommendedMode !== undefined)
                 {
                     if (recommendedMode)
@@ -173,7 +175,11 @@ namespace MidnightLizard.Settings
                 }
             }
             this._app.isDebug &&
-                console.log(`${this._computedMode}: ${doc.body && doc.body.getElementsByTagName("*").length}`);
+                console.log(`
+    ${this._computedMode}: ${doc.body && doc.body.getElementsByTagName("*").length}
+    mode: ${this.currentSettings.mode}
+    self: ${this._rootDocument.location!.href}
+    top: ${this._rootUrl}`);
         }
 
         public deactivateOldVersion()

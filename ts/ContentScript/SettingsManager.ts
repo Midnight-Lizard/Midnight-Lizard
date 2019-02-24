@@ -33,7 +33,7 @@ namespace MidnightLizard.ContentScript
         protected _scheduleUpdateTimeout?: number;
 
         constructor(
-            protected readonly _rootDocument: Document,
+            _rootDocument: Document,
             app: MidnightLizard.Settings.IApplicationSettings,
             storageManager: MidnightLizard.Settings.IStorageManager,
             settingsBus: MidnightLizard.Settings.ISettingsBus,
