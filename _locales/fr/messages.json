@@ -841,15 +841,19 @@
     },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
-        "message": "Simplifié"
+        "message": "❔ Simplifié"
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
-        "message": "Complexe"
+        "message": "❔ Complexe"
+    },
+    "mode_filter_text_label": {
+        "description": "text on the label",
+        "message": "❔ Filtre"
     },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
-        "message": "Automatique"
+        "message": "❔ Automatique"
     },
     "modeAutoSwitchLimit_text_label": {
         "description": "mode_complex_text_label: text on the label",
