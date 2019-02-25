@@ -6,6 +6,10 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .youtube-player-btn>
   filter: var(--ml-image-revert-filter)!important;
 }
 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-background-image--loading {
+  filter: brightness(var(--ml-border-lightness-limit)) var(--ml-image-revert-filter)!important;
+}
+
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #extended-nav {
   background-color: hsl(201, 30%, 80%);
 }
@@ -26,8 +30,15 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hove
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:active .nav-item__icon,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link:hover .nav-item__dropdown-trigger--icon,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .open .nav-item__dropdown-trigger--title,
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__spotlight-upsell:visited {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__spotlight-upsell:visited,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .t-white,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .pv-dashboard-section__title {
   color: black !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .pv-dashboard-section__subtitle {
+  color: hsla(0,0%,0%,0.6) !important;
 }
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__title,
@@ -51,13 +62,22 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #extended-nav a {
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .modal-wormhole .modal-wormhole-overlay,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-modal-overlay {
-  background-color: white;
+  background-color: white!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .side-panel__overlay {
+  background-color: hsla(0, 0%, 100%, 0.6)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .pv-dashboard-section {
+  background-color: hsl(206, 13%, 84%)!important;
 }
 
 /* --- MOBILE FILTER --- */
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-main,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #core-nav .nav-main,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .snap-search-bar,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .global-title-container .global-title,
@@ -118,4 +138,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-larg
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large:active:not(:disabled):not(.disabled) {
   color: black!important;
   background-color: hsl(202, 100%, 80%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__link.active {
+  border-bottom-color: black!important;
 }
