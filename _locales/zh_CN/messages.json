@@ -672,17 +672,9 @@
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
         "message": "选择您喜欢的配色方案"
     },
-    "forgetThisSiteBtn_text_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "此项"
-    },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "忘记当前网站设置"
-    },
-    "forgetAllSitesBtn_text_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "全部"
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
