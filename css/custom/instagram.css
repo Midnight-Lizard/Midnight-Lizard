@@ -52,7 +52,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [role="dialog"]+butt
   color: black!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) :not([role="dialog"])>[role="dialog"] {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) :not([role="dialog"])>[role="dialog"]:not(.pbNvD),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .RnEpo {
   background-color: rgba(255,255,255,.5)!important;
 }
 
