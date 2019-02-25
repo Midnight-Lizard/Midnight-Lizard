@@ -989,7 +989,7 @@
     },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
-        "message": "简化"
+        "message": "简化 ❔"
     },
     "mode_complex_@title": {
         "description": "mode_complex_@title: text on the tooltip\/hint",
@@ -997,7 +997,11 @@
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
-        "message": "复合"
+        "message": "复合 ❔"
+    },
+    "mode_filter_text_label": {
+        "description": "text on the label",
+        "message": "濾光 ❔"
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
@@ -1005,7 +1009,7 @@
     },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
-        "message": "自動"
+        "message": "自動 ❔"
     },
     "modeAutoSwitchLimit_text_label": {
         "description": "mode_complex_text_label: text on the label",
