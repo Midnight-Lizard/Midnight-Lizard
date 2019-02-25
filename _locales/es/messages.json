@@ -672,17 +672,9 @@
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
         "message": "Selecciona tu esquema de color favorito"
     },
-    "forgetThisSiteBtn_text_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Esto"
-    },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "Olvidar los ajustes del sitio web actual"
-    },
-    "forgetAllSitesBtn_text_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "Todo"
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
