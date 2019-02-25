@@ -993,7 +993,7 @@
     },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
-        "message": "Simplified"
+        "message": "❔ Simplified"
     },
     "mode_complex_@title": {
         "description": "mode_complex_@title: text on the tooltip\/hint",
@@ -1001,7 +1001,7 @@
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
-        "message": "Complex"
+        "message": "❔ Complex"
     },
     "mode_filter_@title": {
         "description": "text on the tooltip\/hint",
@@ -1009,7 +1009,7 @@
     },
     "mode_filter_text_label": {
         "description": "text on the label",
-        "message": "Filter"
+        "message": "❔ Filter"
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
@@ -1017,7 +1017,7 @@
     },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
-        "message": "Automatic"
+        "message": "❔ Automatic"
     },
     "modeAutoSwitchLimit_text_label": {
         "description": "mode_complex_text_label: text on the label",
