@@ -682,7 +682,7 @@
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
-        "message": "Forget all customizations for all websites"
+        "message": "Delete all customizations for all websites, all color schemes and all global settings.\nRestore all factory defaults."
     },
     "setAsDefaultBtn_text_label": {
         "description": "setAsDefaultBtn_text_label: text on the label",
