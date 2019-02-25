@@ -323,14 +323,6 @@
         "description": "currentColorScheme_text_label: text on the label",
         "message": "Obecny schemat kolorów"
     },
-    "forgetThisSiteBtn_text_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Ten"
-    },
-    "forgetAllSitesBtn_text_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "Cały"
-    },
     "setAsDefaultBtn_text_label": {
         "description": "setAsDefaultBtn_text_label: text on the label",
         "message": "Ustaw domyślne"
