@@ -678,7 +678,7 @@
     },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "Forget current website settings"
+        "message": "Delete only current website settings.\nDefault settings will be used on that website afterwards."
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
@@ -1284,5 +1284,17 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
+    },
+    "deleteAllSitesSettingsBtn_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Delete all websites' settings, but keep all color schemes, global and default settings.\nCurrent default settings will be used on all websites afterwards."
+    },
+    "deleteAllSitesSettingsBtn_text_long_label": {
+        "description": "text on the label",
+        "message": "Delete all websites' settings"
+    },
+    "deleteAllWebsitesSettingsFailureMessage": {
+        "description": "text on the message box",
+        "message": "All websites' settings deletion failed.\n"
     }
 }
