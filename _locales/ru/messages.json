@@ -676,17 +676,9 @@
         "description": "currentColorScheme_@title: text on the tooltip\/hint",
         "message": "Выберите подходящую Вам цветовую схему"
     },
-    "forgetThisSiteBtn_text_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Эту"
-    },
     "forgetThisSiteBtn_@title": {
         "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
         "message": "Удалить настройки текущего сайта"
-    },
-    "forgetAllSitesBtn_text_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "Все"
     },
     "forgetAllSitesBtn_@title": {
         "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
