@@ -1,7 +1,8 @@
 /* --- FILTER --- */
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__profile-member-photo:not(#imp),
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-photo-edit__preview {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-photo-edit__preview,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .youtube-player-btn>.youtube-player-image {
   filter: var(--ml-image-revert-filter)!important;
 }
 
@@ -51,4 +52,70 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #extended-nav a {
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .modal-wormhole .modal-wormhole-overlay,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-modal-overlay {
   background-color: white;
+}
+
+/* --- MOBILE FILTER --- */
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-main,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .global-title-container .global-title,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .type-ahead-wormhole .type-ahead-wrapper.type-ahead-theme-primary .type-ahead-input-wrapper {
+  background-color: hsl(201, 100%, 88%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-item__badge {
+  background-color: hsl(23, 100%, 56%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .keyword-search-box input,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form__search-box input {
+  background-color: hsla(0, 0%, 100%, 0.2)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .keyword-search-box input,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form__search-box input,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .open-filters,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .location-search-form .type-ahead-input-icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .location-search-form input,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .location-search-form .location-type-ahead-icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form__search-bar-icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .jobs-search-alert-footer__entry-btn,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .jobs-search-filters .global-title-container .global-title h1,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-alert-modal__container .global-title-container .global-title h1,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-facets-modal .global-title-container .global-title h1,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .artdeco-button--inverse.artdeco-button--tertiary,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .artdeco-button--inverse.artdeco-button--tertiary:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .artdeco-button--inverse.artdeco-button--tertiary:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .artdeco-button--inverse.artdeco-button--tertiary:active,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .type-ahead-wormhole .type-ahead-wrapper.type-ahead-theme-primary .type-ahead-input-wrapper>button,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .jobs-search-filters .global-title-container .global-title button:not(.artdeco-button),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-alert-modal__container .global-title-container .global-title button:not(.artdeco-button),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-facets-modal .global-title-container .global-title button:not(.artdeco-button),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .type-ahead-input-wrapper>button {
+  color: black!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .keyword-search-box li-icon,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .search-form__search-box li-icon {
+  color: hsla(0, 0%, 0%, 0.7)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-search-box.not-inline .location-search-form input {
+  border-bottom-color: hsla(0, 0%, 0%, 0.3)!important;
+}
+
+html[ml-mode] .sub-nav.scrollable ul {
+  overflow-x: auto;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large.focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large.hover-not-disabled,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large:hover:not(:disabled):not(.disabled),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large.active-not-disabled,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .button-primary-large:active:not(:disabled):not(.disabled) {
+  color: black!important;
+  background-color: hsl(202, 100%, 80%)!important;
 }
