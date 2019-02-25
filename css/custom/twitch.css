@@ -107,6 +107,16 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark
   background-color: hsl(258, 39%, 80%)!important;
 }
 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-c-background-accent-alt-2 {
+  background-color: hsl(255, 27%, 90%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .blue-bar,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .blue-bar,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .blue-bar {
+  background-color: hsl(198, 88%, 75%)!important;
+}
+
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-link:visited,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .top-nav__nav-link {
   color: hsl(257, 40%, 15%)!important;
@@ -180,7 +190,11 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button-icon--ove
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-button-icon--overlay:focus,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-button-icon--overlay:focus,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button-icon--overlay:focus,
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-checkbox .tw-checkbox__label {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-dark .tw-checkbox .tw-checkbox__label,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .blue-bar__logo,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .player a.player-text-link--no-color,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .player-streaminfo__game,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .player-streaminfo__title {
   color: black!important;
 }
 
@@ -199,4 +213,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-ligh
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light .tw-button--overlay.tw-button--state-success,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .tw-root--theme-light.tw-root--hover .tw-button--overlay.tw-button--state-loading:hover {
   border-color: hsl(0, 0%, 35%)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .player a.player-text-link--no-color:hover {
+  color: hsl(260, 43%, 20%)!important;
 }
