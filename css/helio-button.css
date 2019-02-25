@@ -70,10 +70,10 @@ label.ml-helio-button
 }
 
 .ml-helio-button.purple, .ml-helio-button.purple:disabled:hover {
-    background: #471386 linear-gradient(#b12cc9,#471386);
+    background: #4b148f linear-gradient(#aa2ac0,#4b148f);
 }
 .ml-helio-button.purple:not(:disabled):hover {
-    background: #b12cc9 linear-gradient(#471386,#b12cc9);
+    background: #aa2ac0 linear-gradient(#4b148f,#aa2ac0);
 }
 
 .ml-helio-button.red, .ml-helio-button.red:disabled:hover {
