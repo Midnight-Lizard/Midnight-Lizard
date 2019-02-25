@@ -1,3 +1,5 @@
+/* --- COMPLEX --- */
+
 a[class*="logo"] > svg path:nth-of-type(1)
 {
     --ml-text-fill:Border;
@@ -52,4 +54,14 @@ div[class*="item"] > div[class*="image"]
 
 svg[width="10"], svg[height="10"] {
     --ml-svgbackground-fill:Text;
+}
+
+/* --- FILTER --- */
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-test="modal"][class^="overlay_"] {
+  background-color: hsla(0, 0%, 100%, 0.7)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [data-test="modal-close"][class^="close_"],
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .intercom-namespace .intercom-launcher-frame {
+  background-color: hsl(0, 0%, 60%)!important;
 }
