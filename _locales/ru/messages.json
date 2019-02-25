@@ -1284,5 +1284,17 @@
                 "example": "https:\/\/midnight-lizard.org"
             }
         }
+    },
+    "deleteAllSitesSettingsBtn_@title": {
+        "description": "text on the tooltip\/hint",
+        "message": "Удалить настройки всех сайтов, но оставить все цветовые схемы, глобальные и настройки по умолчанию.\nТекущие настройки по умолчанию будут использованы на всех веб-сайтах после выполнения этой команды."
+    },
+    "deleteAllSitesSettingsBtn_text_long_label": {
+        "description": "text on the label",
+        "message": "Удалить настройки всех сайтов"
+    },
+    "deleteAllWebsitesSettingsFailureMessage": {
+        "description": "text on the message box",
+        "message": "Не удалось выполнить удаление настроек всех сайтов.\n"
     }
 }
