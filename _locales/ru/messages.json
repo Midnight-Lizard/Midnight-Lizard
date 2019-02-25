@@ -993,7 +993,7 @@
     },
     "mode_simplified_text_label": {
         "description": "mode_simplified_text_label: text on the label",
-        "message": "Упрощенный"
+        "message": "❔ Упрощенный"
     },
     "mode_complex_@title": {
         "description": "mode_complex_@title: text on the tooltip\/hint",
@@ -1001,7 +1001,7 @@
     },
     "mode_complex_text_label": {
         "description": "mode_complex_text_label: text on the label",
-        "message": "Полноценный"
+        "message": "❔ Полноценный"
     },
     "mode_filter_@title": {
         "description": "text on the tooltip\/hint",
@@ -1009,7 +1009,7 @@
     },
     "mode_filter_text_label": {
         "description": "text on the label",
-        "message": "Фильтр"
+        "message": "❔ Фильтр"
     },
     "mode_automatic_@title": {
         "description": "mode_automatic_@title: text on the tooltip\/hint",
@@ -1017,7 +1017,7 @@
     },
     "mode_automatic_text_label": {
         "description": "mode_automatic_text_label: text on the label",
-        "message": "Автоматический"
+        "message": "❔ Автоматический"
     },
     "modeAutoSwitchLimit_text_label": {
         "description": "mode_complex_text_label: text on the label",
