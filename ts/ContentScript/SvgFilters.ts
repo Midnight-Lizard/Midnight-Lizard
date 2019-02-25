@@ -6,6 +6,7 @@
 
 namespace MidnightLizard.ContentScript
 {
+    export const colorOverlayLimit = 0.12;
     const svgNs = "http://www.w3.org/2000/svg", svgElementId = "midnight-lizard-filters";
 
     export abstract class ISvgFilters
@@ -112,7 +113,7 @@ namespace MidnightLizard.ContentScript
         {
             let output = input;
             const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
-            if (overlayColorHsl.saturation > 0.12)
+            if (overlayColorHsl.saturation > colorOverlayLimit)
             {
                 const isDark = overlayColorHsl.lightness < 0.5;
                 const blendMode = isDark ? "lighten" : "darken";

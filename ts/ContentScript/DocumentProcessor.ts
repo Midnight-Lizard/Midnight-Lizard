@@ -2063,8 +2063,8 @@ namespace MidnightLizard.ContentScript
         {
             const applyContentFilter =
                 this._settingsManager.currentSettings.blueFilter !== 0 ||
-                this.shift.Background.graySaturation > 0.12 ||
-                this.shift.Text.graySaturation > 0.12;
+                this.shift.Background.graySaturation > colorOverlayLimit ||
+                this.shift.Text.graySaturation > colorOverlayLimit;
 
             let filterValue: Array<string>;
             if (this.shift.Background.lightnessLimit < 0.3 &&
@@ -2555,11 +2555,28 @@ namespace MidnightLizard.ContentScript
                         };`.toLowerCase();
                 }
             }
+
             cssText += `\n--ml-browser:${this._app.browserName}!important;`;
             cssText += `\n--ml-app-id:${this._app.id};`;
             cssText += `\n--ml-version:${this._app.version};`;
-            cssText += `\n--${FilterType.ContentFilter}:url("#${FilterType.ContentFilter}");`;
-            cssText += `\n--${FilterType.BlueFilter}:url("#${FilterType.BlueFilter}");`;
+            if (this._settingsManager.currentSettings.blueFilter > 0 ||
+                this.shift.Text.graySaturation > colorOverlayLimit ||
+                this.shift.Background.graySaturation > colorOverlayLimit)
+            {
+                cssText += `\n--${FilterType.ContentFilter}:url("#${FilterType.ContentFilter}");`;
+            }
+            else
+            {
+                cssText += `\n--${FilterType.ContentFilter}:'';`;
+            }
+            if (this._settingsManager.currentSettings.blueFilter > 0)
+            {
+                cssText += `\n--${FilterType.BlueFilter}:url("#${FilterType.BlueFilter}");`;
+            }
+            else
+            {
+                cssText += `\n--${FilterType.BlueFilter}:'';`;
+            }
             cssText += `\n--${FilterType.PdfFilter}:url("#${FilterType.PdfFilter}");`;
             cssText += `\n--ml-invert:${this.shift.Background.lightnessLimit < 0.3 ? 1 : 0}!important;`;
             cssText += `\n--ml-is-active:${this._settingsManager.isActive ? 1 : 0}!important;`;
