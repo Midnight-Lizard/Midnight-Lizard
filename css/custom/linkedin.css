@@ -6,7 +6,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .youtube-player-btn>
   filter: var(--ml-image-revert-filter)!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-background-image--loading {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .profile-background-image--loading,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .org-top-card__hero-image .static-background-cover-image {
   filter: brightness(var(--ml-border-lightness-limit)) var(--ml-image-revert-filter)!important;
 }
 
@@ -65,8 +66,9 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .shared-modal-overla
   background-color: white!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .side-panel__overlay {
-  background-color: hsla(0, 0%, 100%, 0.6)!important;
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .side-panel__overlay,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) artdeco-modal-overlay {
+  background-color: hsla(0, 0%, 100%, 0.7)!important;
 }
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .pv-dashboard-section {
