@@ -210,7 +210,7 @@ namespace MidnightLizard.Settings
                     includeMatches: "",
                     excludeMatches: "",
 
-                    backgroundSaturationLimit: 65,
+                    backgroundSaturationLimit: 70,
                     backgroundContrast: 50,
                     backgroundLightnessLimit: 14,
                     backgroundGraySaturation: 5,
@@ -227,10 +227,10 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 0,
 
                     textSaturationLimit: 90,
-                    textContrast: 65,
+                    textContrast: 66,
                     textLightnessLimit: 90,
                     textGraySaturation: 10,
-                    textGrayHue: 16,
+                    textGrayHue: 22,
                     textSelectionHue: 207,
                     textReplaceAllHues: false,
                     textHueGravity: 0,
@@ -920,7 +920,7 @@ namespace MidnightLizard.Settings
                     buttonHueGravity: 0,
 
                     textSaturationLimit: 100,
-                    textContrast: 65,
+                    textContrast: 70,
                     textLightnessLimit: 100,
                     textGraySaturation: 40,
                     textGrayHue: 16,
