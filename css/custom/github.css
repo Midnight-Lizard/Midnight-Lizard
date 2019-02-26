@@ -90,6 +90,10 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen
   color: black!important;
 }
 
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header .header-search-wrapper {
+  background-color: hsla(0,0%,100%,.5)!important;
+}
+
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .notification-indicator,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:focus,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:hover,
