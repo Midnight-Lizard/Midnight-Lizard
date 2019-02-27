@@ -406,7 +406,7 @@ namespace MidnightLizard.Popup
                 this.addColorSchemeOption(this._colorSchemeSelect,
                     schemeName === Settings.ColorSchemes.default.colorSchemeId ? defaultSettings : Settings.ColorSchemes[schemeName]);
 
-                if (schemeName !== Settings.ColorSchemes.default.colorSchemeId && schemeName !== Settings.ColorSchemes.original.colorSchemeId)
+                if (schemeName !== Settings.ColorSchemes.default.colorSchemeId)
                 {
                     this.addColorSchemeOption(this._colorSchemeForEdit, Settings.ColorSchemes[schemeName]);
                 }
