@@ -2500,7 +2500,7 @@ namespace MidnightLizard.ContentScript
                 buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
                 scrollbarThumbHoverColor, scrollbarThumbNormalColor,
                 scrollbarThumbActiveColor, scrollbarTrackColor, scrollbarMarksColor,
-                scrollbarSize, mozScrollbarWidth,
+                scrollbarSize, mozScrollbarWidth, mozScrollbarTrackColor: altBackgroundColor,
                 linkColor, linkColorHover, linkColorActive,
                 visitedColor, visitedColorHover, visitedColorActive,
 
