@@ -40,6 +40,7 @@ namespace MidnightLizard.Popup
         abstract settingsAreEqual(first: Settings.ColorScheme, second: Settings.ColorScheme): boolean;
         abstract toggleSync(value: boolean): Promise<null>;
         abstract getCurrentSorage(): Promise<boolean>;
+        abstract get currentTabIsAccessible(): boolean;
         abstract get currentSiteSettings(): Settings.ColorScheme;
         abstract set currentSiteSettings(settings: Settings.ColorScheme);
         abstract async getErrorReason(error: any): Promise<string>;
@@ -50,6 +51,8 @@ namespace MidnightLizard.Popup
     @DI.injectable(MidnightLizard.Settings.IBaseSettingsManager, DI.Scope.ExistingInstance)
     class PopupSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPopupSettingsManager
     {
+        private _currentTabIsAccessible = true;
+        public get currentTabIsAccessible() { return this._currentTabIsAccessible; }
         protected _currentSiteSettings!: Settings.ColorScheme;
         public get currentSiteSettings() { return this._currentSiteSettings }
         public set currentSiteSettings(settings: Settings.ColorScheme) { this._currentSiteSettings = settings }
@@ -69,9 +72,17 @@ namespace MidnightLizard.Popup
         {
             try
             {
-                const [currentSettings] = await Promise.all([
-                    this._settingsBus.getCurrentSettings(),
+                let [currentSettings, defaultSettings] = await Promise.all([
+                    this._settingsBus.getCurrentSettings().catch(ex => this._app.isDebug && console.error(ex)),
                     this.getDefaultSettings()]);
+                if (!currentSettings)
+                {
+                    currentSettings = {
+                        ...defaultSettings,
+                        location: "http://" + Settings.ColorSchemes.default.colorSchemeName.toLowerCase()
+                    };
+                    this._currentTabIsAccessible = false;
+                }
                 this._currentSettings = currentSettings;
                 this.updateSchedule();
                 this.initCurSet();

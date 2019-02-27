@@ -31,6 +31,7 @@ namespace MidnightLizard.Popup
         protected _facebookLink!: HTMLAnchorElement;
         protected _isEnabledToggle!: HTMLInputElement;
         protected _runOnThisSiteCheckBox!: HTMLInputElement;
+        protected _runOnAllSitesByDefaultCheckBox!: HTMLInputElement;
         protected _useDefaultScheduleCheckBox!: HTMLInputElement;
         protected _forgetAllSitesButton!: HTMLButtonElement;
         private _deleteAllWebsitesSettingsButton!: HTMLButtonElement;
@@ -123,6 +124,7 @@ namespace MidnightLizard.Popup
             this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
             this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
             this._runOnThisSiteCheckBox = doc.getElementById("runOnThisSite") as HTMLInputElement;
+            this._runOnAllSitesByDefaultCheckBox = doc.getElementById("default_runOnThisSite") as HTMLInputElement;
             this._saveColorSchemeButton = doc.getElementById("saveColorSchemeBtn") as HTMLButtonElement;
             this._hiddenSaveColorSchemeButton = doc.getElementById("hiddenSaveColorSchemeButton") as HTMLButtonElement;
             this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
@@ -374,9 +376,19 @@ namespace MidnightLizard.Popup
 
         protected toggleRunOnThisSite()
         {
-            this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
-            this.onInputFieldChanged();
-            this.applySettingsOnPage();
+            if (this._settingsManager.currentTabIsAccessible)
+            {
+                this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
+                this.onInputFieldChanged();
+                this.applySettingsOnPage();
+            }
+            else
+            {
+                this._runOnThisSiteCheckBox.checked = !this._runOnThisSiteCheckBox.checked;
+                this._settingsManager.changeSettings(this.getSettingsFromPopup());
+                this._runOnAllSitesByDefaultCheckBox.checked = !this._runOnAllSitesByDefaultCheckBox.checked;
+                this.onDefaultInputFieldChanged();
+            }
         }
 
         protected toggleIsEnabled()
@@ -821,7 +833,8 @@ namespace MidnightLizard.Popup
             this.updateColorSchemeButtons();
             const formHasErrors = !this._settingsForm.checkValidity();
             this._hostState.className = this._settingsManager.currentSettings.runOnThisSite ? "run" : "do-not-run";
-            this._applyButton.disabled = formHasErrors ||
+            this._forgetThisSiteButton.disabled = !this._settingsManager.currentTabIsAccessible;
+            this._applyButton.disabled = formHasErrors || !this._settingsManager.currentTabIsAccessible ||
                 this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings, this.currentSiteSettings) &&
                 this._settingsManager.currentSettings.runOnThisSite === this.currentSiteSettings.runOnThisSite;
             Promise
