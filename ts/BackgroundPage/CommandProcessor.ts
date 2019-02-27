@@ -24,7 +24,7 @@ namespace MidnightLizard.BackgroundPage
             switch (command)
             {
                 case "global-toggle":
-                    this._storageManager.get<MidnightLizard.Settings.ColorScheme>(null)
+                    this._storageManager.get<{ isEnabled: boolean }>({ isEnabled: true })
                         .then(global =>
                         {
                             this._storageManager.set({ isEnabled: !global.isEnabled });
