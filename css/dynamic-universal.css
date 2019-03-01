@@ -14,6 +14,8 @@ html[ml-embed]:not([ml-invert]):not([ml-stage="preload"]) embed[type="applicatio
 }
 html[ml-image]:not([ml-stage="preload"]):not([ml-mode="simple"]) {
   --ml-ignore:true;
+}
+html[ml-image]:not([ml-stage="preload"]):not([ml-mode="simple"]) img {
   filter: var(--ml-image-filter);
 }
 
