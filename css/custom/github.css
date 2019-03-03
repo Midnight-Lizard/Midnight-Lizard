@@ -64,6 +64,12 @@ html[ml-stage-mode="complete-complex"] .dropdown-caret {
     --ml-background-border-top-color:Border;
 }
 
+.btn {
+  /* --ml-background-background-color:ButtonBackground; */
+  --ml-backgroundnocontrast-background-color:ButtonBackground;
+  --ml-text-color:HighlightedText;
+}
+
 html[ml-stage-mode="complete-complex"] .gh-header .gh-header-sticky.is-stuck+.gh-header-shadow {
     --ml-background-background-color:None;
     background-color: var(--ml-main-alt-background-color);
