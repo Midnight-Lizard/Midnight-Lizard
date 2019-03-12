@@ -4,6 +4,8 @@
 
 namespace MidnightLizard.Settings
 {
+    const chrom = [BrowserName.Chrome];
+    const firfx = [BrowserName.Firefox];
     const allbr = [BrowserName.Chrome, BrowserName.Firefox]
     const filter = ProcessingMode.Filter;
     const simple = ProcessingMode.Simplified;
@@ -48,8 +50,9 @@ namespace MidnightLizard.Settings
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
-            { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
             { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
+
+            { browsers: chrom, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
         ];
 
         constructor(app: MidnightLizard.Settings.IApplicationSettings)
