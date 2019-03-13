@@ -2,7 +2,7 @@ html[ml-mode]:not([ml-mode="filter"]) a[href="#inbox"][title="Gmail"]:not(#imp):
     --ml-ignore:true;
     --hue-rotate: calc(var(--ml-invert) * 180deg);
     background-color: transparent!important;
-    filter: saturate(var(--ml-image-saturation-limit, 1)) hue-rotate(var(--hue-rotate)) invert(var(--ml-invert)) brightness(var(--ml-text-lightness-limit, 1));
+    filter: var(--ml-text-filter);
 }
 
 html[ml-mode="filter"]:not([ml-stage="preload"]) .gbip,
@@ -85,7 +85,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     --ml-background-background-color:Border;
 }
 
-html[ml-stage-mode="complete-complex"] [role="tabpanel"] {
+html[ml-stage-mode="complete-complex"] [id][role="tabpanel"] {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
