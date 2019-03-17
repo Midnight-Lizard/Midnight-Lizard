@@ -682,6 +682,8 @@ namespace MidnightLizard.Popup
             this._settingsManager
                 .deleteCurrentSiteSettings()
                 .catch(ex => alert(this._i18n.getMessage("forgetThisFailureMessage") + (ex.message || ex)));
+            setTimeout(() => this._popup.location.reload(), 100);
+            return false;
         }
 
         protected deleteAllWebsitesSettings()
@@ -690,6 +692,8 @@ namespace MidnightLizard.Popup
                 .deleteAllWebsitesSettings()
                 .catch(ex => alert(this._i18n.getMessage("deleteAllWebsitesSettingsFailureMessage") +
                     (ex.message || ex)));
+            setTimeout(() => this._popup.location.reload(), 100);
+            return false;
         }
 
         protected setAsDefaultSettings()
