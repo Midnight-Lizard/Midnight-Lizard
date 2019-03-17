@@ -593,11 +593,11 @@ namespace MidnightLizard.Popup
                     });
             }
             if (e.target && e.target instanceof HTMLButtonElement &&
-                e.target.id !== this._hiddenSaveColorSchemeButton.id)
+                e.target.id === this._hiddenSaveColorSchemeButton.id)
             {
                 setTimeout(() => this._popup.location.reload(), 100);
             }
-            return true;
+            return false;
         }
 
         protected deleteUserColorScheme()
