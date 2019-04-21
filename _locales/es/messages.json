@@ -1122,5 +1122,9 @@
     "privacyLink_text_label": {
         "description": "privacyLink_text_label: text on the label",
         "message": "Privacidad"
+    },
+    "privacyLink_@tooltip": {
+        "description": "privacyLink_@tooltip: text on the tooltip\/hint with custom style",
+        "message": "Política de privacidad de la extensión"
     }
 }
