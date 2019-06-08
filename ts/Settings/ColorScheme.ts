@@ -15,7 +15,7 @@ namespace MidnightLizard.Settings
         Unsaved = "🖉 "
     }
 
-    export type ColorSchemePropertyName = keyof ColorScheme;
+    export type ColorSchemePropertyName = Extract<keyof ColorScheme, string>;
 
     export const excludeSettingsForExport: Settings.ColorSchemePropertyName[] = [
         "isEnabled", "location", "userColorSchemes", "userColorSchemeIds",
