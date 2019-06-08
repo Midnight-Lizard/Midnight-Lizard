@@ -1,3 +1,4 @@
-#blockbyte-bs-sidebar {
+#blockbyte-bs-sidebar,
+body.dark>section#sidebar {
     --ml-ignore:true;
 }
