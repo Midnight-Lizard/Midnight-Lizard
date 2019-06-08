@@ -287,6 +287,25 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not
     content: ": " var(--input-string);
 }
 
+#generator .ml-input-container {
+    margin-bottom: 3px;
+    margin-top: 2px;
+}
+
+#generator .ml-dialog-input {
+    /* margin: 6px calc((100% - 267px)/2) 14px calc((100% - 267px)/2); */
+}
+#generator .ml-dialog-input.two-columns:first-of-type {
+    margin: 8px 5px 18px calc((100% - 267px)/2);
+}
+#generator .ml-dialog-input.two-columns:last-of-type {
+    margin: 8px calc((100% - 267px)/2) 18px 5px;
+}
+
+#generator .ml-dialog-label {
+    display: block;
+}
+
 .ml-input-container {
     position: relative;
     margin-bottom: 15px;
@@ -420,6 +439,24 @@ select.ml-dialog-input-text {
 
 .ml-dialog-input-text option {
     font-size: 16px;
+}
+
+.ml-dialog-input-text.two-columns {
+
+/* display: inline; */
+
+float: left;
+
+width: 120px;
+}
+
+.ml-dialog-input-text.two-columns:first-of-type {
+
+}
+
+.ml-dialog-input-text.two-columns:last-of-type {
+
+float: none;
 }
 
 .ml-dialog-hue-select {

@@ -1884,6 +1884,51 @@ L 14.5 12 z" />
                   </a>
                 </div>
             </div>
+            <div id="generator" class="ml-tab-content"><br/>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" for="backgroundColor" i18n="backgroundColor"
+                         i18n-attr="title" i18n-text="label">Background color</label>
+                  <input id="backgroundColor" type="text" required class="ml-dialog-input ml-dialog-input-text">
+                </div>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" for="buttonColor" i18n="buttonColor"
+                         i18n-attr="title" i18n-text="label">Buttons color</label>
+                  <input id="buttonColor" type="text" required class="ml-dialog-input ml-dialog-input-text">
+                </div>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" i18n="textColors" i18n-attr="title" i18n-text="label">Text colors</label>
+                  <input id="textColor" type="text" i18n="textColor" i18n-text="label"
+                         required class="ml-dialog-input two-columns ml-dialog-input-text">
+                  <input id="textSelectionColor" type="text" i18n="textSelectionColor" i18n-text="label"
+                         required class="ml-dialog-input two-columns ml-dialog-input-text">
+                </div>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" i18n="linkColors" i18n-attr="title" i18n-text="label">Links colors</label>
+                  <input id="defaultLinkColor" type="text" i18n="defaultLinkColor" i18n-attr="title"
+                         required class="ml-dialog-input two-columns ml-dialog-input-text">
+                  <input id="visitedLinkColor" type="text" i18n="visitedLinkColor" i18n-attr="title"
+                         required class="ml-dialog-input two-columns ml-dialog-input-text">
+                </div>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" for="borderColor" i18n="borderColor"
+                         i18n-attr="title" i18n-text="label">Borders color</label>
+                  <input id="borderColor" type="text" required class="ml-dialog-input ml-dialog-input-text">
+                </div>
+                <div class="ml-input-container">
+                  <label class="ml-dialog-label" for="scrollbarColor" i18n="scrollbarColor"
+                         i18n-attr="title" i18n-text="label">Scrollbars color</label>
+                  <input id="scrollbarColor" type="text" required class="ml-dialog-input ml-dialog-input-text">
+                </div>
+                <div class="ml-long-cmd-container">
+                  <button id="generateFromColorsButton" class="ml-helio-button blue icon-button"
+                     i18n="generateFromColorsButton" i18n-attr="title" i18n-text="label">
+                    <svg class="ml-button-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+                      <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>Generate from colors
+                  </a>
+                </div>
+            </div>
             <div class="ml-right-pane">
                 <div class="ml-dialog-commands">
                     <label class="ml-dialog-label" for="colorScheme"
@@ -1906,9 +1951,15 @@ L 14.5 12 z" />
                 </div>
                 <ul class="ml-tab right">
                     <li class="ml-tab-item-separator">&nbsp;</li>
+                    <li class="ml-tab-item" content="generator">
+                        <span i18n="generatorTab" i18n-text="label">Generator</span>
+                        <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M2.53 19.65l1.34.56v-9.03l-2.43 5.86c-.41 1.02.08 2.19 1.09 2.61zm19.5-3.7L17.07 3.98c-.31-.75-1.04-1.21-1.81-1.23-.26 0-.53.04-.79.15L7.1 5.95c-.75.31-1.21 1.03-1.23 1.8-.01.27.04.54.15.8l4.96 11.97c.31.76 1.05 1.22 1.83 1.23.26 0 .52-.05.77-.15l7.36-3.05c1.02-.42 1.51-1.59 1.09-2.6zM7.88 8.75c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-2 11c0 1.1.9 2 2 2h1.45l-3.45-8.34v6.34z"/>
+                        </svg>
+                    </li>
                     <li class="ml-tab-item" content="edit-schemes" i18n="editSchemesTab" i18n-attr="tooltip">
                         <span i18n="editSchemesTab" i18n-text="label">Color schemes</span>
-                        <!-- <i class="unsaved"></i> -->
                         <svg class="ml-tab-item-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0h24v24H0z" fill="none" />
                             <path d="M2.53 19.65l1.34.56v-9.03l-2.43 5.86c-.41 1.02.08 2.19 1.09 2.61zm19.5-3.7L17.07 3.98c-.31-.75-1.04-1.21-1.81-1.23-.26 0-.53.04-.79.15L7.1 5.95c-.75.31-1.21 1.03-1.23 1.8-.01.27.04.54.15.8l4.96 11.97c.31.76 1.05 1.22 1.83 1.23.26 0 .52-.05.77-.15l7.36-3.05c1.02-.42 1.51-1.59 1.09-2.6zM7.88 8.75c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-2 11c0 1.1.9 2 2 2h1.45l-3.45-8.34v6.34z"/>

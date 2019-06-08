@@ -53,6 +53,7 @@ namespace MidnightLizard.ContentScript
     export abstract class IDocumentProcessor
     {
         abstract get onRootDocumentProcessing(): ArgEvent<Document>;
+        abstract get onMainColorsCalculated(): ArgEvent<any>;
         abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
     }
 
@@ -79,6 +80,12 @@ namespace MidnightLizard.ContentScript
         public get onRootDocumentProcessing()
         {
             return this._onRootDocumentProcessing.event;
+        }
+
+        protected _onMainColorsCalculated = new ArgEventDispatcher<any>();
+        public get onMainColorsCalculated()
+        {
+            return this._onMainColorsCalculated.event;
         }
 
         /** DocumentProcessor constructor
@@ -2490,7 +2497,7 @@ namespace MidnightLizard.ContentScript
             delete doc.documentElement!.mlArea;
             this._backgroundColorProcessor.clear();
 
-            return {
+            const mainColors = {
                 backgroundColor, backgroundColorFiltered,
                 altBackgroundColor, altBackgroundColorFiltered,
                 transBackgroundColor, transAltBackgroundColor,
@@ -2520,6 +2527,8 @@ namespace MidnightLizard.ContentScript
                 mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
                 scrollbarShadowColorFiltered: scrollbarShadowColor
             };
+            this._onMainColorsCalculated.raise(mainColors);
+            return mainColors
         }
 
         protected injectDynamicValues(doc: Document)

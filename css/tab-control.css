@@ -132,7 +132,7 @@ html:not([ml-color-scheme="custom"]) .ml-tab-item:not(:hover):not(.active) {
 }
 
 .right .ml-tab-item-separator:first-of-type {
-    height: 140px;
+    height: 65px;
 }
 
 .ml-tab-item.active:not(imp)
