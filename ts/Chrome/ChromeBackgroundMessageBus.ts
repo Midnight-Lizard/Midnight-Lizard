@@ -1,72 +1,70 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../BackgroundPage/IBackgroundMessageBus.ts" />
-/// <reference path="../Settings/Messages.ts" />
+import { injectable } from "../Utils/DI";
+import { IBackgroundMessageBus } from "../BackgroundPage/IBackgroundMessageBus";
+import { ArgumentedEventDispatcher } from "../Events/EventDispatcher";
+import { MessageToBackgroundPage, MessageFromBackgroundPage } from "../Settings/Messages";
+import { IApplicationSettings } from "../Settings/IApplicationSettings";
 
-namespace Chrome
+@injectable(IBackgroundMessageBus)
+export class ChromeBackgroundMessageBus implements IBackgroundMessageBus
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.BackgroundPage.IBackgroundMessageBus)
-    class ChromeBackgroundMessageBus implements MidnightLizard.BackgroundPage.IBackgroundMessageBus
+    private readonly connections = new Set<chrome.runtime.Port>();
+
+    private _onMessage = new ArgumentedEventDispatcher<{
+        port: chrome.runtime.Port, message: MessageToBackgroundPage
+    }>();
+    public get onMessage()
     {
-        private readonly connections = new Set<chrome.runtime.Port>();
+        return this._onMessage.event;
+    }
 
-        private _onMessage = new MidnightLizard.Events.ArgumentedEventDispatcher<{
-            port: chrome.runtime.Port, message: MidnightLizard.Settings.MessageToBackgroundPage
-        }>();
-        public get onMessage()
-        {
-            return this._onMessage.event;
-        }
+    private _onConnected = new ArgumentedEventDispatcher<any>();
+    public get onConnected()
+    {
+        return this._onConnected.event;
+    }
 
-        private _onConnected = new MidnightLizard.Events.ArgumentedEventDispatcher<any>();
-        public get onConnected()
+    constructor(private readonly _app: IApplicationSettings)
+    {
+        const handler = (port: chrome.runtime.Port) =>
         {
-            return this._onConnected.event;
-        }
-
-        constructor(private readonly _app: MidnightLizard.Settings.IApplicationSettings)
-        {
-            const handler = (port: chrome.runtime.Port) =>
+            if (!this.connections.has(port))
             {
-                if (!this.connections.has(port))
+                this.connections.add(port);
+                port.onDisconnect.addListener(closedPort => this.connections.delete(closedPort));
+                port.onMessage.addListener(message =>
                 {
-                    this.connections.add(port);
-                    port.onDisconnect.addListener(closedPort => this.connections.delete(closedPort));
-                    port.onMessage.addListener(message =>
+                    if (_app.isDebug)
                     {
-                        if (_app.isDebug)
-                        {
-                            console.log(message);
-                        }
-                        this._onMessage.raise({ port, message })
-                    });
-                    this._onConnected.raise(port);
-                }
-            };
-            chrome.runtime.onConnect.addListener(handler);
-        }
-
-        public postMessage(port: chrome.runtime.Port, message: MidnightLizard.Settings.MessageFromBackgroundPage)
-        {
-            if (this._app.isDebug)
-            {
-                console.log(message);
+                        console.log(message);
+                    }
+                    this._onMessage.raise({ port, message })
+                });
+                this._onConnected.raise(port);
             }
-            port.postMessage(message);
-        }
+        };
+        chrome.runtime.onConnect.addListener(handler);
+    }
 
-        public broadcastMessage(message: MidnightLizard.Settings.MessageFromBackgroundPage, portType: string)
+    public postMessage(port: chrome.runtime.Port, message: MessageFromBackgroundPage)
+    {
+        if (this._app.isDebug)
         {
-            if (this._app.isDebug)
+            console.log(message);
+        }
+        port.postMessage(message);
+    }
+
+    public broadcastMessage(message: MessageFromBackgroundPage, portType: string)
+    {
+        if (this._app.isDebug)
+        {
+            console.log(message);
+        }
+        for (const port of this.connections)
+        {
+            if (port.name === portType)
             {
-                console.log(message);
-            }
-            for (const port of this.connections)
-            {
-                if (port.name === portType)
-                {
-                    port.postMessage(message);
-                }
+                port.postMessage(message);
             }
         }
     }

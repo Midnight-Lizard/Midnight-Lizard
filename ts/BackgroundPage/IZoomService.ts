@@ -1,6 +1,3 @@
-namespace MidnightLizard.BackgroundPage
+export abstract class IZoomService
 {
-    export abstract class IZoomService
-    {
-    }
 }

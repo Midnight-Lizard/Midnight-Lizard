@@ -1,14 +1,12 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../BackgroundPage/IUninstallUrlSetter.ts" />
+import { injectable } from "../Utils/DI";
+import { IUninstallUrlSetter } from "../BackgroundPage/IUninstallUrlSetter";
 
-namespace Chrome
+@injectable(IUninstallUrlSetter)
+export class ChromeUninstallUrlSetter implements IUninstallUrlSetter
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.BackgroundPage.IUninstallUrlSetter)
-    class ChromeUninstallUrlSetter implements MidnightLizard.BackgroundPage.IUninstallUrlSetter
+    constructor()
     {
-        constructor()
-        {
-            chrome.runtime.setUninstallURL("https://docs.google.com/forms/d/e/1FAIpQLScgAQrFPepzACCRtK_05Yq5nPei4j9O-5fBBCXzrtP6_h5nUA/viewform");
-        }
+        chrome.runtime
+            .setUninstallURL("https://docs.google.com/forms/d/e/1FAIpQLScgAQrFPepzACCRtK_05Yq5nPei4j9O-5fBBCXzrtP6_h5nUA/viewform");
     }
 }

@@ -1,42 +1,41 @@
-/// <reference path="../DI/-DI.ts" />
+import { injectable } from "../Utils/DI";
+import { ISettingsBus } from "../Settings/ISettingsBus";
+import { IBaseSettingsManager } from "../Settings/BaseSettingsManager";
 
-namespace MidnightLizard.ContentScript
+export abstract class IDocumentZoomObserver
 {
-    export abstract class IDocumentZoomObserver
+    abstract get CurrentZoom(): number;
+}
+
+@injectable(IDocumentZoomObserver)
+class DocumentZoomObserver implements IDocumentZoomObserver
+{
+    private lastZoom = 1;
+    public get CurrentZoom() { return this.lastZoom }
+
+    constructor(doc: Document,
+        settingsBus: ISettingsBus,
+        private readonly _settingsManager: IBaseSettingsManager)
     {
-        abstract get CurrentZoom(): number;
+        settingsBus.onZoomChanged.addListener((done, zoom) =>
+        {
+            this.lastZoom = zoom || 1;
+            this.setDocumentZoom(doc);
+            if (window.top === window.self)
+            {
+                done(true);
+            }
+        }, null);
+
+        _settingsManager.onSettingsInitialized.addListener(_ => this.setDocumentZoom(doc), this);
+        _settingsManager.onSettingsChanged.addListener(_ => this.setDocumentZoom(doc), this);
     }
 
-    @DI.injectable(IDocumentZoomObserver)
-    class DocumentZoomObserver implements IDocumentZoomObserver
+    private setDocumentZoom(doc: Document)
     {
-        private lastZoom = 1;
-        public get CurrentZoom() { return this.lastZoom }
-
-        constructor(doc: Document,
-            settingsBus: MidnightLizard.Settings.ISettingsBus,
-            private readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        if (this._settingsManager.isActive)
         {
-            settingsBus.onZoomChanged.addListener((done, zoom) =>
-            {
-                this.lastZoom = zoom || 1;
-                this.setDocumentZoom(doc);
-                if (window.top === window.self)
-                {
-                    done(true);
-                }
-            }, null);
-
-            _settingsManager.onSettingsInitialized.addListener(_ => this.setDocumentZoom(doc), this);
-            _settingsManager.onSettingsChanged.addListener(_ => this.setDocumentZoom(doc), this);
-        }
-
-        private setDocumentZoom(doc: Document)
-        {
-            if (this._settingsManager.isActive)
-            {
-                doc.documentElement!.style.setProperty("--ml-zoom", this.lastZoom.toString(), "important");
-            }
+            doc.documentElement!.style.setProperty("--ml-zoom", this.lastZoom.toString(), "important");
         }
     }
 }

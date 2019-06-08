@@ -1,48 +1,47 @@
-namespace MidnightLizard.Settings
+import { StorageType, StorageLimits } from "./IStorageManager";
+
+export enum BrowserName
 {
-    export enum BrowserName
-    {
-        Chrome = "Chrome",
-        Firefox = "Firefox"
-    }
+    Chrome = "Chrome",
+    Firefox = "Firefox"
+}
 
-    export abstract class IApplicationSettings
-    {
-        /** Returns current extension locale or "en" */
-        abstract get currentLocale(): string;
+export abstract class IApplicationSettings
+{
+    /** Returns current extension locale or "en" */
+    abstract get currentLocale(): string;
 
-        /** Returns current browser name */
-        abstract get browserName(): BrowserName;
+    /** Returns current browser name */
+    abstract get browserName(): BrowserName;
 
-        /** Determines whether extension is in debug mode */
-        abstract get isDebug(): boolean;
+    /** Determines whether extension is in debug mode */
+    abstract get isDebug(): boolean;
 
-        /** Determines whether extension is running on a mobile device */
-        abstract get isMobile(): boolean;
+    /** Determines whether extension is running on a mobile device */
+    abstract get isMobile(): boolean;
 
-        /** Determines whether extension is running on a desktop */
-        abstract get isDesktop(): boolean;
+    /** Determines whether extension is running on a desktop */
+    abstract get isDesktop(): boolean;
 
-        /** True if extension is running inside an incognito window */
-        abstract get isInIncognitoMode(): boolean;
+    /** True if extension is running inside an incognito window */
+    abstract get isInIncognitoMode(): boolean;
 
-        /** Determines whether element.style.display should be preserved after processing */
-        abstract get preserveDisplay(): boolean;
+    /** Determines whether element.style.display should be preserved after processing */
+    abstract get preserveDisplay(): boolean;
 
-        /** Returns current extension version */
-        abstract get version(): string;
+    /** Returns current extension version */
+    abstract get version(): string;
 
-        /** Returns current extension id */
-        abstract get id(): string;
+    /** Returns current extension id */
+    abstract get id(): string;
 
-        /**
-         * Converts a relative path within an extension install directory to a fully-qualified URL.
-         * @param relativePath - A path to a resource within an extension expressed relative to its install directory.
-         */
-        abstract getFullPath(relativePath: string): string;
+    /**
+     * Converts a relative path within an extension install directory to a fully-qualified URL.
+     * @param relativePath - A path to a resource within an extension expressed relative to its install directory.
+     */
+    abstract getFullPath(relativePath: string): string;
 
-        abstract getStorageLimits(
-            storage: MidnightLizard.Settings.StorageType,
-            limit: MidnightLizard.Settings.StorageLimits): number;
-    }
+    abstract getStorageLimits(
+        storage: StorageType,
+        limit: StorageLimits): number;
 }

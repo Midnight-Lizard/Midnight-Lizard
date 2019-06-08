@@ -1,27 +1,24 @@
-namespace MidnightLizard.ContentScript
+export enum BackgroundImageType
 {
-    export enum BackgroundImageType
-    {
-        Image,
-        Gradient
-    }
+    Image,
+    Gradient
+}
 
-    export class BackgroundImage
-    {
-        constructor(
-            readonly data: string,
-            readonly type: BackgroundImageType)
-        { }
-    }
+export class BackgroundImage
+{
+    constructor(
+        readonly data: string,
+        readonly type: BackgroundImageType)
+    { }
+}
 
-    export interface BackgroundImageCache
-    {
-        /** data url */
-        readonly d: string;
-        /** natural image width */
-        readonly w: number;
-        /** natural image height */
-        readonly h:number;
+export interface BackgroundImageCache
+{
+    /** data url */
+    readonly d: string;
+    /** natural image width */
+    readonly w: number;
+    /** natural image height */
+    readonly h: number;
 
-    }
 }

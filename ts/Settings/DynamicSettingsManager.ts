@@ -1,42 +1,43 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Colors/-Colors.ts" />
-/// <reference path="../Settings/-Settings.ts" />
-/// <reference path="../Settings/MatchPatternProcessor.ts" />
-/// <reference path="../i18n/ITranslationAccessor.ts" />
+import { injectable } from "../Utils/DI";
+import { IBaseSettingsManager, BaseSettingsManager } from "./BaseSettingsManager";
+import { ColorScheme } from "./ColorScheme";
+import { IApplicationSettings } from "./IApplicationSettings";
+import { IStorageManager } from "./IStorageManager";
+import { ISettingsBus } from "./ISettingsBus";
+import { IMatchPatternProcessor } from "./MatchPatternProcessor";
+import { IRecommendations } from "./Recommendations";
+import { ITranslationAccessor } from "../i18n/ITranslationAccessor";
 
-namespace MidnightLizard.Settings
+export abstract class IDynamicSettingsManager extends IBaseSettingsManager
 {
-    export abstract class IDynamicSettingsManager extends IBaseSettingsManager
+    abstract changeSettings(newSettings: ColorScheme, updateSchedule?: boolean): void;
+}
+
+@injectable(IDynamicSettingsManager)
+class DynamicSettingsManager extends BaseSettingsManager implements IDynamicSettingsManager
+{
+    constructor(rootDocument: Document,
+        app: IApplicationSettings,
+        storageManager: IStorageManager,
+        settingsBus: ISettingsBus,
+        matchPatternProcessor: IMatchPatternProcessor,
+        i18n: ITranslationAccessor,
+        rec: IRecommendations)
     {
-        abstract changeSettings(newSettings: Settings.ColorScheme, updateSchedule?: boolean): void;
+        super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
+        this.isInit = true
     }
 
-    @DI.injectable(IDynamicSettingsManager)
-    class DynamicSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IDynamicSettingsManager
+    protected initCurrentSettings() { }
+
+    changeSettings(newSettings: ColorScheme, updateSchedule?: boolean): void
     {
-        constructor(rootDocument: Document,
-            app: MidnightLizard.Settings.IApplicationSettings,
-            storageManager: MidnightLizard.Settings.IStorageManager,
-            settingsBus: MidnightLizard.Settings.ISettingsBus,
-            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
-            i18n: MidnightLizard.i18n.ITranslationAccessor,
-            rec: MidnightLizard.Settings.IRecommendations)
+        Object.assign(this._currentSettings, newSettings);
+        if (updateSchedule)
         {
-            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
-            this.isInit = true
+            this.updateSchedule();
         }
-
-        protected initCurrentSettings() { }
-
-        changeSettings(newSettings: ColorScheme, updateSchedule?: boolean): void
-        {
-            Object.assign(this._currentSettings, newSettings);
-            if (updateSchedule)
-            {
-                this.updateSchedule();
-            }
-            this.initCurSet();
-            this._onSettingsChanged.raise(x => { }, this._shift);
-        }
+        this.initCurSet();
+        this._onSettingsChanged.raise(x => { }, this._shift);
     }
 }

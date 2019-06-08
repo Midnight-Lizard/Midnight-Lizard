@@ -1,7 +1,15 @@
-/// <reference path="./ChromeApplicationSettings.ts" />
-/// <reference path="./ChromeStorageManager.ts" />
-/// <reference path="./ChromeSettingsBus.ts" />
-/// <reference path="./ChromeCommandManager.ts" />
-/// <reference path="./ChromeTranslationAccessor.ts" />
-/// <reference path="./ChromeContentMessageBus.ts" />
-/// <reference path="../Popup/PopupStarter.ts" />
+import { ChromeApplicationSettings } from "./ChromeApplicationSettings";
+import { ChromeStorageManager } from "./ChromeStorageManager";
+import { ChromeSettingsBus } from "./ChromeSettingsBus";
+import { ChromeCommandManager } from "./ChromeCommandManager";
+import { ChromeTranslationAccessor } from "./ChromeTranslationAccessor";
+import { ChromeContentMessageBus } from "./ChromeContentMessageBus";
+import { PopupStarter } from "../Popup/PopupStarter";
+
+new PopupStarter(
+    ChromeApplicationSettings,
+    ChromeStorageManager,
+    ChromeSettingsBus,
+    ChromeCommandManager,
+    ChromeTranslationAccessor,
+    ChromeContentMessageBus);

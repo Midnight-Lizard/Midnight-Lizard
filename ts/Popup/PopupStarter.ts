@@ -1,19 +1,20 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Typings/MidnightLizard.d.ts" />
-/// <reference path="../Settings/-Settings.ts" />
-/// <reference path="../Settings/ExtensionModule.ts" />
-/// <reference path="-Popup.ts" />
+import { Container } from "../Utils/DI";
+import { CurrentExtensionModule, ExtensionModule } from "../Settings/ExtensionModule";
+import { IPopupManager } from "./PopupManager";
 
-namespace MidnightLizard.Popup
+Container.register(Document, class { constructor() { return document } });
+Container.register(CurrentExtensionModule, class
 {
-    DI.Container.register(Document, class { constructor() { return document } });
-    DI.Container.register(Settings.CurrentExtensionModule, class
+    constructor()
     {
-        constructor()
-        {
-            return new Settings.CurrentExtensionModule(
-                Settings.ExtensionModule.PopupWindow);
-        }
-    });
-    DI.Container.resolve(IPopupManager);
+        return new CurrentExtensionModule(
+            ExtensionModule.PopupWindow);
+    }
+});
+export class PopupStarter
+{
+    constructor(...registerations: any[])
+    {
+        Container.resolve(IPopupManager);
+    }
 }

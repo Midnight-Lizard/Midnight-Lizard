@@ -1,7 +1,4 @@
-namespace MidnightLizard.Popup
+export abstract class ICommandManager
 {
-    export abstract class ICommandManager
-    {
-        abstract getCommands(): Promise<{ name?: string, description?: string, shortcut?: string}[]>;
-    }
+    abstract getCommands(): Promise<{ name?: string, description?: string, shortcut?: string }[]>;
 }

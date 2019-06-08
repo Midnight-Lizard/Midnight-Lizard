@@ -1,14 +1,11 @@
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../Settings/Messages.ts" />
+import { ArgumentedEvent } from "../Events/Event";
+import { MessageFromBackgroundPage, MessageToBackgroundPage } from "../Settings/Messages";
 
-namespace MidnightLizard.BackgroundPage
+export abstract class IBackgroundMessageBus
 {
-    export abstract class IBackgroundMessageBus
-    {
-        abstract get onMessage(): Events.ArgumentedEvent<{ port: any, message: Settings.MessageToBackgroundPage }>;
-        abstract get onConnected(): Events.ArgumentedEvent<any>;
+    abstract get onMessage(): ArgumentedEvent<{ port: any, message: MessageToBackgroundPage }>;
+    abstract get onConnected(): ArgumentedEvent<any>;
 
-        abstract postMessage(port: chrome.runtime.Port, message: MidnightLizard.Settings.MessageFromBackgroundPage): void;
-        abstract broadcastMessage(message: MidnightLizard.Settings.MessageFromBackgroundPage, portType: string): void;
-    }
+    abstract postMessage(port: chrome.runtime.Port, message: MessageFromBackgroundPage): void;
+    abstract broadcastMessage(message: MessageFromBackgroundPage, portType: string): void;
 }

@@ -1,33 +1,31 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="./ColorEntry.ts" />
-/// <reference path="./ComponentShift.ts" />
+import { ColorEntry, ColorReason } from "./ColorEntry";
+import { injectable } from "../Utils/DI";
+import { RgbaColor } from "./RgbaColor";
+import { Component } from "./ComponentShift";
 
-namespace MidnightLizard.Colors
+export abstract class INoneColorProcessor
 {
-    export abstract class INoneColorProcessor
-    {
-        abstract changeColor(rgbaString: string | null): ColorEntry;
-    }
+    abstract changeColor(rgbaString: string | null): ColorEntry;
+}
 
-    @DI.injectable(INoneColorProcessor)
-    class NoneColorProcessor implements INoneColorProcessor
+@injectable(INoneColorProcessor)
+class NoneColorProcessor implements INoneColorProcessor
+{
+    changeColor(rgbaString: string | null): ColorEntry
     {
-        changeColor(rgbaString: string | null): ColorEntry
-        {
-            rgbaString = !rgbaString || rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
-            const rgba = RgbaColor.parse(rgbaString);
-            const hsla = RgbaColor.toHslaColor(rgba);
-            return {
-                role: Component.None,
-                color: rgbaString,
-                light: hsla.lightness,
-                originalLight: hsla.lightness,
-                originalColor: rgbaString,
-                alpha: rgba.alpha,
-                reason: ColorReason.None,
-                isUpToDate: true,
-                owner: null
-            };
-        }
+        rgbaString = !rgbaString || rgbaString === "none" ? RgbaColor.Transparent : rgbaString;
+        const rgba = RgbaColor.parse(rgbaString);
+        const hsla = RgbaColor.toHslaColor(rgba);
+        return {
+            role: Component.None,
+            color: rgbaString,
+            light: hsla.lightness,
+            originalLight: hsla.lightness,
+            originalColor: rgbaString,
+            alpha: rgba.alpha,
+            reason: ColorReason.None,
+            isUpToDate: true,
+            owner: null
+        };
     }
 }

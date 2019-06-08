@@ -1,18 +1,15 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../i18n/ITranslationAccessor.ts" />
+import { injectable } from "../Utils/DI";
+import { ITranslationAccessor } from "../i18n/ITranslationAccessor";
 
-namespace Chrome
+@injectable(ITranslationAccessor)
+export class ChromeTranslationAccessor implements ITranslationAccessor
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.i18n.ITranslationAccessor)
-    class ChromeTranslationAccessor implements MidnightLizard.i18n.ITranslationAccessor
+    constructor()
     {
-        constructor()
-        {
-        }
+    }
 
-        public getMessage(messageKey: string, ...substitutions: string[]): string
-        {
-            return chrome.i18n.getMessage(messageKey, substitutions);
-        }
+    public getMessage(messageKey: string, ...substitutions: string[]): string
+    {
+        return chrome.i18n.getMessage(messageKey, substitutions);
     }
 }

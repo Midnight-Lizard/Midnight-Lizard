@@ -1,209 +1,205 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Settings/BaseSettingsManager.ts" />
-/// <reference path="../Settings/IApplicationSettings.ts" />
-/// <reference path="../Colors/RgbaColor.ts" />
-/// <reference path="../Colors/HslaColor.ts" />
+import { injectable } from "../Utils/DI";
+import { IApplicationSettings } from "../Settings/IApplicationSettings";
+import { IBaseSettingsManager } from "../Settings/BaseSettingsManager";
+import { RgbaColor } from "../Colors/RgbaColor";
 
-namespace MidnightLizard.ContentScript
+export const colorOverlayLimit = 0.12;
+const svgNs = "http://www.w3.org/2000/svg", svgElementId = "midnight-lizard-filters";
+
+export abstract class ISvgFilters
 {
-    export const colorOverlayLimit = 0.12;
-    const svgNs = "http://www.w3.org/2000/svg", svgElementId = "midnight-lizard-filters";
+    public abstract createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
+    public abstract removeSvgFilters(doc: Document): void
+}
 
-    export abstract class ISvgFilters
+export enum FilterType
+{
+    ContentFilter = "ml-content-filter",
+    BlueFilter = "ml-blue-filter",
+    PdfFilter = "pdf-bg-filter"
+}
+
+@injectable(ISvgFilters)
+class SvgFilters implements ISvgFilters
+{
+    constructor(
+        protected readonly _app: IApplicationSettings,
+        protected readonly _settingsManager: IBaseSettingsManager)
     {
-        public abstract createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
-        public abstract removeSvgFilters(doc: Document): void
     }
 
-    export enum FilterType
+    public removeSvgFilters(doc: Document): void
     {
-        ContentFilter = "ml-content-filter",
-        BlueFilter = "ml-blue-filter",
-        PdfFilter = "pdf-bg-filter"
+        const svgFilters = doc.getElementById(svgElementId);
+        svgFilters && svgFilters.remove();
     }
 
-    @DI.injectable(ISvgFilters)
-    class SvgFilters implements ISvgFilters
+    public createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
     {
-        constructor(
-            protected readonly _app: MidnightLizard.Settings.IApplicationSettings,
-            protected readonly _settingsManager: MidnightLizard.Settings.IBaseSettingsManager)
+        const svg = doc.createElementNS(svgNs, "svg");
+        svg.id = svgElementId
+        svg.mlIgnore = true;
+        svg.style.width = svg.style.height = "0";
+        svg.style.position = "absolute";
+        // svg.style.setProperty("--ml-ignore", "true");
+
+        svg.appendChild(this.createBlueFilter(doc));
+        svg.appendChild(this.createContentFilter(doc, overlayBgColor, overlayTxtColor));
+
+        svg.appendChild(this.createColorReplacementFilter(
+            doc, FilterType.PdfFilter,
+            new RgbaColor(240, 240, 240, 1),
+            new RgbaColor(82, 86, 89, 1)));
+
+        // (this._app.browserName === BrowserName.Chrome
+        //     ? doc.head || doc.documentElement!
+        //     : doc.documentElement!).appendChild(svg);
+
+        doc.documentElement!.appendChild(svg);
+    }
+
+    private createBlueFilter(doc: Document)
+    {
+        const
+            filter = doc.createElementNS(svgNs, "filter"),
+            feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
+            blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
+            redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+
+        filter.id = FilterType.BlueFilter;
+        filter.setAttribute("color-interpolation-filters", "sRGB");
+
+        if (blueFltr > 0)
         {
+            filter.appendChild(feColorMatrix);
+            feColorMatrix.setAttribute("type", "matrix");
+            feColorMatrix.setAttribute("values", redShiftMatrix);
         }
 
-        public removeSvgFilters(doc: Document): void
+        return filter;
+    }
+
+    private createContentFilter(doc: Document, overlayBgColor: string, overlayTxtColor: string)
+    {
+        const
+            filter = doc.createElementNS(svgNs, "filter"),
+            feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
+            blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
+            redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+
+        filter.id = FilterType.ContentFilter;
+        filter.setAttribute("color-interpolation-filters", "sRGB");
+
+        let input = "SourceGraphic";
+        input = this.addColorOverlay(overlayBgColor, doc, filter, input, "bg", this._settingsManager.shift.Background.hueGravity);
+        input = this.addColorOverlay(overlayTxtColor, doc, filter, input, "txt", this._settingsManager.shift.Text.hueGravity);
+
+        if (blueFltr > 0)
         {
-            const svgFilters = doc.getElementById(svgElementId);
-            svgFilters && svgFilters.remove();
+            filter.appendChild(feColorMatrix);
+            feColorMatrix.setAttribute("type", "matrix");
+            feColorMatrix.setAttribute("values", redShiftMatrix);
+            feColorMatrix.setAttribute("in", input);
         }
 
-        public createSvgFilters(doc: Document, overlayBgColor: string, overlayTxtColor: string): void
+        return filter;
+    }
+
+    private addColorOverlay(overlayColor: string, doc: Document,
+        filter: SVGFilterElement, input: string, layer: string, overlayIntensity: number)
+    {
+        let output = input;
+        const overlayColorHsl = RgbaColor.toHslaColor(RgbaColor.parse(overlayColor));
+        if (overlayColorHsl.saturation > colorOverlayLimit)
         {
-            const svg = doc.createElementNS(svgNs, "svg");
-            svg.id = svgElementId
-            svg.mlIgnore = true;
-            svg.style.width = svg.style.height = "0";
-            svg.style.position = "absolute";
-            // svg.style.setProperty("--ml-ignore", "true");
-
-            svg.appendChild(this.createBlueFilter(doc));
-            svg.appendChild(this.createContentFilter(doc, overlayBgColor, overlayTxtColor));
-
-            svg.appendChild(this.createColorReplacementFilter(
-                doc, FilterType.PdfFilter,
-                new Colors.RgbaColor(240, 240, 240, 1),
-                new Colors.RgbaColor(82, 86, 89, 1)));
-
-            // (this._app.browserName === Settings.BrowserName.Chrome
-            //     ? doc.head || doc.documentElement!
-            //     : doc.documentElement!).appendChild(svg);
-
-            doc.documentElement!.appendChild(svg);
-        }
-
-        private createBlueFilter(doc: Document)
-        {
+            const isDark = overlayColorHsl.lightness < 0.5;
+            const blendMode = isDark ? "lighten" : "darken";
+            overlayColorHsl.lightness *= isDark ? 1.1 : 1;
             const
-                filter = doc.createElementNS(svgNs, "filter"),
-                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
-                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
-                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+                feFlood = doc.createElementNS(svgNs, "feFlood"),
+                feComposite = doc.createElementNS(svgNs, "feComposite"),
+                feBlend = doc.createElementNS(svgNs, "feBlend");
 
-            filter.id = FilterType.BlueFilter;
-            filter.setAttribute("color-interpolation-filters", "sRGB");
+            filter.appendChild(feFlood);
+            feFlood.setAttribute("result", "flood_" + layer);
+            feFlood.setAttribute("flood-color", overlayColorHsl.toString());
+            feFlood.setAttribute("flood-opacity", (overlayIntensity / 2 + 0.5).toString());
 
-            if (blueFltr > 0)
-            {
-                filter.appendChild(feColorMatrix);
-                feColorMatrix.setAttribute("type", "matrix");
-                feColorMatrix.setAttribute("values", redShiftMatrix);
-            }
+            filter.appendChild(feComposite);
+            feComposite.setAttribute("result", "flood_alpha_" + layer);
+            feComposite.setAttribute("in", "flood_" + layer);
+            feComposite.setAttribute("in2", "SourceAlpha");
+            feComposite.setAttribute("operator", "in");
 
-            return filter;
+            filter.appendChild(feBlend);
+            feBlend.setAttribute("result", "blend_" + layer);
+            feBlend.setAttribute("in", "flood_alpha_" + layer);
+            feBlend.setAttribute("in2", input);
+            feBlend.setAttribute("mode", blendMode);
+
+            output = "blend_" + layer;
         }
+        return output;
+    }
 
-        private createContentFilter(doc: Document, overlayBgColor: string, overlayTxtColor: string)
-        {
-            const
-                filter = doc.createElementNS(svgNs, "filter"),
-                feColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
-                blueFltr = this._settingsManager.currentSettings.blueFilter / 100,
-                redShiftMatrix = `1 0 ${blueFltr} 0 0 0 1 0 0 0 0 0 ${1 - blueFltr} 0 0 0 0 0 1 0`;
+    private createColorReplacementFilter(doc: Document,
+        filterId: string,
+        newColor: RgbaColor,
+        ...originalColors: RgbaColor[])
+    {
+        const replaceColorFilter = doc.createElementNS(svgNs, "filter");
+        replaceColorFilter.id = filterId;
+        replaceColorFilter.setAttribute("color-interpolation-filters", "sRGB");
 
-            filter.id = FilterType.ContentFilter;
-            filter.setAttribute("color-interpolation-filters", "sRGB");
+        const feComponentTransfer = doc.createElementNS(svgNs, "feComponentTransfer"),
+            feFuncR = doc.createElementNS(svgNs, "feFuncR"),
+            feFuncG = doc.createElementNS(svgNs, "feFuncG"),
+            feFuncB = doc.createElementNS(svgNs, "feFuncB");
+        feFuncR.setAttribute("type", "discrete");
+        feFuncG.setAttribute("type", "discrete");
+        feFuncB.setAttribute("type", "discrete");
+        feFuncR.setAttribute("tableValues",
+            this.convertColorsToComponentTransfer(...originalColors.map(x => x.red)));
+        feFuncG.setAttribute("tableValues",
+            this.convertColorsToComponentTransfer(...originalColors.map(x => x.green)));
+        feFuncB.setAttribute("tableValues",
+            this.convertColorsToComponentTransfer(...originalColors.map(x => x.blue)));
+        feComponentTransfer.appendChild(feFuncR);
+        feComponentTransfer.appendChild(feFuncG);
+        feComponentTransfer.appendChild(feFuncB);
+        replaceColorFilter.appendChild(feComponentTransfer);
 
-            let input = "SourceGraphic";
-            input = this.addColorOverlay(overlayBgColor, doc, filter, input, "bg", this._settingsManager.shift.Background.hueGravity);
-            input = this.addColorOverlay(overlayTxtColor, doc, filter, input, "txt", this._settingsManager.shift.Text.hueGravity);
-
-            if (blueFltr > 0)
-            {
-                filter.appendChild(feColorMatrix);
-                feColorMatrix.setAttribute("type", "matrix");
-                feColorMatrix.setAttribute("values", redShiftMatrix);
-                feColorMatrix.setAttribute("in", input);
-            }
-
-            return filter;
-        }
-
-        private addColorOverlay(overlayColor: string, doc: Document,
-            filter: SVGFilterElement, input: string, layer: string, overlayIntensity: number)
-        {
-            let output = input;
-            const overlayColorHsl = Colors.RgbaColor.toHslaColor(Colors.RgbaColor.parse(overlayColor));
-            if (overlayColorHsl.saturation > colorOverlayLimit)
-            {
-                const isDark = overlayColorHsl.lightness < 0.5;
-                const blendMode = isDark ? "lighten" : "darken";
-                overlayColorHsl.lightness *= isDark ? 1.1 : 1;
-                const
-                    feFlood = doc.createElementNS(svgNs, "feFlood"),
-                    feComposite = doc.createElementNS(svgNs, "feComposite"),
-                    feBlend = doc.createElementNS(svgNs, "feBlend");
-
-                filter.appendChild(feFlood);
-                feFlood.setAttribute("result", "flood_" + layer);
-                feFlood.setAttribute("flood-color", overlayColorHsl.toString());
-                feFlood.setAttribute("flood-opacity", (overlayIntensity / 2 + 0.5).toString());
-
-                filter.appendChild(feComposite);
-                feComposite.setAttribute("result", "flood_alpha_" + layer);
-                feComposite.setAttribute("in", "flood_" + layer);
-                feComposite.setAttribute("in2", "SourceAlpha");
-                feComposite.setAttribute("operator", "in");
-
-                filter.appendChild(feBlend);
-                feBlend.setAttribute("result", "blend_" + layer);
-                feBlend.setAttribute("in", "flood_alpha_" + layer);
-                feBlend.setAttribute("in2", input);
-                feBlend.setAttribute("mode", blendMode);
-
-                output = "blend_" + layer;
-            }
-            return output;
-        }
-
-        private createColorReplacementFilter(doc: Document,
-            filterId: string,
-            newColor: Colors.RgbaColor,
-            ...originalColors: Colors.RgbaColor[])
-        {
-            const replaceColorFilter = doc.createElementNS(svgNs, "filter");
-            replaceColorFilter.id = filterId;
-            replaceColorFilter.setAttribute("color-interpolation-filters", "sRGB");
-
-            const feComponentTransfer = doc.createElementNS(svgNs, "feComponentTransfer"),
-                feFuncR = doc.createElementNS(svgNs, "feFuncR"),
-                feFuncG = doc.createElementNS(svgNs, "feFuncG"),
-                feFuncB = doc.createElementNS(svgNs, "feFuncB");
-            feFuncR.setAttribute("type", "discrete");
-            feFuncG.setAttribute("type", "discrete");
-            feFuncB.setAttribute("type", "discrete");
-            feFuncR.setAttribute("tableValues",
-                this.convertColorsToComponentTransfer(...originalColors.map(x => x.red)));
-            feFuncG.setAttribute("tableValues",
-                this.convertColorsToComponentTransfer(...originalColors.map(x => x.green)));
-            feFuncB.setAttribute("tableValues",
-                this.convertColorsToComponentTransfer(...originalColors.map(x => x.blue)));
-            feComponentTransfer.appendChild(feFuncR);
-            feComponentTransfer.appendChild(feFuncG);
-            feComponentTransfer.appendChild(feFuncB);
-            replaceColorFilter.appendChild(feComponentTransfer);
-
-            const cutColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
-                selectedColorLayer = "selectedColor";
-            cutColorMatrix.setAttribute("result", selectedColorLayer);
-            cutColorMatrix.setAttribute("type", "matrix");
-            cutColorMatrix.setAttribute("values", `1 0 0 0 0
+        const cutColorMatrix = doc.createElementNS(svgNs, "feColorMatrix"),
+            selectedColorLayer = "selectedColor";
+        cutColorMatrix.setAttribute("result", selectedColorLayer);
+        cutColorMatrix.setAttribute("type", "matrix");
+        cutColorMatrix.setAttribute("values", `1 0 0 0 0
                                                    0 1 0 0 0
                                                    0 0 1 0 0
                                                    1 1 1 1 -3`);
-            replaceColorFilter.appendChild(cutColorMatrix);
+        replaceColorFilter.appendChild(cutColorMatrix);
 
-            const feFlood = doc.createElementNS(svgNs, "feFlood");
-            feFlood.setAttribute("flood-color", newColor.toString());
-            replaceColorFilter.appendChild(feFlood);
+        const feFlood = doc.createElementNS(svgNs, "feFlood");
+        feFlood.setAttribute("flood-color", newColor.toString());
+        replaceColorFilter.appendChild(feFlood);
 
-            const feCompositeSelectedColor = doc.createElementNS(svgNs, "feComposite");
-            feCompositeSelectedColor.setAttribute("operator", "in");
-            feCompositeSelectedColor.setAttribute("in2", selectedColorLayer);
-            replaceColorFilter.appendChild(feCompositeSelectedColor);
+        const feCompositeSelectedColor = doc.createElementNS(svgNs, "feComposite");
+        feCompositeSelectedColor.setAttribute("operator", "in");
+        feCompositeSelectedColor.setAttribute("in2", selectedColorLayer);
+        replaceColorFilter.appendChild(feCompositeSelectedColor);
 
-            const feCompositeSourceGraphic = doc.createElementNS(svgNs, "feComposite");
-            feCompositeSourceGraphic.setAttribute("operator", "over");
-            feCompositeSourceGraphic.setAttribute("in2", "SourceGraphic");
-            replaceColorFilter.appendChild(feCompositeSourceGraphic);
+        const feCompositeSourceGraphic = doc.createElementNS(svgNs, "feComposite");
+        feCompositeSourceGraphic.setAttribute("operator", "over");
+        feCompositeSourceGraphic.setAttribute("in2", "SourceGraphic");
+        replaceColorFilter.appendChild(feCompositeSourceGraphic);
 
-            return replaceColorFilter;
-        }
+        return replaceColorFilter;
+    }
 
-        private convertColorsToComponentTransfer(...colorComponents: number[]): string
-        {
-            const transfer = Array.apply(null, Array(256)).map(Number.prototype.valueOf, 0);
-            colorComponents.forEach(c => transfer[Math.round(c)] = 1);
-            return transfer.join(" ");
-        }
+    private convertColorsToComponentTransfer(...colorComponents: number[]): string
+    {
+        const transfer = Array.apply(null, Array(256)).map(Number.prototype.valueOf, 0);
+        colorComponents.forEach(c => transfer[Math.round(c)] = 1);
+        return transfer.join(" ");
     }
 }

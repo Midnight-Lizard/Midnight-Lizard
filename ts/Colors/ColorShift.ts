@@ -1,16 +1,13 @@
-namespace MidnightLizard.Colors
+/**
+ * ColorShift
+ */
+export interface ColorShift
 {
-    /**
-     * ColorShift
-     */
-    export interface ColorShift
-    {
-        readonly saturationLimit: number;
-        readonly contrast: number;
-        readonly lightnessLimit: number;
-        readonly graySaturation: number;
-        readonly grayHue: number;
-        readonly hueGravity: number;
-        readonly replaceAllHues: boolean;
-    }
+    readonly saturationLimit: number;
+    readonly contrast: number;
+    readonly lightnessLimit: number;
+    readonly graySaturation: number;
+    readonly grayHue: number;
+    readonly hueGravity: number;
+    readonly replaceAllHues: boolean;
 }

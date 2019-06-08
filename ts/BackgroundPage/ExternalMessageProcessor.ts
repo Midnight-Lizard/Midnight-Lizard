@@ -1,79 +1,80 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="./IBackgroundMessageBus.ts" />
-/// <reference path="../Settings/Messages.ts" />
-/// <reference path="../Settings/Public/PublicSettingsManager.ts" />
-
-namespace MidnightLizard.BackgroundPage
+import { injectable } from "../Utils/DI";
+import { IBackgroundMessageBus } from "./IBackgroundMessageBus";
+import
 {
-    export abstract class IExternalMessageProcessor { }
+    PublicSchemesChanged, MessageToBackgroundPage, MessageType, ErrorMessage
+} from "../Settings/Messages";
+import { IPublicSettingsManager } from "../Settings/Public/PublicSettingsManager";
+import { PublicSchemeId } from "../Settings/Public/PublicScheme";
 
-    @DI.injectable(IExternalMessageProcessor)
-    class ExternalMessageProcessor implements IExternalMessageProcessor
+export abstract class IExternalMessageProcessor { }
+
+@injectable(IExternalMessageProcessor)
+export class ExternalMessageProcessor implements IExternalMessageProcessor
+{
+    constructor(
+        private readonly messageBus: IBackgroundMessageBus,
+        private readonly publicSettingsManager: IPublicSettingsManager)
     {
-        constructor(
-            private readonly messageBus: MidnightLizard.BackgroundPage.IBackgroundMessageBus,
-            private readonly publicSettingsManager: MidnightLizard.Settings.Public.IPublicSettingsManager)
-        {
-            messageBus.onMessage.addListener(this.processMessage, this);
-            publicSettingsManager.onPublicSchemesChanged.addListener(this.notifyAboutChanges, this);
-        }
+        messageBus.onMessage.addListener(this.processMessage, this);
+        publicSettingsManager.onPublicSchemesChanged.addListener(this.notifyAboutChanges, this);
+    }
 
-        private notifyAboutChanges(publicSchemeIds?: MidnightLizard.Settings.Public.PublicSchemeId[])
+    private notifyAboutChanges(publicSchemeIds?: PublicSchemeId[])
+    {
+        if (publicSchemeIds)
         {
-            if (publicSchemeIds)
+            this.messageBus.broadcastMessage(
+                new PublicSchemesChanged(publicSchemeIds), "portal");
+        }
+    }
+
+    private async sendInstalledPublicSchemesBackTo(port: any)
+    {
+        this.messageBus.postMessage(port,
+            new PublicSchemesChanged(
+                await this.publicSettingsManager.getInstalledPublicSchemeIds()));
+    }
+
+    private async processMessage(msg?: { port: any, message: MessageToBackgroundPage })
+    {
+        if (msg)
+        {
+            const { port, message } = msg;
+            try
             {
-                this.messageBus.broadcastMessage(
-                    new MidnightLizard.Settings.PublicSchemesChanged(publicSchemeIds), "portal");
+                switch (message.type)
+                {
+                    case MessageType.GetInstalledPublicSchemes:
+                        await this.sendInstalledPublicSchemesBackTo(port);
+                        break;
+
+                    case MessageType.InstallPublicScheme:
+                        await this.publicSettingsManager.installPublicScheme(message.publicScheme);
+                        break;
+
+                    case MessageType.UninstallPublicScheme:
+                        await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
+                        break;
+
+                    case MessageType.ApplyPublicScheme:
+                        await this.publicSettingsManager.applyPublicScheme(message.publicSchemeId, message.hostName);
+                        break;
+
+                    case MessageType.SetPublicSchemeAsDefault:
+                        await this.publicSettingsManager.setPublicSchemeAsDefault(message.publicSchemeId);
+                        break;
+
+                    default:
+                        break;
+                }
             }
-        }
-
-        private async sendInstalledPublicSchemesBackTo(port: any)
-        {
-            this.messageBus.postMessage(port,
-                new MidnightLizard.Settings.PublicSchemesChanged(
-                    await this.publicSettingsManager.getInstalledPublicSchemeIds()));
-        }
-
-        private async processMessage(msg?: { port: any, message: Settings.MessageToBackgroundPage })
-        {
-            if (msg)
+            catch (error)
             {
-                const { port, message } = msg;
-                try
-                {
-                    switch (message.type)
-                    {
-                        case Settings.MessageType.GetInstalledPublicSchemes:
-                            await this.sendInstalledPublicSchemesBackTo(port);
-                            break;
-
-                        case Settings.MessageType.InstallPublicScheme:
-                            await this.publicSettingsManager.installPublicScheme(message.publicScheme);
-                            break;
-
-                        case Settings.MessageType.UninstallPublicScheme:
-                            await this.publicSettingsManager.uninstallPublicScheme(message.publicSchemeId);
-                            break;
-
-                        case Settings.MessageType.ApplyPublicScheme:
-                            await this.publicSettingsManager.applyPublicScheme(message.publicSchemeId, message.hostName);
-                            break;
-
-                        case Settings.MessageType.SetPublicSchemeAsDefault:
-                            await this.publicSettingsManager.setPublicSchemeAsDefault(message.publicSchemeId);
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-                catch (error)
-                {
-                    this.messageBus.postMessage(port,
-                        new MidnightLizard.Settings.ErrorMessage("Midnight Lizard extension failed", {
-                            message: error.message || error, stack: error.stack
-                        }));
-                }
+                this.messageBus.postMessage(port,
+                    new ErrorMessage("Midnight Lizard extension failed", {
+                        message: error.message || error, stack: error.stack
+                    }));
             }
         }
     }

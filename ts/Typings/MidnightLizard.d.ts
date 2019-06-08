@@ -1,5 +1,5 @@
 /// <reference path="../Colors/ColorEntry.ts" />
-/// <reference path="../Events/-Events.ts" />
+/// <reference path="../Events/-ts" />
 /// <reference path="../ContentScript/-ContentScript.ts" />
 
 interface Document
@@ -15,21 +15,21 @@ interface Node
     /** number of times when element has been mutated faster than mutation trottle timeout */
     mlMutationThrottledCount: number | undefined;
     /** Processing order */
-    mlOrder: MidnightLizard.ContentScript.ProcessingOrder | undefined;
+    mlOrder: ProcessingOrder | undefined;
     mlRowNumber: number | undefined;
     /** If true - Midnight Lizard would not process this element */
     mlIgnore: boolean | null | undefined;
     mlFixed?: string | null;
     /** Calculated background color */
-    mlBgColor: MidnightLizard.Colors.ColorEntry | null | undefined;
+    mlBgColor: ColorEntry | null | undefined;
     /** Calculated font color */
-    mlColor: MidnightLizard.Colors.ColorEntry | null | undefined;
+    mlColor: ColorEntry | null | undefined;
     // mlEditableContentColor: string | null | undefined;
     // mlEditableContentBackgroundColor: string | null | undefined;
     /** Calculated parent background color */
-    mlParentBgColor: MidnightLizard.Colors.ColorEntry | null | undefined;
+    mlParentBgColor: ColorEntry | null | undefined;
     /** Calculated text shadow color */
-    mlTextShadow: MidnightLizard.Colors.ColorEntry | null | undefined;
+    mlTextShadow: ColorEntry | null | undefined;
     ////////////////////////////////////////////////////////////////
     /** Real Node is not a pseudo element */
     isPseudo: false;
@@ -38,7 +38,7 @@ interface Node
     isEditableContent?: boolean;
     alwaysRecalculateStyles?: boolean;
     /** Occurs when IDocumentProcessor applies RoomRules on this element */
-    onRoomRulesApplied: MidnightLizard.Events.ArgumentedEventDispatcher<MidnightLizard.ContentScript.RoomRules>;
+    onRoomRulesApplied: ArgumentedEventDispatcher<RoomRules>;
     /** cache of getBoundingClientRect call results */
     mlRect: ClientRect | null | undefined;
     /** Computed z-index */
@@ -118,5 +118,5 @@ interface Window
 
 interface MutationObserver
 {
-    state: MidnightLizard.ContentScript.ObservationState;
+    state: ObservationState;
 }

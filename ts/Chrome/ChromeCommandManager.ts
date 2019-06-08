@@ -1,16 +1,14 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Popup/ICommandManager.ts" />
+import { injectable } from "../Utils/DI";
+import { ICommandManager } from "../Popup/ICommandManager";
+import { ChromePromise } from "./ChromePromise";
 
-namespace Chrome
+@injectable(ICommandManager)
+export class ChromeCommandManager implements ICommandManager
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.Popup.ICommandManager)
-    class ChromeCommandManager implements MidnightLizard.Popup.ICommandManager
-    {
-        constructor(protected readonly _chromePromise: Chrome.ChromePromise) { }
+    constructor(protected readonly _chromePromise: ChromePromise) { }
 
-        getCommands(): Promise<{ name?: string, description?: string, shortcut?: string }[]>
-        {
-            return this._chromePromise.commands.getAll();
-        }
+    getCommands(): Promise<{ name?: string, description?: string, shortcut?: string }[]>
+    {
+        return this._chromePromise.commands.getAll();
     }
 }

@@ -1,28 +1,25 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../BackgroundPage/ICommandListener.ts" />
-/// <reference path="../Settings/IApplicationSettings.ts" />
+import { injectable } from "../Utils/DI";
+import { ICommandListener } from "../BackgroundPage/ICommandListener";
+import { ArgumentedEventDispatcher } from "../Events/EventDispatcher";
+import { IApplicationSettings } from "../Settings/IApplicationSettings";
 
-namespace Chrome
+@injectable(ICommandListener)
+export class ChromeCommandListener implements ICommandListener
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.BackgroundPage.ICommandListener)
-    class ChromeCommandListener implements MidnightLizard.BackgroundPage.ICommandListener
+    protected _onCommand = new ArgumentedEventDispatcher<string>();
+    public get onCommand()
     {
-        protected _onCommand = new MidnightLizard.Events.ArgumentedEventDispatcher<string>();
-        public get onCommand()
-        {
-            return this._onCommand.event;
-        }
+        return this._onCommand.event;
+    }
 
-        constructor(app: MidnightLizard.Settings.IApplicationSettings)
+    constructor(app: IApplicationSettings)
+    {
+        if (app.isDesktop)
         {
-            if (app.isDesktop)
+            chrome.commands.onCommand.addListener(command =>
             {
-                chrome.commands.onCommand.addListener(command =>
-                {
-                    this._onCommand.raise(command);
-                });
-            }
+                this._onCommand.raise(command);
+            });
         }
     }
 }

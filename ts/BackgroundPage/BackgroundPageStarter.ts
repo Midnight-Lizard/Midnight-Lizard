@@ -1,30 +1,33 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Typings/MidnightLizard.d.ts" />
-/// <reference path="./CommandProcessor.ts" />
-/// <reference path="./IZoomService.ts" />
-/// <reference path="./IUninstallUrlSetter.ts" />
-/// <reference path="./IThemeProcessor.ts" />
-/// <reference path="../Settings/ExtensionModule.ts" />
-/// <reference path="./IApplicationInstaller.ts" />
-/// <reference path="./ExternalMessageProcessor.ts" />
-/// <reference path="./LocalMessageProcessor.ts" />
+import { Container } from "../Utils/DI";
+import { CurrentExtensionModule, ExtensionModule } from "../Settings/ExtensionModule";
+import { ICommandProcessor } from "./CommandProcessor";
+import { IZoomService } from "./IZoomService";
+import { IUninstallUrlSetter } from "./IUninstallUrlSetter";
+import { IThemeProcessor } from "./IThemeProcessor";
+import { IApplicationInstaller } from "./IApplicationInstaller";
+import { IExternalMessageProcessor } from "./ExternalMessageProcessor";
+import { ILocalMessageProcessor } from "./LocalMessageProcessor";
 
-namespace MidnightLizard.BackgroundPage
+Container.register(Document, class { constructor() { return document } });
+Container.register(CurrentExtensionModule, class
 {
-    DI.Container.register(Document, class { constructor() { return document } });
-    DI.Container.register(Settings.CurrentExtensionModule, class
+    constructor()
     {
-        constructor()
-        {
-            return new Settings.CurrentExtensionModule(
-                Settings.ExtensionModule.BackgroundPage);
-        }
-    });
-    DI.Container.resolve(ICommandProcessor);
-    DI.Container.resolve(IZoomService);
-    DI.Container.resolve(IUninstallUrlSetter);
-    DI.Container.resolve(IThemeProcessor);
-    DI.Container.resolve(IApplicationInstaller);
-    DI.Container.resolve(IExternalMessageProcessor);
-    DI.Container.resolve(ILocalMessageProcessor);
+        return new CurrentExtensionModule(
+            ExtensionModule.BackgroundPage);
+    }
+});
+
+export class BackgroundPageStarter
+{
+    constructor(...registerations: any[])
+    {
+        Container.resolve(ICommandProcessor);
+        Container.resolve(IZoomService);
+        Container.resolve(IUninstallUrlSetter);
+        Container.resolve(IThemeProcessor);
+        Container.resolve(IApplicationInstaller);
+        Container.resolve(IExternalMessageProcessor);
+        Container.resolve(ILocalMessageProcessor);
+    }
 }

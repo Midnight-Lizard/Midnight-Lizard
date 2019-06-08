@@ -1,12 +1,26 @@
-/// <reference path="./ChromeApplicationInstaller.ts" />
-/// <reference path="./ChromeStorageManager.ts" />
-/// <reference path="./ChromeCommandListener.ts" />
-/// <reference path="./ChromeApplicationSettings.ts" />
-/// <reference path="./ChromeStorageManager.ts" />
-/// <reference path="./ChromeSettingsBus.ts" />
-/// <reference path="./ChromeZoomService.ts" />
-/// <reference path="./ChromeUninstallUrlSetter.ts" />
-/// <reference path="./ChromeTranslationAccessor.ts" />
-/// <reference path="./FirefoxThemeProcessor.ts" />
-/// <reference path="./ChromeBackgroundMessageBus.ts" />
-/// <reference path="../BackgroundPage/BackgroundPageStarter.ts" />
+
+import { ChromeApplicationInstaller } from "./ChromeApplicationInstaller";
+import { ChromeStorageManager } from "./ChromeStorageManager";
+import { ChromeCommandListener } from "./ChromeCommandListener";
+import { ChromeApplicationSettings } from "./ChromeApplicationSettings";
+import { ChromeSettingsBus } from "./ChromeSettingsBus";
+import { ChromeTranslationAccessor } from "./ChromeTranslationAccessor";
+import { ChromeBackgroundMessageBus } from "./ChromeBackgroundMessageBus";
+import { BackgroundPageStarter } from "../BackgroundPage/BackgroundPageStarter";
+import { ChromeZoomService } from "./ChromeZoomService";
+import { ChromeUninstallUrlSetter } from "./ChromeUninstallUrlSetter";
+import { FirefoxThemeProcessor } from "./FirefoxThemeProcessor";
+
+new BackgroundPageStarter(
+    ChromeApplicationInstaller,
+    ChromeStorageManager,
+    ChromeCommandListener,
+    ChromeApplicationSettings,
+    ChromeStorageManager,
+    ChromeSettingsBus,
+    ChromeZoomService,
+    ChromeUninstallUrlSetter,
+    ChromeTranslationAccessor,
+    FirefoxThemeProcessor,
+    ChromeBackgroundMessageBus
+);

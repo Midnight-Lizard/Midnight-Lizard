@@ -1,56 +1,53 @@
-namespace MidnightLizard.PageScript
+export class QueryCommandManager
 {
-    export class QueryCommandManager
+    public overrideQueryCommandValue(doc: Document)
     {
-        public overrideQueryCommandValue(doc: Document)
+        if (!doc.originalQueryCommandValue)
         {
-            if (!doc.originalQueryCommandValue)
-            {
-                doc.originalQueryCommandValue = doc.queryCommandValue.bind(doc);
-                doc.queryCommandValue = this.queryCommandValue.bind(this, doc);
-            }
+            doc.originalQueryCommandValue = doc.queryCommandValue.bind(doc);
+            doc.queryCommandValue = this.queryCommandValue.bind(this, doc);
         }
+    }
 
-        protected queryCommandValue(doc: Document, command: string)
+    protected queryCommandValue(doc: Document, command: string)
+    {
+        if (command === "foreColor" || command === "backColor")
         {
-            if (command === "foreColor" || command === "backColor")
+            let selection = doc.defaultView!.getSelection();
+            if (selection)
             {
-                let selection = doc.defaultView!.getSelection();
-                if (selection)
+                let range = selection.getRangeAt(0);
+                if (range && range.commonAncestorContainer)
                 {
-                    let range = selection.getRangeAt(0);
-                    if (range && range.commonAncestorContainer)
+                    let curPosElement: HTMLElement | null = range.commonAncestorContainer instanceof HTMLElement
+                        ? range.commonAncestorContainer as HTMLElement
+                        : range.commonAncestorContainer.parentElement
+                    if (curPosElement)
                     {
-                        let curPosElement: HTMLElement | null = range.commonAncestorContainer instanceof HTMLElement
-                            ? range.commonAncestorContainer as HTMLElement
-                            : range.commonAncestorContainer.parentElement
-                        if (curPosElement)
+                        let result: string;
+                        switch (command)
                         {
-                            let result: string;
-                            switch (command)
-                            {
-                                case "foreColor":
-                                    if (result = curPosElement.style.getPropertyValue("--original-color"))
-                                    {
-                                        return result;
-                                    }
-                                    break;
+                            case "foreColor":
+                                if (result = curPosElement.style.getPropertyValue("--original-color"))
+                                {
+                                    return result;
+                                }
+                                break;
 
-                                case "backColor":
-                                    if (result = curPosElement.style.getPropertyValue("--original-background-color"))
-                                    {
-                                        return result
-                                    }
-                                    break;
+                            case "backColor":
+                                if (result = curPosElement.style.getPropertyValue("--original-background-color"))
+                                {
+                                    return result
+                                }
+                                break;
 
-                                default:
-                                    break;
-                            }
+                            default:
+                                break;
                         }
                     }
                 }
             }
-            return doc.originalQueryCommandValue(command);
         }
+        return doc.originalQueryCommandValue(command);
     }
 }

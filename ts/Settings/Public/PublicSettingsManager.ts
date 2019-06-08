@@ -1,85 +1,68 @@
-/// <reference path="../../DI/-DI.ts" />
-/// <reference path="../IApplicationSettings.ts" />
-/// <reference path="../IStorageManager.ts" />
-/// <reference path="../MatchPatternProcessor.ts" />
-/// <reference path="../../i18n/ITranslationAccessor.ts" />
-/// <reference path="../BaseSettingsManager.ts" />
-/// <reference path="./PublicScheme.ts" />
+import { PublicSchemeId, PublicScheme } from "./PublicScheme";
+import { ColorSchemeId } from "../ColorSchemes";
+import { ArgumentedEvent } from "../../Events/Event";
+import { BaseSettingsManager } from "../BaseSettingsManager";
+import { ArgumentedEventDispatcher } from "../../Events/EventDispatcher";
+import { IApplicationSettings } from "../IApplicationSettings";
+import { IStorageManager } from "../IStorageManager";
+import { ISettingsBus } from "../ISettingsBus";
+import { IMatchPatternProcessor } from "../MatchPatternProcessor";
+import { IRecommendations } from "../Recommendations";
+import { injectable } from "../../Utils/DI";
+import { ITranslationAccessor } from "../../i18n/ITranslationAccessor";
 
-namespace MidnightLizard.Settings.Public
+declare type PublicSchemesStorage = { publicSchemeIds: PublicSchemeId[] };
+
+export abstract class IPublicSettingsManager
 {
-    declare type PublicSchemesStorage = { publicSchemeIds: PublicSchemeId[] };
+    public abstract async installPublicScheme(publicScheme: PublicScheme): Promise<void>;
+    public abstract async uninstallPublicScheme(publicSchemeId: PublicSchemeId): Promise<void>;
+    public abstract async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId): Promise<void>;
+    public abstract async getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
+    public abstract async getInstalledPublicColorSchemeIds(): Promise<ColorSchemeId[]>;
+    public abstract get onPublicSchemesChanged(): ArgumentedEvent<PublicSchemeId[]>;
 
-    export abstract class IPublicSettingsManager
+    public abstract async applyPublicScheme(publicSchemeId: PublicSchemeId, hostName: string): Promise<void>;
+    public abstract async setPublicSchemeAsDefault(publicSchemeId: PublicSchemeId): Promise<void>;
+}
+
+@injectable(IPublicSettingsManager)
+class PublicSettingsManager extends BaseSettingsManager implements IPublicSettingsManager
+{
+    private _onPublicSchemesChanged = new ArgumentedEventDispatcher<PublicSchemeId[]>();
+    public get onPublicSchemesChanged()
     {
-        public abstract async installPublicScheme(publicScheme: Public.PublicScheme): Promise<void>;
-        public abstract async uninstallPublicScheme(publicSchemeId: Public.PublicSchemeId): Promise<void>;
-        public abstract async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId): Promise<void>;
-        public abstract async getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
-        public abstract async getInstalledPublicColorSchemeIds(): Promise<Settings.ColorSchemeId[]>;
-        public abstract get onPublicSchemesChanged(): MidnightLizard.Events.ArgumentedEvent<PublicSchemeId[]>;
-
-        public abstract async applyPublicScheme(publicSchemeId: Public.PublicSchemeId, hostName: string): Promise<void>;
-        public abstract async setPublicSchemeAsDefault(publicSchemeId: Public.PublicSchemeId): Promise<void>;
+        return this._onPublicSchemesChanged.event;
     }
 
-    @DI.injectable(IPublicSettingsManager)
-    class PublicSettingsManager extends MidnightLizard.Settings.BaseSettingsManager implements IPublicSettingsManager
+    constructor(rootDocument: Document,
+        app: IApplicationSettings,
+        storageManager: IStorageManager,
+        settingsBus: ISettingsBus,
+        matchPatternProcessor: IMatchPatternProcessor,
+        i18n: ITranslationAccessor,
+        rec: IRecommendations)
     {
-        private _onPublicSchemesChanged = new MidnightLizard.Events.ArgumentedEventDispatcher<PublicSchemeId[]>();
-        public get onPublicSchemesChanged()
+        super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
+        this.isInit = true
+        storageManager.onStorageChanged.addListener(this.onStorageChanged, this);
+    }
+
+    public initDefaultColorSchemes() { }
+
+    protected initCurrentSettings() { }
+
+    public async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId)
+    {
+        const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
+        if (storage.publicSchemeIds.length > 0)
         {
-            return this._onPublicSchemesChanged.event;
-        }
+            const installedPublicSchemes = Object.values(await this.getInstalledPublicSchemes(storage));
 
-        constructor(rootDocument: Document,
-            app: MidnightLizard.Settings.IApplicationSettings,
-            storageManager: MidnightLizard.Settings.IStorageManager,
-            settingsBus: MidnightLizard.Settings.ISettingsBus,
-            matchPatternProcessor: MidnightLizard.Settings.IMatchPatternProcessor,
-            i18n: MidnightLizard.i18n.ITranslationAccessor,
-            rec: MidnightLizard.Settings.IRecommendations)
-        {
-            super(rootDocument, app, storageManager, settingsBus, matchPatternProcessor, i18n, rec);
-            this.isInit = true
-            storageManager.onStorageChanged.addListener(this.onStorageChanged, this);
-        }
-
-        public initDefaultColorSchemes() { }
-
-        protected initCurrentSettings() { }
-
-        public async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId)
-        {
-            const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
-            if (storage.publicSchemeIds.length > 0)
-            {
-                const installedPublicSchemes = Object.values(await this.getInstalledPublicSchemes(storage));
-
-                const publicScheme = installedPublicSchemes.find(x => x.cs.colorSchemeId === colorSchemeId);
-                if (publicScheme)
-                {
-                    let existingPublicSchemeIdIndex = storage.publicSchemeIds.findIndex(id => id === publicScheme.id);
-                    if (existingPublicSchemeIdIndex > -1)
-                    {
-                        storage.publicSchemeIds.splice(existingPublicSchemeIdIndex, 1);
-                    }
-                    await this._storageManager.set(storage);
-                }
-            }
-        }
-
-        public async uninstallPublicScheme(publicSchemeId: Public.PublicSchemeId)
-        {
-            const key = `ps:${publicSchemeId}`;
-            const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
+            const publicScheme = installedPublicSchemes.find(x => x.cs.colorSchemeId === colorSchemeId);
             if (publicScheme)
             {
-                await this.deleteUserColorScheme(publicScheme.cs.colorSchemeId)
-                await this._storageManager.remove(key);
-
-                const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
-                let existingPublicSchemeIdIndex = storage.publicSchemeIds.findIndex(id => id === publicSchemeId);
+                let existingPublicSchemeIdIndex = storage.publicSchemeIds.findIndex(id => id === publicScheme.id);
                 if (existingPublicSchemeIdIndex > -1)
                 {
                     storage.publicSchemeIds.splice(existingPublicSchemeIdIndex, 1);
@@ -87,101 +70,120 @@ namespace MidnightLizard.Settings.Public
                 await this._storageManager.set(storage);
             }
         }
+    }
 
-        public async applyPublicScheme(publicSchemeId: Public.PublicSchemeId, hostName: string)
+    public async uninstallPublicScheme(publicSchemeId: PublicSchemeId)
+    {
+        const key = `ps:${publicSchemeId}`;
+        const publicScheme = (await this._storageManager.get({ [key]: null as any as PublicScheme }))[key];
+        if (publicScheme)
         {
-            const key = `ps:${publicSchemeId}`;
-            const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
-            if (publicScheme)
-            {
-                await this._storageManager.set({
-                    [`ws:${hostName}`]: {
-                        colorSchemeId: publicScheme.cs.colorSchemeId,
-                        runOnThisSite: true
-                    }
-                });
-            }
-            else
-            {
-                throw new Error("Color scheme cannot be found");
-            }
-        }
-
-        public async setPublicSchemeAsDefault(publicSchemeId: Public.PublicSchemeId)
-        {
-            const key = `ps:${publicSchemeId}`;
-            const publicScheme = (await this._storageManager.get({ [key]: null as any as Public.PublicScheme }))[key];
-            if (publicScheme)
-            {
-                await this.getDefaultSettings(false);
-                this._defaultSettings = Object.assign(this._defaultSettings, publicScheme.cs);
-                await this._storageManager.set(this._defaultSettings);
-            }
-            else
-            {
-                throw new Error("Color scheme cannot be found");
-            }
-        }
-
-        public async installPublicScheme(publicScheme: PublicScheme): Promise<void>
-        {
-            this.applyBackwardCompatibility(publicScheme.cs);
-            await this.saveUserColorScheme(publicScheme.cs);
+            await this.deleteUserColorScheme(publicScheme.cs.colorSchemeId)
+            await this._storageManager.remove(key);
 
             const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
-
-            const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
-
-            const overlappingSchemes = Object.entries(existingPublicSchemes)
-                .filter(([key, value]) => value.cs.colorSchemeId === publicScheme.cs.colorSchemeId);
-
-            if (overlappingSchemes.length > 0)
+            let existingPublicSchemeIdIndex = storage.publicSchemeIds.findIndex(id => id === publicSchemeId);
+            if (existingPublicSchemeIdIndex > -1)
             {
-                const overlappingIds = overlappingSchemes.map(([key, value]) => value.id);
-                storage.publicSchemeIds = storage.publicSchemeIds.filter(id => !overlappingIds.includes(id));
-
-                await this._storageManager.remove(overlappingSchemes.map(([key, _]) => key));
+                storage.publicSchemeIds.splice(existingPublicSchemeIdIndex, 1);
             }
-
-            if (!storage.publicSchemeIds.find(id => id === publicScheme.id))
-            {
-                storage.publicSchemeIds.push(publicScheme.id);
-            }
-            (storage as any)[`ps:${publicScheme.id}`] = publicScheme;
             await this._storageManager.set(storage);
         }
+    }
 
-        public async getInstalledPublicColorSchemeIds(): Promise<ColorSchemeId[]>
+    public async applyPublicScheme(publicSchemeId: PublicSchemeId, hostName: string)
+    {
+        const key = `ps:${publicSchemeId}`;
+        const publicScheme = (await this._storageManager.get({ [key]: null as any as PublicScheme }))[key];
+        if (publicScheme)
         {
-            const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
+            await this._storageManager.set({
+                [`ws:${hostName}`]: {
+                    colorSchemeId: publicScheme.cs.colorSchemeId,
+                    runOnThisSite: true
+                }
+            });
+        }
+        else
+        {
+            throw new Error("Color scheme cannot be found");
+        }
+    }
 
-            const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
+    public async setPublicSchemeAsDefault(publicSchemeId: PublicSchemeId)
+    {
+        const key = `ps:${publicSchemeId}`;
+        const publicScheme = (await this._storageManager.get({ [key]: null as any as PublicScheme }))[key];
+        if (publicScheme)
+        {
+            await this.getDefaultSettings(false);
+            this._defaultSettings = Object.assign(this._defaultSettings, publicScheme.cs);
+            await this._storageManager.set(this._defaultSettings);
+        }
+        else
+        {
+            throw new Error("Color scheme cannot be found");
+        }
+    }
 
-            return Object.values(existingPublicSchemes).map(x => x.cs.colorSchemeId);
+    public async installPublicScheme(publicScheme: PublicScheme): Promise<void>
+    {
+        this.applyBackwardCompatibility(publicScheme.cs);
+        await this.saveUserColorScheme(publicScheme.cs);
+
+        const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
+
+        const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
+
+        const overlappingSchemes = Object.entries(existingPublicSchemes)
+            .filter(([key, value]) => value.cs.colorSchemeId === publicScheme.cs.colorSchemeId);
+
+        if (overlappingSchemes.length > 0)
+        {
+            const overlappingIds = overlappingSchemes.map(([key, value]) => value.id);
+            storage.publicSchemeIds = storage.publicSchemeIds.filter(id => !overlappingIds.includes(id));
+
+            await this._storageManager.remove(overlappingSchemes.map(([key, _]) => key));
         }
 
-        private getInstalledPublicSchemes(storage: PublicSchemesStorage)
+        if (!storage.publicSchemeIds.find(id => id === publicScheme.id))
         {
-            return this._storageManager.get(
-                storage.publicSchemeIds.reduce((all, id) =>
-                {
-                    all[`ps:${id}`] = { colorScheme: {} } as any;
-                    return all;
-                }, {} as { [key: string]: Public.PublicScheme }));
+            storage.publicSchemeIds.push(publicScheme.id);
         }
+        (storage as any)[`ps:${publicScheme.id}`] = publicScheme;
+        await this._storageManager.set(storage);
+    }
 
-        public async getInstalledPublicSchemeIds()
-        {
-            return (await this._storageManager.get<PublicSchemesStorage>({ publicSchemeIds: [] })).publicSchemeIds;
-        }
+    public async getInstalledPublicColorSchemeIds(): Promise<ColorSchemeId[]>
+    {
+        const storage: PublicSchemesStorage = { publicSchemeIds: await this.getInstalledPublicSchemeIds() };
 
-        private async onStorageChanged(changes: any)
-        {
-            const key: keyof PublicSchemesStorage = 'publicSchemeIds';
-            if (key in changes)
+        const existingPublicSchemes = await this.getInstalledPublicSchemes(storage);
+
+        return Object.values(existingPublicSchemes).map(x => x.cs.colorSchemeId);
+    }
+
+    private getInstalledPublicSchemes(storage: PublicSchemesStorage)
+    {
+        return this._storageManager.get(
+            storage.publicSchemeIds.reduce((all, id) =>
             {
-                this._onPublicSchemesChanged.raise(await this.getInstalledPublicSchemeIds());
-            }
+                all[`ps:${id}`] = { colorScheme: {} } as any;
+                return all;
+            }, {} as { [key: string]: PublicScheme }));
+    }
+
+    public async getInstalledPublicSchemeIds()
+    {
+        return (await this._storageManager.get<PublicSchemesStorage>({ publicSchemeIds: [] })).publicSchemeIds;
+    }
+
+    private async onStorageChanged(changes: any)
+    {
+        const key: keyof PublicSchemesStorage = 'publicSchemeIds';
+        if (key in changes)
+        {
+            this._onPublicSchemesChanged.raise(await this.getInstalledPublicSchemeIds());
         }
     }
 }

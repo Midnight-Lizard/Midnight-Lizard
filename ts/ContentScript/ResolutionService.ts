@@ -1,37 +1,31 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="./DocumentZoomObserver.ts" />
+import { injectable } from "../Utils/DI";
+import { IDocumentZoomObserver } from "./DocumentZoomObserver";
 
+const defaultDpi = 96;
 
-namespace MidnightLizard.ContentScript
+const dpiLevels = [72, 96, 120, 144, 192, 288, 384];
+
+export abstract class IResolutionService
 {
-    const defaultDpi = 96;
+    abstract getDocumentResolution(doc: Document): number;
+}
 
-    const dpiLevels = [72, 96, 120, 144, 192, 288, 384];
+@injectable(IResolutionService)
+class ResolutionService implements IResolutionService
+{
+    constructor(private readonly _zoom: IDocumentZoomObserver) { }
 
-    export abstract class IResolutionService
+    getDocumentResolution(doc: Document): number
     {
-        abstract getDocumentResolution(doc: Document): number;
-    }
-
-    @DI.injectable(IResolutionService)
-    class ResolutionService implements IResolutionService
-    {
-        constructor(
-            private readonly _zoom: MidnightLizard.ContentScript.IDocumentZoomObserver)
-        { }
-
-        getDocumentResolution(doc: Document): number
+        let currentDpi = defaultDpi;
+        for (const dpi of dpiLevels)
         {
-            let currentDpi = defaultDpi;
-            for (const dpi of dpiLevels)
+            if (doc.defaultView!.matchMedia(`(max-resolution: ${dpi}dpi)`).matches)
             {
-                if (doc.defaultView.matchMedia(`(max-resolution: ${dpi}dpi)`).matches)
-                {
-                    currentDpi = dpi;
-                    break;
-                }
+                currentDpi = dpi;
+                break;
             }
-            return currentDpi * this._zoom.CurrentZoom / defaultDpi
         }
+        return currentDpi * this._zoom.CurrentZoom / defaultDpi
     }
 }

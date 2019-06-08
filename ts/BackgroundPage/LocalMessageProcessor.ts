@@ -1,57 +1,58 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="./IBackgroundMessageBus.ts" />
-/// <reference path="../Settings/Messages.ts" />
-/// <reference path="./ImageFetcher.ts" />
-
-namespace MidnightLizard.BackgroundPage
+import { injectable } from "../Utils/DI";
+import { IBackgroundMessageBus } from "./IBackgroundMessageBus";
+import { IImageFetcher } from "./ImageFetcher";
+import
 {
-    export abstract class ILocalMessageProcessor { }
+    MessageToBackgroundPage, MessageType, ImageFetchCompleted,
+    ImageFetchFailed, ErrorMessage
+} from "../Settings/Messages";
 
-    @DI.injectable(ILocalMessageProcessor)
-    class LocalMessageProcessor implements ILocalMessageProcessor
+export abstract class ILocalMessageProcessor { }
+
+@injectable(ILocalMessageProcessor)
+export class LocalMessageProcessor implements ILocalMessageProcessor
+{
+    constructor(
+        private readonly messageBus: IBackgroundMessageBus,
+        private readonly fetcher: IImageFetcher)
     {
-        constructor(
-            private readonly messageBus: MidnightLizard.BackgroundPage.IBackgroundMessageBus,
-            private readonly fetcher: MidnightLizard.BackgroundPage.IImageFetcher)
-        {
-            messageBus.onMessage.addListener(this.processMessage, this);
-        }
+        messageBus.onMessage.addListener(this.processMessage, this);
+    }
 
-        private async processMessage(msg?: { port: any, message: Settings.MessageToBackgroundPage })
+    private async processMessage(msg?: { port: any, message: MessageToBackgroundPage })
+    {
+        if (msg)
         {
-            if (msg)
+            const { port, message } = msg;
+            try
             {
-                const { port, message } = msg;
-                try
+                switch (message.type)
                 {
-                    switch (message.type)
-                    {
-                        case Settings.MessageType.FetchImage: {
-                            try
-                            {
-                                const image = await this.fetcher.fetchImage(message.url, message.maxSize);
-                                this.messageBus.postMessage(port,
-                                    new Settings.ImageFetchCompleted(message.url, image));
-                            }
-                            catch (ex)
-                            {
-                                this.messageBus.postMessage(port,
-                                    new Settings.ImageFetchFailed(message.url, ex.message || ex));
-                            }
-                            break;
+                    case MessageType.FetchImage: {
+                        try
+                        {
+                            const image = await this.fetcher.fetchImage(message.url, message.maxSize);
+                            this.messageBus.postMessage(port,
+                                new ImageFetchCompleted(message.url, image));
                         }
-
-                        default:
-                            break;
+                        catch (ex)
+                        {
+                            this.messageBus.postMessage(port,
+                                new ImageFetchFailed(message.url, ex.message || ex));
+                        }
+                        break;
                     }
+
+                    default:
+                        break;
                 }
-                catch (error)
-                {
-                    this.messageBus.postMessage(port,
-                        new MidnightLizard.Settings.ErrorMessage("Local message processing failed", {
-                            message: error.message || error, stack: error.stack
-                        }));
-                }
+            }
+            catch (error)
+            {
+                this.messageBus.postMessage(port,
+                    new ErrorMessage("Local message processing failed", {
+                        message: error.message || error, stack: error.stack
+                    }));
             }
         }
     }

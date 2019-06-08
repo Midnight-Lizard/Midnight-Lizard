@@ -1,6 +1,3 @@
-namespace MidnightLizard.BackgroundPage
+export abstract class IThemeProcessor
 {
-    export abstract class IThemeProcessor
-    {
-    }
 }

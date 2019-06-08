@@ -1,12 +1,9 @@
-/// <reference path="../Settings/ColorScheme.ts" />
+import { ColorScheme } from "./ColorScheme";
 
-namespace MidnightLizard.Settings
+export interface SettingsFile
 {
-    export interface SettingsFile
-    {
-        description: "Midnight Lizard Color Scheme File";
-        version: string | undefined;
-        timestamp: Date | string | undefined;
-        colorSchemes: ColorScheme[] | undefined;
-    }
+    description: "Midnight Lizard Color Scheme File";
+    version: string | undefined;
+    timestamp: Date | string | undefined;
+    colorSchemes: ColorScheme[] | undefined;
 }

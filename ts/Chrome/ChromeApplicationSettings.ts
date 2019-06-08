@@ -1,74 +1,72 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Settings/IApplicationSettings.ts" />
-/// <reference path="./ChromePromise.ts" />
+import { injectable } from "../Utils/DI";
+import { IApplicationSettings, BrowserName } from "../Settings/IApplicationSettings";
+import { StorageType, StorageLimits } from "../Settings/IStorageManager";
+import { ChromePromise } from "./ChromePromise";
 
-namespace Chrome
+@injectable(IApplicationSettings)
+export class ChromeApplicationSettings implements IApplicationSettings
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.Settings.IApplicationSettings)
-    class ChromeApplicationSettings implements MidnightLizard.Settings.IApplicationSettings
+    protected readonly _isDebug: boolean;
+    get isDebug() { return this._isDebug }
+
+    get isInIncognitoMode() { return chrome.extension.inIncognitoContext }
+
+    get currentLocale()
     {
-        protected readonly _isDebug: boolean;
-        get isDebug() { return this._isDebug }
+        return chrome.runtime.getManifest().current_locale || "en";
+    }
 
-        get isInIncognitoMode() { return chrome.extension.inIncognitoContext }
+    get browserName()
+    {
+        return typeof browser === "object"
+            ? BrowserName.Firefox
+            : BrowserName.Chrome
+    }
 
-        get currentLocale()
-        {
-            return chrome.runtime.getManifest().current_locale || "en";
+    get isMobile()
+    {
+        return /mobile/gi.test(navigator.userAgent);
+    }
+
+    get isDesktop()
+    {
+        return !/mobile/gi.test(navigator.userAgent);
+    }
+
+    protected readonly _preserveDisplay: boolean = false;
+    get preserveDisplay() { return this._preserveDisplay }
+
+    get version() { return chrome.runtime.getManifest().version }
+    get id() { return chrome.runtime.id }
+
+    constructor(
+        protected readonly _rootDocument: Document,
+        protected readonly _chrome: ChromePromise)
+    {
+        if (chrome.runtime.id === "pbnndmlekkboofhnbonilimejonapojg" || // chrome
+            chrome.runtime.id === "{8fbc7259-8015-4172-9af1-20e1edfbbd3a}") // firefox
+        {   // production environment
+            this._isDebug = false;
+        }
+        else
+        {   // development environment
+            this._isDebug = true;
         }
 
-        get browserName()
-        {
-            return typeof browser === "object"
-                ? MidnightLizard.Settings.BrowserName.Firefox
-                : MidnightLizard.Settings.BrowserName.Chrome
-        }
+        // console.log(`Midnight Lizard ${this._isDebug ? "Development" : "Production"}-${chrome.runtime.id}`);
 
-        get isMobile()
-        {
-            return /mobile/gi.test(navigator.userAgent);
-        }
+        this._preserveDisplay = /facebook/gi.test(_rootDocument.location!.hostname);
+    }
 
-        get isDesktop()
-        {
-            return !/mobile/gi.test(navigator.userAgent);
-        }
+    public getFullPath(relativePath: string)
+    {
+        return chrome.runtime.getURL(relativePath);
+    }
 
-        protected readonly _preserveDisplay: boolean = false;
-        get preserveDisplay() { return this._preserveDisplay }
-
-        get version() { return chrome.runtime.getManifest().version }
-        get id() { return chrome.runtime.id }
-
-        constructor(
-            protected readonly _rootDocument: Document,
-            protected readonly _chrome: Chrome.ChromePromise)
-        {
-            if (chrome.runtime.id === "pbnndmlekkboofhnbonilimejonapojg" || // chrome
-                chrome.runtime.id === "{8fbc7259-8015-4172-9af1-20e1edfbbd3a}") // firefox
-            {   // production environment
-                this._isDebug = false;
-            }
-            else
-            {   // development environment
-                this._isDebug = true;
-            }
-
-            // console.log(`Midnight Lizard ${this._isDebug ? "Development" : "Production"}-${chrome.runtime.id}`);
-
-            this._preserveDisplay = /facebook/gi.test(_rootDocument.location!.hostname);
-        }
-
-        public getFullPath(relativePath: string)
-        {
-            return chrome.runtime.getURL(relativePath);
-        }
-
-        public getStorageLimits(
-            storage: MidnightLizard.Settings.StorageType,
-            limit: MidnightLizard.Settings.StorageLimits)
-        {
-            return chrome.storage[storage as 'sync'][limit];
-        }
+    public getStorageLimits(
+        storage: StorageType,
+        limit: StorageLimits)
+    {
+        return chrome.storage[storage as 'sync'][limit];
     }
 }

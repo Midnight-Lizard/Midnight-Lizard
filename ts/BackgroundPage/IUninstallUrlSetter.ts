@@ -1,6 +1,3 @@
-namespace MidnightLizard.BackgroundPage
+export abstract class IUninstallUrlSetter
 {
-    export abstract class IUninstallUrlSetter
-    {
-    }
 }

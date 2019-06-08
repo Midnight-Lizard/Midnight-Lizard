@@ -1,19 +1,23 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Typings/MidnightLizard.d.ts" />
-/// <reference path="../ContentScript/-ContentScript.ts" />
-/// <reference path="../Settings/ExtensionModule.ts" />
+import { Container } from "../Utils/DI";
+import { CurrentExtensionModule, ExtensionModule } from "../Settings/ExtensionModule";
+import { ISettingsManager } from "./SettingsManager";
+import { IDocumentProcessor } from "./DocumentProcessor";
 
-namespace MidnightLizard.ContentScript
+Container.register(Document, class { constructor() { return document } });
+Container.register(CurrentExtensionModule, class
 {
-    DI.Container.register(Document, class { constructor() { return document } });
-    DI.Container.register(Settings.CurrentExtensionModule, class
+    constructor()
     {
-        constructor()
-        {
-            return new Settings.CurrentExtensionModule(
-                Settings.ExtensionModule.ContentScript);
-        }
-    });
-    DI.Container.resolve(ISettingsManager);
-    DI.Container.resolve(IDocumentProcessor);
+        return new CurrentExtensionModule(
+            ExtensionModule.ContentScript);
+    }
+});
+
+export class ContentScriptStarter
+{
+    constructor(...registerations: any[])
+    {
+        Container.resolve(ISettingsManager);
+        Container.resolve(IDocumentProcessor);
+    }
 }

@@ -1,43 +1,39 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../Settings/Messages.ts" />
+import { WindowMessageFromContent, MessageType } from "../Settings/Messages";
+import { injectable } from "../Utils/DI";
 
-namespace MidnightLizard.ContentScript
+/** Communication between Content Script and Page Script */
+export abstract class IWindowMessageBus
 {
-    /** Communication between Content Script and Page Script */
-    export abstract class IWindowMessageBus
+    abstract postMessage(message: WindowMessageFromContent): void;
+}
+
+@injectable(IWindowMessageBus)
+class WindowMessageBus implements IWindowMessageBus
+{
+    private _pageScriptLoaded = false;
+    private readonly _messageBuffer = new Set<WindowMessageFromContent>();
+
+    constructor(private readonly rootDoc: Document)
     {
-        abstract postMessage(message: MidnightLizard.Settings.WindowMessageFromContent): void;
+        rootDoc.documentElement.addEventListener(MessageType.PageScriptLoaded, (e) =>
+        {
+            this._pageScriptLoaded = true;
+            this._messageBuffer.forEach(this.postMessage.bind(this));
+            this._messageBuffer.clear();
+        });
     }
 
-    @MidnightLizard.DI.injectable(MidnightLizard.ContentScript.IWindowMessageBus)
-    class WindowMessageBus implements MidnightLizard.ContentScript.IWindowMessageBus
+    public postMessage(message: WindowMessageFromContent)
     {
-        private _pageScriptLoaded = false;
-        private readonly _messageBuffer = new Set<MidnightLizard.Settings.WindowMessageFromContent>();
-
-        constructor(private readonly rootDoc: Document)
+        if (this._pageScriptLoaded)
         {
-            rootDoc.documentElement.addEventListener(Settings.MessageType.PageScriptLoaded, (e) =>
-            {
-                this._pageScriptLoaded = true;
-                this._messageBuffer.forEach(this.postMessage.bind(this));
-                this._messageBuffer.clear();
-            });
+            const { type: messageType, ...msg } = message;
+            const event = new CustomEvent(messageType, { detail: JSON.stringify(msg) });
+            this.rootDoc.documentElement.dispatchEvent(event);
         }
-
-        public postMessage(message: MidnightLizard.Settings.WindowMessageFromContent)
+        else
         {
-            if (this._pageScriptLoaded)
-            {
-                const { type: messageType, ...msg } = message;
-                const event = new CustomEvent(messageType, { detail: JSON.stringify(msg) });
-                this.rootDoc.documentElement.dispatchEvent(event);
-            }
-            else
-            {
-                this._messageBuffer.add(message);
-            }
+            this._messageBuffer.add(message);
         }
     }
 }

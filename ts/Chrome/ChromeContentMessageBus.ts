@@ -1,44 +1,42 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../ContentScript/IContentMessageBus.ts" />
-/// <reference path="../Settings/Messages.ts" />
+import { injectable } from "../Utils/DI";
+import { IContentMessageBus } from "../ContentScript/IContentMessageBus";
+import { ArgumentedEventDispatcher } from "../Events/EventDispatcher";
+import { LocalMessageToContent, LocalMessageFromContent } from "../Settings/Messages";
+import { IApplicationSettings } from "../Settings/IApplicationSettings";
 
-namespace Chrome
+@injectable(IContentMessageBus)
+export class ChromeContentMessageBus implements IContentMessageBus
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.ContentScript.IContentMessageBus)
-    class ChromeContentMessageBus implements MidnightLizard.ContentScript.IContentMessageBus
+    private connection?: chrome.runtime.Port;
+
+    private _onMessage = new ArgumentedEventDispatcher<
+        LocalMessageToContent>();
+    public get onMessage()
     {
-        private connection?: chrome.runtime.Port;
+        return this._onMessage.event;
+    }
 
-        private _onMessage = new MidnightLizard.Events.ArgumentedEventDispatcher<
-            MidnightLizard.Settings.LocalMessageToContent>();
-        public get onMessage()
-        {
-            return this._onMessage.event;
-        }
+    constructor(app: IApplicationSettings)
+    {
+        this.openConnection();
+    }
 
-        constructor(app: MidnightLizard.Settings.IApplicationSettings)
-        {
-            this.openConnection();
-        }
+    public postMessage(message: LocalMessageFromContent)
+    {
+        this.openConnection().postMessage(message);
+    }
 
-        public postMessage(message: MidnightLizard.Settings.LocalMessageFromContent)
+    openConnection(port?: any)
+    {
+        if (!this.connection || port)
         {
-            this.openConnection().postMessage(message);
-        }
-
-        openConnection(port?: any)
-        {
-            if (!this.connection || port)
+            this.connection = chrome.runtime.connect({ name: 'content' });
+            this.connection.onMessage.addListener((msg, port) =>
             {
-                this.connection = chrome.runtime.connect({ name: 'content' });
-                this.connection.onMessage.addListener((msg, port) =>
-                {
-                    this._onMessage.raise(msg);
-                });
-                this.connection.onDisconnect.addListener(this.openConnection.bind(this));
-            }
-            return this.connection;
+                this._onMessage.raise(msg);
+            });
+            this.connection.onDisconnect.addListener(this.openConnection.bind(this));
         }
+        return this.connection;
     }
 }

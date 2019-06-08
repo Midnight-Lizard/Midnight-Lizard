@@ -1,12 +1,9 @@
-/// <reference path="../Events/-Events.ts" />
-/// <reference path="../Settings/Messages.ts" />
+import { ArgumentedEvent } from "../Events/Event";
+import { LocalMessageToContent, LocalMessageFromContent } from "../Settings/Messages";
 
-namespace MidnightLizard.ContentScript
+export abstract class IContentMessageBus
 {
-    export abstract class IContentMessageBus
-    {
-        abstract get onMessage(): Events.ArgumentedEvent<Settings.LocalMessageToContent>;
+    abstract get onMessage(): ArgumentedEvent<LocalMessageToContent>;
 
-        abstract postMessage(message: MidnightLizard.Settings.LocalMessageFromContent): void;
-    }
+    abstract postMessage(message: LocalMessageFromContent): void;
 }

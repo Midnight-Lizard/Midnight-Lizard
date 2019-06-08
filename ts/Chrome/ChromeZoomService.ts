@@ -1,25 +1,21 @@
-/// <reference path="../DI/-DI.ts" />
-/// <reference path="../BackgroundPage/IZoomService.ts" />
-/// <reference path="../Settings/ISettingsBus.ts" />
+import { injectable } from "../Utils/DI";
+import { IZoomService } from "../BackgroundPage/IZoomService";
+import { ISettingsBus } from "../Settings/ISettingsBus";
 
-
-namespace Chrome
+@injectable(IZoomService)
+export class ChromeZoomService implements IZoomService
 {
-    @MidnightLizard.DI.injectable(MidnightLizard.BackgroundPage.IZoomService)
-    class ChromeZoomService implements MidnightLizard.BackgroundPage.IZoomService
+    constructor(protected readonly _settingsBus: ISettingsBus)
     {
-        constructor(protected readonly _settingsBus: MidnightLizard.Settings.ISettingsBus)
-        {
-            chrome.tabs.onZoomChange.addListener(this.onZoomChanged.bind(this));
-        }
+        chrome.tabs.onZoomChange.addListener(this.onZoomChanged.bind(this));
+    }
 
-        protected onZoomChanged(e: chrome.tabs.ZoomChangeInfo)
+    protected onZoomChanged(e: chrome.tabs.ZoomChangeInfo)
+    {
+        if (e.tabId)
         {
-            if (e.tabId)
-            {
-                this._settingsBus.setTabZoom(e.tabId, e.newZoomFactor)
-                    .catch(() => { });
-            }
+            this._settingsBus.setTabZoom(e.tabId, e.newZoomFactor)
+                .catch(() => { });
         }
     }
 }

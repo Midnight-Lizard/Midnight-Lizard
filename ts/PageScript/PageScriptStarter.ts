@@ -1,12 +1,8 @@
-/// <reference path="./QueryCommandManager.ts" />
-// /// <reference path="./ExternalCssLoader.ts" />
-/// <reference path="./EditableContentManager.ts" />
+import { EditableContentManager } from "./EditableContentManager";
+import { QueryCommandManager } from "./QueryCommandManager";
 
-namespace MidnightLizard.PageScript
-{
-    new EditableContentManager().beginEditableContentHandling(document);
-    // new ExternalCssLoader().beginExternalCssObservation(document);
-    new QueryCommandManager().overrideQueryCommandValue(document);
+new EditableContentManager().beginEditableContentHandling(document);
+// new ExternalCssLoader().beginExternalCssObservation(document);
+new QueryCommandManager().overrideQueryCommandValue(document);
 
-    document.documentElement!.dispatchEvent(new CustomEvent("PageScriptLoaded"));
-}
+document.documentElement!.dispatchEvent(new CustomEvent("PageScriptLoaded"));

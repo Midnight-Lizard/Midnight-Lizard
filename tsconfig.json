@@ -1,17 +1,14 @@
 {
-    "include": [
-        "./ts/**/*"
-    ],
     "compilerOptions": {
         "strict": true,
         "pretty": true,
-        "outDir": "./js",
+        "outDir": "./js/",
         "removeComments": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
+        "module": "es6",
         "target": "es6",
         "sourceMap": true,
-        "allowJs": true,
         "noImplicitReturns": true,
         "noEmitOnError": true,
         "noImplicitThis": true,
@@ -19,6 +16,7 @@
         "emitDecoratorMetadata": true,
         "skipDefaultLibCheck": true,
         "skipLibCheck": true,
+        "alwaysStrict": true,
         "lib": [
             "es2017",
             "dom"

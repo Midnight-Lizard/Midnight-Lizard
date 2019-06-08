@@ -1,9 +1,6 @@
-/// <reference path="../Events/-Events.ts" />
+import { ArgumentedEvent } from "../Events/Event";
 
-namespace MidnightLizard.BackgroundPage
+export abstract class ICommandListener
 {
-    export abstract class ICommandListener
-    {
-        abstract get onCommand(): Events.ArgumentedEvent<string>;
-    }
+    abstract get onCommand(): ArgumentedEvent<string>;
 }

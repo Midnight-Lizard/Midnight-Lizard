@@ -1,6 +1,15 @@
-/// <reference path="./ChromeStorageManager.ts" />
-/// <reference path="./ChromeApplicationSettings.ts" />
-/// <reference path="./ChromeSettingsBus.ts" />
-/// <reference path="./ChromeTranslationAccessor.ts" />
-/// <reference path="./ChromeContentMessageBus.ts" />
-/// <reference path="../ContentScript/ContentScriptStarter.ts" />
+import { ChromeApplicationSettings } from "./ChromeApplicationSettings";
+import { ChromeStorageManager } from "./ChromeStorageManager";
+import { ChromeSettingsBus } from "./ChromeSettingsBus";
+import { ChromeCommandManager } from "./ChromeCommandManager";
+import { ChromeTranslationAccessor } from "./ChromeTranslationAccessor";
+import { ChromeContentMessageBus } from "./ChromeContentMessageBus";
+import { ContentScriptStarter } from "../ContentScript/ContentScriptStarter";
+
+new ContentScriptStarter(
+    ChromeApplicationSettings,
+    ChromeStorageManager,
+    ChromeSettingsBus,
+    ChromeCommandManager,
+    ChromeTranslationAccessor,
+    ChromeContentMessageBus);
