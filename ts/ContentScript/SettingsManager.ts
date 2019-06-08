@@ -225,7 +225,7 @@ namespace MidnightLizard.ContentScript
                     else
                     {
                         let setting: Settings.ColorSchemePropertyName;
-                        const forSave: Settings.ColorScheme = {} as any;
+                        const forSave = {} as any;
                         for (setting in this._currentSettings)
                         {
                             if (Settings.excludeSettingsForSave.indexOf(setting) == -1)

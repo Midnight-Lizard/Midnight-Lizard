@@ -220,10 +220,13 @@ namespace MidnightLizard.Popup
                     if (text)
                     {
                         const selection = this._popup.defaultView!.getSelection();
-                        const range = this._popup.createRange();
-                        range.selectNodeContents(text);
-                        selection.removeAllRanges();
-                        selection.addRange(range);
+                        if (selection)
+                        {
+                            const range = this._popup.createRange();
+                            range.selectNodeContents(text);
+                            selection.removeAllRanges();
+                            selection.addRange(range);
+                        }
                     }
                 }
             });
@@ -326,7 +329,7 @@ namespace MidnightLizard.Popup
                         value = setting.value;
                         break;
                 }
-                settings[propName] = value;
+                (settings as any)[propName] = value;
             }
             return settings;
         }
@@ -351,7 +354,8 @@ namespace MidnightLizard.Popup
                         value = setting.value;
                         break;
                 }
-                settings[setting.id as Settings.ColorSchemePropertyName] = value;
+                (settings as any)[setting.id as any as Settings.ColorSchemePropertyName]
+                    = value;
             }
             return settings;
         }

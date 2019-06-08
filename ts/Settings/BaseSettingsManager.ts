@@ -206,7 +206,7 @@ namespace MidnightLizard.Settings
                     const val = set[prop];
                     if (!/Hue$/g.test(prop) && Util.isNum(val))
                     {
-                        set[prop] = val / 100;
+                        (set as any)[prop] = val / 100;
                     }
                 }
                 else
