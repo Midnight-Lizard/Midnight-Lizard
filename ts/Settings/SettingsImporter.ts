@@ -69,7 +69,7 @@ namespace MidnightLizard.Settings
                                             }
                                             else
                                             {
-                                                newColorScheme[propName] = colorSchemeFromFile[propName];
+                                                (newColorScheme as any)[propName] = colorSchemeFromFile[propName];
                                             }
                                         }
                                     }
