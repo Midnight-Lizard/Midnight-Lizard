@@ -1,15 +1,19 @@
 const path = require('path');
 const glob = require('glob');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
+module.exports = (env, args) => {
     /**
      * @param {string} entryName file path to the source entry .ts file
      * @param {string} bundleName file name of the bundle
      * */
     const sharedConfig = (entryName, bundleName) => ({
         entry: entryName,
-        devtool: isDevBuild ? 'inline-source-map' : null,
+        plugins: env && env.useBundleAnalyzer ? [
+            new BundleAnalyzerPlugin({
+                analyzerPort: 8000 + Math.round(Math.random() * 1000)
+            })
+        ] : [],
         module: {
             rules: [{
                 test: /\.ts$/,

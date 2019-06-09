@@ -8,7 +8,7 @@ else
     FileExtension="zip";
 fi
 
-ArchPath="../Resources/Releases/midnight-lizard-$(cat ./manifest/$1/manifest.json | jq -r .version)-$1.$FileExtension";
+ArchPath="../Resources/Releases/midnight-lizard-$npm_package_version-$1.$FileExtension";
 
 rm -r -f $ArchPath;
 

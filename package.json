@@ -11,20 +11,24 @@
     "@types/fb": "^0.0.23",
     "@types/firefox-webext-browser": "^58.0.4",
     "@types/reflect-metadata": "0.1.0",
-    "reflect-metadata": "^0.1.13",
-    "webpack-merge": "^4.2.1"
+    "reflect-metadata": "^0.1.13"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Midnight-Lizard/Midnight-Lizard.git"
   },
   "devDependencies": {
+    "7zip": "0.0.6",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.3"
   },
   "scripts": {
-    "build": "webpack --mode=development"
+    "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
+    "dev-build": "webpack --mode=development --env.useBundleAnalyzer --devtool inline-source-map",
+    "prod-build": "webpack --mode=production",
+    "prod-pack": "npm run prod-build && bash ./release.sh chrome && bash ./release.sh firefox"
   }
 }
