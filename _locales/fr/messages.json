@@ -696,6 +696,10 @@
     "description": "text on the tooltip\/hint with custom style",
     "message": "Faire un don à notre collectif"
   },
+  "donateLink_@marker": {
+    "description": "text on the marker",
+    "message": "Faire un don"
+  },
   "rateLink_@tooltip": {
     "description": "text on the tooltip\/hint with custom style",
     "message": "Notez cette extension"
@@ -875,6 +879,42 @@
     "description": "text on the label",
     "message": "Réglages globaux"
   },
+  "resetThemeConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Voulez-vous réinitialiser le thème actuel du navigateur à celui par défaut ?\nIl pourrait être réinitialisé au thème original de Firefox au lieu de votre thème précédent."
+  },
+  "invalidMatchPattern": {
+    "description": "validation error message",
+    "message": "'$pattern$' n'est pas un modèle de correspondance valide.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "invalidMatchPatternHost": {
+    "description": "validation error message",
+    "message": "'$pattern$' n'a pas d'hôte valide.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "matchCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Certains motifs correspondent à la page courante"
+  },
+  "matchCurrentPage_@title": {
+    "description": "text on the label",
+    "message": "Les motifs suivants correspondent à la page actuelle :\n"
+  },
+  "noMatchForCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Aucun des motifs ne correspond à la page courante"
+  },
   "excludeMatches_text_label": {
     "description": "text on the label",
     "message": "Exclure les motifs"
@@ -899,6 +939,18 @@
     "description": "text on the label",
     "message": "Changer le style des barres de défilement"
   },
+  "hideBigBackgroundImages_text_label": {
+    "description": "text on the label",
+    "message": "Masquer les grandes images de fond"
+  },
+  "linkExample_text_label": {
+    "description": "text on the label",
+    "message": "Lien"
+  },
+  "textExamples_text_label": {
+    "description": "text on the label",
+    "message": "Exemples: "
+  },
   "forgetThisSiteBtn_text_long_label": {
     "description": "text on the label",
     "message": "Supprimer les paramètres du site actuel"
@@ -906,5 +958,9 @@
   "forgetAllSitesBtn_text_long_label": {
     "description": "text on the label",
     "message": "Supprimer tous les paramètres"
+  },
+  "privacyLink_text_label": {
+    "description": "text on the label",
+    "message": "Politique de confidentialité"
   }
 }
