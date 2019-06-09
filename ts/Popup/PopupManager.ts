@@ -57,6 +57,7 @@ class PopupManager
     protected _colorSchemeForEdit!: HTMLSelectElement;
     protected _importColorSchemeFileInput!: HTMLInputElement;
     protected _generateFromColorsButton!: HTMLButtonElement;
+    protected _openColorSchemesGeneratorButton!: HTMLButtonElement;
     protected _syncSettingsCheckBox!: HTMLInputElement;
     protected _settingsForm!: HTMLFormElement;
     protected _lastMatchPatternChangeTimeout = 0;
@@ -146,6 +147,7 @@ class PopupManager
         this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
         this._exportColorSchemeButton = doc.getElementById("exportColorSchemeBtn") as HTMLButtonElement;
         this._generateFromColorsButton = doc.getElementById("generateFromColorsButton") as HTMLButtonElement;
+        this._openColorSchemesGeneratorButton = doc.getElementById("openColorSchemesGeneratorButton") as HTMLButtonElement;
         this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
         this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
         this._importColorSchemeFileInput = doc.getElementById("importColorSchemeFileInput") as HTMLInputElement;
@@ -230,6 +232,7 @@ class PopupManager
         this._importColorSchemeFileInput.onclick = this.importColorSchemesClick.bind(this);
 
         this._generateFromColorsButton.onclick = this.generateFromColors.bind(this);
+        this._openColorSchemesGeneratorButton.onclick = this.openGeneratorTab.bind(this);
 
         Tab.initTabControl(doc, (tab) =>
         {
@@ -1151,7 +1154,9 @@ class PopupManager
         set.backgroundGrayHue = colors.backgroundColor.hue;
 
         /* Button */
-        set.buttonLightnessLimit = colors.buttonColor.lightness;
+        set.buttonLightnessLimit = isDark
+            ? colors.backgroundColor.lightness - 1 + Math.abs(colors.buttonColor.lightness - colors.backgroundColor.lightness)
+            : colors.buttonColor.lightness;
         set.buttonContrast = Math.abs(colors.buttonColor.lightness - colors.backgroundColor.lightness);
         set.buttonGraySaturation = colors.buttonColor.saturation;
         set.buttonGrayHue = colors.buttonColor.hue;
@@ -1224,5 +1229,13 @@ class PopupManager
             linkColor: link, visitedColor: link,
             borderColor: gray, scrollbarThumbNormalColor: gray,
         });
+    }
+
+    private openGeneratorTab()
+    {
+        const genTab = this._popup.querySelector('.ml-tab-item[content="generator"]') as HTMLElement;
+        genTab.classList.remove('hidden');
+        genTab.click();
+        return false;
     }
 }

@@ -103,7 +103,7 @@ abstract class ForegroundColorProcessor extends BaseColorProcessor
         }
         hsla.lightness = this.scaleValue(hsla.lightness, shift.lightnessLimit);
         const shiftContrast = shift.contrast / hsla.alpha;
-        const currentContrast = hsla.lightness - backgroundLightness,
+        const currentContrast = Number((hsla.lightness - backgroundLightness).toFixed(2)),
             down = Number(Math.max(backgroundLightness - Math.min(Math.max(backgroundLightness - shiftContrast, 0), shift.lightnessLimit), 0).toFixed(2)),
             up = Number(Math.max(Math.min(backgroundLightness + shiftContrast, shift.lightnessLimit) - backgroundLightness, 0).toFixed(2));
         if (currentContrast < 0) // background is lighter than foreground

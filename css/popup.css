@@ -369,7 +369,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
 }
 
 .ml-long-cmd-container>.filler {
-    height: 80px;
+    height: 70px;
 }
 
 .ml-long-cmd-container {
@@ -1620,4 +1620,8 @@ html[ml-color-scheme="custom"] i.unsaved {
 
 .ml-input-container.time.extra-margin {
     margin-top: 24px;
+}
+
+.ml-tab-item.hidden {
+  visibility: hidden;
 }

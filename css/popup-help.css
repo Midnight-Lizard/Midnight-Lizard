@@ -245,3 +245,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     right: calc((100% - 267px)/2);
     cursor: help;
 }
+
+.ml-dialog-input-text[i18n-attr="title"] {
+  cursor: help;
+}
