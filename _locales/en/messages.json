@@ -1296,5 +1296,93 @@
   "deleteAllWebsitesSettingsFailureMessage": {
     "description": "text on the message box",
     "message": "All websites' settings deletion failed.\n"
+  },
+  "generatorTab_text_label": {
+    "description": "text on the label",
+    "message": "Generator"
+  },
+  "generatorTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "    Color schemes generator\n―――――――――――――――――――\n New color schemes can be generated from a set of user defined colors here. Any browser supported color format can be used: named, HEX, RGB, HSL"
+  },
+  "backgroundColor_text_label": {
+    "description": "text on the label",
+    "message": "Background color"
+  },
+  "backgroundColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Background color to be used in a generated color scheme"
+  },
+  "buttonColor_text_label": {
+    "description": "text on the label",
+    "message": "Buttons background color"
+  },
+  "buttonColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Buttons background color to be used in a generated color scheme"
+  },
+  "textColors_text_label": {
+    "description": "text on the label",
+    "message": "Text colors"
+  },
+  "textColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Text colors to be used in a generated color scheme.\nHover input fields below to see details."
+  },
+  "textColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Text color to be used in a generated color scheme."
+  },
+  "textSelectionColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Text selection color to be used in a generated color scheme."
+  },
+  "linkColors_text_label": {
+    "description": "text on the label",
+    "message": "Links colors"
+  },
+  "linkColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Links colors to be used in a generated color scheme.\nHover input fields below to see details."
+  },
+  "defaultLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Default links color to be used in a generated color scheme."
+  },
+  "visitedLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Visited links color to be used in a generated color scheme."
+  },
+  "borderColor_text_label": {
+    "description": "text on the label",
+    "message": "Borders color"
+  },
+  "borderColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Borders color to be used in a generated color scheme."
+  },
+  "scrollbarColor_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbars color"
+  },
+  "scrollbarColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbars color to be used in a generated color scheme."
+  },
+  "generateFromColorsButton_text_label": {
+    "description": "text on the label",
+    "message": "Generate from colors"
+  },
+  "generateFromColorsButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Generate a new color scheme from the specified colors.\nA new color scheme will be merged with the current one.\nSo it makes sense to select the most similar existing color\nscheme before generating a new one."
+  },
+  "openColorSchemesGeneratorButton_text_label": {
+    "description": "text on the button",
+    "message": "Color schemes generator"
+  },
+  "openColorSchemesGeneratorButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Open color schemes generator tab"
   }
 }
