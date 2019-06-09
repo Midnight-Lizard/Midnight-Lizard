@@ -90,6 +90,7 @@ class PopupManager
         _settingsManager.onSettingsInitializationFailed.addListener(this.onSettingsInitializationFailed, this);
         _settingsManager.onSettingsChanged.addListener(this.beforeSettingsChanged, this, EventHandlerPriority.High);
         _documentProcessor.onRootDocumentProcessing.addListener(this.beforeRootDocumentProcessedFirstTime as any, this, EventHandlerPriority.High);
+        _documentProcessor.onMainColorsCalculated.addListener(this.setCurrentColorsOnGenerator, this);
     }
 
     protected popupContentloaded()
