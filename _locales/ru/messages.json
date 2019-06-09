@@ -1296,5 +1296,93 @@
   "deleteAllWebsitesSettingsFailureMessage": {
     "description": "text on the message box",
     "message": "Не удалось выполнить удаление настроек всех сайтов.\n"
+  },
+  "generatorTab_text_label": {
+    "description": "text on the label",
+    "message": "Генератор схем"
+  },
+  "generatorTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "   Генератор цветовых схем\n―――――――――――――――――――\n Позволяет генерировать цветовые схемы по заданным пользователем цветам. Допускается использование любых поддерживаемых браузером форматов цветов: именованные, HEX, RGB, HSL"
+  },
+  "backgroundColor_text_label": {
+    "description": "text on the label",
+    "message": "Цвет фона"
+  },
+  "backgroundColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет фона для использования при генерации цветовой схемы"
+  },
+  "buttonColor_text_label": {
+    "description": "text on the label",
+    "message": "Цвет фона кнопок"
+  },
+  "buttonColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет фона кнопок для использования при генерации цветовой схемы"
+  },
+  "textColors_text_label": {
+    "description": "text on the label",
+    "message": "Цвета в тексте"
+  },
+  "textColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвета в тексте для использования при генерации цветовой схемы.\nНаведите указатель мыши на поля ввода ниже, чтобы увидеть подробное описание."
+  },
+  "textColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет текста для использования при генерации цветовой схемы"
+  },
+  "textSelectionColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет выделения текста для использования при генерации цветовой схемы"
+  },
+  "linkColors_text_label": {
+    "description": "text on the label",
+    "message": "Цвета ссылок"
+  },
+  "linkColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвета ссылок для использования при генерации цветовой схемы.\nНаведите указатель мыши на поля ввода ниже, чтобы увидеть подробное описание."
+  },
+  "defaultLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Базовый цвет ссылок для использования при генерации цветовой схемы"
+  },
+  "visitedLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет посещенных ссылок для использования при генерации цветовой схемы"
+  },
+  "borderColor_text_label": {
+    "description": "text on the label",
+    "message": "Цвет границ и линий"
+  },
+  "borderColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет границ и линий для использования при генерации цветовой схемы"
+  },
+  "scrollbarColor_text_label": {
+    "description": "text on the label",
+    "message": "Цвет полос прокрутки"
+  },
+  "scrollbarColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Цвет полос прокрутки для использования при генерации цветовой схемы"
+  },
+  "generateFromColorsButton_text_label": {
+    "description": "text on the label",
+    "message": "Сгенерировать схему"
+  },
+  "generateFromColorsButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Сгенерировать новую цветовую схему из указанных цветов.\nНовая цветовая схема будет объединена с текущей.\nПоэтому имеет смысл сперва выбрать наиболее подходящую\nцветовую схему из уже существующих."
+  },
+  "openColorSchemesGeneratorButton_text_label": {
+    "description": "text on the button",
+    "message": "Генератор цветовых схем"
+  },
+  "openColorSchemesGeneratorButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Открыть вкладку генератора цветовых схем"
   }
 }
