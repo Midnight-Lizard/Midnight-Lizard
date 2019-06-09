@@ -1,6 +1,6 @@
 {
-    "short_locale": {
-        "description": "short_locale: two letters of the current locale",
-        "message": "da"
-    }
+  "short_locale": {
+    "description": "two letters of the current locale",
+    "message": "da"
+  }
 }

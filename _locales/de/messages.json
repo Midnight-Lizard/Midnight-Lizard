@@ -1,10 +1,10 @@
 {
-    "short_locale": {
-        "description": "short_locale: two letters of the current locale",
-        "message": "de"
-    },
-    "donateLink_@tooltip": {
-        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Spenden für unser Kollektiv"
-    }
+  "short_locale": {
+    "description": "two letters of the current locale",
+    "message": "de"
+  },
+  "donateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Spenden für unser Kollektiv"
+  }
 }

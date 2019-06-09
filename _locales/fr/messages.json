@@ -1,910 +1,910 @@
 {
-    "short_locale": {
-        "description": "short_locale: two letters of the current locale",
-        "message": "fr"
-    },
-    "appDesc": {
-        "description": "appDesc: extension description displayed in the Web Store",
-        "message": "Cette extension modifie les couleurs de la page, la luminosité et le contraste pour augmenter la lisibilité et apporte le mode nuit sombre à tous les sites Web."
-    },
-    "globalToggleKey": {
-        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
-        "message": "Activer\/désactiver l'extension globalement"
-    },
-    "currentToggleKey": {
-        "description": "currentToggleKey: keyboard shortcut description in the browser settings",
-        "message": "Activer\/désactiver l'extension pour le site courant"
-    },
-    "runOnThisSite_text_label": {
-        "description": "runOnThisSite_text_label: text on the label",
-        "message": "Exécuter sur ce site Web"
-    },
-    "restoreColorsOnCopy_text_label": {
-        "description": "restoreColorsOnCopy_text_label: text on the label",
-        "message": "Restaurer les couleurs d'origine sur copie"
-    },
-    "restoreColorsOnCopy_@title": {
-        "description": "restoreColorsOnCopy_@title: text on the tooltip",
-        "message": "Restaurer les couleurs d'origine avant de copier le contenu de la page"
-    },
-    "restoreColorsOnPrint_text_label": {
-        "description": "restoreColorsOnPrint_text_label: text on the label",
-        "message": "Restaurer les couleurs d'origine sur impression"
-    },
-    "restoreColorsOnPrint_@title": {
-        "description": "restoreColorsOnPrint_@title: text on the tooltip\/hint",
-        "message": "Restaurer les couleurs d'origine avant d'imprimer le contenu de la page"
-    },
-    "changeBrowserTheme_text_label": {
-        "description": "changeBrowserTheme_text_label: text on the label",
-        "message": "Changer le thème du navigateur"
-    },
-    "changeBrowserTheme_@title": {
-        "description": "changeBrowserTheme_@title: text on the tooltip\/hint",
-        "message": "Régler le thème du navigateur sur le schéma de couleur actuel.\nPris en charge par Firefox et partiellement par Vivaldi."
-    },
-    "useDefaultSchedule_text_label": {
-        "description": "useDefaultSchedule_text_label: text on the label",
-        "message": "Utiliser l'horaire par défaut"
-    },
-    "useDefaultSchedule_@title": {
-        "description": "useDefaultSchedule_@title: text on the tooltip\/hint",
-        "message": "Utiliser l'horaire des paramètres par défaut.\nSi vous souhaitez utiliser l'horaire unique pour tous les sites Web,\nvous devez le spécifier dans les paramètres par défaut."
-    },
-    "scheduleStartHour_text_label": {
-        "description": "scheduleStartHour_text_label: text on the label",
-        "message": "Temps d'activation"
-    },
-    "scheduleStartHour_@title": {
-        "description": "scheduleStartHour_@title: text on the tooltip\/hint",
-        "message": "L'extension sera active sur le site Web actuel uniquement à partir de ce moment."
-    },
-    "scheduleFinishHour_text_label": {
-        "description": "scheduleFinishHour_text_label: text on the label",
-        "message": "Temps de désactivation"
-    },
-    "scheduleFinishHour_@title": {
-        "description": "scheduleFinishHour_@title: text on the tooltip\/hint",
-        "message": "L'extension sera active sur le site Web actuel seulement jusqu'à ce moment."
-    },
-    "blueFilter_text_label": {
-        "description": "blueFilter_text_label: text on the label",
-        "message": "Intensité du filtre bleu"
-    },
-    "blueFilter_@title": {
-        "description": "blueFilter_@title: text on the tooltip\/hint",
-        "message": "Intensité du filtre bleu.\nSupprime la lumière bleue de la page et la restitue avec une lumière rouge."
-    },
-    "backgroundSaturationLimit_text_label": {
-        "description": "backgroundSaturationLimit_text_label: text on the label",
-        "message": "Limite de saturation"
-    },
-    "backgroundSaturationLimit_@title": {
-        "description": "backgroundSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de saturation du fond"
-    },
-    "backgroundContrast_text_label": {
-        "description": "backgroundContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "backgroundContrast_@title": {
-        "description": "backgroundContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale de luminosité entre les fondos similaires.\nSelon la taille et l'ordre des éléments, les résultats peuvent être aléatoires."
-    },
-    "backgroundLightnessLimit_text_label": {
-        "description": "backgroundLightnessLimit_text_label: text on the label",
-        "message": "Limite de luminosité"
-    },
-    "backgroundLightnessLimit_@title": {
-        "description": "backgroundLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de luminosité du fond"
-    },
-    "backgroundGraySaturation_text_label": {
-        "description": "backgroundGraySaturation_text_label: text on the label",
-        "message": "Saturation de fond gris"
-    },
-    "backgroundGraySaturation_@title": {
-        "description": "backgroundGraySaturation_@title: text on the tooltip\/hint",
-        "message": "Saturation les fondos gris après l'application de la teinte par défaut sélectionnée"
-    },
-    "backgroundHueGravity_text_label": {
-        "description": "backgroundHueGravity_text_label: text on the label",
-        "message": "Gravité de la teinte par défaut"
-    },
-    "backgroundHueGravity_@title": {
-        "description": "backgroundHueGravity_@title: text on the tooltip\/hint",
-        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
-    },
-    "backgroundGrayHue_text_label": {
-        "description": "backgroundGrayHue_text_label: text on the label",
-        "message": "Teinte par défaut"
-    },
-    "backgroundGrayHue_@title": {
-        "description": "backgroundGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte à utiliser pour augmenter la saturation des couleurs de fond gris"
-    },
-    "backgroundReplaceAllHues_text_label": {
-        "description": "backgroundReplaceAllHues_text_label: text on the label",
-        "message": "Remplacer toutes"
-    },
-    "backgroundReplaceAllHues_@title": {
-        "description": "backgroundReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
-    },
-    "buttonSaturationLimit_text_label": {
-        "description": "buttonSaturationLimit_text_label: text on the label",
-        "message": "Limite de saturation"
-    },
-    "buttonSaturationLimit_@title": {
-        "description": "buttonSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de saturation du fond du bouton"
-    },
-    "buttonContrast_text_label": {
-        "description": "buttonContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "buttonContrast_@title": {
-        "description": "buttonContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale de luminosité entre les boutons et le fond autour d'eux"
-    },
-    "buttonLightnessLimit_text_label": {
-        "description": "buttonLightnessLimit_text_label: text on the label",
-        "message": "Limite de luminosité"
-    },
-    "buttonLightnessLimit_@title": {
-        "description": "buttonLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de luminosité du fond du bouton"
-    },
-    "buttonGraySaturation_text_label": {
-        "description": "buttonGraySaturation_text_label: text on the label",
-        "message": "Saturation du bouton gris"
-    },
-    "buttonGraySaturation_@title": {
-        "description": "buttonGraySaturation_@title: text on the tooltip\/hint",
-        "message": "Saturation les fondos des boutons gris après l'application de la teinte par défaut sélectionnée"
-    },
-    "buttonHueGravity_text_label": {
-        "description": "buttonHueGravity_text_label: text on the label",
-        "message": "Gravité de la teinte par défaut"
-    },
-    "buttonHueGravity_@title": {
-        "description": "buttonHueGravity_@title: text on the tooltip\/hint",
-        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
-    },
-    "buttonGrayHue_text_label": {
-        "description": "buttonGrayHue_text_label: text on the label",
-        "message": "Teinte par défaut"
-    },
-    "buttonGrayHue_@title": {
-        "description": "buttonGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte à utiliser pour augmenter la saturation des couleurs du fond du bouton gris"
-    },
-    "buttonReplaceAllHues_text_label": {
-        "description": "buttonReplaceAllHues_text_label: text on the label",
-        "message": "Remplacer toutes"
-    },
-    "buttonReplaceAllHues_@title": {
-        "description": "buttonReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
-    },
-    "textSaturationLimit_text_label": {
-        "description": "textSaturationLimit_text_label: text on the label",
-        "message": "Limite de saturation"
-    },
-    "textSaturationLimit_@title": {
-        "description": "textSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de saturation du texte"
-    },
-    "textContrast_text_label": {
-        "description": "textContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "textContrast_@title": {
-        "description": "textContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale de luminosité entre le texte et son fond"
-    },
-    "textLightnessLimit_text_label": {
-        "description": "textLightnessLimit_text_label: text on the label",
-        "message": "Limite de luminosité"
-    },
-    "textLightnessLimit_@title": {
-        "description": "textLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de luminosité du texte"
-    },
-    "textGraySaturation_text_label": {
-        "description": "textGraySaturation_text_label: text on the label",
-        "message": "Saturation du texte grisé"
-    },
-    "textGraySaturation_@title": {
-        "description": "textGraySaturation_@title: text on the tooltip\/hint",
-        "message": "Saturation du texte grisé après l'application de la teinte par défaut sélectionnée"
-    },
-    "textHueGravity_text_label": {
-        "description": "textHueGravity_text_label: text on the label",
-        "message": "Gravité de la teinte par défaut"
-    },
-    "textHueGravity_@title": {
-        "description": "textHueGravity_@title: text on the tooltip\/hint",
-        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
-    },
-    "textGrayHue_text_label": {
-        "description": "textGrayHue_text_label: text on the label",
-        "message": "Teinte par défaut"
-    },
-    "textGrayHue_@title": {
-        "description": "textGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte à utiliser pour augmenter la saturation des couleurs du texte grisé"
-    },
-    "textReplaceAllHues_text_label": {
-        "description": "textReplaceAllHues_text_label: text on the label",
-        "message": "Remplacer toutes"
-    },
-    "textReplaceAllHues_@title": {
-        "description": "textReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
-    },
-    "textSelectionHue_html_label": {
-        "message": "Teinte de <span id=\"selection\">sélection<\/span> du texte"
-    },
-    "textSelectionHue_@title": {
-        "description": "textSelectionHue_@title: text on the tooltip\/hint",
-        "message": "Teinte de sélection du texte"
-    },
-    "linkSaturationLimit_text_label": {
-        "description": "linkSaturationLimit_text_label: text on the label",
-        "message": "Limite de saturation"
-    },
-    "linkSaturationLimit_@title": {
-        "description": "linkSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de saturation des liens"
-    },
-    "linkContrast_text_label": {
-        "description": "linkContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "linkContrast_@title": {
-        "description": "linkContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale de luminosité entre les liens et son fond"
-    },
-    "linkLightnessLimit_text_label": {
-        "description": "linkLightnessLimit_text_label: text on the label",
-        "message": "Limite de luminosité"
-    },
-    "linkLightnessLimit_@title": {
-        "description": "linkLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de luminosité des liens"
-    },
-    "linkDefaultSaturation_text_label": {
-        "description": "linkDefaultSaturation_text_label: text on the label",
-        "message": "Saturation des liens par défaut"
-    },
-    "linkDefaultSaturation_@title": {
-        "description": "linkDefaultSaturation_@title: text on the tooltip\/hint",
-        "message": "Saturation des liens avec la couleur de lien normal et pour les liens visités après l’application des teintes sélectionnées"
-    },
-    "linkHueGravity_text_label": {
-        "description": "linkHueGravity_text_label: text on the label",
-        "message": "Gravité de la teinte par défaut"
-    },
-    "linkHueGravity_@title": {
-        "description": "linkHueGravity_@title: text on the tooltip\/hint",
-        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
-    },
-    "linkDefaultHue_text_label": {
-        "description": "linkDefaultHue_text_label: text on the label",
-        "message": "Teinte par défaut"
-    },
-    "linkDefaultHue_@title": {
-        "description": "linkDefaultHue_@title: text on the tooltip\/hint",
-        "message": "Teinte à utiliser pour remplacer la teinte normale d'un lien"
-    },
-    "linkReplaceAllHues_text_label": {
-        "description": "linkReplaceAllHues_text_label: text on the label",
-        "message": "Remplacer toutes"
-    },
-    "linkReplaceAllHues_@title": {
-        "description": "linkReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes normaux des liens de cette page seront remplacées.\nLa saturation par défaut sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
-    },
-    "linkVisitedHue_text_label": {
-        "description": "linkVisitedHue_text_label: text on the label",
-        "message": "Teinte des liens visités"
-    },
-    "linkVisitedHue_@title": {
-        "description": "linkVisitedHue_@title: text on the tooltip\/hint",
-        "message": "Teinte des liens visités"
-    },
-    "borderSaturationLimit_text_label": {
-        "description": "borderSaturationLimit_text_label: text on the label",
-        "message": "Limite de saturation"
-    },
-    "borderSaturationLimit_@title": {
-        "description": "borderSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de saturation des bordures"
-    },
-    "borderContrast_text_label": {
-        "description": "borderContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "borderContrast_@title": {
-        "description": "borderContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale de luminosité entre les bordures et son fond"
-    },
-    "borderLightnessLimit_text_label": {
-        "description": "borderLightnessLimit_text_label: text on the label",
-        "message": "Limite de luminosité"
-    },
-    "borderLightnessLimit_@title": {
-        "description": "borderLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de luminosité des bordures"
-    },
-    "borderGraySaturation_text_label": {
-        "description": "borderGraySaturation_text_label: text on the label",
-        "message": "Saturation des bordures grisées"
-    },
-    "borderGraySaturation_@title": {
-        "description": "borderGraySaturation_@title: text on the tooltip\/hint",
-        "message": "Saturation des bordures grisées après l'application de la teinte par défaut sélectionnée"
-    },
-    "borderHueGravity_text_label": {
-        "description": "borderHueGravity_text_label: text on the label",
-        "message": "Gravité de la teinte par défaut"
-    },
-    "borderHueGravity_@title": {
-        "description": "borderHueGravity_@title: text on the tooltip\/hint",
-        "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
-    },
-    "borderGrayHue_text_label": {
-        "description": "borderGrayHue_text_label: text on the label",
-        "message": "Teinte par défaut"
-    },
-    "borderGrayHue_@title": {
-        "description": "borderGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte à utiliser pour augmenter la saturation des couleurs des bordures grisées"
-    },
-    "borderReplaceAllHues_text_label": {
-        "description": "borderReplaceAllHues_text_label: text on the label",
-        "message": "Remplacer toutes"
-    },
-    "borderReplaceAllHues_@title": {
-        "description": "borderReplaceAllHues_@title: text on the tooltip\/hint",
-        "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
-    },
-    "imageSaturationLimit_text_label": {
-        "description": "imageSaturationLimit_text_label: text on the label",
-        "message": "Saturation"
-    },
-    "imageSaturationLimit_@title": {
-        "description": "imageSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Régler la saturation de toutes les images à cette valeur"
-    },
-    "imageLightnessLimit_text_label": {
-        "description": "imageLightnessLimit_text_label: text on the label",
-        "message": "Luminosité"
-    },
-    "imageLightnessLimit_@title": {
-        "description": "imageLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Régler la luminosité de toutes les images à cette valeur"
-    },
-    "imageExample_text_label": {
-        "description": "imageExample_text_label: text on the label",
-        "message": "Exemple de traitement d'images"
-    },
-    "imageExample_@title": {
-        "description": "imageExample_@title: text on the tooltip\/hint",
-        "message": "Exemple de traitement d'images"
-    },
-    "useImageHoverAnimation_text_label": {
-        "description": "useImageHoverAnimation_text_label: text on the label",
-        "message": "Animation du survol d'une image"
-    },
-    "useImageHoverAnimation_@title": {
-        "description": "useImageHoverAnimation_@title: text on the tooltip\/hint",
-        "message": "Supprimer tous les effets de l'image lorsque vous passez la souris dessus"
-    },
-    "backgroundImageSaturationLimit_text_label": {
-        "description": "backgroundImageSaturationLimit_text_label: text on the label",
-        "message": "Saturation"
-    },
-    "backgroundImageSaturationLimit_@title": {
-        "description": "backgroundImageSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Saturation des images de fond"
-    },
-    "backgroundImageLightnessLimit_text_label": {
-        "description": "backgroundImageLightnessLimit_text_label: text on the label",
-        "message": "Luminosité"
-    },
-    "backgroundImageLightnessLimit_@title": {
-        "description": "backgroundImageLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Limite de la luminosité des images de fond. Plus l'image est petite, plus elle est brillante."
-    },
-    "backgroundImageExample_text_label": {
-        "description": "backgroundImageExample_text_label: text on the label",
-        "message": "Exemple d'image de fond"
-    },
-    "backgroundImageExample_@title": {
-        "description": "backgroundImageExample_@title: text on the tooltip\/hint",
-        "message": "Exemple d'image de fond"
-    },
-    "backgroundImageExampleText_text_label": {
-        "description": "backgroundImageExampleText_text_label: text on the label",
-        "message": "Exemple"
-    },
-    "backgroundImageExampleText_@title": {
-        "description": "backgroundImageExampleText_@title: text on the tooltip\/hint",
-        "message": "Si ce site Web contient des images de fond derrière le texte, vous devez ajuster le niveau de luminosité des images de fond jusqu'à ce que vous puissiez voir clairement le texte sur l'image."
-    },
-    "scrollbarSaturationLimit_text_label": {
-        "description": "scrollbarSaturationLimit_text_label: text on the label",
-        "message": "Saturation"
-    },
-    "scrollbarSaturationLimit_@title": {
-        "description": "scrollbarSaturationLimit_@title: text on the tooltip\/hint",
-        "message": "Saturation du barre coulissante et des boutons avec des flèches sur la barre de défilement"
-    },
-    "scrollbarContrast_text_label": {
-        "description": "scrollbarContrast_text_label: text on the label",
-        "message": "Contraste"
-    },
-    "scrollbarContrast_@title": {
-        "description": "scrollbarContrast_@title: text on the tooltip\/hint",
-        "message": "Différence minimale entre la luminosité du barre coulissante de la barre de défilement et de fond principal.\nApplicable uniquement avec des fond lumineux."
-    },
-    "scrollbarLightnessLimit_text_label": {
-        "description": "scrollbarLightnessLimit_text_label: text on the label",
-        "message": "Luminosité"
-    },
-    "scrollbarLightnessLimit_@title": {
-        "description": "scrollbarLightnessLimit_@title: text on the tooltip\/hint",
-        "message": "Luminosité du barre coulissante et des boutons avec des flèches sur la barre de défilement"
-    },
-    "scrollbarSize_text_label": {
-        "description": "scrollbarSize_text_label: text on the label",
-        "message": "Taille"
-    },
-    "scrollbarSize_@title": {
-        "description": "scrollbarSize_@title: text on the tooltip\/hint",
-        "message": "Taille de la barre de défilement"
-    },
-    "scrollbarGrayHue_text_label": {
-        "description": "scrollbarGrayHue_text_label: text on the label",
-        "message": "Teinte des barres de défilement"
-    },
-    "scrollbarGrayHue_@title": {
-        "description": "scrollbarGrayHue_@title: text on the tooltip\/hint",
-        "message": "Teinte du barre coulissante et des boutons avec des flèches sur barres de défilement"
-    },
-    "commonTab_text_label": {
-        "description": "commonTab_text_label: text on the label",
-        "message": "Commun"
-    },
-    "commonTab_@tooltip": {
-        "description": "commonTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "    Paramètres communs\n―――――――――――――――――――\n Cet onglet contient les paramètres communs à la page entière."
-    },
-    "activationTab_text_label": {
-        "description": "activationTab_text_label: text on the label",
-        "message": "Activation"
-    },
-    "backgroundTab_text_label": {
-        "description": "backgroundTab_text_label: text on the label",
-        "message": "Fond"
-    },
-    "backgroundTab_@tooltip": {
-        "description": "backgroundTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "  Paramètres de couleur de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent la manière dont les éléments de la page seront remplis de couleurs."
-    },
-    "buttonsTab_text_label": {
-        "description": "buttonsTab_text_label: text on the label",
-        "message": "Boutons"
-    },
-    "buttonsTab_@tooltip": {
-        "description": "buttonsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "  Paramètres de couleur du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
-    },
-    "textTab_text_label": {
-        "description": "textTab_text_label: text on the label",
-        "message": "Texte"
-    },
-    "textTab_@tooltip": {
-        "description": "textTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "  Paramètres de couleur du texte\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les éléments de texte de la page."
-    },
-    "linkTab_text_label": {
-        "description": "linkTab_text_label: text on the label",
-        "message": "Liens"
-    },
-    "linkTab_@tooltip": {
-        "description": "linkTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Paramètres de couleur des hyperliens\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les liens hypertexte sur la page."
-    },
-    "borderTab_text_label": {
-        "description": "borderTab_text_label: text on the label",
-        "message": "Bordures"
-    },
-    "borderTab_@tooltip": {
-        "description": "borderTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Paramètres de couleur des bordures\n―――――――――――――――――――\n Cet onglet contient les paramètres de réglage des couleurs pour toutes les bordures et lignes de la page."
-    },
-    "imagesTab_text_label": {
-        "description": "imagesTab_text_label: text on the label",
-        "message": "Images"
-    },
-    "imagesTab_@tooltip": {
-        "description": "imagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "    Paramètres des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de luminosité des images et des photos."
-    },
-    "backgroundImagesTab_text_label": {
-        "description": "backgroundImagesTab_text_label: text on the label",
-        "message": "Images de fond"
-    },
-    "backgroundImagesTab_@tooltip": {
-        "description": "backgroundImagesTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "   Réglages des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
-    },
-    "scrollbarsTab_text_label": {
-        "description": "scrollbarsTab_text_label: text on the label",
-        "message": "Barres de défilement"
-    },
-    "scrollbarsTab_@tooltip": {
-        "description": "scrollbarsTab_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page."
-    },
-    "settingsHeader_text_label": {
-        "description": "settingsHeader_text_label: text on the label",
-        "message": " réglages pour"
-    },
-    "hostState_@tooltip": {
-        "description": "hostState_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Basculer le site Web actuel entre\nliste blanche et liste noire"
-    },
-    "hostName_@tooltip": {
-        "description": "hostName_@tooltip: text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
-        "message": "    Site Web actuel\n―――――――――――――――\n Cliquez pour faire basculer le site Web actuel entre la liste blanche et la liste noire.\n Pour mettre tous les sites Web sur liste noire par défaut, accédez à l'onglet «Réglages globaux»."
-    },
-    "helpLink_@tooltip": {
-        "description": "helpLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Forum d'entraide"
-    },
-    "isEnabledSwitch_@tooltip": {
-        "description": "isEnabledSwitch_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Activer ou désactiver l'extension entière"
-    },
-    "isEnabledOn_text_label": {
-        "description": "isEnabledOn_text_label: text on the label",
-        "message": "▌ "
-    },
-    "isEnabledOff_text_label": {
-        "description": "isEnabledOff_text_label: text on the label",
-        "message": " ◯"
-    },
-    "syncSettings_text_label": {
-        "description": "syncSettings_text_label: text on the label",
-        "message": "Synchroniser les réglages"
-    },
-    "syncSettings_@title": {
-        "description": "syncSettings_@title: text on the tooltip\/hint",
-        "message": "Synchronisez les réglages «Midnight Lizard» sur tous vos appareils où cette option est également cochée.\nLorsque les paramètres personnalisés cochés pour chaque site Web seront fusionnés à partir de tous les appareils, une liste de schémas de couleur personnalisés sera remplacée par la dernière. Assurez-vous donc que vous êtes en ligne lorsque vous éditez des schémas personnalisés.\nVous devez également activer «Sync» dans les réglages du navigateur pour que la synchronisation des réglages de «Midnight Lizard» fonctionne."
-    },
-    "colorSchemeForEdit_text_label": {
-        "description": "colorSchemeForEdit_text_label: text on the label",
-        "message": "Schéma de couleur pour l'édition"
-    },
-    "colorSchemeForEdit_@title": {
-        "description": "colorSchemeForEdit_@title: text on the tooltip\/hint",
-        "message": "Choisissez un schéma de couleur pour l'édition.\nVous pouvez créer un nouveau schéma et mettre à jour ou supprimer le schéma de couleur existant."
-    },
-    "colorSchemeName_text_label": {
-        "description": "colorSchemeName_text_label: text on the label",
-        "message": "Nom du schéma de couleur"
-    },
-    "colorSchemeName_@title": {
-        "description": "colorSchemeName_@title: text on the tooltip\/hint",
-        "message": "Vous pouvez éditer le nom du schéma de couleur avant de sauvegarder"
-    },
-    "deleteColorSchemeBtn_text_label": {
-        "description": "deleteColorSchemeBtn_text_label: text on the label",
-        "message": "Supprimer"
-    },
-    "deleteColorSchemeBtn_@title": {
-        "description": "deleteColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Supprimer le schéma de couleur sélectionné pour edition"
-    },
-    "saveColorSchemeBtn_text_label": {
-        "description": "saveColorSchemeBtn_text_label: text on the label",
-        "message": "Sauvegarder"
-    },
-    "saveColorSchemeBtn_@title": {
-        "description": "saveColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Mise à jour du schéma de couleur sélectionné avec les paramètres actuels de popup"
-    },
-    "exportColorSchemeBtn_text_label": {
-        "description": "exportColorSchemeBtn_text_label: text on the label",
-        "message": "Exporter"
-    },
-    "exportColorSchemeBtn_@title": {
-        "description": "exportColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Exporter vers un fichier le schéma de couleur sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
-        "placeholders": {
-            "current_color_scheme": {
-                "content": "$1",
-                "example": "Custom"
-            },
-            "color_scheme_for_edit": {
-                "content": "$2",
-                "example": "Dimmed Dust"
-            },
-            "color_scheme_name": {
-                "content": "$3",
-                "example": "New color scheme"
-            }
-        }
-    },
-    "importColorSchemeBtn_text_label": {
-        "description": "importColorSchemeBtn_text_label: text on the label",
-        "message": "Importer"
-    },
-    "importColorSchemeBtn_@title": {
-        "description": "importColorSchemeBtn_@title: text on the tooltip\/hint",
-        "message": "Importer un schéma de couleur depuis un fichier"
-    },
-    "editSchemesTab_text_label": {
-        "description": "editSchemesTab_text_label: text on the label",
-        "message": "Schémas de couleur"
-    },
-    "currentColorScheme_text_label": {
-        "description": "currentColorScheme_text_label: text on the label",
-        "message": "Schéma de couleur actuel"
-    },
-    "currentColorScheme_@title": {
-        "description": "currentColorScheme_@title: text on the tooltip\/hint",
-        "message": "Choisissez votre schéma de couleur favori"
-    },
-    "forgetThisSiteBtn_@title": {
-        "description": "forgetThisSiteBtn_@title: text on the tooltip\/hint",
-        "message": "Oublier les paramètres du site actuel"
-    },
-    "forgetAllSitesBtn_@title": {
-        "description": "forgetAllSitesBtn_@title: text on the tooltip\/hint",
-        "message": "Oublier les réglages de tous les sites"
-    },
-    "setAsDefaultBtn_text_label": {
-        "description": "setAsDefaultBtn_text_label: text on the label",
-        "message": "Définir par défaut"
-    },
-    "setAsDefaultBtn_@title": {
-        "description": "setAsDefaultBtn_@title: text on the tooltip\/hint",
-        "message": "Définir les paramètres actuels par défaut pour tous les sites web sans paramètres personnalisés"
-    },
-    "applyBtn_text_label": {
-        "description": "applyBtn_text_label: text on the label",
-        "message": "Appliquer"
-    },
-    "applyBtn_@title": {
-        "description": "applyBtn_@title: text on the tooltip\/hint",
-        "message": "Appliquer les paramètres actuels pour ce site"
-    },
-    "closeBtn_text_label": {
-        "description": "closeBtn_text_label: text on the label",
-        "message": "Fermer"
-    },
-    "closeBtn_@title": {
-        "description": "closeBtn_@title: text on the tooltip\/hint",
-        "message": "Fermer la fenêtre pop-up et abandonner toutes les modifications non enregistrées"
-    },
-    "donateLink_@tooltip": {
-        "description": "donateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Faire un don à notre collectif"
-    },
-    "rateLink_@tooltip": {
-        "description": "rateLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Notez cette extension"
-    },
-    "emailLink_@tooltip": {
-        "description": "emailLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Envoyer un e-mail au développeur"
-    },
-    "bugReportLink_@tooltip": {
-        "description": "bugReportLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Signaler un problème"
-    },
-    "changeLogLink_@tooltip": {
-        "description": "changeLogLink_@tooltip: text on the tooltip\/hint with custom style",
-        "message": "Journal des modifications"
-    },
-    "colorSchemeSaveFailureMessage": {
-        "description": "colorSchemeSaveFailureMessage: text on the message box",
-        "message": "La mise à jour du schéma de couleur a échoué.\n"
-    },
-    "colorSchemeDeleteFailureMessage": {
-        "description": "colorSchemeDeleteFailureMessage: text on the message box",
-        "message": "La suppression du jeu de couleurs a échoué.\n"
-    },
-    "forgetAllConfirmationMessage": {
-        "description": "forgetAllConfirmationMessage: text on the message box",
-        "message": "Tous les paramètres et les jeux de couleurs personnalisés créés précédemment seront supprimés ! Êtes-vous sûr de vouloir continuer ?"
-    },
-    "shortcut_text_lable": {
-        "message": "Raccourci"
-    },
-    "colorSchemeName_Custom": {
-        "description": "color scheme name",
-        "message": "Personnalisé"
-    },
-    "colorSchemeName_New": {
-        "description": "color scheme name",
-        "message": "Nouveau schéma de couleur"
-    },
-    "colorSchemeName_default": {
-        "description": "color scheme name",
-        "message": "Défaut"
-    },
-    "colorSchemeName_original": {
-        "description": "color scheme name",
-        "message": "Original (aucun)"
-    },
-    "colorSchemeName_dimmedDust": {
-        "description": "color scheme name",
-        "message": "Poussière Cosmique"
-    },
-    "colorSchemeName_appleMint": {
-        "description": "color scheme name",
-        "message": "Baume Sauvage"
-    },
-    "colorSchemeName_kappaDream": {
-        "description": "color scheme name",
-        "message": "Forêt Marais"
-    },
-    "colorSchemeName_almondRipe": {
-        "description": "color scheme name",
-        "message": "Amande Mûre"
-    },
-    "colorSchemeName_sunsetSails": {
-        "description": "color scheme name",
-        "message": "Voiles au Coucher"
-    },
-    "colorSchemeName_halloween": {
-        "description": "color scheme name",
-        "message": "Veille de la Toussaint"
-    },
-    "colorSchemeName_morningMist": {
-        "description": "color scheme name",
-        "message": "Brume Matinale"
-    },
-    "colorSchemeName_antiqueCodex": {
-        "description": "color scheme name",
-        "message": "Antique Codex"
-    },
-    "colorSchemeName_increasedContrast": {
-        "description": "color scheme name",
-        "message": "Contraste Augmenté"
-    },
-    "colorSchemeName_grayscale": {
-        "description": "color scheme name",
-        "message": "Niveaux de Gris"
-    },
-    "colorSchemeName_invertedLight": {
-        "description": "color scheme name",
-        "message": "Lumière Inversée"
-    },
-    "colorSchemeName_invertedGrayscale": {
-        "description": "color scheme name",
-        "message": "Niveaux de Gris Inversés"
-    },
-    "colorSchemeName_yellowOnBlack": {
-        "description": "color scheme name",
-        "message": "Jaune sur Noir"
-    },
-    "colorSchemeName_greenOnBlack": {
-        "description": "color scheme name",
-        "message": "Vert sur Noir"
-    },
-    "colorSchemeName_blueLightFilter": {
-        "description": "color scheme name",
-        "message": "Filtre Bleu"
-    },
-    "localStorageOverrideConfirmationMessage": {
-        "description": "localStorageOverrideConfirmationMessage: text on the message box",
-        "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"
-    },
-    "syncStorageOverrideConfirmationMessage": {
-        "description": "syncStorageOverrideConfirmationMessage: text on the message box",
-        "message": "Votre espace de stockage de réglages sync (cloud) contient déjà des données.\nVous voulez les remplacer par les données du stockage de réglages locaux\net perdre les données substituées ?"
-    },
-    "backgroundExample_text_label": {
-        "description": "backgroundExample_text_label: text on the label",
-        "message": "Exemple de traitement du fond"
-    },
-    "backgroundExample_@title": {
-        "description": "backgroundExample_@title: text on the tooltip\/hint",
-        "message": "Exemple de traitement du fond de différentes couleurs"
-    },
-    "smallBackgroundImageExample_text_label": {
-        "description": "smallBackgroundImageExample_text_label: text on the label",
-        "message": "Exemple de petites images de fond"
-    },
-    "scrollbarExample_text_label": {
-        "description": "scrollbarExample_text_label: text on the label",
-        "message": "Exemple de traitement de barre de défilement"
-    },
-    "buttonExample_text_label": {
-        "description": "buttonExample_text_label: text on the label",
-        "message": "Exemple de traitement des boutons"
-    },
-    "borderExample_text_label": {
-        "description": "borderExample_text_label: text on the label",
-        "message": "Exemple de traitement des bordures"
-    },
-    "mode_text_label": {
-        "description": "mode_text_label: text on the label",
-        "message": "Mode de processing"
-    },
-    "mode_simplified_text_label": {
-        "description": "mode_simplified_text_label: text on the label",
-        "message": "❔ Simplifié"
-    },
-    "mode_complex_text_label": {
-        "description": "mode_complex_text_label: text on the label",
-        "message": "❔ Complexe"
-    },
-    "mode_filter_text_label": {
-        "description": "text on the label",
-        "message": "❔ Filtre"
-    },
-    "mode_automatic_text_label": {
-        "description": "mode_automatic_text_label: text on the label",
-        "message": "❔ Automatique"
-    },
-    "modeAutoSwitchLimit_text_label": {
-        "description": "mode_complex_text_label: text on the label",
-        "message": "Limite de mode automatique"
-    },
-    "default_runOnThisSite_text_label": {
-        "description": "default_runOnThisSite_text_label: text on the label",
-        "message": "Exécuter sur tous sites Web par défaut"
-    },
-    "default_scheduleStartHour_text_label": {
-        "description": "default_scheduleStartHour_text_label: text on the label",
-        "message": "Temps d'activation par défaut"
-    },
-    "default_scheduleFinishHour_text_label": {
-        "description": "default_scheduleFinishHour_text_label: text on the label",
-        "message": "Temps de désactivation par défaut"
-    },
-    "globalstab_text_label": {
-        "description": "globalstab_text_label: text on the label",
-        "message": "Réglages globaux"
-    },
-    "excludeMatches_text_label": {
-        "description": "excludeMatches_text_label: text on the label",
-        "message": "Exclure les motifs"
-    },
-    "includeMatches_text_label": {
-        "description": "includeMatches_text_label: text on the label",
-        "message": "Inclure les motifs"
-    },
-    "matchPatternsSyntaxLink_text_label": {
-        "description": "matchPatternsSyntaxLink_text_label: text on the link",
-        "message": "Syntaxe"
-    },
-    "doNotInvertContent_text_label": {
-        "description": "doNotInvertContent_text_label: text on the label",
-        "message": "Ne pas inverser le contenu dynamique"
-    },
-    "localFiles_text_label": {
-        "description": "localFiles_text_label: text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
-        "message": "fichiers locaux"
-    },
-    "scrollbarStyle_text_label": {
-        "description": "scrollbarStyle_text_label: text on the label",
-        "message": "Changer le style des barres de défilement"
-    },
-    "forgetThisSiteBtn_text_long_label": {
-        "description": "forgetThisSiteBtn_text_label: text on the label",
-        "message": "Supprimer les paramètres du site actuel"
-    },
-    "forgetAllSitesBtn_text_long_label": {
-        "description": "forgetAllSitesBtn_text_label: text on the label",
-        "message": "Supprimer tous les paramètres"
+  "short_locale": {
+    "description": "two letters of the current locale",
+    "message": "fr"
+  },
+  "appDesc": {
+    "description": "extension description displayed in the Web Store",
+    "message": "Cette extension modifie les couleurs de la page, la luminosité et le contraste pour augmenter la lisibilité et apporte le mode nuit sombre à tous les sites Web."
+  },
+  "globalToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "Activer\/désactiver l'extension globalement"
+  },
+  "currentToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "Activer\/désactiver l'extension pour le site courant"
+  },
+  "runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Exécuter sur ce site Web"
+  },
+  "restoreColorsOnCopy_text_label": {
+    "description": "text on the label",
+    "message": "Restaurer les couleurs d'origine sur copie"
+  },
+  "restoreColorsOnCopy_@title": {
+    "description": "text on the tooltip",
+    "message": "Restaurer les couleurs d'origine avant de copier le contenu de la page"
+  },
+  "restoreColorsOnPrint_text_label": {
+    "description": "text on the label",
+    "message": "Restaurer les couleurs d'origine sur impression"
+  },
+  "restoreColorsOnPrint_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Restaurer les couleurs d'origine avant d'imprimer le contenu de la page"
+  },
+  "changeBrowserTheme_text_label": {
+    "description": "text on the label",
+    "message": "Changer le thème du navigateur"
+  },
+  "changeBrowserTheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Régler le thème du navigateur sur le schéma de couleur actuel.\nPris en charge par Firefox et partiellement par Vivaldi."
+  },
+  "useDefaultSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Utiliser l'horaire par défaut"
+  },
+  "useDefaultSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Utiliser l'horaire des paramètres par défaut.\nSi vous souhaitez utiliser l'horaire unique pour tous les sites Web,\nvous devez le spécifier dans les paramètres par défaut."
+  },
+  "scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Temps d'activation"
+  },
+  "scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "L'extension sera active sur le site Web actuel uniquement à partir de ce moment."
+  },
+  "scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Temps de désactivation"
+  },
+  "scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "L'extension sera active sur le site Web actuel seulement jusqu'à ce moment."
+  },
+  "blueFilter_text_label": {
+    "description": "text on the label",
+    "message": "Intensité du filtre bleu"
+  },
+  "blueFilter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Intensité du filtre bleu.\nSupprime la lumière bleue de la page et la restitue avec une lumière rouge."
+  },
+  "backgroundSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de saturation"
+  },
+  "backgroundSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de saturation du fond"
+  },
+  "backgroundContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "backgroundContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale de luminosité entre les fondos similaires.\nSelon la taille et l'ordre des éléments, les résultats peuvent être aléatoires."
+  },
+  "backgroundLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de luminosité"
+  },
+  "backgroundLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de luminosité du fond"
+  },
+  "backgroundGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Saturation de fond gris"
+  },
+  "backgroundGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation les fondos gris après l'application de la teinte par défaut sélectionnée"
+  },
+  "backgroundHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Gravité de la teinte par défaut"
+  },
+  "backgroundHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+  },
+  "backgroundGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte par défaut"
+  },
+  "backgroundGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte à utiliser pour augmenter la saturation des couleurs de fond gris"
+  },
+  "backgroundReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "Remplacer toutes"
+  },
+  "backgroundReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+  },
+  "buttonSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de saturation"
+  },
+  "buttonSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de saturation du fond du bouton"
+  },
+  "buttonContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "buttonContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale de luminosité entre les boutons et le fond autour d'eux"
+  },
+  "buttonLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de luminosité"
+  },
+  "buttonLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de luminosité du fond du bouton"
+  },
+  "buttonGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Saturation du bouton gris"
+  },
+  "buttonGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation les fondos des boutons gris après l'application de la teinte par défaut sélectionnée"
+  },
+  "buttonHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Gravité de la teinte par défaut"
+  },
+  "buttonHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+  },
+  "buttonGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte par défaut"
+  },
+  "buttonGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte à utiliser pour augmenter la saturation des couleurs du fond du bouton gris"
+  },
+  "buttonReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "Remplacer toutes"
+  },
+  "buttonReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+  },
+  "textSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de saturation"
+  },
+  "textSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de saturation du texte"
+  },
+  "textContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "textContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale de luminosité entre le texte et son fond"
+  },
+  "textLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de luminosité"
+  },
+  "textLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de luminosité du texte"
+  },
+  "textGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Saturation du texte grisé"
+  },
+  "textGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation du texte grisé après l'application de la teinte par défaut sélectionnée"
+  },
+  "textHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Gravité de la teinte par défaut"
+  },
+  "textHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+  },
+  "textGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte par défaut"
+  },
+  "textGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte à utiliser pour augmenter la saturation des couleurs du texte grisé"
+  },
+  "textReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "Remplacer toutes"
+  },
+  "textReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+  },
+  "textSelectionHue_html_label": {
+    "message": "Teinte de <span id=\"selection\">sélection<\/span> du texte"
+  },
+  "textSelectionHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte de sélection du texte"
+  },
+  "linkSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de saturation"
+  },
+  "linkSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de saturation des liens"
+  },
+  "linkContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "linkContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale de luminosité entre les liens et son fond"
+  },
+  "linkLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de luminosité"
+  },
+  "linkLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de luminosité des liens"
+  },
+  "linkDefaultSaturation_text_label": {
+    "description": "text on the label",
+    "message": "Saturation des liens par défaut"
+  },
+  "linkDefaultSaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation des liens avec la couleur de lien normal et pour les liens visités après l’application des teintes sélectionnées"
+  },
+  "linkHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Gravité de la teinte par défaut"
+  },
+  "linkHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+  },
+  "linkDefaultHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte par défaut"
+  },
+  "linkDefaultHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte à utiliser pour remplacer la teinte normale d'un lien"
+  },
+  "linkReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "Remplacer toutes"
+  },
+  "linkReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes normaux des liens de cette page seront remplacées.\nLa saturation par défaut sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+  },
+  "linkVisitedHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte des liens visités"
+  },
+  "linkVisitedHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte des liens visités"
+  },
+  "borderSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de saturation"
+  },
+  "borderSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de saturation des bordures"
+  },
+  "borderContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "borderContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale de luminosité entre les bordures et son fond"
+  },
+  "borderLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de luminosité"
+  },
+  "borderLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de luminosité des bordures"
+  },
+  "borderGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Saturation des bordures grisées"
+  },
+  "borderGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation des bordures grisées après l'application de la teinte par défaut sélectionnée"
+  },
+  "borderHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Gravité de la teinte par défaut"
+  },
+  "borderHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Détermine la façon dont toutes les autres teintes seront affectées par la teinte par défaut sélectionnée.\nPlus la gravité est forte, plus toutes les autres teintes seront rapprochées de la teinte par défaut sélectionnée.\nLa limite de saturation sera utilisée pour les teintes affectées.\nNe fonctionne pas si la case «Remplacer tout» est cochée.\n«Remplacer tout» les teintes fonctionnent plus rapidement et doivent être préférées sur 100% de gravité."
+  },
+  "borderGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte par défaut"
+  },
+  "borderGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte à utiliser pour augmenter la saturation des couleurs des bordures grisées"
+  },
+  "borderReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "Remplacer toutes"
+  },
+  "borderReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Remplace toutes les teintes d'origine par une teinte sélectionnée.\nSinon, seules les teintes grises, noires et blanches seront remplacées.\nLa saturation grise sera utilisée pour les teintes remplacées.\nRemplace complètement la gravité de la teinte par défaut."
+  },
+  "imageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Saturation"
+  },
+  "imageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Régler la saturation de toutes les images à cette valeur"
+  },
+  "imageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Luminosité"
+  },
+  "imageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Régler la luminosité de toutes les images à cette valeur"
+  },
+  "imageExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de traitement d'images"
+  },
+  "imageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de traitement d'images"
+  },
+  "useImageHoverAnimation_text_label": {
+    "description": "text on the label",
+    "message": "Animation du survol d'une image"
+  },
+  "useImageHoverAnimation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Supprimer tous les effets de l'image lorsque vous passez la souris dessus"
+  },
+  "backgroundImageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Saturation"
+  },
+  "backgroundImageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation des images de fond"
+  },
+  "backgroundImageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Luminosité"
+  },
+  "backgroundImageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limite de la luminosité des images de fond. Plus l'image est petite, plus elle est brillante."
+  },
+  "backgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple d'image de fond"
+  },
+  "backgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple d'image de fond"
+  },
+  "backgroundImageExampleText_text_label": {
+    "description": "text on the label",
+    "message": "Exemple"
+  },
+  "backgroundImageExampleText_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Si ce site Web contient des images de fond derrière le texte, vous devez ajuster le niveau de luminosité des images de fond jusqu'à ce que vous puissiez voir clairement le texte sur l'image."
+  },
+  "scrollbarSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Saturation"
+  },
+  "scrollbarSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Saturation du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+  },
+  "scrollbarContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contraste"
+  },
+  "scrollbarContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Différence minimale entre la luminosité du barre coulissante de la barre de défilement et de fond principal.\nApplicable uniquement avec des fond lumineux."
+  },
+  "scrollbarLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Luminosité"
+  },
+  "scrollbarLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Luminosité du barre coulissante et des boutons avec des flèches sur la barre de défilement"
+  },
+  "scrollbarSize_text_label": {
+    "description": "text on the label",
+    "message": "Taille"
+  },
+  "scrollbarSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Taille de la barre de défilement"
+  },
+  "scrollbarGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Teinte des barres de défilement"
+  },
+  "scrollbarGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Teinte du barre coulissante et des boutons avec des flèches sur barres de défilement"
+  },
+  "commonTab_text_label": {
+    "description": "text on the label",
+    "message": "Commun"
+  },
+  "commonTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Paramètres communs\n―――――――――――――――――――\n Cet onglet contient les paramètres communs à la page entière."
+  },
+  "activationTab_text_label": {
+    "description": "text on the label",
+    "message": "Activation"
+  },
+  "backgroundTab_text_label": {
+    "description": "text on the label",
+    "message": "Fond"
+  },
+  "backgroundTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "  Paramètres de couleur de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent la manière dont les éléments de la page seront remplis de couleurs."
+  },
+  "buttonsTab_text_label": {
+    "description": "text on the label",
+    "message": "Boutons"
+  },
+  "buttonsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "  Paramètres de couleur du bouton\n―――――――――――――――――――\n Cet onglet contient des paramètres qui définissent comment les boutons et autres éléments jouant ce rôle sur la page sont remplis de couleurs."
+  },
+  "textTab_text_label": {
+    "description": "text on the label",
+    "message": "Texte"
+  },
+  "textTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "  Paramètres de couleur du texte\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les éléments de texte de la page."
+  },
+  "linkTab_text_label": {
+    "description": "text on the label",
+    "message": "Liens"
+  },
+  "linkTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": " Paramètres de couleur des hyperliens\n―――――――――――――――――――\n Cet onglet contient les paramètres d'ajustement des couleurs pour tous les liens hypertexte sur la page."
+  },
+  "borderTab_text_label": {
+    "description": "text on the label",
+    "message": "Bordures"
+  },
+  "borderTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": " Paramètres de couleur des bordures\n―――――――――――――――――――\n Cet onglet contient les paramètres de réglage des couleurs pour toutes les bordures et lignes de la page."
+  },
+  "imagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Images"
+  },
+  "imagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Paramètres des images\n―――――――――――――――――――\n Cet onglet contient les paramètres de saturation et de luminosité des images et des photos."
+  },
+  "backgroundImagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Images de fond"
+  },
+  "backgroundImagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "   Réglages des images de fond\n―――――――――――――――――――\n Cet onglet contient des paramètres pour la saturation des images de fond et le réglage de la luminosité.\n Les images de fond sont un type spécial de remplissage de fond d'un élément. Ces images sont généralement à l'intérieur ou derrière le texte."
+  },
+  "scrollbarsTab_text_label": {
+    "description": "text on the label",
+    "message": "Barres de défilement"
+  },
+  "scrollbarsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": " Paramètres des barres de défilement\n―――――――――――――――――――\n Paramètres de réglage de la couleur pour toutes les barres de défilement sur la page."
+  },
+  "settingsHeader_text_label": {
+    "description": "text on the label",
+    "message": " réglages pour"
+  },
+  "hostState_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Basculer le site Web actuel entre\nliste blanche et liste noire"
+  },
+  "hostName_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Site Web actuel\n―――――――――――――――\n Cliquez pour faire basculer le site Web actuel entre la liste blanche et la liste noire.\n Pour mettre tous les sites Web sur liste noire par défaut, accédez à l'onglet «Réglages globaux»."
+  },
+  "helpLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Forum d'entraide"
+  },
+  "isEnabledSwitch_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Activer ou désactiver l'extension entière"
+  },
+  "isEnabledOn_text_label": {
+    "description": "text on the label",
+    "message": "▌ "
+  },
+  "isEnabledOff_text_label": {
+    "description": "text on the label",
+    "message": " ◯"
+  },
+  "syncSettings_text_label": {
+    "description": "text on the label",
+    "message": "Synchroniser les réglages"
+  },
+  "syncSettings_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Synchronisez les réglages «Midnight Lizard» sur tous vos appareils où cette option est également cochée.\nLorsque les paramètres personnalisés cochés pour chaque site Web seront fusionnés à partir de tous les appareils, une liste de schémas de couleur personnalisés sera remplacée par la dernière. Assurez-vous donc que vous êtes en ligne lorsque vous éditez des schémas personnalisés.\nVous devez également activer «Sync» dans les réglages du navigateur pour que la synchronisation des réglages de «Midnight Lizard» fonctionne."
+  },
+  "colorSchemeForEdit_text_label": {
+    "description": "text on the label",
+    "message": "Schéma de couleur pour l'édition"
+  },
+  "colorSchemeForEdit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Choisissez un schéma de couleur pour l'édition.\nVous pouvez créer un nouveau schéma et mettre à jour ou supprimer le schéma de couleur existant."
+  },
+  "colorSchemeName_text_label": {
+    "description": "text on the label",
+    "message": "Nom du schéma de couleur"
+  },
+  "colorSchemeName_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vous pouvez éditer le nom du schéma de couleur avant de sauvegarder"
+  },
+  "deleteColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Supprimer"
+  },
+  "deleteColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Supprimer le schéma de couleur sélectionné pour edition"
+  },
+  "saveColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Sauvegarder"
+  },
+  "saveColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Mise à jour du schéma de couleur sélectionné avec les paramètres actuels de popup"
+  },
+  "exportColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Exporter"
+  },
+  "exportColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exporter vers un fichier le schéma de couleur sélectionné pour edition «$color_scheme_for_edit$» avec le nom «$color_scheme_name$» et remplacer tous ses paramètres par ceux actuellement appliqués sur les paramètres de popup de «$current_color_scheme$».",
+    "placeholders": {
+      "current_color_scheme": {
+        "content": "$1",
+        "example": "Custom"
+      },
+      "color_scheme_for_edit": {
+        "content": "$2",
+        "example": "Dimmed Dust"
+      },
+      "color_scheme_name": {
+        "content": "$3",
+        "example": "New color scheme"
+      }
     }
+  },
+  "importColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Importer"
+  },
+  "importColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Importer un schéma de couleur depuis un fichier"
+  },
+  "editSchemesTab_text_label": {
+    "description": "text on the label",
+    "message": "Schémas de couleur"
+  },
+  "currentColorScheme_text_label": {
+    "description": "text on the label",
+    "message": "Schéma de couleur actuel"
+  },
+  "currentColorScheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Choisissez votre schéma de couleur favori"
+  },
+  "forgetThisSiteBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Oublier les paramètres du site actuel"
+  },
+  "forgetAllSitesBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Oublier les réglages de tous les sites"
+  },
+  "setAsDefaultBtn_text_label": {
+    "description": "text on the label",
+    "message": "Définir par défaut"
+  },
+  "setAsDefaultBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Définir les paramètres actuels par défaut pour tous les sites web sans paramètres personnalisés"
+  },
+  "applyBtn_text_label": {
+    "description": "text on the label",
+    "message": "Appliquer"
+  },
+  "applyBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Appliquer les paramètres actuels pour ce site"
+  },
+  "closeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Fermer"
+  },
+  "closeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Fermer la fenêtre pop-up et abandonner toutes les modifications non enregistrées"
+  },
+  "donateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Faire un don à notre collectif"
+  },
+  "rateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Notez cette extension"
+  },
+  "emailLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Envoyer un e-mail au développeur"
+  },
+  "bugReportLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Signaler un problème"
+  },
+  "changeLogLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Journal des modifications"
+  },
+  "colorSchemeSaveFailureMessage": {
+    "description": "text on the message box",
+    "message": "La mise à jour du schéma de couleur a échoué.\n"
+  },
+  "colorSchemeDeleteFailureMessage": {
+    "description": "text on the message box",
+    "message": "La suppression du jeu de couleurs a échoué.\n"
+  },
+  "forgetAllConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Tous les paramètres et les jeux de couleurs personnalisés créés précédemment seront supprimés ! Êtes-vous sûr de vouloir continuer ?"
+  },
+  "shortcut_text_lable": {
+    "message": "Raccourci"
+  },
+  "colorSchemeName_Custom": {
+    "description": "color scheme name",
+    "message": "Personnalisé"
+  },
+  "colorSchemeName_New": {
+    "description": "color scheme name",
+    "message": "Nouveau schéma de couleur"
+  },
+  "colorSchemeName_default": {
+    "description": "color scheme name",
+    "message": "Défaut"
+  },
+  "colorSchemeName_original": {
+    "description": "color scheme name",
+    "message": "Original (aucun)"
+  },
+  "colorSchemeName_dimmedDust": {
+    "description": "color scheme name",
+    "message": "Poussière Cosmique"
+  },
+  "colorSchemeName_appleMint": {
+    "description": "color scheme name",
+    "message": "Baume Sauvage"
+  },
+  "colorSchemeName_kappaDream": {
+    "description": "color scheme name",
+    "message": "Forêt Marais"
+  },
+  "colorSchemeName_almondRipe": {
+    "description": "color scheme name",
+    "message": "Amande Mûre"
+  },
+  "colorSchemeName_sunsetSails": {
+    "description": "color scheme name",
+    "message": "Voiles au Coucher"
+  },
+  "colorSchemeName_halloween": {
+    "description": "color scheme name",
+    "message": "Veille de la Toussaint"
+  },
+  "colorSchemeName_morningMist": {
+    "description": "color scheme name",
+    "message": "Brume Matinale"
+  },
+  "colorSchemeName_antiqueCodex": {
+    "description": "color scheme name",
+    "message": "Antique Codex"
+  },
+  "colorSchemeName_increasedContrast": {
+    "description": "color scheme name",
+    "message": "Contraste Augmenté"
+  },
+  "colorSchemeName_grayscale": {
+    "description": "color scheme name",
+    "message": "Niveaux de Gris"
+  },
+  "colorSchemeName_invertedLight": {
+    "description": "color scheme name",
+    "message": "Lumière Inversée"
+  },
+  "colorSchemeName_invertedGrayscale": {
+    "description": "color scheme name",
+    "message": "Niveaux de Gris Inversés"
+  },
+  "colorSchemeName_yellowOnBlack": {
+    "description": "color scheme name",
+    "message": "Jaune sur Noir"
+  },
+  "colorSchemeName_greenOnBlack": {
+    "description": "color scheme name",
+    "message": "Vert sur Noir"
+  },
+  "colorSchemeName_blueLightFilter": {
+    "description": "color scheme name",
+    "message": "Filtre Bleu"
+  },
+  "localStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Votre espace de stockage de réglages locaux contient déjà des données.\nVous voulez les remplacer par les données du stockage de sync (cloud)\net perdre les données substituées ?"
+  },
+  "syncStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Votre espace de stockage de réglages sync (cloud) contient déjà des données.\nVous voulez les remplacer par les données du stockage de réglages locaux\net perdre les données substituées ?"
+  },
+  "backgroundExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de traitement du fond"
+  },
+  "backgroundExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de traitement du fond de différentes couleurs"
+  },
+  "smallBackgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de petites images de fond"
+  },
+  "scrollbarExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de traitement de barre de défilement"
+  },
+  "buttonExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de traitement des boutons"
+  },
+  "borderExample_text_label": {
+    "description": "text on the label",
+    "message": "Exemple de traitement des bordures"
+  },
+  "mode_text_label": {
+    "description": "text on the label",
+    "message": "Mode de processing"
+  },
+  "mode_simplified_text_label": {
+    "description": "text on the label",
+    "message": "❔ Simplifié"
+  },
+  "mode_complex_text_label": {
+    "description": "text on the label",
+    "message": "❔ Complexe"
+  },
+  "mode_filter_text_label": {
+    "description": "text on the label",
+    "message": "❔ Filtre"
+  },
+  "mode_automatic_text_label": {
+    "description": "text on the label",
+    "message": "❔ Automatique"
+  },
+  "modeAutoSwitchLimit_text_label": {
+    "description": "text on the label",
+    "message": "Limite de mode automatique"
+  },
+  "default_runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Exécuter sur tous sites Web par défaut"
+  },
+  "default_scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Temps d'activation par défaut"
+  },
+  "default_scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Temps de désactivation par défaut"
+  },
+  "globalstab_text_label": {
+    "description": "text on the label",
+    "message": "Réglages globaux"
+  },
+  "excludeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Exclure les motifs"
+  },
+  "includeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Inclure les motifs"
+  },
+  "matchPatternsSyntaxLink_text_label": {
+    "description": "text on the link",
+    "message": "Syntaxe"
+  },
+  "doNotInvertContent_text_label": {
+    "description": "text on the label",
+    "message": "Ne pas inverser le contenu dynamique"
+  },
+  "localFiles_text_label": {
+    "description": "text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+    "message": "fichiers locaux"
+  },
+  "scrollbarStyle_text_label": {
+    "description": "text on the label",
+    "message": "Changer le style des barres de défilement"
+  },
+  "forgetThisSiteBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Supprimer les paramètres du site actuel"
+  },
+  "forgetAllSitesBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Supprimer tous les paramètres"
+  }
 }

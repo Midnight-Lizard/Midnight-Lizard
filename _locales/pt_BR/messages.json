@@ -1,14 +1,14 @@
 {
-    "short_locale": {
-        "description": "short_locale: two letters of the current locale",
-        "message": "pt"
-    },
-    "appDesc": {
-        "description": "appDesc: extension description displayed in the Web Store",
-        "message": "Esta extensão altera as cores, o brilho e o contraste da página para aumentar a legibilidade e traz o modo noturno escuro para todos os sites."
-    },
-    "globalToggleKey": {
-        "description": "globalToggleKey: keyboard shortcut description in the browser settings",
-        "message": "Alternância de extensão global"
-    }
+  "short_locale": {
+    "description": "two letters of the current locale",
+    "message": "pt"
+  },
+  "appDesc": {
+    "description": "extension description displayed in the Web Store",
+    "message": "Esta extensão altera as cores, o brilho e o contraste da página para aumentar a legibilidade e traz o modo noturno escuro para todos os sites."
+  },
+  "globalToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "Alternância de extensão global"
+  }
 }
