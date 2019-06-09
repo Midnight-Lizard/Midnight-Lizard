@@ -25,6 +25,8 @@ import { RoomRules } from "../ContentScript/RoomRules";
 import * as Tab from "../Controls/TabControl";
 import * as Slider from "../Controls/SliderControl";
 import { USP } from "../ContentScript/CssStyle";
+import { IColorToRgbaStringConverter } from "../Colors/ColorToRgbaStringConverter";
+import { HslaColor } from "../Colors/HslaColor";
 
 const dom = HtmlEvent;
 const editMark = ColorSchemeNamePrefix.FromFile;
@@ -54,6 +56,7 @@ class PopupManager
     protected _newColorSchemeName!: HTMLInputElement;
     protected _colorSchemeForEdit!: HTMLSelectElement;
     protected _importColorSchemeFileInput!: HTMLInputElement;
+    protected _generateFromColorsButton!: HTMLButtonElement;
     protected _syncSettingsCheckBox!: HTMLInputElement;
     protected _settingsForm!: HTMLFormElement;
     protected _lastMatchPatternChangeTimeout = 0;
@@ -78,7 +81,8 @@ class PopupManager
         protected readonly _documentTranslator: IDocumentTranslator,
         protected readonly _i18n: ITranslationAccessor,
         protected readonly _rangeFillColorProcessor: IRangeFillColorProcessor,
-        protected readonly _matchPatternProcessor: IMatchPatternProcessor)
+        protected readonly _matchPatternProcessor: IMatchPatternProcessor,
+        private readonly _webColorConverter: IColorToRgbaStringConverter)
     {
         dom.addEventListener(_popup, "DOMContentLoaded", this.popupContentloaded, this);
         dom.addEventListener(_popup.defaultView!, "resize", this.setPopupScale, this);
@@ -140,6 +144,7 @@ class PopupManager
         this._hiddenSaveColorSchemeButton = doc.getElementById("hiddenSaveColorSchemeButton") as HTMLButtonElement;
         this._deleteColorSchemeButton = doc.getElementById("deleteColorSchemeBtn") as HTMLButtonElement;
         this._exportColorSchemeButton = doc.getElementById("exportColorSchemeBtn") as HTMLButtonElement;
+        this._generateFromColorsButton = doc.getElementById("generateFromColorsButton") as HTMLButtonElement;
         this._newColorSchemeName = doc.getElementById("newColorSchemeName") as HTMLInputElement;
         this._colorSchemeForEdit = doc.getElementById("colorSchemeForEdit") as HTMLSelectElement;
         this._importColorSchemeFileInput = doc.getElementById("importColorSchemeFileInput") as HTMLInputElement;
@@ -223,6 +228,8 @@ class PopupManager
         this._importColorSchemeFileInput.onchange = this.importColorSchemes.bind(this);
         this._importColorSchemeFileInput.onclick = this.importColorSchemesClick.bind(this);
 
+        this._generateFromColorsButton.onclick = this.generateFromColors.bind(this);
+
         Tab.initTabControl(doc, (tab) =>
         {
             if (tab === "text")
@@ -252,6 +259,7 @@ class PopupManager
         this.updateButtonStates();
         this.toggleSchedule();
         this.onColorSchemeForEditChanged();
+        this.setEmptySettingsOnGenerator();
     }
 
     private getHostName(): string
@@ -274,6 +282,7 @@ class PopupManager
         this.setPopupScale();
         this.updateButtonStates();
         this.toggleSchedule();
+        this.setEmptySettingsOnGenerator();
     }
 
     protected onInputFieldChanged()
@@ -1107,5 +1116,112 @@ class PopupManager
                 backgroundColor: { color: currentStyle.backgroundColor }
             } as RoomRules);
         this._documentProcessor.applyRoomRules(tag.ownerDocument!.documentElement!, newRules, props);
+    }
+
+    private generateFromColors()
+    {
+        const to100 = (color: HslaColor) =>
+        {
+            color.lightness *= 100;
+            color.saturation *= 100;
+            return color;
+        };
+        const
+            black = to100(new HslaColor(0, 0, 0, 1)),
+            white = to100(new HslaColor(0, 0, 1, 1)),
+            gray = to100(new HslaColor(0, 0, 0.5, 1));
+        const convert = (webColor: string) =>
+            to100(RgbaColor.toHslaColor(RgbaColor
+                .parse(this._webColorConverter.convert(webColor)!)));
+        const colors = {
+            backgroundColor: white, buttonColor: gray,
+            textColor: black, textSelectionColor: gray,
+            defaultLinkColor: black, visitedLinkColor: black,
+            borderColor: black, scrollbarColor: gray,
+        };
+        Object.keys(colors).forEach(color => (colors as any)[color] = convert(this._settingsForm[color].value));
+        const set = { ...this._settingsManager.currentSettings };
+
+        const isDark = colors.backgroundColor.lightness < 50;
+
+        /* Background */
+        set.backgroundLightnessLimit = colors.backgroundColor.lightness;
+        set.backgroundGraySaturation = colors.backgroundColor.saturation;
+        set.backgroundGrayHue = colors.backgroundColor.hue;
+
+        /* Button */
+        set.buttonLightnessLimit = colors.buttonColor.lightness;
+        set.buttonContrast = Math.abs(colors.buttonColor.lightness - colors.backgroundColor.lightness);
+        set.buttonGraySaturation = colors.buttonColor.saturation;
+        set.buttonGrayHue = colors.buttonColor.hue;
+
+        /* Text */
+        set.textLightnessLimit = 100;
+        set.textContrast = Math.abs(colors.textColor.lightness - colors.backgroundColor.lightness);
+        set.textGraySaturation = colors.textColor.saturation;
+        set.textGrayHue = colors.textColor.hue;
+        set.textSelectionHue = colors.textSelectionColor.hue;
+
+        /* Link */
+        set.linkLightnessLimit = isDark ? Math.min(colors.defaultLinkColor.lightness * 1.3, 100) : 100;
+        set.linkContrast = Math.abs(colors.defaultLinkColor.lightness - colors.backgroundColor.lightness);
+        set.linkDefaultSaturation = colors.defaultLinkColor.saturation;
+        set.linkDefaultHue = colors.defaultLinkColor.hue;
+        set.linkVisitedHue = colors.visitedLinkColor.hue;
+
+        /* Border */
+        set.borderLightnessLimit = isDark ? colors.borderColor.lightness : 100;
+        set.borderContrast = Math.abs(colors.borderColor.lightness - colors.backgroundColor.lightness);
+        set.borderGraySaturation = colors.borderColor.saturation;
+        set.borderGrayHue = colors.borderColor.hue;
+
+        /* Scrollbar */
+        set.scrollbarLightnessLimit = colors.scrollbarColor.lightness;
+        set.scrollbarContrast = isDark ? 0 : Math.abs(colors.scrollbarColor.lightness - colors.backgroundColor.lightness);
+        set.scrollbarSaturationLimit = colors.scrollbarColor.saturation;
+        set.scrollbarGrayHue = colors.scrollbarColor.hue;
+
+        set.colorSchemeId = "custom" as any;
+        this._colorSchemeForEdit.value = "custom";
+        this.setUpColorSchemeSelectValue(set);
+        this.applySettingsOnPopup(set);
+
+        return false;
+    }
+
+    private setCurrentColorsOnGenerator(mainColors: {
+        backgroundColor: string,
+        textColor: string,
+        borderColor: string,
+        selectionColor: string,
+        buttonBackgroundColor: string,
+        scrollbarThumbNormalColor: string,
+        linkColor: string,
+        visitedColor: string,
+    })
+    {
+        const genColors = {
+            backgroundColor: mainColors.backgroundColor, buttonColor: mainColors.buttonBackgroundColor,
+            textColor: mainColors.textColor, textSelectionColor: mainColors.selectionColor,
+            defaultLinkColor: mainColors.linkColor, visitedLinkColor: mainColors.visitedColor,
+            borderColor: mainColors.borderColor, scrollbarColor: mainColors.scrollbarThumbNormalColor,
+        };
+        Object.keys(genColors).forEach(color =>
+            this._settingsForm[color].value =
+            RgbaColor.toHexColorString((genColors as any)[color]));
+
+        this.updateButtonStates();
+    }
+
+    private setEmptySettingsOnGenerator()
+    {
+        const white = RgbaColor.White, black = RgbaColor.Black,
+            gray = RgbaColor.Gray, link = RgbaColor.Link;
+        this.setCurrentColorsOnGenerator({
+            backgroundColor: white, buttonBackgroundColor: gray,
+            textColor: black, selectionColor: link,
+            linkColor: link, visitedColor: link,
+            borderColor: gray, scrollbarThumbNormalColor: gray,
+        });
     }
 }

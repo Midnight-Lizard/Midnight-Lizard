@@ -81,11 +81,12 @@ enum UpdateStage
     Ready = "ready"
 }
 
-export abstract class IDocumentProcessor
-{
-    abstract get onRootDocumentProcessing(): ArgEvent<Document>;
-    abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
-}
+    export abstract class IDocumentProcessor
+    {
+        abstract get onRootDocumentProcessing(): ArgEvent<Document>;
+        abstract get onMainColorsCalculated(): ArgEvent<any>;
+        abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
+    }
 
 /** Base Document Processor */
 @injectable(IDocumentProcessor)
@@ -112,84 +113,90 @@ class DocumentProcessor implements IDocumentProcessor
         return this._onRootDocumentProcessing.event;
     }
 
-    /** DocumentProcessor constructor
-     * @param _app - Application settings
-     * @param _rootDocument - Root Document to be processed
-     * @param _settingsManager - Settings manager
-     */
-    constructor(css: CssStyle,
-        protected readonly _rootDocument: Document,
-        protected readonly _module: CurrentExtensionModule,
-        protected readonly _app: IApplicationSettings,
-        protected readonly _settingsManager: IBaseSettingsManager,
-        protected readonly _preloadManager: IPreloadManager,
-        protected readonly _documentObserver: IDocumentObserver,
-        protected readonly _styleSheetProcessor: IStyleSheetProcessor,
-        protected readonly _backgroundColorProcessor: IBackgroundColorProcessor,
-        protected readonly _buttonBackgroundColorProcessor: IButtonBackgroundColorProcessor,
-        protected readonly _svgColorProcessor: ISvgBackgroundColorProcessor,
-        protected readonly _scrollbarHoverColorProcessor: IScrollbarHoverColorProcessor,
-        protected readonly _scrollbarNormalColorProcessor: IScrollbarNormalColorProcessor,
-        protected readonly _scrollbarActiveColorProcessor: IScrollbarActiveColorProcessor,
-        protected readonly _textColorProcessor: ITextColorProcessor,
-        protected readonly _textSelectionColorProcessor: ITextSelectionColorProcessor,
-        protected readonly _highlightedTextColorProcessor: IHighlightedTextColorProcessor,
-        protected readonly _highlightedBackgroundColorProcessor: IHighlightedBackgroundColorProcessor,
-        protected readonly _linkColorProcessor: ILinkColorProcessor,
-        protected readonly _visitedLinkColorProcessor: IVisitedLinkColorProcessor,
-        protected readonly _activeVisitedLinkColorProcessor: IActiveVisitedLinkColorProcessor,
-        protected readonly _hoverVisitedLinkColorProcessor: IHoverVisitedLinkColorProcessor,
-        protected readonly _activeLinkColorProcessor: IActiveLinkColorProcessor,
-        protected readonly _hoverLinkColorProcessor: IHoverLinkColorProcessor,
-        protected readonly _textShadowColorProcessor: ITextShadowColorProcessor,
-        protected readonly _rangeFillColorProcessor: IRangeFillColorProcessor,
-        protected readonly _borderColorProcessor: IBorderColorProcessor,
-        protected readonly _buttonBorderColorProcessor: IButtonBorderColorProcessor,
-        protected readonly _colorConverter: IColorToRgbaStringConverter,
-        protected readonly _zoomObserver: IDocumentZoomObserver,
-        protected readonly _svgFilters: ISvgFilters,
-        protected readonly _backgroundImageProcessor: IBackgroundImageProcessor,
-        protected readonly _noneColorProcessor: INoneColorProcessor)
-    {
-        if (_module.name === ExtensionModule.PopupWindow)
+        protected _onMainColorsCalculated = new ArgEventDispatcher<any>();
+        public get onMainColorsCalculated()
         {
-            chunkLength = 250;
-            minChunkableLength = 600;
-            normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
+            return this._onMainColorsCalculated.event;
         }
-        this._rootImageUrl = `url("${_rootDocument.location!.href}")`;
-        this._css = css as any;
-        this._transitionForbiddenProperties = new Set<string>(
-            [
-                this._css.all,
-                this._css.background,
-                this._css.backgroundColor,
-                this._css.backgroundImage,
-                this._css.color,
-                this._css.border,
-                this._css.borderBottom,
-                this._css.borderBottomColor,
-                this._css.borderColor,
-                this._css.borderLeft,
-                this._css.borderLeftColor,
-                this._css.borderRight,
-                this._css.borderRightColor,
-                this._css.borderTop,
-                this._css.borderTopColor,
-                this._css.textShadow,
-                this._css.filter
-            ]);
-        this._boundUserActionHandler = this.onUserAction.bind(this);
-        this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
-        this._boundUserHoverHandler = this.onUserHover.bind(this);
-        this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
-        if (this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload))
+
+        /** DocumentProcessor constructor
+         * @param _app - Application settings
+         * @param _rootDocument - Root Document to be processed
+         * @param _settingsManager - Settings manager
+         */
+        constructor(css: CssStyle,
+            protected readonly _rootDocument: Document,
+            protected readonly _module: CurrentExtensionModule,
+            protected readonly _app: IApplicationSettings,
+            protected readonly _settingsManager: IBaseSettingsManager,
+            protected readonly _preloadManager: IPreloadManager,
+            protected readonly _documentObserver: IDocumentObserver,
+            protected readonly _styleSheetProcessor: IStyleSheetProcessor,
+            protected readonly _backgroundColorProcessor: IBackgroundColorProcessor,
+            protected readonly _buttonBackgroundColorProcessor: IButtonBackgroundColorProcessor,
+            protected readonly _svgColorProcessor: ISvgBackgroundColorProcessor,
+            protected readonly _scrollbarHoverColorProcessor: IScrollbarHoverColorProcessor,
+            protected readonly _scrollbarNormalColorProcessor: IScrollbarNormalColorProcessor,
+            protected readonly _scrollbarActiveColorProcessor: IScrollbarActiveColorProcessor,
+            protected readonly _textColorProcessor: ITextColorProcessor,
+            protected readonly _textSelectionColorProcessor: ITextSelectionColorProcessor,
+            protected readonly _highlightedTextColorProcessor: IHighlightedTextColorProcessor,
+            protected readonly _highlightedBackgroundColorProcessor: IHighlightedBackgroundColorProcessor,
+            protected readonly _linkColorProcessor: ILinkColorProcessor,
+            protected readonly _visitedLinkColorProcessor: IVisitedLinkColorProcessor,
+            protected readonly _activeVisitedLinkColorProcessor: IActiveVisitedLinkColorProcessor,
+            protected readonly _hoverVisitedLinkColorProcessor: IHoverVisitedLinkColorProcessor,
+            protected readonly _activeLinkColorProcessor: IActiveLinkColorProcessor,
+            protected readonly _hoverLinkColorProcessor: IHoverLinkColorProcessor,
+            protected readonly _textShadowColorProcessor: ITextShadowColorProcessor,
+            protected readonly _rangeFillColorProcessor: IRangeFillColorProcessor,
+            protected readonly _borderColorProcessor: IBorderColorProcessor,
+            protected readonly _buttonBorderColorProcessor: IButtonBorderColorProcessor,
+            protected readonly _colorConverter: IColorToRgbaStringConverter,
+            protected readonly _zoomObserver: IDocumentZoomObserver,
+            protected readonly _svgFilters: ISvgFilters,
+            protected readonly _backgroundImageProcessor: IBackgroundImageProcessor,
+            protected readonly _noneColorProcessor: INoneColorProcessor)
         {
-            this.addListeners();
+            if (_module.name === ExtensionModule.PopupWindow)
+            {
+                chunkLength = 250;
+                minChunkableLength = 600;
+                normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
+            }
+            this._rootImageUrl = `url("${_rootDocument.location!.href}")`;
+            this._css = css as any;
+            this._transitionForbiddenProperties = new Set<string>(
+                [
+                    this._css.all,
+                    this._css.background,
+                    this._css.backgroundColor,
+                    this._css.backgroundImage,
+                    this._css.color,
+                    this._css.border,
+                    this._css.borderBottom,
+                    this._css.borderBottomColor,
+                    this._css.borderColor,
+                    this._css.borderLeft,
+                    this._css.borderLeftColor,
+                    this._css.borderRight,
+                    this._css.borderRightColor,
+                    this._css.borderTop,
+                    this._css.borderTopColor,
+                    this._css.textShadow,
+                    this._css.filter
+                ]);
+            this._boundUserActionHandler = this.onUserAction.bind(this);
+            this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
+            this._boundUserHoverHandler = this.onUserHover.bind(this);
+            this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
+            if (this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload))
+            {
+                this.addListeners();
+            }
+            this._documentObserver.startDocumentUpdateObservation(_rootDocument);
+            this._documentObserver.onUpdateChanged.addListener(this.onDocumentUpdateStageChanged as any, this);
         }
-        this._documentObserver.startDocumentUpdateObservation(_rootDocument);
-        this._documentObserver.onUpdateChanged.addListener(this.onDocumentUpdateStageChanged as any, this);
-    }
 
     private addListeners()
     {
@@ -2521,19 +2528,19 @@ class DocumentProcessor implements IDocumentProcessor
         delete doc.documentElement!.mlArea;
         this._backgroundColorProcessor.clear();
 
-        return {
-            backgroundColor, backgroundColorFiltered,
-            altBackgroundColor, altBackgroundColorFiltered,
-            transBackgroundColor, transAltBackgroundColor,
-            textColor, transTextColor, textColorFiltered,
-            borderColor, transBorderColor, rangeFillColor,
-            selectionColor, selectionTextColor, selectionShadowColor,
-            buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
-            scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor,
-            scrollbarTrackColor, scrollbarMarksColor, scrollbarShadowColor,
-            scrollbarSize, mozScrollbarWidth, mozScrollbarTrackColor: altBackgroundColor,
-            linkColor, linkColorHover, linkColorActive,
-            visitedColor, visitedColorHover, visitedColorActive,
+            const mainColors = {
+                backgroundColor, backgroundColorFiltered,
+                altBackgroundColor, altBackgroundColorFiltered,
+                transBackgroundColor, transAltBackgroundColor,
+                textColor, transTextColor, textColorFiltered,
+                borderColor, transBorderColor, rangeFillColor,
+                selectionColor, selectionTextColor, selectionShadowColor,
+                buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
+                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor,
+                scrollbarTrackColor, scrollbarMarksColor, scrollbarShadowColor,
+                scrollbarSize, mozScrollbarWidth, mozScrollbarTrackColor: altBackgroundColor,
+                linkColor, linkColorHover, linkColorActive,
+                visitedColor, visitedColorHover, visitedColorActive,
 
             scrollbarMarksColorOriginal: textColor,
             scrollbarThumbHoverColorOriginal: scrollbarThumbHoverColor,
@@ -2543,15 +2550,17 @@ class DocumentProcessor implements IDocumentProcessor
             mozScrollbarTrackColorOriginal: altBackgroundColor,
             scrollbarShadowColorOriginal: scrollbarShadowColor,
 
-            scrollbarMarksColorFiltered,
-            scrollbarThumbHoverColorFiltered,
-            scrollbarThumbNormalColorFiltered,
-            scrollbarThumbActiveColorFiltered,
-            scrollbarTrackColorFiltered,
-            mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
-            scrollbarShadowColorFiltered: scrollbarShadowColor
-        };
-    }
+                scrollbarMarksColorFiltered,
+                scrollbarThumbHoverColorFiltered,
+                scrollbarThumbNormalColorFiltered,
+                scrollbarThumbActiveColorFiltered,
+                scrollbarTrackColorFiltered,
+                mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
+                scrollbarShadowColorFiltered: scrollbarShadowColor
+            };
+            this._onMainColorsCalculated.raise(mainColors);
+            return mainColors
+        }
 
     protected injectDynamicValues(doc: Document)
     {
