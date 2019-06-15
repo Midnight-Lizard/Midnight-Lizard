@@ -7,11 +7,10 @@
   "license": "MIT",
   "version": "10.4.0",
   "dependencies": {
-    "@types/chrome": "^0.0.74",
-    "@types/fb": "^0.0.23",
-    "@types/firefox-webext-browser": "^58.0.4",
+    "@types/chrome": "0.0.86",
+    "@types/firefox-webext-browser": "67.0.2",
     "@types/reflect-metadata": "0.1.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "0.1.13"
   },
   "repository": {
     "type": "git",
@@ -19,12 +18,12 @@
   },
   "devDependencies": {
     "7zip": "0.0.6",
-    "ts-loader": "^6.0.2",
-    "tslib": "^1.10.0",
-    "typescript": "^3.5.1",
-    "webpack": "^4.33.0",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.3"
+    "ts-loader": "6.0.2",
+    "tslib": "1.10.0",
+    "typescript": "3.5.2",
+    "webpack": "4.34.0",
+    "webpack-bundle-analyzer": "3.3.2",
+    "webpack-cli": "3.3.4"
   },
   "scripts": {
     "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
