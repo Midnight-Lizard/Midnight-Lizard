@@ -17,6 +17,8 @@
         "skipDefaultLibCheck": true,
         "skipLibCheck": true,
         "alwaysStrict": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
         "lib": [
             "es2017",
             "dom"

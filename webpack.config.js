@@ -24,6 +24,9 @@ module.exports = (env, args) => {
         resolve: {
             extensions: ['.ts', '.js']
         },
+        optimization: {
+            minimize: false
+        },
         output: {
             filename: bundleName,
             path: path.resolve(__dirname, 'js')
