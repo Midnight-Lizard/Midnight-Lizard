@@ -1,3 +1,9 @@
+/*---------------COMPLEX MODE---------------------*/
+.a-meter .a-meter-bar {
+  --ml-backgroundnocontrast-background-color:HighlightedBackground;
+}
+
+/*---------------FILTER MODE---------------------*/
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-belt,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-main {
