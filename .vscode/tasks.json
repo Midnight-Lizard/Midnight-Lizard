@@ -3,253 +3,36 @@
     "runner": "terminal",
     "tasks": [
         {
-            "label": "TSC Release Content Script",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": "$tsc",
-            "args": [
-                "-p",
-                "./config/chrome/content-script-release.json"
+            "type": "npm",
+            "script": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
             ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Release Background Page",
-            "command": "tsc",
-            "type": "shell",
             "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": "$tsc",
-            "args": [
-                "-p",
-                "./config/chrome/background-page-release.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Release Popup",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": "$tsc",
-            "args": [
-                "-p",
-                "./config/chrome/popup-release.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Release Custom",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": "$tsc",
-            "args": [
-                "-p",
-                "./config/chrome/custom-release.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Release Page Script",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": "$tsc",
-            "args": [
-                "-p",
-                "./config/chrome/page-script-release.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Build Content Script",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "problemMatcher": "$tsc-watch",
-            "args": [
-                "-w",
-                "-p",
-                "./config/chrome/content-script-debug.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Build Background Page",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "problemMatcher": "$tsc-watch",
-            "args": [
-                "-w",
-                "-p",
-                "./config/chrome/background-page-debug.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Build Popup",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "problemMatcher": "$tsc-watch",
-            "args": [
-                "-w",
-                "-p",
-                "./config/chrome/popup-debug.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Build Custom",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "problemMatcher": "$tsc-watch",
-            "args": [
-                "-w",
-                "-p",
-                "./config/chrome/custom-debug.json"
-            ],
-            "dependsOn": [
-                "NPM Install"
-            ]
-        },
-        {
-            "label": "TSC Build Page Script",
-            "command": "tsc",
-            "type": "shell",
-            "isBackground": true,
-            "problemMatcher": "$tsc-watch",
-            "args": [
-                "-w",
-                "-p",
-                "./config/chrome/page-script-debug.json"
-            ]
-        },
-        {
-            "label": "Copy reflect-metadata",
-            "command": "cp",
-            "type": "shell",
-            "isBackground": true,
-            "dependsOn": [
-                "NPM Install"
-            ],
-            "args": [
-                "./node_modules/reflect-metadata/Reflect.js ./js/Reflect.js"
-            ]
-        },
-        {
-            "label": "NPM Install",
-            "command": "npm",
-            "type": "shell",
-            "isBackground": true,
-            "args": [
-                "install"
-            ]
-        },
-        {
-            "label": "Build",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "dependsOn": [
-                "TSC Build Custom",
-                "TSC Build Page Script",
-                "TSC Build Popup",
-                "TSC Build Background Page",
-                "TSC Build Content Script"
-            ]
-        },
-        {
-            "label": "Release Chrome",
-            "type": "shell",
-            "command": "./release.sh",
-            "args": [
-                "chrome"
-            ],
-            "dependsOn": [
-                "Release build"
-            ]
-        },
-        {
-            "label": "Release Firefox",
-            "type": "shell",
-            "command": "./release.sh",
-            "args": [
-                "firefox"
-            ],
-            "dependsOn": [
-                "Release build"
-            ]
-        },
-        {
-            "label": "Release build",
-            "dependsOn": [
-                "TSC Release Custom",
-                "TSC Release Page Script",
-                "TSC Release Background Page",
-                "TSC Release Popup",
-                "TSC Release Content Script"
-            ]
-        },
-        {
-            "label": "Release publish",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "dependsOn": [
-                "Release Chrome",
-                "Release Firefox",
+        },
+        {
+            "type": "npm",
+            "script": "dev-build",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "prod-pack",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "prod-build",
+            "problemMatcher": [
+                "$tsc"
             ]
         }
     ]
