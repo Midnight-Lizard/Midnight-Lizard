@@ -21,9 +21,9 @@
     "ts-loader": "6.0.2",
     "tslib": "1.10.0",
     "typescript": "3.5.2",
-    "webpack": "4.34.0",
+    "webpack": "4.35.0",
     "webpack-bundle-analyzer": "3.3.2",
-    "webpack-cli": "3.3.4"
+    "webpack-cli": "3.3.5"
   },
   "scripts": {
     "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
