@@ -32,4 +32,7 @@
   💰 [Donate to help us cover infrastructure expenses](https://opencollective.com/midnight-lizard#contribute)  
 
 ## BACKERS
-[![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)
+[![Backers](https://opencollective.com/midnight-lizard/backers.svg?width=890)](https://opencollective.com/midnight-lizard#backers)  
+
+## SPONSORS
+[![Sponsors](https://opencollective.com/midnight-lizard/sponsors.svg?width=890)](https://opencollective.com/midnight-lizard#sponsors)  
