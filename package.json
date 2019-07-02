@@ -17,7 +17,7 @@
     "url": "https://github.com/Midnight-Lizard/Midnight-Lizard.git"
   },
   "devDependencies": {
-    "7zip": "0.0.6",
+    "archiver": "^3.0.0",
     "ts-loader": "6.0.2",
     "tslib": "1.10.0",
     "typescript": "3.5.2",
@@ -29,6 +29,6 @@
     "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
     "dev-build": "webpack --mode=development --env.useBundleAnalyzer --devtool inline-source-map",
     "prod-build": "webpack --mode=production",
-    "prod-pack": "npm run prod-build && bash ./release.sh chrome && bash ./release.sh firefox"
+    "prod-pack": "npm run prod-build && node pack.js chrome && node pack.js firefox"
   }
 }
