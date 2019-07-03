@@ -1,0 +1,15 @@
+**/.dockerignore
+**/.gitignore
+**/.vscode
+**/.vs
+**/.git
+**/.github
+**/Dockerfile
+**/crowdin.yaml
+**/node_modules
+**/pacage-lock.json
+**/dist
+**/README.MD
+**/LICENSE
+**/js
+**/releases

@@ -29,6 +29,8 @@
     "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
     "dev-build": "webpack --mode=development --env.useBundleAnalyzer --devtool inline-source-map",
     "prod-build": "webpack --mode=production",
-    "prod-pack": "npm run prod-build && node pack.js chrome && node pack.js firefox"
+    "prod-pack": "npm run prod-build && node pack.js chrome && node pack.js firefox",
+    "prod-pack:chrome": "npm run prod-build && node pack.js chrome",
+    "prod-pack:firefox": "npm run prod-build && node pack.js firefox"
   }
 }
