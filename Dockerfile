@@ -1,6 +1,6 @@
 FROM node:10
-WORKDIR /build/app
+WORKDIR /build
 COPY ./package.json .
 RUN npm install
 COPY . .
-RUN npm run prod-pack
+ENTRYPOINT npm run prod-pack
