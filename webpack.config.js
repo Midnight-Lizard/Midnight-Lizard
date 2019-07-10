@@ -49,7 +49,7 @@ module.exports = (env, args) => {
         './ts/PageScript/PageScriptStarter.ts',
         'page-script.js');
 
-    const customEntries = glob.sync(path.resolve(__dirname, 'ts/custom/*.ts'));
+    const customEntries = glob.sync(path.resolve(__dirname, 'ts/Custom/*.ts'));
     const customConfigs = [];
 
     for (const customTsFile of customEntries) {
