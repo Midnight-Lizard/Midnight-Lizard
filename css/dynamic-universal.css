@@ -232,3 +232,18 @@ html[ml-invert][ml-mode="complex"] img[height="19"]:not([src*="vatar"]):not([src
   --ml-ignore:true;
   filter: var(--ml-text-filter)!important;
 }
+
+/*--------------uBlock------------------*/
+html#ublock0-epicker
+{
+  --ml-ignore:true;
+  filter: var(--ml-text-filter)!important;
+}
+
+html#ublock0-epicker>#midnight-lizard-filters
+{
+  height: 0px!important;
+  width: 0px!important;
+  position: absolute!important;
+}
+/*--------------uBlock------------------*/
