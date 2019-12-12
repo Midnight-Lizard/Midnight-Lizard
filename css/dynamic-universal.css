@@ -240,6 +240,11 @@ html#ublock0-epicker
   filter: var(--ml-text-filter)!important;
 }
 
+html#ublock0-epicker>body>svg
+{
+  filter: var(--ml-highlighted-text-filter)!important;
+}
+
 html#ublock0-epicker>#midnight-lizard-filters
 {
   height: 0px!important;
