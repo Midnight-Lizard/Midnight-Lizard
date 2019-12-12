@@ -1,3 +1,4 @@
+/* v1 */
 html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .app-wrapper-web ._2NbD3 * {
   --ml-ignore:true;
   color: black !important;
@@ -8,5 +9,20 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .app-wrapper-web ._2
 }
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .app-wrapper-web ._2NbD3 * {
+  color: white !important;
+}
+
+/* v2 */
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .landing-window,
+html[ml-mode]:not([ml-stage="preload"]):not([ml-mode="filter"]) .landing-window * {
+  --ml-ignore:true;
+  color: black !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .landing-window {
+  background-color: rgb(58, 58, 58) !important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .landing-window * {
   color: white !important;
 }
