@@ -128,7 +128,7 @@ html[ml-mode]:not([ml-mode="filter"]) ytd-searchbox[mode=legacy-centered] #conta
 }
 
 html[ml-mode]:not([ml-mode="filter"]) ytd-app:not(imp) {
-    background-color: var(--yt-main-app-background);
+    background-color: #f9f9f9!important;
 }
 html[ml-mode]:not([ml-mode="filter"]) ytd-playlist-sidebar-renderer:not(imp) {
     background-color: var(--yt-sidebar-background);
