@@ -44,11 +44,12 @@ div[style="display:table-row"]>div.rnt3Ze[data-ved] {
 
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div.sfbgx:not(#imp):not(imp):not(.imp),
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div#qbc:not(#imp):not(imp):not(.imp),
-html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div.sfbg>div.sfbgg:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #searchform>.sfbg:not(#imp):not(imp):not(.imp),
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #hdtb[role="navigation"]>#hdtbSum:not(#imp):not(imp):not(.imp) {
     background-color: var(--ml-main-alt-background-color)!important;
 }
-html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) div.sfbg>div.sfbgg:not(#imp):not(imp):not(.imp) *,
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #searchform form#tsf div[role="button"]:not(#imp):not(imp):not(.imp),
+html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #searchform>.sfbg:not(#imp):not(imp):not(.imp) *,
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #hdtb[role="navigation"]>#hdtbSum:not(#imp):not(imp):not(.imp) *,
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) #logocont:not(#imp):not(imp):not(.imp),
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .tsf-p:not(#imp):not(imp):not(.imp),
@@ -95,7 +96,8 @@ html[ml-stage]:not([ml-mode="filter"]) .sfbgx {
     background-color: var(--ml-main-alt-background-color);
 }
 
-html[ml-stage]:not([ml-mode="filter"]) #hdtbSum {
+html[ml-stage]:not([ml-mode="filter"]) #hdtbSum,
+html[ml-stage]:not([ml-mode="filter"]) #searchform .sfbg {
     background-color: rgb(250,250,250);
 }
 
