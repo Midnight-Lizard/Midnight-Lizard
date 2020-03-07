@@ -376,6 +376,12 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
     margin: 26px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
 }
 
+.ml-long-cmd-container:not(#imp):not(imp):not(.imp),
+.ml-long-cmd-container>.filler:not(#imp):not(imp):not(.imp) {
+    background-color:transparent!important;
+}
+
+
 .disabled {
     filter: opacity(50%) grayscale(70%);
 }
@@ -692,13 +698,13 @@ float: none;
 }
 
 .donate-icon {
-    width: 24px;
+    width: 22px;
     z-index: 1000;
     position: relative;
 }
 
 .donate-icon:hover {
-    fill: #1A237E;
+    fill: #be0202;
 }
 
 .rate-icon {
