@@ -90,21 +90,20 @@ html[ml-platform="mobile"] .sbico {
     --ml-ignore:true;
 }
 
-html[ml-stage]:not([ml-mode="filter"]) .minidiv .sfbg:not(imp),
+html[ml-stage]:not([ml-mode="filter"]) #searchform>.sfbg:not(imp),
 html[ml-stage]:not([ml-mode="filter"]) .sfbgx {
     --ml-ignore:true;
     background-color: var(--ml-main-alt-background-color);
 }
 
-html[ml-stage]:not([ml-mode="filter"]) #hdtbSum,
-html[ml-stage]:not([ml-mode="filter"]) #searchform .sfbg {
+html[ml-stage]:not([ml-mode="filter"]) #hdtbSum {
     background-color: rgb(250,250,250);
 }
 
 html[ml-stage]:not([ml-mode="filter"]) .RNNXgb:hover,
 html[ml-stage]:not([ml-mode="filter"]) .sbfc,
 html[ml-stage]:not([ml-mode="filter"]) .emcav .RNNXgb,
-html[ml-stage]:not([ml-mode="filter"]) .minidiv .sfbg {
+html[ml-stage]:not([ml-mode="filter"]) #searchform.minidiv>.sfbg {
     box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);
 }
 
