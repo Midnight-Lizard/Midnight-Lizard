@@ -83,6 +83,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
 /*--- BEGIN FILTER MODE ---*/
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-old,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen .project-header {
   background-color: hsl(210, 12%, 90%)!important;
   color: black!important;
@@ -90,6 +91,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header .header-search-wrapper,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-link,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderMenu-link,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .header-logo-invertocat,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen .card-filter-input,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen .project-header .project-header-link:hover {
@@ -103,12 +106,18 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header .header-sear
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .notification-indicator,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:focus,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-link:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-link:hover,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderMenu-link:focus,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderMenu-link:hover,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .project-full-screen .project-header .project-header-link {
   color: rgba(0,0,0, 0.8)!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:focus .dropdown-caret, 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:hover .dropdown-caret {
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:focus .dropdown-caret,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-link:focus .dropdown-caret,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .HeaderNavlink:hover .dropdown-caret,
+  html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .Header-link:hover .dropdown-caret {
   border-top-color: rgba(0,0,0, 0.8)!important;
 }
 
