@@ -77,7 +77,7 @@ class PopupSettingsManager extends BaseSettingsManager implements IPopupSettings
         try
         {
             let [currentSettings, defaultSettings] = await Promise.all([
-                this._settingsBus.getCurrentSettings().catch(ex => this._app.isDebug && console.error(ex)),
+                this._settingsBus.getCurrentSettings().catch(ex => (this._app.isDebug && console.error(ex)) as never),
                 this.getDefaultSettings()]);
             if (!currentSettings)
             {

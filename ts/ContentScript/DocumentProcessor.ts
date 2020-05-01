@@ -1554,7 +1554,7 @@ class DocumentProcessor implements IDocumentProcessor
             }
             if (tag.originalDisplay !== undefined && tag.originalDisplay !== tag.style.display)
             {
-                tag.style.display = tag.originalDisplay;
+                tag.style.display = tag.originalDisplay!;
             }
             if (tag.originalColor !== undefined)
             {
@@ -1582,7 +1582,7 @@ class DocumentProcessor implements IDocumentProcessor
             }
             if (tag.originalTextShadow !== undefined && tag.style.textShadow !== tag.originalTextShadow)
             {
-                tag.style.textShadow = tag.originalTextShadow;
+                tag.style.textShadow = tag.originalTextShadow!;
             }
             if (tag.originalBorderColor !== undefined && tag.originalBorderColor !== tag.style.getPropertyValue(ns.css.brdColor))
             {
@@ -1590,27 +1590,27 @@ class DocumentProcessor implements IDocumentProcessor
             }
             if (tag.originalBorderTopColor !== undefined && tag.style.borderTopColor !== tag.originalBorderTopColor)
             {
-                tag.style.borderTopColor = tag.originalBorderTopColor;
+                tag.style.borderTopColor = tag.originalBorderTopColor!;
             }
             if (tag.originalBorderRightColor !== undefined && tag.style.borderRightColor !== tag.originalBorderRightColor)
             {
-                tag.style.borderRightColor = tag.originalBorderRightColor;
+                tag.style.borderRightColor = tag.originalBorderRightColor!;
             }
             if (tag.originalBorderBottomColor !== undefined && tag.style.borderBottomColor !== tag.originalBorderBottomColor)
             {
-                tag.style.borderBottomColor = tag.originalBorderBottomColor;
+                tag.style.borderBottomColor = tag.originalBorderBottomColor!;
             }
             if (tag.originalBorderLeftColor !== undefined && tag.style.borderLeftColor !== tag.originalBorderLeftColor)
             {
-                tag.style.borderLeftColor = tag.originalBorderLeftColor;
+                tag.style.borderLeftColor = tag.originalBorderLeftColor!;
             }
             if (tag.originalBackgroundImage !== undefined && tag.style.backgroundImage !== tag.originalBackgroundImage)
             {
-                tag.style.backgroundImage = tag.originalBackgroundImage;
+                tag.style.backgroundImage = tag.originalBackgroundImage!;
             }
             if (tag.originalFilter !== undefined && tag.style.filter !== tag.originalFilter)
             {
-                tag.style.filter = tag.originalFilter;
+                tag.style.filter = tag.originalFilter!;
             }
             if (tag.hasAttribute(this._css.transition))
             {
