@@ -47,17 +47,17 @@ export abstract class IBaseSettingsManager
  */
 export abstract class BaseSettingsManager implements IBaseSettingsManager
 {
-    protected _scheduleStartHour = 0;
-    protected _scheduleFinishHour = 24;
+    protected _scheduleStartTime = 0;
+    protected _scheduleFinishTime = 24;
     protected _rootUrl: string;
     protected _settingsKey: string;
-    protected _curHour = new Date().getHours();
+    protected _curTime = this.GetCurrentTime();
     private _isNotRecommended = false;
     protected get isScheduled(): boolean
     {
-        return this._scheduleStartHour <= this._scheduleFinishHour
-            ? this._scheduleStartHour <= this._curHour && this._curHour < this._scheduleFinishHour
-            : this._scheduleStartHour <= this._curHour || this._curHour < this._scheduleFinishHour;
+        return this._scheduleStartTime <= this._scheduleFinishTime
+            ? this._scheduleStartTime <= this._curTime && this._curTime < this._scheduleFinishTime
+            : this._scheduleStartTime <= this._curTime || this._curTime < this._scheduleFinishTime;
     }
     protected _lastIncludeMatchPatternsTestResults?: boolean;
     protected get matchesInclude(): boolean
@@ -498,17 +498,23 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
 
     protected updateSchedule()
     {
-        this._curHour = new Date().getHours();
+        this._curTime = this.GetCurrentTime();
         if (this._currentSettings.useDefaultSchedule)
         {
-            this._scheduleStartHour = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
-            this._scheduleFinishHour = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
+            this._scheduleStartTime = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
+            this._scheduleFinishTime = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
         }
         else
         {
-            this._scheduleStartHour = this._currentSettings.scheduleStartHour !== undefined ? this._currentSettings.scheduleStartHour : 0;
-            this._scheduleFinishHour = this._currentSettings.scheduleFinishHour !== undefined ? this._currentSettings.scheduleFinishHour : 24;
+            this._scheduleStartTime = this._currentSettings.scheduleStartHour !== undefined ? this._currentSettings.scheduleStartHour : 0;
+            this._scheduleFinishTime = this._currentSettings.scheduleFinishHour !== undefined ? this._currentSettings.scheduleFinishHour : 24;
         }
+    }
+
+    private GetCurrentTime(): number
+    {
+        let now = new Date();
+        return now.getHours() + now.getMinutes() / 60;
     }
 
     protected notifySettingsApplied()

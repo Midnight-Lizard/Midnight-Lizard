@@ -67,15 +67,15 @@ class SettingsManager extends BaseSettingsManager implements ISettingsManager
         {
             clearTimeout(this._scheduleUpdateTimeout);
         }
-        if (this._scheduleStartHour !== 0 || this._scheduleFinishHour !== 24)
+        if (this._scheduleStartTime !== 0 || this._scheduleFinishTime !== 24)
         {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const millisecondsUntilNextSwitch = [
-                this._scheduleStartHour, this._scheduleFinishHour,
-                this._scheduleStartHour + 24, this._scheduleFinishHour + 24
+                this._scheduleStartTime, this._scheduleFinishTime,
+                this._scheduleStartTime + 24, this._scheduleFinishTime + 24
             ]
-                .filter(h => h > this._curHour)
+                .filter(h => h > this._curTime)
                 .reduce((next, h) => h < next ? h : next, 99) * 60 * 60 * 1000 +
                 today.getTime() - Date.now();
             this._scheduleUpdateTimeout = setTimeout(() =>

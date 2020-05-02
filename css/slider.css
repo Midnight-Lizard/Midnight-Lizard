@@ -33,7 +33,7 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
 .time
 {
   --current-value-line-color: currentColor;
-  --range-segment-width: 60px;
+  --range-segment-width: 30px;
   --range-track-width: 241px;
   --range-width: calc(var(--range-border) + var(--range-track-shift) + var(--range-track-width) + var(--range-track-shift) + var(--range-border));
   --range-track-background:
