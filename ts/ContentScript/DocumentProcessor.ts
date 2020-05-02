@@ -1697,7 +1697,7 @@ class DocumentProcessor implements IDocumentProcessor
                 this.processBackgroundImagesAndGradients(tag, doc, roomRules, false, bgInverted);
             }
 
-            if (tag.mlInvert)
+            if (tag.mlComputedStyle!.filter === this._css.none && tag.mlInvert)
             {
                 hasRoomRules = true;
                 roomRules.attributes = roomRules.attributes || new Map<string, string>();
