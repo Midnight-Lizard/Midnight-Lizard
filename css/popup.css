@@ -929,6 +929,20 @@ html[ml-mode="filter"] .ml-bg-example td:nth-of-type(10) {--bg: hsl(320,100%,70%
     background-repeat: no-repeat;
 }
 
+html[ml-mode="filter"] .ml-small-bg-image-example:not(.original) {
+    /*--ml-ignore:true;
+    filter:var(--ml-bg-image-revert-filter);*/
+}
+
+html[ml-mode="filter"] .ml-small-bg-image-example.original {
+    --ml-ignore:true;
+    filter:var(--ml-video-revert-filter);
+}
+
+html:not([ml-mode="filter"]) .ml-small-bg-image-example.original {
+    --ml-ignore:true;
+}
+
 .ml-small-bg-image-example span:nth-of-type(1) {
     background-image: url("/img/examples/aries.png");
 }
