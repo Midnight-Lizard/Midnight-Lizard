@@ -346,7 +346,7 @@ class PopupManager
                     break;
 
                 case "number":
-                    value = parseInt(setting.value);
+                    value = parseFloat(setting.value);
                     break;
 
                 default:
@@ -371,15 +371,15 @@ class PopupManager
                     break;
 
                 case "number":
-                    value = parseInt(setting.value);
+                    const isTime = setting.classList.contains("time");
+                    value = isTime ? parseFloat(setting.value) : parseInt(setting.value);
                     break;
 
                 default:
                     value = setting.value;
                     break;
             }
-            (settings as any)[setting.id as any as ColorSchemePropertyName]
-                = value;
+            (settings as any)[setting.id] = value;
         }
         return settings;
     }
