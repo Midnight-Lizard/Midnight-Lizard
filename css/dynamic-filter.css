@@ -34,6 +34,7 @@ html[ml-mode="filter"][ml-view="child"]:not([ml-stage="preload"]) {
   --ml-main-scrollbar-shadow-color:var(--ml-main-scrollbar-shadow-color-original) !important;
 }
 
+html[ml-mode="filter"][ml-invert] [ml-invert],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) :not([role="button"])>:not([role="button"]):not(button)>img[src]:not([role="button"]):not([width="8"]):not([width="9"]):not([width="10"]):not([width="11"]):not([width="12"]):not([width="13"]):not([width="14"]):not([width="15"]):not([width="16"]):not([width="17"]):not([width="18"]):not([width="19"]):not([width="20"]):not([width="21"]):not([width="22"]):not([width="23"]):not([height="8"]):not([height="9"]):not([height="10"]):not([height="11"]):not([height="12"]):not([height="13"]):not([height="14"]):not([height="15"]):not([height="16"]):not([height="17"]):not([height="18"]):not([height="19"]):not([height="20"]):not([height="21"]):not([height="22"]):not([height="23"]),
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[src*="rofile"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[src*="lag"],
@@ -52,6 +53,7 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="creensho
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="humbnail"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="moji"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) svg image,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) iframe,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [class*="moji"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:url"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image:url"],
@@ -59,6 +61,7 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image: url"] {
   filter: var(--ml-image-revert-filter);
 }
+html[ml-mode="filter"][ml-invert] [ml-invert] *,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [class*="moji"] *,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:url"] *,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image:url"] *,

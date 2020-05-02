@@ -36,10 +36,14 @@ class DocumentObserver implements IDocumentObserver
     };
     protected readonly _bodyObserverConfig: MutationObserverInit = {
         subtree: true, childList: true, attributeOldValue: true,
-        attributes: true, attributeFilter: ["class", "style", "fill", "stroke"]
+        attributes: true, attributeFilter: ["class", "style", "fill", "stroke", "disabled"]
     };
     protected readonly _simpleBodyObserverConfig: MutationObserverInit = {
         subtree: true, childList: true, attributes: true, attributeFilter: ["class"]
+    };
+    protected readonly _filterBodyObserverConfig: MutationObserverInit = {
+        subtree: true, childList: true, attributeOldValue: true,
+        attributes: true, attributeFilter: ["class", "style", "disabled"]
     };
     protected readonly _headObserverConfig: MutationObserverInit = {
         childList: true
@@ -117,8 +121,10 @@ class DocumentObserver implements IDocumentObserver
             {
                 this._bodyObservers.set(doc, bodyObserver = new MutationObserver(this.bodyObserverCallback.bind(this)));
             }
-            bodyObserver.observe(doc.body, this._settingsManager.isComplex
-                ? this._bodyObserverConfig : this._simpleBodyObserverConfig);
+            bodyObserver.observe(doc.body,
+                this._settingsManager.isComplex ? this._bodyObserverConfig
+                    : this._settingsManager.isSimple ? this._simpleBodyObserverConfig
+                        : this._filterBodyObserverConfig);
             bodyObserver.state = ObservationState.Active;
 
             if (doc.head && this._settingsManager.isComplex)
@@ -181,7 +187,8 @@ class DocumentObserver implements IDocumentObserver
                     }
                     if ((!mutation.target.mlMutationThrottledCount ||
                         mutation.target.mlMutationThrottledCount < maxMutationsCount) &&
-                        (mutation.target.mlBgColor || mutation.target instanceof HTMLBodyElement))
+                        (mutation.target.mlBgColor || mutation.target.mlInvert ||
+                            mutation.target instanceof HTMLBodyElement))
                     {
                         switch (mutation.attributeName)
                         {
@@ -196,13 +203,16 @@ class DocumentObserver implements IDocumentObserver
                             case "style":
                             case "fill":
                             case "stroke":
-                                if (this._settingsManager.isComplex &&
-                                    mutation.target instanceof Element &&
+                            case "disabled":
+                                if (mutation.target instanceof Element &&
+                                    (this._settingsManager.isComplex || mutation.target.mlInvert) &&
                                     mutation.oldValue !== mutation.target.getAttribute(mutation.attributeName))
                                 {
-                                    if (mutation.attributeName === "fill" || mutation.attributeName === "stroke")
+                                    if (mutation.attributeName === "fill" ||
+                                        mutation.attributeName === "stroke" ||
+                                        mutation.attributeName === "disabled")
                                     {
-                                        mutation.target.mlSvgAttributeChanged = true;
+                                        mutation.target.mlVisualAttributeChanged = true;
                                     }
                                     styleChanges.add(mutation.target as Element);
                                 }

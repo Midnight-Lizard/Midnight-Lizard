@@ -14,6 +14,7 @@ export abstract class IBackgroundColorProcessor
     abstract clear(): void;
     abstract changeColor(rgbaString: string | null, increaseContrast: boolean, tag: any,
         getParentBackground?: (tag: any) => ColorEntry, ignoreBlueFilter?: boolean): ColorEntry;
+    abstract isDark(rgbaString: string | null): boolean;
 }
 export abstract class ISvgBackgroundColorProcessor extends IBackgroundColorProcessor { }
 export abstract class IDynamicBackgroundColorProcessor extends IBackgroundColorProcessor { }
@@ -51,6 +52,21 @@ class BackgroundColorProcessor extends BaseColorProcessor implements IBackground
         this._lights.clear();
         this._lightAreas.clear();
         this._lightCounts.clear();
+    }
+
+    public isDark(rgbaString: string | null): boolean
+    {
+        if (!rgbaString || rgbaString === RgbaColor.Transparent || rgbaString === RgbaColor.White ||
+            rgbaString.startsWith("rgb(") && rgbaString.length === 18)
+        {
+            return false;
+        }
+        if (rgbaString === RgbaColor.Black)
+        {
+            return true;
+        }
+        const hsla = RgbaColor.toHslaColor(RgbaColor.parse(rgbaString));
+        return hsla.lightness <= 0.4;
     }
 
     protected tryGetTagArea(tag: Element)

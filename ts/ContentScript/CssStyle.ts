@@ -73,6 +73,8 @@ class CssConstants
     visitedColorHover = "--visited-color-hover";
     linkColorActive = "--link-color-active";
     visitedColorActive = "--visited-color-active";
+    mlIgnoreVar = "--ml-ignore";
+    mlInvertAttr = "ml-invert";
 }
 
 @injectable()

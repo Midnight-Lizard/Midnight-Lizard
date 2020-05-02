@@ -206,6 +206,7 @@ html[ml-stage-mode="complete-complex"] [data-grammarly-part="button"] {
 
 /* ---------------- END GRAMMARLY -------------------*/
 
+html[ml-invert][ml-mode="complex"] [ml-invert],
 html[ml-invert][ml-mode="complex"] img[width="8"]:not([src*="vatar"]):not([src*="ccount"]):not([src*="moji"]):not([class*="vatar"]):not([class*="ccount"]):not([class*="moji"]):not([class*="lag"]):not([src*="lag"]):not([src*="rofile"]):not([class*="rofile"]),
 html[ml-invert][ml-mode="complex"] img[width="9"]:not([src*="vatar"]):not([src*="ccount"]):not([src*="moji"]):not([class*="vatar"]):not([class*="ccount"]):not([class*="moji"]):not([class*="lag"]):not([src*="lag"]):not([src*="rofile"]):not([class*="rofile"]),
 html[ml-invert][ml-mode="complex"] img[width="10"]:not([src*="vatar"]):not([src*="ccount"]):not([src*="moji"]):not([class*="vatar"]):not([class*="ccount"]):not([class*="moji"]):not([class*="lag"]):not([src*="lag"]):not([src*="rofile"]):not([class*="rofile"]),

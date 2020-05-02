@@ -19,6 +19,8 @@ interface Node
     mlRowNumber: number | undefined;
     /** If true - Midnight Lizard would not process this element */
     mlIgnore: boolean | null | undefined;
+    /** Applies text filter on this element if true */
+    mlInvert: boolean | null | undefined;
     mlFixed?: string | null;
     /** Calculated background color */
     mlBgColor: ColorEntry | null | undefined;
@@ -51,10 +53,8 @@ interface Node
     mlArea: number | undefined;
     /** Element path in the DOM tree */
     mlPath: string | undefined | null;
-    /** is true if this element has been verified as suitable for the processing */
-    isChecked: boolean | null | undefined;
-    /** true when mutation observer detected `fill` or `stroke` attributes changes */
-    mlSvgAttributeChanged?: boolean | null;
+    /** true when mutation observer detected some visual attributes changes */
+    mlVisualAttributeChanged?: boolean | null;
     ////////////////////////////////////////////////////////////////
     //////////////////// original values ///////////////////////////
     ////////////////////////////////////////////////////////////////

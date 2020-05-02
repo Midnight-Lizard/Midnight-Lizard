@@ -81,12 +81,12 @@ enum UpdateStage
     Ready = "ready"
 }
 
-    export abstract class IDocumentProcessor
-    {
-        abstract get onRootDocumentProcessing(): ArgEvent<Document>;
-        abstract get onMainColorsCalculated(): ArgEvent<any>;
-        abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
-    }
+export abstract class IDocumentProcessor
+{
+    abstract get onRootDocumentProcessing(): ArgEvent<Document>;
+    abstract get onMainColorsCalculated(): ArgEvent<any>;
+    abstract applyRoomRules(tag: HTMLElement | PseudoElement, roomRules: RoomRules, ns: any): void;
+}
 
 /** Base Document Processor */
 @injectable(IDocumentProcessor)
@@ -104,6 +104,7 @@ class DocumentProcessor implements IDocumentProcessor
     protected readonly _transitionForbiddenProperties: Set<string>;
     protected readonly _boundParentBackgroundGetter: any;
     protected _autoUpdateTask?: number;
+    protected readonly _filterForFilterProcessing = this.getFilterOfElementsForFilterProcessing();
 
     protected get shift() { return this._settingsManager.shift }
 
@@ -113,90 +114,90 @@ class DocumentProcessor implements IDocumentProcessor
         return this._onRootDocumentProcessing.event;
     }
 
-        protected _onMainColorsCalculated = new ArgEventDispatcher<any>();
-        public get onMainColorsCalculated()
-        {
-            return this._onMainColorsCalculated.event;
-        }
+    protected _onMainColorsCalculated = new ArgEventDispatcher<any>();
+    public get onMainColorsCalculated()
+    {
+        return this._onMainColorsCalculated.event;
+    }
 
-        /** DocumentProcessor constructor
-         * @param _app - Application settings
-         * @param _rootDocument - Root Document to be processed
-         * @param _settingsManager - Settings manager
-         */
-        constructor(css: CssStyle,
-            protected readonly _rootDocument: Document,
-            protected readonly _module: CurrentExtensionModule,
-            protected readonly _app: IApplicationSettings,
-            protected readonly _settingsManager: IBaseSettingsManager,
-            protected readonly _preloadManager: IPreloadManager,
-            protected readonly _documentObserver: IDocumentObserver,
-            protected readonly _styleSheetProcessor: IStyleSheetProcessor,
-            protected readonly _backgroundColorProcessor: IBackgroundColorProcessor,
-            protected readonly _buttonBackgroundColorProcessor: IButtonBackgroundColorProcessor,
-            protected readonly _svgColorProcessor: ISvgBackgroundColorProcessor,
-            protected readonly _scrollbarHoverColorProcessor: IScrollbarHoverColorProcessor,
-            protected readonly _scrollbarNormalColorProcessor: IScrollbarNormalColorProcessor,
-            protected readonly _scrollbarActiveColorProcessor: IScrollbarActiveColorProcessor,
-            protected readonly _textColorProcessor: ITextColorProcessor,
-            protected readonly _textSelectionColorProcessor: ITextSelectionColorProcessor,
-            protected readonly _highlightedTextColorProcessor: IHighlightedTextColorProcessor,
-            protected readonly _highlightedBackgroundColorProcessor: IHighlightedBackgroundColorProcessor,
-            protected readonly _linkColorProcessor: ILinkColorProcessor,
-            protected readonly _visitedLinkColorProcessor: IVisitedLinkColorProcessor,
-            protected readonly _activeVisitedLinkColorProcessor: IActiveVisitedLinkColorProcessor,
-            protected readonly _hoverVisitedLinkColorProcessor: IHoverVisitedLinkColorProcessor,
-            protected readonly _activeLinkColorProcessor: IActiveLinkColorProcessor,
-            protected readonly _hoverLinkColorProcessor: IHoverLinkColorProcessor,
-            protected readonly _textShadowColorProcessor: ITextShadowColorProcessor,
-            protected readonly _rangeFillColorProcessor: IRangeFillColorProcessor,
-            protected readonly _borderColorProcessor: IBorderColorProcessor,
-            protected readonly _buttonBorderColorProcessor: IButtonBorderColorProcessor,
-            protected readonly _colorConverter: IColorToRgbaStringConverter,
-            protected readonly _zoomObserver: IDocumentZoomObserver,
-            protected readonly _svgFilters: ISvgFilters,
-            protected readonly _backgroundImageProcessor: IBackgroundImageProcessor,
-            protected readonly _noneColorProcessor: INoneColorProcessor)
+    /** DocumentProcessor constructor
+     * @param _app - Application settings
+     * @param _rootDocument - Root Document to be processed
+     * @param _settingsManager - Settings manager
+     */
+    constructor(css: CssStyle,
+        protected readonly _rootDocument: Document,
+        protected readonly _module: CurrentExtensionModule,
+        protected readonly _app: IApplicationSettings,
+        protected readonly _settingsManager: IBaseSettingsManager,
+        protected readonly _preloadManager: IPreloadManager,
+        protected readonly _documentObserver: IDocumentObserver,
+        protected readonly _styleSheetProcessor: IStyleSheetProcessor,
+        protected readonly _backgroundColorProcessor: IBackgroundColorProcessor,
+        protected readonly _buttonBackgroundColorProcessor: IButtonBackgroundColorProcessor,
+        protected readonly _svgColorProcessor: ISvgBackgroundColorProcessor,
+        protected readonly _scrollbarHoverColorProcessor: IScrollbarHoverColorProcessor,
+        protected readonly _scrollbarNormalColorProcessor: IScrollbarNormalColorProcessor,
+        protected readonly _scrollbarActiveColorProcessor: IScrollbarActiveColorProcessor,
+        protected readonly _textColorProcessor: ITextColorProcessor,
+        protected readonly _textSelectionColorProcessor: ITextSelectionColorProcessor,
+        protected readonly _highlightedTextColorProcessor: IHighlightedTextColorProcessor,
+        protected readonly _highlightedBackgroundColorProcessor: IHighlightedBackgroundColorProcessor,
+        protected readonly _linkColorProcessor: ILinkColorProcessor,
+        protected readonly _visitedLinkColorProcessor: IVisitedLinkColorProcessor,
+        protected readonly _activeVisitedLinkColorProcessor: IActiveVisitedLinkColorProcessor,
+        protected readonly _hoverVisitedLinkColorProcessor: IHoverVisitedLinkColorProcessor,
+        protected readonly _activeLinkColorProcessor: IActiveLinkColorProcessor,
+        protected readonly _hoverLinkColorProcessor: IHoverLinkColorProcessor,
+        protected readonly _textShadowColorProcessor: ITextShadowColorProcessor,
+        protected readonly _rangeFillColorProcessor: IRangeFillColorProcessor,
+        protected readonly _borderColorProcessor: IBorderColorProcessor,
+        protected readonly _buttonBorderColorProcessor: IButtonBorderColorProcessor,
+        protected readonly _colorConverter: IColorToRgbaStringConverter,
+        protected readonly _zoomObserver: IDocumentZoomObserver,
+        protected readonly _svgFilters: ISvgFilters,
+        protected readonly _backgroundImageProcessor: IBackgroundImageProcessor,
+        protected readonly _noneColorProcessor: INoneColorProcessor)
+    {
+        if (_module.name === ExtensionModule.PopupWindow)
         {
-            if (_module.name === ExtensionModule.PopupWindow)
-            {
-                chunkLength = 250;
-                minChunkableLength = 600;
-                normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
-            }
-            this._rootImageUrl = `url("${_rootDocument.location!.href}")`;
-            this._css = css as any;
-            this._transitionForbiddenProperties = new Set<string>(
-                [
-                    this._css.all,
-                    this._css.background,
-                    this._css.backgroundColor,
-                    this._css.backgroundImage,
-                    this._css.color,
-                    this._css.border,
-                    this._css.borderBottom,
-                    this._css.borderBottomColor,
-                    this._css.borderColor,
-                    this._css.borderLeft,
-                    this._css.borderLeftColor,
-                    this._css.borderRight,
-                    this._css.borderRightColor,
-                    this._css.borderTop,
-                    this._css.borderTopColor,
-                    this._css.textShadow,
-                    this._css.filter
-                ]);
-            this._boundUserActionHandler = this.onUserAction.bind(this);
-            this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
-            this._boundUserHoverHandler = this.onUserHover.bind(this);
-            this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
-            if (this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload))
-            {
-                this.addListeners();
-            }
-            this._documentObserver.startDocumentUpdateObservation(_rootDocument);
-            this._documentObserver.onUpdateChanged.addListener(this.onDocumentUpdateStageChanged as any, this);
+            chunkLength = 250;
+            minChunkableLength = 600;
+            normalDelays.set(ProcessingOrder.delayedInvisTags, 1000);
         }
+        this._rootImageUrl = `url("${_rootDocument.location!.href}")`;
+        this._css = css as any;
+        this._transitionForbiddenProperties = new Set<string>(
+            [
+                this._css.all,
+                this._css.background,
+                this._css.backgroundColor,
+                this._css.backgroundImage,
+                this._css.color,
+                this._css.border,
+                this._css.borderBottom,
+                this._css.borderBottomColor,
+                this._css.borderColor,
+                this._css.borderLeft,
+                this._css.borderLeftColor,
+                this._css.borderRight,
+                this._css.borderRightColor,
+                this._css.borderTop,
+                this._css.borderTopColor,
+                this._css.textShadow,
+                this._css.filter
+            ]);
+        this._boundUserActionHandler = this.onUserAction.bind(this);
+        this._boundCheckedLabelHandler = this.onLabelChecked.bind(this);
+        this._boundUserHoverHandler = this.onUserHover.bind(this);
+        this._boundParentBackgroundGetter = this.getParentBackground.bind(this);
+        if (this.setDocumentProcessingStage(_rootDocument, ProcessingStage.Preload))
+        {
+            this.addListeners();
+        }
+        this._documentObserver.startDocumentUpdateObservation(_rootDocument);
+        this._documentObserver.onUpdateChanged.addListener(this.onDocumentUpdateStageChanged as any, this);
+    }
 
     private addListeners()
     {
@@ -424,7 +425,6 @@ class DocumentProcessor implements IDocumentProcessor
                 this.createPseudoStyles(doc);
                 this.createPageScript(doc);
                 this.calculateDefaultColors(doc);
-                doc.body.isChecked = true;
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.body.getElementsByTagName("*"))
                     .concat([doc.body, doc.documentElement!])
@@ -436,6 +436,13 @@ class DocumentProcessor implements IDocumentProcessor
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.body.getElementsByTagName("*"))
                     .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
+                DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
+            }
+            else if (this._settingsManager.isFilter && this.shift.Background.lightnessLimit < 0.3)
+            {
+                this._documentObserver.startDocumentObservation(doc);
+                let allTags = Array.from(doc.body.getElementsByTagName("*"))
+                    .filter(this.getFilterOfElementsForFilterProcessing()) as HTMLElement[];
                 DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
             }
         }
@@ -488,6 +495,24 @@ class DocumentProcessor implements IDocumentProcessor
     private getFilterOfElementsForComplexProcessing(): (value: Element) => boolean
     {
         return (tag) => this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument!.documentElement);
+    }
+
+    private getFilterOfElementsForFilterProcessing(): (value: Element) => boolean
+    {
+        return (tag) =>
+        {
+            if (this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument!.documentElement) &&
+                !(tag instanceof HTMLOptionElement))
+            {
+                tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
+                if (this._backgroundColorProcessor.isDark(tag.mlComputedStyle.backgroundColor))
+                {
+                    tag.mlInvert = true;
+                }
+                return tag.mlComputedStyle.filter === this._css.none && !!tag.mlInvert;
+            }
+            return false;
+        };
     }
 
     private getFilterOfElementsForSimplifiedProcessing(): (value: Element) => boolean
@@ -700,7 +725,7 @@ class DocumentProcessor implements IDocumentProcessor
 
     protected reCalcRootElement(rootElem: HTMLElement, andAllChildren: boolean, skipSelectors = false): HTMLElement[]
     {
-        if (rootElem && rootElem.mlBgColor &&
+        if (rootElem && (rootElem.mlBgColor || rootElem.mlInvert) &&
             (!rootElem.mlTimestamp || Date.now() - rootElem.mlTimestamp > 1))
         {
             rootElem.mlTimestamp = Date.now();
@@ -708,12 +733,12 @@ class DocumentProcessor implements IDocumentProcessor
                 ? Array.from(rootElem.getElementsByTagName("*")) as HTMLElement[] : null;
             if (allTags && allTags.length > 0)
             {
-                skipSelectors = skipSelectors || this._settingsManager.isSimple || andAllChildren ||
+                skipSelectors = skipSelectors || !this._settingsManager.isComplex || andAllChildren ||
                     (this._styleSheetProcessor.getSelectorsQuality(rootElem.ownerDocument!) === 0) ||
                     allTags.length > chunkLength;
                 let filteredTags = allTags.filter(el =>
                 {
-                    if (!(el.isChecked && el.mlBgColor)) return false;
+                    if (!el.mlBgColor) return false;
                     if (!skipSelectors)
                     {
                         const newSelectors = this._styleSheetProcessor.getElementMatchedSelectors(el);
@@ -752,7 +777,7 @@ class DocumentProcessor implements IDocumentProcessor
         let elementsForReCalculation = new Set<HTMLElement>();
         changedElements.forEach(tag =>
         {
-            let needReCalculation = !!tag.mlSvgAttributeChanged, value: string | null | undefined;
+            let needReCalculation = !!tag.mlVisualAttributeChanged, value: string | null | undefined;
             const ns = tag instanceof SVGElement ? USP.svg : USP.htm;
 
             value = tag.style.getPropertyValue(ns.css.bgrColor);
@@ -908,9 +933,16 @@ class DocumentProcessor implements IDocumentProcessor
                 wm = doc.defaultView!.innerWidth;
 
             let elementsFilter: ((tag: HTMLElement) => boolean) | null = null;
-            if (docProc._settingsManager.isSimple && !delayInvisibleElements)
+            if (!delayInvisibleElements)
             {
-                elementsFilter = docProc.getFilterOfElementsForSimplifiedProcessing();
+                if (docProc._settingsManager.isSimple)
+                {
+                    elementsFilter = docProc.getFilterOfElementsForSimplifiedProcessing();
+                }
+                else if (docProc._settingsManager.isFilter)
+                {
+                    elementsFilter = docProc.getFilterOfElementsForFilterProcessing();
+                }
             }
 
             for (let tag of allTags)
@@ -1240,7 +1272,9 @@ class DocumentProcessor implements IDocumentProcessor
             prevChunk || [], docProc).concat(chunk.map(tag => ({
                 tag: tag, result: docProc._settingsManager.isComplex
                     ? docProc.calculateRoomRules(tag)
-                    : docProc.caclulateSimplifiedRoomRules(tag)
+                    : docProc._settingsManager.isSimple
+                        ? docProc.calculateSimplifiedRoomRules(tag)
+                        : docProc.calculateFilterRoomRules(tag)
             })));
         results
             .filter(r => r.result)
@@ -1403,7 +1437,7 @@ class DocumentProcessor implements IDocumentProcessor
                 let children: Element[] = Array.prototype.filter.call(tag.parentElement!.children,
                     (otherTag: Element, index: number) =>
                     {
-                        if (otherTag != tag && otherTag.isChecked)
+                        if (otherTag != tag)
                         {
                             otherTag.zIndex = otherTag.zIndex || isSvg ? -index :
                                 parseInt((otherTag.mlComputedStyle = otherTag.mlComputedStyle ? otherTag.mlComputedStyle
@@ -1509,7 +1543,7 @@ class DocumentProcessor implements IDocumentProcessor
         delete tag.mlParentBgColor;
         delete tag.mlPath;
 
-        if (tag.mlBgColor || tag instanceof Element &&
+        if (tag.mlBgColor || tag.mlInvert || tag instanceof Element &&
             (lastProcMode === ProcessingMode.Simplified ||
                 this._settingsManager.isSimple))
         {
@@ -1517,12 +1551,13 @@ class DocumentProcessor implements IDocumentProcessor
             const hasLinkColors = tag.mlColor && tag.mlColor.role === cc.Link;
 
             delete tag.mlBgColor;
+            delete tag.mlInvert;
             delete tag.mlColor;
             delete tag.mlTextShadow;
             delete tag.mlRect;
             delete tag.mlSelectors;
             delete tag.mlFixed;
-            delete tag.mlSvgAttributeChanged;
+            delete tag.mlVisualAttributeChanged;
 
             if (tag.originalTransitionProperty !== undefined && !keepTransition &&
                 tag.style.transitionProperty !== tag.originalTransitionProperty)
@@ -1628,6 +1663,10 @@ class DocumentProcessor implements IDocumentProcessor
             {
                 tag.removeAttribute("ml-bg-image");
             }
+            if (tag.hasAttribute(this._css.mlInvertAttr))
+            {
+                tag.removeAttribute(this._css.mlInvertAttr);
+            }
         }
     }
 
@@ -1638,10 +1677,36 @@ class DocumentProcessor implements IDocumentProcessor
             !tag.mlBgColor && !!tag.tagName && !tag.mlIgnore && !!(tag as HTMLElement).style;
     }
 
-    protected caclulateSimplifiedRoomRules(tag: HTMLElement)
+    protected calculateFilterRoomRules(tag: HTMLElement)
     {
         if (tag && tag.ownerDocument!.defaultView && !tag.classList.contains("ml-ignore") &&
-            (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue("--ml-ignore") !== true.toString()))
+            this._filterForFilterProcessing(tag) &&
+            (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue(this._css.mlIgnoreVar) !== true.toString()))
+        {
+            let hasRoomRules = false;
+            const doc = tag.ownerDocument!, roomRules: RoomRules = {};
+
+            tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
+
+            if (tag.mlInvert)
+            {
+                hasRoomRules = true;
+                roomRules.attributes = roomRules.attributes || new Map<string, string>();
+                roomRules.attributes.set(this._css.mlInvertAttr, "");
+            }
+
+            if (hasRoomRules)
+            {
+                return { roomRules, before: undefined, after: undefined };
+            }
+        }
+        return undefined;
+    }
+
+    protected calculateSimplifiedRoomRules(tag: HTMLElement)
+    {
+        if (tag && tag.ownerDocument!.defaultView && !tag.classList.contains("ml-ignore") &&
+            (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue(this._css.mlIgnoreVar) !== true.toString()))
         {
             let hasRoomRules = false;
             const doc = tag.ownerDocument!, roomRules: RoomRules = {},
@@ -1686,7 +1751,7 @@ class DocumentProcessor implements IDocumentProcessor
     {
         if (tag && tag.ownerDocument!.defaultView && !(tag as HTMLElement).mlBgColor &&
             (!(tag instanceof Element) || !tag.mlComputedStyle ||
-                !(tag.mlIgnore = tag.mlComputedStyle!.getPropertyValue("--ml-ignore") === true.toString())))
+                !(tag.mlIgnore = tag.mlComputedStyle!.getPropertyValue(this._css.mlIgnoreVar) === true.toString())))
         {
             let doc = tag.ownerDocument!;
             let bgLight: number, roomRules: RoomRules | undefined;//, room: string | null = null;
@@ -1731,13 +1796,13 @@ class DocumentProcessor implements IDocumentProcessor
                     let afterStyle = doc.defaultView!.getComputedStyle(tag, ":after");
                     if (beforeStyle && beforeStyle.content &&
                         beforeStyle.content !== this._css.none &&
-                        beforeStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        beforeStyle.getPropertyValue(this._css.mlIgnoreVar) !== true.toString())
                     {
                         beforePseudoElement = new PseudoElement(PseudoType.Before, tag, beforeStyle);
                     }
                     if (afterStyle && afterStyle.content &&
                         afterStyle.content !== this._css.none &&
-                        afterStyle.getPropertyValue("--ml-ignore") !== true.toString())
+                        afterStyle.getPropertyValue(this._css.mlIgnoreVar) !== true.toString())
                     {
                         afterPseudoElement = new PseudoElement(PseudoType.After, tag, afterStyle);
                     }
@@ -2528,19 +2593,19 @@ class DocumentProcessor implements IDocumentProcessor
         delete doc.documentElement!.mlArea;
         this._backgroundColorProcessor.clear();
 
-            const mainColors = {
-                backgroundColor, backgroundColorFiltered,
-                altBackgroundColor, altBackgroundColorFiltered,
-                transBackgroundColor, transAltBackgroundColor,
-                textColor, transTextColor, textColorFiltered,
-                borderColor, transBorderColor, rangeFillColor,
-                selectionColor, selectionTextColor, selectionShadowColor,
-                buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
-                scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor,
-                scrollbarTrackColor, scrollbarMarksColor, scrollbarShadowColor,
-                scrollbarSize, mozScrollbarWidth, mozScrollbarTrackColor: altBackgroundColor,
-                linkColor, linkColorHover, linkColorActive,
-                visitedColor, visitedColorHover, visitedColorActive,
+        const mainColors = {
+            backgroundColor, backgroundColorFiltered,
+            altBackgroundColor, altBackgroundColorFiltered,
+            transBackgroundColor, transAltBackgroundColor,
+            textColor, transTextColor, textColorFiltered,
+            borderColor, transBorderColor, rangeFillColor,
+            selectionColor, selectionTextColor, selectionShadowColor,
+            buttonBackgroundColor, buttonBorderColor, redButtonBackgroundColor,
+            scrollbarThumbHoverColor, scrollbarThumbNormalColor, scrollbarThumbActiveColor,
+            scrollbarTrackColor, scrollbarMarksColor, scrollbarShadowColor,
+            scrollbarSize, mozScrollbarWidth, mozScrollbarTrackColor: altBackgroundColor,
+            linkColor, linkColorHover, linkColorActive,
+            visitedColor, visitedColorHover, visitedColorActive,
 
             scrollbarMarksColorOriginal: textColor,
             scrollbarThumbHoverColorOriginal: scrollbarThumbHoverColor,
@@ -2550,17 +2615,17 @@ class DocumentProcessor implements IDocumentProcessor
             mozScrollbarTrackColorOriginal: altBackgroundColor,
             scrollbarShadowColorOriginal: scrollbarShadowColor,
 
-                scrollbarMarksColorFiltered,
-                scrollbarThumbHoverColorFiltered,
-                scrollbarThumbNormalColorFiltered,
-                scrollbarThumbActiveColorFiltered,
-                scrollbarTrackColorFiltered,
-                mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
-                scrollbarShadowColorFiltered: scrollbarShadowColor
-            };
-            this._onMainColorsCalculated.raise(mainColors);
-            return mainColors
-        }
+            scrollbarMarksColorFiltered,
+            scrollbarThumbHoverColorFiltered,
+            scrollbarThumbNormalColorFiltered,
+            scrollbarThumbActiveColorFiltered,
+            scrollbarTrackColorFiltered,
+            mozScrollbarTrackColorFiltered: altBackgroundColorFiltered,
+            scrollbarShadowColorFiltered: scrollbarShadowColor
+        };
+        this._onMainColorsCalculated.raise(mainColors);
+        return mainColors
+    }
 
     protected injectDynamicValues(doc: Document)
     {
