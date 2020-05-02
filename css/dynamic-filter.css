@@ -53,7 +53,7 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="creensho
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="humbnail"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img[class*="moji"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) svg image,
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) iframe,
+/* html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) iframe, */
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [class*="moji"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:url"],
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-image:url"],
