@@ -65,6 +65,11 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background-
 html[ml-mode="filter"][ml-invert] [ml-invert] {
   filter: var(--ml-text-revert-filter);
 }
+html[ml-mode="filter"][ml-invert] [ml-invert] input,
+html[ml-mode="filter"][ml-invert] [ml-invert] textarea,
+html[ml-mode="filter"][ml-invert] [ml-invert] select {
+  filter: var(--ml-text-filter)!important;
+}
 html[ml-mode="filter"][ml-invert] [ml-invert] *,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [class*="moji"] *,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) [style*="background:url"] *,
@@ -103,3 +108,18 @@ html[ml-mode="filter"] select>option {
   background-color: var(--ml-main-background-color-filtered) !important;
   color: var(--ml-main-text-color-filtered) !important;
 }
+
+/*------------ loading begin ------------*/
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background:"],
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background-color:"],
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background-image:"],
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [bgcolor]:not([bgcolor="#ffffff"]):not([bgcolor="#fff"]):not([bgcolor="#FFFFFF"]):not([bgcolor="#FFF"]) {
+  filter: var(--ml-bg-revert-filter);
+}
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background:"] *,
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background-color:"] *,
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [style*="background-image:"] *,
+html[ml-mode="filter"][ml-stage="loading"][ml-invert] [bgcolor]:not([bgcolor="#ffffff"]):not([bgcolor="#fff"]):not([bgcolor="#FFFFFF"]):not([bgcolor="#FFF"]) * {
+  filter: none!important;
+}
+/*------------ loading end --------------*/

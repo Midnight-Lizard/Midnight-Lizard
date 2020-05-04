@@ -2741,6 +2741,9 @@ class DocumentProcessor implements IDocumentProcessor
         const videoRevertFilter = this.GetComponentRevertFilter(this.shift.Video, invertColors);
         cssText += `\n--ml-video-revert-filter:${videoRevertFilter || 'none'};`;
 
+        const bgRevertFilter = this.GetComponentRevertFilter(this.shift.Background, invertColors);
+        cssText += `\n--ml-bg-revert-filter:${bgRevertFilter || 'none'};`;
+
         const mainColorsStyle = doc.createElement('style');
         mainColorsStyle.id = "midnight-lizard-dynamic-values";
         mainColorsStyle.mlIgnore = true;
