@@ -2,6 +2,10 @@ html[ml-mode]:not([ml-mode="filter"]) #p-logo {
   position: relative;
 }
 
+html[ml-mode][ml-mode="filter"] #p-logo {
+  --ml-ignore:true;
+}
+
 html[ml-mode]:not([ml-mode="filter"]) #p-logo:before {
   content: "";
   background-color: #f0f0f0;
