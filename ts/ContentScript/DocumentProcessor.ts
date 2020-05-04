@@ -2346,7 +2346,7 @@ class DocumentProcessor implements IDocumentProcessor
                     bgImgLight = this.shift.Background.lightnessLimit;
                 }
 
-                bgFilter = this._settingsManager.isFilter ? this.GetImageRevertFilter(this.shift.BackgroundImage, doInvert) : [
+                bgFilter = this._settingsManager.isFilter ? this.GetComponentRevertFilter(this.shift.BackgroundImage, doInvert) : [
                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
                     bgImgLight < 1 && !doInvert ? `brightness(${float.format(bgImgLight)})` : "",
                     doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
@@ -2729,16 +2729,16 @@ class DocumentProcessor implements IDocumentProcessor
         ].filter(f => f).join(" ").trim();
         cssText += `\n--ml-image-filter:${imgFilter || 'none'};`;
 
-        const imgRevertFilter = this.GetImageRevertFilter(imgSet, invertColors);
+        const imgRevertFilter = this.GetComponentRevertFilter(imgSet, invertColors);
         cssText += `\n--ml-image-revert-filter:${imgRevertFilter || 'none'};`;
 
-        const bgImgRevertFilter = this.GetImageRevertFilter(this.shift.BackgroundImage, invertColors);
+        const bgImgRevertFilter = this.GetComponentRevertFilter(this.shift.BackgroundImage, invertColors);
         cssText += `\n--ml-bg-image-revert-filter:${bgImgRevertFilter || 'none'};`;
 
-        const textRevertFilter = this.GetImageRevertFilter(this.shift.Text, invertColors);
+        const textRevertFilter = this.GetComponentRevertFilter(this.shift.Text, invertColors);
         cssText += `\n--ml-text-revert-filter:${textRevertFilter || 'none'};`;
 
-        const videoRevertFilter = this.GetVideoRevertFilter(invertColors);
+        const videoRevertFilter = this.GetComponentRevertFilter(this.shift.Video, invertColors);
         cssText += `\n--ml-video-revert-filter:${videoRevertFilter || 'none'};`;
 
         const mainColorsStyle = doc.createElement('style');
@@ -2748,42 +2748,21 @@ class DocumentProcessor implements IDocumentProcessor
         (doc.head || doc.documentElement!).appendChild(mainColorsStyle);
     }
 
-    private GetVideoRevertFilter(invertColors: boolean)
+    private GetComponentRevertFilter(cmpShift: ColorShift, invertComponent: boolean)
     {
-        let videoLight = 1, videoSat = 1;
-        if (this.shift.Text.lightnessLimit < 1)
+        let cmpLight = cmpShift.lightnessLimit + 1 - Math.max(this.shift.Text.lightnessLimit, 0.9),
+            cmpSat = cmpShift.saturationLimit + 1 - this.shift.Background.saturationLimit;
+        if (this.shift.Background.lightnessLimit < 0.5 && !invertComponent)
         {
-            videoLight += 1 - Math.max(this.shift.Text.lightnessLimit, 0.9);
+            // this is small bg-image on inverted page
+            cmpLight = 1;
         }
-        if (this.shift.Background.saturationLimit < 1)
-        {
-            videoSat += 1 - this.shift.Background.saturationLimit;
-        }
-        const videoRevertFilter = [
-            videoLight !== 1 ? `brightness(${videoLight})` : "",
-            invertColors ? `hue-rotate(180deg) invert(1)` : "",
-            videoSat !== 1 ? `saturate(${videoSat})` : "",
+        const cmpRevertFilter = [
+            cmpSat !== 1 ? `saturate(${cmpSat})` : "",
+            cmpLight !== 1 ? `brightness(${cmpLight})` : "",
+            invertComponent ? `hue-rotate(180deg) invert(1)` : "",
         ].filter(f => f).join(" ").trim();
-        return videoRevertFilter;
-    }
-
-    private GetImageRevertFilter(imgSet: ColorShift, invertColors: boolean)
-    {
-        let imgLight = imgSet.lightnessLimit, imgSat = imgSet.saturationLimit;
-        if (this.shift.Text.lightnessLimit < 1)
-        {
-            imgLight += 1 - Math.max(this.shift.Text.lightnessLimit, 0.9);
-        }
-        if (this.shift.Background.saturationLimit < 1)
-        {
-            imgSat += 1 - this.shift.Background.saturationLimit;
-        }
-        const imgRevertFilter = [
-            imgLight !== 1 ? `brightness(${imgLight})` : "",
-            invertColors ? `hue-rotate(180deg) invert(1)` : "",
-            imgSat !== 1 ? `saturate(${imgSat})` : "",
-        ].filter(f => f).join(" ").trim();
-        return imgRevertFilter;
+        return cmpRevertFilter;
     }
 
     protected processMetaTheme(doc: Document)

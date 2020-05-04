@@ -54,4 +54,5 @@ export interface ComponentShift
     BackgroundImage: ColorShift;
     ButtonBackground: ColorShift;
     ButtonBorder: ColorShift;
+    Video: ColorShift;
 }

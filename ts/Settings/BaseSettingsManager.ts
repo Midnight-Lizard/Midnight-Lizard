@@ -404,6 +404,15 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
                 grayHue: set.backgroundGrayHue,
                 replaceAllHues: false,
                 hueGravity: 0
+            },
+            Video: {
+                saturationLimit: 1,
+                contrast: 0.5,
+                lightnessLimit: 1,
+                graySaturation: 0,
+                grayHue: 0,
+                replaceAllHues: false,
+                hueGravity: 0
             }
         };
     }
