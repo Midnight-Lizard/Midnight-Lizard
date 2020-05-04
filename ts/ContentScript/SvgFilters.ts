@@ -43,13 +43,22 @@ class SvgFilters implements ISvgFilters
         svg.style.position = "absolute";
         // svg.style.setProperty("--ml-ignore", "true");
 
-        svg.appendChild(this.createBlueFilter(doc));
-        svg.appendChild(this.createContentFilter(doc, overlayBgColor, overlayTxtColor));
+        const filters = [
+            this.createBlueFilter(doc),
+            this.createContentFilter(doc, overlayBgColor, overlayTxtColor),
+            this.createColorReplacementFilter(
+                doc, FilterType.PdfFilter,
+                new RgbaColor(240, 240, 240, 1),
+                new RgbaColor(82, 86, 89, 1))
+        ];
 
-        svg.appendChild(this.createColorReplacementFilter(
-            doc, FilterType.PdfFilter,
-            new RgbaColor(240, 240, 240, 1),
-            new RgbaColor(82, 86, 89, 1)));
+        for (const filter of filters) {
+            filter.setAttribute("x","0");
+            filter.setAttribute("y","0");
+            filter.setAttribute("width","99999");
+            filter.setAttribute("height","99999");
+            svg.appendChild(filter);
+        }
 
         // (this._app.browserName === BrowserName.Chrome
         //     ? doc.head || doc.documentElement!
