@@ -183,9 +183,9 @@ class SvgFilters implements ISvgFilters
         cutColorMatrix.setAttribute("result", selectedColorLayer);
         cutColorMatrix.setAttribute("type", "matrix");
         cutColorMatrix.setAttribute("values", `1 0 0 0 0
-                                                   0 1 0 0 0
-                                                   0 0 1 0 0
-                                                   1 1 1 1 -3`);
+                                               0 1 0 0 0
+                                               0 0 1 0 0
+                                               1 1 1 1 -3`);
         replaceColorFilter.appendChild(cutColorMatrix);
 
         const feFlood = doc.createElementNS(svgNs, "feFlood");
