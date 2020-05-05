@@ -7,6 +7,10 @@
     "description": "extension description displayed in the Web Store",
     "message": "Cette extension modifie les couleurs de la page, la luminosité et le contraste pour augmenter la lisibilité et apporte le mode nuit sombre à tous les sites Web."
   },
+  "longDescription": {
+    "description": "long extension description displayed in the Web Store",
+    "message": "Les themes colorés de Midnight Lizard fonctionnent sur tous les sites Web et ne deviendront jamais obsolètes. Il existe de nombreux schémas de couleurs prédéfinis et vous pouvez en installer d’autres à partir de midnight-lizard.org\n  ✔ Choisissez entre des couleurs sombres, claires, en niveaux de gris ou colorées\n  ✔ Modifier les themes de couleurs existants ou en créer de nouveaux\n  ✔ Utilisez des couleurs différentes sur chaque site Web\n  ✔ Ajustez la luminosité, la saturation, le contraste et les teintes\n  ✔ Améliorez l'accessibilité et la lisibilité\n  ✔ Augmentez le contraste pour rendre le texte plus facile à lire\n  ✔ Appliquez un filtre de lumière bleue pour déplacer les couleurs vers le rouge\n  ✔ Conserve les images et les teintes d'origine sans inversion\n  ✔ Planifiez l'activation et la désactivation automatiquement\n  ✔ Utilise les raccourcis clavier pour changer d’extension\n     ⮚ sur le site web actuel: Alt + Maj + L\n     ⮚ globalement: Alt + Maj + M\n  ✔ Marche avec les fichiers PDF et locaux (activé dans les paramètres du navigateur)\n  ✔ Baissez la luminosité des couleurs vives et des images\n  ✔ Changez la couleur de votre choix\n  ✔ Changez dynamiquement le thème du navigateur (désactivé par défaut)\n  ✔ Synchronisez vos paramètres\n  ✔ Configurez l’arrière-plan, le texte, les boutons, les liens, les bordures, les images et les barres de défilement\n  ✔ Applique globalement, par site Web ou avec des modèles de correspondance d'URL\n  ✔ Bascule entre les modes liste noire et liste blanche des sites Web\n  ✔ Utilisez le mode simplifié pour améliorer les performances sur les sites Web lourds\n  ✔ Contribuez à notre projet open source sur GitHub.com\/Midnight-Lizard\n  ✔ Faites un don à notre OpenCollective.com\/Midnight-Lizard\n\nUtilisez des thèmes de navigateur pour styliser la page, les onglets et les barres d’outils Nouvel onglet - les autres extensions ne peuvent pas le faire.\nDe plus, les autres extensions ne fonctionnent pas dans un Nouvel onglet, le Chrome Web Store et la page des paramètres du navigateur."
+  },
   "globalToggleKey": {
     "description": "keyboard shortcut description in the browser settings",
     "message": "Activer\/désactiver l'extension globalement"
@@ -18,6 +22,10 @@
   "runOnThisSite_text_label": {
     "description": "text on the label",
     "message": "Exécuter sur ce site Web"
+  },
+  "runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exécutez 'Midnight Lizard' sur toutes les pages de ce site.\nSi cette case est décochée, elle peut toujours être remplacée par l'option \"Inclure les motifs\" de certaines pages.\nUtilisez \"Exclure les motifs\" pour exclure certaines pages du traitement."
   },
   "restoreColorsOnCopy_text_label": {
     "description": "text on the label",
@@ -486,6 +494,10 @@
     "description": "text on the label",
     "message": "Activation"
   },
+  "activationTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Paramètres d'activation\n―――――――――――――――――――\n Utilisez cet onglet pour définir quelles pages et à quel moment elles doivent être traitées ou laissées inchangées."
+  },
   "backgroundTab_text_label": {
     "description": "text on the label",
     "message": "Fond"
@@ -652,6 +664,10 @@
     "description": "text on the label",
     "message": "Schémas de couleur"
   },
+  "editSchemesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "   Édition des schémas de couleur\n―――――――――――――――――――\n Les paramètres actuellement appliqués sur le popup peuvent être utilisés pour créer un nouveau schéma de couleur ou mettre à jour un schéma existant. Si vous créez un nouveau schéma de couleurs, il sera disponible sur tous les autres sites web.\n  Vous pouvez ajuster votre schéma de couleur même après sa création, mettez le à jour une fois et les changements seront automatiquement appliqués à tous les sites web où ce schéma est utilisé. Vous pouvez aussi supprimer votre schéma de couleurs à tout moment.\n De la même façon, vous pouvez modifier des schémas de couleur prédéfinis avec de nouveaux réglages et noms. La délétion de schémas de couleurs prédéfinis n'enlèvera que vos modifications et les restaurera à leur état initial.\n Trouvez plus d'exemples sous le point d'interrogation dans le coin supérieur gauche du popup."
+  },
   "currentColorScheme_text_label": {
     "description": "text on the label",
     "message": "Schéma de couleur actuel"
@@ -727,6 +743,20 @@
   "forgetAllConfirmationMessage": {
     "description": "text on the message box",
     "message": "Tous les paramètres et les jeux de couleurs personnalisés créés précédemment seront supprimés ! Êtes-vous sûr de vouloir continuer ?"
+  },
+  "introduction_html_content": {
+    "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+    "message": "<div style=\"font-size: 12px;\">\n  <h3>Introduction<\/h3>\n  <p>\n    <run class=\"intro intro-toggle\">\n      À\n      <span>activer<\/span> ou\n      <span>désactivez<\/span> un poste entier, basculez le\n      bouton bascule situé dans le coin supérieur droit.\n    <\/run>\n    <run class=\"intro intro-host\">\n      Vous pouvez également basculer n’importe quel site Web\n      particulier entre\n      <span>liste noire<\/span> et\n      <span>liste blanche<\/span>\n      en cliquant sur son libellé dans la barre d’en-tête\n      contextuelle.\n    <\/run>\n  <\/p>\n  <p class=\"intro intro-select-scheme\">\n    Vous pouvez choisir l’un des\n    <span>palette de couleurs prédéfinie<\/span> dans la\n    liste\n    déroulante du volet de droite et utilisez-la dans le\n    commerce.\n    Vous pouvez installer plusieurs schémas de couleurs à\n    partir de\n    <a target=\"_blank\" title=\"$url$\"\n       href=\"$url$\">$website$<\/a>.\n  <\/p>\n  <p class=\"intro intro-tabs\">\n    En dehors de cela, vous pouvez\n    <span>ajustez<\/span> le schéma que vous avez choisi.\n    Pour cela, vous avez tous les paramètres dans les\n    onglets du volet de gauche.\n    Toutes les modifications que vous auriez apportées\n    seront immédiatement appliquées, mais uniquement dans\n    la fenêtre contextuelle, ce qui vous permettra de\n    jouer en toute sécurité.\n  <\/p>\n  <p>\n    <run class=\"intro intro-apply\">\n      Pour affecter les paramètres de votre choix à la\n      <span>site actuel<\/span> presse\n      <q>Appliquer<\/q>\n      bouton dans le volet de droite.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n      Ou tu peux\n      <span>ajoutez votre schéma<\/span> à la liste\n      des schémas de couleurs prédéfinis pour une\n      utilisation ultérieure sur tout autre site\n      Web.\n    <\/run>\n  <\/p>\n  <p class=\"intro intro-default\">\n    Si vous souhaitez configurer les\n    paramètres actuels en tant que\n    <span>paramètres par défaut<\/span>\n    pour tous les sites Web, appuyez sur\n    Bouton <q>Défini par défaut<\/q>\n    dans le volet de droite.\n  <\/p>\n  <p class=\"intro intro-help\">\n    Tu peux trouver\n    <span>plus d'aide<\/span> sur le\n    forum d'assistance, lisez des\n    tutoriels existants ou posez une\n    nouvelle question.\n  <\/p>\n  <p class=\"intro intro-social\">\n    Abonnez-vous aux canaux\n    sociaux de Midnight Lizard et\n    restez à l'écoute des\n    dernières mises à jour et des\n    nouvelles fonctionnalités.\n  <\/p>\n<\/div>",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org\/schemes",
+        "example": "https:\/\/midnight-lizard.org\/schemes"
+      },
+      "website": {
+        "content": "midnight-lizard.org",
+        "example": "midnight-lizard.org"
+      }
+    }
   },
   "shortcut_text_lable": {
     "message": "Raccourci"
@@ -835,25 +865,77 @@
     "description": "text on the label",
     "message": "Exemple de traitement des boutons"
   },
+  "buttonExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de boutons de traitement avec différentes couleurs de fond"
+  },
+  "borderExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de traitement des couleurs de bordure différentes"
+  },
   "borderExample_text_label": {
     "description": "text on the label",
     "message": "Exemple de traitement des bordures"
+  },
+  "backgroundExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Couleurs d'arrière-plan originales en cours de traitement ci-dessus"
+  },
+  "borderExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Couleurs de bordure originales en cours de traitement à gauche"
+  },
+  "smallBackgroundImageExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Petites images de fond originales en cours de traitement ci-dessus"
+  },
+  "translateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Aidez à traduire Midnight Lizard\nen d'autres langues"
+  },
+  "backgroundExampleWithContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de traitement des différentes couleurs de fond avec un contraste accru.\nLe contraste dépend d'une taille d'élément, donc sur la page réelle il peut sembler différent."
+  },
+  "backgroundExampleWithoutContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exemple de traitement des couleurs de fond différentes sans changement de contraste."
+  },
+  "mode_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Mode de traitement de la page"
   },
   "mode_text_label": {
     "description": "text on the label",
     "message": "Mode de processing"
   },
+  "mode_simplified_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Le mode de traitement simplifié des pages n'est pas exact mais fonctionne très rapidement"
+  },
   "mode_simplified_text_label": {
     "description": "text on the label",
     "message": "❔ Simplifié"
+  },
+  "mode_complex_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Le mode de traitement de page complexe n'est pas rapide mais a un très bon visuel"
   },
   "mode_complex_text_label": {
     "description": "text on the label",
     "message": "❔ Complexe"
   },
+  "mode_filter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Filtre global simple sur toute la page.\nLa plupart des paramètres sont ignorés dans ce mode.\nPeut être très intense sur les ressources.\nFonctionne mieux en mode niveaux de gris ou lorsque\nle fond gris et la saturation de texte gris sont inférieurs à 10%."
+  },
   "mode_filter_text_label": {
     "description": "text on the label",
     "message": "❔ Filtre"
+  },
+  "mode_automatic_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Le mode de traitement automatique des pages passera du mode 'Complex' au mode 'Simplifié'\nsi la page actuelle a plus d'éléments que la 'Limite de mode automatique'."
   },
   "mode_automatic_text_label": {
     "description": "text on the label",
