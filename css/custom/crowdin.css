@@ -5,12 +5,12 @@ html[ml-mode]:not([ml-mode="filter"]) body.dark-theme #close-search-box,
 html[ml-mode]:not([ml-mode="filter"]) body.dark-theme i.static-icon-apps,
 html[ml-mode]:not([ml-mode="filter"]) body.dark-theme i.static-icon-filter {
     --ml-ignore:true;
-    filter: var(--ml-text-filter) brightness(calc(2 * var(--ml-invert)));
+    filter: var(--ml-text-filter) brightness(calc(2 * var(--ml-invert)))!important;
 }
 
 html[ml-mode]:not([ml-mode="filter"]) .folder-toggler {
     --ml-ignore:true;
-    filter: var(--ml-text-filter);
+    filter: var(--ml-text-filter)!important;
 }
 
 #texts_list {
