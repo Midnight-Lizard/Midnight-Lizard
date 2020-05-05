@@ -7,8 +7,795 @@
     "description": "extension description displayed in the Web Store",
     "message": "가독성을 높이기 위해 페이지 색상, 밝기, 대비를 변경합니다. 모든 페이지에 야간 모드를 적용합니다."
   },
+  "longDescription": {
+    "description": "long extension description displayed in the Web Store",
+    "message": "'Midnight Lizard'의 색상 구성은 모든 웹사이트에서 작동되며,  항상 최신화된 상태로 유지됩니다. 사전 설정된 색상 구성 뿐만 아니라 홈페이지 midnight-lizard.org에서 더 많은 색상 구성을 설치할 수 있습니다.\n\n  ✔ 다크 모드, 회색조, 색상 등의 색상 구성을 선택가능\n  ✔ 기존 구성을 변경하거나 새로운 색상 구성을 만들 수 있음\n  ✔ 웹사이트마다 다른 색상 구성 사용 가능\n  ✔ 명도, 채도, 대비, 색조를 조정가능\n  ✔ 가독성을 향상\n  ✔ 대비를 증가시켜 가독성을 향상\n  ✔ 블루 라이트 필터 사용가능\n  ✔ 원래의 이미지를 유지한 채로 색조를 변경\n  ✔ 스캐쥴 설정으로 현재 시간에 따른 자동 변화\n  ✔ 단축키를 이용하여 기능 온오프\n     ⮚ 현재 페이지만: Alt+Shift+L\n     ⮚ 모든 페이지: Alt+Shift+M\n  ✔ PDF 파일과 사용자 파일에서도 사용가능(브라우저에서 설정시)\n  ✔ 이미지와 색상을 변경\n  ✔ 원하는 색으로 변경가능\n  ✔ 다이다믹한 브라우저 테마 변경(기본값 비활성화)\n  ✔ 설정 동기화\n  ✔ 배경, 텍스트, 버튼, 링크, 경계선, 이미지, 스크롤바에 대한 설정 가능\n  ✔ 모든 페이지, 각 페이지, URL 주소에 따른 적용 가능\n  ✔ 각 사이트에 블랙리스트와 화이트리스트 적용 가능\n  ✔ 향상된 성능을 위해 간소화 기능 사용가능\n  ✔ GitHub.com\/Midnight-Lizard 에서 오픈소스 프로젝트에 기여해주십시오.\n  ✔ OpenCollective.com\/Midnight-Lizard 에서 기부해주세요.\n\n새 탭 페이지, 탭 및 도구 모음에 스타일을 지정하려면 브라우저 테마를 사용하십시오. - 확장 프로그램에서는 불가능합니다.또한, 새 탭 페이지와 크롬 웹 스토어, 브라우저 설정에서도 작동하지 습니다."
+  },
   "globalToggleKey": {
     "description": "keyboard shortcut description in the browser settings",
     "message": "확장 프로그램 전역 스위치"
+  },
+  "currentToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "현재 웹사이트 전환"
+  },
+  "runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "이 웹 사이트에서 실행"
+  },
+  "runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "이 웹사이트의 모든 페이지에 'Midnight Lizard' 를 실행 합니다.\n체크하지 않는 경우에도, '허용할 웹페이지 패턴'에 따라 색상 구성이 적용될 수도 있습니다.\n'제외할 웹페이지 패턴'를 사용하여 색상 구성이 적용되지 않게 할 수 있습니다."
+  },
+  "restoreColorsOnCopy_text_label": {
+    "description": "text on the label",
+    "message": "복사시 원래 색으로 복원"
+  },
+  "restoreColorsOnCopy_@title": {
+    "description": "text on the tooltip",
+    "message": "페이지에서 콘텐츠를 복사 하기 전에 원래 색상 복원"
+  },
+  "restoreColorsOnPrint_text_label": {
+    "description": "text on the label",
+    "message": "인쇄시 원래 색으로 복원"
+  },
+  "restoreColorsOnPrint_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "인쇄하기 전에 페이지의 콘텐츠를 원래 색상으로 복원"
+  },
+  "changeBrowserTheme_text_label": {
+    "description": "text on the label",
+    "message": "브라우저 테마 변경"
+  },
+  "changeBrowserTheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "브라우저 테마 현재 색 구성표를 조정 합니다. 파이어 폭스와에 의해 부분적으로 비발디에는 지원을\n"
+  },
+  "useDefaultSchedule_text_label": {
+    "description": "text on the label",
+    "message": "기본 스케쥴 사용"
+  },
+  "useDefaultSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "기본 설정된 스케쥴을 사용합니다.\n모든 웹 사이트에서 하나의 스케쥴로 사용하려면\n기본 설정에서 변경하거나 전역 설정에서 설정할 수 있습니다."
+  },
+  "scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "작동 시간"
+  },
+  "scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "설정된 시간부터 기능이 작동됩니다."
+  },
+  "scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "비작동 시간"
+  },
+  "scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "설정된 시간까지 기능이 작동합니다."
+  },
+  "blueFilter_text_label": {
+    "description": "text on the label",
+    "message": "청색 필터 강도"
+  },
+  "blueFilter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "청색필터 강도 입니다.\n페이지에서 블루 라이트를 줄여주나, 붉은 빛이 돕니다."
+  },
+  "backgroundSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도 제한"
+  },
+  "backgroundSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "배경 채도 제한"
+  },
+  "backgroundContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "backgroundContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "비슷한 배경에서의 최소 명도 차이입니다.\n이는 크기와 순서에 따라 달라질 수 있습니다."
+  },
+  "backgroundLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도 제한"
+  },
+  "backgroundLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "배경 명도 제한"
+  },
+  "backgroundGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "회색 배경 채도"
+  },
+  "backgroundGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택된 기본 색조를 적용 한 후 회색 배경의 채도"
+  },
+  "backgroundHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조 중력"
+  },
+  "backgroundHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 색조가 설정된 기본 색조의 영향을 얼마나 받는지 결정합니다.\n설정도가 높으면 모든 색상은 기본 색조와 비슷해집니다.\n채도 한도 역시 색조의 영향을 받습니다.\n'모두 바꾸기'가 선택되어 있으면 적용되지 않습니다."
+  },
+  "backgroundGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조"
+  },
+  "backgroundGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "회색 배경색 채도를 높이기 위해 사용되는 색조"
+  },
+  "backgroundReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "모두 바꾸기"
+  },
+  "backgroundReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 원래 색조을 선택한 색조로 변경합니다.\n그렇지 않으면, 회색과 검은색, 흰색의 색조만 변경합니다.\n회색 채도는 변경된 색조로 사용될 것입니다.\n기본 색조를 무시하고 덮어씌웁니다."
+  },
+  "buttonSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도 제한"
+  },
+  "buttonSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "버튼 배경색 채도 제한"
+  },
+  "buttonContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "buttonContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "버튼과 배경 사이 최소 명도 차이"
+  },
+  "buttonLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도 제한"
+  },
+  "buttonLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "버튼 배경색 명도 제한"
+  },
+  "buttonGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "회색 버튼 채도"
+  },
+  "buttonGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택한 기본 색조를 적용 한 후 회색 버튼의 배경색 채도"
+  },
+  "buttonHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조 중력"
+  },
+  "buttonHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 색조가 설정된 기본 색조의 영향을 얼마나 받는지 결정합니다.\n설정도가 높으면 모든 색상은 기본 색조와 비슷해집니다.\n채도 한도 역시 색조의 영향을 받습니다.\n'모두 바꾸기'가 선택되어 있으면 적용되지 않습니다."
+  },
+  "buttonGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조"
+  },
+  "buttonGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "회색 버튼 배경색 채도를 높이기 위해 사용되는 색조"
+  },
+  "buttonReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "모두 바꾸기"
+  },
+  "buttonReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 원래 색조을 선택한 색조로 변경합니다.\n그렇지 않으면, 회색과 검은색, 흰색의 색조만 변경합니다.\n회색 채도는 변경된 색조로 사용될 것입니다.\n기본 색조를 무시하고 덮어씌웁니다."
+  },
+  "textSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도 제한"
+  },
+  "textSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "텍스트 채도 제한"
+  },
+  "textContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "textContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "텍스트와 배경 사이의 최소 명도 차이"
+  },
+  "textLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도 제한"
+  },
+  "textLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "텍스트의 최대 명도 제한"
+  },
+  "textGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "회색 텍스트의 채도"
+  },
+  "textGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택된 기본 색조를 적용 한 후 회색 배경의 채도"
+  },
+  "textHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조 중력"
+  },
+  "textHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 색조가 설정된 기본 색조의 영향을 얼마나 받는지 결정합니다.\n설정도가 높으면 모든 색상은 기본 색조와 비슷해집니다.\n채도 한도 역시 색조의 영향을 받습니다.\n'모두 바꾸기'가 선택되어 있으면 적용되지 않습니다."
+  },
+  "textGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조"
+  },
+  "textGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "회색 텍스트 채도를 높이기 위해 사용되는 색조"
+  },
+  "textReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "모두 바꾸기"
+  },
+  "textReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 원래 색조을 선택한 색조로 변경합니다.\n그렇지 않으면, 회색과 검은색, 흰색의 색조만 변경합니다.\n회색 채도는 변경된 색조로 사용될 것입니다.\n기본 색조를 무시하고 덮어씌웁니다."
+  },
+  "textSelectionHue_html_label": {
+    "message": "글자 <span id=\"selection\">선택 시<\/span> 색상"
+  },
+  "textSelectionHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택된 텍스트 색조"
+  },
+  "linkSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도 제한"
+  },
+  "linkSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "링크 채도 제한"
+  },
+  "linkContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "linkContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "링크와 배경 사이의 최소 명도 차이"
+  },
+  "linkLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도 제한"
+  },
+  "linkLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "링크의 최대 명도 제한"
+  },
+  "linkDefaultSaturation_text_label": {
+    "description": "text on the label",
+    "message": "기본 링크 채도"
+  },
+  "linkDefaultSaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택한 색조를 적용한 후 일반 링크와 방문한 링크에 대한 채도"
+  },
+  "linkHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조 중력"
+  },
+  "linkHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 색조가 설정된 기본 색조의 영향을 얼마나 받는지 결정합니다.\n설정도가 높으면 모든 색상은 기본 색조와 비슷해집니다.\n채도 한도 역시 색조의 영향을 받습니다.\n'모두 바꾸기'가 선택되어 있으면 적용되지 않습니다."
+  },
+  "linkDefaultHue_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조"
+  },
+  "linkDefaultHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "일반 링크 색조를 변경할 색조"
+  },
+  "linkReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "모두 바꾸기"
+  },
+  "linkReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 원래 색조을 선택한 색조로 변경합니다.\n그렇지 않으면, 일반 링크 색조만 변경합니다.\n회색 채도는 변경된 색조로 사용될 것입니다.\n기본 색조를 무시하고 덮어씌웁니다."
+  },
+  "linkVisitedHue_text_label": {
+    "description": "text on the label",
+    "message": "방문한 링크의 색조"
+  },
+  "linkVisitedHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "방문한 링크의 색조"
+  },
+  "borderSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도 제한"
+  },
+  "borderSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "구분선 채도 제한"
+  },
+  "borderContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "borderContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "구분선과 배경 사이의 최소 명도 차이"
+  },
+  "borderLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도 제한"
+  },
+  "borderLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "구분선의 최대 명도 제한"
+  },
+  "borderGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "회색 구분선 채도"
+  },
+  "borderGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택된 기본 색조를 적용 한 후 회색 구분선의 채도"
+  },
+  "borderHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조 중력"
+  },
+  "borderHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 색조가 설정된 기본 색조의 영향을 얼마나 받는지 결정합니다.\n설정도가 높으면 모든 색상은 기본 색조와 비슷해집니다.\n채도 한도 역시 색조의 영향을 받습니다.\n'모두 바꾸기'가 선택되어 있으면 적용되지 않습니다."
+  },
+  "borderGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "기본 색조"
+  },
+  "borderGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "회색 구분선 채도를 높이기 위해 사용되는 색조"
+  },
+  "borderReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": "모두 바꾸기"
+  },
+  "borderReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 원래 색조을 선택한 색조로 변경합니다.\n그렇지 않으면, 회색과 검은색, 흰색의 색조만 변경합니다.\n회색 채도는 변경된 색조로 사용될 것입니다.\n기본 색조를 무시하고 덮어씌웁니다."
+  },
+  "imageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도"
+  },
+  "imageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 이미지의 채도를 이 값으로 설정"
+  },
+  "imageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도"
+  },
+  "imageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 이미지의 명도를 이 값으로 설정"
+  },
+  "imageExample_text_label": {
+    "description": "text on the label",
+    "message": "처리된 이미지 예"
+  },
+  "imageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "처리된 이미지의 예"
+  },
+  "useImageHoverAnimation_text_label": {
+    "description": "text on the label",
+    "message": "마우스를 올리면 모든 효과를 없애기"
+  },
+  "useImageHoverAnimation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "마우스를 올리면 모든 효과를 없애기"
+  },
+  "backgroundImageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도"
+  },
+  "backgroundImageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "배경 이미지의 채도"
+  },
+  "backgroundImageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도"
+  },
+  "backgroundImageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "배경 이미지 밝기 제한. 이미지가 작을수록 밝아집니다."
+  },
+  "backgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "배경 이미지 예"
+  },
+  "backgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "배경 이미지 예"
+  },
+  "backgroundImageExampleText_text_label": {
+    "description": "text on the label",
+    "message": "예시"
+  },
+  "backgroundImageExampleText_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "만약 이 웹사이트에서 텍스트 뒤에 배경 이미지가 있으면\n배경 이미지의 명도를 텍스트가 명확하게 보일때까지 조정해야 합니다."
+  },
+  "scrollbarSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "채도"
+  },
+  "scrollbarSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "스크롤 바 및 스크롤 버튼의 채도"
+  },
+  "scrollbarContrast_text_label": {
+    "description": "text on the label",
+    "message": "대비"
+  },
+  "scrollbarContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "스크롤 바와 배경 사이의 최소 명도 차이\n(밝은 배경에만 적용됨)"
+  },
+  "scrollbarLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "명도"
+  },
+  "scrollbarLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "스크롤 바 와 스크롤 버튼의 명도"
+  },
+  "scrollbarSize_text_label": {
+    "description": "text on the label",
+    "message": "크기"
+  },
+  "scrollbarSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "스크롤바 크기"
+  },
+  "scrollbarGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "스크롤바 색조"
+  },
+  "scrollbarGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "스크롤 바와 스크롤 버튼의 색조"
+  },
+  "commonTab_text_label": {
+    "description": "text on the label",
+    "message": "일반"
+  },
+  "commonTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "                일반 설정\n―――――――――――――――――――\n이 탭에서는 모든 페이지에 대해 일반적인 설정을 합니다."
+  },
+  "activationTab_text_label": {
+    "description": "text on the label",
+    "message": "활성화"
+  },
+  "activationTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "              활성화 설정\n―――――――――――――――――――\n이 탭에서는 기능의 작동 시기와 방법을 설정합니다."
+  },
+  "backgroundTab_text_label": {
+    "description": "text on the label",
+    "message": "배경"
+  },
+  "backgroundTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "                            배경색 설정\n―――――――――――――――――――\n이 탭에서는 페이지가 무슨 색으로 채워질지 설정합니다."
+  },
+  "buttonsTab_text_label": {
+    "description": "text on the label",
+    "message": "버튼"
+  },
+  "buttonsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "               버튼 배경색 설정\n―――――――――――――――――――\n이 탭에서는 버튼과 관련된 설정들을 할 수 있습니다."
+  },
+  "textTab_text_label": {
+    "description": "text on the label",
+    "message": "텍스트"
+  },
+  "textTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     텍스트 색상 설정\n―――――――――――――――――――\n이 탭에서는 텍스트와 관련된 설정들을 할 수 있습니다."
+  },
+  "linkTab_text_label": {
+    "description": "text on the label",
+    "message": "링크"
+  },
+  "linkTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    하이퍼링크 색 설정\n―――――――――――――――――――\n이 탭에서는 하이퍼링크와 관련된 설정을 할 수 있습니다."
+  },
+  "borderTab_text_label": {
+    "description": "text on the label",
+    "message": "테두리"
+  },
+  "borderTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     테두리 색 설정\n―――――――――――――――――――\n이 탭에서는 모든 테두리와 선에 대한 설정을 할 수 있습니다."
+  },
+  "imagesTab_text_label": {
+    "description": "text on the label",
+    "message": "이미지"
+  },
+  "imagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "      이미지 조정 설정\n―――――――――――――――――――\n이 탭에서는 이미지와 사진의 채도와 명도에 대한 설정을 할 수 있습니다."
+  },
+  "backgroundImagesTab_text_label": {
+    "description": "text on the label",
+    "message": "배경 이미지"
+  },
+  "backgroundImagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    배경 이미지 조정 설정\n―――――――――――――――――――\n이 탭에서는 배경 이미지의 채도 및 명도에 대한 설정을 할 수 있다.\n여기서 말하는 배경 이미지는 주로 텍스트의 안이나 뒤에 위치한 것들이다."
+  },
+  "scrollbarsTab_text_label": {
+    "description": "text on the label",
+    "message": "스크롤바"
+  },
+  "scrollbarsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "      스크롤바 설정\n―――――――――――――――――――\n페이지의 스크롤바와 관련된 설정들을 할 수 있다."
+  },
+  "settingsHeader_text_label": {
+    "description": "text on the label",
+    "message": "의 설정"
+  },
+  "hostState_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "현재 웹사이트를 화이트리스트(허용목록)과\n블랙리스트(차단 목록) 간에 전환한다."
+  },
+  "hostName_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    현재 웹사이트\n―――――――――――――――\n 현재 웹사이트를 화이트리스트(허용목록)과\n블랙리스트(차단 목록) 간에 전환한다."
+  },
+  "helpLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "포럼 문의"
+  },
+  "isEnabledSwitch_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "모든 기능 켬 \/ 끔"
+  },
+  "isEnabledOn_text_label": {
+    "description": "text on the label",
+    "message": "켬"
+  },
+  "isEnabledOff_text_label": {
+    "description": "text on the label",
+    "message": "끔"
+  },
+  "syncSettings_text_label": {
+    "description": "text on the label",
+    "message": "모든 장치에서 설정 동기화"
+  },
+  "syncSettings_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "이 옵션을 체크하면 모든 기기에서 'Midnight Lizard'의 설정이 동기화 됩니다.\n체크시 각 페이지들의 설정은 마지막에 설정한 색상 구성으로 모든 장비들과 동기화 됩니다. 모든 색상 구성을 커스텀할 때는 온라인인지 확인해야합니다.\n동기화가 제대로 작동하려면, 브라우저 설정에서 '동기화'를 설정해야 합니다."
+  },
+  "colorSchemeForEdit_text_label": {
+    "description": "text on the label",
+    "message": "수정할 색상 구성"
+  },
+  "colorSchemeForEdit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "수정할 색상 구성을 선택하세요.\n또한, 새로운 색상구성을 만들거나 수정하거나 삭제 할 수 있습니다."
+  },
+  "colorSchemeName_text_label": {
+    "description": "text on the label",
+    "message": "색상 구성 이름"
+  },
+  "colorSchemeName_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "저장하기 전 색상 구성의 이름을 정할 수 있습니다."
+  },
+  "deleteColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "삭제"
+  },
+  "deleteColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "색상 구성을 삭제"
+  },
+  "saveColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "저장"
+  },
+  "saveColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선택된 색상 구성을 현재 팝업의 설정으로 변경"
+  },
+  "exportColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "내보내기"
+  },
+  "colorSchemeName_invertedGrayscale": {
+    "description": "color scheme name",
+    "message": "회색조 반전"
+  },
+  "colorSchemeName_yellowOnBlack": {
+    "description": "color scheme name",
+    "message": "흑색과 황색"
+  },
+  "colorSchemeName_greenOnBlack": {
+    "description": "color scheme name",
+    "message": "흑색과 녹색"
+  },
+  "colorSchemeName_blueLightFilter": {
+    "description": "color scheme name",
+    "message": "푸른 빛 필터"
+  },
+  "localStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "로컬 설정 저장소에 이미 데이터가 있습니다.\n로컬 설정 데이터를 동기화(클라우드) 저장소에 있는 데이터로 덮어씌우는 것을 원합니까?"
+  },
+  "syncStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "동기화(클라우드) 저장소에 이미 데이터가 있습니다.\n동기화(클라우드) 저장소에 있는 데이터를 로컬 설정 데이터로 덮어씌우는 것을 원합니까?"
+  },
+  "backgroundExample_text_label": {
+    "description": "text on the label",
+    "message": "배경 이미지 예"
+  },
+  "backgroundExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "여러가지 배경색 예"
+  },
+  "smallBackgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "작은 배경 이미지 예\n주 배경이 어두운 경우 작은 배경이미지는 반전됩니다.\n이 경우 배경이미지의 명도는 영향이 없습니다."
+  },
+  "smallBackgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "작은 배경이미지 예"
+  },
+  "scrollbarExample_text_label": {
+    "description": "text on the label",
+    "message": "스크롤바 예"
+  },
+  "scrollbarExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "적용된 스크롤바 스타일 예시"
+  },
+  "buttonExample_text_label": {
+    "description": "text on the label",
+    "message": "버튼 예시"
+  },
+  "buttonExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "여러가지 버튼색 예시"
+  },
+  "borderExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "여러가지 테두리 색 예시"
+  },
+  "borderExample_text_label": {
+    "description": "text on the label",
+    "message": "테두리 예시"
+  },
+  "translateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Midnight Lizard를 다른 언어로\n번역하는데 도움주기"
+  },
+  "mode_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "페이지 처리 모드"
+  },
+  "mode_text_label": {
+    "description": "text on the label",
+    "message": "처리 모드"
+  },
+  "mode_simplified_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "간소함 모드는 정교하지 않지만 처리 속도가 매우 빠릅니다."
+  },
+  "mode_simplified_text_label": {
+    "description": "text on the label",
+    "message": "❔ 간소함"
+  },
+  "mode_complex_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "화려함 모드는 처리 속도가 빠르지 않지만 보기 좋은 결과물을 만들어냅니다."
+  },
+  "mode_complex_text_label": {
+    "description": "text on the label",
+    "message": "❔ 화려함"
+  },
+  "mode_filter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 페이지에 적용되는 간단한 필터입니다.\n필터모드에서는 대부분의 다른 설정값은 무시합니다.\n10% 미만의 회색 배경이나 글자 또는 흑백 화면에서 더 잘 작동합니다."
+  },
+  "mode_filter_text_label": {
+    "description": "text on the label",
+    "message": "❔ 필터"
+  },
+  "mode_automatic_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "현재 페이지의 구성요소 수가 너무 많으면\n처리 모드를 '화려함'에서 '간소함'으로 바꿉니다."
+  },
+  "mode_automatic_text_label": {
+    "description": "text on the label",
+    "message": "❔ 자동"
+  },
+  "modeAutoSwitchLimit_text_label": {
+    "description": "text on the label",
+    "message": "자동 모드 시, 구성요소 수 상한선"
+  },
+  "mode_options_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "글자 위에 마우스 커서를 올려 놓으면, 자세한 설명이 보입니다."
+  },
+  "default_runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "모든 웹사이트를 기본값으로 작동하기"
+  },
+  "default_runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 웹사이트에서 'Midnight Lizard'를 개인 설정 없이 작동"
+  },
+  "default_scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "기본 작동 시간"
+  },
+  "default_scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "기본 비작동 시간"
+  },
+  "globalstab_text_label": {
+    "description": "text on the label",
+    "message": "글로벌 설정"
+  },
+  "resetThemeConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "현재 브라우저의 테마를 기본값으로 바꾸고 싶나요?\n아마 직접 설정한 테마 대신 파이어폭스 기본테마로 돌아갈 겁니다."
+  },
+  "matchCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "현재 페이지를 일치 하는 패턴"
+  },
+  "matchCurrentPage_@title": {
+    "description": "text on the label",
+    "message": "아래 패턴이 현재 페이지와 일치합니다:\n"
+  },
+  "noMatchForCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "현재 페이지와 일치 하는 패턴이 없음"
+  },
+  "excludeMatches_text_label": {
+    "description": "text on the label",
+    "message": "제외할 웹페이지 패턴"
+  },
+  "excludeMatches_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "패턴과 일치하는 url이 있으면 해당 웹페이지를 처리하지 않습니다.\n한 줄에 한 패턴씩 쓰세요.\n이 설정값은 다른 모든 설정보다 최우선으로 처리됩니다."
+  },
+  "includeMatches_text_label": {
+    "description": "text on the label",
+    "message": "허용할 웹페이지 패턴"
   }
 }
