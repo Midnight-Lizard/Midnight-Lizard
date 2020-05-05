@@ -50,8 +50,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
       var(--range-track-left-color) 90%
     ), 
     linear-gradient(90deg, 
-      currentColor 1%, 
-      rgba(255,255,255,0) 2%
+      currentColor 1.5%, 
+      rgba(255,255,255,0) 3%
     ), 
     linear-gradient(180deg,
       var(--range-track-right-color) 20%,
@@ -68,8 +68,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     linear-gradient(90deg, 
       rgba(255,255,255,0) 50%, 
       currentColor 50%, 
-      currentColor 51%, 
-      rgba(255,255,255,0) 52%
+      currentColor 52%, 
+      rgba(255,255,255,0) 53%
     ), 
     linear-gradient(180deg, 
       var(--range-track-right-color) 30%,
@@ -92,23 +92,23 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     linear-gradient(90deg, 
       rgba(255,255,255,0) 16%,
       currentColor 16%, 
-      currentColor 17%, 
-      rgba(255,255,255,0) 18%, 
+      currentColor 18%, 
+      rgba(255,255,255,0) 18.5%, 
       
       rgba(255,255,255,0) 32%,
       currentColor 32%, 
-      currentColor 33%, 
-      rgba(255,255,255,0) 34%, 
+      currentColor 34%, 
+      rgba(255,255,255,0) 35.5%,
       
       rgba(255,255,255,0) 66%, 
       currentColor 66%, 
-      currentColor 67%, 
-      rgba(255,255,255,0) 68%,
+      currentColor 68%, 
+      rgba(255,255,255,0) 68.5%,
       
       rgba(255,255,255,0) 82%, 
       currentColor 82%, 
-      currentColor 83%, 
-      rgba(255,255,255,0) 84%
+      currentColor 84%, 
+      rgba(255,255,255,0) 85.5%
     ),
     linear-gradient(90deg, 
       var(--range-track-left-color) var(--input-relative-percent),
@@ -139,8 +139,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
       rgba(255,255,255,0) 70%,
       var(--pseudo-text-shadow-color) 90%
     ), 
-    linear-gradient(90deg, 
-      currentColor 1%, 
+    linear-gradient(90deg,
+      currentColor 1%,
       rgba(255,255,255,0) 2%
     ), 
     linear-gradient(180deg,
@@ -157,8 +157,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     ), 
     linear-gradient(90deg, 
       rgba(255,255,255,0) 50%, 
-      currentColor 50%, 
-      currentColor 51%, 
+      currentColor 50%,
+      currentColor 51%,
       rgba(255,255,255,0) 52%
     ), 
     linear-gradient(180deg, 
@@ -184,42 +184,34 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     linear-gradient(90deg, 
       rgba(255,255,255,0) 10%,
       currentColor 10%, 
-      currentColor 11%, 
       rgba(255,255,255,0) 12%, 
       
       rgba(255,255,255,0) 20%,
       currentColor 20%, 
-      currentColor 21%, 
       rgba(255,255,255,0) 22%, 
       
       rgba(255,255,255,0) 30%, 
       currentColor 30%,
-      currentColor 31%, 
       rgba(255,255,255,0) 32%, 
       
       rgba(255,255,255,0) 40%, 
       currentColor 40%, 
-      currentColor 41%, 
       rgba(255,255,255,0) 42%, 
       
       rgba(255,255,255,0) 60%, 
       currentColor 60%, 
-      currentColor 61%, 
       rgba(255,255,255,0) 62%, 
       
       rgba(255,255,255,0) 70%, 
       currentColor 70%, 
-      currentColor 71%, 
       rgba(255,255,255,0) 72%, 
       
       rgba(255,255,255,0) 80%, 
       currentColor 80%, 
-      currentColor 81%, 
       rgba(255,255,255,0) 82%, 
       
       rgba(255,255,255,0) 90%, 
       currentColor 90%, 
-      currentColor 91%, 
       rgba(255,255,255,0) 92%
     ),
     linear-gradient(90deg, 
@@ -325,7 +317,7 @@ input[type=range].ml-input-range::-moz-focus-inner
   background-image: var(--range-track-background);
 
   --x: 7px;
-  --h: 7.5px;
+  --h: 7px;
   --o: 15px;
   --f: 15px;
 
@@ -377,7 +369,7 @@ input[type=range].ml-input-range::-moz-focus-inner
   background-image: var(--range-track-background);
 
   --x: 7px;
-  --h: 7.5px;
+  --h: 7px;
   --o: 15px;
   --f: 15px;
 

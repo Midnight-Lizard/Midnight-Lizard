@@ -110,14 +110,14 @@ html:not([ml-color-scheme="custom"]) .ml-tab-item:not(:hover):not(.active) {
 {
     border-right: solid 1px var(--thin-border-color);
     border-image: linear-gradient(90deg, transparent 99.5%, var(--tab-item-border-color, var(--thin-border-color)) 99.5%) 1;
-    height: 23px;
+    height: 24.5px;
 }
 
 @supports (-moz-appearance: button)
 {
     .ml-tab-item-separator
     {
-        height: 27px;
+        height: 25px;
     }
 }
 
@@ -132,7 +132,7 @@ html:not([ml-color-scheme="custom"]) .ml-tab-item:not(:hover):not(.active) {
 }
 
 .right .ml-tab-item-separator:first-of-type {
-    height: 65px;
+    height: 69px;
 }
 
 .ml-tab-item.active:not(imp)

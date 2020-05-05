@@ -31,6 +31,7 @@
     "prod-build": "webpack --mode=production",
     "prod-pack": "npm run prod-build && node pack.js chrome && node pack.js firefox",
     "prod-pack:chrome": "npm run prod-build && node pack.js chrome",
-    "prod-pack:firefox": "npm run prod-build && node pack.js firefox"
+    "prod-pack:firefox": "npm run prod-build && node pack.js firefox",
+    "pack:firefox": "node pack.js firefox"
   }
 }

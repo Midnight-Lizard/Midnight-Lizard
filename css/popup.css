@@ -6,7 +6,7 @@ html:not(imp):not(#imp) {
 body {
     margin: 0;
     width: 680px;
-    min-height: 600px;
+    height: 600px;
     overflow: hidden!important;
     background-color: var(--main-background-color);
     --ml-background-background-color:Background;
@@ -50,7 +50,8 @@ body {
     text-shadow: 0 0 1px var(--main-text-shadow-color);
     --ml-svgbackground-fill:Text;
     /* height: 99%; */
-    border: 1px solid var(--main-border-color);
+    border: solid var(--main-border-color);
+    border-width: 1px 1px 0px 1px;
 }
 
 .ml-dialog-logo {
@@ -153,9 +154,16 @@ body {
 .ml-dialog-settings {
     display: table;
     width: 678px;
-    min-height: 500px;
+    height: 509px;
     margin-bottom: 0px;
     margin-top: 0px;
+}
+
+@supports (-moz-appearance: button)
+{
+    .ml-dialog-settings {
+        height: 505px;
+    }
 }
 
 .ml-dialog-settings-left {
@@ -1165,7 +1173,7 @@ html[ml-mode="filter"] .ml-border-example hr:nth-of-type(12) {border-color: hsl(
     position: absolute;
     z-index: 999;
     border: dotted var(--outline-color);
-    border-width: 0px 1px 0px 0px;
+    border-width: 0px 1.5px 0px 0px;
     pointer-events: none;
     animation: hideEffect 0.3s ease-out forwards;
 }
@@ -1643,5 +1651,8 @@ html[ml-color-scheme="custom"] i.unsaved {
 }
 
 .ml-tab-item.hidden {
+  pointer-events: none;
+}
+.ml-tab-item.hidden * {
   visibility: hidden;
 }
