@@ -634,6 +634,181 @@
     "description": "text on the label",
     "message": "내보내기"
   },
+  "importColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "가져오기"
+  },
+  "importColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "색상 구성을 파일에서 가져오기"
+  },
+  "editSchemesTab_text_label": {
+    "description": "text on the label",
+    "message": "색상 구성"
+  },
+  "currentColorScheme_text_label": {
+    "description": "text on the label",
+    "message": "현재 색상 구성"
+  },
+  "currentColorScheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "선호하는 색상 구성을 선택하세요"
+  },
+  "forgetThisSiteBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "현재 사이트에 대한 설정을 삭제합니다.\n삭제 후 기본 설정이 현재 사이트에 적용됩니다."
+  },
+  "forgetAllSitesBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "모든 웹사이트에 대한 개인설정과 색상 구성, 전역 설정을 삭제합니다.\n모든 값을 초기값으로 돌립니다."
+  },
+  "setAsDefaultBtn_text_label": {
+    "description": "text on the label",
+    "message": "기본값으로 설정"
+  },
+  "applyBtn_text_label": {
+    "description": "text on the label",
+    "message": "적용"
+  },
+  "applyBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "현재 웹사이트에 현재 설정을 적용"
+  },
+  "closeBtn_text_label": {
+    "description": "text on the label",
+    "message": "닫기"
+  },
+  "closeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "변경사항 저장하지않고 닫기"
+  },
+  "donateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "개발진에 금전적 지원하기"
+  },
+  "donateLink_@marker": {
+    "description": "text on the marker",
+    "message": "기부하기"
+  },
+  "donateLink_@notice": {
+    "description": "text on the marker",
+    "message": "이 메세지를 숨기려면 링크를 클릭하세요."
+  },
+  "rateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "확장 프로그램 평가"
+  },
+  "emailLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "개발자에게 이메일 보내기"
+  },
+  "bugReportLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "버그 제보"
+  },
+  "changeLogLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "업데이트 내역"
+  },
+  "colorSchemeSaveFailureMessage": {
+    "description": "text on the message box",
+    "message": "색상 구성 업데이트 실패\n"
+  },
+  "colorSchemeDeleteFailureMessage": {
+    "description": "text on the message box",
+    "message": "색상 구성 삭제 실패\n"
+  },
+  "forgetAllConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "지금까지 설정한 모든 설정과 색상 구성이 삭제됩니다. 계속하시겠습니까?"
+  },
+  "forgetAllFailureMessage": {
+    "description": "text on the message box",
+    "message": "모든 웹사이트 설정 삭제 실패\n"
+  },
+  "forgetThisFailureMessage": {
+    "description": "text on the message box",
+    "message": "현재 사이트 설정 삭제 실패\n"
+  },
+  "setAsDefaultFailureMessage": {
+    "description": "text on the message box",
+    "message": "기본 설정 실패\n"
+  },
+  "applyOnPageFailureMessage": {
+    "description": "text on the message box",
+    "message": "설정 실패. 페이지를 새로고침 후 다시 시도하세요.\n"
+  },
+  "toggleExtensionFailureMessage": {
+    "description": "text on the message box",
+    "message": "켬\/끔 작동 실패. 모든 브라우저를 닫고 다시 시도해주세요.\n"
+  },
+  "syncChangeFailureMessage": {
+    "description": "text on the message box",
+    "message": "동기화 설정 변경 실패\n"
+  },
+  "shortcut_text_lable": {
+    "message": "단축키"
+  },
+  "colorSchemeName_Custom": {
+    "description": "color scheme name",
+    "message": "사용자 정의"
+  },
+  "colorSchemeName_New": {
+    "description": "color scheme name",
+    "message": "새 색상 구성"
+  },
+  "colorSchemeName_default": {
+    "description": "color scheme name",
+    "message": "기본값"
+  },
+  "colorSchemeName_original": {
+    "description": "color scheme name",
+    "message": "오리지널(없음)"
+  },
+  "colorSchemeName_dimmedDust": {
+    "description": "color scheme name",
+    "message": "우주 먼지"
+  },
+  "colorSchemeName_appleMint": {
+    "description": "color scheme name",
+    "message": "애플 민트"
+  },
+  "colorSchemeName_kappaDream": {
+    "description": "color scheme name",
+    "message": "숲 연못"
+  },
+  "colorSchemeName_almondRipe": {
+    "description": "color scheme name",
+    "message": "아몬드 익은"
+  },
+  "colorSchemeName_sunsetSails": {
+    "description": "color scheme name",
+    "message": "일몰 돛"
+  },
+  "colorSchemeName_halloween": {
+    "description": "color scheme name",
+    "message": "할로윈"
+  },
+  "colorSchemeName_morningMist": {
+    "description": "color scheme name",
+    "message": "아침 안개"
+  },
+  "colorSchemeName_antiqueCodex": {
+    "description": "color scheme name",
+    "message": "골동품 사본"
+  },
+  "colorSchemeName_increasedContrast": {
+    "description": "color scheme name",
+    "message": "대비 증가"
+  },
+  "colorSchemeName_grayscale": {
+    "description": "color scheme name",
+    "message": "회색조"
+  },
+  "colorSchemeName_invertedLight": {
+    "description": "color scheme name",
+    "message": "빛 반전"
+  },
   "colorSchemeName_invertedGrayscale": {
     "description": "color scheme name",
     "message": "회색조 반전"
