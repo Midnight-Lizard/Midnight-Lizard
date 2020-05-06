@@ -1689,19 +1689,20 @@ class DocumentProcessor implements IDocumentProcessor
 
             tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
 
-            if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
-                tag.mlComputedStyle!.backgroundImage !== this._css.none &&
-                tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
-            {
-                hasRoomRules = true;
-                this.processBackgroundImagesAndGradients(tag, doc, roomRules, false, bgInverted);
-            }
+
 
             if (tag.mlComputedStyle!.filter === this._css.none && tag.mlInvert)
             {
                 hasRoomRules = true;
                 roomRules.attributes = roomRules.attributes || new Map<string, string>();
                 roomRules.attributes.set(this._css.mlInvertAttr, "");
+            }
+            else if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
+                tag.mlComputedStyle!.backgroundImage !== this._css.none &&
+                tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
+            {
+                hasRoomRules = true;
+                this.processBackgroundImagesAndGradients(tag, doc, roomRules, false, bgInverted);
             }
 
             if (hasRoomRules)
@@ -2734,6 +2735,9 @@ class DocumentProcessor implements IDocumentProcessor
 
         const bgImgRevertFilter = this.GetComponentRevertFilter(this.shift.BackgroundImage, invertColors);
         cssText += `\n--ml-bg-image-revert-filter:${bgImgRevertFilter || 'none'};`;
+
+        const buttonRevertFilter = this.GetComponentRevertFilter(this.shift.BackgroundImage, invertColors);
+        cssText += `\n--ml-button-revert-filter:${buttonRevertFilter || 'none'};`;
 
         const textRevertFilter = this.GetComponentRevertFilter(this.shift.Text, invertColors);
         cssText += `\n--ml-text-revert-filter:${textRevertFilter || 'none'};`;
