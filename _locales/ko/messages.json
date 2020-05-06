@@ -328,7 +328,7 @@
   },
   "borderSaturationLimit_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "구분선 채도 제한"
+    "message": "테두리 채도 제한"
   },
   "borderContrast_text_label": {
     "description": "text on the label",
@@ -336,7 +336,7 @@
   },
   "borderContrast_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "구분선과 배경 사이의 최소 명도 차이"
+    "message": "테두리와 배경 사이의 최소 명도 차이"
   },
   "borderLightnessLimit_text_label": {
     "description": "text on the label",
@@ -344,15 +344,15 @@
   },
   "borderLightnessLimit_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "구분선의 최대 명도 제한"
+    "message": "테두리의 최대 명도 제한"
   },
   "borderGraySaturation_text_label": {
     "description": "text on the label",
-    "message": "회색 구분선 채도"
+    "message": "회색 테두리 채도"
   },
   "borderGraySaturation_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "선택된 기본 색조를 적용 한 후 회색 구분선의 채도"
+    "message": "선택된 기본 색조를 적용 한 후 회색 테두리의 채도"
   },
   "borderHueGravity_text_label": {
     "description": "text on the label",
@@ -368,7 +368,7 @@
   },
   "borderGrayHue_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "회색 구분선 채도를 높이기 위해 사용되는 색조"
+    "message": "회색 테두리 채도를 높이기 위해 사용되는 색조"
   },
   "borderReplaceAllHues_text_label": {
     "description": "text on the label",
