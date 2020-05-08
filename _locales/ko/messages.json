@@ -584,7 +584,7 @@
   },
   "isEnabledOn_text_label": {
     "description": "text on the label",
-    "message": "켬"
+    "message": "켬 "
   },
   "isEnabledOff_text_label": {
     "description": "text on the label",
