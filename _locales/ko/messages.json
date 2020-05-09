@@ -997,6 +997,10 @@
     "description": "text on the label",
     "message": "예시: "
   },
+  "forgetThisSiteBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "현재 사이트 설정을 삭제합니다"
+  },
   "forgetAllSitesBtn_text_long_label": {
     "description": "text on the label",
     "message": "모든 값을 초기값으로 돌립니다"
@@ -1008,5 +1012,9 @@
   "privacyLink_@tooltip": {
     "description": "text on the tooltip\/hint with custom style",
     "message": "확장 프로그램의 개인 정보 보호 정책"
+  },
+  "deleteAllSitesSettingsBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "모두 사이트 설정을 삭제합니다"
   }
 }
