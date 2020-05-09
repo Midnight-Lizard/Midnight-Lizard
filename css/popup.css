@@ -316,7 +316,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-dialog-label:not
 
 .ml-input-container {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     margin-top: 7px;
 }
 html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:not(#imp) {

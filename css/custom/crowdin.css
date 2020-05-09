@@ -61,3 +61,9 @@ html[ml-stage]:not([ml-mode="filter"]) .proofread-string-source .context:not(imp
     --ml-visitedlink-hover-color:HighlightedText;
     --ml-visitedlink-active-color:HighlightedText;
 }
+
+html[ml-mode="filter"] #editor_search_bar,
+html[ml-mode="filter"] #texts_list,
+html[ml-mode="filter"] .approve-action {
+  --ml-ignore:true;
+}
