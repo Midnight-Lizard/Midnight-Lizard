@@ -328,7 +328,7 @@
   },
   "borderSaturationLimit_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "구분선 채도 제한"
+    "message": "테두리 채도 제한"
   },
   "borderContrast_text_label": {
     "description": "text on the label",
@@ -336,7 +336,7 @@
   },
   "borderContrast_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "구분선과 배경 사이의 최소 명도 차이"
+    "message": "테두리와 배경 사이의 최소 명도 차이"
   },
   "borderLightnessLimit_text_label": {
     "description": "text on the label",
