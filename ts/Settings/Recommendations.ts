@@ -22,35 +22,38 @@ interface IRecommendation
     browsers: BrowserName[],
     platforms: Platform[],
     matchPattern: RegExp,
-    mode: ProcessingMode | null
+    mode?: ProcessingMode | null,
+    observe: boolean
 }
 
 export abstract class IRecommendations
 {
     public abstract getRecommendedProcessingMode(...urls: string[]): ProcessingMode | null | undefined;
+    public abstract shouldObserve(...urls: string[]): boolean;
 }
 
 @injectable(IRecommendations)
 class Recommendations implements IRecommendations
 {
-    private readonly cache = new Map<string, ProcessingMode | null>();
+    private readonly cache = new Map<string, ProcessingMode | null | undefined>();
 
     readonly recommendations: IRecommendation[] = [
-        { browsers: allbr, platforms: allpf, mode: _none_, matchPattern: /^https:\/\/(www.)?yandex.ru\/\?stream_channel.*$/i },
-        { browsers: allbr, platforms: allpf, mode: _none_, matchPattern: /^https:\/\/(www.)?yastatic.net\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www.)?yandex.ru\/\?stream_channel.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www.)?yastatic.net\/.*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/web.whatsapp.com\/$/i },
-        { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/(www.)?yandex.ru\/portal\/video.*$/i },
-        { browsers: allbr, platforms: allpf, mode: complx, matchPattern: /^https:\/\/(www.)?yandex.ru\/images\/*$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/web.whatsapp.com\/$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www.)?yandex.ru\/portal\/video.*$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www.)?yandex.ru\/images\/*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: simple, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: simple, observe: true, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
 
-        { browsers: chrom, platforms: allpf, mode: filter, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
+        { browsers: chrom, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, observe: false, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
     ];
 
     constructor(app: IApplicationSettings)
@@ -59,6 +62,27 @@ class Recommendations implements IRecommendations
         this.recommendations = this.recommendations.filter(rec =>
             rec.browsers.includes(app.browserName) &&
             rec.platforms.includes(currentPlatform));
+    }
+
+    public shouldObserve(...urls: string[]): boolean 
+    {
+        let shouldObserve: boolean | undefined = undefined;
+        for (const url of new Set(urls))
+        {
+            if (shouldObserve === undefined)
+            {
+                const recommendation = this.recommendations.find(rec => rec.matchPattern.test(url));
+                if (recommendation)
+                {
+                    shouldObserve = recommendation.observe;
+                }
+            }
+            if (shouldObserve !== undefined)
+            {
+                break;
+            }
+        }
+        return shouldObserve === undefined ? true : shouldObserve;
     }
 
     public getRecommendedProcessingMode(...urls: string[]): ProcessingMode | null | undefined

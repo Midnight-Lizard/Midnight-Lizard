@@ -41,6 +41,7 @@ export abstract class IBaseSettingsManager
     abstract computeProcessingMode(doc: Document, countElements?: boolean): void;
     /** Deactivates old version of extension - this one */
     abstract deactivateOldVersion(): void;
+    abstract shouldObserve(): boolean;
 }
 /**
  * Base Settings Manager
@@ -147,6 +148,11 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
     }
 
     protected abstract initCurrentSettings(): void;
+
+    public shouldObserve(): boolean
+    {
+        return this._recommendations.shouldObserve(this._rootDocument.location!.href, this._rootUrl);
+    }
 
     computeProcessingMode(doc: Document, countElements = true): void
     {

@@ -431,14 +431,15 @@ class DocumentProcessor implements IDocumentProcessor
                     .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                 DocumentProcessor.processAllElements(allTags, this, normalDelays, true, false);
             }
-            else if (this._settingsManager.isSimple)
+            else if (this._settingsManager.isSimple && this._settingsManager.shouldObserve())
             {
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.body.getElementsByTagName("*"))
                     .filter(this.getFilterOfElementsForComplexProcessing()) as HTMLElement[];
                 DocumentProcessor.processAllElements(allTags, this, smallReCalculationDelays);
             }
-            else if (this._settingsManager.isFilter && this.shift.Background.lightnessLimit < 0.3)
+            else if (this._settingsManager.isFilter && this.shift.Background.lightnessLimit < 0.3
+                && this._settingsManager.shouldObserve())
             {
                 this._documentObserver.startDocumentObservation(doc);
                 let allTags = Array.from(doc.body.getElementsByTagName("*"))

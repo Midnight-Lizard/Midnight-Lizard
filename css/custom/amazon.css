@@ -4,6 +4,11 @@
 }
 
 /*---------------FILTER MODE---------------------*/
+/* html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-blueheaven #nav-logobar,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-ftr-batmobile #nav-logobar {
+  background-color: rgb(35, 47, 62);
+} */
+
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-belt,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeacon #nav-main {
@@ -25,8 +30,9 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar.nav-bluebeac
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navbar .nav-sprite:empty,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .icp-nav-globe-img-2,
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter {
-  filter: var(--ml-image-revert-filter)!important;
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter,
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-swm-text-widget {
+  filter: var(--ml-text-revert-filter)!important;
 }
 
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #nav-cover,
@@ -71,8 +77,8 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-ftr-batmobile #
   color: black!important;
 }
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter.navLeftFooter .icp-color-base,
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) footer.nav-ftr-batmobile .icp-color-base,
+/* html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #navFooter.navLeftFooter .icp-color-base, */
+/* html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) footer.nav-ftr-batmobile .icp-color-base, */
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-ftr-batmobile #nav-ftr-copyright,
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .nav-ftr-batmobile .nav-ftr-horiz .nav-a {
   color: hsla(0, 0%, 20%, 1)!important;
