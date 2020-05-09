@@ -981,6 +981,10 @@
     "description": "text on the label",
     "message": "동적 컨텐츠를 반전시키지 마십시오"
   },
+  "hideBigBackgroundImages_text_label": {
+    "description": "text on the label",
+    "message": "큰 배경 이미지 숨기기"
+  },
   "maxBackgroundImageSize_text_label": {
     "description": "text on the label",
     "message": "배경 이미지 크기 제한"
