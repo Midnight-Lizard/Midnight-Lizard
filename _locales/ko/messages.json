@@ -997,6 +997,10 @@
     "description": "text on the label",
     "message": "예시: "
   },
+  "forgetAllSitesBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "모든 값을 초기값으로 돌립니다"
+  },
   "privacyLink_text_label": {
     "description": "text on the label",
     "message": "개인정보"
