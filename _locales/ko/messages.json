@@ -973,6 +973,26 @@
     "description": "text on the label",
     "message": "허용할 웹페이지 패턴"
   },
+  "matchPatternsSyntaxLink_text_label": {
+    "description": "text on the link",
+    "message": "통사론"
+  },
+  "doNotInvertContent_text_label": {
+    "description": "text on the label",
+    "message": "동적 컨텐츠를 반전시키지 마십시오"
+  },
+  "maxBackgroundImageSize_text_label": {
+    "description": "text on the label",
+    "message": "배경 이미지 크기 제한"
+  },
+  "linkExamples_text_label": {
+    "description": "text on the label",
+    "message": "예시: "
+  },
+  "textExamples_text_label": {
+    "description": "text on the label",
+    "message": "예시: "
+  },
   "privacyLink_text_label": {
     "description": "text on the label",
     "message": "개인정보"
