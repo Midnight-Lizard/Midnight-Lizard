@@ -913,7 +913,7 @@ img.ml-image-example {
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(1) { --bg: hsl(0,0%,50%); }
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(2) {--bg: hsl(0,100%,70%);}
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(3) {--bg: hsl(40,100%,42%);}
-html[ml-mode="filter"] .ml-bg-example td:nth-of-type(4) {--bg: hsl(80,100%,35%);}
+html[ml-mode="filter"] .ml-bg-example td:nth-of-type(4) {--bg: hsl(80,100%,41%);}
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(5) {--bg: hsl(120,100%,45%);}
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(6) {--bg: hsl(160,100%,45%);}
 html[ml-mode="filter"] .ml-bg-example td:nth-of-type(7) { --bg: hsl(200,100%,50%); }
@@ -1046,7 +1046,7 @@ html:not([ml-mode="filter"]) .ml-small-bg-image-example.original {
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(1) { --bg: hsl(0,0%,50%); }
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(2) {--bg: hsl(0,100%,70%);}
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(3) {--bg: hsl(40,100%,42%);}
-html[ml-mode="filter"] .ml-button-example button:nth-of-type(4) {--bg: hsl(80,100%,35%);}
+html[ml-mode="filter"] .ml-button-example button:nth-of-type(4) {--bg: hsl(80,100%,41%);}
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(5) {--bg: hsl(120,100%,45%);}
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(6) {--bg: hsl(160,100%,45%);}
 html[ml-mode="filter"] .ml-button-example button:nth-of-type(7) { --bg: hsl(200,100%,50%); }
