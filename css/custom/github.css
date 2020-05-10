@@ -51,17 +51,19 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     background-color: #fdb8c0 !important;
 }
 
-html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .select-menu-button:not(#imp):not(.imp):not(imp)::after,
 html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex"]) .dropdown-caret:not(#imp):not(.imp):not(imp) {
     border-right-color: transparent!important;
     border-bottom-color: transparent!important;
     border-left-color: transparent!important;
 }
 
-html[ml-stage-mode="complete-complex"] .select-menu-button:after,
+html[ml-stage-mode="complete-complex"] .select-menu-button:after {
+  --ml-ignore:true;
+}
+
 html[ml-stage-mode="complete-complex"] .dropdown-caret {
-    --ml-border-border-top-color:Border;
-    --ml-background-border-top-color:Border;
+    --ml-border-border-top-color:Text;
+    --ml-background-border-top-color:Text;
 }
 
 .btn {
