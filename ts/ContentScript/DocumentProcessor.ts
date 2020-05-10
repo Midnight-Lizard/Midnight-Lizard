@@ -1700,7 +1700,8 @@ class DocumentProcessor implements IDocumentProcessor
             }
             else if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
                 tag.mlComputedStyle!.backgroundImage !== this._css.none &&
-                tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
+                tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl &&
+                !this.tagIsSmall(tag))
             {
                 hasRoomRules = true;
                 this.processBackgroundImagesAndGradients(tag, doc, roomRules, false, bgInverted);
