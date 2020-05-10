@@ -66,7 +66,7 @@ class BackgroundColorProcessor extends BaseColorProcessor implements IBackground
             return true;
         }
         const hsla = RgbaColor.toHslaColor(RgbaColor.parse(rgbaString));
-        return hsla.lightness <= 0.4;
+        return hsla.alpha > 0 && (hsla.lightness || 0.01) / hsla.alpha <= 0.4;
     }
 
     protected tryGetTagArea(tag: Element)
