@@ -33,7 +33,23 @@ html[ml-mode] .c-scrollbar__bar:not(#imp) {
 
 /* --- FILTER --- */
 
-html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .client_channels_list_container:not(#imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-emoji_picker:not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-emoji_picker:not(.imp) :not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .texty_emoji_only:not(.imp) {
+  filter: none;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img.c-emoji:not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) img.emoji:not(.imp) {
+  filter: var(--ml-image-revert-filter)!important;
+}
+
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .c-dialog:not(.imp),
+html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .c-sk-overlay:before {
+  background-color: rgba(255,255,255,0.6);
+}
+
+/* html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .client_channels_list_container:not(#imp),
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) #team_menu:not(#imp),
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .p-channel_sidebar:not(#imp) {
   color: rgb(8,8,8);
@@ -117,4 +133,4 @@ html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .texty_emoji_only:no
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .emoji-outer.emoji-sizer:not(#imp),
 html[ml-mode="filter"][ml-invert]:not([ml-stage="preload"]) .emoji.emoji-sizer:not(#imp) {
   filter: var(--ml-image-revert-filter)!important;
-}
+} */

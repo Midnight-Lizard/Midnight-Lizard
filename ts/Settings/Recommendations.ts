@@ -49,7 +49,7 @@ class Recommendations implements IRecommendations
 
         { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
         { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: true, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
         { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
 
         { browsers: chrom, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
