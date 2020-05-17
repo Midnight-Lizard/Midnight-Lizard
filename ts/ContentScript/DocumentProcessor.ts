@@ -484,15 +484,6 @@ class DocumentProcessor implements IDocumentProcessor
         });
     }
 
-    private getFilterOfElements()
-    {
-        if (this._settingsManager.isComplex)
-        {
-            return this.getFilterOfElementsForComplexProcessing();
-        }
-        return this.getFilterOfElementsForSimplifiedProcessing();
-    }
-
     private getFilterOfElementsForComplexProcessing(): (value: Element) => boolean
     {
         return (tag) => this.checkElement(tag) && (!!tag.parentElement || tag === tag.ownerDocument!.documentElement);
@@ -510,7 +501,7 @@ class DocumentProcessor implements IDocumentProcessor
                 {
                     tag.mlInvert = true;
                 }
-                return tag.mlComputedStyle.filter === this._css.none && !!tag.mlInvert || tag.mlComputedStyle.backgroundImage !== this._css.none;
+                return tag.mlComputedStyle.filter === this._css.none && !!tag.mlInvert;
             }
             return false;
         };
@@ -1685,26 +1676,15 @@ class DocumentProcessor implements IDocumentProcessor
             (!tag.mlComputedStyle || tag.mlComputedStyle.getPropertyValue(this._css.mlIgnoreVar) !== true.toString()))
         {
             let hasRoomRules = false;
-            const doc = tag.ownerDocument!, roomRules: RoomRules = {},
-                bgInverted = this.shift.Background.lightnessLimit < 0.3;
+            const doc = tag.ownerDocument!, roomRules: RoomRules = {};
 
             tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
-
-
 
             if (tag.mlComputedStyle!.filter === this._css.none && tag.mlInvert)
             {
                 hasRoomRules = true;
                 roomRules.attributes = roomRules.attributes || new Map<string, string>();
                 roomRules.attributes.set(this._css.mlInvertAttr, "");
-            }
-            else if (!(tag instanceof HTMLImageElement) && tag.mlComputedStyle!.backgroundImage &&
-                tag.mlComputedStyle!.backgroundImage !== this._css.none &&
-                tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl &&
-                !this.tagIsSmall(tag))
-            {
-                hasRoomRules = true;
-                this.processBackgroundImagesAndGradients(tag, doc, roomRules, false, bgInverted);
             }
 
             if (hasRoomRules)
@@ -2315,7 +2295,7 @@ class DocumentProcessor implements IDocumentProcessor
     {
         let backgroundImage = tag.mlComputedStyle!.backgroundImage!;
         let bgImgLight = 1, doInvert = false, isPseudoContent = false, bgFilter = "", haveToProcBgImg = false,
-            haveToProcBgGrad = !this._settingsManager.isFilter && /gradient/gi.test(backgroundImage);
+            haveToProcBgGrad = /gradient/gi.test(backgroundImage);
         if (/\burl\(/gi.test(backgroundImage))
         {
             const customBgImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.BackgroundImage].toLowerCase()}`) as keyof ComponentShift;
@@ -2325,10 +2305,10 @@ class DocumentProcessor implements IDocumentProcessor
                 !/-|\d+\dpx/i.test(tag.mlComputedStyle!.backgroundPosition!) &&
                 !notTextureRegExp.test(backgroundImage + tag.className);
 
-            doInvert = (!hasRepeats && bgInverted && !tag.style.backgroundImage &&
+            doInvert = !hasRepeats && bgInverted && !tag.style.backgroundImage &&
                 !doNotInvertRegExp.test(backgroundImage + tag.className) &&
                 tag.mlComputedStyle!.getPropertyValue("--ml-no-invert") !== true.toString() &&
-                this.tagIsSmall(tag)) !== this._settingsManager.isFilter;
+                this.tagIsSmall(tag);
 
             if (bgImgSet.lightnessLimit < 1 || bgImgSet.saturationLimit < 1 ||
                 doInvert || this._settingsManager.currentSettings.blueFilter !== 0 ||
@@ -2349,7 +2329,7 @@ class DocumentProcessor implements IDocumentProcessor
                     bgImgLight = this.shift.Background.lightnessLimit;
                 }
 
-                bgFilter = this._settingsManager.isFilter ? this.GetComponentRevertFilter(this.shift.BackgroundImage, doInvert) : [
+                bgFilter = [
                     bgImgSet.saturationLimit < 1 ? `saturate(${bgImgSet.saturationLimit})` : "",
                     bgImgLight < 1 && !doInvert ? `brightness(${float.format(bgImgLight)})` : "",
                     doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
