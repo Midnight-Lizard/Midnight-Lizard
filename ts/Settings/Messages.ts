@@ -6,9 +6,9 @@ export type ExternalMessageFromPortal =
     ApplyPublicSchemeCommand | SetPublicSchemeAsDefaultCommand |
     GetInstalledPublicSchemes;
 
-export type LocalMessageFromContent = FetchImage;
+export type LocalMessageFromContent = FetchImage | FetchExternalCss;
 
-export type WindowMessageFromContent = FetchExternalCss;
+export type WindowMessageFromContent = never;
 
 export type WindowMessageToContent = PageScriptLoaded;
 
@@ -16,7 +16,8 @@ export type MessageToBackgroundPage = ExternalMessageFromPortal | LocalMessageFr
 
 export type ExternalMessageToPortal = PublicSchemesChanged | ErrorMessage;
 
-export type LocalMessageToContent = ImageFetchFailed | ImageFetchCompleted | ErrorMessage;
+export type LocalMessageToContent = ImageFetchFailed | ImageFetchCompleted | ErrorMessage
+    | ExternalCssFetchCompleted | ExternalCssFetchFailed;
 
 export type MessageFromBackgroundPage = ExternalMessageToPortal | LocalMessageToContent;
 
@@ -34,6 +35,8 @@ export enum MessageType
     ImageFetchCompleted = "ImageFetchCompleted",
     FetchExternalCss = "FetchExternalCss",
     PageScriptLoaded = "PageScriptLoaded",
+    ExternalCssFetchCompleted = "ExternalCssFetchCompleted",
+    ExternalCssFetchFailed = "ExternalCssFetchFailed"
 }
 
 export class GetInstalledPublicSchemes
@@ -89,7 +92,19 @@ export class FetchImage
 export class FetchExternalCss
 {
     readonly type = MessageType.FetchExternalCss;
-    constructor(readonly externalCssUrl: string) { }
+    constructor(readonly url: string) { }
+}
+
+export class ExternalCssFetchCompleted
+{
+    readonly type = MessageType.ExternalCssFetchCompleted;
+    constructor(readonly url: string, readonly cssText: string) { }
+}
+
+export class ExternalCssFetchFailed
+{
+    readonly type = MessageType.ExternalCssFetchFailed;
+    constructor(readonly url: string, readonly error: string) { }
 }
 
 export class PageScriptLoaded

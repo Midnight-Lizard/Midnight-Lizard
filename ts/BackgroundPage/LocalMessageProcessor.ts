@@ -4,7 +4,8 @@ import { IImageFetcher } from "./ImageFetcher";
 import
 {
     MessageToBackgroundPage, MessageType, ImageFetchCompleted,
-    ImageFetchFailed, ErrorMessage
+    ImageFetchFailed, ErrorMessage, ExternalCssFetchCompleted,
+    ExternalCssFetchFailed
 } from "../Settings/Messages";
 
 export abstract class ILocalMessageProcessor { }
@@ -41,6 +42,20 @@ export class LocalMessageProcessor implements ILocalMessageProcessor
                                 new ImageFetchFailed(message.url, ex.message || ex));
                         }
                         break;
+                    }
+
+                    case MessageType.FetchExternalCss: {
+                        try
+                        {
+                            const cssText = await fetch(message.url).then(x => x.text());
+                            this.messageBus.postMessage(port,
+                                new ExternalCssFetchCompleted(message.url, cssText));
+                        }
+                        catch (ex)
+                        {
+                            this.messageBus.postMessage(port,
+                                new ExternalCssFetchFailed(message.url, ex.message || ex));
+                        }
                     }
 
                     default:

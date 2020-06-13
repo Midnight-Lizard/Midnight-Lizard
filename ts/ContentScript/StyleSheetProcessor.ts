@@ -11,6 +11,8 @@ import { firstSetIncludesAllElementsOfSecondSet, sliceIntoChunks } from "../Util
 import { getEnumValues } from "../Utils/Enum";
 import { CssStyleKeys, CssStyle } from "./CssStyle";
 import * as x from "../Utils/RegExp";
+import { FetchExternalCss, LocalMessageToContent, MessageType } from '../Settings/Messages';
+import { IContentMessageBus } from './IContentMessageBus';
 
 type CssPromise = Promise<HandledPromiseResult<void>>;
 type ArgEvent<TArgs> = ArgumentedEvent<TArgs>;
@@ -64,6 +66,8 @@ class StyleSheetProcessor implements IStyleSheetProcessor
     protected readonly _mediaQueries = new Map<string, boolean>();
 
     protected readonly _externalCssPromises = new Map<string, CssPromise>();
+    protected readonly _externalCssResolvers = new Map<string, (url: string) => void>();
+    protected readonly _externalCssRejectors = new Map<string, (url: string) => void>();
     getCssPromises(doc: Document)
     {
         return Array.from(this._externalCssPromises.values());
@@ -92,10 +96,11 @@ class StyleSheetProcessor implements IStyleSheetProcessor
     /** StyleSheetProcessor constructor
      * @param _app - application settings
      */
-    constructor(rootDoc: Document, css: CssStyle,
+    constructor(css: CssStyle,
         settingsManager: IBaseSettingsManager,
-        private readonly _app: IApplicationSettings
-        // , private readonly _windowMessageBus: IWindowMessageBus
+        private readonly _doc: Document,
+        private readonly _app: IApplicationSettings,
+        private readonly _msgBus: IContentMessageBus
     )
     {
         this._css = css as any;
@@ -122,8 +127,8 @@ class StyleSheetProcessor implements IStyleSheetProcessor
 
         //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
         this._includeStylesRegExp = this.compileIncludeStylesRegExp();
-
-        dom.addEventListener(rootDoc.defaultView!, "unload", () =>
+        _msgBus.onMessage.addListener(this.onMessageFromBackgroundPage, this);
+        dom.addEventListener(_doc.defaultView!, "unload", () =>
         {
             if (this._storageIsAvailable)
             {
@@ -327,26 +332,23 @@ class StyleSheetProcessor implements IStyleSheetProcessor
                 {
                     if (!this._externalCssPromises!.has(sheet.href))
                     {
-                        let cssPromise = fetch(sheet.href, { cache: "force-cache" })
-                            .then(response => response.text());
-                        cssPromise.catch(ex => this._app.isDebug &&
-                            console.error(`Error during css file download: ${(sheet as CSSStyleSheet).href}\nDetails: ${ex.message || ex}`));
-                        this._externalCssPromises.set(
-                            sheet.href,
-                            handlePromise(Promise.all([doc, cssPromise, sheet.href])
-                                .then(([d, css, href]) =>
-                                {
-                                    let style = d.createElement('style');
-                                    style.setAttribute("ml-external", href);
-                                    style.innerText = css;
-                                    (style as any).disabled = true;
-                                    (d.head || d.documentElement!).appendChild(style);
-                                    if (style.sheet)
-                                    {
-                                        style.sheet.mlExternal = href;
-                                        style.sheet.disabled = true;
-                                    }
-                                })));
+                        let cssPromise = fetch(sheet.href).then(resp => resp.text()).catch(ex =>
+                        {
+                            const url = ((sheet as CSSStyleSheet).href!);
+                            if (this._app.isDebug)
+                            {
+                                console.error(`Error during css file download: ${url}\nDetails: ${ex.message || ex}`);
+                            }
+                            this._msgBus.postMessage(new FetchExternalCss(url));
+                            return new Promise<string>((res, rej) =>
+                            {
+                                this._externalCssResolvers.set(url, res);
+                                this._externalCssRejectors.set(url, rej);
+                            });
+                        });
+                        this._externalCssPromises.set(sheet.href, handlePromise(
+                            Promise.all([cssPromise, sheet.href])
+                                .then(([css, href]) => this.insertExternalCss(css, href))));
                     }
                 }
             }
@@ -396,6 +398,38 @@ class StyleSheetProcessor implements IStyleSheetProcessor
         {
             this._styleRefs = styleRefs;
             this._preFilteredSelectors.clear();
+        }
+    }
+
+    private onMessageFromBackgroundPage(message?: LocalMessageToContent)
+    {
+        if (message)
+        {
+            switch (message.type)
+            {
+                case MessageType.ExternalCssFetchCompleted:
+                    this._externalCssResolvers.get(message.url)?.(message.cssText);
+                    break;
+                case MessageType.ExternalCssFetchFailed:
+                    this._externalCssRejectors.get(message.url)?.(message.error);
+                case MessageType.ErrorMessage:
+                    this._app.isDebug && console.error(message);
+                default:
+                    break;
+            }
+        }
+    }
+
+    private insertExternalCss(cssText: string, url: string)
+    {
+        let style = this._doc.createElement('style');
+        style.setAttribute("ml-external", url);
+        style.innerText = cssText;
+        (style as any).disabled = true;
+        (this._doc.head || this._doc.documentElement!).appendChild(style);
+        if (style.sheet)
+        {
+            style.sheet.disabled = true;
         }
     }
 

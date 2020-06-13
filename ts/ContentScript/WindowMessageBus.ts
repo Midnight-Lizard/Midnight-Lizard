@@ -27,7 +27,7 @@ class WindowMessageBus implements IWindowMessageBus
     {
         if (this._pageScriptLoaded)
         {
-            const { type: messageType, ...msg } = message;
+            const { type: messageType, ...msg } = message as any;
             const event = new CustomEvent(messageType, { detail: JSON.stringify(msg) });
             this.rootDoc.documentElement.dispatchEvent(event);
         }
