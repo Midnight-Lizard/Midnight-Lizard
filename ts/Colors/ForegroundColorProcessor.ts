@@ -227,7 +227,7 @@ class TextShadowColorProcessor extends ForegroundColorProcessor implements IText
                 else if (tag.parentElement.mlTextShadow.originalColor === rgbStr ||
                     tag.parentElement.mlTextShadow.inheritedColor === rgbStr)
                 {
-                    if (!tag.style.textShadow)
+                    if (!tag.style.textShadow && tag.tagName !== "CODE")
                     {
                         inheritedColor = Object.assign({}, tag.parentElement!.mlTextShadow!);
                         inheritedColor!.inheritance = ColorInheritance.Original;
