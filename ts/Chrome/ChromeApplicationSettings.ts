@@ -1,5 +1,5 @@
 import { injectable } from "../Utils/DI";
-import { IApplicationSettings, BrowserName } from "../Settings/IApplicationSettings";
+import { IApplicationSettings, BrowserName, BrowserVendor } from "../Settings/IApplicationSettings";
 import { StorageType, StorageLimits } from "../Settings/IStorageManager";
 import { ChromePromise } from "./ChromePromise";
 
@@ -21,6 +21,30 @@ export class ChromeApplicationSettings implements IApplicationSettings
         return typeof browser === "object"
             ? BrowserName.Firefox
             : BrowserName.Chrome
+    }
+
+    get browserVendor(): BrowserVendor
+    {
+        if (/Edg\//.test(navigator.userAgent))
+        {
+            return BrowserVendor.Microsoft;
+        }
+        else if (/OPR/.test(navigator.userAgent))
+        {
+            return BrowserVendor.Opera;
+        }
+        else if (/UBrowser/.test(navigator.userAgent))
+        {
+            return BrowserVendor.UC;
+        }
+        else if (this.browserName === BrowserName.Firefox)
+        {
+            return BrowserVendor.Mozilla;
+        }
+        else
+        {
+            return BrowserVendor.Google;
+        }
     }
 
     get isMobile()

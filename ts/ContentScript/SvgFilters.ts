@@ -1,5 +1,5 @@
 import { injectable } from "../Utils/DI";
-import { IApplicationSettings } from "../Settings/IApplicationSettings";
+import { IApplicationSettings, BrowserVendor } from "../Settings/IApplicationSettings";
 import { IBaseSettingsManager } from "../Settings/BaseSettingsManager";
 import { RgbaColor } from "../Colors/RgbaColor";
 
@@ -43,20 +43,27 @@ class SvgFilters implements ISvgFilters
         svg.style.position = "absolute";
         // svg.style.setProperty("--ml-ignore", "true");
 
+        let originalPdfBgColor = new RgbaColor(82, 86, 89, 1);
+        switch (this._app.browserVendor)
+        {
+            case BrowserVendor.Microsoft:
+                originalPdfBgColor = new RgbaColor(51, 51, 51, 1);
+                break;
+        }
+
         const filters = [
             this.createBlueFilter(doc),
             this.createContentFilter(doc, overlayBgColor, overlayTxtColor),
-            this.createColorReplacementFilter(
-                doc, FilterType.PdfFilter,
-                new RgbaColor(240, 240, 240, 1),
-                new RgbaColor(82, 86, 89, 1))
+            this.createColorReplacementFilter(doc, FilterType.PdfFilter,
+                new RgbaColor(240, 240, 240, 1), originalPdfBgColor)
         ];
 
-        for (const filter of filters) {
-            filter.setAttribute("x","0");
-            filter.setAttribute("y","0");
-            filter.setAttribute("width","99999");
-            filter.setAttribute("height","99999");
+        for (const filter of filters)
+        {
+            filter.setAttribute("x", "0");
+            filter.setAttribute("y", "0");
+            filter.setAttribute("width", "99999");
+            filter.setAttribute("height", "99999");
             svg.appendChild(filter);
         }
 

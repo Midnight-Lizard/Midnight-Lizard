@@ -6,6 +6,17 @@ export enum BrowserName
     Firefox = "Firefox"
 }
 
+export enum BrowserVendor
+{
+    Google = "Google",
+    Mozilla = "Mozilla",
+    Microsoft = "Microsoft",
+    Vivaldi = "Vivaldi",
+    Yandex = "Yandex",
+    Opera = "Opera",
+    UC = "UC"
+}
+
 export abstract class IApplicationSettings
 {
     /** Returns current extension locale or "en" */
@@ -13,6 +24,9 @@ export abstract class IApplicationSettings
 
     /** Returns current browser name */
     abstract get browserName(): BrowserName;
+
+    /** Returns current browser vendor name */
+    abstract get browserVendor(): BrowserVendor;
 
     /** Determines whether extension is in debug mode */
     abstract get isDebug(): boolean;
