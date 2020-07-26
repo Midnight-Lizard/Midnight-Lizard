@@ -227,9 +227,17 @@
     "description": "text on the tooltip\/hint",
     "message": "Verzadiging van grijze tekst na toepassing van de gekozen standaardtint"
   },
+  "textHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
   "textHueGravity_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "textGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
   },
   "textGrayHue_@title": {
     "description": "text on the tooltip\/hint",
@@ -242,6 +250,13 @@
   "textReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "textSelectionHue_html_label": {
+    "message": "Tekst<span id=\"selection\">selectie<\/span>-tint"
+  },
+  "textSelectionHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tekstselectie-tint"
   },
   "linkSaturationLimit_text_label": {
     "description": "text on the label",
@@ -286,6 +301,10 @@
   "linkDefaultHue_text_label": {
     "description": "text on the label",
     "message": "Standaardtint"
+  },
+  "linkDefaultHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om normale linkkleuren te vervangen"
   },
   "linkReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
