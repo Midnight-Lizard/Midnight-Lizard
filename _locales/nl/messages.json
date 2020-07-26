@@ -135,6 +135,14 @@
     "description": "text on the label",
     "message": " Vervang alles"
   },
+  "backgroundReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "buttonSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
