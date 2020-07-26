@@ -143,6 +143,38 @@
     "description": "text on the label",
     "message": "Verzadigingslimiet"
   },
+  "buttonSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de knopachtergrondverzadiging"
+  },
+  "buttonContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "buttonContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Minimaal helderheidsverschil tussen knoppen en de bijbehorende achtergrond"
+  },
+  "buttonLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "buttonLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de knopachtergrondhelderheid"
+  },
+  "buttonGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze knopverzadiging"
+  },
+  "buttonGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze knopachtergronden na toepassing van de gekozen standaardtint"
+  },
+  "buttonHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
