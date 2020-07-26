@@ -510,6 +510,38 @@
     "description": "text on the label",
     "message": "Knoppen"
   },
+  "buttonsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "  Knopachtergrondinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe knoppen en soortgelijk elementen moeten worden ingekleurd."
+  },
+  "textTab_text_label": {
+    "description": "text on the label",
+    "message": "Tekst"
+  },
+  "textTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Tekstkleur instellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke tekstkleuren je wilt toepassen."
+  },
+  "linkTab_text_label": {
+    "description": "text on the label",
+    "message": "Links"
+  },
+  "linkTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Linkinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke linkkleuren je wilt toepassen."
+  },
+  "borderTab_text_label": {
+    "description": "text on the label",
+    "message": "Randen"
+  },
+  "borderTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Randinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke rand- en lijnkleuren je wilt toepassen."
+  },
+  "imagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Afbeeldingen"
+  },
   "imagesTab_@tooltip": {
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
     "message": "     Afbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd foto's en afbeeldingen moeten zijn."
