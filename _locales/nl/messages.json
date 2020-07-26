@@ -235,6 +235,10 @@
     "description": "text on the tooltip\/hint",
     "message": "De te gebruiken tint om de verzadiging van grijze tekstkleuren te verhogen"
   },
+  "textReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
   "textReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
@@ -271,9 +275,17 @@
     "description": "text on the tooltip\/hint",
     "message": "Verzadiging van links met normale linkkleur, en bezochte links na toepassing van de geselecteerde tinten"
   },
+  "linkHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
   "linkHueGravity_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "linkDefaultHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
   },
   "linkReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
@@ -406,6 +418,10 @@
   "backgroundExampleWithoutContrast_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren zonder contrastwijzigingen."
+  },
+  "mode_filter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Eenvoudig globaal filter over de hele pagina.\nIn deze modus worden de meeste instellingen worden genegeerd.\nWerkt beter in een grijsschaalmodus of als de\ngrijze achtergrond en grijze tekst verzadigd zijn met minder dan 10%."
   },
   "globalstab_text_label": {
     "description": "text on the label",
