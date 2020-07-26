@@ -131,6 +131,10 @@
     "description": "text on the tooltip\/hint",
     "message": "De te gebruiken tint om de verzadiging van grijze achtergrondkleuren te verhogen"
   },
+  "backgroundReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
