@@ -590,6 +590,18 @@
     "description": "text on the label",
     "message": "Uit"
   },
+  "syncSettings_text_label": {
+    "description": "text on the label",
+    "message": "Instellingen syncen tussen apparaten"
+  },
+  "syncSettings_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Synchroniseer de Midnight Lizard-instellingen tussen al je apparaten waar je deze optie ook hebt ingeschakeld.\nAlle aangepaste instellingen voor elke website worden samengevoegd op alle apparaten, maar de lijst met aangepaste kleurenschema's wordt overschreven door de nieuwste versie. Zorg er voor dat je verbonden bent met internet als je de aangepaste schema's aanpast.\nJe moet hiervoor tevens synchronisatie inschakelen in de browserinstellingen."
+  },
+  "colorSchemeForEdit_text_label": {
+    "description": "text on the label",
+    "message": "Te bewerken kleurenschema"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
