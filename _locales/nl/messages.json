@@ -87,6 +87,50 @@
     "description": "text on the label",
     "message": "Verzadigingslimiet"
   },
+  "backgroundSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de achtergrondverzadiging"
+  },
+  "backgroundContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "backgroundContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De minimale helderheid tussen vergelijkbare achtergronden.\nAfhankelijk van de grootte van elementen en volgorde kunnen de resultaten vrij willekeurig zijn."
+  },
+  "backgroundLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "backgroundLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de achtergrondhelderheid"
+  },
+  "backgroundGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze achtergrondverzadiging"
+  },
+  "backgroundGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze achtergronden na toepassing van de gekozen standaardtint"
+  },
+  "backgroundHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "backgroundHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Alle tinten vervangen' is ingeschakeld.\n'Alle tinten vervangen' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "backgroundGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "backgroundGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze achtergrondkleuren te verhogen"
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
