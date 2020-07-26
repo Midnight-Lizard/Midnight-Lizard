@@ -211,6 +211,14 @@
     "description": "text on the tooltip\/hint",
     "message": "Het minimale helderheidsverschil tussen tekst en de achtergrond"
   },
+  "textLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "textLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale teksthelderheid"
+  },
   "linkContrast_text_label": {
     "description": "text on the label",
     "message": "Contrast"
@@ -218,6 +226,14 @@
   "linkContrast_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Het minimale helderheidsverschil tussen links en de achtergrond"
+  },
+  "linkLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "linkLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale linkhelderheid"
   },
   "borderContrast_text_label": {
     "description": "text on the label",
@@ -227,9 +243,49 @@
     "description": "text on the tooltip\/hint",
     "message": "Het minimale helderheidsverschil tussen randen en de achtergrond"
   },
+  "borderLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "borderLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale randhelderheid"
+  },
+  "imageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "imageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel de helderheid van alle afbeeldingen in op deze waarde"
+  },
+  "backgroundImageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "backgroundImageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Helderheidsimiet van achtergrondafbeeldingen. Hoe kleiner de afbeelding, hoe helderder."
+  },
+  "backgroundImageExampleText_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als deze website afbeeldingen achter de tekst heeft,\nmoet je de helderheid van achtergrondafbeeldingen\naanpassen, net zolang tot je de tekst duidelijk kunt lezen."
+  },
   "scrollbarContrast_text_label": {
     "description": "text on the label",
     "message": "Contrast"
+  },
+  "scrollbarContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale verschil tussen de helderheid van de scrollbalkduim en de achtergrond.\nAlleen van toepassing op heldere achtergronden."
+  },
+  "scrollbarLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "scrollbarLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkhelderheid"
   },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
