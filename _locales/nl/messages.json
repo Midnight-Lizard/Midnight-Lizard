@@ -54,5 +54,41 @@
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
     "message": "Standaardplanning gebruiken"
+  },
+  "useDefaultSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Gebruik de planning van de standaardinstellingen.\nAls je gebruik wilt maken van één planning voor alle\nwebsites, geef dit dan op in de standaardinstellingen\nof op het tabblad 'Globale instellingen'."
+  },
+  "scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Inschakelen om"
+  },
+  "scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De extensie wordt ingeschakeld op de huidige website op het hier gekozen tijdstip."
+  },
+  "scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Uitschakelen om"
+  },
+  "scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De extensie wordt uitgeschakeld op de huidige website op het hier gekozen tijdstip."
+  },
+  "blueFilter_text_label": {
+    "description": "text on the label",
+    "message": "Blauw filter-intensiteit"
+  },
+  "blueFilter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Blauw filter-intensiteit.\nVerwijdert blauw licht van de pagina en vervangt het door rood licht."
+  },
+  "backgroundSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "globalstab_text_label": {
+    "description": "text on the label",
+    "message": "Globale instellingen"
   }
 }
