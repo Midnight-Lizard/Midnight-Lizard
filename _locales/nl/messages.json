@@ -2,5 +2,9 @@
   "short_locale": {
     "description": "two letters of the current locale",
     "message": "nl"
+  },
+  "appDesc": {
+    "description": "extension description displayed in the Web Store",
+    "message": "Aangepast kleurenschema voor alle websites: donker thema, blauwlichtfilter, schermverduistering, hoog contrast, grijswaarden, etc."
   }
 }
