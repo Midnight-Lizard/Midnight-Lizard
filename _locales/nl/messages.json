@@ -546,9 +546,21 @@
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
     "message": "     Afbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd foto's en afbeeldingen moeten zijn."
   },
+  "backgroundImagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Achter images"
+  },
   "backgroundImagesTab_@tooltip": {
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
     "message": " Achtergrondafbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd achtergrondafbeeldingen moeten zijn.\n Achtergrondafbeeldingen zijn een speciaal soort element - je vind ze doorgaans op of achter tekst."
+  },
+  "scrollbarsTab_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalken"
+  },
+  "scrollbarsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Scrollbalkinstellingen\n―――――――――――――――――――\n Op deze pagina vind je instellingen waarmee je kunt aangeven welke kleur scrollbalken moeten hebben."
   },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
