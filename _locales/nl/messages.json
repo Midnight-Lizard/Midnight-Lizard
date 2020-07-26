@@ -660,6 +660,14 @@
     "description": "text on the tooltip\/hint",
     "message": "Kleurenschema's importeren uit bestand"
   },
+  "editSchemesTab_text_label": {
+    "description": "text on the label",
+    "message": "Kleurenschema's"
+  },
+  "editSchemesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Kleurenschema's aanpassen\n―――――――――――――――――――\n De momenteel toegepaste instellingen kunnen worden gebruikt om een nieuw kleurenschema samen te stellen of een bestaande bij te werken. Als je een nieuw schema samenstelt, is dit beschikbaar op alle websites.\n Zelfs ná het samenstellen kun je het schema nog aanpassen, bijwerken en toepassen op alle sites die dit schema gebruiken. Ook kun je het schema ten allen tijde verwijderen.\n Op deze manier kun je tevens meegeleverde schema's overschrijven met nieuwe instellingen en namen. Als je een meegeleverd schema verwijdert, worden alleen de door jou aangepaste instellingen teruggezet op de oorspronkelijke. \n Meer voorbeelden zijn te vinden onder het vraagteken in de linker bovenhoek."
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
