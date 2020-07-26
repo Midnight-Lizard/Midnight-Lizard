@@ -22,5 +22,9 @@
   "runOnThisSite_text_label": {
     "description": "text on the label",
     "message": "Toepassen op deze website"
+  },
+  "runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de 'Midnight Lizard'-instellingen toe op alle pagina's van deze website.\nIndien niet aangevinkt, kan het nog steeds worden overschreven door 'Op te nemen patronen' op sommige pagina's.\nGebruik 'Uit te sluiten patronen' om sommige pagina's uit te sluiten."
   }
 }
