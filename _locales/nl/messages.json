@@ -199,6 +199,50 @@
     "description": "text on the label",
     "message": "Verzadigingslimiet"
   },
+  "textSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tekstverzadigingslimiet"
+  },
+  "textContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "textContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen tekst en de achtergrond"
+  },
+  "linkContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "linkContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen links en de achtergrond"
+  },
+  "borderContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "borderContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen randen en de achtergrond"
+  },
+  "scrollbarContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "colorSchemeName_increasedContrast": {
+    "description": "color scheme name",
+    "message": "Verhoogd Contrast"
+  },
+  "backgroundExampleWithContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren met verhoogd contrast.\nContrast is afhankelijk van elementgroottes, dus op de echte pagina kan het er anders uitzien."
+  },
+  "backgroundExampleWithoutContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren zonder contrastwijzigingen."
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
