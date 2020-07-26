@@ -6,5 +6,21 @@
   "appDesc": {
     "description": "extension description displayed in the Web Store",
     "message": "Aangepast kleurenschema voor alle websites: donker thema, blauwlichtfilter, schermverduistering, hoog contrast, grijswaarden, etc."
+  },
+  "longDescription": {
+    "description": "long extension description displayed in the Web Store",
+    "message": "Midnight Lizard-kleurenschema's zijn actief op alle websites. De extensie bevat diverse meegeleverde schema's, maar je kunt er nog veel meer installeren via midnight-lizard.org\n  ✔ Kies uit donkere, lichte, grijze of kleurrijke kleurenschema's\n  ✔ Pas bestaande aan of maak nieuwe\n  ✔ Pas op elke site een ander kleurenschema toe\n  ✔ Pas de helderheid, verzadiging, tinten en het contrast aan\n  ✔ Verbeter de toegankelijkheid en leesbaarheid\n  ✔ Verhoog het contrast om tekst leesbaarder te maken\n  ✔ Pas een blauwlichtfilter toe om alle kleuren roder te maken\n  ✔ Laat oorspronkelijke afbeeldingen in hun waarde\n  ✔ Plan het toepassen van een kleurenschema in op een bepaald tijdstip\n  ✔ Schakel de extensie in of uit met sneltoetsen\n     ⮚ op de huidige website: Alt+Shift+L\n     ⮚ overal: Alt+Shift+M\n  ✔ Pas toe op lokale en pdf-bestanden (controleer hiervoor je browserinstellingen)\n  ✔ Voorzie felle kleuren en afbeeldingen van een schaduw\n  ✔ Pas elke denkbare kleur aan\n  ✔ Pas het browserthema dynamisch aan (standaard uitgeschakeld)\n  ✔ Synchroniseer je instellingen\n  ✔ Pas achtergronden, tekst, knoppen, links, randen, afbeeldingen en scrollbalken aan\n  ✔ Pas overal toe, per website of op basis van url-overeenkomsten\n  ✔ Schakel tussen zwartelijst- en wittelijstmodi\n  ✔ Gebruik de vereenvoudigde modus om de prestaties van zware websites te verbeteren\n  ✔ Draag bij aan ons opensourceproject op GitHub.com\/Midnight-Lizard\n  ✔ Doneer via OpenCollective.com\/Midnight-Lizard\n\nGebruik browserthema's om de pagina 'Nieuw tabblad', tabbladen en werkbalken te stileren - de extensie mag dat niet.\nDe extensie werkt niet op de pagina 'Nieuw tabblad', in de Chrome Web Store en browserinstellingen."
+  },
+  "globalToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "Extensie in-\/uitschakelen"
+  },
+  "currentToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "In-\/uitschakelen op huidige website"
+  },
+  "runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen op deze website"
   }
 }
