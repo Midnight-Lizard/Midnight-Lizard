@@ -306,9 +306,21 @@
     "description": "text on the tooltip\/hint",
     "message": "De te gebruiken tint om normale linkkleuren te vervangen"
   },
+  "linkReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
   "linkReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen normale linkkleuren op deze pagina vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "linkVisitedHue_text_label": {
+    "description": "text on the label",
+    "message": "Tint van bezochte link"
+  },
+  "linkVisitedHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tint van bezochte link"
   },
   "borderSaturationLimit_text_label": {
     "description": "text on the label",
@@ -342,13 +354,25 @@
     "description": "text on the tooltip\/hint",
     "message": "Verzadiging van grijze randen na toepassing van de gekozen standaardtint"
   },
+  "borderHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
   "borderHueGravity_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
   },
+  "borderGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
   "borderGrayHue_@title": {
     "description": "text on the tooltip\/hint",
     "message": "De te gebruiken tint om de verzadiging van grijze randkleuren te verhogen"
+  },
+  "borderReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
   },
   "borderReplaceAllHues_@title": {
     "description": "text on the tooltip\/hint",
@@ -370,6 +394,22 @@
     "description": "text on the tooltip\/hint",
     "message": "Stel de helderheid van alle afbeeldingen in op deze waarde"
   },
+  "imageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
+  },
+  "imageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van afbeeldingsverwerking"
+  },
+  "useImageHoverAnimation_text_label": {
+    "description": "text on the label",
+    "message": "Animatie gebruiken als cursor boven afbeelding zweeft"
+  },
+  "useImageHoverAnimation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alle effecten van de afbeelding als je er met de cursor bovenzweeft"
+  },
   "backgroundImageSaturationLimit_text_label": {
     "description": "text on the label",
     "message": "Verzadiging"
@@ -385,6 +425,18 @@
   "backgroundImageLightnessLimit_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Helderheidsimiet van achtergrondafbeeldingen. Hoe kleiner de afbeelding, hoe helderder."
+  },
+  "backgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
+  },
+  "backgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van achtergrondafbeelding"
+  },
+  "backgroundImageExampleText_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
   },
   "backgroundImageExampleText_@title": {
     "description": "text on the tooltip\/hint",
@@ -413,6 +465,50 @@
   "scrollbarLightnessLimit_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Scrollbalkhelderheid"
+  },
+  "scrollbarSize_text_label": {
+    "description": "text on the label",
+    "message": "Grootte"
+  },
+  "scrollbarSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkgrootte"
+  },
+  "scrollbarGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalktint"
+  },
+  "scrollbarGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalktint"
+  },
+  "commonTab_text_label": {
+    "description": "text on the label",
+    "message": "Algemeen"
+  },
+  "commonTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Algemene instellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen die worden toegepast op de gehele pagina."
+  },
+  "activationTab_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen"
+  },
+  "activationTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Toepasinstellingen\n―――――――――――――――――――\n Op dit tabblad kun je aangeven op welke pagina's het schema moet worden toegepast en wanneer."
+  },
+  "backgroundTab_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrond"
+  },
+  "backgroundTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Achtergrondinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe pagina-elementen moeten worden ingekleurd."
+  },
+  "buttonsTab_text_label": {
+    "description": "text on the label",
+    "message": "Knoppen"
   },
   "imagesTab_@tooltip": {
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
@@ -445,5 +541,9 @@
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
+  },
+  "linkExamples_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleurrijke links.\nVerlaag de 'Standaard tintintensiteit' om de oorspronkelijke linkkleuren te behouden."
   }
 }
