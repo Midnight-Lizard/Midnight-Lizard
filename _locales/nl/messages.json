@@ -227,6 +227,18 @@
     "description": "text on the tooltip\/hint",
     "message": "Verzadiging van grijze tekst na toepassing van de gekozen standaardtint"
   },
+  "textHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "textGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze tekstkleuren te verhogen"
+  },
+  "textReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
   "linkSaturationLimit_text_label": {
     "description": "text on the label",
     "message": "Verzadigingslimiet"
@@ -259,6 +271,14 @@
     "description": "text on the tooltip\/hint",
     "message": "Verzadiging van links met normale linkkleur, en bezochte links na toepassing van de geselecteerde tinten"
   },
+  "linkHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "linkReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen normale linkkleuren op deze pagina vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
   "borderSaturationLimit_text_label": {
     "description": "text on the label",
     "message": "Verzadigingslimiet"
@@ -283,6 +303,34 @@
     "description": "text on the tooltip\/hint",
     "message": "Limiet van de maximale randhelderheid"
   },
+  "borderGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze randverzadiging"
+  },
+  "borderGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze randen na toepassing van de gekozen standaardtint"
+  },
+  "borderHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "borderGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze randkleuren te verhogen"
+  },
+  "borderReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "imageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "imageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel de verzadiging van alle afbeeldingen in op deze waarde"
+  },
   "imageLightnessLimit_text_label": {
     "description": "text on the label",
     "message": "Helderheid"
@@ -290,6 +338,14 @@
   "imageLightnessLimit_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Stel de helderheid van alle afbeeldingen in op deze waarde"
+  },
+  "backgroundImageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "backgroundImageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van achtergrondafbeeldingen"
   },
   "backgroundImageLightnessLimit_text_label": {
     "description": "text on the label",
@@ -302,6 +358,14 @@
   "backgroundImageExampleText_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Als deze website afbeeldingen achter de tekst heeft,\nmoet je de helderheid van achtergrondafbeeldingen\naanpassen, net zolang tot je de tekst duidelijk kunt lezen."
+  },
+  "scrollbarSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "scrollbarSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkverzadiging"
   },
   "scrollbarContrast_text_label": {
     "description": "text on the label",
