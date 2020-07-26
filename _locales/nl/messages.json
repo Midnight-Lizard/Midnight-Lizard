@@ -26,5 +26,33 @@
   "runOnThisSite_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Pas de 'Midnight Lizard'-instellingen toe op alle pagina's van deze website.\nIndien niet aangevinkt, kan het nog steeds worden overschreven door 'Op te nemen patronen' op sommige pagina's.\nGebruik 'Uit te sluiten patronen' om sommige pagina's uit te sluiten."
+  },
+  "restoreColorsOnCopy_text_label": {
+    "description": "text on the label",
+    "message": "Herstel de originele kleuren op kopie"
+  },
+  "restoreColorsOnCopy_@title": {
+    "description": "text on the tooltip",
+    "message": "Herstel de oorspronkelijke kleuren alvorens pagina-inhoud te kopiëren"
+  },
+  "restoreColorsOnPrint_text_label": {
+    "description": "text on the label",
+    "message": "Herstel originele kleuren op print"
+  },
+  "restoreColorsOnPrint_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Herstel de oorspronkelijke kleuren alvorens pagina-inhoud af te drukken"
+  },
+  "changeBrowserTheme_text_label": {
+    "description": "text on the label",
+    "message": "Browserthema aanpassen"
+  },
+  "changeBrowserTheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stem het browserthema af op het huidige kleurenschema.\nDeze functie wordt volledig ondersteund door Firefox en deels door Vivaldi."
+  },
+  "useDefaultSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Standaardplanning gebruiken"
   }
 }
