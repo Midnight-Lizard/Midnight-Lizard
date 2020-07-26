@@ -602,6 +602,64 @@
     "description": "text on the label",
     "message": "Te bewerken kleurenschema"
   },
+  "colorSchemeForEdit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het aan te passen kleurenschema.\nJe kunt een nieuw schema samenstellen of bestaande bijwerken of verwijderen."
+  },
+  "colorSchemeName_text_label": {
+    "description": "text on the label",
+    "message": "Naam van kleurenschema"
+  },
+  "colorSchemeName_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Je kunt de naam van het kleurenschema wijzigen voordat je hem opslaat"
+  },
+  "deleteColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Verwijderen"
+  },
+  "deleteColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder het geselecteerde kleurenschema"
+  },
+  "saveColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Opslaan"
+  },
+  "saveColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kleurenschema bijwerken met huidige pop-upinstellingen"
+  },
+  "exportColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Exporteren"
+  },
+  "exportColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exporteer het geselecteerde kleurenschema, '$color_scheme_for_edit$', naar een bestand onder de naam '$color_scheme_name$', en vervang alle instellingen door de momenteel toegepaste pop-upinstellingen van '$current_color_scheme$'.",
+    "placeholders": {
+      "current_color_scheme": {
+        "content": "$1",
+        "example": "Custom"
+      },
+      "color_scheme_for_edit": {
+        "content": "$2",
+        "example": "Dimmed Dust"
+      },
+      "color_scheme_name": {
+        "content": "$3",
+        "example": "New color scheme"
+      }
+    }
+  },
+  "importColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Importeren"
+  },
+  "importColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kleurenschema's importeren uit bestand"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
