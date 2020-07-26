@@ -219,6 +219,22 @@
     "description": "text on the tooltip\/hint",
     "message": "Limiet van de maximale teksthelderheid"
   },
+  "textGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze tekstverzadiging"
+  },
+  "textGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze tekst na toepassing van de gekozen standaardtint"
+  },
+  "linkSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "linkSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadigingslimiet van links"
+  },
   "linkContrast_text_label": {
     "description": "text on the label",
     "message": "Contrast"
@@ -234,6 +250,22 @@
   "linkLightnessLimit_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Limiet van de maximale linkhelderheid"
+  },
+  "linkDefaultSaturation_text_label": {
+    "description": "text on the label",
+    "message": "Standaardverzadiging van links"
+  },
+  "linkDefaultSaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van links met normale linkkleur, en bezochte links na toepassing van de geselecteerde tinten"
+  },
+  "borderSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "borderSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadigingslimiet van randen"
   },
   "borderContrast_text_label": {
     "description": "text on the label",
@@ -287,9 +319,21 @@
     "description": "text on the tooltip\/hint",
     "message": "Scrollbalkhelderheid"
   },
+  "imagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Afbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd foto's en afbeeldingen moeten zijn."
+  },
+  "backgroundImagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": " Achtergrondafbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd achtergrondafbeeldingen moeten zijn.\n Achtergrondafbeeldingen zijn een speciaal soort element - je vind ze doorgaans op of achter tekst."
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
+  },
+  "smallBackgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleine achtergrondafbeeldingen.\nAls de hoofdachtergrond donker genoeg is, worden de kleuren van kleine achtergrondafbeeldingen omgekeerd.\nIn dit geval heeft 'Helderheid' van achtergrondafbeeldingen geen invloed."
   },
   "backgroundExampleWithContrast_@title": {
     "description": "text on the tooltip\/hint",
