@@ -668,6 +668,66 @@
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
     "message": "    Kleurenschema's aanpassen\n―――――――――――――――――――\n De momenteel toegepaste instellingen kunnen worden gebruikt om een nieuw kleurenschema samen te stellen of een bestaande bij te werken. Als je een nieuw schema samenstelt, is dit beschikbaar op alle websites.\n Zelfs ná het samenstellen kun je het schema nog aanpassen, bijwerken en toepassen op alle sites die dit schema gebruiken. Ook kun je het schema ten allen tijde verwijderen.\n Op deze manier kun je tevens meegeleverde schema's overschrijven met nieuwe instellingen en namen. Als je een meegeleverd schema verwijdert, worden alleen de door jou aangepaste instellingen teruggezet op de oorspronkelijke. \n Meer voorbeelden zijn te vinden onder het vraagteken in de linker bovenhoek."
   },
+  "currentColorScheme_text_label": {
+    "description": "text on the label",
+    "message": "Huidige kleurenschema"
+  },
+  "currentColorScheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kies je favoriete kleurenschema"
+  },
+  "forgetThisSiteBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alleen de huidige website-instellingen.\nDaarna worden de standaardinstellingen op die website toegepast."
+  },
+  "forgetAllSitesBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alle aanpassingen aan alle websites, kleurenschema's en de globale instellingen.\nHerstel alle fabrieksinstellingen."
+  },
+  "setAsDefaultBtn_text_label": {
+    "description": "text on the label",
+    "message": "Zet als standaard"
+  },
+  "setAsDefaultBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de huidige instellingen standaard toe op\nalle websites zonder aangepaste instellingen"
+  },
+  "applyBtn_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen"
+  },
+  "applyBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de huidige instellingen toe op de huidige website"
+  },
+  "closeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Sluiten"
+  },
+  "closeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pop-up sluiten en alle niet-opgeslagen aanpassingen verwerpen"
+  },
+  "donateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Biedt financiële ondersteuning\ndoor te doneren aan ons collectief"
+  },
+  "donateLink_@marker": {
+    "description": "text on the marker",
+    "message": "Doneren"
+  },
+  "donateLink_@notice": {
+    "description": "text on the marker",
+    "message": "Ga naar de link om dit bericht te verbergen"
+  },
+  "rateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Extensie beoordelen"
+  },
+  "emailLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "E-mail versturen aan de ontwikkelaar"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
