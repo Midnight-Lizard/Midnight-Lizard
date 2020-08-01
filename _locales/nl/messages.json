@@ -728,6 +728,14 @@
     "description": "text on the tooltip\/hint with custom style",
     "message": "E-mail versturen aan de ontwikkelaar"
   },
+  "bugReportLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Bug melden"
+  },
+  "changeLogLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Wijzigingslog"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
