@@ -907,6 +907,10 @@
     "description": "text on the message box",
     "message": "Je lokale instellingenopslag bevat al enkele gegevens.\nWil je deze vervangen door de gesynchroniseerde (cloud) gegevens?"
   },
+  "syncStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je gesynchroniseerde (cloud) instellingen bevatten al enkele gegevens.\nWil je deze vervangen door de lokale gegevens?"
+  },
   "smallBackgroundImageExample_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van kleine achtergrondafbeeldingen.\nAls de hoofdachtergrond donker genoeg is, worden de kleuren van kleine achtergrondafbeeldingen omgekeerd.\nIn dit geval heeft 'Helderheid' van achtergrondafbeeldingen geen invloed."
