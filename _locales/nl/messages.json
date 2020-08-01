@@ -810,6 +810,51 @@
     "description": "text on the message box",
     "message": "De synchronisatie-instelling kan niet worden aangepast.\n"
   },
+  "introduction_html_content": {
+    "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+    "message": "<h3>Introductie<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Klik op de schakelaar rechtsboven om de extensie\n        <span>in<\/span> of\n        <span>uit<\/span> te schakelen.\n    <\/run>\n    <run class=\"intro intro-host\">\n        Je kunt tevens per website schakelen tussen de\n        <span>zwarte<\/span> en\n        <span>witte<\/span>\n        lijst door te klikken op het websitelabel op de kopbalk.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    Je kunt\n    <span>meegeleverde kleurenschema's<\/span> kiezen in het uitklapmenu aan de rechterkant.\n\n  Je kunt kleurenschema's installeren via\n  <a target=\"_blank\" title=\"$url$\" href=\"$url$\">$website$<\/a>.<\/p>\n<p class=\"intro intro-tabs\">\n    Verder kun je alle thema's\n    <span>aanpassen<\/span> naar wens. Gebruik hiervoor de tabbladen aan de linkerkant.\n    Al je aanpassingen worden standaard toegepast binnen het extensievenster zodat je veilig kunt experimenteren.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        Als je je instellingen wilt toepassen op de\n        <span>huidige website<\/span>, kun je aan de rechterkant op\n        <q>Toepassen<\/q>\n        klikken.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Of je kunt je\n        <span>eigen schema<\/span> toevoegen aan de lijst met meegeleverde schema's zodat je het schema ook op andere websites kunt toepassen.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    Als je de huidige instellingen wilt toepassen op\n    <span>alle websites<\/span>, kun je aan de rechterkant op\n    <q>Instellen als standaard<\/q> klikken.\n<\/p>\n<p class=\"intro intro-help\">\n    Als je\n    <span>hulp<\/span> nodig hebt, kun je naar het ondersteuningsforum gaan, bestaande handleidingen lezen of een nieuwe vraag stellen.\n<\/p>\n<p class=\"intro intro-social\">\n    Volg Midnight Lizard op sociale netwerken om op de hoogte te blijven van het laatste nieuws en de nieuwste functies.\n<\/p>",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org\/schemes",
+        "example": "https:\/\/midnight-lizard.org\/schemes"
+      },
+      "website": {
+        "content": "midnight-lizard.org",
+        "example": "midnight-lizard.org"
+      }
+    }
+  },
+  "shortcut_text_lable": {
+    "message": "Sneltoets"
+  },
+  "colorSchemeName_Custom": {
+    "description": "color scheme name",
+    "message": "Aangepast"
+  },
+  "colorSchemeName_New": {
+    "description": "color scheme name",
+    "message": "Nieuw kleurenschema"
+  },
+  "colorSchemeName_default": {
+    "description": "color scheme name",
+    "message": "Standaard"
+  },
+  "colorSchemeName_original": {
+    "description": "color scheme name",
+    "message": "Oorspronkelijk (geen)"
+  },
+  "colorSchemeName_dimmedDust": {
+    "description": "color scheme name",
+    "message": "Schemering"
+  },
+  "colorSchemeName_appleMint": {
+    "description": "color scheme name",
+    "message": "Witte munt"
+  },
+  "colorSchemeName_kappaDream": {
+    "description": "color scheme name",
+    "message": "Bos vijver"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
