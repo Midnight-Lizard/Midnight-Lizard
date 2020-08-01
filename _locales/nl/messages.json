@@ -764,6 +764,52 @@
       }
     }
   },
+  "colorSchemeSaveFailureMessage": {
+    "description": "text on the message box",
+    "message": "Het aanpassen is mislukt.\n"
+  },
+  "colorSchemeDeleteConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je staat op het punt om het kleurenschema '$color_scheme_for_edit_name$' te verwijderen.\nHet verwijderen van systeemkleurenschema's zal alleen alle overschrijvingen uit het specifieke kleurenschema halen. Er is geen manier om een systeemkleurenschema volledig te verwijderen. Weet je zeker dat je wilt doorgaan?",
+    "placeholders": {
+      "color_scheme_for_edit_name": {
+        "content": "$1",
+        "example": "Dimmed Dust"
+      }
+    }
+  },
+  "colorSchemeDeleteFailureMessage": {
+    "description": "text on the message box",
+    "message": "Het verwijderen is mislukt.\n"
+  },
+  "forgetAllConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Alle instellingen en aangepaste kleurenschema's die je ooit hebt gemaakt zullen worden verwijderd! Weet je zeker dat je wilt doorgaan?"
+  },
+  "forgetAllFailureMessage": {
+    "description": "text on the message box",
+    "message": "Alle website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "forgetThisFailureMessage": {
+    "description": "text on the message box",
+    "message": "De website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "setAsDefaultFailureMessage": {
+    "description": "text on the message box",
+    "message": "De standaardinstellingen kunnen niet worden hersteld.\n"
+  },
+  "applyOnPageFailureMessage": {
+    "description": "text on the message box",
+    "message": "De instellingen kunnen niet worden toegepast. Herlaad de pagina en probeer het opnieuw.\n"
+  },
+  "toggleExtensionFailureMessage": {
+    "description": "text on the message box",
+    "message": "De extensie kan niet worden in- of uitgeschakeld. Sluit alle browservensters en probeer het opnieuw.\n"
+  },
+  "syncChangeFailureMessage": {
+    "description": "text on the message box",
+    "message": "De synchronisatie-instelling kan niet worden aangepast.\n"
+  },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
