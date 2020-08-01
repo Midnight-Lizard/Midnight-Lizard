@@ -849,15 +849,63 @@
   },
   "colorSchemeName_appleMint": {
     "description": "color scheme name",
-    "message": "Witte munt"
+    "message": "Witte Munt"
   },
   "colorSchemeName_kappaDream": {
     "description": "color scheme name",
-    "message": "Bos vijver"
+    "message": "Bos Vijver"
+  },
+  "colorSchemeName_almondRipe": {
+    "description": "color scheme name",
+    "message": "Amandel Rijp"
+  },
+  "colorSchemeName_sunsetSails": {
+    "description": "color scheme name",
+    "message": "Zonsondergang"
+  },
+  "colorSchemeName_halloween": {
+    "description": "color scheme name",
+    "message": "Halloween"
+  },
+  "colorSchemeName_morningMist": {
+    "description": "color scheme name",
+    "message": "Ochtendmist"
+  },
+  "colorSchemeName_antiqueCodex": {
+    "description": "color scheme name",
+    "message": "Antieke Codex"
   },
   "colorSchemeName_increasedContrast": {
     "description": "color scheme name",
     "message": "Verhoogd Contrast"
+  },
+  "colorSchemeName_grayscale": {
+    "description": "color scheme name",
+    "message": "Grijswaarden"
+  },
+  "colorSchemeName_invertedLight": {
+    "description": "color scheme name",
+    "message": "Negatief"
+  },
+  "colorSchemeName_invertedGrayscale": {
+    "description": "color scheme name",
+    "message": "Negatief Grijswaarden"
+  },
+  "colorSchemeName_yellowOnBlack": {
+    "description": "color scheme name",
+    "message": "Geel op Zwart"
+  },
+  "colorSchemeName_greenOnBlack": {
+    "description": "color scheme name",
+    "message": "Groen op Zwart"
+  },
+  "colorSchemeName_blueLightFilter": {
+    "description": "color scheme name",
+    "message": "Blauwlichtfilter"
+  },
+  "localStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je lokale instellingenopslag bevat al enkele gegevens.\nWil je deze vervangen door de gesynchroniseerde (cloud) gegevens?"
   },
   "smallBackgroundImageExample_@title": {
     "description": "text on the tooltip\/hint",
