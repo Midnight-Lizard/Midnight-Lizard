@@ -181,7 +181,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     border-left-color: transparent!important;
     border-top-color: transparent!important;
     border-bottom-color: transparent!important;
-    left: 161px;
+    left: 162px;
 }
 
 .ml-tab.right .ml-tab-item[tooltip]:not(#imp):after
