@@ -1193,8 +1193,82 @@
       }
     }
   },
+  "hideBigBackgroundImages_text_label": {
+    "description": "text on the label",
+    "message": "Grote achtergrondafbeeldingen verbergen"
+  },
+  "hideBigBackgroundImages_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verberg achtergrondafbeeldingen als ze verwerkt\nmoeten worden en hun grootte in KiB groter is dan de\nbij 'Achtergrondafbeeldingsgrootte' opgegeven waarde"
+  },
+  "maxBackgroundImageSize_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrondafbeeldingsgrootte"
+  },
+  "maxBackgroundImageSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De maximale grootte van achtergrondafbeeldingen, in KiB.\nAls 'Grote achtergrondafbeeldingen verbergen' is ingeschakeld,\ndan worden achtergrondafbeeldingen met groottes hoger dan\nhier opgegeven verborgen als deze worden verwerkt."
+  },
+  "linkExamples_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeelden: "
+  },
   "linkExamples_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van kleurrijke links.\nVerlaag de 'Standaard tintintensiteit' om de oorspronkelijke linkkleuren te behouden."
+  },
+  "linkExample_text_label": {
+    "description": "text on the label",
+    "message": "Link"
+  },
+  "linkExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De link zelf heeft een verwerkte kleur.\nOnderstrepen toont de oorspronkelijke linkkleur voor demonstratiedoeleinden."
+  },
+  "textExamples_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeelden: "
+  },
+  "textExamples_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleurrijke teksten."
+  },
+  "textExample_text_label": {
+    "description": "text on the label",
+    "message": "Text"
+  },
+  "textExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De tekst zelf heeft een verwerkte kleur.\nOnderstrepen toont de oorspronkelijke tekstkleur voor demonstratiedoeleinden."
+  },
+  "forgetThisSiteBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Huidige site-opties verwijderen"
+  },
+  "forgetAllSitesBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Alle instellingen verwijderen"
+  },
+  "privacyLink_text_label": {
+    "description": "text on the label",
+    "message": "Privacy"
+  },
+  "privacyLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Extensie-privacybeleid"
+  },
+  "onlineColorSchemesLink_text_label": {
+    "description": "text on the label",
+    "message": "Kleurenschema's downloaden"
+  },
+  "onlineColorSchemesLink_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Ga naar de kleurenschemapagina\n$url$",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org\/schemes",
+        "example": "https:\/\/midnight-lizard.org\/schemes"
+      }
+    }
   }
 }
