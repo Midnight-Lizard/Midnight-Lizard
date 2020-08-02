@@ -911,9 +911,65 @@
     "description": "text on the message box",
     "message": "Je gesynchroniseerde (cloud) instellingen bevatten al enkele gegevens.\nWil je deze vervangen door de lokale gegevens?"
   },
+  "backgroundExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeeld van achtergrondverwerking"
+  },
+  "backgroundExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van verwerking van verschillende achtergrondkleuren"
+  },
   "smallBackgroundImageExample_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van kleine achtergrondafbeeldingen.\nAls de hoofdachtergrond donker genoeg is, worden de kleuren van kleine achtergrondafbeeldingen omgekeerd.\nIn dit geval heeft 'Helderheid' van achtergrondafbeeldingen geen invloed."
+  },
+  "smallBackgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van kleine achterimages"
+  },
+  "scrollbarExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van scrollbalkverwerking"
+  },
+  "scrollbarExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van gestyleerde scrollbalken"
+  },
+  "buttonExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van knopverwerking"
+  },
+  "buttonExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van knopverwerking met verschillende achtergrondkleuren"
+  },
+  "borderExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van verwerking van verschillende randkleuren"
+  },
+  "borderExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van randverwerking"
+  },
+  "backgroundExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke achtergrondkleuren worden hierboven verwerkt"
+  },
+  "borderExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke randkleuren worden aan de linkerkant verwerkt"
+  },
+  "smallBackgroundImageExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke kleine achtergrondafbeeldingen worden hierboven verwerkt"
+  },
+  "translateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Help Midnight Lizard te vertalen"
+  },
+  "popupDisconnected_html_error_message": {
+    "description": "text on the message box",
+    "message": "<h1>Midnight Lizard kan niet worden gebruikt op deze pagina,<\/h1>\n<span>waarschijnlijk om één van de volgende redenen<\/span>\n<br\/>\n<ul>\n    <li>\n        De webbrowser mag geen extensies uitvoeren op pagina's als <br\/>\n        Chrome Web Store, Instellingen, Nieuw tabblad, etc.\n    <\/li><br\/>\n    <li>\n        Midnight Lizard is zojuist bijgewerkt of voor het eerst geïnstalleerd.<br\/>\n        Herlaad de huidige pagina.\n    <\/li><br\/>\n    <li>\n        De huidige pagina is een lokaal bestand,<br\/>\n        en je hebt Midnight Lizard niet gemachtigd om lokale bestanden te verwerken.\n    <\/li><br\/>\n<\/ul>\n<p>※ Probeer het eerst op een gebruikelijke website.<\/p>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    TIP<br\/>\n    Midnight Lizard is een extensie en kan daarom niet de kleuren van browsertabbladen en -werkbalken aanpassen.\n    Hiervoor moet je een aangepast browserthema kiezen of installeren.\n<\/em>"
   },
   "backgroundExampleWithContrast_@title": {
     "description": "text on the tooltip\/hint",
@@ -922,6 +978,26 @@
   "backgroundExampleWithoutContrast_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren zonder contrastwijzigingen."
+  },
+  "mode_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Paginaverwerkingsmodus"
+  },
+  "mode_text_label": {
+    "description": "text on the label",
+    "message": "Verwerkingsmodus"
+  },
+  "mode_simplified_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De vereenvoudigde paginaverwerkingsmodus is niet geheel accuraat, maar wel zeer snel"
+  },
+  "mode_simplified_text_label": {
+    "description": "text on the label",
+    "message": "❔ Vereenvoudigd"
+  },
+  "mode_complex_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De uitgebreide paginaverwerkingsmodus is niet snel, maar ziet er erg goed uit"
   },
   "mode_filter_@title": {
     "description": "text on the tooltip\/hint",
