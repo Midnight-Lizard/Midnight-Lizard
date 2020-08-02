@@ -1107,6 +1107,92 @@
     "description": "text on the label",
     "message": "Op te nemen patronen"
   },
+  "includeMatches_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als 'Toepassen op deze website' is uitgeschakeld,\nmaar de pagina-url overeenkomt met ten minste één van deze patronen,\ndan zal het nog steeds in overweging worden genomen om te verwerken.\nSchrijf elk patroon op een nieuwe regel.\nAls 'Toepassen op deze website' is ingeschakeld,\ndan worden alle ingesloten patronen genegeerd."
+  },
+  "matchPatternsSyntaxLink_text_label": {
+    "description": "text on the link",
+    "message": "Syntax"
+  },
+  "matchPatternsSyntaxLink_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Open een volledige patroonsyntax op een nieuw browsertabblad.\nDit venster wordt mogelijk gesloten."
+  },
+  "doNotInvertContent_text_label": {
+    "description": "text on the label",
+    "message": "Dynamische inhoudskleuren niet omkeren"
+  },
+  "doNotInvertContent_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Schakel deze optie in om te voorkomen dat dynamische inhoudskleuren worden omgekeerd.\nDeze optie bepaalt of de kleuren van kaarten, pdf-bestanden, dynamische tekeningen,\nbewegende afbeeldingen, etc. omgekeerd kunnen worden als de achtergrond verduisterd.\nAls kleuren omgekeerd zijn, worden deze verwerkt op basis van de huidige achtergrondinstellingen.\nAls kleuren niet omgekeerd zijn, worden deze verwerkt op basis van de huidige afbeeldingsinstellingen."
+  },
+  "localFiles_text_label": {
+    "description": "text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+    "message": "lokale bestanden"
+  },
+  "colorSchemeImportNotSupportedMessage": {
+    "description": "text on the message box",
+    "message": "Het importeren van kleurschema's uit bestanden wordt niet ondersteund in Firefox"
+  },
+  "scrollbarStyle_text_label": {
+    "description": "text on the label",
+    "message": "Pas de scrollbalkkleuren aan"
+  },
+  "scrollbarStyle_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas een aangepaste stijl en kleuren toe op scrollbalken."
+  },
+  "syncStorage_QUOTA_BYTES_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslag die beschikbaar is voor elke extensie tot $limit$ bytes. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "102400"
+      }
+    }
+  },
+  "syncStorage_MAX_ITEMS_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt het totaalaantal items in de synchronisatie-opslag die beschikbaar is voor elke extensie tot $limit$ items. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "512"
+      }
+    }
+  },
+  "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslagfrequentie die beschikbaar is voor elke extensie tot $limit$ keer per uur. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "1800"
+      }
+    }
+  },
+  "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslagfrequentie die beschikbaar is voor elke extensie tot $limit$ keer per minuut. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "120"
+      }
+    }
+  },
+  "localStorage_QUOTA_BYTES_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale lokale opslag die beschikbaar is voor elke extensie tot $limit$ bytes. Verwijder aangepaste kleurenschema's of aangepaste instellingen van enkele websites om nieuwe instellingen op te kunnen slaan.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "5242880"
+      }
+    }
+  },
   "linkExamples_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Voorbeeld van het verwerken van kleurrijke links.\nVerlaag de 'Standaard tintintensiteit' om de oorspronkelijke linkkleuren te behouden."
