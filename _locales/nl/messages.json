@@ -404,7 +404,7 @@
   },
   "useImageHoverAnimation_text_label": {
     "description": "text on the label",
-    "message": "Animatie gebruiken als cursor boven afbeelding zweeft"
+    "message": "Animeren als cursor boven image zweeft"
   },
   "useImageHoverAnimation_@title": {
     "description": "text on the tooltip\/hint",
