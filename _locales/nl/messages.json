@@ -1270,5 +1270,115 @@
         "example": "https:\/\/midnight-lizard.org\/schemes"
       }
     }
+  },
+  "officialWebsite_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Bezoek onze officiële website\n$url$",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org",
+        "example": "https:\/\/midnight-lizard.org"
+      }
+    }
+  },
+  "deleteAllSitesSettingsBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder de instellingen van alle websites, maar behoud alle kleurenschema's, algemene en standaardinstellingen.\nDe huidige standaardinstellingen worden daarna op alle websites\ntoegepast."
+  },
+  "deleteAllSitesSettingsBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Verwijder de opties van alle sites"
+  },
+  "deleteAllWebsitesSettingsFailureMessage": {
+    "description": "text on the message box",
+    "message": "Alle website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "generatorTab_text_label": {
+    "description": "text on the label",
+    "message": "Genereren"
+  },
+  "generatorTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "    Kleurenschemagenerator\n―――――――――――――――――――\n Nieuwe kleurenschema's kunnen worden samengesteld op basis van de hier opgegeven klueuren. Elke door browsers ondersteunde opmaak kan worden gebruikt: naam, HEX, RGB, HSL"
+  },
+  "backgroundColor_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrondkleur"
+  },
+  "backgroundColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken achtergrondkleur in een gegenereerd kleurenschema"
+  },
+  "buttonColor_text_label": {
+    "description": "text on the label",
+    "message": "Knopachtergrondkleur"
+  },
+  "buttonColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken knopachtergrondkleur in een gegenereerd kleurenschema"
+  },
+  "textColors_text_label": {
+    "description": "text on the label",
+    "message": "Tekstkleuren"
+  },
+  "textColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstkleuren in een gegenereerd kleurenschema.\nHoud de cursor boven invoervelden om de details te bekijken."
+  },
+  "textColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstkleur in een gegenereerd kleurenschema."
+  },
+  "textSelectionColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstselectiekleur in een gegenereerd kleurenschema."
+  },
+  "linkColors_text_label": {
+    "description": "text on the label",
+    "message": "Linkkleuren"
+  },
+  "linkColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken linkkleuren in een gegenereerd kleurenschema.\nHoud de cursor boven invoervelden om de details te bekijken."
+  },
+  "defaultLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken standaard linkkleur in een gegenereerd kleurenschema."
+  },
+  "visitedLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken bezochte linkkleur in een gegenereerd kleurenschema."
+  },
+  "borderColor_text_label": {
+    "description": "text on the label",
+    "message": "Randkleur"
+  },
+  "borderColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken randkleur in een gegenereerd kleurenschema."
+  },
+  "scrollbarColor_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalkkleur"
+  },
+  "scrollbarColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken scrollbalkkleur in een gegenereerd kleurenschema."
+  },
+  "generateFromColorsButton_text_label": {
+    "description": "text on the label",
+    "message": "Samenstellen uit kleuren"
+  },
+  "generateFromColorsButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel een nieuw kleurenschema samen op basis van de opgegeven kleuren.\nEen nieuw kleurenschema zal worden samengevoegd met het huidige.\nDaarom is het zinvol om de meest vergelijkbare bestaande kleur te kiezen \nvoordat er een nieuw schema wordt samengesteld."
+  },
+  "openColorSchemesGeneratorButton_text_label": {
+    "description": "text on the button",
+    "message": "Kleurenschemagenerator"
+  },
+  "openColorSchemesGeneratorButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Open het tabblad 'Kleurenschemagenerator'"
   }
 }
