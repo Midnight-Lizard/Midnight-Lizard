@@ -2,5 +2,1383 @@
   "short_locale": {
     "description": "two letters of the current locale",
     "message": "nl"
+  },
+  "appDesc": {
+    "description": "extension description displayed in the Web Store",
+    "message": "Aangepast kleurenschema voor alle websites: donker thema, blauwlichtfilter, schermverduistering, hoog contrast, grijswaarden, etc."
+  },
+  "longDescription": {
+    "description": "long extension description displayed in the Web Store",
+    "message": "Midnight Lizard-kleurenschema's zijn actief op alle websites. De extensie bevat diverse meegeleverde schema's, maar je kunt er nog veel meer installeren via midnight-lizard.org\n  ✔ Kies uit donkere, lichte, grijze of kleurrijke kleurenschema's\n  ✔ Pas bestaande aan of maak nieuwe\n  ✔ Pas op elke site een ander kleurenschema toe\n  ✔ Pas de helderheid, verzadiging, tinten en het contrast aan\n  ✔ Verbeter de toegankelijkheid en leesbaarheid\n  ✔ Verhoog het contrast om tekst leesbaarder te maken\n  ✔ Pas een blauwlichtfilter toe om alle kleuren roder te maken\n  ✔ Laat oorspronkelijke afbeeldingen in hun waarde\n  ✔ Plan het toepassen van een kleurenschema in op een bepaald tijdstip\n  ✔ Schakel de extensie in of uit met sneltoetsen\n     ⮚ op de huidige website: Alt+Shift+L\n     ⮚ overal: Alt+Shift+M\n  ✔ Pas toe op lokale en pdf-bestanden (controleer hiervoor je browserinstellingen)\n  ✔ Voorzie felle kleuren en afbeeldingen van een schaduw\n  ✔ Pas elke denkbare kleur aan\n  ✔ Pas het browserthema dynamisch aan (standaard uitgeschakeld)\n  ✔ Synchroniseer je instellingen\n  ✔ Pas achtergronden, tekst, knoppen, links, randen, afbeeldingen en scrollbalken aan\n  ✔ Pas overal toe, per website of op basis van url-overeenkomsten\n  ✔ Schakel tussen zwartelijst- en wittelijstmodi\n  ✔ Gebruik de vereenvoudigde modus om de prestaties van zware websites te verbeteren\n  ✔ Draag bij aan ons opensourceproject op GitHub.com\/Midnight-Lizard\n  ✔ Doneer via OpenCollective.com\/Midnight-Lizard\n\nGebruik browserthema's om de pagina 'Nieuw tabblad', tabbladen en werkbalken te stileren - de extensie mag dat niet.\nDe extensie werkt niet op de pagina 'Nieuw tabblad', in de Chrome Web Store en browserinstellingen."
+  },
+  "globalToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "Extensie in-\/uitschakelen"
+  },
+  "currentToggleKey": {
+    "description": "keyboard shortcut description in the browser settings",
+    "message": "In-\/uitschakelen op huidige website"
+  },
+  "runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen op deze website"
+  },
+  "runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de 'Midnight Lizard'-instellingen toe op alle pagina's van deze website.\nIndien niet aangevinkt, kan het nog steeds worden overschreven door 'Op te nemen patronen' op sommige pagina's.\nGebruik 'Uit te sluiten patronen' om sommige pagina's uit te sluiten."
+  },
+  "restoreColorsOnCopy_text_label": {
+    "description": "text on the label",
+    "message": "Herstel de originele kleuren op kopie"
+  },
+  "restoreColorsOnCopy_@title": {
+    "description": "text on the tooltip",
+    "message": "Herstel de oorspronkelijke kleuren alvorens pagina-inhoud te kopiëren"
+  },
+  "restoreColorsOnPrint_text_label": {
+    "description": "text on the label",
+    "message": "Herstel originele kleuren op print"
+  },
+  "restoreColorsOnPrint_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Herstel de oorspronkelijke kleuren alvorens pagina-inhoud af te drukken"
+  },
+  "changeBrowserTheme_text_label": {
+    "description": "text on the label",
+    "message": "Browserthema aanpassen"
+  },
+  "changeBrowserTheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stem het browserthema af op het huidige kleurenschema.\nDeze functie wordt volledig ondersteund door Firefox en deels door Vivaldi."
+  },
+  "useDefaultSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Standaardplanning gebruiken"
+  },
+  "useDefaultSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Gebruik de planning van de standaardinstellingen.\nAls je gebruik wilt maken van één planning voor alle\nwebsites, geef dit dan op in de standaardinstellingen\nof op het tabblad 'Globale instellingen'."
+  },
+  "scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Inschakelen om"
+  },
+  "scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De extensie wordt ingeschakeld op de huidige website op het hier gekozen tijdstip."
+  },
+  "scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Uitschakelen om"
+  },
+  "scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De extensie wordt uitgeschakeld op de huidige website op het hier gekozen tijdstip."
+  },
+  "blueFilter_text_label": {
+    "description": "text on the label",
+    "message": "Blauw filter-intensiteit"
+  },
+  "blueFilter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Blauw filter-intensiteit.\nVerwijdert blauw licht van de pagina en vervangt het door rood licht."
+  },
+  "backgroundSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "backgroundSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de achtergrondverzadiging"
+  },
+  "backgroundContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "backgroundContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De minimale helderheid tussen vergelijkbare achtergronden.\nAfhankelijk van de grootte van elementen en volgorde kunnen de resultaten vrij willekeurig zijn."
+  },
+  "backgroundLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "backgroundLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de achtergrondhelderheid"
+  },
+  "backgroundGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze achtergrondverzadiging"
+  },
+  "backgroundGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze achtergronden na toepassing van de gekozen standaardtint"
+  },
+  "backgroundHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "backgroundHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "backgroundGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "backgroundGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze achtergrondkleuren te verhogen"
+  },
+  "backgroundReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
+  "backgroundReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "buttonSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "buttonSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de knopachtergrondverzadiging"
+  },
+  "buttonContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "buttonContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Minimaal helderheidsverschil tussen knoppen en de bijbehorende achtergrond"
+  },
+  "buttonLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "buttonLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de knopachtergrondhelderheid"
+  },
+  "buttonGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze knopverzadiging"
+  },
+  "buttonGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze knopachtergronden na toepassing van de gekozen standaardtint"
+  },
+  "buttonHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "buttonHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "buttonGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "buttonGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze knopachtergronden te verhogen"
+  },
+  "buttonReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
+  "buttonReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "textSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "textSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tekstverzadigingslimiet"
+  },
+  "textContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "textContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen tekst en de achtergrond"
+  },
+  "textLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "textLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale teksthelderheid"
+  },
+  "textGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze tekstverzadiging"
+  },
+  "textGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze tekst na toepassing van de gekozen standaardtint"
+  },
+  "textHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "textHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "textGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "textGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze tekstkleuren te verhogen"
+  },
+  "textReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
+  "textReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "textSelectionHue_html_label": {
+    "message": "Tekst<span id=\"selection\">selectie<\/span>-tint"
+  },
+  "textSelectionHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tekstselectie-tint"
+  },
+  "linkSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "linkSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadigingslimiet van links"
+  },
+  "linkContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "linkContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen links en de achtergrond"
+  },
+  "linkLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "linkLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale linkhelderheid"
+  },
+  "linkDefaultSaturation_text_label": {
+    "description": "text on the label",
+    "message": "Standaardverzadiging van links"
+  },
+  "linkDefaultSaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van links met normale linkkleur, en bezochte links na toepassing van de geselecteerde tinten"
+  },
+  "linkHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "linkHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "linkDefaultHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "linkDefaultHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om normale linkkleuren te vervangen"
+  },
+  "linkReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
+  "linkReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen normale linkkleuren op deze pagina vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "linkVisitedHue_text_label": {
+    "description": "text on the label",
+    "message": "Tint van bezochte link"
+  },
+  "linkVisitedHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Tint van bezochte link"
+  },
+  "borderSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadigingslimiet"
+  },
+  "borderSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadigingslimiet van randen"
+  },
+  "borderContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "borderContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale helderheidsverschil tussen randen en de achtergrond"
+  },
+  "borderLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheidslimiet"
+  },
+  "borderLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Limiet van de maximale randhelderheid"
+  },
+  "borderGraySaturation_text_label": {
+    "description": "text on the label",
+    "message": "Grijze randverzadiging"
+  },
+  "borderGraySaturation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van grijze randen na toepassing van de gekozen standaardtint"
+  },
+  "borderHueGravity_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tintintensiteit"
+  },
+  "borderHueGravity_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Bepaalt hoe alle andere tinten worden beïnvloed door de gekozen standaardtint.\nHoe sterker, hoe dichterbij alle andere tinten bij de gekozen standaardtint liggen.\nHet verzadigingslimiet wordt toegepast op beïnvloede tinten.\nDit werkt niet als 'Vervang alles' is ingeschakeld.\n'Vervang alles' is sneller en behoeft voorkeur boven 100% tintintensiteit."
+  },
+  "borderGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Standaardtint"
+  },
+  "borderGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tint om de verzadiging van grijze randkleuren te verhogen"
+  },
+  "borderReplaceAllHues_text_label": {
+    "description": "text on the label",
+    "message": " Vervang alles"
+  },
+  "borderReplaceAllHues_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Vervang alle oorspronkelijke tinten door een geselecteerde tint.\nAnders worden alleen grijze, zwarte en witte tinten vervangen.\nGrijze verzadiging zal worden gebruikt voor vervangen tinten.\nOverschrijft volledig de standaard tintintensiteit."
+  },
+  "imageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "imageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel de verzadiging van alle afbeeldingen in op deze waarde"
+  },
+  "imageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "imageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel de helderheid van alle afbeeldingen in op deze waarde"
+  },
+  "imageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
+  },
+  "imageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van afbeeldingsverwerking"
+  },
+  "useImageHoverAnimation_text_label": {
+    "description": "text on the label",
+    "message": "Animatie gebruiken als cursor boven afbeelding zweeft"
+  },
+  "useImageHoverAnimation_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alle effecten van de afbeelding als je er met de cursor bovenzweeft"
+  },
+  "backgroundImageSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "backgroundImageSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verzadiging van achtergrondafbeeldingen"
+  },
+  "backgroundImageLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "backgroundImageLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Helderheidsimiet van achtergrondafbeeldingen. Hoe kleiner de afbeelding, hoe helderder."
+  },
+  "backgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
+  },
+  "backgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van achtergrondafbeelding"
+  },
+  "backgroundImageExampleText_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning"
+  },
+  "backgroundImageExampleText_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als deze website afbeeldingen achter de tekst heeft,\nmoet je de helderheid van achtergrondafbeeldingen\naanpassen, net zolang tot je de tekst duidelijk kunt lezen."
+  },
+  "scrollbarSaturationLimit_text_label": {
+    "description": "text on the label",
+    "message": "Verzadiging"
+  },
+  "scrollbarSaturationLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkverzadiging"
+  },
+  "scrollbarContrast_text_label": {
+    "description": "text on the label",
+    "message": "Contrast"
+  },
+  "scrollbarContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het minimale verschil tussen de helderheid van de scrollbalkduim en de achtergrond.\nAlleen van toepassing op heldere achtergronden."
+  },
+  "scrollbarLightnessLimit_text_label": {
+    "description": "text on the label",
+    "message": "Helderheid"
+  },
+  "scrollbarLightnessLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkhelderheid"
+  },
+  "scrollbarSize_text_label": {
+    "description": "text on the label",
+    "message": "Grootte"
+  },
+  "scrollbarSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalkgrootte"
+  },
+  "scrollbarGrayHue_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalktint"
+  },
+  "scrollbarGrayHue_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Scrollbalktint"
+  },
+  "commonTab_text_label": {
+    "description": "text on the label",
+    "message": "Algemeen"
+  },
+  "commonTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Algemene instellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen die worden toegepast op de gehele pagina."
+  },
+  "activationTab_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen"
+  },
+  "activationTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Toepasinstellingen\n―――――――――――――――――――\n Op dit tabblad kun je aangeven op welke pagina's het schema moet worden toegepast en wanneer."
+  },
+  "backgroundTab_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrond"
+  },
+  "backgroundTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Achtergrondinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe pagina-elementen moeten worden ingekleurd."
+  },
+  "buttonsTab_text_label": {
+    "description": "text on the label",
+    "message": "Knoppen"
+  },
+  "buttonsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "  Knopachtergrondinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe knoppen en soortgelijk elementen moeten worden ingekleurd."
+  },
+  "textTab_text_label": {
+    "description": "text on the label",
+    "message": "Tekst"
+  },
+  "textTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Tekstkleur instellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke tekstkleuren je wilt toepassen."
+  },
+  "linkTab_text_label": {
+    "description": "text on the label",
+    "message": "Links"
+  },
+  "linkTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Linkinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke linkkleuren je wilt toepassen."
+  },
+  "borderTab_text_label": {
+    "description": "text on the label",
+    "message": "Randen"
+  },
+  "borderTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Randinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven welke rand- en lijnkleuren je wilt toepassen."
+  },
+  "imagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Afbeeldingen"
+  },
+  "imagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Afbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd foto's en afbeeldingen moeten zijn."
+  },
+  "backgroundImagesTab_text_label": {
+    "description": "text on the label",
+    "message": "Achter images"
+  },
+  "backgroundImagesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": " Achtergrondafbeeldingsinstellingen\n―――――――――――――――――――\n Op dit tabblad vind je instellingen waarmee je kunt aangeven hoe helder en verzadigd achtergrondafbeeldingen moeten zijn.\n Achtergrondafbeeldingen zijn een speciaal soort element - je vind ze doorgaans op of achter tekst."
+  },
+  "scrollbarsTab_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalken"
+  },
+  "scrollbarsTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "     Scrollbalkinstellingen\n―――――――――――――――――――\n Op deze pagina vind je instellingen waarmee je kunt aangeven welke kleur scrollbalken moeten hebben."
+  },
+  "settingsHeader_text_label": {
+    "description": "text on the label",
+    "message": " instellingen van"
+  },
+  "hostState_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Schakel op de huidige website tussen\nde witte en zwarte lijst"
+  },
+  "hostName_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Huidige website\n―――――――――――――――\n Klik om op de huidige website te schakelen tussen de witte en zwarte lijst.\n Ga naar het tabblad 'Globale instellingen' om alle websites standaard op de zwarte lijst te zetten."
+  },
+  "helpLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Ondersteuningsforum"
+  },
+  "isEnabledSwitch_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Schakel de extensie in of uit"
+  },
+  "isEnabledOn_text_label": {
+    "description": "text on the label",
+    "message": "Aan "
+  },
+  "isEnabledOff_text_label": {
+    "description": "text on the label",
+    "message": "Uit"
+  },
+  "syncSettings_text_label": {
+    "description": "text on the label",
+    "message": "Instellingen syncen tussen apparaten"
+  },
+  "syncSettings_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Synchroniseer de Midnight Lizard-instellingen tussen al je apparaten waar je deze optie ook hebt ingeschakeld.\nAlle aangepaste instellingen voor elke website worden samengevoegd op alle apparaten, maar de lijst met aangepaste kleurenschema's wordt overschreven door de nieuwste versie. Zorg er voor dat je verbonden bent met internet als je de aangepaste schema's aanpast.\nJe moet hiervoor tevens synchronisatie inschakelen in de browserinstellingen."
+  },
+  "colorSchemeForEdit_text_label": {
+    "description": "text on the label",
+    "message": "Te bewerken kleurenschema"
+  },
+  "colorSchemeForEdit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Het aan te passen kleurenschema.\nJe kunt een nieuw schema samenstellen of bestaande bijwerken of verwijderen."
+  },
+  "colorSchemeName_text_label": {
+    "description": "text on the label",
+    "message": "Naam van kleurenschema"
+  },
+  "colorSchemeName_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Je kunt de naam van het kleurenschema wijzigen voordat je hem opslaat"
+  },
+  "deleteColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Verwijderen"
+  },
+  "deleteColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder het geselecteerde kleurenschema"
+  },
+  "saveColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Opslaan"
+  },
+  "saveColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kleurenschema bijwerken met huidige pop-upinstellingen"
+  },
+  "exportColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Exporteren"
+  },
+  "exportColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Exporteer het geselecteerde kleurenschema, '$color_scheme_for_edit$', naar een bestand onder de naam '$color_scheme_name$', en vervang alle instellingen door de momenteel toegepaste pop-upinstellingen van '$current_color_scheme$'.",
+    "placeholders": {
+      "current_color_scheme": {
+        "content": "$1",
+        "example": "Custom"
+      },
+      "color_scheme_for_edit": {
+        "content": "$2",
+        "example": "Dimmed Dust"
+      },
+      "color_scheme_name": {
+        "content": "$3",
+        "example": "New color scheme"
+      }
+    }
+  },
+  "importColorSchemeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Importeren"
+  },
+  "importColorSchemeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kleurenschema's importeren uit bestand"
+  },
+  "editSchemesTab_text_label": {
+    "description": "text on the label",
+    "message": "Kleurenschema's"
+  },
+  "editSchemesTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
+    "message": "    Kleurenschema's aanpassen\n―――――――――――――――――――\n De momenteel toegepaste instellingen kunnen worden gebruikt om een nieuw kleurenschema samen te stellen of een bestaande bij te werken. Als je een nieuw schema samenstelt, is dit beschikbaar op alle websites.\n Zelfs ná het samenstellen kun je het schema nog aanpassen, bijwerken en toepassen op alle sites die dit schema gebruiken. Ook kun je het schema ten allen tijde verwijderen.\n Op deze manier kun je tevens meegeleverde schema's overschrijven met nieuwe instellingen en namen. Als je een meegeleverd schema verwijdert, worden alleen de door jou aangepaste instellingen teruggezet op de oorspronkelijke. \n Meer voorbeelden zijn te vinden onder het vraagteken in de linker bovenhoek."
+  },
+  "currentColorScheme_text_label": {
+    "description": "text on the label",
+    "message": "Huidige kleurenschema"
+  },
+  "currentColorScheme_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kies je favoriete kleurenschema"
+  },
+  "forgetThisSiteBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alleen de huidige website-instellingen.\nDaarna worden de standaardinstellingen op die website toegepast."
+  },
+  "forgetAllSitesBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder alle aanpassingen aan alle websites, kleurenschema's en de globale instellingen.\nHerstel alle fabrieksinstellingen."
+  },
+  "setAsDefaultBtn_text_label": {
+    "description": "text on the label",
+    "message": "Zet als standaard"
+  },
+  "setAsDefaultBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de huidige instellingen standaard toe op\nalle websites zonder aangepaste instellingen"
+  },
+  "applyBtn_text_label": {
+    "description": "text on the label",
+    "message": "Toepassen"
+  },
+  "applyBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas de huidige instellingen toe op de huidige website"
+  },
+  "closeBtn_text_label": {
+    "description": "text on the label",
+    "message": "Sluiten"
+  },
+  "closeBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pop-up sluiten en alle niet-opgeslagen aanpassingen verwerpen"
+  },
+  "donateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Biedt financiële ondersteuning\ndoor te doneren aan ons collectief"
+  },
+  "donateLink_@marker": {
+    "description": "text on the marker",
+    "message": "Doneren"
+  },
+  "donateLink_@notice": {
+    "description": "text on the marker",
+    "message": "Ga naar de link om dit bericht te verbergen"
+  },
+  "rateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Extensie beoordelen"
+  },
+  "emailLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "E-mail versturen aan de ontwikkelaar"
+  },
+  "bugReportLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Bug melden"
+  },
+  "changeLogLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Wijzigingslog"
+  },
+  "colorSchemeImportSuccessMessage": {
+    "description": "text on the message box",
+    "message": "Er zijn $imported_color_schemes_count$ kleurenschema's geïmporteerd uit bestanden.\nGeïmporteerde kleurenschema's worden aangeduid met een $edit_mark$-symbool en worden verwijderd als je de pop-up sluit, tenzij je elk van hen opslaat.\nSelecteer een kleurenschema in het 'Huidige kleurenschema'-uitklapmenu en druk op 'Opslaan' om het op te slaan.",
+    "placeholders": {
+      "imported_color_schemes_count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "edit_mark": {
+        "content": "$2",
+        "example": "📄"
+      }
+    }
+  },
+  "colorSchemeSaveConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je staat op het punt het kleurenschema$color_scheme_for_edit_name$aan te passen aan de huidige pop-upinstellingen onder de naam '$color_scheme_name$'. Weet je zeker dat je wilt doorgaan?",
+    "placeholders": {
+      "color_scheme_for_edit_name": {
+        "content": "$1",
+        "example": "Dimmed Dust"
+      },
+      "color_scheme_name": {
+        "content": "$2",
+        "example": "New color scheme"
+      }
+    }
+  },
+  "colorSchemeSaveFailureMessage": {
+    "description": "text on the message box",
+    "message": "Het aanpassen is mislukt.\n"
+  },
+  "colorSchemeDeleteConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je staat op het punt om het kleurenschema '$color_scheme_for_edit_name$' te verwijderen.\nHet verwijderen van systeemkleurenschema's zal alleen alle overschrijvingen uit het specifieke kleurenschema halen. Er is geen manier om een systeemkleurenschema volledig te verwijderen. Weet je zeker dat je wilt doorgaan?",
+    "placeholders": {
+      "color_scheme_for_edit_name": {
+        "content": "$1",
+        "example": "Dimmed Dust"
+      }
+    }
+  },
+  "colorSchemeDeleteFailureMessage": {
+    "description": "text on the message box",
+    "message": "Het verwijderen is mislukt.\n"
+  },
+  "forgetAllConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Alle instellingen en aangepaste kleurenschema's die je ooit hebt gemaakt zullen worden verwijderd! Weet je zeker dat je wilt doorgaan?"
+  },
+  "forgetAllFailureMessage": {
+    "description": "text on the message box",
+    "message": "Alle website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "forgetThisFailureMessage": {
+    "description": "text on the message box",
+    "message": "De website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "setAsDefaultFailureMessage": {
+    "description": "text on the message box",
+    "message": "De standaardinstellingen kunnen niet worden hersteld.\n"
+  },
+  "applyOnPageFailureMessage": {
+    "description": "text on the message box",
+    "message": "De instellingen kunnen niet worden toegepast. Herlaad de pagina en probeer het opnieuw.\n"
+  },
+  "toggleExtensionFailureMessage": {
+    "description": "text on the message box",
+    "message": "De extensie kan niet worden in- of uitgeschakeld. Sluit alle browservensters en probeer het opnieuw.\n"
+  },
+  "syncChangeFailureMessage": {
+    "description": "text on the message box",
+    "message": "De synchronisatie-instelling kan niet worden aangepast.\n"
+  },
+  "introduction_html_content": {
+    "description": "Html markup of the introduction tab.\nCopy it and then replace the text with your translations.",
+    "message": "<h3>Introductie<\/h3>\n<p>\n    <run class=\"intro intro-toggle\">\n        Klik op de schakelaar rechtsboven om de extensie\n        <span>in<\/span> of\n        <span>uit<\/span> te schakelen.\n    <\/run>\n    <run class=\"intro intro-host\">\n        Je kunt tevens per website schakelen tussen de\n        <span>zwarte<\/span> en\n        <span>witte<\/span>\n        lijst door te klikken op het websitelabel op de kopbalk.\n    <\/run>\n<\/p>\n<p class=\"intro intro-select-scheme\">\n    Je kunt\n    <span>meegeleverde kleurenschema's<\/span> kiezen in het uitklapmenu aan de rechterkant.\n\n  Je kunt kleurenschema's installeren via\n  <a target=\"_blank\" title=\"$url$\" href=\"$url$\">$website$<\/a>.<\/p>\n<p class=\"intro intro-tabs\">\n    Verder kun je alle thema's\n    <span>aanpassen<\/span> naar wens. Gebruik hiervoor de tabbladen aan de linkerkant.\n    Al je aanpassingen worden standaard toegepast binnen het extensievenster zodat je veilig kunt experimenteren.\n<\/p>\n<p>\n    <run class=\"intro intro-apply\">\n        Als je je instellingen wilt toepassen op de\n        <span>huidige website<\/span>, kun je aan de rechterkant op\n        <q>Toepassen<\/q>\n        klikken.\n    <\/run>\n    <run class=\"intro intro-edit-schemes\">\n        Of je kunt je\n        <span>eigen schema<\/span> toevoegen aan de lijst met meegeleverde schema's zodat je het schema ook op andere websites kunt toepassen.\n    <\/run>\n<\/p>\n<p class=\"intro intro-default\">\n    Als je de huidige instellingen wilt toepassen op\n    <span>alle websites<\/span>, kun je aan de rechterkant op\n    <q>Instellen als standaard<\/q> klikken.\n<\/p>\n<p class=\"intro intro-help\">\n    Als je\n    <span>hulp<\/span> nodig hebt, kun je naar het ondersteuningsforum gaan, bestaande handleidingen lezen of een nieuwe vraag stellen.\n<\/p>\n<p class=\"intro intro-social\">\n    Volg Midnight Lizard op sociale netwerken om op de hoogte te blijven van het laatste nieuws en de nieuwste functies.\n<\/p>",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org\/schemes",
+        "example": "https:\/\/midnight-lizard.org\/schemes"
+      },
+      "website": {
+        "content": "midnight-lizard.org",
+        "example": "midnight-lizard.org"
+      }
+    }
+  },
+  "shortcut_text_lable": {
+    "message": "Sneltoets"
+  },
+  "colorSchemeName_Custom": {
+    "description": "color scheme name",
+    "message": "Aangepast"
+  },
+  "colorSchemeName_New": {
+    "description": "color scheme name",
+    "message": "Nieuw kleurenschema"
+  },
+  "colorSchemeName_default": {
+    "description": "color scheme name",
+    "message": "Standaard"
+  },
+  "colorSchemeName_original": {
+    "description": "color scheme name",
+    "message": "Oorspronkelijk (geen)"
+  },
+  "colorSchemeName_dimmedDust": {
+    "description": "color scheme name",
+    "message": "Schemering"
+  },
+  "colorSchemeName_appleMint": {
+    "description": "color scheme name",
+    "message": "Witte Munt"
+  },
+  "colorSchemeName_kappaDream": {
+    "description": "color scheme name",
+    "message": "Bos Vijver"
+  },
+  "colorSchemeName_almondRipe": {
+    "description": "color scheme name",
+    "message": "Amandel Rijp"
+  },
+  "colorSchemeName_sunsetSails": {
+    "description": "color scheme name",
+    "message": "Zonsondergang"
+  },
+  "colorSchemeName_halloween": {
+    "description": "color scheme name",
+    "message": "Halloween"
+  },
+  "colorSchemeName_morningMist": {
+    "description": "color scheme name",
+    "message": "Ochtendmist"
+  },
+  "colorSchemeName_antiqueCodex": {
+    "description": "color scheme name",
+    "message": "Antieke Codex"
+  },
+  "colorSchemeName_increasedContrast": {
+    "description": "color scheme name",
+    "message": "Verhoogd Contrast"
+  },
+  "colorSchemeName_grayscale": {
+    "description": "color scheme name",
+    "message": "Grijswaarden"
+  },
+  "colorSchemeName_invertedLight": {
+    "description": "color scheme name",
+    "message": "Negatief"
+  },
+  "colorSchemeName_invertedGrayscale": {
+    "description": "color scheme name",
+    "message": "Negatief Grijswaarden"
+  },
+  "colorSchemeName_yellowOnBlack": {
+    "description": "color scheme name",
+    "message": "Geel op Zwart"
+  },
+  "colorSchemeName_greenOnBlack": {
+    "description": "color scheme name",
+    "message": "Groen op Zwart"
+  },
+  "colorSchemeName_blueLightFilter": {
+    "description": "color scheme name",
+    "message": "Blauwlichtfilter"
+  },
+  "localStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je lokale instellingenopslag bevat al enkele gegevens.\nWil je deze vervangen door de gesynchroniseerde (cloud) gegevens?"
+  },
+  "syncStorageOverrideConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Je gesynchroniseerde (cloud) instellingen bevatten al enkele gegevens.\nWil je deze vervangen door de lokale gegevens?"
+  },
+  "backgroundExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeeld van achtergrondverwerking"
+  },
+  "backgroundExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van verwerking van verschillende achtergrondkleuren"
+  },
+  "smallBackgroundImageExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleine achtergrondafbeeldingen.\nAls de hoofdachtergrond donker genoeg is, worden de kleuren van kleine achtergrondafbeeldingen omgekeerd.\nIn dit geval heeft 'Helderheid' van achtergrondafbeeldingen geen invloed."
+  },
+  "smallBackgroundImageExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van kleine achterimages"
+  },
+  "scrollbarExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van scrollbalkverwerking"
+  },
+  "scrollbarExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van gestyleerde scrollbalken"
+  },
+  "buttonExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van knopverwerking"
+  },
+  "buttonExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van knopverwerking met verschillende achtergrondkleuren"
+  },
+  "borderExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorvertoning van verwerking van verschillende randkleuren"
+  },
+  "borderExample_text_label": {
+    "description": "text on the label",
+    "message": "Voorvertoning van randverwerking"
+  },
+  "backgroundExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke achtergrondkleuren worden hierboven verwerkt"
+  },
+  "borderExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke randkleuren worden aan de linkerkant verwerkt"
+  },
+  "smallBackgroundImageExampleOriginal_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De oorspronkelijke kleine achtergrondafbeeldingen worden hierboven verwerkt"
+  },
+  "translateLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Help Midnight Lizard te vertalen"
+  },
+  "popupDisconnected_html_error_message": {
+    "description": "text on the message box",
+    "message": "<h1>Midnight Lizard kan niet worden gebruikt op deze pagina,<\/h1>\n<span>waarschijnlijk om één van de volgende redenen<\/span>\n<br\/>\n<ul>\n    <li>\n        De webbrowser mag geen extensies uitvoeren op pagina's als <br\/>\n        Chrome Web Store, Instellingen, Nieuw tabblad, etc.\n    <\/li><br\/>\n    <li>\n        Midnight Lizard is zojuist bijgewerkt of voor het eerst geïnstalleerd.<br\/>\n        Herlaad de huidige pagina.\n    <\/li><br\/>\n    <li>\n        De huidige pagina is een lokaal bestand,<br\/>\n        en je hebt Midnight Lizard niet gemachtigd om lokale bestanden te verwerken.\n    <\/li><br\/>\n<\/ul>\n<p>※ Probeer het eerst op een gebruikelijke website.<\/p>\n<hr class=\"chrome-only\">\n<em class=\"chrome-only\">\n    TIP<br\/>\n    Midnight Lizard is een extensie en kan daarom niet de kleuren van browsertabbladen en -werkbalken aanpassen.\n    Hiervoor moet je een aangepast browserthema kiezen of installeren.\n<\/em>"
+  },
+  "backgroundExampleWithContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren met verhoogd contrast.\nContrast is afhankelijk van elementgroottes, dus op de echte pagina kan het er anders uitzien."
+  },
+  "backgroundExampleWithoutContrast_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van verschillende achtergrondkleuren zonder contrastwijzigingen."
+  },
+  "mode_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Paginaverwerkingsmodus"
+  },
+  "mode_text_label": {
+    "description": "text on the label",
+    "message": "Verwerkingsmodus"
+  },
+  "mode_simplified_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De vereenvoudigde paginaverwerkingsmodus is niet geheel accuraat, maar wel zeer snel"
+  },
+  "mode_simplified_text_label": {
+    "description": "text on the label",
+    "message": "❔ Vereenvoudigd"
+  },
+  "mode_complex_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De uitgebreide paginaverwerkingsmodus is niet snel, maar ziet er erg goed uit"
+  },
+  "mode_complex_text_label": {
+    "description": "text on the label",
+    "message": "❔ Uitgebreid"
+  },
+  "mode_filter_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Eenvoudig globaal filter over de hele pagina.\nIn deze modus worden de meeste instellingen worden genegeerd.\nWerkt beter in een grijsschaalmodus of als de\ngrijze achtergrond en grijze tekst verzadigd zijn met minder dan 10%."
+  },
+  "mode_filter_text_label": {
+    "description": "text on the label",
+    "message": "❔ Filter"
+  },
+  "mode_automatic_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De automatische paginaverwerkingsmodus schakelt automatisch van 'Uitgebreid' naar 'Vereenvoudigd'\nals de huidige pagina meer elementen bevat dan de instelling 'Automatische overschakeldrempel'."
+  },
+  "mode_automatic_text_label": {
+    "description": "text on the label",
+    "message": "❔ Automatisch"
+  },
+  "modeAutoSwitchLimit_text_label": {
+    "description": "text on the label",
+    "message": "Automatische overschakeldrempel"
+  },
+  "modeAutoSwitchLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als er meer elementen op de pagina zijn tijdens de eerste keer laden\ndan de hier opgegeven drempel en de automatische modus is ingeschakeld,\ndan schakelt de verwerkingsmodus van deze pagina over\nvan 'Uitgebreid' naar 'Vereenvoudigd'."
+  },
+  "mode_options_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Houd de muis boven een instelling om de beschrijving te tonen"
+  },
+  "default_runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Standaard toepassen op alle websites"
+  },
+  "default_runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas Midnight Lizard toe op alle websites zonder aangepaste instellingen."
+  },
+  "default_scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Standaard inschakeltijd"
+  },
+  "default_scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Met de standaardplanning is de extensie is ingeschakeld op alle websites vanaf dit tijdstip."
+  },
+  "default_scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Standaard uitschakeltijd"
+  },
+  "default_scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Met de standaardplanning is de extensie is ingeschakeld op alle websites tot dit tijdstip."
+  },
+  "globalstab_text_label": {
+    "description": "text on the label",
+    "message": "Globale instellingen"
+  },
+  "resetThemeConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Wil je het huidige browserthema terugzetten op het standaardthema?\nMogelijk wordt het teruggezet op het standaard Firefox-thema in plaats van je vorige thema."
+  },
+  "invalidMatchPattern": {
+    "description": "validation error message",
+    "message": "'$pattern$' is geen geldig patroon.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "invalidMatchPatternHost": {
+    "description": "validation error message",
+    "message": "'$pattern$' bevat geen geldige host.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "matchCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Sommige patronen komen overeen met de huidige pagina"
+  },
+  "matchCurrentPage_@title": {
+    "description": "text on the label",
+    "message": "De volgende patronen komen overeen met de huidige pagina:\n"
+  },
+  "noMatchForCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Geen van de patronen komt overeen met de huidige pagina"
+  },
+  "excludeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Uit te sluiten patronen"
+  },
+  "excludeMatches_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De pagina zal niet worden verwerkt als de url overeenkomt met één van deze patronen.\nSchrijf elk patroon op een nieuwe regel.\nUitgesloten patronen hebben de laagste prioriteit en hebben dus altijd voorrang."
+  },
+  "includeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Op te nemen patronen"
+  },
+  "includeMatches_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als 'Toepassen op deze website' is uitgeschakeld,\nmaar de pagina-url overeenkomt met ten minste één van deze patronen,\ndan zal het nog steeds in overweging worden genomen om te verwerken.\nSchrijf elk patroon op een nieuwe regel.\nAls 'Toepassen op deze website' is ingeschakeld,\ndan worden alle ingesloten patronen genegeerd."
+  },
+  "matchPatternsSyntaxLink_text_label": {
+    "description": "text on the link",
+    "message": "Syntax"
+  },
+  "matchPatternsSyntaxLink_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Open een volledige patroonsyntax op een nieuw browsertabblad.\nDit venster wordt mogelijk gesloten."
+  },
+  "doNotInvertContent_text_label": {
+    "description": "text on the label",
+    "message": "Dynamische inhoudskleuren niet omkeren"
+  },
+  "doNotInvertContent_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Schakel deze optie in om te voorkomen dat dynamische inhoudskleuren worden omgekeerd.\nDeze optie bepaalt of de kleuren van kaarten, pdf-bestanden, dynamische tekeningen,\nbewegende afbeeldingen, etc. omgekeerd kunnen worden als de achtergrond verduisterd.\nAls kleuren omgekeerd zijn, worden deze verwerkt op basis van de huidige achtergrondinstellingen.\nAls kleuren niet omgekeerd zijn, worden deze verwerkt op basis van de huidige afbeeldingsinstellingen."
+  },
+  "localFiles_text_label": {
+    "description": "text on the label.\nShould be conjugated to be a correct part of the phrase: settings for 'local files'",
+    "message": "lokale bestanden"
+  },
+  "colorSchemeImportNotSupportedMessage": {
+    "description": "text on the message box",
+    "message": "Het importeren van kleurschema's uit bestanden wordt niet ondersteund in Firefox"
+  },
+  "scrollbarStyle_text_label": {
+    "description": "text on the label",
+    "message": "Pas de scrollbalkkleuren aan"
+  },
+  "scrollbarStyle_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas een aangepaste stijl en kleuren toe op scrollbalken."
+  },
+  "syncStorage_QUOTA_BYTES_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslag die beschikbaar is voor elke extensie tot $limit$ bytes. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "102400"
+      }
+    }
+  },
+  "syncStorage_MAX_ITEMS_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt het totaalaantal items in de synchronisatie-opslag die beschikbaar is voor elke extensie tot $limit$ items. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "512"
+      }
+    }
+  },
+  "syncStorage_MAX_WRITE_OPERATIONS_PER_HOUR_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslagfrequentie die beschikbaar is voor elke extensie tot $limit$ keer per uur. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "1800"
+      }
+    }
+  },
+  "syncStorage_MAX_WRITE_OPERATIONS_PER_MINUTE_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale synchronisatie-opslagfrequentie die beschikbaar is voor elke extensie tot $limit$ keer per minuut. Je hebt dit limiet overschreden. Je kunt overschakelen naar lokale opslag op het tabblad 'Globale instellingen' in de Midnight Lizard-instellingen. Alle instellingen worden dan automatisch overgezet naar de lokale opslag.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "120"
+      }
+    }
+  },
+  "localStorage_QUOTA_BYTES_ErrorMessage": {
+    "description": "storage error message",
+    "message": "De browser beperkt de totale lokale opslag die beschikbaar is voor elke extensie tot $limit$ bytes. Verwijder aangepaste kleurenschema's of aangepaste instellingen van enkele websites om nieuwe instellingen op te kunnen slaan.",
+    "placeholders": {
+      "limit": {
+        "content": "$1",
+        "example": "5242880"
+      }
+    }
+  },
+  "hideBigBackgroundImages_text_label": {
+    "description": "text on the label",
+    "message": "Grote achtergrondafbeeldingen verbergen"
+  },
+  "hideBigBackgroundImages_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verberg achtergrondafbeeldingen als ze verwerkt\nmoeten worden en hun grootte in KiB groter is dan de\nbij 'Achtergrondafbeeldingsgrootte' opgegeven waarde"
+  },
+  "maxBackgroundImageSize_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrondafbeeldingsgrootte"
+  },
+  "maxBackgroundImageSize_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De maximale grootte van achtergrondafbeeldingen, in KiB.\nAls 'Grote achtergrondafbeeldingen verbergen' is ingeschakeld,\ndan worden achtergrondafbeeldingen met groottes hoger dan\nhier opgegeven verborgen als deze worden verwerkt."
+  },
+  "linkExamples_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeelden: "
+  },
+  "linkExamples_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleurrijke links.\nVerlaag de 'Standaard tintintensiteit' om de oorspronkelijke linkkleuren te behouden."
+  },
+  "linkExample_text_label": {
+    "description": "text on the label",
+    "message": "Link"
+  },
+  "linkExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De link zelf heeft een verwerkte kleur.\nOnderstrepen toont de oorspronkelijke linkkleur voor demonstratiedoeleinden."
+  },
+  "textExamples_text_label": {
+    "description": "text on the label",
+    "message": "Voorbeelden: "
+  },
+  "textExamples_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Voorbeeld van het verwerken van kleurrijke teksten."
+  },
+  "textExample_text_label": {
+    "description": "text on the label",
+    "message": "Text"
+  },
+  "textExample_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De tekst zelf heeft een verwerkte kleur.\nOnderstrepen toont de oorspronkelijke tekstkleur voor demonstratiedoeleinden."
+  },
+  "forgetThisSiteBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Huidige site-opties verwijderen"
+  },
+  "forgetAllSitesBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Alle instellingen verwijderen"
+  },
+  "privacyLink_text_label": {
+    "description": "text on the label",
+    "message": "Privacy"
+  },
+  "privacyLink_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Extensie-privacybeleid"
+  },
+  "onlineColorSchemesLink_text_label": {
+    "description": "text on the label",
+    "message": "Kleurenschema's downloaden"
+  },
+  "onlineColorSchemesLink_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Ga naar de kleurenschemapagina\n$url$",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org\/schemes",
+        "example": "https:\/\/midnight-lizard.org\/schemes"
+      }
+    }
+  },
+  "officialWebsite_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "Bezoek onze officiële website\n$url$",
+    "placeholders": {
+      "url": {
+        "content": "https:\/\/midnight-lizard.org",
+        "example": "https:\/\/midnight-lizard.org"
+      }
+    }
+  },
+  "deleteAllSitesSettingsBtn_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Verwijder de instellingen van alle websites, maar behoud alle kleurenschema's, algemene en standaardinstellingen.\nDe huidige standaardinstellingen worden daarna op alle websites\ntoegepast."
+  },
+  "deleteAllSitesSettingsBtn_text_long_label": {
+    "description": "text on the label",
+    "message": "Verwijder de opties van alle sites"
+  },
+  "deleteAllWebsitesSettingsFailureMessage": {
+    "description": "text on the message box",
+    "message": "Alle website-instellingen kunnen niet worden verwijderd.\n"
+  },
+  "generatorTab_text_label": {
+    "description": "text on the label",
+    "message": "Genereren"
+  },
+  "generatorTab_@tooltip": {
+    "description": "text on the tooltip\/hint with custom style",
+    "message": "    Kleurenschemagenerator\n―――――――――――――――――――\n Nieuwe kleurenschema's kunnen worden samengesteld op basis van de hier opgegeven klueuren. Elke door browsers ondersteunde opmaak kan worden gebruikt: naam, HEX, RGB, HSL"
+  },
+  "backgroundColor_text_label": {
+    "description": "text on the label",
+    "message": "Achtergrondkleur"
+  },
+  "backgroundColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken achtergrondkleur in een gegenereerd kleurenschema"
+  },
+  "buttonColor_text_label": {
+    "description": "text on the label",
+    "message": "Knopachtergrondkleur"
+  },
+  "buttonColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken knopachtergrondkleur in een gegenereerd kleurenschema"
+  },
+  "textColors_text_label": {
+    "description": "text on the label",
+    "message": "Tekstkleuren"
+  },
+  "textColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstkleuren in een gegenereerd kleurenschema.\nHoud de cursor boven invoervelden om de details te bekijken."
+  },
+  "textColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstkleur in een gegenereerd kleurenschema."
+  },
+  "textSelectionColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken tekstselectiekleur in een gegenereerd kleurenschema."
+  },
+  "linkColors_text_label": {
+    "description": "text on the label",
+    "message": "Linkkleuren"
+  },
+  "linkColors_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken linkkleuren in een gegenereerd kleurenschema.\nHoud de cursor boven invoervelden om de details te bekijken."
+  },
+  "defaultLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken standaard linkkleur in een gegenereerd kleurenschema."
+  },
+  "visitedLinkColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken bezochte linkkleur in een gegenereerd kleurenschema."
+  },
+  "borderColor_text_label": {
+    "description": "text on the label",
+    "message": "Randkleur"
+  },
+  "borderColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken randkleur in een gegenereerd kleurenschema."
+  },
+  "scrollbarColor_text_label": {
+    "description": "text on the label",
+    "message": "Scrollbalkkleur"
+  },
+  "scrollbarColor_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De te gebruiken scrollbalkkleur in een gegenereerd kleurenschema."
+  },
+  "generateFromColorsButton_text_label": {
+    "description": "text on the label",
+    "message": "Samenstellen uit kleuren"
+  },
+  "generateFromColorsButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel een nieuw kleurenschema samen op basis van de opgegeven kleuren.\nEen nieuw kleurenschema zal worden samengevoegd met het huidige.\nDaarom is het zinvol om de meest vergelijkbare bestaande kleur te kiezen \nvoordat er een nieuw schema wordt samengesteld."
+  },
+  "openColorSchemesGeneratorButton_text_label": {
+    "description": "text on the button",
+    "message": "Kleurenschemagenerator"
+  },
+  "openColorSchemesGeneratorButton_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Open het tabblad 'Kleurenschemagenerator'"
   }
 }
