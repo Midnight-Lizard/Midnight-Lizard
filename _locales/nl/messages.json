@@ -999,13 +999,113 @@
     "description": "text on the tooltip\/hint",
     "message": "De uitgebreide paginaverwerkingsmodus is niet snel, maar ziet er erg goed uit"
   },
+  "mode_complex_text_label": {
+    "description": "text on the label",
+    "message": "❔ Uitgebreid"
+  },
   "mode_filter_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Eenvoudig globaal filter over de hele pagina.\nIn deze modus worden de meeste instellingen worden genegeerd.\nWerkt beter in een grijsschaalmodus of als de\ngrijze achtergrond en grijze tekst verzadigd zijn met minder dan 10%."
   },
+  "mode_filter_text_label": {
+    "description": "text on the label",
+    "message": "❔ Filter"
+  },
+  "mode_automatic_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De automatische paginaverwerkingsmodus schakelt automatisch van 'Uitgebreid' naar 'Vereenvoudigd'\nals de huidige pagina meer elementen bevat dan de instelling 'Automatische overschakeldrempel'."
+  },
+  "mode_automatic_text_label": {
+    "description": "text on the label",
+    "message": "❔ Automatisch"
+  },
+  "modeAutoSwitchLimit_text_label": {
+    "description": "text on the label",
+    "message": "Automatische overschakeldrempel"
+  },
+  "modeAutoSwitchLimit_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Als er meer elementen op de pagina zijn tijdens de eerste keer laden\ndan de hier opgegeven drempel en de automatische modus is ingeschakeld,\ndan schakelt de verwerkingsmodus van deze pagina over\nvan 'Uitgebreid' naar 'Vereenvoudigd'."
+  },
+  "mode_options_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Houd de muis boven een instelling om de beschrijving te tonen"
+  },
+  "default_runOnThisSite_text_label": {
+    "description": "text on the label",
+    "message": "Standaard toepassen op alle websites"
+  },
+  "default_runOnThisSite_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Pas Midnight Lizard toe op alle websites zonder aangepaste instellingen."
+  },
+  "default_scheduleStartHour_text_label": {
+    "description": "text on the label",
+    "message": "Standaard inschakeltijd"
+  },
+  "default_scheduleStartHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Met de standaardplanning is de extensie is ingeschakeld op alle websites vanaf dit tijdstip."
+  },
+  "default_scheduleFinishHour_text_label": {
+    "description": "text on the label",
+    "message": "Standaard uitschakeltijd"
+  },
+  "default_scheduleFinishHour_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Met de standaardplanning is de extensie is ingeschakeld op alle websites tot dit tijdstip."
+  },
   "globalstab_text_label": {
     "description": "text on the label",
     "message": "Globale instellingen"
+  },
+  "resetThemeConfirmationMessage": {
+    "description": "text on the message box",
+    "message": "Wil je het huidige browserthema terugzetten op het standaardthema?\nMogelijk wordt het teruggezet op het standaard Firefox-thema in plaats van je vorige thema."
+  },
+  "invalidMatchPattern": {
+    "description": "validation error message",
+    "message": "'$pattern$' is geen geldig patroon.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "invalidMatchPatternHost": {
+    "description": "validation error message",
+    "message": "'$pattern$' bevat geen geldige host.",
+    "placeholders": {
+      "pattern": {
+        "content": "$1",
+        "example": "*_*"
+      }
+    }
+  },
+  "matchCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Sommige patronen komen overeen met de huidige pagina"
+  },
+  "matchCurrentPage_@title": {
+    "description": "text on the label",
+    "message": "De volgende patronen komen overeen met de huidige pagina:\n"
+  },
+  "noMatchForCurrentPage_text_message": {
+    "description": "text on the label",
+    "message": "Geen van de patronen komt overeen met de huidige pagina"
+  },
+  "excludeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Uit te sluiten patronen"
+  },
+  "excludeMatches_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "De pagina zal niet worden verwerkt als de url overeenkomt met één van deze patronen.\nSchrijf elk patroon op een nieuwe regel.\nUitgesloten patronen hebben de laagste prioriteit en hebben dus altijd voorrang."
+  },
+  "includeMatches_text_label": {
+    "description": "text on the label",
+    "message": "Op te nemen patronen"
   },
   "linkExamples_@title": {
     "description": "text on the tooltip\/hint",
