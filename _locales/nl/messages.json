@@ -562,10 +562,6 @@
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
     "message": "     Scrollbalkinstellingen\n―――――――――――――――――――\n Op deze pagina vind je instellingen waarmee je kunt aangeven welke kleur scrollbalken moeten hebben."
   },
-  "settingsHeader_text_label": {
-    "description": "text on the label",
-    "message": " instellingen van"
-  },
   "hostState_@tooltip": {
     "description": "text on the tooltip\/hint with custom style",
     "message": "Schakel op de huidige website tussen\nde witte en zwarte lijst"
