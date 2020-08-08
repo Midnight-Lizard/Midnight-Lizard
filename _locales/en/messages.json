@@ -548,7 +548,7 @@
   },
   "backgroundImagesTab_text_label": {
     "description": "text on the label",
-    "message": "Fond images"
+    "message": "Bkgnd images"
   },
   "backgroundImagesTab_@tooltip": {
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
