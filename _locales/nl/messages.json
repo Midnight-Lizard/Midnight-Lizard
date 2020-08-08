@@ -592,7 +592,7 @@
   },
   "syncSettings_text_label": {
     "description": "text on the label",
-    "message": "Instellingen syncen tussen apparaten"
+    "message": "Synchroniseren tussen apparaten"
   },
   "syncSettings_@title": {
     "description": "text on the tooltip\/hint",
