@@ -404,7 +404,7 @@
   },
   "useImageHoverAnimation_text_label": {
     "description": "text on the label",
-    "message": "Animeren als cursor boven image zweeft"
+    "message": "Animatie bij zweven boven afbeelding"
   },
   "useImageHoverAnimation_@title": {
     "description": "text on the tooltip\/hint",
@@ -548,7 +548,7 @@
   },
   "backgroundImagesTab_text_label": {
     "description": "text on the label",
-    "message": "Achter images"
+    "message": "Achtergrondafb."
   },
   "backgroundImagesTab_@tooltip": {
     "description": "text on the tooltip\/hint with custom style\nCOPY THE FORMATTING SYMBOLS FROM THE SOURCE AND CENTER THE HEADER",
@@ -564,7 +564,7 @@
   },
   "settingsHeader_text_label": {
     "description": "text on the label",
-    "message": " instellingen van"
+    "message": "-instellingen voor"
   },
   "hostState_@tooltip": {
     "description": "text on the tooltip\/hint with custom style",
@@ -592,7 +592,7 @@
   },
   "syncSettings_text_label": {
     "description": "text on the label",
-    "message": "Instellingen syncen tussen apparaten"
+    "message": "Synchroniseren tussen apparaten"
   },
   "syncSettings_@title": {
     "description": "text on the tooltip\/hint",
@@ -686,7 +686,7 @@
   },
   "setAsDefaultBtn_text_label": {
     "description": "text on the label",
-    "message": "Zet als standaard"
+    "message": "Standaard"
   },
   "setAsDefaultBtn_@title": {
     "description": "text on the tooltip\/hint",
