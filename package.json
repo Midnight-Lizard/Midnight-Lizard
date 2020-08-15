@@ -17,13 +17,13 @@
     "url": "https://github.com/Midnight-Lizard/Midnight-Lizard.git"
   },
   "devDependencies": {
-    "archiver": "4.0.1",
-    "ts-loader": "7.0.2",
+    "archiver": "5.0.0",
+    "ts-loader": "8.0.2",
     "tslib": "1.11.1",
-    "typescript": "3.9.2",
-    "webpack": "4.43.0",
-    "webpack-bundle-analyzer": "3.7.0",
-    "webpack-cli": "3.3.11"
+    "typescript": "3.9.7",
+    "webpack": "4.44.1",
+    "webpack-bundle-analyzer": "3.8.0",
+    "webpack-cli": "3.3.12"
   },
   "scripts": {
     "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
