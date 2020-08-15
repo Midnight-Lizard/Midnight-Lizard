@@ -1751,7 +1751,7 @@ class DocumentProcessor implements IDocumentProcessor
                     tag instanceof HTMLInputElement &&
                     (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
                     tag instanceof Element && tag.getAttribute("role") === "button" ||
-                    !!tag.className && typeof tag.className === "string" && /button(\s|$)/gi.test(tag.className),
+                    !!tag.className && typeof tag.className === "string" && /button\b|btn\b/gi.test(tag.className),
                 isTable =
                     tag instanceof HTMLTableElement || tag instanceof HTMLTableCellElement ||
                     tag instanceof HTMLTableRowElement || tag instanceof HTMLTableSectionElement;
