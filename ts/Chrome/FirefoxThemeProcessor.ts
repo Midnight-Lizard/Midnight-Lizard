@@ -51,6 +51,8 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                 const
                                     mainBgColor = backgroundColorProcessor
                                         .changeColor(RgbaColor.White, true, document.body),
+                                    mainTextColor = textColorProcessor
+                                        .changeColor(RgbaColor.Black, mainBgColor.light, document.body),
 
                                     midBgColor = backgroundColorProcessor
                                         .changeColor(settings.backgroundLightnessLimit < 40
@@ -150,6 +152,13 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                         popup: midBgColor.color,
                                         popup_text: midTextColor.color,
                                         popup_border: midBorderColor.color
+                                    });
+                                }
+                                if (mainVersion >= 63)
+                                {
+                                    Object.assign(theme.colors, {
+                                        ntp_background: mainBgColor.color,
+                                        ntp_text: mainTextColor.color
                                     });
                                 }
                                 if (mainVersion >= 64)
