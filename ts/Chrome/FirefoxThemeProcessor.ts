@@ -150,6 +150,16 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                         popup_border: midBorderColor.color
                                     });
                                 }
+                                if (mainVersion >= 64)
+                                {
+                                    Object.assign(theme.colors, {
+                                        sidebar: buttonColor.color,
+                                        sidebar_highlight: buttonActiveColor.color,
+                                        sidebar_highlight_text: lightTextColor.color,
+                                        sidebar_text: lightTextColor.color,
+                                        sidebar_border: darkBorderColor.color
+                                    });
+                                }
                                 console.log(theme);
                                 if (wnd.id !== undefined)
                                 {
