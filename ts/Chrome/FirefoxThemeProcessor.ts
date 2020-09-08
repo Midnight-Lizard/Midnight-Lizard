@@ -76,6 +76,8 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                         .changeColor(lightGray, buttonColor.light, document.body),
                                     lightTextColor = textColorProcessor
                                         .changeColor(RgbaColor.Black, buttonColor.light, document.body),
+                                    activeTextColor = textColorProcessor
+                                        .changeColor(RgbaColor.Black, buttonActiveColor.light, document.body),
                                     lightBorderColor = borderColorProcessor
                                         .changeColor(RgbaColor.Black, buttonColor.light, document.body),
 
@@ -155,7 +157,7 @@ export class FirefoxThemeProcessor implements IThemeProcessor
                                     Object.assign(theme.colors, {
                                         sidebar: buttonColor.color,
                                         sidebar_highlight: buttonActiveColor.color,
-                                        sidebar_highlight_text: lightTextColor.color,
+                                        sidebar_highlight_text: activeTextColor.color,
                                         sidebar_text: lightTextColor.color,
                                         sidebar_border: darkBorderColor.color
                                     });
