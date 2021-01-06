@@ -47,6 +47,7 @@ class StyleSheetProcessor implements IStyleSheetProcessor
     private readonly _styleRefsStorageKey = "ml-style-refs";
     protected readonly _stylesLimit = 500;
     protected readonly _trimmedStylesLimit = 500;
+    private _lastSelectorsCache = { selectors: 0, styles: 0 };
     protected readonly _css: CssStyleKeys;
     private readonly _passedTransitionSelectors = new Set<string>();
     protected readonly _transitionForbiddenProperties: Set<string>;
@@ -128,19 +129,26 @@ class StyleSheetProcessor implements IStyleSheetProcessor
         //  this._excludeStylesRegExp = this.compileExcludeStylesRegExp();
         this._includeStylesRegExp = this.compileIncludeStylesRegExp();
         _msgBus.onMessage.addListener(this.onMessageFromBackgroundPage, this);
-        dom.addEventListener(_doc.defaultView!, "unload", () =>
+        window.setInterval(() =>
         {
             if (this._storageIsAvailable)
             {
                 try
                 {
-                    if (this._preFilteredSelectors.size && this._styleRefs.size)
+                    if (this._preFilteredSelectors.size && this._styleRefs.size &&
+                        this._lastSelectorsCache.selectors !== this._preFilteredSelectors.size &&
+                        this._lastSelectorsCache.styles !== this._styleRefs.size)
                     {
                         sessionStorage.setItem(this._selectorsStorageKey,
                             JSON.stringify(Array.from(this._preFilteredSelectors)));
 
                         sessionStorage.setItem(this._styleRefsStorageKey,
                             JSON.stringify(Array.from(this._styleRefs)));
+
+                        this._lastSelectorsCache = {
+                            selectors: this._preFilteredSelectors.size,
+                            styles: this._styleRefs.size
+                        };
                     }
                 }
                 catch (ex)
@@ -148,7 +156,7 @@ class StyleSheetProcessor implements IStyleSheetProcessor
                     _app.isDebug && console.error(ex);
                 }
             }
-        });
+        }, 15000);
 
         try
         {
