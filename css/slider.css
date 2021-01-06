@@ -175,8 +175,8 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
     ), 
     linear-gradient(90deg, 
       /*var(--pseudo-background-color) 0%,*/
-      var(--pseudo-text-shadow-color) 3%,
-      rgba(255,255,255,0) 3%,
+      var(--pseudo-text-shadow-color) 3.5%,
+      rgba(255,255,255,0) 3.5%,
       rgba(255,255,255,0) 97%,
       var(--pseudo-text-shadow-color) 97%/*,
       var(--pseudo-background-color) 100%*/
@@ -263,9 +263,9 @@ html[ml-mode="filter"] .hue {
   cursor: text;
   background-color: var(--main-background-color);
   color: var(--main-color);
-  border: solid 1px var(--main-border-color);
-  border-radius: 4px;
-  height: 10px;
+  border: solid 0px var(--main-border-color);
+  border-radius: 3px;
+  height: 8px;
   margin: 8px calc((100% - var(--range-width))/2) 18px calc((100% - var(--range-width))/2);
 }
 
@@ -299,7 +299,7 @@ html[ml-mode="filter"] .ml-input-range-icon {
 input[type=range].ml-input-range:focus
 {
   outline: none;
-  box-shadow: 0px 0px 3px 0px rgb(0, 122, 204);
+  box-shadow: 0px 0px 3px 1px rgb(0, 122, 204);
 }
 
 input[type=range].ml-input-range::-moz-focus-inner
@@ -311,38 +311,37 @@ input[type=range].ml-input-range::-moz-focus-inner
 {
   position: relative;
   color: inherit;
-  height: 8px;
-  border-radius: 3px;
+  height: 10px;
+  background-origin: border-box;
+  border-radius: 4px;
+  border: solid 1px var(--pseudo-border-color);
   background-color: var(--pseudo-background-color);
   background-image: var(--range-track-background);
 
-  --x: 7px;
-  --h: 7px;
-  --o: 15px;
-  --f: 15px;
+  --x: 8px;
 
   background-size:
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    var(--range-segment-width) 8px,
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    var(--range-segment-width) 8px,
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
     100% 100%,
-    var(--range-segment-width) 8px,
-    calc(100% - var(--f)) 100%,
-    calc(100% - var(--f)) 100%;
+    var(--range-segment-width) 100%,
+    calc(100% - var(--x) * 2) 100%,
+    calc(100% - var(--x) * 2) 100%;
 
   background-position:
     calc(100% - var(--x)) 0px,
-    var(--h) 0px,
-    var(--h) 0px,
-    calc(100% - var(--h)) 0px,
     var(--x) 0px,
     var(--x) 0px,
-    calc(100% - var(--h)) 0px,
+    calc(100% - var(--x)) 0px,
+    var(--x) 0px,
+    var(--x) 0px,
+    calc(100% - var(--x)) 0px,
     var(--x) 0px,
     0px 0px,
     var(--x) 0px,
@@ -363,38 +362,38 @@ input[type=range].ml-input-range::-moz-focus-inner
 {
   position: relative;
   color: inherit;
-  height: 8px;
-  border-radius: 3px;
+  height: 10px;
+  margin-top: -15px;
+  background-origin: border-box;
+  border-radius: 4px;
+  border: solid 1px var(--pseudo-border-color);
   background-color: var(--pseudo-background-color);
   background-image: var(--range-track-background);
 
-  --x: 7px;
-  --h: 7px;
-  --o: 15px;
-  --f: 15px;
+  --x: 9px;
 
   background-size:
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    var(--range-segment-width) 8px,
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    var(--range-segment-width) 8px,
-    calc((100% - var(--o)) - (100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
-    calc((100% - var(--f)) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    var(--range-segment-width) 100%,
+    calc((100% - var(--x) * 2) - (100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
+    calc((100% - var(--x) * 2) * (var(--input-relative-value) / 100)) 100%,
     100% 100%,
-    var(--range-segment-width) 8px,
-    calc(100% - var(--f)) 100%,
-    calc(100% - var(--f)) 100%;
+    var(--range-segment-width) 100%,
+    calc(100% - var(--x) * 2) 100%,
+    calc(100% - var(--x) * 2) 100%;
 
   background-position:
     calc(100% - var(--x)) 0px,
-    var(--h) 0px,
-    var(--h) 0px,
-    calc(100% - var(--h)) 0px,
     var(--x) 0px,
     var(--x) 0px,
-    calc(100% - var(--h)) 0px,
+    calc(100% - var(--x)) 0px,
+    var(--x) 0px,
+    var(--x) 0px,
+    calc(100% - var(--x)) 0px,
     var(--x) 0px,
     0px 0px,
     var(--x) 0px,
@@ -415,7 +414,7 @@ input[type=range].ml-input-range::-moz-focus-inner
 {
   position: relative;
   cursor: default;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 50% 50% 0;
   background-color: currentColor;
   background-image:
@@ -445,27 +444,30 @@ input[type=range].ml-input-range::-moz-focus-inner
   width: 15px;
   height: 15px;
   box-shadow:
-    14.0px 14.0px 0px -7px var(--current-value-line-color),
-    13.5px 13.5px 0px -7px var(--current-value-line-color),
-    13.0px 13.0px 0px -7px var(--current-value-line-color),
-    12.5px 12.5px 0px -7px var(--current-value-line-color),
-    12.0px 12.0px 0px -7px var(--current-value-line-color),
-    11.5px 11.5px 0px -7px var(--current-value-line-color),
-    11.0px 11.0px 0px -7px var(--current-value-line-color),
-    10.5px 10.5px 0px -7px var(--current-value-line-color),
-    10.0px 10.0px 0px -7px var(--current-value-line-color),
-     9.5px  9.5px 0px -7px var(--current-value-line-color),
-     9.0px  9.0px 0px -7px var(--current-value-line-color),
-     8.5px  8.5px 0px -7px var(--current-value-line-color),
-     8.0px  8.0px 0px -7px var(--current-value-line-color);
-  transform: translate(0px, 15px) rotate(-135deg);
+    16.0px 16.0px 0px -7.5px var(--current-value-line-color),
+    15.5px 15.5px 0px -7.5px var(--current-value-line-color),
+    15.0px 15.0px 0px -7.5px var(--current-value-line-color),
+    14.5px 14.5px 0px -7.5px var(--current-value-line-color),
+    14.0px 14.0px 0px -7.5px var(--current-value-line-color),
+    13.5px 13.5px 0px -7.5px var(--current-value-line-color),
+    13.0px 13.0px 0px -7.5px var(--current-value-line-color),
+    12.5px 12.5px 0px -7.5px var(--current-value-line-color),
+    12.0px 12.0px 0px -7.5px var(--current-value-line-color),
+    11.5px 11.5px 0px -7.5px var(--current-value-line-color),
+    11.0px 11.0px 0px -7.5px var(--current-value-line-color),
+    10.5px 10.5px 0px -7.5px var(--current-value-line-color),
+    10.0px 10.0px 0px -7.5px var(--current-value-line-color),
+     9.5px  9.5px 0px -7.5px var(--current-value-line-color),
+     9.0px  9.0px 0px -7.5px var(--current-value-line-color),
+     8.5px  8.5px 0px -7.5px var(--current-value-line-color),
+     8.0px  8.0px 0px -7.5px var(--current-value-line-color);
+  transform: translate(0px, 18px) rotate(-135deg);
 }
 
 .ml-input-range::-webkit-slider-thumb
 {
   position: relative;
   cursor: default;
-  margin-top: 12px;
   border: none;
   border-radius: 50% 50% 0;
   background-color: currentColor;
@@ -509,5 +511,5 @@ input[type=range].ml-input-range::-moz-focus-inner
      9.0px  9.0px 0px -7px var(--current-value-line-color),
      8.5px  8.5px 0px -7px var(--current-value-line-color),
      8.0px  8.0px 0px -7px var(--current-value-line-color);
-  transform: translate(0px, 0px) rotate(-135deg);
+  transform: translate(0px, 13px) rotate(-135deg);
 }

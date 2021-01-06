@@ -203,12 +203,15 @@ class PopupManager
 
         this._forgetAllSitesButton.onRoomRulesApplied = new ArgumentedEventDispatcher<RoomRules>();
         this._forgetAllSitesButton.onRoomRulesApplied.addListener(this.onButtonRoomRulesApplied as any, this);
+
         const range = doc.querySelector(".ml-input-range") as HTMLInputElement;
         range.onRoomRulesApplied = new ArgumentedEventDispatcher<RoomRules>();
         range.onRoomRulesApplied.addListener(this.onRangeRoomRulesApplied as any, this, EventHandlerPriority.Normal, range);
+
         const tabItemSep = doc.querySelector(".ml-tab-item-separator") as HTMLLIElement;
         tabItemSep.onRoomRulesApplied = new ArgumentedEventDispatcher<RoomRules>();
-        range.onRoomRulesApplied.addListener(this.onTabItemSeparatorRoomRulesApplied as any, this, EventHandlerPriority.Normal, tabItemSep);
+        tabItemSep.onRoomRulesApplied.addListener(this.onTabItemSeparatorRoomRulesApplied as any, this, EventHandlerPriority.Normal, tabItemSep);
+
         const footer = doc.querySelector(".ml-dialog-footer") as HTMLLIElement;
         footer.onRoomRulesApplied = new ArgumentedEventDispatcher<RoomRules>();
         footer.onRoomRulesApplied.addListener(this.onFotterRoomRulesApplied as any, this, EventHandlerPriority.Normal, footer);
@@ -1065,12 +1068,12 @@ class PopupManager
         let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
         let props = Object.assign({}, USP.htm);
         props.css =
-            {
-                bgrColor: "--pseudo-background-color",
-                brdColor: "--pseudo-border-color",
-                fntColor: "--pseudo-color",
-                shdColor: "--pseudo-text-shadow-color"
-            };
+        {
+            bgrColor: "--pseudo-background-color",
+            brdColor: "--pseudo-border-color",
+            fntColor: "--pseudo-color",
+            shdColor: "--pseudo-text-shadow-color"
+        };
 
         const rangeFillColor = this._rangeFillColorProcessor.changeColor(
             this._settingsManager.shift,
@@ -1080,7 +1083,7 @@ class PopupManager
             {
                 backgroundColor: { color: currentStyle.backgroundColor },
                 color: { color: currentStyle.color },
-                borderColor: { color: currentStyle.borderColor },
+                borderColor: { color: currentStyle.borderColor || currentStyle.borderBottomColor },
                 textShadow: { value: rangeFillColor.color }
             } as RoomRules);
         this._documentProcessor.applyRoomRules(tag.ownerDocument!.documentElement!, newRules, props);
@@ -1091,12 +1094,12 @@ class PopupManager
         let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
         let props = Object.assign({}, USP.htm);
         props.css =
-            {
-                bgrColor: "",
-                brdColor: "--tab-item-border-color",
-                fntColor: "",
-                shdColor: ""
-            };
+        {
+            bgrColor: "",
+            brdColor: "--tab-item-border-color",
+            fntColor: "",
+            shdColor: ""
+        };
         let newRules = Object.assign({},
             {
                 borderColor: { color: currentStyle.borderRightColor }
@@ -1109,12 +1112,12 @@ class PopupManager
         let currentStyle = tag.ownerDocument!.defaultView!.getComputedStyle(tag, "");
         let props = Object.assign({}, USP.htm);
         props.css =
-            {
-                bgrColor: "--ml-footer-background-color",
-                brdColor: "",
-                fntColor: "",
-                shdColor: ""
-            };
+        {
+            bgrColor: "--ml-footer-background-color",
+            brdColor: "",
+            fntColor: "",
+            shdColor: ""
+        };
         let newRules = Object.assign({},
             {
                 backgroundColor: { color: currentStyle.backgroundColor }

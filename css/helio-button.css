@@ -3,7 +3,7 @@
     display: inline-block;
     user-select: none;
     -moz-user-select: none;
-    --button-border-radius: 3px;
+    --button-border-radius: 2px;
     position: relative;
     border-radius: var(--button-border-radius);
     height: 28px;
