@@ -7,8 +7,8 @@
   "license": "MIT",
   "version": "10.6.0",
   "dependencies": {
-    "@types/chrome": "0.0.86",
-    "@types/firefox-webext-browser": "67.0.2",
+    "@types/chrome": "0.0.127",
+    "@types/firefox-webext-browser": "82.0.0",
     "@types/reflect-metadata": "0.1.0",
     "reflect-metadata": "0.1.13"
   },
@@ -17,17 +17,17 @@
     "url": "https://github.com/Midnight-Lizard/Midnight-Lizard.git"
   },
   "devDependencies": {
-    "archiver": "5.0.0",
-    "ts-loader": "8.0.2",
-    "tslib": "1.11.1",
-    "typescript": "3.9.7",
-    "webpack": "4.44.1",
-    "webpack-bundle-analyzer": "3.8.0",
-    "webpack-cli": "3.3.12"
+    "archiver": "5.1.0",
+    "ts-loader": "8.0.14",
+    "tslib": "2.1.0",
+    "typescript": "4.1.3",
+    "webpack": "5.11.1",
+    "webpack-bundle-analyzer": "4.3.0",
+    "webpack-cli": "4.3.1"
   },
   "scripts": {
-    "watch": "webpack --watch --mode=development --info-verbosity verbose --devtool inline-source-map",
-    "dev-build": "webpack --mode=development --env.useBundleAnalyzer --devtool inline-source-map",
+    "watch": "webpack --watch --mode=development --devtool inline-source-map",
+    "dev-build": "webpack --mode=development --env useBundleAnalyzer --devtool inline-source-map",
     "prod-build": "webpack --mode=production",
     "prod-pack": "npm run prod-build && node pack.js chrome && node pack.js firefox",
     "prod-pack:chrome": "npm run prod-build && node pack.js chrome",

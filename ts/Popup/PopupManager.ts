@@ -886,7 +886,7 @@ class PopupManager
         {
             clearTimeout(this._lastMatchPatternChangeTimeout);
         }
-        this._lastMatchPatternChangeTimeout = setTimeout(() =>
+        this._lastMatchPatternChangeTimeout = window.setTimeout(() =>
         {
             this.onInputFieldChanged();
         }, this._inputChangeDebounceTime);

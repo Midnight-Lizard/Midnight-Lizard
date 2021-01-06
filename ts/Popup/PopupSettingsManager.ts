@@ -47,7 +47,7 @@ export abstract class IPopupSettingsManager
     abstract get currentTabIsAccessible(): boolean;
     abstract get currentSiteSettings(): ColorScheme;
     abstract set currentSiteSettings(settings: ColorScheme);
-    abstract async getErrorReason(error: any): Promise<string>;
+    abstract getErrorReason(error: any): Promise<string>;
     abstract get defaultColorSchemeId(): ColorSchemeId | undefined;
 }
 

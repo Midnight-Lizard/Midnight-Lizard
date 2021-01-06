@@ -15,15 +15,15 @@ declare type PublicSchemesStorage = { publicSchemeIds: PublicSchemeId[] };
 
 export abstract class IPublicSettingsManager
 {
-    public abstract async installPublicScheme(publicScheme: PublicScheme): Promise<void>;
-    public abstract async uninstallPublicScheme(publicSchemeId: PublicSchemeId): Promise<void>;
-    public abstract async uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId): Promise<void>;
-    public abstract async getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
-    public abstract async getInstalledPublicColorSchemeIds(): Promise<ColorSchemeId[]>;
+    public abstract installPublicScheme(publicScheme: PublicScheme): Promise<void>;
+    public abstract uninstallPublicScheme(publicSchemeId: PublicSchemeId): Promise<void>;
+    public abstract uninstallPublicSchemeByColorSchemeId(colorSchemeId: ColorSchemeId): Promise<void>;
+    public abstract getInstalledPublicSchemeIds(): Promise<PublicSchemeId[]>;
+    public abstract getInstalledPublicColorSchemeIds(): Promise<ColorSchemeId[]>;
     public abstract get onPublicSchemesChanged(): ArgumentedEvent<PublicSchemeId[]>;
 
-    public abstract async applyPublicScheme(publicSchemeId: PublicSchemeId, hostName: string): Promise<void>;
-    public abstract async setPublicSchemeAsDefault(publicSchemeId: PublicSchemeId): Promise<void>;
+    public abstract applyPublicScheme(publicSchemeId: PublicSchemeId, hostName: string): Promise<void>;
+    public abstract setPublicSchemeAsDefault(publicSchemeId: PublicSchemeId): Promise<void>;
 }
 
 @injectable(IPublicSettingsManager)

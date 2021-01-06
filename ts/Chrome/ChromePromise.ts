@@ -41,7 +41,7 @@ export class ChromePromise
                         switch (results.length)
                         {
                             case 0:
-                                resolve();
+                                resolve(undefined);
                                 break;
                             case 1:
                                 resolve(results[0]);

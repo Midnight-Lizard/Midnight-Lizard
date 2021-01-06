@@ -78,7 +78,7 @@ class SettingsManager extends BaseSettingsManager implements ISettingsManager
                 .filter(h => h > this._curTime)
                 .reduce((next, h) => h < next ? h : next, 99) * 60 * 60 * 1000 +
                 today.getTime() - Date.now();
-            this._scheduleUpdateTimeout = setTimeout(() =>
+            this._scheduleUpdateTimeout = window.setTimeout(() =>
             {
                 this.initCurrentSettings();
             }, millisecondsUntilNextSwitch);
