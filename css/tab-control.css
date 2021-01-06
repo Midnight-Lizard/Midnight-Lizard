@@ -186,6 +186,11 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     margin: 9px 20px 0px 20px;
 }
 
+#default-tab-content.ml-tab-content p.dense
+{
+    margin: 9px 15px 0px 15px;
+}
+
 #default-tab-content.ml-tab-content p b, #default-tab-content.ml-tab-content p span, #default-tab-content.ml-tab-content p i, .ml-ad
 {
     color: var(--logo-text-color);
