@@ -14,7 +14,7 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
   --input-relative-value: 50;
   --input-relative-percent: 50%;
 
-  --range-track-shift: 7px;
+  --range-track-shift: 7.5px;
   --range-border: 1px;
 }
 
@@ -84,9 +84,9 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
       var(--range-track-left-color) 70% 
     ), 
     linear-gradient(90deg, 
-      var(--pseudo-text-shadow-color) 3%,
-      rgba(255,255,255,0) 3%,
-      rgba(255,255,255,0) 97%,
+      var(--pseudo-text-shadow-color) 3.5%,
+      rgba(255,255,255,0) 3.5%,
+      rgba(255,255,255,0) 96%,
       var(--pseudo-text-shadow-color) 97%
     ),
     linear-gradient(90deg, 
@@ -174,12 +174,10 @@ input[type='range'].ml-input-range::-webkit-slider-thumb
       var(--pseudo-text-shadow-color) 70% 
     ), 
     linear-gradient(90deg, 
-      /*var(--pseudo-background-color) 0%,*/
       var(--pseudo-text-shadow-color) 3.5%,
       rgba(255,255,255,0) 3.5%,
-      rgba(255,255,255,0) 97%,
-      var(--pseudo-text-shadow-color) 97%/*,
-      var(--pseudo-background-color) 100%*/
+      rgba(255,255,255,0) 96.5%,
+      var(--pseudo-text-shadow-color) 96.5%
     ),
     linear-gradient(90deg, 
       rgba(255,255,255,0) 10%,
