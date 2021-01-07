@@ -18,7 +18,8 @@ html[ml-stage]:not([ml-mode="filter"]) .search-image-black,
 html[ml-stage]:not([ml-mode="filter"]) .goog-toolbar-menu-button-dropdown,
 html[ml-stage]:not([ml-mode="filter"]) .export-button,
 html[ml-stage]:not([ml-mode="filter"]) .more-button,
-html[ml-stage]:not([ml-mode="filter"]) .close-button {
+html[ml-stage]:not([ml-mode="filter"]) .close-button,
+html[ml-stage-mode="complete-complex"] ul[role="listbox"] {
     --ml-ignore:true;
     filter: var(--ml-text-filter);
 }
@@ -81,4 +82,8 @@ html[ml-stage-mode="complete-complex"] .epu-dt .gt-cc-t .gt-ct-translit {
 
 html[ml-mode]:not([ml-mode="filter"]) .gt-related-suggest-message {
   background-color: transparent!important;
+}
+
+html[ml-stage-mode="complete-complex"] span[role="img"]>div {
+  --ml-background-background-color:Border;
 }
