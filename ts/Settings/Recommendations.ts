@@ -38,19 +38,20 @@ class Recommendations implements IRecommendations
     private readonly cache = new Map<string, ProcessingMode | null | undefined>();
 
     readonly recommendations: IRecommendation[] = [
-        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www.)?yandex.ru\/\?stream_channel.*$/i },
-        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www.)?yastatic.net\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/\?stream_channel.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www\.)?yastatic\.net\/.*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/web.whatsapp.com\/$/i },
-        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www.)?yandex.ru\/portal\/video.*$/i },
-        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www.)?yandex.ru\/images\/*$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/web\.whatsapp\.com\/$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/portal\/video.*$/i },
+        { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/images\/.*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: simple, observe: true, matchPattern: /^https:\/\/\w+.wikipedia.org\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: simple, observe: true, matchPattern: /^https:\/\/\w+\.wikipedia\.org\/.*$/i },
 
-        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?amazon.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?twitter.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, observe: true, matchPattern: /^https:\/\/\w+.slack.com\/.*$/i },
-        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?yandex.ru\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www\.)?amazon\.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www\.)?twitter\.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: true, matchPattern: /^https:\/\/\w+\.slack\.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: filter, observe: true, matchPattern: /^https:\/\/(w+\.)*mlg\.ru\/.*$/i },
 
         { browsers: chrom, platforms: allpf, mode: filter, observe: false, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
         { browsers: allbr, platforms: allpf, observe: false, matchPattern: /^https:\/\/(www.)?facebook.com\/.*$/i },
