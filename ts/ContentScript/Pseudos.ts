@@ -71,6 +71,9 @@ export class PseudoElement
         this.mlArea = this.mlRect.width * this.mlRect.height;
         return this.mlRect;
     }
+    getAttribute(attributeName: string) {
+        return this.parentElement.getAttribute(attributeName);
+    }
     applyStyleChanges(standardCssText?: string)
     {
         const cssText = standardCssText === undefined ? this.style.cssText : standardCssText;

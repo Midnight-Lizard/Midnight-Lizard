@@ -75,6 +75,7 @@ class CssConstants
     visitedColorActive = "--visited-color-active";
     mlIgnoreVar = "--ml-ignore";
     mlInvertAttr = "ml-invert";
+    role = "role";
 }
 
 @injectable()

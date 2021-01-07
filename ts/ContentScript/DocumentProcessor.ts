@@ -60,6 +60,7 @@ type ArgEvent<TArgs> = ArgumentedEvent<TArgs>;
 const ArgEventDispatcher = ArgumentedEventDispatcher;
 const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag|emoji/i;
 const notTextureRegExp = /user|account|avatar|photo|flag|emoji/i;
+const smallRoles = /button|checkbox|columnheader|combobox|gridcell|link|listitem|menuitem|menuitemcheckbox|menuitemradio|option|radio|separator|search|textbox|tooltip|treeitem/i;
 /** 2 fraction digits number format */
 const float = new Intl.NumberFormat('en-US', {
     useGrouping: false,
@@ -1322,6 +1323,10 @@ class DocumentProcessor implements IDocumentProcessor
 
     protected tagIsSmall(tag: Element | PseudoElement): boolean
     {
+        if (smallRoles.test(tag.getAttribute(this._css.role) || ""))
+        {
+            return true;
+        }
         let maxSize = this._settingsManager.isFilter ? 100 : 50, maxAxis = this._settingsManager.isFilter ? 50 : 25,
             check = (w: number, h: number) => w > 0 && h > 0 && (w < maxSize && h < maxSize || w < maxAxis || h < maxAxis);
         tag.mlComputedStyle = tag.mlComputedStyle || tag.ownerDocument!.defaultView!.getComputedStyle(tag as Element, "");
@@ -1410,7 +1415,7 @@ class DocumentProcessor implements IDocumentProcessor
 
     protected getParentBackground(tag: Element | PseudoElement, probeRect?: ClientRect)
     {
-        let result = Object.assign({}, tag.ownerDocument!.body.mlBgColor || NotFound);
+        let result: ColorEntry = Object.assign({}, tag.ownerDocument!.body.mlBgColor || NotFound);
         result.reason = ColorReason.NotFound;
         if (tag.parentElement)
         {
@@ -1706,7 +1711,7 @@ class DocumentProcessor implements IDocumentProcessor
                 isButton = tag instanceof HTMLButtonElement ||
                     tag instanceof HTMLInputElement &&
                     (tag.type === "button" || tag.type === "submit" || tag.type === "reset") ||
-                    tag instanceof Element && tag.getAttribute("role") === "button";
+                    tag instanceof Element && tag.getAttribute(this._css.role) === "button";
 
             tag.mlComputedStyle = tag.mlComputedStyle || doc.defaultView!.getComputedStyle(tag as HTMLElement, "");
 
@@ -1857,21 +1862,29 @@ class DocumentProcessor implements IDocumentProcessor
                     const customImageRole = tag.mlComputedStyle!.getPropertyValue(`--ml-${cc[cc.Image].toLowerCase()}`) as keyof ComponentShift;
                     let imgSet = this.shift[customImageRole] || this.shift.Image;
                     roomRules.filter =
-                        {
-                            value: [
-                                tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
-                                imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
-                                this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
-                                imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
-                            ].filter(f => f).join(" ").trim()
-                        };
+                    {
+                        value: [
+                            tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
+                            imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
+                            this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : "",
+                            imgSet.lightnessLimit < 1 ? `brightness(${imgSet.lightnessLimit})` : ""
+                        ].filter(f => f).join(" ").trim()
+                    };
                     roomRules.attributes = roomRules.attributes || new Map<string, string>();
                     if (this._settingsManager.currentSettings.useImageHoverAnimation)
                     {
                         roomRules.attributes.set(this._css.transition, this._css.filter);
                     }
                 }
-                const bgInverted = roomRules.backgroundColor!.originalLight - roomRules.backgroundColor!.light > 0.4;
+
+                bgLight = roomRules.backgroundColor!.light;
+                let bgInverted = roomRules.backgroundColor!.originalLight - roomRules.backgroundColor!.light > 0.4;
+                if (roomRules.backgroundColor!.color && roomRules.backgroundColor!.alpha < 0.2)
+                {
+                    const parentBgColor = this.getParentBackground(tag);
+                    bgLight = parentBgColor.light;
+                    bgInverted = parentBgColor.originalLight - parentBgColor.light > 0.4;
+                }
 
                 if (tag.mlComputedStyle!.content!.startsWith("url") && !(
                     tag instanceof PseudoElement &&
@@ -1894,16 +1907,16 @@ class DocumentProcessor implements IDocumentProcessor
                     {
                         let imgSet = this.shift.Image;
                         roomRules.filter =
-                            {
-                                value: [
-                                    tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
-                                    imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
-                                    imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
-                                    doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
-                                    doInvert ? "hue-rotate(180deg) invert(1)" : "",
-                                    this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
-                                ].filter(f => f).join(" ").trim()
-                            };
+                        {
+                            value: [
+                                tag.mlComputedStyle!.filter != this._css.none ? tag.mlComputedStyle!.filter : "",
+                                imgSet.saturationLimit < 1 ? `saturate(${imgSet.saturationLimit})` : "",
+                                imgSet.lightnessLimit < 1 && !doInvert ? `brightness(${imgSet.lightnessLimit})` : "",
+                                doInvert ? `brightness(${float.format(1 - this.shift.Background.lightnessLimit)})` : "",
+                                doInvert ? "hue-rotate(180deg) invert(1)" : "",
+                                this._settingsManager.currentSettings.blueFilter !== 0 ? `var(--${FilterType.BlueFilter})` : ""
+                            ].filter(f => f).join(" ").trim()
+                        };
                     }
                 }
 
@@ -1912,12 +1925,6 @@ class DocumentProcessor implements IDocumentProcessor
                     tag.mlComputedStyle!.backgroundImage !== this._rootImageUrl)
                 {
                     this.processBackgroundImagesAndGradients(tag, doc, roomRules, isButton, bgInverted);
-                }
-
-                bgLight = roomRules.backgroundColor!.light;
-                if (roomRules.backgroundColor!.color && roomRules.backgroundColor!.alpha < 0.2)
-                {
-                    bgLight = this.getParentBackground(tag).light;
                 }
 
                 if (tag instanceof HTMLInputElement || tag instanceof HTMLTextAreaElement)
@@ -1964,9 +1971,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.color = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
@@ -2045,9 +2052,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.borderColor = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
@@ -2077,9 +2084,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.borderTopColor = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
@@ -2091,9 +2098,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.borderRightColor = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
@@ -2105,9 +2112,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.borderBottomColor = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
@@ -2119,9 +2126,9 @@ class DocumentProcessor implements IDocumentProcessor
                         {
                             roomRules.borderLeftColor = Object.assign(Object.assign({},
                                 roomRules.backgroundColor), {
-                                    reason: ColorReason.SameAsBackground,
-                                    owner: this._app.isDebug ? tag : null
-                                });
+                                reason: ColorReason.SameAsBackground,
+                                owner: this._app.isDebug ? tag : null
+                            });
                         }
                         else
                         {
