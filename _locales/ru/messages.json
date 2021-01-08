@@ -51,6 +51,18 @@
     "description": "text on the tooltip\/hint",
     "message": "Приводить тему браузера в соответствие с цветовой схемой на текущей вкладке.\nПоддерживается на Firefox и частично на Vivaldi."
   },
+  "activationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Расписание активации"
+  },
+  "activationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Выберите расписание активации расширения для данной цветовой схемы"
+  },
+  "defaultActivationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Расписание активации по умолчанию"
+  },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
     "message": "Использовать базовое расписание"
