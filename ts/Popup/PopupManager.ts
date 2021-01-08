@@ -1,5 +1,5 @@
 import { HtmlEvent } from "../Events/HtmlEvent";
-import { ColorSchemeNamePrefix, ColorScheme, ColorSchemePropertyName } from "../Settings/ColorScheme";
+import { ColorSchemeNamePrefix, ColorScheme, ColorSchemePropertyName, SystemSchedule } from "../Settings/ColorScheme";
 import { injectable } from "../Utils/DI";
 import { IApplicationSettings, BrowserName } from "../Settings/IApplicationSettings";
 import { IDocumentProcessor } from "../ContentScript/DocumentProcessor";
@@ -13,7 +13,7 @@ import { IMatchPatternProcessor } from "../Settings/MatchPatternProcessor";
 import { EventHandlerPriority } from "../Events/Event";
 import { ComponentShift } from "../Colors/ComponentShift";
 import { ArgumentedEventDispatcher } from "../Events/EventDispatcher";
-import { ColorSchemes, ColorSchemeId } from "../Settings/ColorSchemes";
+import { ColorSchemes, ColorSchemeId, CustomColorSchemeId } from "../Settings/ColorSchemes";
 import { RgbaColor } from "../Colors/RgbaColor";
 import { guid } from "../Utils/Guid";
 import { IPopupSettingsManager } from "./PopupSettingsManager";
@@ -45,7 +45,8 @@ class PopupManager
     protected _isEnabledToggle!: HTMLInputElement;
     protected _runOnThisSiteCheckBox!: HTMLInputElement;
     protected _runOnAllSitesByDefaultCheckBox!: HTMLInputElement;
-    protected _useDefaultScheduleCheckBox!: HTMLInputElement;
+    protected _useDefaultScheduleSelect!: HTMLSelectElement;
+    protected _defaultActivationScheduleCheckBox!: HTMLInputElement;
     protected _forgetAllSitesButton!: HTMLButtonElement;
     private _deleteAllWebsitesSettingsButton!: HTMLButtonElement;
     protected _forgetThisSiteButton!: HTMLButtonElement;
@@ -139,7 +140,8 @@ class PopupManager
         this._forgetAllSitesButton = doc.getElementById("forgetAllSitesBtn") as HTMLButtonElement;
         this._deleteAllWebsitesSettingsButton = doc.getElementById("deleteAllSitesSettingsBtn") as HTMLButtonElement;
         this._forgetThisSiteButton = doc.getElementById("forgetThisSiteBtn") as HTMLButtonElement;
-        this._useDefaultScheduleCheckBox = doc.getElementById("useDefaultSchedule") as HTMLInputElement;
+        this._useDefaultScheduleSelect = doc.getElementById("useDefaultSchedule") as HTMLSelectElement;
+        this._defaultActivationScheduleCheckBox = doc.getElementById("default_useDefaultSchedule") as HTMLInputElement;
         this._runOnThisSiteCheckBox = doc.getElementById("runOnThisSite") as HTMLInputElement;
         this._runOnAllSitesByDefaultCheckBox = doc.getElementById("default_runOnThisSite") as HTMLInputElement;
         this._saveColorSchemeButton = doc.getElementById("saveColorSchemeBtn") as HTMLButtonElement;
@@ -219,7 +221,8 @@ class PopupManager
         this._hostState.onclick = this._hostName.onclick = this.toggleRunOnThisSite.bind(this);
         this._applyButton.onclick = this.applySettingsOnPage.bind(this);
         this._isEnabledToggle.onchange = this.toggleIsEnabled.bind(this);
-        this._useDefaultScheduleCheckBox.onchange = this.toggleSchedule.bind(this);
+        this._useDefaultScheduleSelect.onchange = this.toggleSchedule.bind(this);
+        this._defaultActivationScheduleCheckBox.onchange = this.toggleDefaultSchedule.bind(this);
         this._forgetAllSitesButton.onclick = this.forgetAllSitesSettings.bind(this);
         this._forgetThisSiteButton.onclick = this.forgetCurrentSiteSettings.bind(this);
         this._deleteAllWebsitesSettingsButton.onclick = this.deleteAllWebsitesSettings.bind(this);
@@ -265,6 +268,7 @@ class PopupManager
         this.setUpDefaultInputFields();
         this.updateButtonStates();
         this.toggleSchedule();
+        this.toggleDefaultSchedule();
         this.onColorSchemeForEditChanged();
         this.setEmptySettingsOnGenerator();
     }
@@ -289,6 +293,7 @@ class PopupManager
         this.setPopupScale();
         this.updateButtonStates();
         this.toggleSchedule();
+        this.toggleDefaultSchedule();
         this.setEmptySettingsOnGenerator();
     }
 
@@ -301,24 +306,22 @@ class PopupManager
 
     protected onDefaultInputFieldChanged()
     {
-        this._settingsManager.getDefaultSettings()
-            .then(defSet =>
-            {
-                let newDefSet = this.getDefaultSettingsFromPopup();
-                if (defSet.changeBrowserTheme && !newDefSet.changeBrowserTheme &&
-                    this._app.browserName === BrowserName.Firefox &&
-                    confirm(this._i18n.getMessage("resetThemeConfirmationMessage")))
-                {
-                    browser.theme.reset();
-                }
-                return this._settingsManager.changeDefaultSettings(newDefSet);
-            })
+        const defSet = this._settingsManager.getDefaultSettingsCache()
+        let newDefSet = this.getDefaultSettingsFromPopup();
+        if (defSet.changeBrowserTheme && !newDefSet.changeBrowserTheme &&
+            this._app.browserName === BrowserName.Firefox &&
+            confirm(this._i18n.getMessage("resetThemeConfirmationMessage")))
+        {
+            browser.theme.reset();
+        }
+        this._settingsManager.changeDefaultSettings(newDefSet, true)
             .then(newDefSet =>
             {
                 if (this._settingsManager.currentSettings.colorSchemeId ===
                     ColorSchemes.default.colorSchemeId)
                 {
                     this.setUpInputFields(this._settingsManager.currentSettings);
+                    this.toggleSchedule();
                 }
                 if (this.currentSiteSettings.colorSchemeId ===
                     ColorSchemes.default.colorSchemeId)
@@ -339,21 +342,43 @@ class PopupManager
     {
         let settings: ColorScheme = {} as any, value: string | number | boolean,
             propName: ColorSchemePropertyName;
-        for (let setting of Array.from(document.querySelectorAll(".default-setting")) as HTMLInputElement[])
+        for (let settingElement of Array.from(document.querySelectorAll(".default-setting")) as HTMLInputElement[])
         {
-            propName = setting.id.replace("default_", "") as any;
+            propName = settingElement.id.replace("default_", "") as any;
             switch (typeof ColorSchemes.default[propName])
             {
                 case "boolean":
-                    value = setting.checked as boolean;
+                case "string":
+                    if (settingElement.classList.contains("schedule"))
+                    {
+                        switch (settingElement.checked)
+                        {
+                            case false:
+                                value = false;
+                                break;
+
+                            case true:
+                                // case SystemSchedule.Dark:
+                                value = SystemSchedule.Dark;
+                                break;
+
+                            default:
+                                value = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        value = settingElement.checked;
+                    }
                     break;
 
                 case "number":
-                    value = parseFloat(setting.value);
+                    value = parseFloat(settingElement.value);
                     break;
 
                 default:
-                    value = setting.value;
+                    value = settingElement.value;
                     break;
             }
             (settings as any)[propName] = value;
@@ -370,12 +395,31 @@ class PopupManager
             switch (typeof ColorSchemes.default[setting.id as ColorSchemePropertyName])
             {
                 case "boolean":
-                    value = setting.checked as boolean;
+                    if (setting.classList.contains("schedule"))
+                    {
+                        switch (setting.value)
+                        {
+                            case false.toString(): value = false; break;
+                            case true.toString(): value = true; break;
+                            case SystemSchedule.Dark: value = SystemSchedule.Dark; break;
+                            default: value = setting.value;
+                        }
+                    }
+                    else
+                    {
+                        value = setting.checked as boolean;
+                    }
                     break;
 
                 case "number":
-                    const isTime = setting.classList.contains("time");
-                    value = isTime ? parseFloat(setting.value) : parseInt(setting.value);
+                    if (setting.classList.contains("time"))
+                    {
+                        value = parseFloat(setting.value);
+                    }
+                    else
+                    {
+                        value = parseInt(setting.value);
+                    }
                     break;
 
                 default:
@@ -433,7 +477,7 @@ class PopupManager
     protected fillColorSchemesSelectLists()
     {
         const customScheme = Object.assign({}, this._settingsManager.currentSettings);
-        customScheme.colorSchemeId = "custom" as ColorSchemeId;
+        customScheme.colorSchemeId = CustomColorSchemeId;
         customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_Custom");
         this.addColorSchemeOption(this._colorSchemeSelect, customScheme);
         customScheme.colorSchemeName = this._i18n.getMessage("colorSchemeName_New");
@@ -518,16 +562,16 @@ class PopupManager
     {
         const formHasErrors = !this._settingsForm.checkValidity();
         this._hiddenSaveColorSchemeButton.disabled = this._saveColorSchemeButton.disabled = formHasErrors ||
-            this._colorSchemeForEdit.value !== "custom" &&
+            this._colorSchemeForEdit.value !== CustomColorSchemeId &&
             this._settingsManager.settingsAreEqual(this._settingsManager.currentSettings,
                 ColorSchemes[this._colorSchemeForEdit.value as ColorSchemeId]) &&
             ColorSchemes[this._colorSchemeForEdit.value as ColorSchemeId].colorSchemeName ===
             this._newColorSchemeName.value as ColorSchemeId;
-        this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === "custom";
+        this._deleteColorSchemeButton.disabled = this._colorSchemeForEdit.value === CustomColorSchemeId;
         this._exportColorSchemeButton.disabled = formHasErrors;
         if (!this._hiddenSaveColorSchemeButton.disabled &&
             this._colorSchemeSelect.value !== ColorSchemes.default.colorSchemeId &&
-            this._colorSchemeForEdit.value !== "custom")
+            this._colorSchemeForEdit.value !== CustomColorSchemeId)
         {
             this._hiddenSaveColorSchemeButton.classList.remove("hidden");
         }
@@ -548,7 +592,7 @@ class PopupManager
         const newScheme = Object.assign({}, this._settingsManager.currentSettings);
         newScheme.colorSchemeId = this._colorSchemeForEdit.value as ColorSchemeId;
         newScheme.colorSchemeName = this._newColorSchemeName.value;
-        if (this._colorSchemeForEdit.value === "custom")
+        if (this._colorSchemeForEdit.value === CustomColorSchemeId)
         {
             newScheme.colorSchemeId = guid("") as ColorSchemeId;
         }
@@ -596,9 +640,9 @@ class PopupManager
 
     protected saveUserColorScheme(e: Event)
     {
-        const colorSchemeForEditName = this._colorSchemeForEdit.value !== "custom"
+        const colorSchemeForEditName = this._colorSchemeForEdit.value !== CustomColorSchemeId
             ? ColorSchemes[this._colorSchemeForEdit.value as ColorSchemeId].colorSchemeName : "";
-        if (this._colorSchemeForEdit.value === "custom" ||
+        if (this._colorSchemeForEdit.value === CustomColorSchemeId ||
             e.target && e.target instanceof HTMLButtonElement &&
             e.target.id === this._hiddenSaveColorSchemeButton.id ||
             confirm(this._i18n.getMessage("colorSchemeSaveConfirmationMessage",
@@ -607,7 +651,7 @@ class PopupManager
             const newScheme = Object.assign({}, this._settingsManager.currentSettings);
             newScheme.colorSchemeId = this._colorSchemeForEdit.value as ColorSchemeId;
             newScheme.colorSchemeName = this._newColorSchemeName.value;
-            if (this._colorSchemeForEdit.value === "custom")
+            if (this._colorSchemeForEdit.value === CustomColorSchemeId)
             {
                 newScheme.colorSchemeId = guid("") as ColorSchemeId;
             }
@@ -668,7 +712,7 @@ class PopupManager
         this.setUpColorSchemeSelectValue(settings);
         this.updateButtonStates();
         if (settings.colorSchemeId &&
-            settings.colorSchemeId !== "custom" as ColorSchemeId &&
+            settings.colorSchemeId !== CustomColorSchemeId &&
             settings.colorSchemeId !== ColorSchemes.default.colorSchemeId &&
             settings.colorSchemeId !== ColorSchemes.original.colorSchemeId &&
             ColorSchemes[settings.colorSchemeId])
@@ -677,14 +721,14 @@ class PopupManager
         }
         else
         {
-            this._colorSchemeForEdit.value = "custom";
+            this._colorSchemeForEdit.value = CustomColorSchemeId;
         }
         this.onColorSchemeForEditChanged();
     }
 
     protected toggleSchedule()
     {
-        if (this._useDefaultScheduleCheckBox.checked)
+        if (this._useDefaultScheduleSelect.value !== false.toString())
         {
             this._popup.getElementById("scheduleStartHourContainer")!.classList.add("disabled");
             this._popup.getElementById("scheduleFinishHourContainer")!.classList.add("disabled");
@@ -693,6 +737,21 @@ class PopupManager
         {
             this._popup.getElementById("scheduleStartHourContainer")!.classList.remove("disabled");
             this._popup.getElementById("scheduleFinishHourContainer")!.classList.remove("disabled");
+        }
+    }
+
+    protected toggleDefaultSchedule()
+    {
+
+        if (this._defaultActivationScheduleCheckBox.checked)
+        {
+            this._popup.getElementById("default_scheduleStartHourContainer")!.classList.add("disabled");
+            this._popup.getElementById("default_scheduleFinishHourContainer")!.classList.add("disabled");
+        }
+        else
+        {
+            this._popup.getElementById("default_scheduleStartHourContainer")!.classList.remove("disabled");
+            this._popup.getElementById("default_scheduleFinishHourContainer")!.classList.remove("disabled");
         }
     }
 
@@ -735,6 +794,7 @@ class PopupManager
             {
                 this.setUpDefaultInputFields();
                 this.updateButtonStates();
+                this.toggleDefaultSchedule();
             })
             .catch(async ex =>
             {
@@ -758,7 +818,19 @@ class PopupManager
                 switch (input.type)
                 {
                     case "checkbox":
-                        (input as any).checked = settingValue;
+                        if (input.classList.contains("schedule"))
+                        {
+                            switch (settingValue?.toString())
+                            {
+                                case true.toString():
+                                case false.toString(): (input as any).checked = false; break;
+                                case SystemSchedule.Dark: (input as any).checked = true; break;
+                            }
+                        }
+                        else
+                        {
+                            (input as any).checked = settingValue;
+                        }
                         break;
 
                     case "range":
@@ -791,12 +863,12 @@ class PopupManager
         {
             if (settings.colorSchemeId === ColorSchemes.default.colorSchemeId &&
                 this._settingsManager.defaultColorSchemeId &&
-                this._settingsManager.defaultColorSchemeId !== "custom" as ColorSchemeId &&
+                this._settingsManager.defaultColorSchemeId !== CustomColorSchemeId &&
                 ColorSchemes[this._settingsManager.defaultColorSchemeId])
             {
                 this._colorSchemeForEdit.value = this._settingsManager.defaultColorSchemeId;
             }
-            else if (settings.colorSchemeId !== "custom" as ColorSchemeId &&
+            else if (settings.colorSchemeId !== CustomColorSchemeId &&
                 settings.colorSchemeId !== ColorSchemes.default.colorSchemeId &&
                 settings.colorSchemeId !== ColorSchemes.original.colorSchemeId &&
                 ColorSchemes[settings.colorSchemeId])
@@ -805,7 +877,7 @@ class PopupManager
             }
             else
             {
-                this._colorSchemeForEdit.value = "custom";
+                this._colorSchemeForEdit.value = CustomColorSchemeId;
             }
             this.onColorSchemeForEditChanged();
         }
@@ -974,7 +1046,7 @@ class PopupManager
     private updateCustomColorSchemeName()
     {
         const customName = this._i18n.getMessage("colorSchemeName_Custom");
-        this._colorSchemeSelect.options.namedItem("custom")!.textContent = `${customName}`;
+        this._colorSchemeSelect.options.namedItem(CustomColorSchemeId)!.textContent = customName;
     }
 
     protected setUpColorSchemeSelectValue(settings: ColorScheme)
@@ -984,7 +1056,7 @@ class PopupManager
 
         setUp:
         {
-            if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as ColorSchemeId &&
+            if (settings.colorSchemeId && settings.colorSchemeId !== CustomColorSchemeId &&
                 ColorSchemes[settings.colorSchemeId])
             {
                 this._colorSchemeSelect.value = settings.colorSchemeId;
@@ -1001,10 +1073,10 @@ class PopupManager
                         break setUp;
                     }
                 }
-                this._colorSchemeSelect.value = "custom";
-                if (this._colorSchemeForEdit.value !== "custom")
+                this._colorSchemeSelect.value = CustomColorSchemeId;
+                if (this._colorSchemeForEdit.value !== CustomColorSchemeId)
                 {
-                    this._colorSchemeSelect.options.namedItem("custom")!.textContent =
+                    this._colorSchemeSelect.options.namedItem(CustomColorSchemeId)!.textContent =
                         ColorSchemeNamePrefix.Unsaved +
                         this._colorSchemeForEdit.selectedOptions[0].textContent;
                 }
@@ -1028,7 +1100,7 @@ class PopupManager
         else
         {
             let selectedScheme;
-            if (this._colorSchemeSelect.value === "custom")
+            if (this._colorSchemeSelect.value === CustomColorSchemeId)
             {
                 this.applySettingsOnPopup(this.currentSiteSettings);
             }
@@ -1190,8 +1262,8 @@ class PopupManager
         set.scrollbarSaturationLimit = colors.scrollbarColor.saturation;
         set.scrollbarGrayHue = colors.scrollbarColor.hue;
 
-        set.colorSchemeId = "custom" as any;
-        this._colorSchemeForEdit.value = "custom";
+        set.colorSchemeId = CustomColorSchemeId;
+        this._colorSchemeForEdit.value = CustomColorSchemeId;
         this.setUpColorSchemeSelectValue(set);
         this.applySettingsOnPopup(set);
 

@@ -227,7 +227,7 @@ L 14.5 12 z" />
                         <option value="complex" i18n="mode_complex" i18n-attr="title" i18n-text="label">Complex</option>
                         <option value="filter" i18n="mode_filter" i18n-attr="title" i18n-text="label">Filter</option>
                     </select>
-                </div>
+                </div><br/>
                 <div class="ml-input-container">
                     <label class="ml-dialog-label" i18n="doNotInvertContent" i18n-attr="title" i18n-text="label">
                         <input class="ml-checkbox setting" id="doNotInvertContent" type="checkbox">Do not invert 'canvas' elements
@@ -277,9 +277,12 @@ L 14.5 12 z" />
                     </label>
                 </div>
                 <div class="ml-input-container">
-                    <label class="ml-dialog-label" i18n="useDefaultSchedule" i18n-attr="title" i18n-text="label">
-                        <input class="ml-checkbox setting" id="useDefaultSchedule" type="checkbox">Use default schedule
-                    </label>
+                    <label class="ml-dialog-label" i18n="activationSchedule" i18n-attr="title" i18n-text="label">Activation schedule</label>
+                    <select id="useDefaultSchedule" class="ml-dialog-input setting schedule ml-dialog-input-text">
+                        <option value="false" i18n="useCustomSchedule" i18n-attr="title" i18n-text="label"></option>
+                        <option value="true" i18n="useDefaultSchedule" i18n-attr="title" i18n-text="label"></option>
+                        <option value="sys-dark" i18n="useSystemDarkSchedule" i18n-attr="title" i18n-text="label"></option>
+                    </select>
                 </div>
                 <div id="scheduleStartHourContainer" class="ml-input-container time">
                     <label class="ml-dialog-label time" for="scheduleStartHour"
@@ -322,7 +325,7 @@ L 14.5 12 z" />
                            target="_blank" href="https://developer.chrome.com/extensions/match_patterns">Syntax</a>
                     </label>
                     <textarea id="includeMatches" class="ml-dialog-input ml-dialog-input-text ml-matches-input setting"
-                              rows="4" wrap="off" maxlength="4000"
+                              rows="3" wrap="off" maxlength="4000"
                               placeholder="‹scheme›://‹host›/‹path›&#10;https://*.google.com/*&#10;*://*.google.com/maps/*&#10;*://*/*settings*"
                     ></textarea>
                     <div class="ml-match-current-page"></div>
@@ -336,7 +339,7 @@ L 14.5 12 z" />
                            target="_blank" href="https://developer.chrome.com/extensions/match_patterns">Syntax</a>
                     </label>
                     <textarea id="excludeMatches" class="ml-dialog-input ml-dialog-input-text ml-matches-input setting"
-                              rows="4" wrap="off" maxlength="4000"
+                              rows="3" wrap="off" maxlength="4000"
                               placeholder="‹scheme›://‹host›/‹path›&#10;https://*.google.com/*&#10;*://*.google.com/maps/*&#10;*://*/*settings*"
                     ></textarea>
                     <div class="ml-match-current-page"></div>
@@ -1762,7 +1765,12 @@ L 14.5 12 z" />
                         <input class="ml-checkbox default-setting" id="default_restoreColorsOnPrint" type="checkbox">Restore original colors on print
                     </label>
                 </div>
-                <div class="ml-input-container time extra-margin">
+                <div class="ml-input-container">
+                    <label class="ml-dialog-label" i18n="useSystemDarkSchedule" i18n-attr="title" i18n-text="label">
+                        <input class="ml-checkbox schedule default-setting" id="default_useDefaultSchedule" type="checkbox">Use system color scheme schedule
+                    </label>
+                </div>
+                <div class="ml-input-container time" id="default_scheduleStartHourContainer">
                     <label class="ml-dialog-label time" for="default_scheduleStartHour"
                            i18n="default_scheduleStartHour" i18n-attr="title" i18n-text="label">Default activation time</label>
                     <input class="ml-input-range time reverse default-setting" id="default_scheduleStartHour"
@@ -1780,7 +1788,7 @@ L 14.5 12 z" />
                         />
                     </svg>
                 </div>
-                <div class="ml-input-container time">
+                <div class="ml-input-container time" id="default_scheduleFinishHourContainer">
                     <label class="ml-dialog-label time" for="default_scheduleFinishHour"
                            i18n="default_scheduleFinishHour" i18n-attr="title" i18n-text="label">Default deactivation time</label>
                     <input class="ml-input-range time direct default-setting" id="default_scheduleFinishHour"

@@ -1,4 +1,4 @@
-import { ColorScheme, ColorSchemePropertyName, excludeSettingsForSave } from "../Settings/ColorScheme";
+import { ColorScheme, ColorSchemePropertyName, excludeSettingsForSave, SystemSchedule } from "../Settings/ColorScheme";
 import { ArgumentedEvent, ResponsiveEvent } from "../Events/Event";
 import { injectable, Scope } from "../Utils/DI";
 import { IBaseSettingsManager, BaseSettingsManager } from "../Settings/BaseSettingsManager";
@@ -7,14 +7,17 @@ import { IStorageManager } from "../Settings/IStorageManager";
 import { ISettingsBus } from "../Settings/ISettingsBus";
 import { IMatchPatternProcessor } from "../Settings/MatchPatternProcessor";
 import { IRecommendations } from "../Settings/Recommendations";
-import { ColorSchemes, ColorSchemeId } from "../Settings/ColorSchemes";
+import { ColorSchemes, ColorSchemeId, CustomColorSchemeId } from "../Settings/ColorSchemes";
 import { ComponentShift } from "../Colors/ComponentShift";
 import { ITranslationAccessor } from "../i18n/ITranslationAccessor";
+import { HtmlEvent } from '../Events/HtmlEvent';
 
 type AnyResponse = (args: any) => void;
 type ColorSchemeResponse = (settings: ColorScheme) => void;
 type ArgEvent<TRequestArgs> = ArgumentedEvent<TRequestArgs>;
 type RespEvent<TResponseMethod extends Function, TRequestArgs> = ResponsiveEvent<TResponseMethod, TRequestArgs>;
+
+const dom = HtmlEvent;
 
 export abstract class ISettingsManager
 {
@@ -67,7 +70,11 @@ class SettingsManager extends BaseSettingsManager implements ISettingsManager
         {
             clearTimeout(this._scheduleUpdateTimeout);
         }
-        if (this._scheduleStartTime !== 0 || this._scheduleFinishTime !== 24)
+        if (this.UseSystemDarkSchedule)
+        {
+            dom.addEventListener(super.PrefersDarkColorSchemeMediaMatch(), "change", this.initCurrentSettings, this);
+        }
+        else if (this._scheduleStartTime !== 0 || this._scheduleFinishTime !== 24)
         {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -210,7 +217,7 @@ class SettingsManager extends BaseSettingsManager implements ISettingsManager
             try
             {
                 this.skipOneSettingsUpdate = true;
-                if (this._currentSettings.colorSchemeId === "default")
+                if (this._currentSettings.colorSchemeId === ColorSchemes.default.colorSchemeId)
                 {
                     await this._storageManager.set({
                         [this._settingsKey]: {
@@ -218,7 +225,7 @@ class SettingsManager extends BaseSettingsManager implements ISettingsManager
                         }
                     });
                 }
-                else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== "custom" as ColorSchemeId)
+                else if (this._currentSettings.colorSchemeId && this._currentSettings.colorSchemeId !== CustomColorSchemeId)
                 {
                     await this._storageManager.set({
                         [this._settingsKey]: {

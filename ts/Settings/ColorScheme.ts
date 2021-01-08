@@ -8,6 +8,12 @@ export enum ProcessingMode
     Filter = "filter"
 }
 
+export enum SystemSchedule
+{
+    Dark = "sys-dark",
+    Light = "sys-light"
+}
+
 export enum ColorSchemeNamePrefix
 {
     FromFile = "📄 ",
@@ -54,7 +60,7 @@ export interface ColorScheme
     modeAutoSwitchLimit: number;
 
     runOnThisSite: boolean;
-    useDefaultSchedule: boolean;
+    useDefaultSchedule: boolean | SystemSchedule;
     scheduleStartHour: number;
     scheduleFinishHour: number
     includeMatches: string;

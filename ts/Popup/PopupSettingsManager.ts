@@ -2,7 +2,7 @@ import { ColorScheme } from "../Settings/ColorScheme";
 import { ArgumentedEvent, ResponsiveEvent } from "../Events/Event";
 import { ArgumentedEventDispatcher } from "../Events/EventDispatcher";
 import { ComponentShift } from "../Colors/ComponentShift";
-import { ColorSchemeId, ColorSchemes } from "../Settings/ColorSchemes";
+import { ColorSchemeId, ColorSchemes, CustomColorSchemeId } from "../Settings/ColorSchemes";
 import { injectable, Scope } from "../Utils/DI";
 import { IBaseSettingsManager, BaseSettingsManager } from "../Settings/BaseSettingsManager";
 import { IApplicationSettings } from "../Settings/IApplicationSettings";
@@ -32,7 +32,7 @@ export abstract class IPopupSettingsManager
     abstract getDefaultSettings(): Promise<ColorScheme>;
     abstract getDefaultSettingsCache(): ColorScheme;
     abstract setAsDefaultSettings(): Promise<ColorScheme>;
-    abstract changeDefaultSettings(settings: ColorScheme): Promise<ColorScheme>;
+    abstract changeDefaultSettings(settings: ColorScheme, changeUnderlyingColorScheme: boolean): Promise<ColorScheme>;
     abstract toggleIsEnabled(isEnabled: boolean): Promise<null>;
     abstract changeSettings(newSettings: ColorScheme): void;
     abstract applySettings(): Promise<ColorScheme>;
@@ -133,13 +133,25 @@ class PopupSettingsManager extends BaseSettingsManager implements IPopupSettings
 
     public async setAsDefaultSettings()
     {
-        return await this.changeDefaultSettings(this._currentSettings);
+        return await this.changeDefaultSettings(this._currentSettings, false);
     }
 
-    public async changeDefaultSettings(settings: ColorScheme)
+    public async changeDefaultSettings(settings: ColorScheme, changeUnderlyingColorScheme: boolean)
     {
         await this.getDefaultSettings(false);
         this._defaultSettings = Object.assign(this._defaultSettings, settings);
+        if (changeUnderlyingColorScheme && this._defaultSettings.colorSchemeId !== CustomColorSchemeId)
+        {
+            const underlyingColorScheme = ColorSchemes[this._defaultSettings.colorSchemeId];
+            if (underlyingColorScheme)
+            {
+                // global settings from default color scheme
+                underlyingColorScheme.scheduleStartHour = settings.scheduleStartHour;
+                underlyingColorScheme.scheduleFinishHour = settings.scheduleFinishHour;
+                underlyingColorScheme.useDefaultSchedule = settings.useDefaultSchedule;
+                this.saveUserColorScheme(underlyingColorScheme);
+            }
+        }
         await this._storageManager.set(this._defaultSettings);
         this.renameSettingsToDefault(this._defaultSettings);
         Object.assign(ColorSchemes.default, this._defaultSettings);
@@ -178,11 +190,15 @@ class PopupSettingsManager extends BaseSettingsManager implements IPopupSettings
     {
         const settings = Object.assign({}, this._currentSettings);
         if (settings.colorSchemeId === undefined ||
-            settings.colorSchemeId !== "custom" as ColorSchemeId &&
+            settings.colorSchemeId !== CustomColorSchemeId &&
             ColorSchemes[settings.colorSchemeId] &&
-            !this.settingsAreEqual(ColorSchemes[settings.colorSchemeId], settings))
+            !this.settingsAreEqual(ColorSchemes[settings.colorSchemeId], settings, true))
         {
             settings.colorSchemeId = "custom" as ColorSchemeId;
+        }
+        else if (this.defaultColorSchemeId === settings.colorSchemeId)
+        {
+            settings.colorSchemeId = ColorSchemes.default.colorSchemeId;
         }
         return this._settingsBus.applySettings(settings);
     }

@@ -1,11 +1,11 @@
 import
 {
     ColorScheme, ProcessingMode, ColorSchemePropertyName,
-    ColorSchemeNamePrefix, excludeSettingsForCompare, PartialColorScheme
+    ColorSchemeNamePrefix, excludeSettingsForCompare, PartialColorScheme, SystemSchedule
 } from "./ColorScheme";
 import { ArgumentedEvent, ResponsiveEvent } from "../Events/Event";
 import { ArgumentedEventDispatcher, ResponsiveEventDispatcher } from "../Events/EventDispatcher";
-import { ColorSchemeId, ColorSchemes, DefaultColorSchemes } from "./ColorSchemes";
+import { ColorSchemeId, ColorSchemes, DefaultColorSchemes, CustomColorSchemeId } from "./ColorSchemes";
 import { ComponentShift } from "../Colors/ComponentShift";
 import { IApplicationSettings } from "./IApplicationSettings";
 import { IStorageManager, StorageLimits } from "./IStorageManager";
@@ -54,11 +54,18 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
     protected _settingsKey: string;
     protected _curTime = this.GetCurrentTime();
     private _isNotRecommended = false;
+    protected _curSystemSchemeIsDark = this.HasDarkSystemColorSchemePreference();
     protected get isScheduled(): boolean
     {
+        if (this.UseSystemDarkSchedule) return this._curSystemSchemeIsDark;
         return this._scheduleStartTime <= this._scheduleFinishTime
             ? this._scheduleStartTime <= this._curTime && this._curTime < this._scheduleFinishTime
             : this._scheduleStartTime <= this._curTime || this._curTime < this._scheduleFinishTime;
+    }
+    protected get UseSystemDarkSchedule()
+    {
+        return this._currentSettings.useDefaultSchedule === SystemSchedule.Dark ||
+            this._currentSettings.useDefaultSchedule && this._defaultSettings.useDefaultSchedule === SystemSchedule.Dark;
     }
     protected _lastIncludeMatchPatternsTestResults?: boolean;
     protected get matchesInclude(): boolean
@@ -513,16 +520,23 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
 
     protected updateSchedule()
     {
-        this._curTime = this.GetCurrentTime();
-        if (this._currentSettings.useDefaultSchedule)
+        if (this.UseSystemDarkSchedule)
         {
-            this._scheduleStartTime = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
-            this._scheduleFinishTime = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
+            this._curSystemSchemeIsDark = this.HasDarkSystemColorSchemePreference();
         }
         else
         {
-            this._scheduleStartTime = this._currentSettings.scheduleStartHour !== undefined ? this._currentSettings.scheduleStartHour : 0;
-            this._scheduleFinishTime = this._currentSettings.scheduleFinishHour !== undefined ? this._currentSettings.scheduleFinishHour : 24;
+            this._curTime = this.GetCurrentTime();
+            if (this._currentSettings.useDefaultSchedule)
+            {
+                this._scheduleStartTime = this._defaultSettings.scheduleStartHour !== undefined ? this._defaultSettings.scheduleStartHour : 0;
+                this._scheduleFinishTime = this._defaultSettings.scheduleFinishHour !== undefined ? this._defaultSettings.scheduleFinishHour : 24;
+            }
+            else
+            {
+                this._scheduleStartTime = this._currentSettings.scheduleStartHour !== undefined ? this._currentSettings.scheduleStartHour : 0;
+                this._scheduleFinishTime = this._currentSettings.scheduleFinishHour !== undefined ? this._currentSettings.scheduleFinishHour : 24;
+            }
         }
     }
 
@@ -530,6 +544,16 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
     {
         let now = new Date();
         return now.getHours() + now.getMinutes() / 60;
+    }
+
+    private HasDarkSystemColorSchemePreference(): boolean
+    {
+        return this.PrefersDarkColorSchemeMediaMatch().matches;
+    }
+
+    protected PrefersDarkColorSchemeMediaMatch()
+    {
+        return window.matchMedia("(prefers-color-scheme: dark)");
     }
 
     protected notifySettingsApplied()
@@ -576,8 +600,6 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
         await this.applyUserColorSchemesFromStorage(defaultSettings);
         this.assignSettings(this._defaultSettings, defaultSettings);
         Object.assign(this._defaultSettings, {
-            scheduleStartHour: defaultSettings.scheduleStartHour,
-            scheduleFinishHour: defaultSettings.scheduleFinishHour,
             changeBrowserTheme: defaultSettings.changeBrowserTheme,
             userColorSchemeIds: defaultSettings.userColorSchemeIds,
             restoreColorsOnCopy: defaultSettings.restoreColorsOnCopy,
@@ -721,7 +743,7 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
 
     protected assignSettings(to: ColorScheme, settings: ColorScheme)
     {
-        if (settings.colorSchemeId && settings.colorSchemeId !== "custom" as ColorSchemeId &&
+        if (settings.colorSchemeId && settings.colorSchemeId !== CustomColorSchemeId &&
             ColorSchemes[settings.colorSchemeId])
         {
             Object.assign(to, ColorSchemes[settings.colorSchemeId]);
@@ -740,12 +762,13 @@ export abstract class BaseSettingsManager implements IBaseSettingsManager
         }
     }
 
-    public settingsAreEqual(first: ColorScheme, second: ColorScheme): boolean
+    public settingsAreEqual(first: ColorScheme, second: ColorScheme, excludeRunOnThisSiteFromCompare = false): boolean
     {
         for (let setting in first)
         {
             let prop = setting as ColorSchemePropertyName;
-            if (excludeSettingsForCompare.indexOf(prop) == -1)
+            if (excludeSettingsForCompare.indexOf(prop) == -1 &&
+                !(excludeRunOnThisSiteFromCompare && prop === "runOnThisSite"))
             {
                 if (first[prop] !== second[prop])
                 {

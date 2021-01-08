@@ -381,7 +381,7 @@ html[ml-stage-mode]:not([ml-stage-mode="complete-complex"]) .ml-input-container:
 }
 
 .ml-long-cmd-container {
-    margin: 26px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
+    margin: 20px calc((100% - 255px)/2) 0px calc((100% - 255px)/2);
 }
 
 .ml-long-cmd-container:not(#imp):not(imp):not(.imp),
@@ -448,7 +448,7 @@ select.ml-dialog-input-text {
     }
 }
 
-.ml-input-container>select.ml-dialog-input {
+#edit-schemes .ml-input-container>select.ml-dialog-input {
     margin: 8px auto 32px auto;
 }
 

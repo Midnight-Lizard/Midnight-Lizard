@@ -2,6 +2,8 @@ import { ColorScheme, ProcessingMode } from "./ColorScheme";
 
 export type ColorSchemeId = keyof typeof ColorSchemes;
 
+export const CustomColorSchemeId = "custom" as ColorSchemeId;
+
 /**
  * ColorSchemes
  */
