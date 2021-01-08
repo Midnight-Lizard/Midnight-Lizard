@@ -65,7 +65,7 @@
   },
   "defaultActivationSchedule_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "Choose default activation schedule"
+    "message": "Choose default activation schedule for the extension"
   },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
