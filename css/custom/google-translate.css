@@ -87,3 +87,7 @@ html[ml-mode]:not([ml-mode="filter"]) .gt-related-suggest-message {
 html[ml-stage-mode="complete-complex"] span[role="img"]>div {
   --ml-background-background-color:Border;
 }
+
+.jTj8gd.XzOhkf .a2Icud:not(imp) {
+  background: transparent;
+}
