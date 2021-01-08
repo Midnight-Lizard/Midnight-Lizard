@@ -81,7 +81,7 @@
   },
   "useCustomSchedule_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "Использовать особое расписание активации расширения для данной цветовой схемы."
+    "message": "Использовать особое расписание активации расширения для данной цветовой схемы, заданное ниже."
   },
   "useSystemDarkSchedule_text_label": {
     "description": "text on the label",
