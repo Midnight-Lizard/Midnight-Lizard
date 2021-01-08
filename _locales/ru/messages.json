@@ -51,6 +51,22 @@
     "description": "text on the tooltip\/hint",
     "message": "Приводить тему браузера в соответствие с цветовой схемой на текущей вкладке.\nПоддерживается на Firefox и частично на Vivaldi."
   },
+  "activationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Расписание активации"
+  },
+  "activationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Выберите расписание активации расширения для данной цветовой схемы"
+  },
+  "defaultActivationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Базовое расписание активации"
+  },
+  "defaultActivationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Выберите базовое расписание активации расширения"
+  },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
     "message": "Использовать базовое расписание"
@@ -58,6 +74,22 @@
   "useDefaultSchedule_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Базовым является расписание из настроек по умолчанию.\nЧтобы использовать одно расписание на всех сайтах,\nнеобходимо установить его на вкладке «Глобальные опции»."
+  },
+  "useCustomSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Использовать особое расписание"
+  },
+  "useCustomSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Использовать особое расписание активации расширения для данной цветовой схемы."
+  },
+  "useSystemDarkSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Использовать системное расписание"
+  },
+  "useSystemDarkSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Активировать расширение автоматически с включением темной темы в операционной системе."
   },
   "scheduleStartHour_text_label": {
     "description": "text on the label",
