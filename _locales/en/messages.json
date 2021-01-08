@@ -51,6 +51,22 @@
     "description": "text on the tooltip\/hint",
     "message": "Adjust browser theme to the current color scheme.\nSupported by Firefox and partially by Vivaldi."
   },
+  "activationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Activation schedule"
+  },
+  "activationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Choose extension activation schedule"
+  },
+  "defaultActivationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Default activation schedule"
+  },
+  "defaultActivationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Choose default activation schedule"
+  },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
     "message": "Use default schedule"
@@ -58,6 +74,22 @@
   "useDefaultSchedule_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Use schedule from the default settings.\nIf you want to use single schedule for all websites\nthen you need to specify it in the default settings\nor on the 'Global settings' tab which is the same."
+  },
+  "useCustomSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Use custom schedule"
+  },
+  "useCustomSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Use custom activation schedule."
+  },
+  "useSystemDarkSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Use system color scheme schedule"
+  },
+  "useSystemDarkSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Use system wide dark color scheme schedule."
   },
   "scheduleStartHour_text_label": {
     "description": "text on the label",
