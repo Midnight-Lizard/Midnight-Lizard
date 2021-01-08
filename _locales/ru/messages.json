@@ -61,15 +61,31 @@
   },
   "defaultActivationSchedule_text_label": {
     "description": "text on the label",
-    "message": "Расписание активации по умолчанию"
+    "message": "Базовое расписание активации"
+  },
+  "defaultActivationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Выберите базовое расписание активации расширения"
   },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
-    "message": "Использовать базовое расписание"
+    "message": "Базовое расписание"
   },
   "useDefaultSchedule_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Базовым является расписание из настроек по умолчанию.\nЧтобы использовать одно расписание на всех сайтах,\nнеобходимо установить его на вкладке «Глобальные опции»."
+  },
+  "useCustomSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Особое расписание"
+  },
+  "useCustomSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Использовать особое расписание активации расширения для данной цветовой схемы."
+  },
+  "useSystemDarkSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Системное расписание"
   },
   "scheduleStartHour_text_label": {
     "description": "text on the label",
