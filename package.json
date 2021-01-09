@@ -5,7 +5,7 @@
     "email": "support@midnight-lizard.org"
   },
   "license": "MIT",
-  "version": "10.6.0",
+  "version": "10.7.0",
   "dependencies": {
     "@types/chrome": "0.0.127",
     "@types/firefox-webext-browser": "82.0.0",
