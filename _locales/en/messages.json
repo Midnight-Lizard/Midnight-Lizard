@@ -81,7 +81,7 @@
   },
   "useCustomSchedule_@title": {
     "description": "text on the tooltip\/hint",
-    "message": "Use custom activation schedule."
+    "message": "Use custom activation schedule specified below."
   },
   "useSystemDarkSchedule_text_label": {
     "description": "text on the label",
