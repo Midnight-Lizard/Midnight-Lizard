@@ -13,6 +13,7 @@
 ✔ Apply blue light filter to shift all colors towards red light  
 ✔ Keep original images and hues without inversion  
 ✔ Schedule automatic activation and deactivation  
+✔ Or follow system color scheme schedule  
 ✔ Use with PDF and local files (enable in browser settings)  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub><sup>PDF processing is available only in Chromium-based browsers</sup></sub>  
 ✔ Dynamically change Firefox theme (disabled by default)  
