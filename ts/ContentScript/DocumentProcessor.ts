@@ -58,7 +58,7 @@ const Status = PromiseStatus;
 type PromiseResult<T> = HandledPromiseResult<T>;
 type ArgEvent<TArgs> = ArgumentedEvent<TArgs>;
 const ArgEventDispatcher = ArgumentedEventDispatcher;
-const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey|gray|flag|emoji/i;
+const doNotInvertRegExp = /user|account|avatar|photo(?!.+black)|white|grey(?!_medium.svg|_dark.svg)|gray|flag|emoji/i;
 const notTextureRegExp = /user|account|avatar|photo|flag|emoji/i;
 const smallRoles = /button|checkbox|columnheader|combobox|gridcell|link|listitem|menuitem|menuitemcheckbox|menuitemradio|option|radio|separator|search|textbox|tooltip|treeitem/i;
 /** 2 fraction digits number format */

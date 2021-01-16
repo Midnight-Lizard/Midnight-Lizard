@@ -1,4 +1,5 @@
-#docs-editor svg, .punch-viewer-container svg
+#docs-editor svg:not(.punch-filmstrip-controls-icon),
+.punch-viewer-container svg:not(.punch-filmstrip-controls-icon)
 {
     --ml-small-svg-is-text:false;
     --ml-svgbackground-fill:Background;
@@ -22,4 +23,9 @@
 #lineColorMenuButton .sketchy-color-menu-button-indicator
 {
     --ml-background-background-color:Border;
+}
+
+html[ml-mode]:not([ml-mode="filter"]) .apps-share-sprite {
+    --ml-ignore:true;
+    filter: invert(var(--ml-invert))!important;
 }

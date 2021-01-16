@@ -34,7 +34,7 @@ html[ml-mode]:not([ml-mode="filter"]) .goog-toolbar-combo-button-dropdown:not(im
 
 .scb-private-icon-white, .scb-invalid-icon-white,
 .scb-unlisted-icon-white, .docs-icon-close-white,
-[class*="icon-white"]
+[class*="icon-white"]:not(.apps-share-sprite)
 {
     --ml-no-invert:true;
 }
