@@ -1659,3 +1659,35 @@ html[ml-color-scheme="custom"] i.unsaved {
 .ml-tab-item.hidden * {
   visibility: hidden;
 }
+
+#text #textGrayHue {
+  --sat: calc(var(--ml-text-saturation-limit) * 100% + 10%);
+}
+
+#text #textSelectionHue {
+  --sat: calc(var(--ml-text-saturation-limit) * 100% + 30%);
+}
+
+#links #linkDefaultHue {
+  --sat: calc(var(--ml-link-saturation-limit) * 100% + 10%);
+}
+
+#links #linkVisitedHue {
+  --sat: calc(var(--ml-link-gray-saturation) * 100% + 10%);
+}
+
+#button .hue {
+  --sat: calc(var(--ml-button-background-saturation-limit) * 100% + 10%);
+}
+
+#background .hue {
+  --sat: calc(var(--ml-background-saturation-limit) * 100% + 10%);
+}
+
+#borders .hue {
+  --sat: calc(var(--ml-border-saturation-limit) * 100% + 10%);
+}
+
+#scrollbars .hue {
+  --sat: calc(var(--ml-scrollbar-normal-saturation-limit) * 100% + 30%);
+}
