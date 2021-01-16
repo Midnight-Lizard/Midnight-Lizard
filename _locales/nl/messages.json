@@ -51,6 +51,22 @@
     "description": "text on the tooltip\/hint",
     "message": "Stem het browserthema af op het huidige kleurenschema.\nDeze functie wordt volledig ondersteund door Firefox en deels door Vivaldi."
   },
+  "activationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Tijdschema"
+  },
+  "activationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kies een tijdschema voor de extensie"
+  },
+  "defaultActivationSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Standaard tijdschema"
+  },
+  "defaultActivationSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Kies het standaard tijdschema"
+  },
   "useDefaultSchedule_text_label": {
     "description": "text on the label",
     "message": "Standaardplanning gebruiken"
@@ -58,6 +74,22 @@
   "useDefaultSchedule_@title": {
     "description": "text on the tooltip\/hint",
     "message": "Gebruik de planning van de standaardinstellingen.\nAls je gebruik wilt maken van één planning voor alle\nwebsites, geef dit dan op in de standaardinstellingen\nof op het tabblad 'Globale instellingen'."
+  },
+  "useCustomSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Aangepast tijdschema gebruiken"
+  },
+  "useCustomSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Stel een aangepast tijdschema in."
+  },
+  "useSystemDarkSchedule_text_label": {
+    "description": "text on the label",
+    "message": "Planning van systeemthema volgen"
+  },
+  "useSystemDarkSchedule_@title": {
+    "description": "text on the tooltip\/hint",
+    "message": "Volg het tijdschema van het donkere systeemthema."
   },
   "scheduleStartHour_text_label": {
     "description": "text on the label",
