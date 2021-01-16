@@ -786,7 +786,7 @@ html[ml-stage-mode]:not([ml-mode="filter"]):not([ml-stage-mode="complete-complex
     bottom: 4px;
     content: attr(marker);
     text-shadow: none;
-    color: var(--ml-main-link-color, var(--light-color));
+    color: var(--ml-main-link-color-hover, var(--light-color));
     background-color: var(--ml-main-button-background-color, var(--dark-background-color));
     border: solid 1px var(--ml-main-border-color, var(--light-thin-border-color));
     border-radius: 3px;
