@@ -40,6 +40,9 @@ class Recommendations implements IRecommendations
     readonly recommendations: IRecommendation[] = [
         { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/\?stream_channel.*$/i },
         { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www\.)?yastatic\.net\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/(www\.)?twitch\.tv\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/\w+\.steampowered\.com\/.*$/i },
+        { browsers: allbr, platforms: allpf, mode: _none_, observe: false, matchPattern: /^https:\/\/steamcommunity\.com\/.*$/i },
 
         { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/web\.whatsapp\.com\/$/i },
         { browsers: allbr, platforms: allpf, mode: complx, observe: true, matchPattern: /^https:\/\/(www\.)?yandex\.ru\/portal\/video.*$/i },
