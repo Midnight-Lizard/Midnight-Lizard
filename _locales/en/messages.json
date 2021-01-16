@@ -1097,7 +1097,7 @@
   },
   "resetThemeConfirmationMessage": {
     "description": "text on the message box",
-    "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme."
+    "message": "Do you want to reset current browser theme to the default one?\nIt might be reset to the original Firefox theme instead of your previous theme.\nAlso you might need to restart Firefox for this action to take effect."
   },
   "invalidMatchPattern": {
     "description": "validation error message",
