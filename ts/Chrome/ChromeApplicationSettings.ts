@@ -67,7 +67,9 @@ export class ChromeApplicationSettings implements IApplicationSettings
         protected readonly _rootDocument: Document,
         protected readonly _chrome: ChromePromise)
     {
-        if (chrome.runtime.getManifest().update_url)
+        if (chrome.runtime.id === "pbnndmlekkboofhnbonilimejonapojg" || // chrome
+            chrome.runtime.id === "{8fbc7259-8015-4172-9af1-20e1edfbbd3a}" || // firefox
+            chrome.runtime.getManifest().update_url)
         {   // production environment
             this._isDebug = false;
         }
