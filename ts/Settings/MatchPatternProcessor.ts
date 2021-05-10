@@ -79,7 +79,7 @@ class MatchPatternProcessor implements IMatchPatternProcessor
             {
                 if (host.match(/^\*\./))
                 {
-                    regex += '[^/]*?';
+                    regex += '(?!www\.)[^/]*?\.';
                     host = host.substring(2);
                 }
                 regex += host.replace(/[\[\](){}?+\^\$\\\.|\-]/g, "\\$&");
