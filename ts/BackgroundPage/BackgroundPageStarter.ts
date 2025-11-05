@@ -8,7 +8,13 @@ import { IApplicationInstaller } from "./IApplicationInstaller";
 import { IExternalMessageProcessor } from "./ExternalMessageProcessor";
 import { ILocalMessageProcessor } from "./LocalMessageProcessor";
 
-Container.register(Document, class { constructor() { return document } });
+// Manifest V3: Service workers don't have access to document
+// Provide a stub for compatibility
+Container.register(Document, class {
+    constructor() {
+        return typeof document !== 'undefined' ? document : { location: { hostname: '' } } as Document;
+    }
+});
 Container.register(CurrentExtensionModule, class
 {
     constructor()

@@ -80,7 +80,11 @@ export class ChromeApplicationSettings implements IApplicationSettings
 
         // console.log(`Midnight Lizard ${this._isDebug ? "Development" : "Production"}-${chrome.runtime.id}`);
 
-        this._preserveDisplay = /facebook|baidu/gi.test(_rootDocument.location!.hostname);
+        // Manifest V3: Service workers don't have document.location
+        // _preserveDisplay is only relevant in content script context, not background
+        this._preserveDisplay = _rootDocument?.location?.hostname
+            ? /facebook|baidu/gi.test(_rootDocument.location.hostname)
+            : false;
     }
 
     public getFullPath(relativePath: string)
