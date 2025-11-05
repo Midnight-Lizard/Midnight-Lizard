@@ -54,7 +54,6 @@
         {
             "run_at": "document_start",
             "all_frames": true,
-            "match_about_blank": true,
             "matches": [
                 "<all_urls>"
             ],
